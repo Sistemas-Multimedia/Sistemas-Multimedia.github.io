@@ -1,5 +1,11 @@
 # Contents
 
+1. Multimedia acquisition.
+   1. [Harmonic analysis](https://cdn.rawgit.com/vicente-gonzalez-ruiz/harmonic_analysis/master/index.html).
+   2. [Sampling](https://cdn.rawgit.com/vicente-gonzalez-ruiz/sampling/master/index.html).
+   3. [Quantization](https://cdn.rawgit.com/vicente-gonzalez-ruiz/quantization/master/index.html).
+</br>
+
 1. Introduction to data compression.
    1. [Why to compress](https://cdn.rawgit.com/vicente-gonzalez-ruiz/why_to_compress/master/index.html).
    2. [Compression insights](https://cdn.rawgit.com/vicente-gonzalez-ruiz/compression_insights/master/index.html).
