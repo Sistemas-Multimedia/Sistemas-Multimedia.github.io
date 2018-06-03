@@ -30,7 +30,8 @@
 2. Audio compression.
    1. [Basics](https://cdn.rawgit.com/vicente-gonzalez-ruiz/audio_compression/master/index.html).
    1. [Differential coding](https://cdn.rawgit.com/vicente-gonzalez-ruiz/differential_coding/master/index.htm).
-   1. [MP3](https://cdn.rawgit.com/vicente-gonzalez-ruiz/MP3/master/index.html.
+   1. [MP3](https://cdn.rawgit.com/vicente-gonzalez-ruiz/MP3/master/index.html).
+   1. [Vorbis](https://cdn.rawgit.com/vicente-gonzalez-ruiz/vorbis/master/index.html).
 
 2. Image compression.
    1. [Signal compression](https://rawgit.com/vicente-gonzalez-ruiz/signal_redundancies/master/index.html).
