@@ -45,3 +45,5 @@
    1. [MCTF](https://github.com/vicente-gonzalez-ruiz/MCTF-video-coding).
    1. [MCDWT](https://github.com/vicente-gonzalez-ruiz/MCDWT).
 
+## Bibliography
+
