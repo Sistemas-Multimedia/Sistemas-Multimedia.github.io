@@ -1,5 +1,6 @@
 BIBINPUTS=":.:/home/vruiz/bibs/:"
 make clean
+grep citation ~/text_compression/index.aux >> index.aux
 grep citation ~/Run-length_encoding/index.aux >> index.aux
 grep citation ~/Burrows-Wheeler_transform/index.aux >> index.aux
 grep citation ~/LZ77/index.aux >> index.aux
