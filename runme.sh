@@ -12,8 +12,9 @@ grep citation ~/Arithmetic_coding/index.aux >> index.aux
 grep citation ~/move-to-front_transform/index.aux >> index.aux
 grep citation ~/Golomb-Rice_coding/index.aux >> index.aux
 grep citation ~/gzip/index.aux >> index.aux
+grep citation ~/audio_compression/index.aux >> index.aux
 grep citation ~/differential_coding/index.aux >> index.aux
-echo "\bibdata{signal-processing,text-compression}" >> index.aux
+echo "\bibdata{signal-processing,text-compression,audio-coding}" >> index.aux
 echo "\bibstyle{plain}" >> index.aux
 #pdflatex citations
 bibtex index
