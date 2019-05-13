@@ -24,10 +24,6 @@
 .msbm-5{font-size:50%;}
 .ecrm-1728{font-size:170%;}
 .ecrm-1200{font-size:120%;}
-.ecti-1000{ font-style: italic;}
-.ecti-1000{ font-style: italic;}
-.ecti-1000{ font-style: italic;}
-.ecti-1000{ font-style: italic;}
 p.noindent { text-indent: 0em }
 td p.noindent { text-indent: 0em; margin-top:0em; }
 p.nopar { text-indent: 0em; }
@@ -141,7 +137,6 @@ mtd.align-even{margin-right:2em; text-align:left;}
 .boxed{border: 1px solid black; padding-left:2px; padding-right:2px;}
 mo.qopname + mi{margin-left:0.3em}
 mi + mo.qopname{margin-left:0.3em}
-.rotatebox{display: inline-block;}
 .figure img.graphics {margin-left:10%;}
 div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
 table.tabular td p{margin-top:0em;}
