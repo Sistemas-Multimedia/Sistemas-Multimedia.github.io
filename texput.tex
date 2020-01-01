@@ -1,71 +1,19 @@
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "<none>"
-%%% End:
-
 \title{Multimedia Systems}
 \author{Vicente González Ruiz}
-
 \maketitle
-%\tableofcontents
+\tableofcontents
 
-\begin{enumerate}
-\item Background.
-  \begin{enumerate}
-  \item \href{https://tecnologias-multimedia.github.io}{Multimedia technologies}.
-  \end{enumerate}
-  
-\item \href{https://vicente-gonzalez-ruiz.github.io/text_compression/}{Text compression}.
-  \begin{enumerate}
-  \item \href{https://vicente-gonzalez-ruiz.github.io/why_to_compress/}{Why to compress}.
-  \item \href{https://vicente-gonzalez-ruiz.github.io/compression_insights/}{Compression insights}.
-  \item \href{https://vicente-gonzalez-ruiz.github.io/run-length_encoding/}{Run-length encoding}.
-  \begin{enumerate}
-  \item \href{https://vicente-gonzalez-ruiz.github.io/Burrows-Wheeler_transform/}{Burrows-Wheeler transform}.
-  \end{enumerate}
-\item \href{https://vicente-gonzalez-ruiz.github.io/string_compression/}{String compression}.
-  \begin{enumerate}
-  \item \href{https://vicente-gonzalez-ruiz.github.io/LZ77/}{LZ77}.
-  \item \href{https://vicente-gonzalez-ruiz.github.io/LZ78/}{LZ78}.
-  \item \href{https://vicente-gonzalez-ruiz.github.io/LZW/}{LZW}.
-  \end{enumerate}
-\item \href{https://vicente-gonzalez-ruiz.github.io/symbol_compression/}{Symbol compression}.
-  \begin{enumerate}
-  \item \href{https://vicente-gonzalez-ruiz.github.io/probabilistic_models/}{Probabilistic models}.
-  \item \href{https://vicente-gonzalez-ruiz.github.io/Shannon-Fano_coding/}{Shannon-Fano Coding}.
-  \item \href{https://vicente-gonzalez-ruiz.github.io/Huffman_coding/}{Huffman Coding}.
-  \item \href{https://vicente-gonzalez-ruiz.github.io/arithmetic_coding/}{Arithmetic Coding}.
-  \item \href{https://vicente-gonzalez-ruiz.github.io/move-to-front_transform/}{Move-to-front transform}.
-  \item \href{https://vicente-gonzalez-ruiz.github.io/context-based_text_predictive_transform/}{Context-base text predictive transform}.
-  \item \href{https://vicente-gonzalez-ruiz.github.io/unary_coding/}{Unary coding}.
-  \item \href{https://vicente-gonzalez-ruiz.github.io/Golomb-Rice_coding/}{Golomb-Rice coding}.
-  \end{enumerate}
-\item \href{https://vicente-gonzalez-ruiz.github.io/gzip/}{gzip}.
-  \end{enumerate}
-\item \href{https://vicente-gonzalez-ruiz.github.io/audio_compression/}{Audio compression}.
-  \begin{enumerate}
-  \item \href{https://vicente-gonzalez-ruiz.github.io/image_redundancies/}{Quantization}.
-  %\item \href{https://cdn.rawgit.com/vicente-gonzalez-ruiz/audio_compression/master/index.html}{Basics}.
-  \item \href{https://vicente-gonzalez-ruiz.github.io/differential_coding/}{Differential coding}.
-  \item \href{https://vicente-gonzalez-ruiz.github.io/MP3/}{MP3}.
-  \item \href{https://vicente-gonzalez-ruiz.github.io/vorbis/}{Vorbis}.
-  \end{enumerate}
-  
-\item \href{https://vicente-gonzalez-ruiz.github.io/vorbis/}{Image compression}.
-  \begin{enumerate}
-  \item \href{https://vicente-gonzalez-ruiz.github.io/image_redundancies/}{Image redundancies}.
-  \item \href{https://vicente-gonzalez-ruiz.github.io/image_transformations_for_coding/}{Image tranformations for coding}.
-  \item \href{https://cdn.rawgit.com/vicente-gonzalez-ruiz/LOCO/master/index.html}{LOCO}.
-  \item \href{https://cdn.rawgit.com/vicente-gonzalez-ruiz/JPEG/master/index.html}{JPEG}.
-  \item \href{https://cdn.rawgit.com/vicente-gonzalez-ruiz/JPEG2000/master/index.html}{JPEG2000}.
-  \item \href{}{PNG}.
-  \end{enumerate}
-\item Video compression.
-  \begin{enumerate}
-  \item \href{https://cdn.rawgit.com/vicente-gonzalez-ruiz/video_compression/master/index.html}{Fundamentals}.
-  \item \href{https://github.com/vicente-gonzalez-ruiz/MCTF-video-coding}{MCTF}.
-  \item \href{https://github.com/Sistemas-Multimedia/MCDWT}{MCDWT}.
-  \end{enumerate}
-\end{enumerate}
+\section{\mylink{why_to_compress}{Why to compress?}}
+\section{\mylink{compression_insights}{Compression insights}}
+\section{\mylink{redundancy}{Redundancy}}
+\section{\mylink{signal_digitization}{Signal digitization}}
+\section{\mylink{text_compression}{Text compression}}
+\section{\mylink{audio_compression}{Audio compression}}
+\section{\mylink{image_compression}{Image compression}}
+\section{\mylink{video_compression}{Video compression}}
+\section{\href{https://github.com/vicente-gonzalez-ruiz/MCTF-video-coding}{MCTF}}
+\section{\href{https://github.com/Sistemas-Multimedia/MCDWT}{MCDWT}}
 
-\input{index.bbl}
+\bibliography{data-compression, text-compression, audio-coding, signal-processing, image-compression, LOCO, JPEG, image-standards, JPEG2000, video-compression}
+
+%\input{index.bbl}
