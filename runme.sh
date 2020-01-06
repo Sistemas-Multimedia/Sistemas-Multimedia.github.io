@@ -1,15 +1,15 @@
-BIBINPUTS=":.:/home/vruiz/bibs/:"
+export BIBINPUTS=":.:/home/vruiz/bibs/:"
 make clean
 make index.pdf
 rm -f citations
-cat ~/why_to_compress/citations >> citations
-cat ~/compression_insights/citations >> citations
-cat ~/redundancy/citations >> citations
+grep citation ~/why_to_compress/index.aux >> citations
+grep citation ~/compression_insights/index.aux >> citations
+grep citation ~/redundancy/index.aux >> citations
 cat ~/signal_digitization/citations >> citations
 cat ~/text_compression/citations >> citations
 cat ~/audio_compression/citations >> citations
 cat ~/image_compression/citations >> citations
-cat ~/video_compression/citations >> citations
+grep citation ~/video_compression/index.aux >> citations
 cat citations >> index.aux
 bibtex index
 make index.html
