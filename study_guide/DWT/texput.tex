@@ -25,7 +25,15 @@ product~\cite{strang4linear} as
 where $x$ is the input signal, $K$ is the analysis transform matrix,
 and $y$ is the output decomposition. Notice that
 \begin{equation}
-  y_1 = <K_1, x_1>
+  y_i = \langle K_i, x_i\rangle,
+\end{equation}
+where $K_i$ is the $i$-th row of $K$, which basically means that $w_i$
+is proportional to the similarity between the input signal $x$ and the
+\href{https://en.wikipedia.org/wiki/Finite_impulse_response}{taps} of
+the filter $K_i$. These
+\href{https://cseweb.ucsd.edu/classes/fa17/cse166-a/lec13.pdf}{slides}
+can help you with this key idea.
+  
 
 The DWT is described by the filters that form the rows o
 
