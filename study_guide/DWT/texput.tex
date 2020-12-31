@@ -1,13 +1,33 @@
 \input{../definitions}
-\title{\SM - Study Guide - Milestone 5: Spatial Multiresolution Through the Discrete Wavelet Transform}
+\title{\SM{} - Study Guide - Milestone 5: Energy Concentration and Multiresolution  with the Discrete Wavelet Transform}
 
 \maketitle
 
 \section{Description}
 
-PRMC is based on the MDWT. In this milestone we will learn how to
-compute it. The MCDWT is described
-\href{https://sistemas-multimedia.github.io/PRMC/#x1-100005}{here}.
+\href{https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf}{Transform
+coding} can remove spatial
+\href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlation}
+in signals. The DWT (Discrete Wavelet Transform) is a family of
+transforms whose output describes the (input) signal in a set of
+subbands. This set is also called a decomposition and the index of the
+subband is related to the frequency of the signal. In the case of the
+images, the coefficients of the subbands are related to the space. 
+
+All linear\footnote{Non-linear transform are also possible, but their
+  mathematical operation can not be described using linear algebra.}
+transforms can be described a matrix-vector
+product~\cite{strang4linear} as
+\begin{equation}
+  y = Kx,
+  \label{eq:forward_transform_matrix_form}
+\end{equation}
+where $x$ is the input signal, $K$ is the analysis transform matrix,
+and $y$ is the output decomposition. Notice that
+\begin{equation}
+  y_1 = <K_1, x_1>
+
+The DWT is described by the filters that form the rows o
 
 \section{What you have to do?}
   
