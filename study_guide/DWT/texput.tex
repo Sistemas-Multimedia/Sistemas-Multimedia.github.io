@@ -84,7 +84,10 @@ high-pass filter (see the Fig.~\ref{fig:haar_filters_response}). As it can be se
 \begin{enumerate}
 \item There exists aliasing between the filters (for example, the
   central frecuencies of $x$ are in both subbands $y_0$ and $y_1$) and
-  this is a drawback because
+  this is a drawback because the same information can be found in both
+  subbands and therefore, the accumulation of the energy of $x$ in one
+  of the subbands is smaller. This problem can be only solved using
+  filters that have transfer functions overlapping less.
 \item The response of the filter bank is flat, which means that
   ${\cal Y}(e^{j\omega})=a{\cal X}(e^{j\omega}), a\in\mathbb{R}$.
 \end{enumerate}
