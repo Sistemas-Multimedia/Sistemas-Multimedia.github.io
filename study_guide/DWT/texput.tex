@@ -72,7 +72,7 @@ and therefore
 
 \begin{figure}
   \centering
-  \myfig{haar_filters_response}{8cm}{800}
+  \myfig{haar_filters_response}{6cm}{600}
   \caption{Haar filters response (see this
     \href{}{notebook}). $|K_i(e^{j\omega})|$ denotes to the
     module of the Fourier transform of $K_i$.}
@@ -89,8 +89,10 @@ high-pass filter (see the Fig.~\ref{fig:haar_filters_response}). As it can be se
   of the subbands is smaller. This problem can be only solved using
   filters that have transfer functions overlapping less.
 \item The response of the filter bank is flat, which means that
-  ${\cal Y}(e^{j\omega})=a{\cal X}(e^{j\omega}), a\in\mathbb{R}$.
+  $|y(e^{j\omega})|=a|x(e^{j\omega})|, a\in\mathbb{R}$.
 \end{enumerate}
+
+Only for the sake of curiosity, let's check a the Daubechies 
 
 The 1-levels DWT can be computed by a 2-channels PRFB (Perfect
 Reconstruction Filter Bank), where the filters $K_i$ are QMFs
