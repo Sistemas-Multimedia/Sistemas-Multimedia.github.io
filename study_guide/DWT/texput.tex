@@ -73,9 +73,9 @@ and therefore
 \begin{figure}
   \centering
   \myfig{haar_filters_response}{6cm}{600}
-  \caption{Haar filters response (see this
-    \href{}{notebook}). $|K_i(e^{j\omega})|$ denotes to the
-    module of the Fourier transform of $K_i$.}
+  \caption{Haar filters response in the frequency domain (see this
+    \href{}{notebook}). $|K_i(e^{j\omega})|$ refeers to the
+    modulus of the Fourier transform of $K_i$.}
   \label{fig:haar_filters_response}
 \end{figure}
 
@@ -84,13 +84,25 @@ high-pass filter (see the Fig.~\ref{fig:haar_filters_response}). As it can be se
 \begin{enumerate}
 \item There exists aliasing between the filters (for example, the
   central frecuencies of $x$ are in both subbands $y_0$ and $y_1$) and
-  this is a drawback because the same information can be found in both
-  subbands and therefore, the accumulation of the energy of $x$ in one
-  of the subbands is smaller. This problem can be only solved using
-  filters that have transfer functions overlapping less.
+  this is a drawback because information with the same frequency can
+  be found in both subbands and therefore, the concentration of the
+  energy of $x$ in one of the subbands is smaller. This problem can be
+  only solved using filters that have transfer functions overlapping
+  less.
 \item The response of the filter bank is flat, which means that
-  $|y(e^{j\omega})|=a|x(e^{j\omega})|, a\in\mathbb{R}$.
+  $|y(e^{j\omega})|=a|x(e^{j\omega})|, a\in\mathbb{R}$ (the
+  reconstructed signal $y$ has not been filtered).
+\item There is not phase distortion (the phase of the filters is a
+  linear function of the frequency). This means that all the
+  frequencies of $x$ has been delayed the same amount of time in $y$
+  (the slope of the linear function), or in other words, that $y$ is a
+  delayed copy of $x$.
 \end{enumerate}
+
+The rest of filters used in the DWT provides an improved energy
+concentration.
+
+The wavelet filters can be classified
 
 Only for the sake of curiosity, let's check a the Daubechies 
 
