@@ -87,11 +87,11 @@ high-pass filter (see the Fig.~\ref{fig:haar_filters_response}). As it can be se
   this is a drawback because information with the same frequency can
   be found in both subbands and therefore, the concentration of the
   energy of $x$ in one of the subbands is smaller. This problem can be
-  only solved using filters that have transfer functions overlapping
+  only solved using filters that have transfer functions that overlap
   less.
 \item The response of the filter bank is flat, which means that
   $|y(e^{j\omega})|=a|x(e^{j\omega})|, a\in\mathbb{R}$ (the
-  reconstructed signal $y$ has not been filtered).
+  reconstructed signal $y$ has not been filtered). % OJO
 \item There is not phase distortion (the phase of the filters is a
   linear function of the frequency). This means that all the
   frequencies of $x$ has been delayed the same amount of time in $y$
@@ -99,8 +99,18 @@ high-pass filter (see the Fig.~\ref{fig:haar_filters_response}). As it can be se
   delayed copy of $x$.
 \end{enumerate}
 
-The rest of filters used in the DWT provides an improved energy
-concentration.
+% Polyphase implementation of the multilevel DWT
+
+Most of the filters that have been found try to:
+\begin{enumerate}
+\item Remove the aliasing in the low-frequency subband after the
+  downsampling, because this improves the quality of the subsampled
+  low-pass signal.
+\item Minimize the phase distortion, because this distortion produces
+  a displacement of the coefficients that reconstruct a region of the
+  signal, which difficults the design of entropy codecs for the
+  decomposition which exploit the correlation between subbands.
+\end{enumerate}
 
 The wavelet filters can be classified
 
