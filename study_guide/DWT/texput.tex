@@ -6,17 +6,19 @@
 \section{Description}
 
 \href{https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf}{Transform
-coding} can remove spatial
+  coding} can remove spatial
 \href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlation}
 in signals. The DWT (Discrete Wavelet Transform) is a family of
 transforms whose output describes the (input) signal in a set of
 subbands. This set is also called a decomposition and the index of the
 subband is related to the frequency of the signal. In the case of the
-images, the coefficients of the subbands are related to the space. 
+images, the coefficients of the subbands are related to
+\href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform#/media/File:Jpeg2000_2-level_wavelet_transform-lichtenstein.png}{the
+  space where the related pixels are found}.
 
 All linear\footnote{Non-linear transform are also possible, but their
   mathematical operation can not be described using linear algebra.}
-transforms can be described a matrix-vector
+transforms can be described by matrix-vector
 product~\cite{strang4linear} as
 \begin{equation}
   y = Kx,
@@ -27,15 +29,60 @@ and $y$ is the output decomposition. Notice that
 \begin{equation}
   y_i = \langle K_i, x_i\rangle,
 \end{equation}
-where $K_i$ is the $i$-th row of $K$, which basically means that $w_i$
-is proportional to the similarity between the input signal $x$ and the
+where $K_i$ is the $i$-th row of $K$, and $\langle\cdot,\cdot\rangle$
+denotes the inner product. This basically means that $y_i$ is
+proportional to the similarity between the input signal $x$ and the
 \href{https://en.wikipedia.org/wiki/Finite_impulse_response}{taps} of
 the filter $K_i$. These
 \href{https://cseweb.ucsd.edu/classes/fa17/cse166-a/lec13.pdf}{slides}
-can help you with this key idea.
-  
+can help you with this key idea. The inverse (synthesis) transform is
+computed by
+\begin{equation}
+  x = K^{-1}y,
+  \label{eq:backward_transform_matrix_form}
+\end{equation}
+where $K^{-1}$ denotes to the inverse matrix of $K$.
 
-The DWT is described by the filters that form the rows o
+As the rest of transforms, the DWT is also described by the filters of
+$K$. Haar found one of the basic wavelets, where
+\begin{equation}
+  \begin{bmatrix}
+    y_0 \\
+    y_1
+  \end{bmatrix}
+  = 
+  \begin{bmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{2}} \end{bmatrix}
+  \begin{bmatrix}
+    x_0 \\
+    x_1
+  \end{bmatrix},
+  \label{eq:Haar_transform}
+\end{equation}
+and it hold that
+\begin{equation}
+  K=K^{-1}=K^{\text T},
+  \label{eq:orthogonal_matrix}
+\end{equation}
+where $K^{\text T}$ represents the transpose matrix of $K$. the
+Eq.~\ref{eq:orthogonal_matrix} is true for all orthogonal transforms,
+and therefore
+\begin{equation}
+  \langle K_i, K_j\rangle = 0, \forall i\neq j.
+\end{equation}
+
+\begin{figure}
+  \centering
+  \myfig{haar_filters_response}{5cm}{500}
+  \caption{Haar filters response (see this \href{}{notebook}).}
+  \label{fig:haar_filters_response}
+\end{figure}
+
+For the Haar transform, $K_0$ describes a low-pass filter and $K_1$ a
+high-pass filter (see the Fig.~\ref{fig:haar_filters_response}). As it can be seen, 
+
+The 1-levels DWT can be computed by a 2-channels PRFB (Perfect
+Reconstruction Filter Bank), where the filters $K_i$ are QMFs
+(Quadrature Mirror Filters), that is, the response of the filters in the frequency domain are .
 
 \section{What you have to do?}
   
