@@ -5,14 +5,17 @@
 
 \section{Description}
 
+\subsection{Transform coding}
+
 \href{https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf}{Transform
-  coding} can remove spatial
+  coding} can exploit
 \href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlation}
-in signals. The DWT (Discrete Wavelet Transform) is a family of
-transforms whose output describes the (input) signal in a set of
-subbands. This set is also called a decomposition and the index of the
-subband is related to the frequency of the signal. In the case of the
-images, the coefficients of the subbands are related to
+in signals to concentrate the energy. Specifically, the DWT (Discrete
+Wavelet Transform) is a family of transforms whose output describes
+the (input) signal in a set of subbands. This set is also called a
+decomposition and the index of the subband is related to the frequency
+of the signal. In the case of the images, the coefficients of the
+subbands are related to
 \href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform#/media/File:Jpeg2000_2-level_wavelet_transform-lichtenstein.png}{the
   space where the related pixels are found}.
 
@@ -30,8 +33,10 @@ and $y$ is the output decomposition. Notice that
   y_i = \langle K_i, x_i\rangle,
 \end{equation}
 where $K_i$ is the $i$-th row of $K$, and $\langle\cdot,\cdot\rangle$
-denotes the inner product. This basically means that $y_i$ is
-proportional to the similarity between the input signal $x$ and the
+denotes the
+\href{https://mathworld.wolfram.com/InnerProduct.html}{inner
+  product}. This basically means that $y_i$ is proportional to the
+similarity between the input signal $x$ and the
 \href{https://en.wikipedia.org/wiki/Finite_impulse_response}{taps} of
 the filter $K_i$. These
 \href{https://cseweb.ucsd.edu/classes/fa17/cse166-a/lec13.pdf}{slides}
@@ -80,7 +85,8 @@ and therefore
 \end{figure}
 
 For the Haar transform, $K_0$ describes a low-pass filter and $K_1$ a
-high-pass filter (see the Fig.~\ref{fig:haar_filters_response}). As it can be seen:
+high-pass filter (see the Fig.~\ref{fig:haar_filters_response}). As it
+can be seen:
 \begin{enumerate}
 \item There exists aliasing between the filters (for example, the
   central frecuencies of $x$ are in both subbands $y_0$ and $y_1$) and
@@ -89,9 +95,9 @@ high-pass filter (see the Fig.~\ref{fig:haar_filters_response}). As it can be se
   energy of $x$ in one of the subbands is smaller. This problem can be
   only solved using filters that have transfer functions that overlap
   less.
-\item The response of the filter bank is flat, which means that
-  $|y(e^{j\omega})|=a|x(e^{j\omega})|, a\in\mathbb{R}$ (the
-  reconstructed signal $y$ has not been filtered). % OJO
+%\item The response of the filter bank is flat, which means that the gain of the different frequencie
+%  $|y(e^{j\omega})|=a|x(e^{j\omega})|, a\in\mathbb{R}$ (the
+%  reconstructed signal $y$ has not been filtered). % OJO
 \item There is not phase distortion (the phase of the filters is a
   linear function of the frequency). This means that all the
   frequencies of $x$ has been delayed the same amount of time in $y$
