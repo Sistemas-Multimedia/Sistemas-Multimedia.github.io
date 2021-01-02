@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" 
+"http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd" > 
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Sistemas Multimedia - Study Guide - Milestone 6: Computing the 2D-DWT</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathml,html --> 
+<meta name="src" content="index.tex" /> 
+<link rel="stylesheet" type="text/css" href="index.css" /> 
+</head><body 
+>
+   <div class="maketitle">
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+
+<h2 class="titleHead"><a 
+href="http://cms.ual.es/UAL/estudios/masteres/plandeestudios/asignaturas/asignatura/MASTER7114?idAss=71142105&idTit=7114" >Sistemas Multimedia</a> - Study Guide - Milestone
+6: Computing the 2D-DWT</h2>
+ <div class="author" ><a 
+href="https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875" ><span 
+class="ecrm-1200">Vicente Gonz</span><span 
+class="ecrm-1200">&#x00E1;</span><span 
+class="ecrm-1200">lez Ruiz</span></a> <span 
+class="ecrm-1200">- </span><a 
+href="https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm" ><span 
+class="ecrm-1200">Depto Inform</span><span 
+class="ecrm-1200">&#x00E1;</span><span 
+class="ecrm-1200">tica</span></a> <span 
+class="ecrm-1200">- </span><a 
+href="https://www.ual.es" ><span 
+class="ecrm-1200">UAL</span></a></div><br />
+<div class="date" ><span 
+class="ecrm-1200">January 2, 2021</span></div>
+   </div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Description</h3>
+<!--l. 8--><p class="noindent" >&#x0028;Digital&#x0029; Images are 2D &#x0028;discrete in space and amplitude&#x0029; signals. The 2D-DWT of
+an image can be computed using &#x0028;1&#x0029; separable 1D &#xFB01;lters, and &#x0028;2&#x0029; nonseparable 2D
+&#xFB01;lters. Except in very special cases, all 2D-DWT implementations use separable
+&#xFB01;lters.
+</p><!--l. 13--><p class="indent" >   We de&#xFB01;ne </p><table class="equation"><tr><td> <a 
+ id="x1-1001r1"></a>
+<!--l. 14--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+               <mo 
+class="MathClass-open">&#x007B;</mo><mi 
+>l</mi><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><mi 
+>l</mi><msup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><mi 
+>h</mi><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><mi 
+>h</mi><msup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-close">&#x007D;</mo> <mo 
+class="MathClass-rel">=</mo> <mstyle 
+class="text"><mtext  >2D-DWT</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mi 
+>l</mi><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msup 
+><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+</math></td><td class="eq-no">&#x0028;1&#x0029;</td></tr></table>
+<!--l. 18--><p class="indent" >   where <!--l. 18--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>l</mi><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msup 
+></math>
+is a 2D-signal, and </p><table class="equation"><tr><td> <a 
+ id="x1-1002r2"></a>
+                                                                  
+
+                                                                  
+<!--l. 19--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                 <mo 
+class="MathClass-open">&#x007B;</mo><msub><mrow 
+><mo 
+class="MathClass-open">&#x007B;</mo><msub><mrow 
+><mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-close">&#x007D;</mo></mrow><mrow 
+>
+<mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-close">&#x007D;</mo></mrow><mrow 
+>
+<mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x007D;</mo> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-open">&#x007B;</mo><mstyle 
+class="text"><mtext  >DWT</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mi 
+>l</mi><msubsup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>i</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msubsup 
+><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-punc">,</mo>
+</math></td><td class="eq-no">&#x0028;2&#x0029;</td></tr></table>
+<!--l. 23--><p class="indent" >   is the result of using the 1D-DWT to each row of
+<!--l. 23--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>l</mi><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msup 
+></math>, generating a sequence of
+low-pass subbands <!--l. 24--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-close">&#x007D;</mo></math> and
+sequence of high-pass subbands <!--l. 25--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-close">&#x007D;</mo></math>,
+and </p><table class="equation"><tr><td> <a 
+ id="x1-1003r3"></a>
+<!--l. 26--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+             <mstyle 
+class="text"><mtext  >2D-DWT</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mi 
+>l</mi><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msup 
+><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-open">&#x007B;</mo><mstyle 
+class="text"><mtext  >DWT</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x007B;</mo><msub><mrow 
+><mo 
+class="MathClass-open">&#x007B;</mo><msub><mrow 
+><mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-close">&#x007D;</mo></mrow><mrow 
+>
+<mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-close">&#x007D;</mo></mrow><mrow 
+>
+<mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-punc">,</mo>
+</math></td><td class="eq-no">&#x0028;3&#x0029;</td></tr></table>
+<!--l. 30--><p class="indent" >   is the result of using the 1D-DWT to each column of the
+<!--l. 31--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x007B;</mo><msub><mrow 
+><mo 
+class="MathClass-open">&#x007B;</mo><msub><mrow 
+><mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-close">&#x007D;</mo></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-close">&#x007D;</mo></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x007D;</mo></math>
+structure.
+</p><!--l. 33--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>What you have to do?</h3>
+<!--l. 35--><p class="noindent" >Please, using this notebook, add a new curve to the Fig.&#x00A0;<span 
+class="ecbx-1000">??</span>.
+</p><!--l. 37--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Timming</h3>
+<!--l. 39--><p class="noindent" >Please, &#xFB01;nish this notebook before the next class session.
+                                                                  
+
+                                                                  
+</p><!--l. 41--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>Deliverables</h3>
+<!--l. 43--><p class="noindent" >None.
+</p><!--l. 45--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>Resources</h3>
+<a 
+ id="Q1-1-6"></a>
+    
+</body></html> 
+
+                                                                  
+
+
