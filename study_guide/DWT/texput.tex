@@ -14,10 +14,10 @@ in signals to concentrate the energy. Specifically, the DWT (Discrete
 Wavelet Transform) is a family of transforms whose output describes
 the (input) signal in a set of subbands. This set is also called a
 decomposition and the index of the subband is related to the frequency
-of the signal. In the case of the images, the coefficients of the
-subbands are related to
+of the signal. For example, in the case of the images, the position of
+the coefficients in the subbands is related to
 \href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform#/media/File:Jpeg2000_2-level_wavelet_transform-lichtenstein.png}{the
-  space where the related pixels are found}.
+  spatial area where the related pixels are found}.
 
 All linear\footnote{Non-linear transform are also possible, but their
   mathematical operation can not be described using linear algebra.}
@@ -36,7 +36,8 @@ where $K_i$ is the $i$-th row of $K$, and $\langle\cdot,\cdot\rangle$
 denotes the
 \href{https://mathworld.wolfram.com/InnerProduct.html}{inner
   product}. This basically means that $y_i$ is proportional to the
-similarity between the input signal $x$ and the
+\href{https://en.wikipedia.org/wiki/Similarity_(geometry)}{similarity}
+between the input signal $x$ and the
 \href{https://en.wikipedia.org/wiki/Finite_impulse_response}{taps} of
 the filter $K_i$. These
 \href{https://cseweb.ucsd.edu/classes/fa17/cse166-a/lec13.pdf}{slides}
@@ -48,8 +49,7 @@ computed by
 \end{equation}
 where $K^{-1}$ denotes to the inverse matrix of $K$.
 
-As the rest of transforms, the DWT is also described by the filters of
-$K$. Haar found one of the basic wavelets, where
+For example, the 2x2-KLT is defined by
 \begin{equation}
   \begin{bmatrix}
     y_0 \\
@@ -61,7 +61,7 @@ $K$. Haar found one of the basic wavelets, where
     x_0 \\
     x_1
   \end{bmatrix},
-  \label{eq:Haar_transform}
+  \label{eq:KLT_transform}
 \end{equation}
 and it hold that
 \begin{equation}
@@ -69,10 +69,32 @@ and it hold that
   \label{eq:orthogonal_matrix}
 \end{equation}
 where $K^{\text T}$ represents the transpose matrix of $K$. The
-Eq.~\ref{eq:orthogonal_matrix} \ref{eq:orthogonal_matrix} is true for all orthogonal transforms,
+Eq.~\ref{eq:orthogonal_matrix} is true for all orthogonal transforms,
 and therefore
 \begin{equation}
   \langle K_i, K_j\rangle = 0, \forall i\neq j.
+\end{equation}
+
+\subsection{An example of DWT (Discrete Wavelet Transform): Haar DWT}
+
+As the rest of transforms, the DWT is also described by the filters of
+$K$. Haar defined the analysis downsampling filters
+\begin{equation}
+  \begin{bmatrix}
+    l^{r+1}_n \\
+    h^{r+1}_n
+  \end{bmatrix}
+  = 
+  \begin{bmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{2}} \end{bmatrix}
+  \begin{bmatrix}
+    l^r_{2n} \\
+    l^r_{2n+1}
+  \end{bmatrix},
+  \label{eq:Haar_transform}
+\end{equation}
+where the superindex $r$ denotes the resolution level of the signal, and $n$ refeers to the $n$-th element of the signal. By definition (this holds for all DWTs),
+\begin{equation}
+  l^0=x.
 \end{equation}
 
 \begin{figure}
@@ -81,46 +103,75 @@ and therefore
   \caption{Haar filters response in the frequency domain (see this
     \href{}{notebook}). $|K_i(e^{j\omega})|$ refeers to the
     modulus of the Fourier transform of $K_i$.}
-  \label{fig:haar_filters_response}
+  \label{fig:Haar_filters_response}
 \end{figure}
 
-For the Haar transform, $K_0$ describes a low-pass filter and $K_1$ a
-high-pass filter (see the Fig.~\ref{fig:haar_filters_response}). As it
-can be seen:
+As it can be seen in the Fig.~\ref{fig:Haar_filters_response}, $K_0$
+is a low-pass filter and $K_1$ is a high-pass filter (this holds for
+all DWTs). We conclude that:
 \begin{enumerate}
-\item There exists aliasing between the filters (for example, the
-  central frecuencies of $x$ are in both subbands $y_0$ and $y_1$) and
-  this is a drawback because information with the same frequency can
-  be found in both subbands and therefore, the concentration of the
-  energy of $x$ in one of the subbands is smaller. This problem can be
-  only solved using filters that have transfer functions that overlap
-  less.
+\item There exists
+  \href{https://en.wikipedia.org/wiki/Aliasing}{aliasing} between the
+  filters (this holds for all DWTs) and this is a drawback because:
+  \begin{enumerate}
+  \item The information with the same
+    frequency can be found in both subbands ($l$ and $h$). Therefore,
+    the concentration of the energy in one of the subbands is
+    smaller.
+  \item At it can be seen also in Eq.~\ref{eq:Haar_transform}, the
+    subbands are downsampled by 2 and both subbands should have, at
+    most, a bandwidth of $1/2$ radians/sample in order to avoid the
+    aliasing during the subsampling, and increasing thus the
+    perceptible quality of the low-pass subband.
+  \end{enumerate}
+  These problems can be only solved using filters that have
+  transfer functions that a overlap a smaller area
+  (see Figs.~\ref{} and \ref{}). 
 %\item The response of the filter bank is flat, which means that the gain of the different frequencie
 %  $|y(e^{j\omega})|=a|x(e^{j\omega})|, a\in\mathbb{R}$ (the
 %  reconstructed signal $y$ has not been filtered). % OJO
-\item There is not phase distortion (the phase of the filters is a
-  linear function of the frequency). This means that all the
-  frequencies of $x$ has been delayed the same amount of time in $y$
-  (the slope of the linear function), or in other words, that $y$ is a
-  delayed copy of $x$.
+\item There is not
+  \href{https://en.wikipedia.org/wiki/Linear_phase}{phase distortion}
+  (the phase of the filters is a linear function of the
+  frequency). This means that coefficients $l^{r+1}_n$ and $h^{r+1}_n$
+  refeers to the section of signal $\{l^r_{2n}, l^r_{2n+1}\}$,
+  allowing the design of entropy codecs for the decomposition which
+  exploit the correlation between subbands. Notice that this does not
+  hold for all filters (see Figs.~\ref{} and \ref{}).
 \end{enumerate}
 
 % Polyphase implementation of the multilevel DWT
 
-Most of the filters that have been found try to:
+Eq.~\ref{eq:Haar_transform} computes the 1-levels Haar DWT. In
+general, the $R$-levels DWT is computed by the recursive use of
+Eq.~\ref{eq:Haar_transform} to the low-frequency subband, defining
+(this holds for all DWTs)
+\begin{equation}
+  \{l^{r+1}, h^{r+1}\} = \text{DWT}(l^r).
+\end{equation}
+
+The $R$-levels inverse DWT is defined by (this holds for all DWTs)
+\begin{equation}
+  l^r = \text{iDWT}(\{l^{r+1}, h^{r+1}\}),
+\end{equation}
+where, in the case of the Haar DWT, iDWT is the result of solving
+$l^{r+1}$ and $h^{r+1}$ in the Eq.~\ref{eq:Haar_transform}.
+
+\subsection{Biorthogonal DWT}
+Orthogonality provides intersubband uncorrelation, which basically
+means that the contribution of each subbands to the reconstruction
+(this holds for all DWTs) of the signal are independent. Orthogonal
+filters can be recognized because:
 \begin{enumerate}
-\item Remove the aliasing in the low-frequency subband after the
-  downsampling, because this improves the quality of the subsampled
-  low-pass signal.
-\item Minimize the phase distortion, because this distortion produces
-  a displacement of the coefficients that reconstruct a region of the
-  signal, which difficults the design of entropy codecs for the
-  decomposition which exploit the correlation between subbands.
+\item Their taps are not symmetric.
+\item The synthesis filters can be determined symply transposing the
+  (analysis) matrix $K$.
 \end{enumerate}
+Notice that except for the Haar filters, orthogonal filters generate
+phase distortion.
 
 The wavelet filters can be classified
 
-Only for the sake of curiosity, let's check a the Daubechies 
 
 The 1-levels DWT can be computed by a 2-channels PRFB (Perfect
 Reconstruction Filter Bank), where the filters $K_i$ are QMFs
