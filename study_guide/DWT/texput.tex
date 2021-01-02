@@ -81,14 +81,14 @@ As the rest of transforms, the DWT is also described by the filters of
 $K$. Haar defined the analysis downsampling filters
 \begin{equation}
   \begin{bmatrix}
-    l^{r+1}_n \\
-    h^{r+1}_n
+    l^{s+1}_n \\
+    h^{s+1}_n
   \end{bmatrix}
   = 
   \begin{bmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{2}} \end{bmatrix}
   \begin{bmatrix}
-    l^r_{2n} \\
-    l^r_{2n+1}
+    l^s_{2n} \\
+    l^s_{2n+1}
   \end{bmatrix},
   \label{eq:Haar_transform}
 \end{equation}
@@ -133,8 +133,8 @@ all DWTs). We conclude that:
 \item There is not
   \href{https://en.wikipedia.org/wiki/Linear_phase}{phase distortion}
   (the phase of the filters is a linear function of the
-  frequency). This means that coefficients $l^{r+1}_n$ and $h^{r+1}_n$
-  refeers to the section of signal $\{l^r_{2n}, l^r_{2n+1}\}$,
+  frequency). This means that coefficients $l^{s+1}_n$ and $h^{s+1}_n$
+  refeers to the section of signal $\{l^s_{2n}, l^s_{2n+1}\}$,
   allowing the design of entropy codecs for the decomposition which
   exploit the correlation between subbands. Notice that this does not
   hold for all filters (see Figs.~\ref{} and \ref{}).
@@ -143,40 +143,66 @@ all DWTs). We conclude that:
 % Polyphase implementation of the multilevel DWT
 
 Eq.~\ref{eq:Haar_transform} computes the 1-levels Haar DWT. In
-general, the $R$-levels DWT is computed by the recursive use of
+general, the $S$-levels DWT is computed by the recursive use of
 Eq.~\ref{eq:Haar_transform} to the low-frequency subband, defining
 (this holds for all DWTs)
 \begin{equation}
-  \{l^{r+1}, h^{r+1}\} = \text{DWT}(l^r).
+  \{l^{s+1}, h^{s+1}\} = \text{DWT}(l^s).
+  \label{eq:DWT}
 \end{equation}
+Notice that when Eq.~\ref{eq:DWT} is applied recursively to $l^0$ $S$
+times, the following decomposition
+  \begin{equation}
+    | l^S_0 | h^S_0 | h^{S-1}_0 h^{S-1}_1 | h^{S-2}_0 h^{S-2}_1 h^{S-2}_2 h^{S-2}_3 | \cdots | h^1_0 h^1_1 \cdots h^1_{2^{n-1}-1} |,
+  \end{equation}
+  is obtained. Notice that in this decomposition there are $S+1$
+  subbands.
 
 The $R$-levels inverse DWT is defined by (this holds for all DWTs)
 \begin{equation}
-  l^r = \text{iDWT}(\{l^{r+1}, h^{r+1}\}),
+  l^s = \text{iDWT}(\{l^{s+1}, h^{s+1}\}),
 \end{equation}
 where, in the case of the Haar DWT, iDWT is the result of solving
-$l^{r+1}$ and $h^{r+1}$ in the Eq.~\ref{eq:Haar_transform}.
+$l^{s+1}$ and $h^{s+1}$ in the Eq.~\ref{eq:Haar_transform}.
 
-\subsection{Biorthogonal DWT}
-Orthogonality provides intersubband uncorrelation, which basically
-means that the contribution of each subbands to the reconstruction
-(this holds for all DWTs) of the signal are independent. Orthogonal
-filters can be recognized because:
+\subsection{Orthogonal and biorthogonal DWT}
+In the DWT context, orthogonality provides intersubband decorrelation,
+which basically means that the contribution of each subbands to the
+reconstruction (this holds for all DWTs) of the signal are
+independent. Using a similar notation that the followed by PyWavelets,
+all transforms are defined by 4 filters:
 \begin{enumerate}
-\item Their taps are not symmetric.
-\item The synthesis filters can be determined symply transposing the
-  (analysis) matrix $K$, i.e., the synthesis filters are a reflection
-  of the analysis filters.
+\item Analysis (downsampling) low-pass filter $\tilde\phi$ (the decomposition
+  scaling function), which computes $l^{s+1}$ from $l^s$.
+\item Analysis (downsampling) high-pass filter $\tilde\psi$ (the decomposition
+  wavelet function), which computes $h^{s+1}$ frin $l^s$.
+\item Synthesis (upsampling) high-pass filter $\phi$ (the
+  reconstruction scaling function), which computes $\{l^s_{2n}\}$ from
+  $l^{s+1}$ and $h^{s+1}$.
+\item Synthesis (upsampling) high-pass filter $\psi$ (the
+  reconstruection wavelet function), which computes $\{l^s_{2n+1}\}$
+  from $l^{s+1}$ and $h^{s+1}$.
 \end{enumerate}
-Notice that except for the Haar filters, orthogonal filters generate
-phase distortion.
 
-The wavelet filters can be classified
+Orthogonal filters can be recognized because:
+\begin{enumerate}
+\item $\tilde\phi\bot\tilde\psi$ and $\phi\bot\psi$.
+\item Their taps are all different (asymmetric).
+\item The synthesis filters can be determined simply by
+  \emph{reflecting} analysis filters.
+\item In general, except for the Haar filters, orthogonal filters
+  generate phase distortion.
+\end{enumerate}
 
-
-The 1-levels DWT can be computed by a 2-channels PRFB (Perfect
-Reconstruction Filter Bank), where the filters $K_i$ are QMFs
-(Quadrature Mirror Filters), that is, the response of the filters in the frequency domain are .
+On the other hand, in a biorthogonal DWT:
+\begin{enumerate}
+\item $\tilde\phi\bot\tilde\psi$, $\phi\bot\psi$, $\psi\bot\tilde\phi$
+  and $\tilde\psi\bot\phi$.
+\item The all filters are symmetric.
+\item $\psi=(-1)^n\tilde\phi; n\in\mathbb{N}$, and
+  $\phi=(-1)^n; n\in\mathbb{N}$ (the odd taps are multiplied by $-1$).
+\item No phase distortion.
+\end{enumerate}
 
 \section{What you have to do?}
   
