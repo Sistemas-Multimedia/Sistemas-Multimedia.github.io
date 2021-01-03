@@ -11,39 +11,47 @@
 implementations use separable filters.
 
 Separability in the DWT context means that we can compute the
-$D$-dimensional DWT using the 1D filters, simply by applying them each
-dimension. Therefore, to compute the 2D-DWT
-  \{ll^{s  \{ll^{s  \{ll^{s+1}, lh^{s+1}, hl^{s+1}, hh^{s+1}\} = \text{2D-DWT}(ll^s),
-  \{ll^{s+1}, lh^{s+1}, hl^{s+1}, hh^{s+1}\} = \text{2D-DWT}(ll^s),
-  \label{eq:2D-DWT}
-\end{equation}+1}, lh^{s+1}, hl^{s+1}, hh^{s+1}\} = \text{2D-DWT}(ll^s),
-  \label{eq:2D-DWT}
-\end{equation}
-We define the 2D subband decomposition
+$D$-dimensional DWT using the 1D filters, simply by applying them to
+each dimension, using \emph{in-place} operations. This procedure has
+been described in the Algorithm~\ref{alg:2D-DWT}, where $X_{n,*}$
+refeers to the $n$-th row of the matrix $X$ and $X_{*,m}$ to the
+$m$-th column.
+
+\begin{pseudocode}{\text{2D-DWT}}{X}
+  \label{alg:2D-DWT}
+  \FOR n \GETS 0 \TO N-1 \DO
+  X_{n,*} = \text{DWT}(X_{n,*})
+  \\
+  \FOR m \GETS 0 \TO M-1 \DO
+  X_{*,m} = \text{DWT}(X_{*,m})
+\end{pseudocode}
+
+The obtained 2D decomposition is expressed in the Eq.~\ref{eq:2D-DWT}.
+
+Notice that this algorithm computes the $1$-levels
+2D-DWT. The obtained the 2D decomposition shown in the
+Figure~\ref{fig:2D-DWT}.
+
 \begin{equation}
-  \{ll^{s+1}, lh^{s+1}, hl^{s+1}, hh^{s+1}\} = \text{2D-DWT}(ll^s),
+  \begin{bmatrix}
+    \text{LL} & \text{HL} \\
+    \text{LH} & \text{HH}
+  \end{bmatrix}
+  =
+  \text{2D-DWT}(X)
   \label{eq:2D-DWT}
 \end{equation}
 
-We define
+Eq.~\ref{eq:2D-DWT} describes the $1$-levels 2D-DWT. Replacing
+$\text{LL}=L^{s+1}$, $X=L^s$, and
+$\{\text{HL}, \text{LH}, \text{HH}\}=H^{s+1}$ in the previous
+expression, the $S$-levels 2D-DWT can be computed applying recursively
+the 2D-DWT to the low-frequency subband as
 \begin{equation}
-  \{ll^{s+1}, lh^{s+1}, hl^{s+1}, hh^{s+1}\} = \text{2D-DWT}(ll^s),
-  \label{eq:2D-DWT}
+  \{L^{s+1}, H^{s+1}\} = \text{2D-DWT}(L^s).
 \end{equation}
-where, in general, $ll^s$ is a 2D-signal, and
-\begin{equation}
-  \{\{\{l^{s+1}\}_i, \{h^{s+1}\}\}_i\} = \{\text{DWT}(ll^s_i)\},
-  \label{eq:DWT}
-\end{equation}
-is the result of using the 1D-DWT to each row of $ll^s$, generating
-a sequence of low-pass subbands $\{l^{s+1}\}$ and sequence of
-high-pass subbands $\{l^{s+1}\}$, and
-\begin{equation}
-   \text{2D-DWT}(ll^s) = \{\text{DWT}(\{\{\{l^{s+1}\}_i, \{h^{s+1}\}\}_i\})\},
-  \label{eq:DWT}
-\end{equation}
-is the result of using the 1D-DWT to each column of the
-$\{\{\{l^{s+1}\}_i, \{h^{s+1}\}\}_i\}$ structure.
+
+The Figure~\ref{fig:lena-DWT} shows the $3$-levels 2D-DWT of an image.
 
 \section{What you have to do?}
   

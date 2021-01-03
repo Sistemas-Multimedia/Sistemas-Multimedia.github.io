@@ -37,7 +37,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">January 2, 2021</span></div>
+class="ecrm-1200">January 3, 2021</span></div>
    </div>
    <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
  id="x1-10001"></a>Description</h3>
@@ -45,40 +45,219 @@ class="ecrm-1200">January 2, 2021</span></div>
 an image can be computed using &#x0028;1&#x0029; separable 1D &#xFB01;lters, and &#x0028;2&#x0029; nonseparable 2D
 &#xFB01;lters. Except in very special cases, all 2D-DWT implementations use separable
 &#xFB01;lters.
-</p><!--l. 13--><p class="indent" >   We de&#xFB01;ne </p><table class="equation"><tr><td> <a 
- id="x1-1001r1"></a>
+</p><!--l. 13--><p class="indent" >   Separability in the DWT context means that we can compute the
 <!--l. 14--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>D</mi></math>-dimensional
+DWT using the 1D &#xFB01;lters, simply by applying them to each dimension, using <span 
+class="ecti-1000">in-place</span>
+operations. This procedure has been described in the Algorithm&#x00A0;<a 
+href="#x1-1001r1">1.1<!--tex4ht:ref: alg:2D-DWT --></a>, where
+<!--l. 16--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>X</mi></mrow><mrow 
+><mi 
+>n</mi><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-bin">&#x2217;</mo></mrow></msub 
+></math> refeers to the
+<!--l. 17--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>n</mi></math>-th row of
+the matrix <!--l. 17--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>X</mi></math>
+and <!--l. 17--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>X</mi></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2217;</mo><mo 
+class="MathClass-punc">,</mo><mi 
+>m</mi></mrow></msub 
+></math>
+to the <!--l. 18--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>m</mi></math>-th
+column.
+<a 
+ id="x1-1001r1"></a>
+<!--l. 27--><p class="noindent" ></p><div class="minipage"><span 
+class="ecbx-1000">Algorithm 1.1:</span> <span 
+class="eccc1000-"><span 
+class="small-caps">&#x0032;</span><span 
+class="small-caps">&#x0044;</span><span 
+class="small-caps">&#x002D;</span><span 
+class="small-caps">&#x0044;</span><span 
+class="small-caps">&#x0057;</span><span 
+class="small-caps">&#x0054;</span></span>&#x0028;<!--l. 20--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>X</mi></math>&#x0029;<br 
+class="newline" /> <!--l. 20--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" > <mtable  align="axis" style=""  
+equalrows="false" columnlines="none" equalcolumns="false" class="array"> <mtr><mtd 
+class="array"  columnalign="left"><mspace width="4.3045pt"/> <mstyle 
+class="mbox"><mtext  >for&#x00A0;</mtext></mstyle><mi 
+>n</mi> <mo 
+class="MathClass-rel">&#x2190;</mo> <mn>0</mn><mstyle 
+class="mbox"><mtext  >&#x00A0;to&#x00A0;</mtext></mstyle><mi 
+>N</mi> <mo 
+class="MathClass-bin">&#x2212;</mo> <mn>1</mn>          </mtd>
+</mtr>  <mtr><mtd 
+class="array"  columnalign="left"><mspace width="4.3045pt"/> <mspace width="4.3045pt"/> <mstyle 
+class="mbox"><mtext  >&#x00A0;do&#x00A0;</mtext></mstyle><msub><mrow 
+><mi 
+>X</mi></mrow><mrow 
+><mi 
+>n</mi><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-bin">&#x2217;</mo></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mstyle 
+class="text"><mtext  >DWT</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><msub><mrow 
+><mi 
+>X</mi></mrow><mrow 
+><mi 
+>n</mi><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-bin">&#x2217;</mo></mrow></msub 
+><mo 
+class="MathClass-close">&#x0029;</mo>   </mtd>
+</mtr>  <mtr><mtd 
+class="array"  columnalign="left"><mspace width="4.3045pt"/> <mstyle 
+class="mbox"><mtext  >for&#x00A0;</mtext></mstyle><mi 
+>m</mi> <mo 
+class="MathClass-rel">&#x2190;</mo> <mn>0</mn><mstyle 
+class="mbox"><mtext  >&#x00A0;to&#x00A0;</mtext></mstyle><mi 
+>M</mi> <mo 
+class="MathClass-bin">&#x2212;</mo> <mn>1</mn>        </mtd>
+</mtr>  <mtr><mtd 
+class="array"  columnalign="left"><mspace width="4.3045pt"/> <mspace width="4.3045pt"/> <mstyle 
+class="mbox"><mtext  >&#x00A0;do&#x00A0;</mtext></mstyle><msub><mrow 
+><mi 
+>X</mi></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2217;</mo><mo 
+class="MathClass-punc">,</mo><mi 
+>m</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mstyle 
+class="text"><mtext  >DWT</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><msub><mrow 
+><mi 
+>X</mi></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2217;</mo><mo 
+class="MathClass-punc">,</mo><mi 
+>m</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x0029;</mo> </mtd></mtr><!--@{\pcode@tab {1}}lr@{}--></mtable>                                                    </math></div>
+</p><!--l. 29--><p class="indent" >   The obtained 2D decomposition is expressed in the Eq.&#x00A0;<a 
+href="#x1-1004r3">3<!--tex4ht:ref: eq:2D-DWT --></a>.
+                                                                  
+
+                                                                  
+</p><!--l. 31--><p class="indent" >   Notice that this algorithm computes the
+<!--l. 31--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>1</mn></math>-levels
+2D-DWT. The obtained the 2D decomposition shown in the Figure&#x00A0;<span 
+class="ecbx-1000">??</span>.
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-1002r1"></a>
+<!--l. 35--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-               <mo 
-class="MathClass-open">&#x007B;</mo><mi 
->l</mi><msup><mrow 
+ <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center">  <mstyle 
+class="text"><mtext  >LL</mtext></mstyle>  </mtd><mtd 
+class="array"  columnalign="center">  <mstyle 
+class="text"><mtext  >HL</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
+class="array"  columnalign="center"> <mstyle 
+class="text"><mtext  >LH</mtext></mstyle> </mtd> <mtd 
+class="array"  columnalign="center"> <mstyle 
+class="text"><mtext  >HH</mtext></mstyle></mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                      </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mstyle 
+class="text"><mtext  >2D-DWT</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mi 
+>X</mi><mo 
+class="MathClass-close">&#x0029;</mo>
+</math></td><td class="eq-no">&#x0028;1&#x0029;</td></tr></table>
+<!--l. 45--><p class="indent" >   Eq.&#x00A0;<a 
+href="#x1-1004r3">3<!--tex4ht:ref: eq:2D-DWT --></a> describes the <!--l. 45--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>1</mn></math>-levels
+2D-DWT. Replacing <!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle 
+class="text"><mtext  >LL</mtext></mstyle> <mo 
+class="MathClass-rel">=</mo> <msup><mrow 
 ><mi 
->l</mi></mrow><mrow 
+>L</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+></math>,
+<!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>X</mi> <mo 
+class="MathClass-rel">=</mo> <msup><mrow 
+><mi 
+>L</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msup 
+></math>, and
+<!--l. 47--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x007B;</mo><mstyle 
+class="text"><mtext  >HL</mtext></mstyle><mo 
+class="MathClass-punc">,</mo><mstyle 
+class="text"><mtext  >LH</mtext></mstyle><mo 
+class="MathClass-punc">,</mo><mstyle 
+class="text"><mtext  >HH</mtext></mstyle><mo 
+class="MathClass-close">&#x007D;</mo> <mo 
+class="MathClass-rel">=</mo> <msup><mrow 
+><mi 
+>H</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+></math> in the previous
+expression, the <!--l. 48--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>S</mi></math>-levels
+2D-DWT can be computed applying recursively the 2D-DWT to the low-frequency
+subband as </p><table class="equation"><tr><td> <a 
+ id="x1-1003r2"></a>
+<!--l. 50--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                    <mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>L</mi></mrow><mrow 
 ><mi 
 >s</mi><mo 
 class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
 ><mo 
-class="MathClass-punc">,</mo><mi 
->l</mi><msup><mrow 
+class="MathClass-punc">,</mo><msup><mrow 
 ><mi 
->h</mi></mrow><mrow 
-><mi 
->s</mi><mo 
-class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
-><mo 
-class="MathClass-punc">,</mo><mi 
->h</mi><msup><mrow 
-><mi 
->l</mi></mrow><mrow 
-><mi 
->s</mi><mo 
-class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
-><mo 
-class="MathClass-punc">,</mo><mi 
->h</mi><msup><mrow 
-><mi 
->h</mi></mrow><mrow 
+>H</mi></mrow><mrow 
 ><mi 
 >s</mi><mo 
 class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
@@ -86,221 +265,56 @@ class="MathClass-bin">+</mo><mn>1</mn></mrow></msup
 class="MathClass-close">&#x007D;</mo> <mo 
 class="MathClass-rel">=</mo> <mstyle 
 class="text"><mtext  >2D-DWT</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><mi 
->l</mi><msup><mrow 
+class="MathClass-open">&#x0028;</mo><msup><mrow 
 ><mi 
->l</mi></mrow><mrow 
+>L</mi></mrow><mrow 
 ><mi 
 >s</mi></mrow></msup 
 ><mo 
 class="MathClass-close">&#x0029;</mo><mo 
-class="MathClass-punc">,</mo>
-</math></td><td class="eq-no">&#x0028;1&#x0029;</td></tr></table>
-<!--l. 18--><p class="indent" >   where <!--l. 18--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
->l</mi><msup><mrow 
-><mi 
->l</mi></mrow><mrow 
-><mi 
->s</mi></mrow></msup 
-></math>
-is a 2D-signal, and </p><table class="equation"><tr><td> <a 
- id="x1-1002r2"></a>
+class="MathClass-punc">.</mo>
+</math></td><td class="eq-no">&#x0028;2&#x0029;</td></tr></table>
+   <table class="equation"><tr><td> <a 
+ id="x1-1004r3"></a>
                                                                   
 
                                                                   
-<!--l. 19--><math 
+<!--l. 54--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                 <mo 
-class="MathClass-open">&#x007B;</mo><msub><mrow 
-><mo 
-class="MathClass-open">&#x007B;</mo><msub><mrow 
-><mo 
-class="MathClass-open">&#x007B;</mo><msup><mrow 
-><mi 
->l</mi></mrow><mrow 
-><mi 
->s</mi><mo 
-class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
-><mo 
-class="MathClass-close">&#x007D;</mo></mrow><mrow 
->
-<mi 
->i</mi></mrow></msub 
-><mo 
-class="MathClass-punc">,</mo><mo 
-class="MathClass-open">&#x007B;</mo><msup><mrow 
-><mi 
->h</mi></mrow><mrow 
-><mi 
->s</mi><mo 
-class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
-><mo 
-class="MathClass-close">&#x007D;</mo><mo 
-class="MathClass-close">&#x007D;</mo></mrow><mrow 
->
-<mi 
->i</mi></mrow></msub 
-><mo 
-class="MathClass-close">&#x007D;</mo> <mo 
-class="MathClass-rel">=</mo> <mo 
-class="MathClass-open">&#x007B;</mo><mstyle 
-class="text"><mtext  >DWT</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><mi 
->l</mi><msubsup><mrow 
-><mi 
->l</mi></mrow><mrow 
-><mi 
->i</mi></mrow><mrow 
-><mi 
->s</mi></mrow></msubsup 
-><mo 
-class="MathClass-close">&#x0029;</mo><mo 
-class="MathClass-close">&#x007D;</mo><mo 
-class="MathClass-punc">,</mo>
-</math></td><td class="eq-no">&#x0028;2&#x0029;</td></tr></table>
-<!--l. 23--><p class="indent" >   is the result of using the 1D-DWT to each row of
-<!--l. 23--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
->l</mi><msup><mrow 
-><mi 
->l</mi></mrow><mrow 
-><mi 
->s</mi></mrow></msup 
-></math>, generating a sequence of
-low-pass subbands <!--l. 24--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mo 
-class="MathClass-open">&#x007B;</mo><msup><mrow 
-><mi 
->l</mi></mrow><mrow 
-><mi 
->s</mi><mo 
-class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
-><mo 
-class="MathClass-close">&#x007D;</mo></math> and
-sequence of high-pass subbands <!--l. 25--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mo 
-class="MathClass-open">&#x007B;</mo><msup><mrow 
-><mi 
->l</mi></mrow><mrow 
-><mi 
->s</mi><mo 
-class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
-><mo 
-class="MathClass-close">&#x007D;</mo></math>,
-and </p><table class="equation"><tr><td> <a 
- id="x1-1003r3"></a>
-<!--l. 26--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="block" class="equation">
-             <mstyle 
+ <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center">  <mstyle 
+class="text"><mtext  >LL</mtext></mstyle>  </mtd><mtd 
+class="array"  columnalign="center">  <mstyle 
+class="text"><mtext  >HL</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
+class="array"  columnalign="center"> <mstyle 
+class="text"><mtext  >LH</mtext></mstyle> </mtd> <mtd 
+class="array"  columnalign="center"> <mstyle 
+class="text"><mtext  >HH</mtext></mstyle></mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                      </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mstyle 
 class="text"><mtext  >2D-DWT</mtext></mstyle><mo 
 class="MathClass-open">&#x0028;</mo><mi 
->l</mi><msup><mrow 
-><mi 
->l</mi></mrow><mrow 
-><mi 
->s</mi></mrow></msup 
-><mo 
-class="MathClass-close">&#x0029;</mo> <mo 
-class="MathClass-rel">=</mo> <mo 
-class="MathClass-open">&#x007B;</mo><mstyle 
-class="text"><mtext  >DWT</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><mo 
-class="MathClass-open">&#x007B;</mo><msub><mrow 
-><mo 
-class="MathClass-open">&#x007B;</mo><msub><mrow 
-><mo 
-class="MathClass-open">&#x007B;</mo><msup><mrow 
-><mi 
->l</mi></mrow><mrow 
-><mi 
->s</mi><mo 
-class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
-><mo 
-class="MathClass-close">&#x007D;</mo></mrow><mrow 
->
-<mi 
->i</mi></mrow></msub 
-><mo 
-class="MathClass-punc">,</mo><mo 
-class="MathClass-open">&#x007B;</mo><msup><mrow 
-><mi 
->h</mi></mrow><mrow 
-><mi 
->s</mi><mo 
-class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
-><mo 
-class="MathClass-close">&#x007D;</mo><mo 
-class="MathClass-close">&#x007D;</mo></mrow><mrow 
->
-<mi 
->i</mi></mrow></msub 
-><mo 
-class="MathClass-close">&#x007D;</mo><mo 
-class="MathClass-close">&#x0029;</mo><mo 
-class="MathClass-close">&#x007D;</mo><mo 
-class="MathClass-punc">,</mo>
+>X</mi><mo 
+class="MathClass-close">&#x0029;</mo>
 </math></td><td class="eq-no">&#x0028;3&#x0029;</td></tr></table>
-<!--l. 30--><p class="indent" >   is the result of using the 1D-DWT to each column of the
-<!--l. 31--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mo 
-class="MathClass-open">&#x007B;</mo><msub><mrow 
-><mo 
-class="MathClass-open">&#x007B;</mo><msub><mrow 
-><mo 
-class="MathClass-open">&#x007B;</mo><msup><mrow 
-><mi 
->l</mi></mrow><mrow 
-><mi 
->s</mi><mo 
-class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
-><mo 
-class="MathClass-close">&#x007D;</mo></mrow><mrow 
-><mi 
->i</mi></mrow></msub 
-><mo 
-class="MathClass-punc">,</mo><mo 
-class="MathClass-open">&#x007B;</mo><msup><mrow 
-><mi 
->h</mi></mrow><mrow 
-><mi 
->s</mi><mo 
-class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
-><mo 
-class="MathClass-close">&#x007D;</mo><mo 
-class="MathClass-close">&#x007D;</mo></mrow><mrow 
-><mi 
->i</mi></mrow></msub 
-><mo 
-class="MathClass-close">&#x007D;</mo></math>
-structure.
-</p><!--l. 33--><p class="noindent" >
+<!--l. 64--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-20002"></a>What you have to do?</h3>
-<!--l. 35--><p class="noindent" >Please, using this notebook, add a new curve to the Fig.&#x00A0;<span 
+<!--l. 66--><p class="noindent" >Please, using this notebook, add a new curve to the Fig.&#x00A0;<span 
 class="ecbx-1000">??</span>.
-</p><!--l. 37--><p class="noindent" >
+</p><!--l. 68--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-30003"></a>Timming</h3>
-<!--l. 39--><p class="noindent" >Please, &#xFB01;nish this notebook before the next class session.
-                                                                  
-
-                                                                  
-</p><!--l. 41--><p class="noindent" >
+<!--l. 70--><p class="noindent" >Please, &#xFB01;nish this notebook before the next class session.
+</p><!--l. 72--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-40004"></a>Deliverables</h3>
-<!--l. 43--><p class="noindent" >None.
-</p><!--l. 45--><p class="noindent" >
+<!--l. 74--><p class="noindent" >None.
+</p><!--l. 76--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-50005"></a>Resources</h3>
