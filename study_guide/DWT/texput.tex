@@ -147,13 +147,14 @@ general, the $S$-levels DWT is computed by the recursive use of
 Eq.~\ref{eq:Haar_transform} to the low-frequency subband, defining
 (this holds for all DWTs)
 \begin{equation}
-  \{l^{s+1}, h^{s+1}\} = \text{DWT}(l^s).
+  \{l^{s+1}, h^{s+1}\} = \text{DWT}(l^s),
   \label{eq:DWT}
 \end{equation}
-Notice that when Eq.~\ref{eq:DWT} is applied recursively to $l^0$ $S$
-times, the following decomposition
+where $\{\cdots\}$ denotes the concatenation of subbands, generating a
+decomposition.  Notice that when Eq.~\ref{eq:DWT} is applied
+recursively to $l^0$ $S$ times, the decomposition
   \begin{equation}
-    | l^S_0 | h^S_0 | h^{S-1}_0 h^{S-1}_1 | h^{S-2}_0 h^{S-2}_1 h^{S-2}_2 h^{S-2}_3 | \cdots | h^1_0 h^1_1 \cdots h^1_{2^{n-1}-1} |,
+    \{ l^S_0, h^S_0, h^{S-1}_0 h^{S-1}_1, h^{S-2}_0 h^{S-2}_1 h^{S-2}_2 h^{S-2}_3, \cdots, h^1_0 h^1_1 \cdots h^1_{2^{n-1}-1}\},
   \end{equation}
   is obtained. Notice that in this decomposition there are $S+1$
   subbands.

@@ -10,12 +10,27 @@
 (2) nonseparable 2D filters. Except in very special cases, all 2D-DWT
 implementations use separable filters.
 
+Separability in the DWT context means that we can compute the
+$D$-dimensional DWT using the 1D filters, simply by applying them each
+dimension. Therefore, to compute the 2D-DWT
+  \{ll^{s  \{ll^{s  \{ll^{s+1}, lh^{s+1}, hl^{s+1}, hh^{s+1}\} = \text{2D-DWT}(ll^s),
+  \{ll^{s+1}, lh^{s+1}, hl^{s+1}, hh^{s+1}\} = \text{2D-DWT}(ll^s),
+  \label{eq:2D-DWT}
+\end{equation}+1}, lh^{s+1}, hl^{s+1}, hh^{s+1}\} = \text{2D-DWT}(ll^s),
+  \label{eq:2D-DWT}
+\end{equation}
+We define the 2D subband decomposition
+\begin{equation}
+  \{ll^{s+1}, lh^{s+1}, hl^{s+1}, hh^{s+1}\} = \text{2D-DWT}(ll^s),
+  \label{eq:2D-DWT}
+\end{equation}
+
 We define
 \begin{equation}
   \{ll^{s+1}, lh^{s+1}, hl^{s+1}, hh^{s+1}\} = \text{2D-DWT}(ll^s),
   \label{eq:2D-DWT}
 \end{equation}
-where $ll^s$ is a 2D-signal, and
+where, in general, $ll^s$ is a 2D-signal, and
 \begin{equation}
   \{\{\{l^{s+1}\}_i, \{h^{s+1}\}\}_i\} = \{\text{DWT}(ll^s_i)\},
   \label{eq:DWT}
