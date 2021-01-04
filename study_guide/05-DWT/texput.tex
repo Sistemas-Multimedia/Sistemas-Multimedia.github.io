@@ -146,28 +146,41 @@ all DWTs). We conclude that:
 % Polyphase implementation of the multilevel DWT
 
 Eq.~\ref{eq:Haar_transform} computes the 1-levels Haar DWT. In
-general, the $S$-levels DWT is computed by the recursive use of
-Eq.~\ref{eq:Haar_transform} to the low-frequency subband, defining
-(this holds for all DWTs)
+general, the $S$-levels DWT is computed by (this holds for all DWTs)
 \begin{equation}
   \{l^{s+1}, h^{s+1}\} = \text{DWT}(l^s),
   \label{eq:DWT}
 \end{equation}
-where $\{\cdots\}$ denotes the concatenation of subbands, generating a
-decomposition.  Notice that when Eq.~\ref{eq:DWT} is applied
-recursively to $l^0$ $S$ times, the decomposition
-  \begin{equation}
-    \{ l^S_0, h^S_0, h^{S-1}_0 h^{S-1}_1, h^{S-2}_0 h^{S-2}_1 h^{S-2}_2 h^{S-2}_3, \cdots, h^1_0 h^1_1 \cdots h^1_{2^{n-1}-1}\},
-  \end{equation}
-  is obtained. Notice that in this decomposition there are $S+1$
-  subbands, and therefore, $S+1$ resolution levels.
-
-The $R$-levels inverse DWT is defined by (this holds for all DWTs)
+where $\{\cdots\}$ denotes the concatenation of subbands (see the
+Figure~\ref{fig:DWT}). When Eq.~\ref{eq:DWT} has been applied $S$
+times, the decomposition
 \begin{equation}
-  l^s = \text{iDWT}(\{l^{s+1}, h^{s+1}\}),
+  \{l^S_0, h^S_0, h^{S-1}_0 h^{S-1}_1, h^{S-2}_0 h^{S-2}_1 h^{S-2}_2
+  h^{S-2}_3, \cdots, h^1_0 h^1_1 \cdots
+  h^1_{2^{n-1}-1}\}=\text{DWT}^S(l^0),
+  \label{eq:S_levels_DWT}
 \end{equation}
-where, in the case of the Haar DWT, iDWT is the result of solving
-$l^{s+1}$ and $h^{s+1}$ in the Eq.~\ref{eq:Haar_transform}.
+is obtained.
+
+The $S$-levels inverse DWT is defined by (this holds for all DWTs) by the iteration of the $1$ levels inverse DWT found by
+\begin{equation}
+  l^s = \text{DWT}^{-1}(\{l^{s+1}, h^{s+1}\}),
+\end{equation}
+where, it can be seen in the case of the Haar DWT, $\text{DWT}^{-1}$
+is the result of solving $l^{s+1}$ and $h^{s+1}$ in the
+Eq.~\ref{eq:Haar_transform}.
+
+Notice that in the decomposition described in
+Eq.~\ref{eq:S_levels_DWT} there are $S+1$ subbands, and therefore,
+$S+1$ resolution levels are posible:
+\begin{description}
+\item 1. $l^S$, with only one sample.
+\item 2. $l^{S-1}=\text{DWT}^{-1}(\{l^S, h^S\})$, with two samples.
+\item 3. $l^{S-2}=\text{DWT}^{-1}(\{l^{S-1}, h^{S-1}\})$, with four
+  samples.
+\item $\vdots$.
+\item $S+1$. $l^0=\text{DWT}^{-1}(\{l^1, h^1\})$.
+\end{description}  
 
 \subsection{Orthogonal and biorthogonal DWT}
 In the DWT context, orthogonality provides intersubband decorrelation,
