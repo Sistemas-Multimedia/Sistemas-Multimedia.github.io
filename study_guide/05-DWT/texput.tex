@@ -134,7 +134,7 @@ holds for all DWTs),
     \href{https://en.wikipedia.org/wiki/Absolute_value}{modulus} of
     the \href{https://en.wikipedia.org/wiki/Fourier_transform}{Fourier
       transform} of $K_i$.}
-  \label{fig:Haar_filters_response}
+  \label{fig:Haar_modulus}
 \end{figure}
 
 \begin{figure}
@@ -143,7 +143,7 @@ holds for all DWTs),
   \caption{Daubechies 5 filters's response in the frequency domain
     (see this
     \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb}{notebook}).}
-  \label{fig:db5_filters_response}
+  \label{fig:db5_modulus}
 \end{figure}
 
 \begin{figure}
@@ -152,12 +152,27 @@ holds for all DWTs),
   \caption{Biorthiogonal 3.5 filters's response in the frequency
     domain (see this
     \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb}{notebook}).}
-  \label{fig:bior3.5_filters_response}
+  \label{fig:bior3.5_modulus}
 \end{figure}
 
-As it can be seen in the Fig.~\ref{fig:Haar_filters_response}, $K_0$
-is a \href{https://en.wikipedia.org/wiki/Low-pass_filter}{low-pass
-  filter} and $K_1$ is a
+\begin{figure}
+  \centering
+  \myfig{haar_phase}{6cm}{600}
+  \caption{Phase response of the Haar filters (see this
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb}{notebook}).}
+  \label{fig:haar_phase}
+\end{figure}
+
+\begin{figure}
+  \centering \myfig{db5_phase}{6cm}{600}
+  \caption{Phase response of the Daubechies 5 filters (see this
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb}{notebook}).}
+  \label{fig:db5_phase}
+\end{figure}
+
+As it can be seen in the Fig.~\ref{fig:Haar_modulus}, $K_0$ is a
+\href{https://en.wikipedia.org/wiki/Low-pass_filter}{low-pass filter}
+and $K_1$ is a
 \href{https://en.wikipedia.org/wiki/High-pass_filter}{high-pass
   filter} (this holds for all DWTs). Considering the Haar filter, we
 can conclude that:
@@ -187,39 +202,50 @@ can conclude that:
   These problems can be only solved using filters that have
   \href{https://en.wikipedia.org/wiki/Transfer_function}{transfer
     functions} that overlaps a smaller area (see
-  Figs.~\ref{fig:db5_filters_response} and
-  \ref{fig:bior3.5_filters_response}).
+  Figs.~\ref{fig:db5_modulus} and
+  \ref{fig:bior3.5_modulus}).
 %\item The response of the filter bank is flat, which means that the gain of the different frequencie
 %  $|y(e^{j\omega})|=a|x(e^{j\omega})|, a\in\mathbb{R}$ (the
 %  reconstructed signal $y$ has not been filtered). % OJO
 \item There is not
   \href{https://en.wikipedia.org/wiki/Linear_phase}{phase distortion}
-  (the phase of the filters is a linear function of the
-  frequency). This means that coefficients $l^{s+1}_n$ and $h^{s+1}_n$
-  refers to the section of signal $\{l^s_{2n}, l^s_{2n+1}\}$,
-  allowing the design of entropy codecs for the decomposition which
-  exploit the correlation between subbands. Notice that this does not
-  hold for all filters (see Fig.~\ref{}).
+  (the phase of the filters is a linear function of the frequency, see
+  the Fig.~\ref{fig:haar_phase}). This means that coefficients
+  $l^{s+1}_n$ and $h^{s+1}_n$ refers to the section of signal
+  $\{l^s_{2n}, l^s_{2n+1}\}$, allowing the design of entropy codecs
+  for the decomposition which exploit the correlation between
+  subbands. Notice that this does not hold for all filters (see
+  Fig.~\ref{fig:db5_phase}).
 \end{enumerate}
 
 % Polyphase implementation of the multilevel DWT
+\begin{figure}
+  \centering
+  \myfig{graphics/DWT}{10cm}{1000}
+  \caption{Computation of the $S$-levels DWT and the generated
+    subbands.}
+  \label{fig:DWT}
+\end{figure}
 
-Eq.~\ref{eq:Haar_transform} computes the 1-levels Haar DWT. In
-general, the $S$-levels DWT is computed by (this holds for all DWTs)
+Eq.~\ref{eq:Haar_transform} computes the 1-levels Haar DWT. A more general expresion for this equation is (and this holds for all DWTs)
 \begin{equation}
   \{l^{s+1}, h^{s+1}\} = \text{DWT}(l^s),
   \label{eq:DWT}
 \end{equation}
-where $\{\cdots\}$ denotes the concatenation of subbands (see the
-Figure~\ref{fig:DWT}). When Eq.~\ref{eq:DWT} has been applied $S$
-times, the decomposition
+where $\{\cdot,\cdot\}$ denotes the concatenation of subbands. As can
+be seen in the Fig.~\ref{fig:DWT}, it's possible to compute the
+$S$-levels DWT, using Eq.~\ref{eq:DWT} iteratively over the low-frequency subband, generating the decomposition
 \begin{equation}
   \{l^S_0, h^S_0, h^{S-1}_0 h^{S-1}_1, h^{S-2}_0 h^{S-2}_1 h^{S-2}_2
   h^{S-2}_3, \cdots, h^1_0 h^1_1 \cdots
   h^1_{2^{n-1}-1}\}=\text{DWT}^S(l^0),
   \label{eq:S_levels_DWT}
 \end{equation}
-is obtained.
+where
+\begin{equation}
+  n = \log_2(N)
+\end{equation}
+where $N$ is the number of samples.
 
 The $S$-levels inverse DWT is defined by (this holds for all DWTs) by the iteration of the $1$ levels inverse DWT found by
 \begin{equation}
