@@ -5,44 +5,52 @@
 
 \section{Description}
 
-\theproject{} inputs \href{https://en.wikipedia.org/wiki/Video} data,
-which basically is a
+This milestone shows the structure of the
+\href{https://en.wikipedia.org/wiki/Video}{videos} used in
+\theproject{}. Basically, a video is a
 \href{https://en.wikipedia.org/wiki/Sequence}{sequence} of
 (\href{https://en.wikipedia.org/wiki/Digital_data}{digital})
-\href{https://en.wikipedia.org/wiki/Image}{images}. A image is a
+\href{https://en.wikipedia.org/wiki/Image}{images}, that we prefeer to
+name \href{https://en.wikipedia.org/wiki/Film_frame}{frames}. In the
+context of \theproject(), frame can be described as a
 \href{https://en.wikipedia.org/wiki/Matrix_(mathematics)}{matrix} of
-\href{https://en.wikipedia.org/wiki/Pixel}{pixels}. This milestone
-shows the structure of the videos used in \theproject{}.
+\href{https://en.wikipedia.org/wiki/Pixel}{pixels}.
 
 We are going to store a video as a sequence of
 \href{https://en.wikipedia.org/wiki/Computer_file}{files} with names
 <prefix>000.png, <prefix>001.png, ..., where <prefix> specifies the
-video name and ``.png'' indicates that the images are coded using the
+video name and ``.png'' indicates that the frames are coded using the
+\href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless}
 \href{https://en.wikipedia.org/wiki/Portable_Network_Graphics}{PNG}
-image format. All the images of a video have the same
-\href{https://en.wikipedia.org/wiki/Image_resolution}{spatial
-  resolution}, are represented in the
-\href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB domain}, and
-each color component has
-\href{https://en.wikipedia.org/wiki/Glossary_of_computer_graphics#bit_depth}{bit
-  depth} of 16 bits, representing an unsigned
-\href{https://en.wikipedia.org/wiki/Integer_(computer_science)}{integer}. The
-pixel
-\href{https://en.wikipedia.org/wiki/Luminous_intensity}{intensities}
-are displaced to the center of the
-\href{https://en.wikipedia.org/wiki/Range_(computer_programming)}{range
-  of values} ([0, 65535]) that the components can take (for example,
-in \href{https://en.wikipedia.org/wiki/Disk_storage}{disk}, the
-component intensity 0 is represented by 32768).
-
+image format. All the frames of a video:
+\begin{enumerate}
+\item Have the same
+  \href{https://en.wikipedia.org/wiki/Image_resolution}{spatial
+    resolution}.
+\item Are represented in the
+  \href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB domain}.
+\item Each color component has
+  \href{https://en.wikipedia.org/wiki/Glossary_of_computer_graphics#bit_depth}{bit
+    depth} of 16 bits, representing an unsigned
+  \href{https://en.wikipedia.org/wiki/Integer_(computer_science)}{integer}.
+\item The pixel
+  \href{https://en.wikipedia.org/wiki/Luminous_intensity}{intensities}
+  are displaced to the center of the
+  \href{https://en.wikipedia.org/wiki/Range_(computer_programming)}{range
+    of values} ([0, 65535]) that the components can take (for example,
+  in \href{https://en.wikipedia.org/wiki/Disk_storage}{disk}, the
+  component intensity 0 is represented by 32768).
+\end{enumerate}
+  
 \section{What you have to do?}
 
 \begin{enumerate}
 \item Download \theproject, preferably cloning your fork.
-\item Display the first image of the stockholm video (placed in the
+\item Run this notebook.
+  Display the first image of the stockholm video (placed in the
   sequences/stockholm directory) using this
   \href{https://jupyter.org/}{jupyter} \href{}{notebook}.
-\item Understand the insights of the notebook.
+%\item Understand the insights of the notebook.
 \end{enumerate}
 
 \section{Timming}
