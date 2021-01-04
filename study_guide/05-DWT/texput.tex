@@ -127,34 +127,68 @@ holds for all DWTs),
 
 \begin{figure}
   \centering
-  \myfig{haar_filters_response}{6cm}{600}
+  \myfig{haar_modulus}{6cm}{600}
   \caption{Haar filters's response in the frequency domain (see this
-    \href{}{notebook}). $|K_i(e^{j\omega})|$ denotes to the modulus of
-    the Fourier transform of $K_i$.}
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb}{notebook}).
+    $|K_i(e^{j\omega})|$ denotes the
+    \href{https://en.wikipedia.org/wiki/Absolute_value}{modulus} of
+    the \href{https://en.wikipedia.org/wiki/Fourier_transform}{Fourier
+      transform} of $K_i$.}
   \label{fig:Haar_filters_response}
 \end{figure}
 
+\begin{figure}
+  \centering
+  \myfig{db5_modulus}{6cm}{600}
+  \caption{Daubechies 5 filters's response in the frequency domain
+    (see this
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb}{notebook}).}
+  \label{fig:db5_filters_response}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \myfig{bior3.5_modulus}{6cm}{600}
+  \caption{Biorthiogonal 3.5 filters's response in the frequency
+    domain (see this
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb}{notebook}).}
+  \label{fig:bior3.5_filters_response}
+\end{figure}
+
 As it can be seen in the Fig.~\ref{fig:Haar_filters_response}, $K_0$
-is a low-pass filter and $K_1$ is a high-pass filter (this holds for
-all DWTs). We conclude that:
+is a \href{https://en.wikipedia.org/wiki/Low-pass_filter}{low-pass
+  filter} and $K_1$ is a
+\href{https://en.wikipedia.org/wiki/High-pass_filter}{high-pass
+  filter} (this holds for all DWTs). Considering the Haar filter, we
+can conclude that:
 \begin{enumerate}
 \item There exists
   \href{https://en.wikipedia.org/wiki/Aliasing}{aliasing} between the
   filters (this holds for all DWTs) and this is a drawback because:
   \begin{enumerate}
-  \item The information with the same
-    frequency can be found in both subbands ($l$ and $h$). Therefore,
-    the concentration of the energy in one of the subbands is
-    smaller.
+  \item The
+    \href{https://en.wikipedia.org/wiki/Information}{information} with
+    the same frequency can be found in both subbands ($l$ and
+    $h$). Therefore, the concentration of the energy in one of the
+    subbands is smaller.
   \item At it can be seen also in Eq.~\ref{eq:Haar_transform}, the
     subbands are downsampled by 2 and both subbands should have, at
-    most, a bandwidth of $1/2$ radians/sample in order to avoid the
-    aliasing during the subsampling, and increasing thus the
-    perceptible quality of the low-pass subband.
+    most, a
+    \href{https://en.wikipedia.org/wiki/Bandwidth_(signal_processing)}{bandwidth}
+    of $1/2$
+    \href{https://en.wikipedia.org/wiki/Radian}{radians}/\href{https://en.wikipedia.org/wiki/Sampling_(signal_processing)}{sample}
+    in order to avoid the aliasing during the
+    \href{https://en.wikipedia.org/wiki/Downsampling_(signal_processing)}{subsampling},
+    and increasing thus the
+    \href{https://en.wikipedia.org/wiki/Perception}{perceptible}
+    \href{https://en.wikipedia.org/wiki/Signal-to-noise_ratio}{quality}
+    of the low-pass subband.
   \end{enumerate}
   These problems can be only solved using filters that have
-  transfer functions that a overlap a smaller area
-  (see Figs.~\ref{} and \ref{}). 
+  \href{https://en.wikipedia.org/wiki/Transfer_function}{transfer
+    functions} that overlaps a smaller area (see
+  Figs.~\ref{fig:db5_filters_response} and
+  \ref{fig:bior3.5_filters_response}).
 %\item The response of the filter bank is flat, which means that the gain of the different frequencie
 %  $|y(e^{j\omega})|=a|x(e^{j\omega})|, a\in\mathbb{R}$ (the
 %  reconstructed signal $y$ has not been filtered). % OJO
@@ -165,7 +199,7 @@ all DWTs). We conclude that:
   refers to the section of signal $\{l^s_{2n}, l^s_{2n+1}\}$,
   allowing the design of entropy codecs for the decomposition which
   exploit the correlation between subbands. Notice that this does not
-  hold for all filters (see Figs.~\ref{} and \ref{}).
+  hold for all filters (see Fig.~\ref{}).
 \end{enumerate}
 
 % Polyphase implementation of the multilevel DWT
