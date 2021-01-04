@@ -5,27 +5,45 @@
 
 \section{Description}
 
-Technically, the DWT is a basis expansion which compute a
-critically-sampled octave-band decomposition.
+Technically, the
+\href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform}{DWT
+  (Discrete Wavelet Transform)} is a
+\href{https://en.wikipedia.org/wiki/Linearity}{linear}
+\href{https://en.wikipedia.org/wiki/Change_of_basis}{basis}
+\href{https://www.youtube.com/watch?v=P2LTAUO1TdA}{expansion} which
+compute a
+\href{https://www.dsprelated.com/freebooks/sasp/Critically_Sampled_Perfect_Reconstruction.html}{critically}-\href{https://en.wikipedia.org/wiki/Nyquist-Shannon_sampling_theorem}{sampled}
+\href{https://en.wikipedia.org/wiki/Octave_(electronics)}{octave}-\href{https://en.wikipedia.org/wiki/Frequency_band}{band}
+\href{https://www.sciencedirect.com/topics/engineering/wavelet-decomposition}{decomposition}~\cite{vetterli2014foundations,kovacevic2013fourier}.
 
 \subsection{Transform coding}
 
 \href{https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf}{Transform
   coding} can exploit
 \href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlation}
-in signals to concentrate the energy. Specifically, the DWT (Discrete
-Wavelet Transform) is a family of transforms whose output describes
-the (input) signal in a set of subbands. This set is also called a
-decomposition and the index of the subband is related to the frequency
-of the signal. For example, in the case of the images, the position of
-the coefficients in the subbands is related to
+in \href{https://en.wikipedia.org/wiki/Signal}{signals} to concentrate
+the
+\href{https://en.wikipedia.org/wiki/Energy_(signal_processing)}{energy}. Specifically,
+the DWT is a family of transforms whose output describes the (input)
+signal in a set of
+\href{https://en.wikipedia.org/wiki/Sub-band_coding}{subbands}. This
+set is also called a decomposition and the
+\href{https://en.wikipedia.org/wiki/Array_data_structure#Element_identifier_and_addressing_formulas}{index}
+of the subband is related to the
+\href{https://en.wikipedia.org/wiki/Frequency}{frequency} of the
+signal. For example, in the case of the
+\href{https://en.wikipedia.org/wiki/Digital_image}{images}, the
+position of the
+\href{https://en.wikipedia.org/wiki/Coefficient}{coefficients} in the
+subbands is related to
 \href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform#/media/File:Jpeg2000_2-level_wavelet_transform-lichtenstein.png}{the
   spatial area where the related pixels are found}.
 
 All linear\footnote{Non-linear transform are also possible, but their
   mathematical operation can not be described using linear algebra.}
-transforms can be described by matrix-vector
-product~\cite{strang4linear} as
+transforms can be described by
+\href{https://en.wikipedia.org/wiki/Matrix_multiplication}{matrix-vector
+  product}~\cite{strang4linear} as
 \begin{equation}
   y = Kx,
   \label{eq:forward_transform_matrix_form}
@@ -42,7 +60,8 @@ denotes the
 \href{https://en.wikipedia.org/wiki/Similarity_(geometry)}{similarity}
 between the input signal $x$ and the
 \href{https://en.wikipedia.org/wiki/Finite_impulse_response}{taps} of
-the filter $K_i$. These
+the \href{https://en.wikipedia.org/wiki/Digital_filter}{filter}
+$K_i$. These
 \href{https://cseweb.ucsd.edu/classes/fa17/cse166-a/lec13.pdf}{slides}
 can help you with this key idea. The inverse (synthesis) transform is
 computed by
@@ -52,7 +71,9 @@ computed by
 \end{equation}
 where $K^{-1}$ denotes to the inverse matrix of $K$.
 
-For example, the 2x2-KLT is defined by
+For example, the
+2x2-\href{https://en.wikipedia.org/wiki/Karhunen-Loeve_theorem}{KLT}~\cite{sayood2017introduction}
+is defined by
 \begin{equation}
   \begin{bmatrix}
     y_0 \\
@@ -66,22 +87,24 @@ For example, the 2x2-KLT is defined by
   \end{bmatrix},
   \label{eq:KLT_transform}
 \end{equation}
-and it hold that
+and it holds that
 \begin{equation}
   K=K^{-1}=K^{\text T},
   \label{eq:orthogonal_matrix}
 \end{equation}
 where $K^{\text T}$ represents the transpose matrix of $K$. The
-Eq.~\ref{eq:orthogonal_matrix} is true for all orthogonal transforms,
-and therefore
+Eq.~\ref{eq:orthogonal_matrix} is true for all
+\href{https://en.wikipedia.org/wiki/Orthogonality}{orthogonal}
+transforms, and therefore
 \begin{equation}
   \langle K_i, K_j\rangle = 0, \forall i\neq j.
 \end{equation}
 
-\subsection{An example of DWT (Discrete Wavelet Transform): Haar DWT}
-
+\subsection{An example of DWT: the Haar DWT}
 As the rest of transforms, the DWT is also described by the filters of
-$K$. Haar defined the analysis downsampling filters
+$K$. Haar defined the analysis
+\href{https://en.wikipedia.org/wiki/Downsampling_(signal_processing)}{downsampling}
+filters
 \begin{equation}
   \begin{bmatrix}
     l^{s+1}_n \\
@@ -95,7 +118,9 @@ $K$. Haar defined the analysis downsampling filters
   \end{bmatrix},
   \label{eq:Haar_transform}
 \end{equation}
-where the superindex $r$ denotes the resolution level of the signal, and $n$ refeers to the $n$-th element of the signal. By definition (this holds for all DWTs),
+where the superindex $s$ denotes the subband, and $n$ refers to the
+$n$-th element of the signal. By definition (and notice that this
+holds for all DWTs),
 \begin{equation}
   l^0=x.
 \end{equation}
@@ -103,9 +128,9 @@ where the superindex $r$ denotes the resolution level of the signal, and $n$ ref
 \begin{figure}
   \centering
   \myfig{haar_filters_response}{6cm}{600}
-  \caption{Haar filters response in the frequency domain (see this
-    \href{}{notebook}). $|K_i(e^{j\omega})|$ refeers to the
-    modulus of the Fourier transform of $K_i$.}
+  \caption{Haar filters's response in the frequency domain (see this
+    \href{}{notebook}). $|K_i(e^{j\omega})|$ denotes to the modulus of
+    the Fourier transform of $K_i$.}
   \label{fig:Haar_filters_response}
 \end{figure}
 
@@ -137,7 +162,7 @@ all DWTs). We conclude that:
   \href{https://en.wikipedia.org/wiki/Linear_phase}{phase distortion}
   (the phase of the filters is a linear function of the
   frequency). This means that coefficients $l^{s+1}_n$ and $h^{s+1}_n$
-  refeers to the section of signal $\{l^s_{2n}, l^s_{2n+1}\}$,
+  refers to the section of signal $\{l^s_{2n}, l^s_{2n+1}\}$,
   allowing the design of entropy codecs for the decomposition which
   exploit the correlation between subbands. Notice that this does not
   hold for all filters (see Figs.~\ref{} and \ref{}).
@@ -237,4 +262,4 @@ None.
 
 \section{Resources}
 
-\bibliography{python}
+\bibliography{signal-processing,maths,data-compression}
