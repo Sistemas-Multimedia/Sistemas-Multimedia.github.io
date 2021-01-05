@@ -26,7 +26,7 @@ that obviously, should be minimized.
 
 \begin{figure}
   \centering
-  \myfig{graphics/Q}{4cm}{400}
+  \myfig{graphics/Q}{2cm}{200}
   \caption{Scalar quantization and dequantization of a signal.}
   \label{fig:Q}
 \end{figure}
@@ -58,22 +58,69 @@ Non-uniform quantizers can be:
 \end{enumerate}
 
 All uantizers can be classified into:
-\begin{enunerate}
+\begin{enumerate}
 \item \textbf{Mid-tread quantizers}, if $\tilde{x}_i$ can be $0$.
 \item \textbf{Mid-rised quantizers}, if $\tilde{x}_i$ cannot be $0$.
 \end{enumerate}
 
 Finally, quantizers can be classified as:
-\begin{enunerate}
+\begin{enumerate}
 \item \textbf{Dead-zone quantizers}, that are characterized by a
   quantization step of length $2\Delta$ for $x_i=0$. Deadzone
   quantizers tends to remove the electronic noise (that usually has an
-  small amplitude compared to the input signal $x$).
+  small amplitude compared to the input signal $x$). Notice that
+  dead-zone quantizers should not be consdered uniform, and that all
+  dead-zone quantizers, by definition, are mid-tread.
 \item \textbf{No dead-zone quantizers}, when the dead-zone does not
   exist.
 \end{enumerate}
 
-Use this notebook to gain more insights about quantization.
+\begin{figure}
+  \centering
+  \myfig{iomap_mr}{5cm}{500}
+  \caption{Input/output map of a mid-riser quantizer with $\Delta=2$.}
+  \label{fig:iomap_mr}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \myfig{qe_mr}{5cm}{500}
+  \caption{Quantization error of a mid-riser quantizer with $\Delta=2$.}
+  \label{fig:quantization_error_mr}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \myfig{iomap_mt}{5cm}{500}
+  \caption{Input/output map of a mid-tread quantizer with $\Delta=2$.}
+  \label{fig:iomap_mr}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \myfig{qe_mt}{5cm}{500}
+  \caption{Quantization error of a mid-tread quantizer with $\Delta=2$.}
+  \label{fig:quantization_error_dz}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \myfig{iomap_dz}{5cm}{500}
+  \caption{Input/output map of a dead-zone quantizer with $\Delta=2$.}
+  \label{fig:iomap_dz}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \myfig{qe_dz}{5cm}{500}
+  \caption{Quantization error of a dead-zone quantizer with $\Delta=2$.}
+  \label{fig:qe_dz}
+\end{figure}
+
+Figs.~\ref{fig:iomap_mr}, \ref{fig:eq_mr}, \ref{fig:iomap_mt},
+\ref{fig:eq_mt}, \ref{fig:iomap_dz}, and \ref{fig:eq_dz} describe the
+behaviour of 3 different quantizers.  Use \href{}{this notebook} to
+gain more insights about quantization.
 
 \section{Description}
 
