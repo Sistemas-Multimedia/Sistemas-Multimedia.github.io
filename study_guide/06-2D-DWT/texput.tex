@@ -5,51 +5,67 @@
 
 \section{Description}
 
-(Digital) Images are 2D (discrete in space and amplitude) signals. The
-2D-DWT of an image can be computed using (1) separable 1D filters, and
-(2) nonseparable 2D filters. Except in very special cases, all 2D-DWT
-implementations use separable filters.
+(Digital) Images are 2D
+(2-Dimensional, \href{https://en.wikipedia.org/wiki/Discrete_time_and_continuous_time}{discrete}
+in \href{https://en.wikipedia.org/wiki/Space}{space}
+and \href{https://en.wikipedia.org/wiki/Amplitude}{amplitude})
+signals. The 2D-DWT of an image can be computed using
+(1) \href{https://en.wikipedia.org/wiki/Separable_filter}{separable}
+1D filters, and
+(2) \href{https://en.wikipedia.org/wiki/Non-separable_wavelet}{nonseparable}
+2D filters. Except in very special cases, all 2D-DWT implementations
+use separable filters.
 
 Separability in the DWT context means that we can compute the
-$D$-dimensional DWT using the 1D filters, simply by applying them to
-each dimension, using \emph{in-place} operations. This procedure has
-been described in the Algorithm~\ref{alg:2D-DWT}, where $X_{n,*}$
-refeers to the $n$-th row of the matrix $X$ and $X_{*,m}$ to the
-$m$-th column.
+$D$-dimensional DWT using the 1D filters, simply applying them to each
+dimension, and
+using \href{https://en.wikipedia.org/wiki/In-place_algorithm}{in-place}
+operations. This procedure has been described in the
+Algorithm~\ref{alg:2D-DWT}, where $X_{r,*}$ refers to the $r$-th row
+of the matrix $X$ and $X_{*,c}$ to the $c$-th column, being $R$ and
+$C$ the number of rows and columns of the image $X$.
 
 \begin{pseudocode}{\text{2D-DWT}}{X}
   \label{alg:2D-DWT}
-  \FOR n \GETS 0 \TO N-1 \DO
-  X_{n,*} = \text{DWT}(X_{n,*})
+  \FOR r \GETS 0 \TO R-1 \DO
+  X_{r,*} = \text{DWT}(X_{r,*})
   \\
-  \FOR m \GETS 0 \TO M-1 \DO
-  X_{*,m} = \text{DWT}(X_{*,m})
+  \FOR c \GETS 0 \TO C-1 \DO
+  X_{*,c} = \text{DWT}(X_{*,c})
 \end{pseudocode}
 
-The obtained 2D decomposition is expressed in the Eq.~\ref{eq:2D-DWT}.
-
-Notice that this algorithm computes the $1$-levels
-2D-DWT. The obtained the 2D decomposition shown in the
-Figure~\ref{fig:2D-DWT}.
-
+The obtained 2D decomposition is expressed by
 \begin{equation}
   \begin{bmatrix}
     \text{LL} & \text{HL} \\
     \text{LH} & \text{HH}
   \end{bmatrix}
   =
-  \text{2D-DWT}(X)
+  \text{2D-DWT}(X),
   \label{eq:2D-DWT}
 \end{equation}
+where $L$ stands for low-pass filtering and $H$ for high-pass
+filtering.
 
-Eq.~\ref{eq:2D-DWT} describes the $1$-levels 2D-DWT. Replacing
-$\text{LL}=L^{s+1}$, $X=L^s$, and
+Eq.~\ref{eq:2D-DWT} describes the $1$-levels (analysis)
+2D-DWT. Replacing $\text{LL}=L^{s+1}$, $X=L^s$, and
 $\{\text{HL}, \text{LH}, \text{HH}\}=H^{s+1}$ in the previous
-expression, the $S$-levels 2D-DWT can be computed applying recursively
-the 2D-DWT to the low-frequency subband as
+expression, the $S$-levels 2D-DWT of $L^0=X$ ($\text{2D-DWT}^S(L^0)$)
+can be computed applying $S$-times
 \begin{equation}
-  \{L^{s+1}, H^{s+1}\} = \text{2D-DWT}(L^s).
+  \{L^{s+1}, H^{s+1}\} = \text{2D-DWT}(L^s)
 \end{equation}
+to the low-frequency subband $L^s$, generating the 2D decomposition
+described in the Fig.~\ref{fig:2D-DWT}.
+
+
+in the Eq.~\ref{eq:2D-xcxcDWT}.
+
+Notice that this algorithm computes the $1$-levels
+2D-DWT. The obtained the 2D decomposition shown in the
+Figure~\ref{fig:2D-DWT}.
+
+
 
 The Figure~\ref{fig:lena-DWT} shows the $3$-levels 2D-DWT of an image.
 
