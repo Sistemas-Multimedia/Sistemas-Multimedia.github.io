@@ -227,14 +227,16 @@ can conclude that:
   \label{fig:DWT}
 \end{figure}
 
-Eq.~\ref{eq:Haar_transform} computes the 1-levels Haar DWT. A more general expresion for this equation is (and this holds for all DWTs)
+Eq.~\ref{eq:Haar_transform} computes the 1-levels Haar DWT. A more
+general expresion for this equation is (and this holds for all DWTs)
 \begin{equation}
   \{l^{s+1}, h^{s+1}\} = \text{DWT}(l^s),
   \label{eq:DWT}
 \end{equation}
 where $\{\cdot,\cdot\}$ denotes the concatenation of subbands. As can
 be seen in the Fig.~\ref{fig:DWT}, it's possible to compute the
-$S$-levels DWT, using Eq.~\ref{eq:DWT} iteratively over the low-frequency subband, generating the decomposition
+$S$-levels DWT, using Eq.~\ref{eq:DWT} iteratively over the
+low-frequency subband, generating the decomposition
 \begin{equation}
   \{l^S_0, h^S_0, h^{S-1}_0 h^{S-1}_1, h^{S-2}_0 h^{S-2}_1 h^{S-2}_2
   h^{S-2}_3, \cdots, h^1_0 h^1_1 \cdots
@@ -247,37 +249,48 @@ where
 \end{equation}
 where $N$ is the number of samples.
 
-The $S$-levels inverse DWT is defined by (this holds for all DWTs) by the iteration of the $1$ levels inverse DWT found by
+In the case of the Haar filters, the synthesis (inverse) $1$-levels
+DWT (that we will denote by $\text{DWT}^{-1}$) is the result of
+solving the coefficients $l^{s+1}_n$ and $h^{s+1}_n$ in the
+Eq.~\ref{eq:Haar_transform}. In general, for longer DWT filters we are
+going to have more coefficients, but the same procedure can be used
+for finding the synthesis transform. Therefore, it can be written that
 \begin{equation}
   l^s = \text{DWT}^{-1}(\{l^{s+1}, h^{s+1}\}),
 \end{equation}
-where, it can be seen in the case of the Haar DWT, $\text{DWT}^{-1}$
-is the result of solving $l^{s+1}$ and $h^{s+1}$ in the
-Eq.~\ref{eq:Haar_transform}.
+and $\text{DWT}^{-S}$, the $S$-levels synthesis DWT, can be computed
+as it is describen in the Fig.~\ref{fig:DWT}, simply by reversing the
+analysis steps.
 
-Notice that in the decomposition described in
-Eq.~\ref{eq:S_levels_DWT} there are $S+1$ subbands, and therefore,
-$S+1$ resolution levels are posible:
-\begin{description}
-\item 1. $l^S$, with only one sample.
-\item 2. $l^{S-1}=\text{DWT}^{-1}(\{l^S, h^S\})$, with two samples.
-\item 3. $l^{S-2}=\text{DWT}^{-1}(\{l^{S-1}, h^{S-1}\})$, with four
-  samples.
-\item $\vdots$.
-\item $S+1$. $l^0=\text{DWT}^{-1}(\{l^1, h^1\})$.
-\end{description}  
+\subsection{\href{https://en.wikipedia.org/wiki/Multiresolution_analysis}{Multiresolution analysis}}
+In the decomposition described in Eq.~\ref{eq:S_levels_DWT} there are
+$S+1$ subbands, and therefore, it is possible to compute $S+1$
+resolution levels of the analyzed signal $l^0$:
+\begin{itemize}
+\item The resolution level $S$ of $l^0$ (no $\text{DWT}^{-1}$) $l^S$,
+  with only one sample $l^S_0$ that uses to be the
+  \href{https://en.wikipedia.org/wiki/Arithmetic_mean}{arithmetic
+    mean} of $l^0$. This coefficient (and the only sample of $l^S$),
+  is also called the \href{https://en.wikipedia.org/wiki/DC_bias}{DC
+    (Direct Current) coefficient}. On the contrary, the rest of
+  coefficents (high-frequency subbands) are called the AC (Alternating
+  Current) coefficients.
+\item The resolution level $S-1$ of $l^0$,
+  $l^{S-1}=\text{DWT}^{-1}(\{l^S, h^S\})$, with two samples.
+\item The resolution level $S-1$ of $l^0$,
+  $l^{S-2}=\text{DWT}^{-1}(\{l^{S-1}, h^{S-1}\})$, with four samples.
+\item $\vdots$
+\item The resolution level $0$, $l^0=\text{DWT}^{-1}(\{l^1, h^1\})$.
+\end{itemize}  
 
 \subsection{Orthogonal and biorthogonal DWT}
-In the DWT context, orthogonality provides intersubband decorrelation,
-which basically means that the contribution of each subbands to the
-reconstruction (this holds for all DWTs) of the signal are
-independent. Using a similar notation that the followed by PyWavelets,
-all transforms are defined by 4 filters:
+All DWTs are defined by 4 filters (using a similar notation that the
+followed by \href{https://pywavelets.readthedocs.io}{PyWavelets}):
 \begin{enumerate}
 \item Analysis (downsampling) low-pass filter $\tilde\phi$ (the decomposition
   scaling function), which computes $l^{s+1}$ from $l^s$.
 \item Analysis (downsampling) high-pass filter $\tilde\psi$ (the decomposition
-  wavelet function), which computes $h^{s+1}$ frin $l^s$.
+  wavelet function), which computes $h^{s+1}$ from $l^s$.
 \item Synthesis (upsampling) high-pass filter $\phi$ (the
   reconstruction scaling function), which computes $\{l^s_{2n}\}$ from
   $l^{s+1}$ and $h^{s+1}$.
@@ -286,14 +299,19 @@ all transforms are defined by 4 filters:
   from $l^{s+1}$ and $h^{s+1}$.
 \end{enumerate}
 
-Orthogonal filters can be recognized because:
+In the context of the DWT, orthogonality provides intersubband
+\href{https://en.wikipedia.org/wiki/Decorrelation}{decorrelation},
+which basically means that the contribution of each subbands to the
+reconstruction (and this holds for all DWTs) of the signal are
+independent. Orthogonal filters can be recognized because:
 \begin{enumerate}
-\item $\tilde\phi\bot\tilde\psi$ and $\phi\bot\psi$.
-\item Their taps are all different (asymmetric).
-\item The synthesis filters can be determined simply by
-  \emph{reflecting} analysis filters.
-\item In general, except for the Haar filters, orthogonal filters
-  generate phase distortion.
+\item $\tilde\phi\bot\tilde\psi$ and $\phi\bot\psi$, where $\bot$
+  denotes orthogonality.
+\item Their taps are all different (the filters are asymmetric).
+\item The taps of the synthesis filters can be determined simply by
+  ``reflecting'' the taps of the analysis filters.
+\item In general, except for the Haar DWT, orthogonal filters generate
+  phase distortion.
 \end{enumerate}
 
 On the other hand, in a biorthogonal DWT:
@@ -301,16 +319,27 @@ On the other hand, in a biorthogonal DWT:
 \item $\tilde\phi\bot\tilde\psi$, $\phi\bot\psi$, $\psi\bot\tilde\phi$
   and $\tilde\psi\bot\phi$.
 \item All the filters are symmetric.
-\item $\psi=(-1)^n\tilde\phi; n\in\mathbb{N}$, and
-  $\phi=(-1)^n; n\in\mathbb{N}$ (the odd taps are multiplied by $-1$).
-\item No phase distortion.
+\item The filters satisfy that
+  \begin{equation}
+    \psi=(-1)^n\tilde\phi;~n\in\mathbb{N},
+  \end{equation}
+  and
+  \begin{equation}
+    \phi=(-1)^n\tilde\psi;~n\in\mathbb{N}
+  \end{equation}
+    (the odd taps are multiplied by $-1$). Therefore, if we have the
+  analysis filters we can deduce the synthesis filters and viceversa.
+\item No phase distortion is generated.
 \end{enumerate}
-
-\subsection{Multiresolution}
 
 \section{What you have to do?}
   
-Please, using \href{}{this notebook}, add a new curve to the Fig.~\ref{}.
+Please, using
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb}{this
+  notebook}, determine the frequency and phase responses of the
+\href{http://wavelets.pybytes.com/wavelet/db20/}{Daubechies 20} and
+\href{http://wavelets.pybytes.com/wavelet/bior6.8/}{Biorthogonal 6.8}
+filters.
 
 \section{Timming}
 
