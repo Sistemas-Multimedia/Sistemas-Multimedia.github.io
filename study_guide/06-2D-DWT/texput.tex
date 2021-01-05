@@ -5,16 +5,16 @@
 
 \section{Description}
 
-(Digital) Images are 2D
-(2-Dimensional, \href{https://en.wikipedia.org/wiki/Discrete_time_and_continuous_time}{discrete}
-in \href{https://en.wikipedia.org/wiki/Space}{space}
-and \href{https://en.wikipedia.org/wiki/Amplitude}{amplitude})
-signals. The 2D-DWT of an image can be computed using
-(1) \href{https://en.wikipedia.org/wiki/Separable_filter}{separable}
-1D filters, and
-(2) \href{https://en.wikipedia.org/wiki/Non-separable_wavelet}{nonseparable}
-2D filters. Except in very special cases, all 2D-DWT implementations
-use separable filters.
+(Digital) Images are 2D (2-Dimensional,
+\href{https://en.wikipedia.org/wiki/Discrete_time_and_continuous_time}{discrete}
+in \href{https://en.wikipedia.org/wiki/Space}{space} and
+\href{https://en.wikipedia.org/wiki/Amplitude}{amplitude})
+signals. The 2D-DWT of an image can be computed using (1)
+\href{https://en.wikipedia.org/wiki/Separable_filter}{separable} 1D
+filters, and (2)
+\href{https://en.wikipedia.org/wiki/Non-separable_wavelet}{nonseparable}
+2D filters.~\cite{sayood2017introduction} Except in very special
+cases, all 2D-DWT implementations use separable filters.
 
 Separability in the DWT context means that we can compute the
 $D$-dimensional DWT using the 1D filters, simply applying them to each
@@ -73,16 +73,19 @@ As an example, the Fig.~\ref{fig:lena-DWT} shows the $3$-levels
 \begin{figure}
   \centering
   \pngfig{dwt_lena}{5cm}{500}
-  \caption{$\text{2D-DWT}^2(\text{"lena"})$'s decomposition. See this
-    notebook.}
+  \caption{$\text{2D-DWT}^2(\text{"lena"})$'s decomposition. See
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-2D-DWT/dwt_lena.ipynb}{this
+      notebook}.}
   \label{fig:2D-DWT}
 \end{figure}
 
 \subsection{Multiresolution}
 
 \section{What you have to do?}
-  
-Please, using \href{}{this notebook}, add a new curve to the Fig.~\ref{}.
+Using
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-2D-DWT/dwt_lena.ipynb}{this
+  notebook}, compute the
+$\text{2D-DWT}^3(\text{"a different image"})$.
 
 \section{Timming}
 
@@ -94,4 +97,4 @@ None.
 
 \section{Resources}
 
-\bibliography{python}
+\bibliography{data-compression}
