@@ -22,7 +22,14 @@ We are going to store a video as a sequence of
 video name and ``.png'' indicates that the frames are coded using the
 \href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless}
 \href{https://en.wikipedia.org/wiki/Portable_Network_Graphics}{PNG}
-image format. All the frames of a video:
+image format~\cite{roelofs1999png}. PNG uses DPCM and the
+\href{https://en.wikipedia.org/wiki/DEFLATE}{DEFLATE} codec (Huffman
+coding + LZW)~\cite{nelson96datacompression} to remove the
+\href{https://en.wikipedia.org/wiki/Image_compression}{spatial} and
+\href{https://en.wikipedia.org/wiki/Data_compression}{statistical
+  redudancy}. Notice that no color transform is used.
+
+Finally, notice that all the frames of a video:
 \begin{enumerate}
 \item Have the same
   \href{https://en.wikipedia.org/wiki/Image_resolution}{spatial
@@ -62,4 +69,4 @@ None.
 
 \section{Resources}
 
-\bibliography{python}
+\bibliography{image-compression}
