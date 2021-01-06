@@ -1,25 +1,30 @@
 \input{../definitions}
-\title{\SM{} - Study Guide - Milestone 8: Quantizing frames}
+\title{\SM{} - Study Guide - Milestone 5: Quantizing the RGB frames}
 
 \maketitle
 
 \section{Description}
-The HVS (Human Visual System) works quite well recognizing the
-information stored in images (and frames of a video), even when this
-information has been degraded or
+The \href{https://en.wikipedia.org/wiki/Visual_system}{humans} are
+quite efficient recognizing the information stored in images (and
+frames of a video), even when this information has been degraded or
+(partially)
 lost. \href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{Quantization}~\cite{sayood2017introduction,vetterli2014foundations}
 is a technique that can remove these part of the visual information
-less interesting for us. In this milestone we are going to quantize
-the MDWT domain.
+less interesting for us.
 
-A quantizer (typically denoted by $Q$) is a system that inputs a
-sequence of (digital) samples $x$ and output a sequence of
-quantization indexes $k$ (see the Fig.~\ref{fig:Q}). The inverse
-system, called a dequantizer (and denoted by $Q^{-1}$), recover an
-approximate version (depending on the quantization step $\Delta$) of
-$x$ that we will denote as $\tilde{x}$. Notice that although $\Delta$
-is an input parameter to the quantizer, it has not been considered in
-the figure. We define the quantization error
+In this milestone we are going to quantize a frame in
+the \href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB color
+domain}. A \href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{quantizer}
+(typically denoted by $Q$) is
+a \href{https://en.wikipedia.org/wiki/Data_compression}{encoding
+system} that inputs a sequence of (digital) samples $x$ and output a
+sequence of quantization indexes $k$ (see the Fig.~\ref{fig:Q}). The
+inverse system, called a dequantizer (and denoted by $Q^{-1}$),
+recover an approximate version (depending on the quantization step
+$\Delta$) of $x$ that we will denote as $\tilde{x}$. Notice that
+although $\Delta$ is an input parameter to the quantizer, it has not
+been considered in the figure to keep it simpler. We define the
+quantization error
 \begin{equation}
   e_i = x_i - \tilde{x}_i,
 \end{equation}
@@ -36,26 +41,33 @@ Quantizers can be classifies into:
 \begin{enumerate}
 \item \textbf{Scalar quantizers}: those that produce a quantization
   index $k_i$ by each input sample $x_i$.
-\item \textbf{Vector quantizers}: those that process the input by
+\item \textbf{Vector quantizers}: that process the input by
   blocks of samples, called vectors, producing quantization index by
   vector. Vector Quantization (VQ) can remove spatial correlation and
-  therefore, are more efficient that Scalar Quantization (SQ).
+  therefore, are more efficient that Scalar Quantization (SQ). On the
+  other hand, the computational requirements of VQ are, by far, higher
+  than the needed for SQ. If we also consider that there are other
+  techniques (such as transform coding) that are able to decorrelate
+  the samples with less computation than VQ. For this reason, SQ has
+  been selected, for example, in most video codecs.
 \end{enumerate}
 
 Quantizers, also, can be classified as:
 \begin{enumerate}
-\item \textbf{Uniform quantizers}: those in which the quantization
-  step ($\Delta$) is idependent on the amplitude of the samples.
+\item \textbf{Uniform quantizers}: those in which $\Delta$ is
+  idependent on the amplitude of the samples.
 \item \textbf{Non-unifom quantizers}, on the contrary, when $\Delta$
-  depends on (directly or indirectly) the samples.
+  depends (directly or indirectly) on the samples.
 \end{enumerate}
 
 Non-uniform quantizers can be:
 \begin{enumerate}
-\item \textbf{Static quantizers}: those que use the same quantization
-  step ($\Delta$) for each samples or vector of the sequence.
+\item \textbf{Static quantizers}: if $\Delta$ depends on the amplitude
+  of the samples (as happens for example in compended quantizers), but
+  this dependency is pre-computed.
 \item \textbf{Adaptive quantizers}: when $\Delta$ is adapted to
-  minimize the quantization error.
+  minimize the quantization error, depending on the ``on-the-fly''
+  characteristics of the signal.
 \end{enumerate}
 
 All uantizers can be classified into:
