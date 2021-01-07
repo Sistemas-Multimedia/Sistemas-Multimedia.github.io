@@ -4,25 +4,30 @@
 \maketitle
 
 \section{Description}
-The \href{https://en.wikipedia.org/wiki/Visual_system}{humans} are
-quite efficient recognizing the information stored in images (and
-frames of a video), even when this information has been degraded or
-(partially)
+\href{https://en.wikipedia.org/wiki/Visual_system}{Humans} are quite
+efficient recognizing the information stored in images (and frames of
+a video), even when this information has been degraded or (partially)
 lost. \href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{Quantization}~\cite{sayood2017introduction,vetterli2014foundations}
 is a technique that can remove the part of the visual information that
-is less relevant for us. Notice, however, that quantization implies
-\href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy coding}.
+is less relevant for us, and implies
+\href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy coding},
+which provides
+\href{https://en.wikipedia.org/wiki/Data_compression_ratio}{compression
+  ratios} at least one order of magnitude higher than using
+\href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless
+  coding}.
 
-In this milestone we are going to quantize a frame in
-the \href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB color
-domain}. A \href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{quantizer}
-(typically denoted by $Q$) is
-a \href{https://en.wikipedia.org/wiki/Data_compression}{encoding
-system} that inputs a sequence of (digital) samples $x$ and output a
-sequence of quantization indexes $k$ (see the Fig.~\ref{fig:Q}). The
-inverse system, called a dequantizer (and denoted by $Q^{-1}$),
-recover an approximate version (depending on the quantization step
-$\Delta$) of $x$ that we will denote as $\tilde{x}$. Notice that
+In this milestone we are going to quantize a frame in the
+\href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB color
+  domain}. A
+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{\textbf{quantizer}}
+(typically denoted by $Q$) is a
+\href{https://en.wikipedia.org/wiki/Data_compression}{encoding system}
+that inputs a sequence of (digital) samples $x$ and output a sequence
+of quantization indexes $k$ (see the Fig.~\ref{fig:Q}). The inverse
+system, called a \textbf{dequantizer} (and denoted by $Q^{-1}$),
+recover an approximate version of $x$ that we will denote as
+$\tilde{x}$, depending on the quantization step $\Delta$. Notice that
 although $\Delta$ is an input parameter to the quantizer, it has not
 been considered in the figure to keep it simpler. We define the
 quantization error
@@ -42,15 +47,18 @@ Quantizers can be classifies into:
 \begin{enumerate}
 \item \textbf{Scalar quantizers}: those that produce a quantization
   index $k_i$ by each input sample $x_i$.
-\item \textbf{Vector quantizers}: that process the input by
-  blocks of samples, called vectors, producing quantization index by
-  vector. Vector Quantization (VQ) can remove spatial correlation and
-  therefore, are more efficient that Scalar Quantization (SQ). On the
-  other hand, the computational requirements of VQ are, by far, higher
-  than the needed for SQ. If we also consider that there are other
-  techniques (such as transform coding) that are able to decorrelate
-  the samples with less computation than VQ. For this reason, SQ has
-  been selected, for example, in most video codecs.
+\item \textbf{Vector quantizers}: that process the input by blocks of
+  samples, called vectors, producing a quantization index by vector,
+  and usually, the length of the quantization index y much shorter
+  than the length of the vector. Vector Quantization (VQ) can remove
+  spatial correlation and therefore, are more efficient that Scalar
+  Quantization (SQ). On the other hand, the computational requirements
+  of VQ are, by far, higher than the needed by SQ. If we also consider
+  that there are other techniques (such as transform coding) that are
+  able to decorrelate the samples with less computation than VQ, we
+  can understand why SQ has been selected, for example, in most
+  \href{https://en.wikipedia.org/wiki/Video_coding_format}{video
+    codecs}.
 \end{enumerate}
 
 Quantizers, also, can be classified as:
@@ -58,33 +66,39 @@ Quantizers, also, can be classified as:
 \item \textbf{Uniform quantizers}: those in which $\Delta$ is
   idependent on the amplitude of the samples.
 \item \textbf{Non-unifom quantizers}, on the contrary, when $\Delta$
-  depends (directly or indirectly) on the samples.
+  depends (directly or indirectly) on the amplitude of the samples.
 \end{enumerate}
 
 Non-uniform quantizers can be:
 \begin{enumerate}
 \item \textbf{Static quantizers}: if $\Delta$ depends on the amplitude
-  of the samples (as happens for example in compended quantizers), but
-  this dependency is pre-computed.
+  of the samples (as happens, for example, in
+  \href{https://en.wikipedia.org/wiki/Companding}{companded
+    quantizers}), but this dependency is known \emph{a-priori}.
 \item \textbf{Adaptive quantizers}: when $\Delta$ is adapted to
-  minimize the quantization error, depending on the ``on-the-fly''
-  characteristics of the signal.
+  minimize the quantization error, depending ``on-the-fly'' on the
+  characteristics\footnote{Depending, for example, on the
+    \href{https://en.wikipedia.org/wiki/Probability_density_function}{PDF}
+    of the signal.} of the signal.
 \end{enumerate}
 
-All uantizers can be classified into:
+All quantizers can be classified into:
 \begin{enumerate}
 \item \textbf{Mid-tread quantizers}, if $\tilde{x}_i$ can be $0$.
-\item \textbf{Mid-rised quantizers}, if $\tilde{x}_i$ cannot be $0$.
+\item \textbf{Mid-rised quantizers}, if $\tilde{x}_i$ never is $0$,
+  even if $x_i=0$.
 \end{enumerate}
 
 Finally, quantizers can be classified as:
 \begin{enumerate}
 \item \textbf{Dead-zone quantizers}, that are characterized by a
   quantization step of length $2\Delta$ for $x_i=0$. Deadzone
-  quantizers tends to remove the electronic noise (that usually has an
-  small amplitude compared to the input signal $x$). Notice that
-  dead-zone quantizers should not be consdered uniform, and that all
-  dead-zone quantizers, by definition, are mid-tread.
+  quantizers tends to remove the
+  \href{https://en.wikipedia.org/wiki/Noise_(electronics)}{electronic
+    noise} (that usually has an small amplitude compared to the input
+  signal $x$). Notice that dead-zone quantizers should not be
+  consdered uniform, and that all dead-zone quantizers, by definition,
+  are mid-tread.
 \item \textbf{No dead-zone quantizers}, when the dead-zone does not
   exist.
 \end{enumerate}
@@ -138,12 +152,20 @@ behaviour of 3 different quantizers.  Use this
 to gain more insights about quantization.
 
 \section{What you have to do?}
-  
-Please, modify the
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-quantization/quantize_a_frame.ipynb}{notebook}
-in order to use the
-\href{https://docs.opencv.org/master/d4/da8/group__imgcodecs.html}{TIFF
-  and JPEG 2000 image formats} instead of PNG. Compare the RD curves.
+\begin{enumerate}
+\item Please, modify this
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-quantization/performance.ipynb}{notebook}
+  in order to use the
+  \href{https://docs.opencv.org/master/d4/da8/group__imgcodecs.html}{TIFF
+    and JPEG 2000 image formats} instead of PNG. Compare the RD
+  curves.
+\item In the previous
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-quantization/performance.ipynb}{notebook}
+  the three color channels, R, G, and B has been quantized using the
+  same quantization step
+  ($\Delta_{\text{R}} = \Delta_{\text{G}} = \Delta_{\text{B}}$). Do
+  you think that this strategy minimize the quantization error?
+\end{enumerate}
 
 \section{Timming}
 
