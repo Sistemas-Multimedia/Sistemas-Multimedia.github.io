@@ -8,15 +8,17 @@
 \subsection{Introduction}
 The main objective of this milestone is to remove the intercomponent
 \href{https://en.wikipedia.org/wiki/Data_redundancy}{redundancy} that
-most of natural images exhibit. In general redundancy in signals is
+most of natural images exhibit. In general, redundancy in signals is
 usually expressed as a
 \href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlation}
-or statistical/frequency/spatio/temporal dependency between
-samples. In the case of an image (and of course, of a video), a sample
-is a color component (or
-\href{https://en.wikipedia.org/wiki/Color_image}{channel}) with 3
-bands, and one source of redundancy is the correlation between color
-components.
+or statistical/frequency/spatial/temporal dependency between
+samples. In the case of an image (and of course, of a video), a pixel
+(a sample) is represented usually with three color components (or
+\href{https://en.wikipedia.org/wiki/Color_image}{channels}), each one
+measuring the energy in a different band of the
+\href{https://en.wikipedia.org/wiki/Visible_spectrum}{visible
+  spectrum}, and one source of redundancy is the possible correlation
+between those color components.
 
 One way of estimating this redudancy is to compute the
 \href{https://en.wikipedia.org/wiki/Entropy_(information_theory)}{0-order
@@ -87,14 +89,15 @@ $\Delta_{\text{Y}}$, $\Delta_{\text{Cb}}$, and $\Delta_{\text{Cr}}$,
 for the components Y, Cb, and CR, repectively, and supposing that the
 contribution to the reconstruction of $X$ of one of the components is
 not influenced by the contribution of the rest of components (for
-this, both color spaces (RGB and YCbCr) should be orthogonal), the
+this, both color spaces (RGB and YCbCr) should be
+\href{https://en.wikipedia.org/wiki/Orthogonality}{orthogonal}), the
 optimal quantization steps $\Delta^*_{\text{Y}}$,
 $\Delta^*_{\text{Cb}}$, and $\Delta^*_{\text{Cr}}$, can be found using
 the Constant-Slope
 \href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{Rate-Distortion}
 Quantization Strategy
 (CS-RS-QS)~\cite{vetterli1995wavelets,sayood2017introduction}. As it
-can be seen in this
+can be also seen in this
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook},
 a RD (Rate-Distortion) curve is a 2D graph where we represent the
 distortion as a function of the bit-rate. Thus, the closer the curve
@@ -104,9 +107,9 @@ encoding system in terms of RD. Now, if we suppose that each component
 the optimal quantization steps, given a maximum target bit-rate
 $R^{\text{max}}$, selecting them as
 \begin{equation}
-  \lambda_{\text{Y}} = \lambda_{\text{Cb}} = \lambda_{\text{Cr}}
+  \lambda_{\text{Y}} = \lambda_{\text{Cb}} = \lambda_{\text{Cr}},
 \end{equation}
-where, $\lambda(R)$ is the slope of the RD curve for a given bit-rate
+where $\lambda(R)$ is the slope of the RD curve for a given bit-rate
 $R$, satisfiying also that
 \begin{equation}
   R_{\text{Y}} + R_{\text{Cb}} + R_{\text{Cr}} \le R^{\text{max}}.
@@ -138,11 +141,8 @@ CR′= 224(+0.500R′ - 0.419G′ - 0.081B′) + 128
 (-0.169)*0.500 + (-0.331)*(-0.419) + 0.500*(-0.081) = .013689
 \end{comment}
 
-Then, why we don't use an orthogonal transform? Why virtually all the
-\href{https://en.wikipedia.org/wiki/Video_coding_format}{proposed
-  video compression standards} use this transform (or a similar
-alternative, but never orthogonal)? The reason (that will be studied
-in a future milestone) is that the
+The YCbCr color space is used in most image and video compression
+standards because (as we will see in a future milestone) the
 \href{https://en.wikipedia.org/wiki/Visual_system}{HVS (Human Visual
   System)} is more sensitive to the Y component (luminance) than to
 the CbCr components (crominance), and for this reason, the
@@ -152,13 +152,58 @@ without perceiving this fact, achiving thus higher compression ratios.
 Anyway, as you can see in this
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook},
 the use of the YCbCr color domain can be beneficial, even using a
-simple quantization strategy defined by
+simple quantization strategy such as
 \begin{equation}
   \Delta_{\text{Y}} = \Delta_{\text{Cb}} = \Delta_{\text{Cr}}.
 \end{equation}
 As it can be seen, the RD curves can be improved for most bit-rates,
 and therefore, it can be an interesting tool for removing the
 intercomponent redundancy from a pure mathematical point of view.
+
+\subsection{The RGB/YCoCg transform}
+Clearly, orthogonality is a desired property in compression
+systems. For this reason, other similar (but orthogonal)
+transforms has been proposed. One of the proposed color spaces that is
+orthogonal to the RGB one is \href{}{the YCoCg color space}. The analysis transform is
+\begin{equation}
+  \begin{bmatrix}
+    \text{Y} \\
+    \text{Co} \\
+    \text{Cg}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    \frac{1}{4} &  \frac{1}{2}  &  \frac{1}{4} \\ 
+    \frac{1}{2} &            0  & -\frac{1}{2} \\
+    -\frac{1}{4} &  \frac{1}{2}  & -\frac{1}{4}
+  \end{bmatrix}
+  %\cdot
+  \begin{bmatrix}
+    \text{R} \\
+    \text{G} \\
+    \text{B}
+  \end{bmatrix},
+\end{equation}
+and the synthesis transform is
+\begin{equation}
+  \begin{bmatrix}
+    \text{R} \\
+    \text{G} \\
+    \text{B}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    1  &  1  & -1 \\ 
+    1  &  0  &  1 \\ 
+    1  & -1  & -1
+  \end{bmatrix}
+  %\cdot
+  \begin{bmatrix}
+    \text{Y} \\
+    \text{Co} \\
+    \text{Cg}
+  \end{bmatrix}.
+\end{equation}
 
 \section{What you have to do?}
 
@@ -173,9 +218,15 @@ intercomponent redundancy from a pure mathematical point of view.
   makes sense to suppose that
   $\Delta_{\text{Cb}} = \Delta_{\text{Cr}}$ because the HVS has the
   same sensitivity to both croma components.
-\item What about using an orthogonal transform? Can you define it
-  (find the analysis and the synthesis transform)?
+\item Include in the previous
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook}
+  an implementation of the RGB/YCoCg transform. Compare it with the
+  RGB/YCbCr transform, in the RD plane. For the image used in the
+  notebook, find an optimal quantization pattern (determine
+  $\Delta^*_{\text{Y}}$, $\Delta^*_{\text{Cb}}$, and
+  $\Delta^*_{\text{Cr}}$) given a target bit-rate $R^{\text{max}}$.
 \end{enumerate}
+
 \section{Timming}
 
 Please, finish this notebook before the next class session.
