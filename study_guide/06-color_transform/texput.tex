@@ -70,6 +70,20 @@ value of Y. This dificults the quantization of the YCbCr coefficients
 because, the quantization error generated in one of the components
 influences in the quantization error of the rest of components.
 
+The International Consultative Committee for Radio (CCIR)11 Recommendation 601:
+\begin{equation}
+\begin{array}
+Y ′= 219(+0.299R′ + 0.587G′ + 0.114B′) + 16 \\
+CB′= 224(-0.169R′ - 0.331G′ + 0.500B′) + 128 \\
+CR′= 224(+0.500R′ - 0.419G′ - 0.081B′) + 128
+\end{array}
+\end{equation}
+
+0.299*(−0.169) + 0.587*(−0.331) + 0.114*0.500 = -.187828
+
+(-0.169)*0.500 + (-0.331)*(-0.419) + 0.500*(-0.081) = .013689
+
+
 Then, why we don't use an orthogonal transform? Why virtually all the
 proposed video compression estandars use this transform? The reason
 (that will be analyzed in a future milestone) is that the HVS is more
