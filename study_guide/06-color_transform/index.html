@@ -443,9 +443,10 @@ more sensitive to the Y component (luminance) than to the CbCr components
 (crominance), and for this reason, the <span 
 class="ecti-1000">croma </span>can be more severely degraded than
 the <span 
-class="ecti-1000">luma </span>without perceiving this fact, achiving thus higher compression
-ratios.
-</p><!--l. 152--><p class="indent" >   Anyway, as you can see in this <a 
+class="ecti-1000">luma </span>without perceiving this fact, achieving thus higher <a 
+href="https://en.wikipedia.org/wiki/Data_compression_ratio" >compression
+ratios</a>.
+</p><!--l. 154--><p class="indent" >   Anyway, as you can see in this <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb" >notebook</a>, the use of the YCbCr color
 domain can be beneﬁcial, even using a simple quantization strategy such as </p><table class="equation"><tr><td>
 <a 
@@ -453,7 +454,7 @@ domain can be beneﬁcial, even using a simple quantization strategy such as </p
                                                                   
 
                                                                   
-<!--l. 156--><math 
+<!--l. 158--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                          <msub><mrow 
@@ -476,19 +477,20 @@ class="text"><mtext  >Cr</mtext></mstyle></mrow></msub
 ><mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">(6)</td></tr></table>
-<!--l. 159--><p class="indent" >   As it can be seen, the RD curves can be improved for most bit-rates, and
+<!--l. 161--><p class="indent" >   As it can be seen, the RD curves can be improved for most bit-rates, and
 therefore, it can be an interesting tool for removing the intercomponent redundancy
 from a pure mathematical point of view.
-</p><!--l. 163--><p class="noindent" >
+</p><!--l. 165--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
  id="x1-50001.4"></a>The RGB/YCoCg transform</h4>
-<!--l. 164--><p class="noindent" >Clearly, orthogonality is a desired property in compression systems. For this reason,
+<!--l. 166--><p class="noindent" >Clearly, orthogonality is a desired property in compression systems. For this reason,
 other similar (but orthogonal) transforms has been proposed. One of the proposed
-color spaces that is orthogonal to the RGB one is the YCoCg color space. The
+color spaces that is orthogonal to the RGB one is <a 
+href="https://en.wikipedia.org/wiki/YCoCg" >the YCoCg color space</a>. The
 analysis transform is </p><table class="equation"><tr><td> <a 
  id="x1-5001r7"></a>
-<!--l. 168--><math 
+<!--l. 171--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
  <mfenced separators="" 
@@ -553,9 +555,9 @@ class="array"  columnalign="center">  <mstyle
 class="text"><mtext  >B</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                               </mrow></mfenced> <mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">(7)</td></tr></table>
-<!--l. 187--><p class="indent" >   and the synthesis transform is </p><table class="equation"><tr><td> <a 
+<!--l. 190--><p class="indent" >   and the synthesis transform is </p><table class="equation"><tr><td> <a 
  id="x1-5002r8"></a>
-<!--l. 188--><math 
+<!--l. 191--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
  <mfenced separators="" 
@@ -598,17 +600,17 @@ class="MathClass-punc">.</mo>
                                                                   
 
                                                                   
-<!--l. 208--><p class="noindent" >
+<!--l. 211--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-60002"></a>What you have to do?</h3>
-<!--l. 210--><p class="noindent" >
+<!--l. 213--><p class="noindent" >
      </p><ol  class="enumerate1" >
      <li 
   class="enumerate" id="x1-6002x1">Please, run the previous <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb" >notebook</a> to learn some insights about the problem
      of the optimal quantization (given a bit-rate, ﬁnd the quantization pattern
-     that minimizes the distortion). Can you imagine a strategy to ﬁnd <!--l. 216--><math 
+     that minimizes the distortion). Can you imagine a strategy to ﬁnd <!--l. 219--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msubsup><mrow 
 ><mi 
@@ -618,7 +620,7 @@ class="text"><mtext  >Y</mtext></mstyle></mrow><mrow
 ><mo 
 class="MathClass-bin">∗</mo></mrow></msubsup 
 ></math>,
-     <!--l. 216--><math 
+     <!--l. 219--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msubsup><mrow 
 ><mi 
@@ -628,7 +630,7 @@ class="text"><mtext  >Cb</mtext></mstyle></mrow><mrow
 ><mo 
 class="MathClass-bin">∗</mo></mrow></msubsup 
 ></math>,
-     and <!--l. 217--><math 
+     and <!--l. 220--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msubsup><mrow 
 ><mi 
@@ -639,7 +641,7 @@ class="text"><mtext  >Cr</mtext></mstyle></mrow><mrow
 class="MathClass-bin">∗</mo></mrow></msubsup 
 ></math>?
      Hint: Although this is not compulsory, it makes sense to suppose that
-     <!--l. 219--><math 
+     <!--l. 222--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -660,7 +662,7 @@ class="text"><mtext  >Cr</mtext></mstyle></mrow></msub
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb" >notebook</a> an implementation of the RGB/YCoCg
      transform. Compare it with the RGB/YCbCr transform, in the RD plane.
      For the image used in the notebook, ﬁnd an optimal quantization pattern
-     (determine <!--l. 226--><math 
+     (determine <!--l. 229--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msubsup><mrow 
 ><mi 
@@ -670,7 +672,7 @@ class="text"><mtext  >Y</mtext></mstyle></mrow><mrow
 ><mo 
 class="MathClass-bin">∗</mo></mrow></msubsup 
 ></math>,
-     <!--l. 226--><math 
+     <!--l. 229--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msubsup><mrow 
 ><mi 
@@ -680,7 +682,7 @@ class="text"><mtext  >Cb</mtext></mstyle></mrow><mrow
 ><mo 
 class="MathClass-bin">∗</mo></mrow></msubsup 
 ></math>,
-     and <!--l. 227--><math 
+     and <!--l. 230--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msubsup><mrow 
 ><mi 
@@ -690,7 +692,7 @@ class="text"><mtext  >Cr</mtext></mstyle></mrow><mrow
 ><mo 
 class="MathClass-bin">∗</mo></mrow></msubsup 
 ></math>)
-     given a target bit-rate <!--l. 227--><math 
+     given a target bit-rate <!--l. 230--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mi 
@@ -698,17 +700,17 @@ display="inline" ><msup><mrow
 ><mstyle 
 class="text"><mtext  >max</mtext></mstyle></mrow></msup 
 ></math>.</li></ol>
-<!--l. 230--><p class="noindent" >
+<!--l. 233--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-70003"></a>Timming</h3>
-<!--l. 232--><p class="noindent" >Please, ﬁnish this notebook before the next class session.
-</p><!--l. 234--><p class="noindent" >
+<!--l. 235--><p class="noindent" >Please, ﬁnish this notebook before the next class session.
+</p><!--l. 237--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-80004"></a>Deliverables</h3>
-<!--l. 236--><p class="noindent" >None.
-</p><!--l. 238--><p class="noindent" >
+<!--l. 239--><p class="noindent" >None.
+</p><!--l. 241--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-90005"></a>Resources</h3>
