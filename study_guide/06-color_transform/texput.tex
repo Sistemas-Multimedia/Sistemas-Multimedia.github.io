@@ -55,10 +55,10 @@ are goint to compare are: (1)
 \href{https://en.wikipedia.org/wiki/YCbCr}{YCrCb}, and (3) the
 \href{https://en.wikipedia.org/wiki/YCoCg}{YCoCg}.
 
-\subsection{RGB/YCrCb}
-\subsubsection{Transforms}
+\subsection{The \href{https://en.wikipedia.org/wiki/YCbCr}{RGB/YCrCb transform}}
+\subsubsection{Analysis and synthesis}
 To convert a (color) pixel from the RGB into the YCrCb domain, we use
-the RGB-to-YCrCb (analysis) transform~\cite{malvar2008lifting}
+the RGB/YCrCb (analysis) transform~\cite{malvar2008lifting}
 \begin{equation}
   \begin{bmatrix}
     \text{Y} \\
@@ -113,12 +113,15 @@ where,
   \right.
   \label{eq:iYCrCb}
 \end{equation}
-is used to avoid negative coefficients. As it can be seen, Cr and Cb
-are scaled versions of $\text{R} - \text{Y}$ and $\text{B} -
-\text{Y}$, so Cr and Cb can be interpreted as measures of how much red
-and blue content in a pixel differs from luma, respectively. Notice
-also that for a gray pixel, $\text{R}=\text{G}=\text{B}=\text{Y}$, and
-so $\text{Cr}=\text{Cb}=0$~\cite{malvar2008lifting}.
+is used to avoid negative components\footnote{In most transforms
+schemes, the output elements of the analysis transform are commonly
+called coefficients. However, in the context of the color transform,
+the most used term is component.}. As it can be seen, Cr and Cb are
+scaled versions of $\text{R} - \text{Y}$ and $\text{B} - \text{Y}$, so
+Cr and Cb can be interpreted as measures of how much red and blue
+content in a pixel differs from luma, respectively. Notice also that
+for a gray pixel, $\text{R}=\text{G}=\text{B}=\text{Y}$, and so
+$\text{Cr}=\text{Cb}=0$~\cite{malvar2008lifting}.
 
 The inverse (synthesis) transform is defined by
 \begin{equation}
@@ -155,17 +158,69 @@ After analyzing the frame (representing it in the YCrCb domain), the
 next natural step is quantization. Supposing that we will use a static
 uniform dead-zone quantizer with quantization steps
 $\Delta_{\text{Y}}$, $\Delta_{\text{Cr}}$, and $\Delta_{\text{Cb}}$,
-for the coefficients Y, Cr, and Cb, repectively, and supposing that the
-contribution to the reconstruction of $X$ of one of the coefficients is
-not influenced by the contribution of the rest of coefficients (for
-this, both color spaces (RGB and YCrCb) should be
+for the coefficients Y, Cr, and Cb, repectively, and under the
+assumption of that the RGB/YCbCr is an
+\href{https://en.wikipedia.org/wiki/Orthogonality}{orthogonal}
+transform and that each channel is compressed independently, the
+optimal quantization of the channels should use $\Delta_{\text{Y}}$,
+$\Delta_{\text{Cr}}$, and $\Delta_{\text{Cb}}$ so that
+\begin{equation}
+  \lambda_{\text{Y}} = \lambda_{\text{Cr}} = \lambda_{\text{Cb}},
+  \label{eq:optimal_quantization}
+\end{equation}
+where $\lambda_{\text{channel}}(R)$ is the slope, for a given bit-rate
+$R$,
+(\href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{Rate-Distortion})
+of the curve for the corresponding channel in the RD plane (see this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook})~\cite{vetterli1995wavelets,sayood2017introduction}.
+
+Unfortunately, the use of Eq.~\ref{eq:optimal_quantization} implies
+the computation of the RD curve for each channel, which is a
+time-consuming operation. For this reason, and supposing that the
+statistics of each channel are similar, we can suppose that the length
+(the bit-rate) of each channel is proportional to the variance of the
+channel, which is proportional to the quantization step. Therefore, if
+all the channels have the same gain\footnote{The gain of a transform
+can be determined computing the squared norm of the columns of the
+analysis transform.}, a quantization strategy that should approximate
+Eq.~\ref{eq:optimal_quantization} is to use
+\begin{equation}
+  \Delta_{\text{Y}} = \Delta_{\text{Cr}} = \Delta_{\text{Cb}}.
+  \label{eq:simple_Q}
+\end{equation}
+When the gains are not the same, the quantization steps should be
+divided by the gains, that for the RGB/YCrCb transform are:
+\begin{equation*}
+  \begin{array}{l}
+    1^2 + 1^2 + 1^2 = 3\\
+    1.402^2 + 0.714^2 = 2.4754\\
+    0.344^2 + 1.772^2 = 3.25832
+  \end{array}
+\end{equation*}
+
+Unfortunately, the RGB/YCrCb transform is not orthogonal. This
+means that the quantization noise introduced in one of the channel
+will also affect to the rest of channels, which will degrade the RD
+performance. The lack of orthogonality also reduces the effectivity of
+the previous algorithm for determining the optimal quantization steps.
+
+\begin{comment}
+
+After analyzing the frame (representing it in the YCrCb domain), the
+next natural step is quantization. Supposing that we will use a static
+uniform dead-zone quantizer with quantization steps
+$\Delta_{\text{Y}}$, $\Delta_{\text{Cr}}$, and $\Delta_{\text{Cb}}$,
+for the coefficients Y, Cr, and Cb, repectively, and supposing that
+the contribution to the reconstruction of $X$ of one of the
+coefficients is not influenced by the contribution of the rest of
+coefficients (for this, both color spaces (RGB and YCrCb) should be
 \href{https://en.wikipedia.org/wiki/Orthogonality}{orthogonal}), the
 optimal quantization steps $\Delta^*_{\text{Y}}$,
 $\Delta^*_{\text{Cr}}$, and $\Delta^*_{\text{Cb}}$, can be found using
-the Constant-Slope
-\href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{Rate-Distortion}
-Quantization Strategy
-(CS-RS-QS)~\cite{vetterli1995wavelets,sayood2017introduction}.
+a constant slope
+(\href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{RD}-$\lambda$)
+quantization
+strategy~\cite{vetterli1995wavelets,sayood2017introduction}.
 
 As it can be seen in this
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook},
@@ -202,21 +257,6 @@ $\Delta^*_{\text{Cb}}$ because the quantization error generated in one
 of the components influences the quantization error of the rest of
 components, and when this happens, we cannot use CS-RS-QS.
 
-\begin{comment}
-The International Consultative Committee for Radio (CCIR)11 Recommendation 601:
-\begin{equation}
-  \begin{array}
-    Y ′= 219(+0.299R′ + 0.587G′ + 0.114B′) + 16 \\
-    CB′= 224(-0.169R′ - 0.331G′ + 0.500B′) + 128 \\
-    CR′= 224(+0.500R′ - 0.419G′ - 0.081B′) + 128
-  \end{array}
-\end{equation}
-
-0.299*(−0.169) + 0.587*(−0.331) + 0.114*0.500 = -.187828
-
-(-0.169)*0.500 + (-0.331)*(-0.419) + 0.500*(-0.081) = .013689
-\end{comment}
-
 Anyway, as you can see in this
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook},
 the use of the YCrCb color domain can be beneficial, even using a
@@ -227,14 +267,18 @@ simple quantization strategy such as
 As it can be seen, the RD curves can be improved for most bit-rates,
 and therefore, it can be an interesting tool for removing the
 intercomponent redundancy from a pure mathematical point of view.
+\end{comment}
 
-\subsection{The RGB/YCoCg transform}
- Eqs.~\ref{eq:YCrCb} and \ref{eq:iYCrCb} were derived by
- \href{https://en.wikipedia.org/wiki/Principal_component_analysis}{Principal
-   Component Analysis (PCA)} on old\footnote{Recorded with the first
- analog color cameras in the 70's.} video data. The same procedure has
- been carried out with newer\footnote{\cite{malvar2008lifting} is dated
- in 2008.} videos, obtaining
+\subsection{The \href{https://en.wikipedia.org/wiki/YCoCg}{RGB/YCoCg transform}}
+\subsubsection{Analysis and synthesis}
+Clearly, orthogonality is a desired property in compression
+systems. On the other hand, Eqs.~\ref{eq:YCrCb} and \ref{eq:iYCrCb}
+were derived by
+\href{https://en.wikipedia.org/wiki/Principal_component_analysis}{Principal
+  Component Analysis (PCA)} on old\footnote{Recorded with the first
+analog color cameras in the 70's.} video data. The same procedure has
+been carried out with newer\footnote{\cite{malvar2008lifting} is dated
+in 2008.} images, obtaining
 \begin{equation}
   \begin{bmatrix}
     \text{Y} \\
@@ -273,11 +317,14 @@ intercomponent redundancy from a pure mathematical point of view.
   \end{bmatrix}.
 \end{equation}
 
-Clearly, orthogonality is a desired property in compression
-systems. For this reason, other similar (but orthogonal) transforms
-has been proposed. One of the proposed color spaces that is orthogonal
-to the RGB one is \href{https://en.wikipedia.org/wiki/YCoCg}{the YCoCg
-  color space}. The analysis transform is
+This transform is orthogonal. However, as \cite{malvar2008lifting}
+points it has to disadvantages:
+\begin{enumerate}
+\item The gains of the channels are different (2, 3 and 8/3).
+\item From a perceptual perspective, the influence of the green
+  channel on the luma channel should be stronger.
+\end{enumerate}
+For these reasons, \cite{malvar2008lifting} proposes
 \begin{equation}
   \begin{bmatrix}
     \text{Y} \\
@@ -295,10 +342,8 @@ to the RGB one is \href{https://en.wikipedia.org/wiki/YCoCg}{the YCoCg
     \text{R} \\
     \text{G} \\
     \text{B}
-  \end{bmatrix},
-\end{equation}
-and the synthesis transform is
-\begin{equation}
+  \end{bmatrix}
+  \Leftrightarrow
   \begin{bmatrix}
     \text{R} \\
     \text{G} \\
@@ -318,26 +363,24 @@ and the synthesis transform is
   \end{bmatrix}.
 \end{equation}
 
+\subsubsection{Quantization}
+As it can be seen, the RGB/YCoCg transform is orthogonal and the
+channels gains are the same. Therefore, the Eq.~\ref{eq:simple_Q}
+stands Eq.~\ref{eq:optimal_quantization}.
+
 \section{What you have to do?}
 
 \begin{enumerate}
 \item Please, run the previous
   \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook}
-  to learn some insights about the problem of the optimal quantization
-  (given a bit-rate, find the quantization pattern that minimizes the
-  distortion). Can you imagine a strategy to find
-  $\Delta^*_{\text{Y}}$, $\Delta^*_{\text{Cb}}$, and
-  $\Delta^*_{\text{Cr}}$? Hint: Although this is not compulsory, it
-  makes sense to suppose that
-  $\Delta_{\text{Cb}} = \Delta_{\text{Cr}}$ because the HVS has the
-  same sensitivity to both croma components.
+  to learn some insights about the problem of the optimal
+  quantization.
 \item Include in the previous
   \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook}
-  an implementation of the RGB/YCoCg transform. Compare it with the
-  RGB/YCrCb transform, in the RD plane. For the image used in the
-  notebook, find an optimal quantization pattern (determine
-  $\Delta^*_{\text{Y}}$, $\Delta^*_{\text{Cb}}$, and
-  $\Delta^*_{\text{Cr}}$) given a target bit-rate $R^{\text{max}}$.
+  an implementation of the
+  \href{https://en.wikipedia.org/wiki/JPEG_2000#Color_components_transformation}{RCT
+    (Reversible Color Transform)} and compare it's RD performance with
+  the other transforms.
 \end{enumerate}
 
 \section{Timming}
