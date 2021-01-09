@@ -189,12 +189,15 @@ Eq.~\ref{eq:optimal_quantization} is to use
   \label{eq:simple_Q}
 \end{equation}
 When the gains are not the same, the quantization steps should be
-divided by the gains, that for the RGB/YCrCb transform are:
+divided\footnote{The squared norms measure the contribution of each
+component to the energy of the pixel, and therefore, the higher the
+contribution, the lower the $\Delta$.} by the gains, that for the
+RGB/YCrCb transform are:
 \begin{equation*}
-  \begin{array}{l}
-    1^2 + 1^2 + 1^2 = 3\\
-    1.402^2 + 0.714^2 = 2.4754\\
-    0.344^2 + 1.772^2 = 3.25832
+  \begin{array}{rl}
+    \text{Y}: & 1^2 + 1^2 + 1^2 = 3\\
+    \text{Cr}: & 1.402^2 + 0.714^2 = 2.4754\\
+    \text{Cb}: & 0.344^2 + 1.772^2 = 3.25832
   \end{array}
 \end{equation*}
 
