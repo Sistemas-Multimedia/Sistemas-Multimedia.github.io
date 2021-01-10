@@ -14,22 +14,13 @@ Technically, the
 compute a
 \href{https://www.dsprelated.com/freebooks/sasp/Critically_Sampled_Perfect_Reconstruction.html}{critically}-\href{https://en.wikipedia.org/wiki/Nyquist-Shannon_sampling_theorem}{sampled}
 \href{https://en.wikipedia.org/wiki/Octave_(electronics)}{octave}-\href{https://en.wikipedia.org/wiki/Frequency_band}{band}
-\href{https://www.sciencedirect.com/topics/engineering/wavelet-decomposition}{decomposition}~\cite{vetterli2014foundations,kovacevic2013fourier}.
-
-\subsection{Some words about transform coding}
-As it was verified in the previous milestone, quantization is more
-effective when the energy of the signal is accumulated in an small
-number of samples.
-\href{https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf}{Transform
-  coding} can exploit
-\href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlation}
-in \href{https://en.wikipedia.org/wiki/Signal}{signals} to concentrate
-the
-\href{https://en.wikipedia.org/wiki/Energy_(signal_processing)}{energy}. Specifically,
+\href{https://www.sciencedirect.com/topics/engineering/wavelet-decomposition}{decomposition}~\cite{vetterli2014foundations,kovacevic2013fourier}. Specifically,
 the DWT is a family of transforms whose output describes the (input)
 signal in a set of
 \href{https://en.wikipedia.org/wiki/Sub-band_coding}{subbands}. This
-set is also called a decomposition and the
+set is also called
+a \href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform}{decomposition}
+and the
 \href{https://en.wikipedia.org/wiki/Array_data_structure#Element_identifier_and_addressing_formulas}{index}
 of the subband is related to the
 \href{https://en.wikipedia.org/wiki/Frequency}{frequency} of the
@@ -39,72 +30,13 @@ position of the
 \href{https://en.wikipedia.org/wiki/Coefficient}{coefficients} in the
 subbands is related to
 \href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform#/media/File:Jpeg2000_2-level_wavelet_transform-lichtenstein.png}{the
-  spatial area where the related pixels are found}.
+  spatial area where the corresponding pixels are found}.
 
-All linear\footnote{Non-linear transform are also possible, but their
-  mathematical operation can not be described using linear algebra.}
-transforms can be described by
-\href{https://en.wikipedia.org/wiki/Matrix_multiplication}{matrix-vector
-  product}~\cite{strang4linear} as
-\begin{equation}
-  y = Kx,
-  \label{eq:forward_transform_matrix_form}
-\end{equation}
-where $x$ is the input signal, $K$ is the analysis transform matrix,
-and $y$ is the output decomposition. Notice that
-\begin{equation}
-  y_i = \langle K_i, x_i\rangle,
-\end{equation}
-where $K_i$ is the $i$-th row of $K$, and $\langle\cdot,\cdot\rangle$
-denotes the
-\href{https://mathworld.wolfram.com/InnerProduct.html}{inner
-  product}. This basically means that $y_i$ is proportional to the
-\href{https://en.wikipedia.org/wiki/Similarity_(geometry)}{similarity}
-between the input signal $x$ and the
-\href{https://en.wikipedia.org/wiki/Finite_impulse_response}{taps} of
-the \href{https://en.wikipedia.org/wiki/Digital_filter}{filter}
-$K_i$. These
-\href{https://cseweb.ucsd.edu/classes/fa17/cse166-a/lec13.pdf}{slides}
-can help you with this key idea. The inverse (synthesis) transform is
-computed by
-\begin{equation}
-  x = K^{-1}y,
-  \label{eq:backward_transform_matrix_form}
-\end{equation}
-where $K^{-1}$ denotes to the inverse matrix of $K$.
-
-For example, the
-2x2-\href{https://en.wikipedia.org/wiki/Karhunen-Loeve_theorem}{KLT}~\cite{sayood2017introduction}
-is defined by
-\begin{equation}
-  \begin{bmatrix}
-    y_0 \\
-    y_1
-  \end{bmatrix}
-  = 
-  \begin{bmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{2}} \end{bmatrix}
-  \begin{bmatrix}
-    x_0 \\
-    x_1
-  \end{bmatrix},
-  \label{eq:KLT_transform}
-\end{equation}
-and it holds that
-\begin{equation}
-  K=K^{-1}=K^{\text T},
-  \label{eq:orthogonal_matrix}
-\end{equation}
-where $K^{\text T}$ represents the transpose matrix of $K$. The
-Eq.~\ref{eq:orthogonal_matrix} is true for all
-\href{https://en.wikipedia.org/wiki/Orthogonality}{orthogonal}
-transforms, and therefore
-\begin{equation}
-  \langle K_i, K_j\rangle = 0, \forall i\neq j.
-\end{equation}
 
 \subsection{An example of DWT: the Haar DWT}
 As the rest of transforms, the DWT is also described by the filters of
-$K$. Haar defined the analysis
+analysis matrix transform $K$ (see the previous milestone). Haar
+defined the analysis
 \href{https://en.wikipedia.org/wiki/Downsampling_(signal_processing)}{downsampling}
 filters
 \begin{equation}
@@ -181,31 +113,27 @@ can conclude that:
 \begin{enumerate}
 \item There exists
   \href{https://en.wikipedia.org/wiki/Aliasing}{aliasing} between the
-  filters (this holds for all DWTs) and this is a drawback because:
-  \begin{enumerate}
-  \item The
-    \href{https://en.wikipedia.org/wiki/Information}{information} with
-    the same frequency can be found in both subbands ($l$ and
-    $h$). Therefore, the concentration of the energy in one of the
-    subbands is smaller.
-  \item At it can be seen also in Eq.~\ref{eq:Haar_transform}, the
-    subbands are downsampled by 2 and both subbands should have, at
-    most, a
+  filters (this holds for all DWTs) and this is a drawback
+  because: \begin{enumerate} \item The same
+    \href{https://en.wikipedia.org/wiki/Information}{information} can
+    be found in both subbands ($l$ and $h$). Therefore, the
+    concentration of the energy in one of the subbands is
+    smaller.  \item At it can be seen also in
+    Eq.~\ref{eq:Haar_transform}, the subbands are downsampled by 2 and
+    both subbands should have, at most, a
     \href{https://en.wikipedia.org/wiki/Bandwidth_(signal_processing)}{bandwidth}
-    of $1/2$
+    of $\frac{1}{2}$
     \href{https://en.wikipedia.org/wiki/Radian}{radians}/\href{https://en.wikipedia.org/wiki/Sampling_(signal_processing)}{sample}
     in order to avoid the aliasing during the
     \href{https://en.wikipedia.org/wiki/Downsampling_(signal_processing)}{subsampling},
-    and increasing thus the
+    thus increasing the
     \href{https://en.wikipedia.org/wiki/Perception}{perceptible}
     \href{https://en.wikipedia.org/wiki/Signal-to-noise_ratio}{quality}
-    of the low-pass subband.
-  \end{enumerate}
-  These problems can be only solved using filters that have
+    of the low-pass subband $l$.  \end{enumerate} These problems can be
+  only solved using filters that have
   \href{https://en.wikipedia.org/wiki/Transfer_function}{transfer
     functions} that overlaps a smaller area (see
-  Figs.~\ref{fig:db5_modulus} and
-  \ref{fig:bior3.5_modulus}).
+  Figs.~\ref{fig:db5_modulus} and \ref{fig:bior3.5_modulus}).
 %\item The response of the filter bank is flat, which means that the gain of the different frequencie
 %  $|y(e^{j\omega})|=a|x(e^{j\omega})|, a\in\mathbb{R}$ (the
 %  reconstructed signal $y$ has not been filtered). % OJO
@@ -230,7 +158,7 @@ can conclude that:
 \end{figure}
 
 Eq.~\ref{eq:Haar_transform} computes the 1-levels Haar DWT. A more
-general expresion for this equation is (and this holds for all DWTs)
+general expresion for this equation (and this holds for all DWTs) is
 \begin{equation}
   \{l^{s+1}, h^{s+1}\} = \text{DWT}(l^s),
   \label{eq:DWT}
@@ -261,18 +189,18 @@ for finding the synthesis transform. Therefore, it can be written that
   l^s = \text{DWT}^{-1}(\{l^{s+1}, h^{s+1}\}),
 \end{equation}
 and $\text{DWT}^{-S}$, the $S$-levels synthesis DWT, can be computed
-as it is describen in the Fig.~\ref{fig:DWT}, simply by reversing the
-analysis steps.
+as it is also described in the Fig.~\ref{fig:DWT}, by simply reversing
+the analysis steps.
 
 \subsection{\href{https://en.wikipedia.org/wiki/Multiresolution_analysis}{Multiresolution analysis}}
 In the decomposition described in Eq.~\ref{eq:S_levels_DWT} there are
 $S+1$ subbands, and therefore, it is possible to compute $S+1$
 resolution levels of the analyzed signal $l^0$:
 \begin{itemize}
-\item The resolution level $S$ of $l^0$ (no $\text{DWT}^{-1}$) $l^S$,
-  with only one sample $l^S_0$ that uses to be the
+\item The resolution level $S$ of $l^0$ (no $\text{DWT}^{-1}$ has been
+  applied) $l^S$, with have only one sample $l^S_0$ that uses to be the
   \href{https://en.wikipedia.org/wiki/Arithmetic_mean}{arithmetic
-    mean} of $l^0$. This coefficient (and the only sample of $l^S$),
+    mean} of $l^0$. The coefficient $l^S_0$
   is also called the \href{https://en.wikipedia.org/wiki/DC_bias}{DC
     (Direct Current) coefficient}. On the contrary, the rest of
   coefficents (high-frequency subbands) are called the AC (Alternating
@@ -297,7 +225,7 @@ followed by \href{https://pywavelets.readthedocs.io}{PyWavelets}):
   reconstruction scaling function), which computes $\{l^s_{2n}\}$ from
   $l^{s+1}$ and $h^{s+1}$.
 \item Synthesis (upsampling) high-pass filter $\psi$ (the
-  reconstruection wavelet function), which computes $\{l^s_{2n+1}\}$
+  reconstruction wavelet function), which computes $\{l^s_{2n+1}\}$
   from $l^{s+1}$ and $h^{s+1}$.
 \end{enumerate}
 

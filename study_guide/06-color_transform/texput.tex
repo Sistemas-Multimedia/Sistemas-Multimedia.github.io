@@ -1,5 +1,5 @@
 \input{../definitions}
-\title{\SM{} - Study Guide - Milestone 6: Removing Redundancy with a Color Transform}
+\title{\SM{} - Study Guide - Milestone 6: Redundancy Removal and Energy Concentration with a Color Transform}
 
 \maketitle
 
@@ -57,6 +57,74 @@ are goint to compare are: (1)
 \href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB}, (2) the
 \href{https://en.wikipedia.org/wiki/YCbCr}{YCrCb}, and (3) the
 \href{https://en.wikipedia.org/wiki/YCoCg}{YCoCg}.
+
+\subsection{Some words about transform coding}
+Quantization is more effective when the energy of the signal is
+accumulated in an small number of samples.
+\href{https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf}{Transform
+  coding} can exploit
+\href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlation}
+in \href{https://en.wikipedia.org/wiki/Signal}{signals} to concentrate
+the
+\href{https://en.wikipedia.org/wiki/Energy_(signal_processing)}{energy}. 
+All linear\footnote{Non-linear transform are also possible, but their
+  mathematical operation can not be described using linear algebra.}
+transforms can be described by
+\href{https://en.wikipedia.org/wiki/Matrix_multiplication}{matrix-vector
+  product}~\cite{strang4linear} as
+\begin{equation}
+  y = Kx,
+  \label{eq:forward_transform_matrix_form}
+\end{equation}
+where $x$ is the input signal, $K$ is the analysis transform matrix,
+and $y$ is the output decomposition. Notice that
+\begin{equation}
+  y_i = \langle K_i, x_i\rangle,
+\end{equation}
+where $K_i$ is the $i$-th row of $K$, and $\langle\cdot,\cdot\rangle$
+denotes the
+\href{https://mathworld.wolfram.com/InnerProduct.html}{inner
+  product}. This basically means that $y_i$ is proportional to the
+\href{https://en.wikipedia.org/wiki/Similarity_(geometry)}{similarity}
+between the input signal $x$ and the
+\href{https://en.wikipedia.org/wiki/Finite_impulse_response}{taps} of
+the \href{https://en.wikipedia.org/wiki/Digital_filter}{filter}
+$K_i$. These
+\href{https://cseweb.ucsd.edu/classes/fa17/cse166-a/lec13.pdf}{slides}
+can help you with this key idea. The inverse (synthesis) transform is
+computed by
+\begin{equation}
+  x = K^{-1}y,
+  \label{eq:backward_transform_matrix_form}
+\end{equation}
+where $K^{-1}$ denotes to the inverse matrix of $K$. For example, the
+2x2-\href{https://en.wikipedia.org/wiki/Karhunen-Loeve_theorem}{KLT}~\cite{sayood2017introduction}
+is defined by
+\begin{equation}
+  \begin{bmatrix}
+    y_0 \\
+    y_1
+  \end{bmatrix}
+  = 
+  \begin{bmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{2}} \end{bmatrix}
+  \begin{bmatrix}
+    x_0 \\
+    x_1
+  \end{bmatrix},
+  \label{eq:KLT_transform}
+\end{equation}
+and it holds that
+\begin{equation}
+  K=K^{-1}=K^{\text T},
+  \label{eq:orthogonal_matrix}
+\end{equation}
+where $K^{\text T}$ represents the transpose matrix of $K$. The
+Eq.~\ref{eq:orthogonal_matrix} is true for all
+\href{https://en.wikipedia.org/wiki/Orthogonality}{orthogonal}
+transforms, and therefore
+\begin{equation}
+  \langle K_i, K_j\rangle = 0, \forall i\neq j.
+\end{equation}
 
 \subsection{The \href{https://en.wikipedia.org/wiki/YCbCr}{RGB/YCrCb transform}}
 \subsubsection{Analysis and synthesis}
@@ -403,4 +471,4 @@ None.
 
 \section{Resources}
 
-\bibliography{data-compression,signal-processing,DWT,image-compression}
+\bibliography{maths,data-compression,signal-processing,DWT,image-compression}
