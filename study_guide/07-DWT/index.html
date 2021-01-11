@@ -40,7 +40,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">January 10, 2021</span></div>
+class="ecrm-1200">January 11, 2021</span></div>
    </div>
    <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
  id="x1-10001"></a>Description</h3>
@@ -366,9 +366,12 @@ display="inline" ><mfrac><mrow
 href="https://en.wikipedia.org/wiki/Radian" >radians</a>/<a 
 href="https://en.wikipedia.org/wiki/Sampling_(signal_processing)" >sample</a> in order to avoid the aliasing during the <a 
 href="https://en.wikipedia.org/wiki/Downsampling_(signal_processing)" >subsampling</a>,
-         to increase the <a 
+         thus increasing the <a 
 href="https://en.wikipedia.org/wiki/Perception" >perceptible</a> <a 
-href="https://en.wikipedia.org/wiki/Signal-to-noise_ratio" >quality</a> of the low-pass subband.</li></ol>
+href="https://en.wikipedia.org/wiki/Signal-to-noise_ratio" >quality</a> of the low-pass subband <!--l. 132--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>l</mi></math>.</li></ol>
      <!--l. 132--><p class="noindent" >These problems can be only solved using &#xFB01;lters that have <a 
 href="https://en.wikipedia.org/wiki/Transfer_function" >transfer functions</a>
      that overlaps a smaller area &#x0028;see Figs.&#x00A0;<a 
@@ -453,7 +456,7 @@ DWT and the generated subbands.                                    </span></div>
    </div><hr class="endfigure" />
 <!--l. 160--><p class="indent" >   Eq.&#x00A0;<a 
 href="#x1-2001r1">1<!--tex4ht:ref: eq:Haar_transform --></a> computes the 1-levels Haar DWT. A more general expresion for this
-equation is &#x0028;and this holds for all DWTs&#x0029; </p><table class="equation"><tr><td> <a 
+equation &#x0028;and this holds for all DWTs&#x0029; is </p><table class="equation"><tr><td> <a 
  id="x1-2023r3"></a>
 <!--l. 162--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
@@ -724,9 +727,9 @@ the <!--l. 191--><math
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >S</mi></math>-levels
-synthesis DWT, can be computed as it is describen in the Fig.&#x00A0;<a 
-href="#x1-2021r6">6<!--tex4ht:ref: fig:DWT --></a>, simply by reversing
-the analysis steps.
+synthesis DWT, can be computed as it is also described in the Fig.&#x00A0;<a 
+href="#x1-2021r6">6<!--tex4ht:ref: fig:DWT --></a>, by simply
+reversing the analysis steps.
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.2   </span> <a 
  id="x1-30001.2"></a><a 
@@ -771,8 +774,8 @@ display="inline" ><msup><mrow
 class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow 
 ><mo 
 class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
-></math>&#x0029;
-     <!--l. 200--><math 
+></math>
+     has been applied&#x0029; <!--l. 201--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mi 
@@ -780,7 +783,7 @@ display="inline" ><msup><mrow
 ><mi 
 >S</mi></mrow></msup 
 ></math>,
-     with only one sample <!--l. 201--><math 
+     with have only one sample <!--l. 201--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msubsup><mrow 
 ><mi 
@@ -797,14 +800,15 @@ display="inline" ><msup><mrow
 >l</mi></mrow><mrow 
 ><mn>0</mn></mrow></msup 
 ></math>.
-     This coe&#xFB03;cient &#x0028;and the only sample of <!--l. 203--><math 
+     The coe&#xFB03;cient <!--l. 203--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><msup><mrow 
+display="inline" ><msubsup><mrow 
 ><mi 
 >l</mi></mrow><mrow 
+><mn>0</mn></mrow><mrow 
 ><mi 
->S</mi></mrow></msup 
-></math>&#x0029;,
+>S</mi></mrow></msubsup 
+></math>
      is also called the <a 
 href="https://en.wikipedia.org/wiki/DC_bias" >DC &#x0028;Direct Current&#x0029; coe&#xFB03;cient</a>. On the contrary, the rest
      of coe&#xFB03;cents &#x0028;high-frequency subbands&#x0029; are called the AC &#x0028;Alternating
@@ -1036,7 +1040,7 @@ class="MathClass-bin">+</mo><mn>1</mn></mrow></msup
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x03C8;</mi></math>
-     &#x0028;the reconstruection wavelet function&#x0029;, which computes <!--l. 228--><math 
+     &#x0028;the reconstruction wavelet function&#x0029;, which computes <!--l. 228--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
 class="MathClass-open">&#x007B;</mo><msubsup><mrow 
@@ -1214,28 +1218,33 @@ class="MathClass-bin">&#x2212;</mo> <mn>1</mn></math>&#x0029;.
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-50002"></a>What you have to do?</h3>
-<!--l. 267--><p class="noindent" >Please, using <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb" >this notebook</a>, determine the frequency and phase responses of the
-<a 
-href="http://wavelets.pybytes.com/wavelet/db20/" >Daubechies 20</a> and <a 
-href="http://wavelets.pybytes.com/wavelet/bior6.8/" >Biorthogonal 6.8</a> &#xFB01;lters.
-</p><!--l. 274--><p class="noindent" >
+<!--l. 267--><p class="noindent" >
+     </p><ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-5002x1">Please, using this <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/07-DWT/performance.ipynb" >notebook</a>, compare the RD performance of using the
+     DWT over the RGB and YCrCb domains with the performance of using
+     the DWT over the YCoCg domain.
+     </li>
+     <li 
+  class="enumerate" id="x1-5004x2">Redo the experiments using a biorthogonal DWT.</li></ol>
+<!--l. 275--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-60003"></a>Timming</h3>
-<!--l. 276--><p class="noindent" >Please, &#xFB01;nish this notebook before the next class session.
-</p><!--l. 278--><p class="noindent" >
+<!--l. 277--><p class="noindent" >Please, &#xFB01;nish this notebook before the next class session.
+</p><!--l. 279--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-70004"></a>Deliverables</h3>
-<!--l. 280--><p class="noindent" >None.
-</p><!--l. 282--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
- id="x1-80005"></a>Resources</h3>
+<!--l. 281--><p class="noindent" >None.
                                                                   
 
                                                                   
+</p><!--l. 283--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-80005"></a>Resources</h3>
    <div class="thebibliography">
    <p class="bibitem" ><span class="biblabel">
  &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
