@@ -25,13 +25,30 @@ Algorithm~\ref{alg:2D-DWT}, where $X_{r,*}$ refers to the $r$-th row
 of the matrix $X$ and $X_{*,c}$ to the $c$-th column, being $R$ and
 $C$ the number of rows and columns of the image $X$.
 
+\begin{pseudocode}{\text{Rows-DWT}}{X}
+  \label{alg:Rows-DWT}
+  \FOR r \GETS 0 \TO R-1 \DO
+  X_{r,*} = \text{DWT}(X_{r,*})\\
+  \RETURN{X}
+\end{pseudocode}
+
+\begin{pseudocode}{\text{Columns-DWT}}{X}
+  \label{alg:Columns-DWT}
+  \FOR c \GETS 0 \TO C-1 \DO
+  X_{*,c} = \text{DWT}(X_{*,c})\\
+  \RETURN{X}
+\end{pseudocode}
+
 \begin{pseudocode}{\text{2D-DWT}}{X}
   \label{alg:2D-DWT}
-  \FOR r \GETS 0 \TO R-1 \DO
-  X_{r,*} = \text{DWT}(X_{r,*})
-  \\
-  \FOR c \GETS 0 \TO C-1 \DO
-  X_{*,c} = \text{DWT}(X_{*,c})
+  X = \text{Rows-DWT}(X)\\
+  X = \text{Columns-DWT}(X)\\
+  \RETURN{X}
+  %\FOR r \GETS 0 \TO R-1 \DO
+  %X_{r,*} = \text{DWT}(X_{r,*})
+  %\\
+  %\FOR c \GETS 0 \TO C-1 \DO
+  %X_{*,c} = \text{DWT}(X_{*,c})
 \end{pseudocode}
 
 The obtained 2D decomposition is expressed by
