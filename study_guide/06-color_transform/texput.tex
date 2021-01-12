@@ -262,6 +262,11 @@ the RGB/YCrCb transform are:
   \end{array}
 \end{equation*}
 
+% Si un coeficiente tiene una gran ganancia es implica que su
+% quantization también se dejará sentir más que si la ganancia es
+% menor. Por tanto, tiene sentido usar un QS mayor en aquellos
+% coeficientes de menor ganancia.
+
 Unfortunately, the RGB/YCrCb transform is not orthogonal. This
 means that the quantization noise introduced in one of the channel
 will also affect to the rest of channels, which will degrade the RD

@@ -17,17 +17,17 @@ which provides
 \href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless
   coding}.
 
-In this milestone we are quantize a frame in the
+In this milestone we will quantize a frame in the
 \href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB color
   domain}. A
 \href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{\textbf{quantizer}}
 (typically denoted by $Q$) is a
 \href{https://en.wikipedia.org/wiki/Data_compression}{encoding system}
-that inputs a sequence of (digital) samples $x$ and output a sequence
-of quantization indexes $k$ (see the Fig.~\ref{fig:Q}). The inverse
-system, called a \textbf{dequantizer} (and denoted by $Q^{-1}$),
-recovers an approximate version of $x$ that we will denote as
-$\tilde{x}$, whose similarity with $x$ inversely depends on a frame
+that inputs a sequence of (digital) samples $x=\{x_i\}$ and outputs a
+sequence of quantization indexes $k$ (see the Fig.~\ref{fig:Q}). The
+inverse system, called a \textbf{dequantizer} (denoted by
+$Q^{-1}$), recovers an approximate version of $x$ that we will denote
+by $\tilde{x}$, whose similarity with $x$ inversely depends on a frame
 quantization step (QS) $\Delta$. Notice that although $\Delta$ is an
 input parameter to the quantizer, it has not been considered in the
 figure to keep it simpler.
@@ -69,15 +69,16 @@ Quantizers, also, can be classified as:
 \item \textbf{Uniform quantizers}: those in which $\Delta$ is
   idependent on the amplitude of the samples.
 \item \textbf{Non-unifom quantizers}, on the contrary, when $\Delta$
-  depends (directly or indirectly) on the amplitude of the samples.
+  depends (directly or indirectly) on the amplitude of the samples. An
+  example is a
+  \href{https://en.wikipedia.org/wiki/Companding}{companded
+    quantizer}.
 \end{enumerate}
 
 Non-uniform quantizers can be:
 \begin{enumerate}
-\item \textbf{Static quantizers}: if $\Delta$ depends on the amplitude
-  of the samples (as happens, for example, in
-  \href{https://en.wikipedia.org/wiki/Companding}{companded
-    quantizers}), but this dependency is known \emph{a-priori}.
+\item \textbf{Static quantizers}: if $\Delta$ is known \emph{a
+priori}.
 \item \textbf{Adaptive quantizers}: when $\Delta$ is adapted to
   minimize the quantization error, depending ``on-the-fly'' on the
   characteristics\footnote{Depending, for example, on the
@@ -155,25 +156,67 @@ behaviour of 3 different quantizers.  Use this
 to gain more insights about quantization.
 
 \subsection{Quantization in the RGB domain}
-Supposing that we will use a static uniform dead-zone quantizer with
-quantization steps, a color RGB image is quantized chanel by channel,
-using QSs $\Delta_{\text{R}}$, $\Delta_{\text{G}}$, and
-$\Delta_{\text{B}}$. A reasonable question here is, how we should be
-chosen these parameters?  At this point we can consider two different
-optimization perspectives. In the first one, we consider strictly
-visual considerations, and obviously, any alternative different from
+Supposing that we will use a static uniform dead-zone quantizer, a
+color RGB image can be quantized chanel by channel, using QSs
+$\Delta_{\text{R}}$, $\Delta_{\text{G}}$, and $\Delta_{\text{B}}$. A
+reasonable question that arises here is: given a target bit-rate $R$
+for the compressed frame, how the QSs should be chosen to minimize the
+distortion?  At this point we can consider two different optimization
+perspectives. In the first one, we consider strictly visual
+considerations, and obviously, any alternative different from
 \begin{equation}
   \Delta_{\text{R}} = \Delta_{\text{G}} = \Delta_{\text{B}}
   \label{eq:simple_Q}
 \end{equation}
-will produce some alteration in the color (sometimes called
+will produce some alteration in the color (also called the
 ``chroma'') of the reconstructed frame.
 
-In the second one, only the
-\href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{RD
-  performance} is considered. From a RD perspective, the best
-combination of QSs is those that optimizes (makes it closer to the
-origin of coordinates) the RD curve. Thus, the optimal QSs should
+In the second one, only a pure
+\href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{Rate/Distortion
+  (RD) performance} is considered. From a RD perspective, the best
+combination of QSs is those that optimizes (makes closer to the origin
+of coordinates) the RD curve. A RD curve expresses the distortion
+(typically the
+\href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{Root
+  Mean Square Error (RMSE)}) as a function of the bit-rate. In the
+case of encoding a RGB image, we have 3 RD curves, one for each
+channel. Thus, for example, the RD curve for the red channel measures,
+for different QSs, the distortion of reconstructing only the red
+channel as a function of the bit-rate generated for the corresponding
+QS.
+
+Normal RD curves are convex, which means that if $\lambda_i$ is the
+slope of the curve measured at the $i$-th point of the curve (starting
+at the lowest bit-rate), it always hold that
+\begin{equation}
+  \lambda_i > \lambda_{i+1}.
+\end{equation}
+$\lambda$ quantifies the trade-off between decreasing the distortion
+(the slopes are always negative) while the bit-rate increases (the
+higher the slope, the high the benefit). If we suppose now that the
+contribution to the quality of each channel are additive, that is
+\begin{equation}
+  D = D_{\text{R}} + D_{\text{G}} + D_{\text{B}},
+\end{equation}
+then the optimal QSs must satisfy that~\cite{vetterli1995wavelets,sayood2017introduction}
+\begin{equation}
+  \lambda_{\text{R}} = \lambda_{\text{G}} = \lambda_{\text{B}}.
+  \label{eq:optimal_quantization}
+\end{equation}
+
+To see this, lets suppose that we have used, for example, a set of QSs
+so that
+\begin{equation*}
+  \lambda_{\text{R}} = 2\lambda_{\text{G}} = 2\lambda_{\text{B}},
+\end{equation*}
+and that we still have room for spending more bits encoding the
+frame. In this situation, the maximum benefit would be obtained if we
+decrease $\Delta_{\text{R}}$ because the sloper is double the slope of
+the other curves. Therefore, the optimal QSs are obtained when
+Eq.~\ref{eq:optimal_quantization} is true.
+
+\begin{comment}
+Thus, the optimal QSs should
 operate in the curves with the same RD slope,
 \begin{equation}
   \lambda_{\text{R}} = \lambda_{\text{G}} = \lambda_{\text{B}},
@@ -182,6 +225,7 @@ operate in the curves with the same RD slope,
 for a given total bit-rate $R$, which implies that the contribution of each channel (the ratio between
 quality and bit-rate) to the quality of $\tilde{x}$ has been highest
 possible~\cite{vetterli1995wavelets,sayood2017introduction}.
+\end{comment}
 
 Unfortunately, the previous procedure implies the computation of the
 RD curve for each channel, which is a time-consuming operation. For
