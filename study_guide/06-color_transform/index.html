@@ -749,40 +749,21 @@ class="text"><mtext  >Cb</mtext></mstyle></mrow></msub
 ><mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;12&#x0029;</td></tr></table>
-<!--l. 242--><p class="indent" >   where <!--l. 242--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><msub><mrow 
-><mi 
->&#x03BB;</mi></mrow><mrow 
-><mstyle 
-class="text"><mtext  >channel</mtext></mstyle></mrow></msub 
-><mo 
-class="MathClass-open">&#x0028;</mo><mi 
->R</mi><mo 
-class="MathClass-close">&#x0029;</mo></math> is the slope,
-for a given bit-rate <!--l. 243--><math 
+<!--l. 242--><p class="indent" >   for a given total bit-rate <!--l. 242--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->R</mi></math>,
-&#x0028;<a 
-href="https://en.wikipedia.org/wiki/Rate-distortion_theory" >Rate-Distortion</a>&#x0029; of the curve for the corresponding channel in the RD plane &#x0028;see
-this <a 
+>R</mi></math>
+&#x0028;see this <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb" >notebook</a>&#x0029;&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xvetterli1995wavelets">4</a>,&#x00A0;<a 
-href="#Xsayood2017introduction">2</a>&#x005D;</span>.
-</p><!--l. 248--><p class="indent" >   Unfortunately, the use of Eq.&#x00A0;<a 
-href="#x1-6001r12">12<!--tex4ht:ref: eq:optimal_quantization --></a> implies the computation of the RD curve for
-each channel, which is a time-consuming operation. For this reason, and supposing
-that the statistics of each channel are similar, we can suppose that the length &#x0028;the
-bit-rate&#x0029; of each channel is proportional to the variance of the channel, which is
-proportional to the quantization step. Therefore, if all the channels have the same
+href="#Xsayood2017introduction">2</a>&#x005D;</span>. Therefore, if all the channels have the same
 gain<span class="footnote-mark"><a 
 href="index5.html#fn4x0"><sup class="textsuperscript">4</sup></a></span><a 
  id="x1-6002f4"></a> ,
 a quantization strategy that should approximate Eq.&#x00A0;<a 
 href="#x1-6001r12">12<!--tex4ht:ref: eq:optimal_quantization --></a> is to use </p><table class="equation"><tr><td> <a 
  id="x1-6003r13"></a>
-<!--l. 258--><math 
+<!--l. 248--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                          <msub><mrow 
@@ -805,15 +786,15 @@ class="text"><mtext  >Cb</mtext></mstyle></mrow></msub
 ><mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;13&#x0029;</td></tr></table>
-                                                                  
-
-                                                                  
-<!--l. 262--><p class="indent" >   When the gains are not the same, the quantization steps should be
+<!--l. 252--><p class="indent" >   When the gains are not the same, the quantization steps should be
 divided<span class="footnote-mark"><a 
 href="index6.html#fn5x0"><sup class="textsuperscript">5</sup></a></span><a 
  id="x1-6004f5"></a> 
-by the gains, that for the RGB/YCrCb transform are: </p><table class="equation-star"><tr><td>
-<!--l. 267--><math 
+by the channel gains, that for the RGB/YCrCb transform are: </p><table class="equation-star"><tr><td>
+                                                                  
+
+                                                                  
+<!--l. 257--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
  <mtable  align="axis" style=""  
@@ -867,7 +848,7 @@ class="MathClass-punc">.</mo><mn>7</mn><mn>7</mn><msup><mrow
 class="MathClass-rel">=</mo> <mn>3</mn><mo 
 class="MathClass-punc">.</mo><mn>2</mn><mn>5</mn><mn>8</mn><mn>3</mn><mn>2</mn> </mtd></mtr><!--rl--></mtable>
 </math></td></tr></table>
-<!--l. 275--><p class="indent" >   Unfortunately, the RGB/YCrCb transform is not orthogonal. This means that the
+<!--l. 265--><p class="indent" >   Unfortunately, the RGB/YCrCb transform is not orthogonal. This means that the
 quantization noise introduced in one of the channel will also a&#xFB00;ect to the rest of
 channels, which will degrade the RD performance. The lack of orthogonality also
 reduces the e&#xFB00;ectivity of the previous algorithm for determining the optimal
@@ -876,11 +857,11 @@ quantization steps.
    <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
  id="x1-70001.4"></a>The <a 
 href="https://en.wikipedia.org/wiki/YCoCg" >RGB/YCoCg transform</a></h4>
-<!--l. 347--><p class="noindent" >
+<!--l. 337--><p class="noindent" >
 </p>
    <h5 class="subsubsectionHead"><span class="titlemark">1.4.1   </span> <a 
  id="x1-80001.4.1"></a>Analysis and synthesis</h5>
-<!--l. 348--><p class="noindent" >Clearly, orthogonality is a desired property in compression systems. On the other
+<!--l. 338--><p class="noindent" >Clearly, orthogonality is a desired property in compression systems. On the other
 hand, Eqs.&#x00A0;<a 
 href="#x1-5001r7">7<!--tex4ht:ref: eq:YCrCb --></a> and <a 
 href="#x1-5003r9">9<!--tex4ht:ref: eq:iYCrCb --></a> were derived by <a 
@@ -897,7 +878,7 @@ images, obtaining </p><table class="equation"><tr><td> <a
                                                                   
 
                                                                   
-<!--l. 356--><math 
+<!--l. 346--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
@@ -1015,7 +996,7 @@ class="text"><mtext  >C</mtext></mstyle></mrow><mrow
 >  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                                    </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;14&#x0029;</td></tr></table>
-<!--l. 394--><p class="indent" >   This transform is orthogonal. However, as <span class="cite">&#x005B;<a 
+<!--l. 384--><p class="indent" >   This transform is orthogonal. However, as <span class="cite">&#x005B;<a 
 href="#Xmalvar2008lifting">1</a>&#x005D;</span> points it has to disadvantages:
      </p><ol  class="enumerate1" >
      <li 
@@ -1024,10 +1005,10 @@ href="#Xmalvar2008lifting">1</a>&#x005D;</span> points it has to disadvantages:
      <li 
   class="enumerate" id="x1-8007x2">From a perceptual perspective, the in&#xFB02;uence of the green channel on the
      luma channel should be stronger.</li></ol>
-<!--l. 401--><p class="noindent" >For these reasons, <span class="cite">&#x005B;<a 
+<!--l. 391--><p class="noindent" >For these reasons, <span class="cite">&#x005B;<a 
 href="#Xmalvar2008lifting">1</a>&#x005D;</span> proposes </p><table class="equation"><tr><td> <a 
  id="x1-8008r15"></a>
-<!--l. 402--><math 
+<!--l. 392--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
@@ -1123,7 +1104,7 @@ class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;15&#x0029;</td></tr></table>
    <h5 class="subsubsectionHead"><span class="titlemark">1.4.2   </span> <a 
  id="x1-90001.4.2"></a>Quantization</h5>
-<!--l. 441--><p class="noindent" >As it can be seen, the RGB/YCoCg transform is orthogonal and the channels gains
+<!--l. 431--><p class="noindent" >As it can be seen, the RGB/YCoCg transform is orthogonal and the channels gains
 are the same. Therefore, the Eq.&#x00A0;<a 
 href="#x1-6003r13">13<!--tex4ht:ref: eq:simple_Q --></a> stands Eq.&#x00A0;<a 
 href="#x1-6001r12">12<!--tex4ht:ref: eq:optimal_quantization --></a>. As it can be also seen in this
@@ -1131,14 +1112,14 @@ href="#x1-6001r12">12<!--tex4ht:ref: eq:optimal_quantization --></a>. As it can 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb" >notebook</a>, the YCoCg domain can signi&#xFB01;cantly concentrate the energy of the pixels in
 the Y channel. This is bene&#xFB01;cial because quantization will remove &#x0028;completely
 quantize&#x0029; &#x201C;noise&#x201D; in the chroma channels.
-                                                                  
-
-                                                                  
-</p><!--l. 449--><p class="noindent" >
+</p><!--l. 439--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-100002"></a>What you have to do?</h3>
-<!--l. 451--><p class="noindent" >
+<!--l. 441--><p class="noindent" >
+                                                                  
+
+                                                                  
      </p><ol  class="enumerate1" >
      <li 
   class="enumerate" id="x1-10002x1">Please,  run  the  previous  <a 
@@ -1151,17 +1132,17 @@ href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/
 href="https://en.wikipedia.org/wiki/JPEG_2000#Color_components_transformation" >RCT
      &#x0028;Reversible Color Transform&#x0029;</a> and compare it&#x2019;s RD performance with the
      other transforms.</li></ol>
-<!--l. 464--><p class="noindent" >
+<!--l. 454--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-110003"></a>Timming</h3>
-<!--l. 466--><p class="noindent" >Please, &#xFB01;nish this notebook before the next class session.
-</p><!--l. 468--><p class="noindent" >
+<!--l. 456--><p class="noindent" >Please, &#xFB01;nish this notebook before the next class session.
+</p><!--l. 458--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-120004"></a>Deliverables</h3>
-<!--l. 470--><p class="noindent" >None.
-</p><!--l. 472--><p class="noindent" >
+<!--l. 460--><p class="noindent" >None.
+</p><!--l. 462--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-130005"></a>Resources</h3>
@@ -1180,9 +1161,6 @@ class="ecti-1000">Image  Processing  XXXI</span>,  volume  7073,  pages  707307&
  id="Xsayood2017introduction"></a>K.&#x00A0;Sayood. <a 
 href="http://rahilshaikh.weebly.com/uploads/1/1/6/3/11635894/data_compression.pdf" ><span 
 class="ecti-1000">Introduction to data compression</span></a>. Morgan Kaufmann, 2017.
-                                                                  
-
-                                                                  
    </p>
    <p class="bibitem" ><span class="biblabel">
  &#x005B;3&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
@@ -1190,6 +1168,9 @@ class="ecti-1000">Introduction to data compression</span></a>. Morgan Kaufmann, 
 href="https://ia802906.us.archive.org/18/items/StrangG.LinearAlgebraAndItsApplications45881001/%5BStrang_G.%5D_Linear_algebra_and_its_applications%284%29%5B5881001%5D.pdf" ><span 
 class="ecti-1000">Linear Algebra and Its Applications</span></a>. Belmont, CA: Thomson,
    Brooks/Cole, 2006.
+                                                                  
+
+                                                                  
    </p>
    <p class="bibitem" ><span class="biblabel">
  &#x005B;4&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
