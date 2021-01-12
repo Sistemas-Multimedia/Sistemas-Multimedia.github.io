@@ -124,10 +124,11 @@ resolutions.
 
 \subsection{Quantization}
 The quantization step (see the previous milestone) should be inversely
-proportional to the gain of the subbands\footnote{The higher the gain,
-the lower the quantization step, the lower the quantization noise
-introduced in the subband, the higher the contribution of the subband
-to the reconstruction or the image.} Most of the DWT's used in image
+proportional to the L$_2$ synthesis gain of the subbands\footnote{The
+higher the gain, the lower the quantization step, the lower the
+quantization noise introduced in the subband, the higher the
+contribution of the subband to the reconstruction or the
+image.}~\cite{marcellin2002overview}. Most of the DWT's used in image
 coding are orthogonal or biorthogonal. In orthogonal transform, all
 the subbands have the same gain, but this is not true for biorthogonal
 DWTs.
@@ -147,7 +148,7 @@ where the
 \href{https://en.wikipedia.org/wiki/Energy_(signal_processing)}{energy
   of a discrete signal} $x$ is defined as
 \begin{equation}
-  \langle x_i, x_i\rangle =  \sum_{n=-\infty}^{\infty}{|x_i|^2}.
+  \langle x, x\rangle =  \sum_{i}{x_i^2}.
 \end{equation}
 
 \section{What you have to do?}
