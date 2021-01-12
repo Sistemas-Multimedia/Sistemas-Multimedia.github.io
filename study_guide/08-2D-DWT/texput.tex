@@ -105,11 +105,13 @@ As an example, the Fig.~\ref{fig:lena_2D-DWT} shows the $3$-levels
 
 \begin{figure}
   \centering
-  \begin{tabular}{cc}
-    \vbox{\pngfig{lena}{5cm}{500}} & \vbox{\pngfig{dwt_lena}{5cm}{500}} \\
-    (a) & (b)
+  \begin{tabular}{ccc}
+    \vbox{\pngfig{lena}{5cm}{500}} & \vbox{\pngfig{dwt_lena}{5cm}{500}} & \vbox{\pngfig{dwt_lena_normalized}{5cm}{500}}\\
+    (a) & (b) & (c)
   \end{tabular}
-  \caption{Subfig.~(a): the Lena image. Subfig.~(b): $\text{2D-DWT}^3(\text{Lena})$'s decomposition. See
+  \caption{Subfig.~(a): the Lena image. Subfig.~(b):
+    $\text{2D-DWT}^3(\text{Lena})$'s decomposition. Subfig.~(c):
+    $\text{2D-DWT}^3(\text{Lena})$'s normalized decomposition. See
     \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-2D-DWT/dwt_lena.ipynb}{this
       notebook}.}
   \label{fig:lena_2D-DWT}
@@ -150,6 +152,12 @@ where the
 \begin{equation}
   \langle x, x\rangle =  \sum_{i}{x_i^2}.
 \end{equation}
+
+Notice that (see the Fig.~\ref{fig:lena_2D-DWT}) the low-frequency
+subbands concentrate more of the energy (and the visual
+information). Therefore, these subbands should be quantized less than
+the high-frequency subbands. This is exactly what we are doing when we
+use a quantization step inversely proportional to the subband gains.
 
 \section{What you have to do?}
 

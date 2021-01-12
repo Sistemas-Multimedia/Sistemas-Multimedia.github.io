@@ -527,14 +527,17 @@ display="inline" ><mn>3</mn></math>-levels
 cellspacing="0" cellpadding="0"  
 ><colgroup id="TBL-7-1g"><col 
 id="TBL-7-1" /><col 
-id="TBL-7-2" /></colgroup><tr  
+id="TBL-7-2" /><col 
+id="TBL-7-3" /></colgroup><tr  
  style="vertical-align:baseline;" id="TBL-7-1-"><td  style="text-align:center; white-space:nowrap;" id="TBL-7-1-1"  
 class="td11"> <!--l. 109--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="lena.png" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-1-2"  
-class="td11"> <!--l. 109--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="dwt_lena.png" /> </div>                                                                    </p></td>
+class="td11"> <!--l. 109--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="dwt_lena.png" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-1-3"  
+class="td11"> <!--l. 109--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="dwt_lena_normalized.png" /> </div>                                                                    </p></td>
 </tr><tr  
  style="vertical-align:baseline;" id="TBL-7-2-"><td  style="text-align:center; white-space:nowrap;" id="TBL-7-2-1"  
 class="td11">                                 &#x0028;a&#x0029;                                                    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-2-2"  
-class="td11">                                 &#x0028;b&#x0029;                                                    </td></tr></table>
+class="td11">                                 &#x0028;b&#x0029;                                                    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-7-2-3"  
+class="td11">                                 &#x0028;c&#x0029;                                                    </td></tr></table>
 </div> <a 
  id="x1-1008r2"></a>
 <a 
@@ -543,7 +546,7 @@ class="td11">                                 &#x0028;b&#x0029;                 
 ><span class="id">
 Figure&#x00A0;2:        </span><span  
 class="content">Sub&#xFB01;g.&#x00A0;&#x0028;a&#x0029;:        the        Lena        image.        Sub&#xFB01;g.&#x00A0;&#x0028;b&#x0029;:
-<!--l. 114--><math 
+<!--l. 116--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mstyle 
@@ -553,7 +556,17 @@ class="text"><mtext  >2D-DWT</mtext></mstyle></mrow><mrow
 class="MathClass-open">&#x0028;</mo><mstyle 
 class="text"><mtext  >Lena</mtext></mstyle><mo 
 class="MathClass-close">&#x0029;</mo></math>&#x2019;s
-decomposition. See <a 
+decomposition. Sub&#xFB01;g.&#x00A0;&#x0028;c&#x0029;: <!--l. 116--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mstyle 
+class="text"><mtext  >2D-DWT</mtext></mstyle></mrow><mrow 
+><mn>3</mn></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><mstyle 
+class="text"><mtext  >Lena</mtext></mstyle><mo 
+class="MathClass-close">&#x0029;</mo></math>&#x2019;s
+normalized decomposition. See <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-2D-DWT/dwt_lena.ipynb" >this notebook</a>.
 </span></div><!--tex4ht:label?: x1-1008r1 -->
                                                                   
@@ -562,7 +575,7 @@ href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/
    </div><hr class="endfigure" />
    <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
  id="x1-20001.1"></a>Multiresolution</h4>
-<!--l. 119--><p class="noindent" >Similarly to the 1D case, a <!--l. 119--><math 
+<!--l. 121--><p class="noindent" >Similarly to the 1D case, a <!--l. 121--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mstyle 
@@ -573,7 +586,7 @@ class="text"><mtext  >2D-DWT</mtext></mstyle></mrow><mrow
 class="MathClass-open">&#x0028;</mo><mo 
 class="MathClass-bin">&#x22C5;</mo><mo 
 class="MathClass-close">&#x0029;</mo></math>
-provides <!--l. 119--><math 
+provides <!--l. 121--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >S</mi> <mo 
@@ -582,21 +595,28 @@ spatial resolution levels. An example of this can be seen in the Sub&#xFB01;g.&#
 href="#x1-1004r1">1<!--tex4ht:ref: fig:2D-DWT --></a>-&#x0028;d&#x0029;, where
 there are 3 possible resolutions. In the Sub&#xFB01;g.&#x00A0;<a 
 href="#x1-1008r2">2<!--tex4ht:ref: fig:lena_2D-DWT --></a> there are 4 resolutions.
-</p><!--l. 125--><p class="noindent" >
+</p><!--l. 127--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.2   </span> <a 
  id="x1-30001.2"></a>Quantization</h4>
-<!--l. 126--><p class="noindent" >The quantization step &#x0028;see the previous milestone&#x0029; should be inversely proportional to the gain
-of the subbands<span class="footnote-mark"><a 
+<!--l. 128--><p class="noindent" >The quantization step &#x0028;see the previous milestone&#x0029; should be inversely proportional to the
+L<!--l. 129--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+></mrow><mrow 
+><mn>2</mn></mrow></msub 
+></math> synthesis gain of
+the subbands<span class="footnote-mark"><a 
 href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
- id="x1-3001f1"></a> 
+ id="x1-3001f1"></a> &#x00A0;<span class="cite">&#x005B;<span 
+class="ecbx-1000">?</span>&#x005D;</span>.
 Most of the DWT&#x2019;s used in image coding are orthogonal or biorthogonal. In
 orthogonal transform, all the subbands have the same gain, but this is not true for
 biorthogonal DWTs.
-</p><!--l. 135--><p class="indent" >   To &#xFB01;nd the gains we can compute the energy of the signal generated by the
+</p><!--l. 138--><p class="indent" >   To &#xFB01;nd the gains we can compute the energy of the signal generated by the
 inverse transform of the unitary impulse discrete 2D signal </p><table class="equation"><tr><td> <a 
  id="x1-3002r3"></a>
-<!--l. 137--><math 
+<!--l. 140--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation"><msub><mrow 
 >
@@ -630,9 +650,9 @@ class="array"  columnalign="left">  <mstyle
 class="text"><mtext  >otherwise</mtext></mstyle> <mo 
 class="MathClass-punc">,</mo></mtd></mtr> <!--ll--></mtable>                                                            </mrow><mo fence="true" form="postfix"></mo></mrow>
 </math></td><td class="eq-no">&#x0028;3&#x0029;</td></tr></table>
-<!--l. 146--><p class="indent" >   where the <a 
+<!--l. 149--><p class="indent" >   where the <a 
 href="https://en.wikipedia.org/wiki/Energy_(signal_processing)" >energy of a discrete signal</a>
-<!--l. 148--><math 
+<!--l. 151--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >x</mi></math> is
@@ -641,7 +661,7 @@ de&#xFB01;ned as </p><table class="equation"><tr><td> <a
                                                                   
 
                                                                   
-<!--l. 149--><math 
+<!--l. 152--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                           <mo 
@@ -665,9 +685,16 @@ class="MathClass-rel">=</mo><munder class="msub"><mrow
 ><mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;4&#x0029;</td></tr></table>
+<!--l. 156--><p class="indent" >   Notice that &#x0028;see the Fig.&#x00A0;<a 
+href="#x1-1008r2">2<!--tex4ht:ref: fig:lena_2D-DWT --></a>&#x0029; the low-frequency subbands concentrate more of the
+energy &#x0028;and the visual information&#x0029;. Therefore, these subbands should be
+quantized less than the high-frequency subbands. This is exactly what we are
+doing when we use a quantization step inversely proportional to the subband
+gains.
+</p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-40002"></a>What you have to do?</h3>
-<!--l. 155--><p class="noindent" >
+<!--l. 164--><p class="noindent" >
      </p><ol  class="enumerate1" >
      <li 
   class="enumerate" id="x1-4002x1">Please, using this <a 
@@ -677,17 +704,20 @@ href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/
      </li>
      <li 
   class="enumerate" id="x1-4004x2">Redo the experiments using a biorthogonal DWT.</li></ol>
-<!--l. 163--><p class="noindent" >
+<!--l. 172--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-50003"></a>Timming</h3>
-<!--l. 165--><p class="noindent" >Please, &#xFB01;nish this notebook before the next class session.
-</p><!--l. 167--><p class="noindent" >
+<!--l. 174--><p class="noindent" >Please, &#xFB01;nish this notebook before the next class session.
+</p><!--l. 176--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-60004"></a>Deliverables</h3>
-<!--l. 169--><p class="noindent" >None.
-</p><!--l. 171--><p class="noindent" >
+<!--l. 178--><p class="noindent" >None.
+                                                                  
+
+                                                                  
+</p><!--l. 180--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-70005"></a>Resources</h3>
@@ -697,9 +727,6 @@ href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/
  id="Xsayood2017introduction"></a>K.&#x00A0;Sayood. <a 
 href="http://rahilshaikh.weebly.com/uploads/1/1/6/3/11635894/data_compression.pdf" ><span 
 class="ecti-1000">Introduction to data compression</span></a>. Morgan Kaufmann, 2017.
-                                                                  
-
-                                                                  
 </p>
    </div>
 <a 
