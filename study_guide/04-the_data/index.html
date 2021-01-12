@@ -1,16 +1,16 @@
-<!DOCTYPE html> 
-<html> 
-<head> <title>Sistemas Multimedia - Study Guide - Milestone 3: Understanding the Video
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" 
+"http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd" > 
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Sistemas Multimedia - Study Guide - Milestone 3: Understanding the Video
 Data</title> 
-<meta charset="UTF-8" /> 
-<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathml,html --> 
+<meta name="src" content="index.tex" /> 
 <link rel="stylesheet" type="text/css" href="index.css" /> 
-<script type="text/javascript" 
-src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" 
-></script> 
-<style type="text/css"> 
-.MathJax_MathML {text-indent: 0;} 
-</style> 
 </head><body 
 >
    <div class="maketitle">
@@ -27,18 +27,18 @@ href="http://cms.ual.es/UAL/estudios/masteres/plandeestudios/asignaturas/asignat
  <div class="author" ><a 
 href="https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875" ><span 
 class="ecrm-1200">Vicente Gonz</span><span 
-class="ecrm-1200">á</span><span 
+class="ecrm-1200">&#x00E1;</span><span 
 class="ecrm-1200">lez Ruiz</span></a> <span 
 class="ecrm-1200">- </span><a 
 href="https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm" ><span 
 class="ecrm-1200">Depto Inform</span><span 
-class="ecrm-1200">á</span><span 
+class="ecrm-1200">&#x00E1;</span><span 
 class="ecrm-1200">tica</span></a> <span 
 class="ecrm-1200">- </span><a 
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">January 7, 2021</span></div>
+class="ecrm-1200">January 12, 2021</span></div>
    </div>
    <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
  id="x1-10001"></a>Description</h3>
@@ -46,8 +46,8 @@ class="ecrm-1200">January 7, 2021</span></div>
 href="https://en.wikipedia.org/wiki/Video" >videos</a> used in the <a 
 href="https://github.com/Sistemas-Multimedia/MRVC" >MRVC</a> project.
 Basically, a video is a <a 
-href="https://en.wikipedia.org/wiki/Sequence" >sequence</a> of (<a 
-href="https://en.wikipedia.org/wiki/Digital_data" >digital</a>) <a 
+href="https://en.wikipedia.org/wiki/Sequence" >sequence</a> of &#x0028;<a 
+href="https://en.wikipedia.org/wiki/Digital_data" >digital</a>&#x0029; <a 
 href="https://en.wikipedia.org/wiki/Image" >images</a>, that we prefer to name
 <a 
 href="https://en.wikipedia.org/wiki/Film_frame" >frames</a>. In the context of <a 
@@ -56,18 +56,18 @@ href="https://en.wikipedia.org/wiki/Matrix_(mathematics)" >matrix</a> of
 <a 
 href="https://en.wikipedia.org/wiki/Pixel" >pixels</a>.
 </p><!--l. 19--><p class="indent" >   We are going to store a video as a sequence of <a 
-href="https://en.wikipedia.org/wiki/Computer_file" >ﬁles</a> with names &#x003C;preﬁx&#x003E;000.png,
-&#x003C;preﬁx&#x003E;001.png, ..., where &#x003C;preﬁx&#x003E; speciﬁes the video name and “.png” indicates
+href="https://en.wikipedia.org/wiki/Computer_file" >&#xFB01;les</a> with names &#x003C;pre&#xFB01;x&#x003E;000.png,
+&#x003C;pre&#xFB01;x&#x003E;001.png, ..., where &#x003C;pre&#xFB01;x&#x003E; speci&#xFB01;es the video name and &#x201C;.png&#x201D; indicates
 that the frames are coded using the <a 
 href="https://en.wikipedia.org/wiki/Lossless_compression" >lossless</a> <a 
-href="https://en.wikipedia.org/wiki/Portable_Network_Graphics" >PNG</a> image format <span class="cite">[<a 
-href="#Xroelofs1999png">2</a>]</span>. PNG
+href="https://en.wikipedia.org/wiki/Portable_Network_Graphics" >PNG</a> image format&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xroelofs1999png">2</a>&#x005D;</span>. PNG
 uses <a 
 href="https://en.wikipedia.org/wiki/Differential_pulse-code_modulation" >DPCM</a> and the <a 
-href="https://en.wikipedia.org/wiki/DEFLATE" >DEFLATE</a> codec (<a 
-href="https://en.wikipedia.org/wiki/Huffman_coding" >Huﬀman coding</a> + <a 
-href="https://en.wikipedia.org/wiki/Lempel-Ziv-Storer-Szymanski" >LZSS</a>) <span class="cite">[<a 
-href="#Xnelson96datacompression">1</a>]</span> to
+href="https://en.wikipedia.org/wiki/DEFLATE" >DEFLATE</a> codec &#x0028;<a 
+href="https://en.wikipedia.org/wiki/Huffman_coding" >Hu&#xFB00;man coding</a> + <a 
+href="https://en.wikipedia.org/wiki/Lempel-Ziv-Storer-Szymanski" >LZSS</a>&#x0029;&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xnelson96datacompression">1</a>&#x005D;</span> to
 remove the <a 
 href="https://en.wikipedia.org/wiki/Image_compression" >spatial</a> and <a 
 href="https://en.wikipedia.org/wiki/Data_compression" >statistical redudancy</a>. Notice that no <a 
@@ -84,18 +84,18 @@ href="https://en.wikipedia.org/wiki/Image_resolution" >spatial resolution</a>.
 href="https://en.wikipedia.org/wiki/RGB_color_model" >RGB domain</a>.
      </li>
      <li 
-  class="enumerate" id="x1-1006x3">Each color component has <a 
-href="https://en.wikipedia.org/wiki/Glossary_of_computer_graphics#bit_depth" >bit depth</a> of 16 bits, representing an unsigned
-     <a 
+  class="enumerate" id="x1-1006x3">Each color component &#x0028;channel&#x0029; has <a 
+href="https://en.wikipedia.org/wiki/Glossary_of_computer_graphics#bit_depth" >bit depth</a> of 16 bits, representing an
+     unsigned <a 
 href="https://en.wikipedia.org/wiki/Integer_(computer_science)" >integer</a>.
      </li>
      <li 
   class="enumerate" id="x1-1008x4">The pixel <a 
 href="https://en.wikipedia.org/wiki/Luminous_intensity" >intensities</a> are displaced to the center of the <a 
-href="https://en.wikipedia.org/wiki/Range_(computer_programming)" >range of values</a> ([0,
-     65535]) that the components can take (for example, in <a 
+href="https://en.wikipedia.org/wiki/Range_(computer_programming)" >range of values</a> &#x0028;&#x005B;0,
+     65535&#x005D;&#x0029; that the components can take &#x0028;for example, in <a 
 href="https://en.wikipedia.org/wiki/Disk_storage" >disk</a>, the component
-     intensity 0 is represented by 32768).</li></ol>
+     intensity 0 is represented by 32768&#x0029;.</li></ol>
                                                                   
 
                                                                   
@@ -112,42 +112,42 @@ href="https://github.com/Sistemas-Multimedia/MRVC" >MRVC</a>, preferably cloning
      <li 
   class="enumerate" id="x1-2004x2">Run this <a 
 href="https://jupyter.org/" >jupyter</a> <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/04-the_data/display_video.ipynb" >notebook</a>.</li></ol>
-<!--l. 65--><p class="noindent" >
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/04-the_data/display_video.ipynb" >notebook</a> that shows how to read and write frames.</li></ol>
+<!--l. 66--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-30003"></a>Timming</h3>
-<!--l. 67--><p class="noindent" >Please, ﬁnish this milestone before the next class session.
-</p><!--l. 69--><p class="noindent" >
+<!--l. 68--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 70--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-40004"></a>Deliverables</h3>
-<!--l. 71--><p class="noindent" >None.
-</p><!--l. 73--><p class="noindent" >
+<!--l. 72--><p class="noindent" >None.
+</p><!--l. 74--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-50005"></a>Resources</h3>
    <div class="thebibliography">
    <p class="bibitem" ><span class="biblabel">
- [1]<span class="bibsp">   </span></span><a 
+ &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
  id="Xnelson96datacompression"></a>Nelson M. and Gailly J.  <a 
 href="http://index-of.co.uk/Information-Theory/The%20Data%20Compression%20Book%202nd%20Ed%20-%20Mark%20Nelson.pdf" ><span 
 class="ecti-1000">The Data Compression Book</span></a>.  M&#x0026;T Books,
    1996.
    </p>
    <p class="bibitem" ><span class="biblabel">
- [2]<span class="bibsp">   </span></span><a 
+ &#x005B;2&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
  id="Xroelofs1999png"></a>Greg Roelofs and Richard Koman.  <a 
 href="http://www.libpng.org/pub/png/book/" ><span 
-class="ecti-1000">PNG: the deﬁnitive guide</span></a>.  O’Reilly
+class="ecti-1000">PNG: the de&#xFB01;nitive guide</span></a>.  O&#x2019;Reilly
    &#x0026; Associates, Inc., 1999.
 </p>
    </div>
 <a 
  id="Q1-1-6"></a>
     
-</body> 
-</html>
+</body></html> 
+
                                                                   
 
 

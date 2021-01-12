@@ -1,16 +1,16 @@
-<!DOCTYPE html> 
-<html> 
-<head> <title>Sistemas Multimedia - Study Guide - Milestone 5: Quantizing in the RGB
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" 
+"http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd" > 
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Sistemas Multimedia - Study Guide - Milestone 5: Quantizing in the RGB
 Domain</title> 
-<meta charset="UTF-8" /> 
-<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathml,html --> 
+<meta name="src" content="index.tex" /> 
 <link rel="stylesheet" type="text/css" href="index.css" /> 
-<script type="text/javascript" 
-src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" 
-></script> 
-<style type="text/css"> 
-.MathJax_MathML {text-indent: 0;} 
-</style> 
 </head><body 
 >
    <div class="maketitle">
@@ -27,28 +27,28 @@ href="http://cms.ual.es/UAL/estudios/masteres/plandeestudios/asignaturas/asignat
  <div class="author" ><a 
 href="https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875" ><span 
 class="ecrm-1200">Vicente Gonz</span><span 
-class="ecrm-1200">á</span><span 
+class="ecrm-1200">&#x00E1;</span><span 
 class="ecrm-1200">lez Ruiz</span></a> <span 
 class="ecrm-1200">- </span><a 
 href="https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm" ><span 
 class="ecrm-1200">Depto Inform</span><span 
-class="ecrm-1200">á</span><span 
+class="ecrm-1200">&#x00E1;</span><span 
 class="ecrm-1200">tica</span></a> <span 
 class="ecrm-1200">- </span><a 
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">January 7, 2021</span></div>
+class="ecrm-1200">January 12, 2021</span></div>
    </div>
    <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
  id="x1-10001"></a>Description</h3>
 <!--l. 7--><p class="noindent" ><a 
-href="https://en.wikipedia.org/wiki/Visual_system" >Humans</a> are quite eﬃcient recognizing the information stored in images (and frames
-of a video), even when this information has been degraded or (partially) lost.
+href="https://en.wikipedia.org/wiki/Visual_system" >Humans</a> are quite e&#xFB03;cient recognizing the information stored in images &#x0028;and frames
+of a video&#x0029;, even when this information has been degraded or &#x0028;partially&#x0029; lost.
 <a 
-href="https://en.wikipedia.org/wiki/Quantization_(signal_processing)" >Quantization</a> <span class="cite">[<a 
-href="#Xsayood2017introduction">1</a>, <a 
-href="#Xvetterli2014foundations">2</a>]</span> is a technique that can remove the part of the visual
+href="https://en.wikipedia.org/wiki/Quantization_(signal_processing)" >Quantization</a>&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xsayood2017introduction">1</a>,&#x00A0;<a 
+href="#Xvetterli2014foundations">2</a>&#x005D;</span> is a technique that can remove the part of the visual
 information that is less relevant for us, and implies <a 
 href="https://en.wikipedia.org/wiki/Lossy_compression" >lossy coding</a>, which provides
 <a 
@@ -59,13 +59,13 @@ coding</a>.
 the <a 
 href="https://en.wikipedia.org/wiki/RGB_color_model" >RGB color domain</a>. A <a 
 href="https://en.wikipedia.org/wiki/Quantization_(signal_processing)" ><span 
-class="ecbx-1000">quantizer</span></a> (typically denoted by
+class="ecbx-1000">quantizer</span></a> &#x0028;typically denoted by
 <!--l. 24--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->Q</mi></math>)
+>Q</mi></math>&#x0029;
 is a <a 
-href="https://en.wikipedia.org/wiki/Data_compression" >encoding system</a> that inputs a sequence of (digital) samples
+href="https://en.wikipedia.org/wiki/Data_compression" >encoding system</a> that inputs a sequence of &#x0028;digital&#x0029; samples
 <!--l. 26--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
@@ -74,17 +74,17 @@ of quantization indexes <!--l. 27--><math
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >k</mi></math>
-(see the Fig. <a 
-href="#x1-1002r1">1<!--tex4ht:ref: fig:Q --></a>). The inverse system, called a <span 
-class="ecbx-1000">dequantizer </span>(and denoted by
+&#x0028;see the Fig.&#x00A0;<a 
+href="#x1-1003r1">1<!--tex4ht:ref: fig:Q --></a>&#x0029;. The inverse system, called a <span 
+class="ecbx-1000">dequantizer </span>&#x0028;and denoted by
 <!--l. 28--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mi 
 >Q</mi></mrow><mrow 
 ><mo 
-class="MathClass-bin">−</mo><mn>1</mn></mrow></msup 
-></math>), recover an approximate
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+></math>&#x0029;, recover an approximate
 version of <!--l. 29--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
@@ -94,18 +94,22 @@ denote as <!--l. 30--><math
 display="inline" ><mover 
 accent="true"><mrow 
 ><mi 
->x</mi></mrow><mo accent="true">̃</mo></mover></math>, depending on
+>x</mi></mrow><mo accent="true">&#x007E;</mo></mover></math>, depending on
 the quantization step <!--l. 30--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->Δ</mi></math>.
+>&#x0394;</mi></math>.
 Notice that although <!--l. 31--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->Δ</mi></math>
-is an input parameter to the quantizer, it has not been considered in the ﬁgure to
-keep it simpler. We deﬁne the quantization error </p><table class="equation"><tr><td> <a 
- id="x1-1001r1"></a>
+>&#x0394;</mi></math>
+is an input parameter to the quantizer, it has not been considered
+in the &#xFB01;gure to keep it simpler. We de&#xFB01;ne the quantization
+error<span class="footnote-mark"><a 
+href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-1001f1"></a>  </p><table class="equation"><tr><td>
+<a 
+ id="x1-1002r1"></a>
                                                                   
 
                                                                   
@@ -124,16 +128,16 @@ class="MathClass-rel">=</mo> <msub><mrow
 ><mi 
 >i</mi></mrow></msub 
 > <mo 
-class="MathClass-bin">−</mo><msub><mrow 
+class="MathClass-bin">&#x2212;</mo><msub><mrow 
 ><mover 
 accent="true"><mrow 
 ><mi 
->x</mi></mrow><mo accent="true">̃</mo></mover></mrow><mrow 
+>x</mi></mrow><mo accent="true">&#x007E;</mo></mover></mrow><mrow 
 ><mi 
 >i</mi></mrow></msub 
 ><mo 
 class="MathClass-punc">,</mo>
-</math></td><td class="eq-no">(1)</td></tr></table>
+</math></td><td class="eq-no">&#x0028;1&#x0029;</td></tr></table>
 <!--l. 37--><p class="indent" >   that obviously, should be minimized.
 </p>
    <hr class="figure" /><div class="figure" 
@@ -141,25 +145,25 @@ class="MathClass-punc">,</mo>
                                                                   
 
                                                                   
-<a 
- id="x1-1002r1"></a>
                                                                   
 
                                                                   
-<!--l. 41--><p class="noindent" ><div style="text-align:center;"> <img width=200 src="graphics/Q.svg" /> </div> 
+<!--l. 41--><p class="noindent" ><div style="text-align:center;"> <img width=200 src="graphics/Q.svg" /> </div>  <a 
+ id="x1-1003r1"></a>
 <a 
- id="x1-1003"></a>
-<br /> </p><div class="caption" 
-><span class="id">Figure 1: </span><span  
-class="content">Scalar quantization and dequantization of a signal.</span></div><!--tex4ht:label?: x1-1002r1 -->
+ id="x1-1004"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;1: </span><span  
+class="content">Scalar quantization and dequantization of a signal.               </span></div><!--tex4ht:label?: x1-1003r1 -->
                                                                   
 
                                                                   
    </div><hr class="endfigure" />
-<!--l. 46--><p class="indent" >   Quantizers can be classiﬁes into:
+<!--l. 46--><p class="indent" >   Quantizers can be classi&#xFB01;es into:
      </p><ol  class="enumerate1" >
      <li 
-  class="enumerate" id="x1-1005x1"><span 
+  class="enumerate" id="x1-1006x1"><span 
 class="ecbx-1000">Scalar quantizers</span>: those that produce a quantization index <!--l. 49--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
@@ -178,70 +182,70 @@ display="inline" ><msub><mrow
 ></math>.
      </li>
      <li 
-  class="enumerate" id="x1-1007x2"><span 
+  class="enumerate" id="x1-1008x2"><span 
 class="ecbx-1000">Vector quantizers</span>: that process the input by blocks of samples, called
      vectors, producing a quantization index by vector, and usually, the length
      of the quantization index y much shorter than the length of the vector.
-     Vector Quantization (VQ) can remove spatial correlation and therefore,
-     are more eﬃcient that Scalar Quantization (SQ). On the other hand, the
+     Vector Quantization &#x0028;VQ&#x0029; can remove spatial correlation and therefore,
+     are more e&#xFB03;cient that Scalar Quantization &#x0028;SQ&#x0029;. On the other hand, the
      computational requirements of VQ are, by far, higher than the needed by
-     SQ. If we also consider that there are other techniques (such as transform
-     coding) that are able to decorrelate the samples with less computation
+     SQ. If we also consider that there are other techniques &#x0028;such as transform
+     coding&#x0029; that are able to decorrelate the samples with less computation
      than VQ, we can understand why SQ has been selected, for example, in
      most <a 
 href="https://en.wikipedia.org/wiki/Video_coding_format" >video codecs</a>.</li></ol>
-<!--l. 64--><p class="indent" >   Quantizers, also, can be classiﬁed as:
+<!--l. 64--><p class="indent" >   Quantizers, also, can be classi&#xFB01;ed as:
      </p><ol  class="enumerate1" >
      <li 
-  class="enumerate" id="x1-1009x1"><span 
+  class="enumerate" id="x1-1010x1"><span 
 class="ecbx-1000">Uniform quantizers</span>: those in which <!--l. 66--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->Δ</mi></math>
+>&#x0394;</mi></math>
      is idependent on the amplitude of the samples.
      </li>
      <li 
-  class="enumerate" id="x1-1011x2"><span 
+  class="enumerate" id="x1-1012x2"><span 
 class="ecbx-1000">Non-unifom quantizers</span>, on the contrary, when <!--l. 68--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->Δ</mi></math>
-     depends (directly or indirectly) on the amplitude of the samples.</li></ol>
+>&#x0394;</mi></math>
+     depends &#x0028;directly or indirectly&#x0029; on the amplitude of the samples.</li></ol>
 <!--l. 72--><p class="indent" >   Non-uniform quantizers can be:
      </p><ol  class="enumerate1" >
      <li 
-  class="enumerate" id="x1-1013x1"><span 
+  class="enumerate" id="x1-1014x1"><span 
 class="ecbx-1000">Static quantizers</span>: if <!--l. 74--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->Δ</mi></math>
-     depends on the amplitude of the samples (as happens, for example, in
+>&#x0394;</mi></math>
+     depends on the amplitude of the samples &#x0028;as happens, for example, in
      <a 
-href="https://en.wikipedia.org/wiki/Companding" >companded quantizers</a>), but this dependency is known <span 
+href="https://en.wikipedia.org/wiki/Companding" >companded quantizers</a>&#x0029;, but this dependency is known <span 
 class="ecti-1000">a-priori</span>.
      </li>
      <li 
-  class="enumerate" id="x1-1015x2"><span 
+  class="enumerate" id="x1-1016x2"><span 
 class="ecbx-1000">Adaptive quantizers</span>: when <!--l. 78--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->Δ</mi></math>
-     is adapted to minimize the quantization error, depending “on-the-ﬂy” on
+>&#x0394;</mi></math>
+     is adapted to minimize the quantization error, depending &#x201C;on-the-&#xFB02;y&#x201D; on
      the characteristics<span class="footnote-mark"><a 
-href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
- id="x1-1016f1"></a> 
+href="index3.html#fn2x0"><sup class="textsuperscript">2</sup></a></span><a 
+ id="x1-1017f2"></a> 
      of the signal.</li></ol>
-<!--l. 85--><p class="indent" >   All quantizers can be classiﬁed into:
+<!--l. 85--><p class="indent" >   All quantizers can be classi&#xFB01;ed into:
      </p><ol  class="enumerate1" >
      <li 
-  class="enumerate" id="x1-1018x1"><span 
+  class="enumerate" id="x1-1019x1"><span 
 class="ecbx-1000">Mid-tread quantizers</span>, if <!--l. 87--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mover 
 accent="true"><mrow 
 ><mi 
->x</mi></mrow><mo accent="true">̃</mo></mover></mrow><mrow 
+>x</mi></mrow><mo accent="true">&#x007E;</mo></mover></mrow><mrow 
 ><mi 
 >i</mi></mrow></msub 
 ></math>
@@ -253,14 +257,14 @@ display="inline" ><mn>0</mn></math>.
                                                                   
      </li>
      <li 
-  class="enumerate" id="x1-1020x2"><span 
+  class="enumerate" id="x1-1021x2"><span 
 class="ecbx-1000">Mid-rised quantizers</span>, if <!--l. 88--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mover 
 accent="true"><mrow 
 ><mi 
->x</mi></mrow><mo accent="true">̃</mo></mover></mrow><mrow 
+>x</mi></mrow><mo accent="true">&#x007E;</mo></mover></mrow><mrow 
 ><mi 
 >i</mi></mrow></msub 
 ></math>
@@ -276,15 +280,15 @@ display="inline" ><msub><mrow
 >i</mi></mrow></msub 
 > <mo 
 class="MathClass-rel">=</mo> <mn>0</mn></math>.</li></ol>
-<!--l. 92--><p class="indent" >   Finally, quantizers can be classiﬁed as:
+<!--l. 92--><p class="indent" >   Finally, quantizers can be classi&#xFB01;ed as:
      </p><ol  class="enumerate1" >
      <li 
-  class="enumerate" id="x1-1022x1"><span 
+  class="enumerate" id="x1-1023x1"><span 
 class="ecbx-1000">Dead-zone quantizers</span>, that are characterized by a quantization step of
      length <!--l. 95--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>2</mn><mi 
->Δ</mi></math>
+>&#x0394;</mi></math>
      for <!--l. 95--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
@@ -295,38 +299,38 @@ display="inline" ><msub><mrow
 > <mo 
 class="MathClass-rel">=</mo> <mn>0</mn></math>.
      Deadzone quantizers tends to remove the <a 
-href="https://en.wikipedia.org/wiki/Noise_(electronics)" >electronic noise</a> (that usually has
+href="https://en.wikipedia.org/wiki/Noise_(electronics)" >electronic noise</a> &#x0028;that usually has
      an small amplitude compared to the input signal <!--l. 99--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->x</mi></math>).
+>x</mi></math>&#x0029;.
      Notice that dead-zone quantizers should not be consdered uniform, and
-     that all dead-zone quantizers, by deﬁnition, are mid-tread.
+     that all dead-zone quantizers, by de&#xFB01;nition, are mid-tread.
      </li>
      <li 
-  class="enumerate" id="x1-1024x2"><span 
+  class="enumerate" id="x1-1025x2"><span 
 class="ecbx-1000">No dead-zone quantizers</span>, when the dead-zone does not exist.</li></ol>
    <hr class="figure" /><div class="figure" 
 >
                                                                   
 
                                                                   
-<a 
- id="x1-1025r2"></a>
                                                                   
 
                                                                   
-<!--l. 108--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="iomap_mr.svg" /> </div> 
+<!--l. 108--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="iomap_mr.svg" /> </div>  <a 
+ id="x1-1026r2"></a>
 <a 
- id="x1-1026"></a>
-<br />   </p><div class="caption" 
-><span class="id">Figure 2:    </span><span  
-class="content">Input/output    map    of    a    mid-riser    quantizer    with
+ id="x1-1027"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;2:     </span><span  
+class="content">Input/output     map     of     a     mid-riser     quantizer     with
 <!--l. 109--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->Δ</mi> <mo 
-class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x1-1025r1 -->
+>&#x0394;</mi> <mo 
+class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x1-1026r1 -->
                                                                   
 
                                                                   
@@ -336,22 +340,22 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
                                                                   
 
                                                                   
-<a 
- id="x1-1027r3"></a>
                                                                   
 
                                                                   
-<!--l. 115--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="qe_mr.svg" /> </div> 
+<!--l. 115--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="qe_mr.svg" /> </div>  <a 
+ id="x1-1028r3"></a>
 <a 
- id="x1-1028"></a>
-<br />   </p><div class="caption" 
-><span class="id">Figure 3:    </span><span  
-class="content">Quantization    error    of    a    mid-riser    quantizer    with
+ id="x1-1029"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;3:     </span><span  
+class="content">Quantization     error     of     a     mid-riser     quantizer     with
 <!--l. 116--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->Δ</mi> <mo 
-class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x1-1027r1 -->
+>&#x0394;</mi> <mo 
+class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x1-1028r1 -->
                                                                   
 
                                                                   
@@ -361,22 +365,22 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
                                                                   
 
                                                                   
-<a 
- id="x1-1029r4"></a>
                                                                   
 
                                                                   
-<!--l. 122--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="iomap_mt.svg" /> </div> 
+<!--l. 122--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="iomap_mt.svg" /> </div>  <a 
+ id="x1-1030r4"></a>
 <a 
- id="x1-1030"></a>
-<br />   </p><div class="caption" 
-><span class="id">Figure 4:    </span><span  
-class="content">Input/output    map    of    a    mid-tread    quantizer    with
+ id="x1-1031"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;4:     </span><span  
+class="content">Input/output     map     of     a     mid-tread     quantizer     with
 <!--l. 123--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->Δ</mi> <mo 
-class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x1-1029r1 -->
+>&#x0394;</mi> <mo 
+class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x1-1030r1 -->
                                                                   
 
                                                                   
@@ -386,22 +390,22 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
                                                                   
 
                                                                   
-<a 
- id="x1-1031r5"></a>
                                                                   
 
                                                                   
-<!--l. 129--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="qe_mt.svg" /> </div> 
+<!--l. 129--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="qe_mt.svg" /> </div>  <a 
+ id="x1-1032r5"></a>
 <a 
- id="x1-1032"></a>
-<br />   </p><div class="caption" 
-><span class="id">Figure 5:    </span><span  
-class="content">Quantization    error    of    a    mid-tread    quantizer    with
+ id="x1-1033"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;5:     </span><span  
+class="content">Quantization     error     of     a     mid-tread     quantizer     with
 <!--l. 130--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->Δ</mi> <mo 
-class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x1-1031r1 -->
+>&#x0394;</mi> <mo 
+class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x1-1032r1 -->
                                                                   
 
                                                                   
@@ -411,22 +415,22 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
                                                                   
 
                                                                   
-<a 
- id="x1-1033r6"></a>
                                                                   
 
                                                                   
-<!--l. 136--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="iomap_dz.svg" /> </div> 
+<!--l. 136--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="iomap_dz.svg" /> </div>  <a 
+ id="x1-1034r6"></a>
 <a 
- id="x1-1034"></a>
-<br />   </p><div class="caption" 
-><span class="id">Figure 6:    </span><span  
-class="content">Input/output    map    of    a    dead-zone    quantizer    with
+ id="x1-1035"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;6:     </span><span  
+class="content">Input/output     map     of     a     dead-zone     quantizer     with
 <!--l. 137--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->Δ</mi> <mo 
-class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x1-1033r1 -->
+>&#x0394;</mi> <mo 
+class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x1-1034r1 -->
                                                                   
 
                                                                   
@@ -436,33 +440,33 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
                                                                   
 
                                                                   
-<a 
- id="x1-1035r7"></a>
                                                                   
 
                                                                   
-<!--l. 143--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="qe_dz.svg" /> </div> 
+<!--l. 143--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="qe_dz.svg" /> </div>  <a 
+ id="x1-1036r7"></a>
 <a 
- id="x1-1036"></a>
-<br />   </p><div class="caption" 
-><span class="id">Figure 7:    </span><span  
-class="content">Quantization    error    of    a    dead-zone    quantizer    with
+ id="x1-1037"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;7:     </span><span  
+class="content">Quantization     error     of     a     dead-zone     quantizer     with
 <!--l. 144--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->Δ</mi> <mo 
-class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x1-1035r1 -->
+>&#x0394;</mi> <mo 
+class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x1-1036r1 -->
                                                                   
 
                                                                   
    </div><hr class="endfigure" />
-<!--l. 148--><p class="indent" >   Figs. <a 
-href="#x1-1025r2">2<!--tex4ht:ref: fig:iomap_mr --></a>, <a 
-href="#x1-1027r3">3<!--tex4ht:ref: fig:qe_mr --></a>, <a 
-href="#x1-1029r4">4<!--tex4ht:ref: fig:iomap_mt --></a>, <a 
-href="#x1-1031r5">5<!--tex4ht:ref: fig:qe_mt --></a>, <a 
-href="#x1-1033r6">6<!--tex4ht:ref: fig:iomap_dz --></a>, and <a 
-href="#x1-1035r7">7<!--tex4ht:ref: fig:qe_dz --></a> describe the behaviour of 3 diﬀerent quantizers. Use this
+<!--l. 148--><p class="indent" >   Figs.&#x00A0;<a 
+href="#x1-1026r2">2<!--tex4ht:ref: fig:iomap_mr --></a>, <a 
+href="#x1-1028r3">3<!--tex4ht:ref: fig:qe_mr --></a>, <a 
+href="#x1-1030r4">4<!--tex4ht:ref: fig:iomap_mt --></a>, <a 
+href="#x1-1032r5">5<!--tex4ht:ref: fig:qe_mt --></a>, <a 
+href="#x1-1034r6">6<!--tex4ht:ref: fig:iomap_dz --></a>, and <a 
+href="#x1-1036r7">7<!--tex4ht:ref: fig:qe_dz --></a> describe the behaviour of 3 di&#xFB00;erent quantizers. Use this
 <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-quantization/digital_quantization.ipynb" >notebook</a> to gain more insights about quantization.
 </p>
@@ -479,36 +483,36 @@ href="https://docs.opencv.org/master/d4/da8/group__imgcodecs.html" >TIFF and JPE
      <li 
   class="enumerate" id="x1-2004x2">In the previous <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-quantization/performance.ipynb" >notebook</a> the three color channels, R, G, and B has been
-     quantized using the same quantization step (<!--l. 166--><math 
+     quantized using the same quantization step &#x0028;<!--l. 166--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
->Δ</mi></mrow><mrow 
+>&#x0394;</mi></mrow><mrow 
 ><mstyle 
 class="text"><mtext  >R</mtext></mstyle></mrow></msub 
 > <mo 
 class="MathClass-rel">=</mo> <msub><mrow 
 ><mi 
->Δ</mi></mrow><mrow 
+>&#x0394;</mi></mrow><mrow 
 ><mstyle 
 class="text"><mtext  >G</mtext></mstyle></mrow></msub 
 > <mo 
 class="MathClass-rel">=</mo> <msub><mrow 
 ><mi 
->Δ</mi></mrow><mrow 
+>&#x0394;</mi></mrow><mrow 
 ><mstyle 
 class="text"><mtext  >B</mtext></mstyle></mrow></msub 
-></math>).
+></math>&#x0029;.
      Do you think that this strategy minimizes the quantization error?
      </li>
      <li 
-  class="enumerate" id="x1-2006x3">Compare the estimation provided by the entropy with the DEFLATE’s
+  class="enumerate" id="x1-2006x3">Compare the estimation provided by the entropy with the DEFLATE&#x2019;s
      bit-rates.</li></ol>
 <!--l. 172--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-30003"></a>Timming</h3>
-<!--l. 174--><p class="noindent" >Please, ﬁnish this notebook before the next class session.
+<!--l. 174--><p class="noindent" >Please, &#xFB01;nish this notebook before the next class session.
 </p><!--l. 176--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
@@ -520,8 +524,8 @@ class="text"><mtext  >B</mtext></mstyle></mrow></msub
  id="x1-50005"></a>Resources</h3>
    <div class="thebibliography">
    <p class="bibitem" ><span class="biblabel">
- [1]<span class="bibsp">   </span></span><a 
- id="Xsayood2017introduction"></a>K. Sayood. <a 
+ &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xsayood2017introduction"></a>K.&#x00A0;Sayood. <a 
 href="http://rahilshaikh.weebly.com/uploads/1/1/6/3/11635894/data_compression.pdf" ><span 
 class="ecti-1000">Introduction to data compression</span></a>. Morgan Kaufmann, 2017.
                                                                   
@@ -529,8 +533,8 @@ class="ecti-1000">Introduction to data compression</span></a>. Morgan Kaufmann, 
                                                                   
    </p>
    <p class="bibitem" ><span class="biblabel">
- [2]<span class="bibsp">   </span></span><a 
- id="Xvetterli2014foundations"></a>M. Vetterli, J. Kovačević, and V.K. Goyal.  <a 
+ &#x005B;2&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xvetterli2014foundations"></a>M.&#x00A0;Vetterli, J.&#x00A0;Kova&#x010D;evi&#x0107;, and V.K. Goyal.  <a 
 href="http://www.fourierandwavelets.org/FSP_v1.1_2014.pdf" ><span 
 class="ecti-1000">Foundations of Signal</span>
    <span 
@@ -540,8 +544,8 @@ class="ecti-1000">Processing</span></a>. Cambridge University Press, 2014.
 <a 
  id="Q1-1-6"></a>
     
-</body> 
-</html>
+</body></html> 
+
                                                                   
 
 

@@ -250,11 +250,11 @@ the computation of the RD curve for each channel, which is a
 time-consuming operation. For this reason, and supposing that the
 statistics of each channel are similar, we can suppose that the length
 (the bit-rate) of each channel is proportional to the variance of the
-channel, which is proportional to the quantization step. Therefore, if
-all the channels have the same gain\footnote{The gain of a transform
-can be determined computing the squared norm of the columns of the
-analysis transform.}, a quantization strategy that should approximate
-Eq.~\ref{eq:optimal_quantization} is to use
+channel, which is inversely proportional to the quantization
+step. Therefore, if all the channels have the same gain\footnote{The
+gain of a transform can be determined computing the squared norm of
+the columns of the analysis transform.}, a quantization strategy that
+should approximate Eq.~\ref{eq:optimal_quantization} is to use
 \begin{equation}
   \Delta_{\text{Y}} = \Delta_{\text{Cr}} = \Delta_{\text{Cb}}.
   \label{eq:simple_Q}
