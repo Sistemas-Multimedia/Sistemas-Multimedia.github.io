@@ -155,12 +155,13 @@ behaviour of 3 different quantizers.  Use this
 to gain more insights about quantization.
 
 \subsection{Quantization in the RGB domain}
-A color RGB image is quantized chanel by channel, using QSs
-$\Delta_{\text{R}}$, $\Delta_{\text{G}}$, and $\Delta_{\text{B}}$. A
-reasonable question here is, how we should be chosen these parameters?
-At this point we can consider two different optimization
-perspectives. In the first one, we consider strictly visual
-considerations, and obviously, any alternative different from
+Supposing that we will use a static uniform dead-zone quantizer with
+quantization steps, a color RGB image is quantized chanel by channel,
+using QSs $\Delta_{\text{R}}$, $\Delta_{\text{G}}$, and
+$\Delta_{\text{B}}$. A reasonable question here is, how we should be
+chosen these parameters?  At this point we can consider two different
+optimization perspectives. In the first one, we consider strictly
+visual considerations, and obviously, any alternative different from
 \begin{equation}
   \Delta_{\text{R}} = \Delta_{\text{G}} = \Delta_{\text{B}}
   \label{eq:simple_Q}
@@ -168,20 +169,25 @@ considerations, and obviously, any alternative different from
 will produce some alteration in the color (sometimes called
 ``chroma'') of the reconstructed frame.
 
-In the second one, only the RD performance is considered. From a RD
-perspective, the best combination of QSs is those that minimizes the
-RD curve. Thus, the optimal QSs should operate in the curves with the
-same RD slope, which implies that the contribution of each channel
-(the ratio between quality and bit-rate) to the quality of $\tilde{x}$
-has been best
+In the second one, only the
+(\href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{RD
+  performance} is considered. From a RD perspective, the best
+combination of QSs is those that optimizes (makes it closer to the
+origin of coordinates) the RD curve. Thus, the optimal QSs should
+operate in the curves with the same RD slope,
+\begin{equation}
+  \lambda_{\text{R}} = \lambda_{\text{G}} = \lambda_{\text{B}},
+  \label{eq:optimal_quantization}
+\end{equation}
+for a given total bit-rate $R$, which implies that the contribution of each channel (the ratio between
+quality and bit-rate) to the quality of $\tilde{x}$ has been highest
 possible~\cite{vetterli1995wavelets,sayood2017introduction}.
 
 Unfortunately, the previous procedure implies the computation of the
 RD curve for each channel, which is a time-consuming operation. For
 this reason, and supposing that the statistics of each channel are
-similar, we can suppose that the length (the bit-rate) of each channel
-is proportional to the variance of the channel, which is inversely
-proportional to the QS, and therefore, Eq.~\ref{eq:simple_Q} holds.
+similar, we can suppose that Eq.~\ref{eq:simple_Q} satisfies
+Eq.~\ref{eq:optimal_quantization}.
 
 \section{What you have to do?}
 Please, create a jupyter notebook to test if Eq.~\ref{eq:simple_Q} is optimal.

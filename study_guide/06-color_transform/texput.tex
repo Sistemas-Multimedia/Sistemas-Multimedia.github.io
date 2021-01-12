@@ -239,22 +239,12 @@ $\Delta_{\text{Cr}}$, and $\Delta_{\text{Cb}}$ so that
   \lambda_{\text{Y}} = \lambda_{\text{Cr}} = \lambda_{\text{Cb}},
   \label{eq:optimal_quantization}
 \end{equation}
-where $\lambda_{\text{channel}}(R)$ is the slope, for a given bit-rate
-$R$,
-(\href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{Rate-Distortion})
-of the curve for the corresponding channel in the RD plane (see this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook})~\cite{vetterli1995wavelets,sayood2017introduction}.
-
-Unfortunately, the use of Eq.~\ref{eq:optimal_quantization} implies
-the computation of the RD curve for each channel, which is a
-time-consuming operation. For this reason, and supposing that the
-statistics of each channel are similar, we can suppose that the length
-(the bit-rate) of each channel is proportional to the variance of the
-channel, which is inversely proportional to the quantization
-step. Therefore, if all the channels have the same gain\footnote{The
-gain of a transform can be determined computing the squared norm of
-the columns of the analysis transform.}, a quantization strategy that
-should approximate Eq.~\ref{eq:optimal_quantization} is to use
+for a given total bit-rate $R$ (see this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook})~\cite{vetterli1995wavelets,sayood2017introduction}. Therefore,
+if all the channels have the same gain\footnote{The gain of a
+transform can be determined computing the squared norm of the columns
+of the analysis transform.}, a quantization strategy that should
+approximate Eq.~\ref{eq:optimal_quantization} is to use
 \begin{equation}
   \Delta_{\text{Y}} = \Delta_{\text{Cr}} = \Delta_{\text{Cb}}.
   \label{eq:simple_Q}
@@ -262,8 +252,8 @@ should approximate Eq.~\ref{eq:optimal_quantization} is to use
 When the gains are not the same, the quantization steps should be
 divided\footnote{The squared norms measure the contribution of each
 component to the energy of the pixel, and therefore, the higher the
-contribution, the lower the $\Delta$.} by the gains, that for the
-RGB/YCrCb transform are:
+contribution, the lower the $\Delta$.} by the channel gains, that for
+the RGB/YCrCb transform are:
 \begin{equation*}
   \begin{array}{rl}
     \text{Y}: & 1^2 + 1^2 + 1^2 = 3\\
