@@ -185,9 +185,17 @@ for different QSs, the distortion of reconstructing only the red
 channel as a function of the bit-rate generated for the corresponding
 QS.
 
-Normal RD curves are convex, which means that if $\lambda_i$ is the
-slope of the curve measured at the $i$-th point of the curve (starting
-at the lowest bit-rate), it always hold that
+\begin{figure}
+  \centering
+  \myfig{graphics/RD_slopes}{3cm}{300}
+  \caption{Two RD curves with different shape.}
+  \label{fig:RD_slopes}
+\end{figure}
+
+Normal RD curves are convex (see Fig.~\ref{fig:RD_slopes}), which
+means that if $\lambda_i$ is the slope of the curve measured at the
+$i$-th point of the curve (starting at the lowest bit-rate), it always
+hold that
 \begin{equation}
   \lambda_i > \lambda_{i+1}.
 \end{equation}
@@ -198,7 +206,8 @@ contribution to the quality of each channel are additive, that is
 \begin{equation}
   D = D_{\text{R}} + D_{\text{G}} + D_{\text{B}},
 \end{equation}
-then the optimal QSs must satisfy that~\cite{vetterli1995wavelets,sayood2017introduction}
+where $D$ denotes distortion, then the optimal QSs must satisfy
+that~\cite{vetterli1995wavelets,sayood2017introduction}
 \begin{equation}
   \lambda_{\text{R}} = \lambda_{\text{G}} = \lambda_{\text{B}}.
   \label{eq:optimal_quantization}
@@ -206,13 +215,11 @@ then the optimal QSs must satisfy that~\cite{vetterli1995wavelets,sayood2017intr
 
 To see this, lets suppose that we have used, for example, a set of QSs
 so that
-\begin{equation*}
-  \lambda_{\text{R}} = 2\lambda_{\text{G}} = 2\lambda_{\text{B}},
-\end{equation*}
-and that we still have room for spending more bits encoding the
-frame. In this situation, the maximum benefit would be obtained if we
-decrease $\Delta_{\text{R}}$ because the sloper is double the slope of
-the other curves. Therefore, the optimal QSs are obtained when
+$\lambda_{\text{R}} = 2\lambda_{\text{G}} = 2\lambda_{\text{B}},$ and
+that we still have room for spending more bits encoding the frame. In
+this situation, the maximum benefit would be obtained if and only if
+we decrease $\Delta_{\text{R}}$ because the sloper is double the slope
+of the other curves. Therefore, the optimal QSs are obtained when
 Eq.~\ref{eq:optimal_quantization} is true.
 
 \begin{comment}
@@ -235,9 +242,10 @@ with the same slopes for the same QSs, we can suppose that
 Eq.~\ref{eq:simple_Q} satisfies Eq.~\ref{eq:optimal_quantization}.
 
 \section{What you have to do?}
-Please, create a jupyter notebook to test if Eq.~\ref{eq:simple_Q} is
-not optimal (at least there is a different configuration of QSs better
-that this equation).
+Please, improve this jupyter
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-quantization/performance.ipynb}{notebook}
+to test if Eq.~\ref{eq:simple_Q} is not optimal (at least there is a
+different configuration of QSs better that this equation).
 %\begin{enumerate}
 %\item Please, modify this
 %  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-quantization/performance.ipynb}{notebook}

@@ -553,8 +553,30 @@ curves, one for each channel. Thus, for example, the RD curve for the red
 channel measures, for di&#xFB00;erent QSs, the distortion of reconstructing only the
 red channel as a function of the bit-rate generated for the corresponding
 QS.
-</p><!--l. 188--><p class="indent" >   Normal RD curves are convex, which means that if
-<!--l. 188--><math 
+</p>
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!--l. 190--><p class="noindent" ><div style="text-align:center;"> <img width=300 src="graphics/RD_slopes.svg" /> </div>  <a 
+ id="x1-2002r8"></a>
+<a 
+ id="x1-2003"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;8: </span><span  
+class="content">Two RD curves with di&#xFB00;erent shape.                           </span></div><!--tex4ht:label?: x1-2002r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+<!--l. 195--><p class="indent" >   Normal RD curves are convex &#x0028;see Fig.&#x00A0;<a 
+href="#x1-2002r8">8<!--tex4ht:ref: fig:RD_slopes --></a>&#x0029;, which means that if
+<!--l. 196--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -562,16 +584,13 @@ display="inline" ><msub><mrow
 ><mi 
 >i</mi></mrow></msub 
 ></math> is the slope of the curve
-measured at the <!--l. 189--><math 
+measured at the <!--l. 197--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >i</mi></math>-th
 point of the curve &#x0028;starting at the lowest bit-rate&#x0029;, it always hold that </p><table class="equation"><tr><td> <a 
- id="x1-2002r3"></a>
-                                                                  
-
-                                                                  
-<!--l. 191--><math 
+ id="x1-2004r3"></a>
+<!--l. 199--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                              <msub><mrow 
@@ -589,7 +608,7 @@ class="MathClass-bin">+</mo><mn>1</mn></mrow></msub
 ><mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;3&#x0029;</td></tr></table>
-<!--l. 194--><p class="indent" >   <!--l. 194--><math 
+<!--l. 202--><p class="indent" >   <!--l. 202--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x03BB;</mi></math>
@@ -597,8 +616,8 @@ quanti&#xFB01;es the trade-o&#xFB00; between decreasing the distortion &#x0028;t
 negative&#x0029; while the bit-rate increases &#x0028;the higher the slope, the high the bene&#xFB01;t&#x0029;. If
 we suppose now that the contribution to the quality of each channel are additive,
 that is </p><table class="equation"><tr><td> <a 
- id="x1-2003r4"></a>
-<!--l. 198--><math 
+ id="x1-2005r4"></a>
+<!--l. 206--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                        <mi 
@@ -623,11 +642,18 @@ class="text"><mtext  >B</mtext></mstyle></mrow></msub
 ><mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;4&#x0029;</td></tr></table>
-<!--l. 201--><p class="indent" >   then the optimal QSs must satisfy that&#x00A0;<span class="cite">&#x005B;<a 
+<!--l. 209--><p class="indent" >   where <!--l. 209--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>D</mi></math>
+denotes distortion, then the optimal QSs must satisfy that&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xvetterli1995wavelets">2</a>,&#x00A0;<a 
 href="#Xsayood2017introduction">1</a>&#x005D;</span> </p><table class="equation"><tr><td> <a 
- id="x1-2004r5"></a>
-<!--l. 202--><math 
+ id="x1-2006r5"></a>
+                                                                  
+
+                                                                  
+<!--l. 211--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                           <msub><mrow 
@@ -650,15 +676,10 @@ class="text"><mtext  >B</mtext></mstyle></mrow></msub
 ><mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;5&#x0029;</td></tr></table>
-<!--l. 207--><p class="indent" >   To see this, lets suppose that we have used, for example, a set of QSs so that
-</p><table class="equation-star"><tr><td>
-                                                                  
-
-                                                                  
-<!--l. 209--><math 
+<!--l. 216--><p class="indent" >   To see this, lets suppose that we have used, for example, a set of QSs so that
+<!--l. 218--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="block" class="equation">
-                         <msub><mrow 
+display="inline" ><msub><mrow 
 ><mi 
 >&#x03BB;</mi></mrow><mrow 
 ><mstyle 
@@ -676,11 +697,10 @@ class="MathClass-rel">=</mo> <mn>2</mn><msub><mrow
 ><mstyle 
 class="text"><mtext  >B</mtext></mstyle></mrow></msub 
 ><mo 
-class="MathClass-punc">,</mo>
-</math></td></tr></table>
-<!--l. 212--><p class="indent" >   and that we still have room for spending more bits encoding the frame.
-In this situation, the maximum bene&#xFB01;t would be obtained if we decrease
-<!--l. 214--><math 
+class="MathClass-punc">,</mo></math> and
+that we still have room for spending more bits encoding the frame. In this
+situation, the maximum bene&#xFB01;t would be obtained if and only if we decrease
+<!--l. 221--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -690,38 +710,38 @@ class="text"><mtext  >R</mtext></mstyle></mrow></msub
 ></math>
 because the sloper is double the slope of the other curves. Therefore, the optimal QSs
 are obtained when Eq.&#x00A0;<a 
-href="#x1-2004r5">5<!--tex4ht:ref: eq:optimal_quantization --></a> is true.
-</p><!--l. 230--><p class="indent" >   Unfortunately, the previous procedure implies the computation of the RD curve
+href="#x1-2006r5">5<!--tex4ht:ref: eq:optimal_quantization --></a> is true.
+</p><!--l. 237--><p class="indent" >   Unfortunately, the previous procedure implies the computation of the RD curve
 for each channel, which is a time-consuming operation. For this reason, and
 supposing that the statistics of each channel are similar and therefore, each channel is
 going to generate a RD curve with the same slopes for the same QSs, we can suppose
 that Eq.&#x00A0;<a 
 href="#x1-2001r2">2<!--tex4ht:ref: eq:simple_Q --></a> satis&#xFB01;es Eq.&#x00A0;<a 
-href="#x1-2004r5">5<!--tex4ht:ref: eq:optimal_quantization --></a>.
-</p><!--l. 237--><p class="noindent" >
+href="#x1-2006r5">5<!--tex4ht:ref: eq:optimal_quantization --></a>.
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-30002"></a>What you have to do?</h3>
-<!--l. 238--><p class="noindent" >Please, create a jupyter notebook to test if Eq.&#x00A0;<a 
-href="#x1-2001r2">2<!--tex4ht:ref: eq:simple_Q --></a> is not optimal &#x0028;at least there is a
-di&#xFB00;erent con&#xFB01;guration of QSs better that this equation&#x0029;.
-</p><!--l. 258--><p class="noindent" >
+<!--l. 245--><p class="noindent" >Please, improve this jupyter <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-quantization/performance.ipynb" >notebook</a> to test if Eq.&#x00A0;<a 
+href="#x1-2001r2">2<!--tex4ht:ref: eq:simple_Q --></a> is not optimal &#x0028;at least there is
+a di&#xFB00;erent con&#xFB01;guration of QSs better that this equation&#x0029;.
+</p><!--l. 266--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-40003"></a>Timming</h3>
-<!--l. 260--><p class="noindent" >Please, &#xFB01;nish this notebook before the next class session.
-</p><!--l. 262--><p class="noindent" >
+<!--l. 268--><p class="noindent" >Please, &#xFB01;nish this notebook before the next class session.
+</p><!--l. 270--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-50004"></a>Deliverables</h3>
-<!--l. 264--><p class="noindent" >None.
-                                                                  
-
-                                                                  
-</p><!--l. 266--><p class="noindent" >
+<!--l. 272--><p class="noindent" >None.
+</p><!--l. 274--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-60005"></a>Resources</h3>
+                                                                  
+
+                                                                  
    <div class="thebibliography">
    <p class="bibitem" ><span class="biblabel">
  &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
