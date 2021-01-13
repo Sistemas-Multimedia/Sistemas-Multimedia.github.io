@@ -119,8 +119,9 @@ can conclude that:
     be found in both subbands ($l$ and $h$). Therefore, the
     concentration of the energy in one of the subbands is
     smaller.  \item At it can be seen also in
-    Eq.~\ref{eq:Haar_transform}, the subbands are downsampled by 2 and
-    both subbands should have, at most, a
+    Eq.~\ref{eq:Haar_transform}, the subbands are downsampled by 2
+    (action usually represented by $\downarrow 2$) and both subbands
+    should have, at most, a
     \href{https://en.wikipedia.org/wiki/Bandwidth_(signal_processing)}{bandwidth}
     of $\frac{1}{2}$
     \href{https://en.wikipedia.org/wiki/Radian}{radians}/\href{https://en.wikipedia.org/wiki/Sampling_(signal_processing)}{sample}
@@ -129,8 +130,8 @@ can conclude that:
     thus increasing the
     \href{https://en.wikipedia.org/wiki/Perception}{perceptible}
     \href{https://en.wikipedia.org/wiki/Signal-to-noise_ratio}{quality}
-    of the low-pass subband $l$.  \end{enumerate} These problems can be
-  only solved using filters that have
+    of the low-pass subband $l$.  \end{enumerate} These problems can
+  be only solved using filters that have
   \href{https://en.wikipedia.org/wiki/Transfer_function}{transfer
     functions} that overlaps a smaller area (see
   Figs.~\ref{fig:db5_modulus} and \ref{fig:bior3.5_modulus}).
@@ -197,25 +198,34 @@ In the decomposition described in Eq.~\ref{eq:S_levels_DWT} there are
 $S+1$ subbands, and therefore, it is possible to compute $S+1$
 resolution levels of the analyzed signal $l^0$:
 \begin{itemize}
-\item The resolution level $S$ of $l^0$ (no $\text{DWT}^{-1}$ has been
-  applied) $l^S$, with have only one sample $l^S_0$ that uses to be the
+\item  $l^S$: the resolution level $S$ of $l^0$ (no $\text{DWT}^{-1}$ has been
+  applied), with have only one sample $l^S_0$ that uses to be the
   \href{https://en.wikipedia.org/wiki/Arithmetic_mean}{arithmetic
     mean} of $l^0$. The coefficient $l^S_0$
   is also called the \href{https://en.wikipedia.org/wiki/DC_bias}{DC
     (Direct Current) coefficient}. On the contrary, the rest of
   coefficents (high-frequency subbands) are called the AC (Alternating
   Current) coefficients.
-\item The resolution level $S-1$ of $l^0$,
-  $l^{S-1}=\text{DWT}^{-1}(\{l^S, h^S\})$, with two samples.
-\item The resolution level $S-1$ of $l^0$,
-  $l^{S-2}=\text{DWT}^{-1}(\{l^{S-1}, h^{S-1}\})$, with four samples.
+\item $l^{S-1}=\text{DWT}^{-1}(\{l^S, h^S\})$, the resolution level $S-1$ of $l^0$,
+  with two samples.
+\item $l^{S-2}=\text{DWT}^{-1}(\{l^{S-1}, h^{S-1}\})$, the resolution
+  level $S-1$ of $l^0$, with four samples.
 \item $\vdots$
 \item The resolution level $0$, $l^0=\text{DWT}^{-1}(\{l^1, h^1\})$.
 \end{itemize}  
 
 \subsection{Orthogonal and biorthogonal DWT}
+
+\begin{figure}
+  \centering
+  \myfig{graphics/PRFB}{5cm}{500}
+  \caption{A 2-channels PRFB (Perfect Reconstruction Filter Bank).}
+  \label{fig:PRFB}
+\end{figure}
+
 All DWTs are defined by 4 filters (using a similar notation that the
-followed by \href{https://pywavelets.readthedocs.io}{PyWavelets}):
+followed by \href{https://pywavelets.readthedocs.io}{PyWavelets}) (see
+Fig.~\ref{fig:PRFB}):
 \begin{enumerate}
 \item Analysis (downsampling) low-pass filter $\tilde\phi$ (the decomposition
   scaling function), which computes $l^{s+1}$ from $l^s$.
@@ -265,12 +275,17 @@ On the other hand, in a biorthogonal DWT:
 \section{What you have to do?}
 
 Please, using
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb}{this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/07-DWT/dwt_filters_analysis.ipynb}{this
   notebook}, determine the frequency and phase responses of the
 \href{http://wavelets.pybytes.com/wavelet/db20/}{Daubechies 20} and
 \href{http://wavelets.pybytes.com/wavelet/bior6.8/}{Biorthogonal 6.8}
-filters.
-      
+filters. Determine also their relative gains, using the energy of the
+signal resulting of applying the synthesis transform to the impulse
+signal. The energy of a signal $x$ is found by
+\begin{equation}
+  \langle x, x\rangle =  \sum_{i}{x_i^2}.
+\end{equation}
+
 \section{Timming}
 
 Please, finish this notebook before the next class session.

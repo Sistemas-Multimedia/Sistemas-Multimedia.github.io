@@ -14,17 +14,18 @@ signals. The 2D-DWT of an image can be computed using (1)
 filters, and (2)
 \href{https://en.wikipedia.org/wiki/Non-separable_wavelet}{nonseparable}
 2D filters.~\cite{sayood2017introduction} Except in very special
-cases, all 2D-DWT implementations use separable filters.
+cases, all 2D-DWT implementations use separable filters by simplicity.
 
 Separability in the DWT context means that we can compute the 1-levels
-2D-DWT using the 1D filters, simply applying them to each dimension,
-and using
+2D-DWT using the 1D filters, by applying them to each dimension, and
+using
 \href{https://en.wikipedia.org/wiki/In-place_algorithm}{in-place}
 operations. This procedure has been described in the
 Algorithms~\ref{alg:Rows-DWT}, \ref{alg:Columns-DWT} and
 \ref{alg:2D-DWT}, where $X_{r,*}$ refers to the $r$-th row of the
 matrix $X$ and $X_{*,c}$ to the $c$-th column, being $R$ and $C$ the
-number of rows and columns of the image $X$.
+number of rows and columns of the input image $X$. See also the
+Fig.~\ref{fig:2D-DWT}.
 
 \begin{pseudocode}{\text{Rows-DWT}}{X}
   \label{alg:Rows-DWT}
@@ -87,7 +88,7 @@ As it can be seen in the Fig~\ref{fig:2D-DWT}, the obtained 2D decomposition is 
 where $L$ stands for low-pass filtering and $H$ for high-pass
 filtering. Notice that $\text{LL}=\text{LL}^1$,
 $\text{LH}=\text{LH}^1$, $\text{HL}=\text{HL}^1$, and
-$\text{HH}=\text{HH}^1$,
+$\text{HH}=\text{HH}^1$.
 
 Eq.~\ref{eq:2D-DWT} describes the $1$-levels (analysis)
 2D-DWT. Replacing $\text{LL}=L^{s+1}$, $X=L^s$, and
@@ -97,11 +98,9 @@ can be computed applying $S$-times
 \begin{equation}
   \{L^{s+1}, H^{s+1}\} = \text{2D-DWT}(L^s)
 \end{equation}
-to the low-frequency subband $L^s$, generating the 2D decomposition
-described in the 
-
-As an example, the Fig.~\ref{fig:lena_2D-DWT} shows the $3$-levels
-2D-DWT of the lena image (see this notebook).
+to the low-frequency subband $L^s$. As an example, the
+Fig.~\ref{fig:lena_2D-DWT} shows the $3$-levels 2D-DWT of the image
+lena.
 
 \begin{figure}
   \centering
@@ -125,12 +124,13 @@ resolutions. In the Subfig.~\ref{fig:lena_2D-DWT} there are 4
 resolutions.
 
 \subsection{Quantization}
-The quantization step (see the previous milestone) should be inversely
-proportional to the L$_2$ synthesis gain of the subbands\footnote{The
-higher the gain, the lower the quantization step, the lower the
-quantization noise introduced in the subband, the higher the
-contribution of the subband to the reconstruction or the
-image.}~\cite{marcellin2002overview}. Most of the DWT's used in image
+The QS (see the previous milestones) should be inversely
+proportional to the L$_2$ synthesis gain of the subbands\footnote{If a
+  subband has a high gain, this means that its contribution to the
+  reconstruction of the signal is going to be high, also. Therefore,
+  it's desirable to introduce a small quantization error in this
+  subband, reducing the quantization
+  step.}~\cite{marcellin2002overview}. Most of the DWT's used in image
 coding are orthogonal or biorthogonal. In orthogonal transform, all
 the subbands have the same gain, but this is not true for biorthogonal
 DWTs.
@@ -162,11 +162,10 @@ use a quantization step inversely proportional to the subband gains.
 \section{What you have to do?}
 
 \begin{enumerate}
-\item Please, using this
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/07-DWT/performance.ipynb}{notebook},
-  compare the RD performance of using the DWT over the RGB and YCrCb
-  domains with the performance of using the DWT over the YCoCg domain.
-\item Redo the experiments using a biorthogonal DWT.
+\item Please, redo the experiments of this
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/07-DWT/performance.ipynb}{notebook}
+  using a biorthogonal DWT.
+\item Compare also the RD performance of using the DWT directly over an RGB image.
 \end{enumerate}
 
 \section{Timming}
@@ -179,4 +178,4 @@ None.
 
 \section{Resources}
 
-\bibliography{data-compression}
+\bibliography{data-compression,JPEG2000}
