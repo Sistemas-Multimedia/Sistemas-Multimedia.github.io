@@ -38,7 +38,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">January 12, 2021</span></div>
+class="ecrm-1200">January 13, 2021</span></div>
    </div>
    <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
  id="x1-10001"></a>Description</h3>
@@ -55,7 +55,7 @@ href="https://en.wikipedia.org/wiki/Data_compression_ratio" >compression
 ratios</a> usually at least one order of magnitude higher than using <a 
 href="https://en.wikipedia.org/wiki/Lossless_compression" >lossless
 coding</a>.
-</p><!--l. 20--><p class="indent" >   In this milestone we are quantize a frame in the <a 
+</p><!--l. 20--><p class="indent" >   In this milestone we will quantize a frame in the <a 
 href="https://en.wikipedia.org/wiki/RGB_color_model" >RGB color domain</a>. A <a 
 href="https://en.wikipedia.org/wiki/Quantization_(signal_processing)" ><span 
 class="ecbx-1000">quantizer</span></a> &#x0028;typically
@@ -68,15 +68,23 @@ href="https://en.wikipedia.org/wiki/Data_compression" >encoding system</a> that 
 <!--l. 26--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->x</mi></math> and output a sequence
+>x</mi> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-open">&#x007B;</mo><msub><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x007D;</mo></math> and outputs a sequence
 of quantization indexes <!--l. 27--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >k</mi></math>
 &#x0028;see the Fig.&#x00A0;<a 
 href="#x1-1003r1">1<!--tex4ht:ref: fig:Q --></a>&#x0029;. The inverse system, called a <span 
-class="ecbx-1000">dequantizer </span>&#x0028;and denoted by
-<!--l. 28--><math 
+class="ecbx-1000">dequantizer </span>&#x0028;denoted by
+<!--l. 29--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mi 
@@ -88,7 +96,7 @@ approximate version of <!--l. 29--><math
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >x</mi></math>
-that we will denote as <!--l. 30--><math 
+that we will denote by <!--l. 30--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover 
 accent="true"><mrow 
@@ -213,23 +221,23 @@ class="ecbx-1000">Non-unifom quantizers</span>, on the contrary, when <!--l. 71-
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x0394;</mi></math>
-     depends &#x0028;directly or indirectly&#x0029; on the amplitude of the samples.</li></ol>
-<!--l. 75--><p class="indent" >   Non-uniform quantizers can be:
+     depends  &#x0028;directly  or  indirectly&#x0029;  on  the  amplitude  of  the  samples.  An
+     example is a <a 
+href="https://en.wikipedia.org/wiki/Companding" >companded quantizer</a>.</li></ol>
+<!--l. 78--><p class="indent" >   Non-uniform quantizers can be:
      </p><ol  class="enumerate1" >
      <li 
   class="enumerate" id="x1-1014x1"><span 
-class="ecbx-1000">Static quantizers</span>: if <!--l. 77--><math 
+class="ecbx-1000">Static quantizers</span>: if <!--l. 80--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x0394;</mi></math>
-     depends on the amplitude of the samples &#x0028;as happens, for example, in
-     <a 
-href="https://en.wikipedia.org/wiki/Companding" >companded quantizers</a>&#x0029;, but this dependency is known <span 
-class="ecti-1000">a-priori</span>.
+     is known <span 
+class="ecti-1000">a priori</span>.
      </li>
      <li 
   class="enumerate" id="x1-1016x2"><span 
-class="ecbx-1000">Adaptive quantizers</span>: when <!--l. 81--><math 
+class="ecbx-1000">Adaptive quantizers</span>: when <!--l. 82--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x0394;</mi></math>
@@ -238,11 +246,11 @@ display="inline" ><mi
 href="index3.html#fn2x0"><sup class="textsuperscript">2</sup></a></span><a 
  id="x1-1017f2"></a> 
      of the signal.</li></ol>
-<!--l. 88--><p class="indent" >   All quantizers can be classi&#xFB01;ed into:
+<!--l. 89--><p class="indent" >   All quantizers can be classi&#xFB01;ed into:
      </p><ol  class="enumerate1" >
      <li 
   class="enumerate" id="x1-1019x1"><span 
-class="ecbx-1000">Mid-tread quantizers</span>, if <!--l. 90--><math 
+class="ecbx-1000">Mid-tread quantizers</span>, if <!--l. 91--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mover 
@@ -252,7 +260,7 @@ accent="true"><mrow
 ><mi 
 >i</mi></mrow></msub 
 ></math>
-     can be <!--l. 90--><math 
+     can be <!--l. 91--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>0</mn></math>.
                                                                   
@@ -261,7 +269,7 @@ display="inline" ><mn>0</mn></math>.
      </li>
      <li 
   class="enumerate" id="x1-1021x2"><span 
-class="ecbx-1000">Mid-rised quantizers</span>, if <!--l. 91--><math 
+class="ecbx-1000">Mid-rised quantizers</span>, if <!--l. 92--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mover 
@@ -271,10 +279,10 @@ accent="true"><mrow
 ><mi 
 >i</mi></mrow></msub 
 ></math>
-     never is <!--l. 91--><math 
+     never is <!--l. 92--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>0</mn></math>,
-     even if <!--l. 92--><math 
+     even if <!--l. 93--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -283,15 +291,15 @@ display="inline" ><msub><mrow
 >i</mi></mrow></msub 
 > <mo 
 class="MathClass-rel">=</mo> <mn>0</mn></math>.</li></ol>
-<!--l. 95--><p class="indent" >   Finally, quantizers can be classi&#xFB01;ed as:
+<!--l. 96--><p class="indent" >   Finally, quantizers can be classi&#xFB01;ed as:
      </p><ol  class="enumerate1" >
      <li 
   class="enumerate" id="x1-1023x1"><span 
-class="ecbx-1000">Dead-zone quantizers</span>, that are characterized by a QS of length <!--l. 98--><math 
+class="ecbx-1000">Dead-zone quantizers</span>, that are characterized by a QS of length <!--l. 99--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>2</mn><mi 
 >&#x0394;</mi></math>
-     for <!--l. 98--><math 
+     for <!--l. 99--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -302,7 +310,7 @@ display="inline" ><msub><mrow
 class="MathClass-rel">=</mo> <mn>0</mn></math>.
      Deadzone quantizers tends to remove the <a 
 href="https://en.wikipedia.org/wiki/Noise_(electronics)" >electronic noise</a> &#x0028;that usually has
-     an small amplitude compared to the input signal <!--l. 102--><math 
+     an small amplitude compared to the input signal <!--l. 103--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >x</mi></math>&#x0029;.
@@ -320,7 +328,7 @@ class="ecbx-1000">No dead-zone quantizers</span>, when the dead-zone does not ex
                                                                   
 
                                                                   
-<!--l. 111--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="iomap_mr.svg" /> </div>  <a 
+<!--l. 112--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="iomap_mr.svg" /> </div>  <a 
  id="x1-1026r2"></a>
 <a 
  id="x1-1027"></a>
@@ -328,7 +336,7 @@ class="ecbx-1000">No dead-zone quantizers</span>, when the dead-zone does not ex
 ><span class="id">
 Figure&#x00A0;2:     </span><span  
 class="content">Input/output     map     of     a     mid-riser     quantizer     with
-<!--l. 112--><math 
+<!--l. 113--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x0394;</mi> <mo 
@@ -345,7 +353,7 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
                                                                   
 
                                                                   
-<!--l. 118--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="qe_mr.svg" /> </div>  <a 
+<!--l. 119--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="qe_mr.svg" /> </div>  <a 
  id="x1-1028r3"></a>
 <a 
  id="x1-1029"></a>
@@ -353,7 +361,7 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
 ><span class="id">
 Figure&#x00A0;3:     </span><span  
 class="content">Quantization     error     of     a     mid-riser     quantizer     with
-<!--l. 119--><math 
+<!--l. 120--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x0394;</mi> <mo 
@@ -370,7 +378,7 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
                                                                   
 
                                                                   
-<!--l. 125--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="iomap_mt.svg" /> </div>  <a 
+<!--l. 126--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="iomap_mt.svg" /> </div>  <a 
  id="x1-1030r4"></a>
 <a 
  id="x1-1031"></a>
@@ -378,7 +386,7 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
 ><span class="id">
 Figure&#x00A0;4:     </span><span  
 class="content">Input/output     map     of     a     mid-tread     quantizer     with
-<!--l. 126--><math 
+<!--l. 127--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x0394;</mi> <mo 
@@ -395,7 +403,7 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
                                                                   
 
                                                                   
-<!--l. 132--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="qe_mt.svg" /> </div>  <a 
+<!--l. 133--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="qe_mt.svg" /> </div>  <a 
  id="x1-1032r5"></a>
 <a 
  id="x1-1033"></a>
@@ -403,7 +411,7 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
 ><span class="id">
 Figure&#x00A0;5:     </span><span  
 class="content">Quantization     error     of     a     mid-tread     quantizer     with
-<!--l. 133--><math 
+<!--l. 134--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x0394;</mi> <mo 
@@ -420,7 +428,7 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
                                                                   
 
                                                                   
-<!--l. 139--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="iomap_dz.svg" /> </div>  <a 
+<!--l. 140--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="iomap_dz.svg" /> </div>  <a 
  id="x1-1034r6"></a>
 <a 
  id="x1-1035"></a>
@@ -428,7 +436,7 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
 ><span class="id">
 Figure&#x00A0;6:     </span><span  
 class="content">Input/output     map     of     a     dead-zone     quantizer     with
-<!--l. 140--><math 
+<!--l. 141--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x0394;</mi> <mo 
@@ -445,7 +453,7 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
                                                                   
 
                                                                   
-<!--l. 146--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="qe_dz.svg" /> </div>  <a 
+<!--l. 147--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="qe_dz.svg" /> </div>  <a 
  id="x1-1036r7"></a>
 <a 
  id="x1-1037"></a>
@@ -453,7 +461,7 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
 ><span class="id">
 Figure&#x00A0;7:     </span><span  
 class="content">Quantization     error     of     a     dead-zone     quantizer     with
-<!--l. 147--><math 
+<!--l. 148--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x0394;</mi> <mo 
@@ -462,7 +470,7 @@ class="MathClass-rel">=</mo> <mn>2</mn></math>.</span></div><!--tex4ht:label?: x
 
                                                                   
    </div><hr class="endfigure" />
-<!--l. 151--><p class="indent" >   Figs.&#x00A0;<a 
+<!--l. 152--><p class="indent" >   Figs.&#x00A0;<a 
 href="#x1-1026r2">2<!--tex4ht:ref: fig:iomap_mr --></a>, <a 
 href="#x1-1028r3">3<!--tex4ht:ref: fig:qe_mr --></a>, <a 
 href="#x1-1030r4">4<!--tex4ht:ref: fig:iomap_mt --></a>, <a 
@@ -474,9 +482,9 @@ href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
  id="x1-20001.1"></a>Quantization in the RGB domain</h4>
-<!--l. 158--><p class="noindent" >Supposing that we will use a static uniform dead-zone quantizer with quantization
-steps, a color RGB image is quantized chanel by channel, using QSs
-<!--l. 160--><math 
+<!--l. 159--><p class="noindent" >Supposing that we will use a static uniform dead-zone quantizer, a
+color RGB image can be quantized chanel by channel, using QSs
+<!--l. 161--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -484,7 +492,7 @@ display="inline" ><msub><mrow
 ><mstyle 
 class="text"><mtext  >R</mtext></mstyle></mrow></msub 
 ></math>,
-<!--l. 160--><math 
+<!--l. 161--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -499,13 +507,18 @@ display="inline" ><msub><mrow
 >&#x0394;</mi></mrow><mrow 
 ><mstyle 
 class="text"><mtext  >B</mtext></mstyle></mrow></msub 
-></math>. A
-reasonable question here is, how we should be chosen these parameters? At this point
-we can consider two di&#xFB00;erent optimization perspectives. In the &#xFB01;rst one, we consider
-strictly visual considerations, and obviously, any alternative di&#xFB00;erent from </p><table class="equation"><tr><td>
+></math>.
+A reasonable question that arises here is: given a target bit-rate
+<!--l. 162--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>R</mi></math> for
+the compressed frame, how the QSs should be chosen to minimize the distortion? At
+this point we can consider two di&#xFB00;erent optimization perspectives. In the &#xFB01;rst one, we
+consider strictly visual considerations, and obviously, any alternative di&#xFB00;erent from </p><table class="equation"><tr><td>
 <a 
  id="x1-2001r2"></a>
-<!--l. 165--><math 
+<!--l. 167--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                           <msub><mrow 
@@ -527,15 +540,94 @@ class="MathClass-rel">=</mo> <msub><mrow
 class="text"><mtext  >B</mtext></mstyle></mrow></msub 
 >
 </math></td><td class="eq-no">&#x0028;2&#x0029;</td></tr></table>
-<!--l. 169--><p class="indent" >   will produce some alteration in the color &#x0028;sometimes called &#x201C;chroma&#x201D;&#x0029; of the
+<!--l. 171--><p class="indent" >   will produce some alteration in the color &#x0028;also called the &#x201C;chroma&#x201D;&#x0029; of the
 reconstructed frame.
-</p><!--l. 172--><p class="indent" >   In the second one, only the <a 
-href="https://en.wikipedia.org/wiki/Rate-distortion_theory" >RD performance</a> is considered. From a RD
-perspective, the best combination of QSs is those that optimizes &#x0028;makes it closer to
-the origin of coordinates&#x0029; the RD curve. Thus, the optimal QSs should operate in the
-curves with the same RD slope, </p><table class="equation"><tr><td> <a 
+</p><!--l. 174--><p class="indent" >   In the second one, only a pure <a 
+href="https://en.wikipedia.org/wiki/Rate-distortion_theory" >Rate/Distortion &#x0028;RD&#x0029; performance</a> is
+considered. From a RD perspective, the best combination of QSs is those that
+optimizes &#x0028;makes closer to the origin of coordinates&#x0029; the RD curve. A RD curve
+expresses the distortion &#x0028;typically the <a 
+href="https://en.wikipedia.org/wiki/Root-mean-square_deviation" >Root Mean Square Error &#x0028;RMSE&#x0029;</a>&#x0029; as a
+function of the bit-rate. In the case of encoding a RGB image, we have 3 RD
+curves, one for each channel. Thus, for example, the RD curve for the red
+channel measures, for di&#xFB00;erent QSs, the distortion of reconstructing only the
+red channel as a function of the bit-rate generated for the corresponding
+QS.
+</p><!--l. 188--><p class="indent" >   Normal RD curves are convex, which means that if
+<!--l. 188--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+></math> is the slope of the curve
+measured at the <!--l. 189--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>i</mi></math>-th
+point of the curve &#x0028;starting at the lowest bit-rate&#x0029;, it always hold that </p><table class="equation"><tr><td> <a 
  id="x1-2002r3"></a>
-<!--l. 178--><math 
+                                                                  
+
+                                                                  
+<!--l. 191--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                             <msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">&#x003E;</mo> <msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo>
+</math></td><td class="eq-no">&#x0028;3&#x0029;</td></tr></table>
+<!--l. 194--><p class="indent" >   <!--l. 194--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03BB;</mi></math>
+quanti&#xFB01;es the trade-o&#xFB00; between decreasing the distortion &#x0028;the slopes are always
+negative&#x0029; while the bit-rate increases &#x0028;the higher the slope, the high the bene&#xFB01;t&#x0029;. If
+we suppose now that the contribution to the quality of each channel are additive,
+that is </p><table class="equation"><tr><td> <a 
+ id="x1-2003r4"></a>
+<!--l. 198--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                       <mi 
+>D</mi> <mo 
+class="MathClass-rel">=</mo> <msub><mrow 
+><mi 
+>D</mi></mrow><mrow 
+><mstyle 
+class="text"><mtext  >R</mtext></mstyle></mrow></msub 
+> <mo 
+class="MathClass-bin">+</mo> <msub><mrow 
+><mi 
+>D</mi></mrow><mrow 
+><mstyle 
+class="text"><mtext  >G</mtext></mstyle></mrow></msub 
+> <mo 
+class="MathClass-bin">+</mo> <msub><mrow 
+><mi 
+>D</mi></mrow><mrow 
+><mstyle 
+class="text"><mtext  >B</mtext></mstyle></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo>
+</math></td><td class="eq-no">&#x0028;4&#x0029;</td></tr></table>
+<!--l. 201--><p class="indent" >   then the optimal QSs must satisfy that&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xvetterli1995wavelets">2</a>,&#x00A0;<a 
+href="#Xsayood2017introduction">1</a>&#x005D;</span> </p><table class="equation"><tr><td> <a 
+ id="x1-2004r5"></a>
+<!--l. 202--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                           <msub><mrow 
@@ -556,49 +648,77 @@ class="MathClass-rel">=</mo> <msub><mrow
 ><mstyle 
 class="text"><mtext  >B</mtext></mstyle></mrow></msub 
 ><mo 
-class="MathClass-punc">,</mo>
-</math></td><td class="eq-no">&#x0028;3&#x0029;</td></tr></table>
+class="MathClass-punc">.</mo>
+</math></td><td class="eq-no">&#x0028;5&#x0029;</td></tr></table>
+<!--l. 207--><p class="indent" >   To see this, lets suppose that we have used, for example, a set of QSs so that
+</p><table class="equation-star"><tr><td>
                                                                   
 
                                                                   
-<!--l. 182--><p class="indent" >   for a given total bit-rate <!--l. 182--><math 
+<!--l. 209--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
->R</mi></math>,
-which implies that the contribution of each channel &#x0028;the ratio between quality and bit-rate&#x0029; to
-the quality of <!--l. 183--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mover 
-accent="true"><mrow 
+display="block" class="equation">
+                         <msub><mrow 
 ><mi 
->x</mi></mrow><mo accent="true">&#x007E;</mo></mover></math>
-has been highest possible&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvetterli1995wavelets">2</a>,&#x00A0;<a 
-href="#Xsayood2017introduction">1</a>&#x005D;</span>.
-</p><!--l. 186--><p class="indent" >   Unfortunately, the previous procedure implies the computation of the RD curve
+>&#x03BB;</mi></mrow><mrow 
+><mstyle 
+class="text"><mtext  >R</mtext></mstyle></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>2</mn><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mstyle 
+class="text"><mtext  >G</mtext></mstyle></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>2</mn><msub><mrow 
+><mi 
+>&#x03BB;</mi></mrow><mrow 
+><mstyle 
+class="text"><mtext  >B</mtext></mstyle></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo>
+</math></td></tr></table>
+<!--l. 212--><p class="indent" >   and that we still have room for spending more bits encoding the frame.
+In this situation, the maximum bene&#xFB01;t would be obtained if we decrease
+<!--l. 214--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>&#x0394;</mi></mrow><mrow 
+><mstyle 
+class="text"><mtext  >R</mtext></mstyle></mrow></msub 
+></math>
+because the sloper is double the slope of the other curves. Therefore, the optimal QSs
+are obtained when Eq.&#x00A0;<a 
+href="#x1-2004r5">5<!--tex4ht:ref: eq:optimal_quantization --></a> is true.
+</p><!--l. 230--><p class="indent" >   Unfortunately, the previous procedure implies the computation of the RD curve
 for each channel, which is a time-consuming operation. For this reason, and
-supposing that the statistics of each channel are similar, we can suppose that Eq.&#x00A0;<a 
-href="#x1-2001r2">2<!--tex4ht:ref: eq:simple_Q --></a>
-satis&#xFB01;es Eq.&#x00A0;<a 
-href="#x1-2002r3">3<!--tex4ht:ref: eq:optimal_quantization --></a>.
-</p><!--l. 192--><p class="noindent" >
+supposing that the statistics of each channel are similar and therefore, each channel is
+going to generate a RD curve with the same slopes for the same QSs, we can suppose
+that Eq.&#x00A0;<a 
+href="#x1-2001r2">2<!--tex4ht:ref: eq:simple_Q --></a> satis&#xFB01;es Eq.&#x00A0;<a 
+href="#x1-2004r5">5<!--tex4ht:ref: eq:optimal_quantization --></a>.
+</p><!--l. 237--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-30002"></a>What you have to do?</h3>
-<!--l. 193--><p class="noindent" >Please, create a jupyter notebook to test if Eq.&#x00A0;<a 
+<!--l. 238--><p class="noindent" >Please, create a jupyter notebook to test if Eq.&#x00A0;<a 
 href="#x1-2001r2">2<!--tex4ht:ref: eq:simple_Q --></a> is not optimal &#x0028;at least there is a
 di&#xFB00;erent con&#xFB01;guration of QSs better that this equation&#x0029;.
-</p><!--l. 213--><p class="noindent" >
+</p><!--l. 258--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-40003"></a>Timming</h3>
-<!--l. 215--><p class="noindent" >Please, &#xFB01;nish this notebook before the next class session.
-</p><!--l. 217--><p class="noindent" >
+<!--l. 260--><p class="noindent" >Please, &#xFB01;nish this notebook before the next class session.
+</p><!--l. 262--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-50004"></a>Deliverables</h3>
-<!--l. 219--><p class="noindent" >None.
-</p><!--l. 221--><p class="noindent" >
+<!--l. 264--><p class="noindent" >None.
+                                                                  
+
+                                                                  
+</p><!--l. 266--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-60005"></a>Resources</h3>
@@ -615,9 +735,6 @@ class="ecti-1000">Introduction to data compression</span></a>. Morgan Kaufmann, 
 href="http://waveletsandsubbandcoding.org/Repository/VetterliKovacevic95_Manuscript.pdf" ><span 
 class="ecti-1000">Wavelets  and  Subband  Coding</span></a>.
    Prentice-hall, 1995.
-                                                                  
-
-                                                                  
    </p>
    <p class="bibitem" ><span class="biblabel">
  &#x005B;3&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
