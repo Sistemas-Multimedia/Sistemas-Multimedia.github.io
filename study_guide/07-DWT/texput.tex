@@ -11,7 +11,7 @@ Technically, the
 \href{https://en.wikipedia.org/wiki/Linearity}{linear}
 \href{https://en.wikipedia.org/wiki/Change_of_basis}{basis}
 \href{https://www.youtube.com/watch?v=P2LTAUO1TdA}{expansion} which
-compute a
+computes a
 \href{https://www.dsprelated.com/freebooks/sasp/Critically_Sampled_Perfect_Reconstruction.html}{critically}-\href{https://en.wikipedia.org/wiki/Nyquist-Shannon_sampling_theorem}{sampled}
 \href{https://en.wikipedia.org/wiki/Octave_(electronics)}{octave}-\href{https://en.wikipedia.org/wiki/Frequency_band}{band}
 \href{https://www.sciencedirect.com/topics/engineering/wavelet-decomposition}{decomposition}~\cite{vetterli2014foundations,kovacevic2013fourier}. Specifically,
@@ -35,8 +35,9 @@ subbands is related to
 
 \subsection{An example of DWT: the Haar DWT}
 As the rest of transforms, the DWT is also described by the filters of
-analysis matrix transform $K$ (see the previous milestone). Haar
-defined the analysis
+the analysis matrix transform (the matrix $K$ in the
+\href{https://sistemas-multimedia.github.io/study_guide/06-color_transform/}{previous
+  milestone}). Haar defined the analysis
 \href{https://en.wikipedia.org/wiki/Downsampling_(signal_processing)}{downsampling}
 filters
 \begin{equation}
@@ -74,7 +75,7 @@ holds for all DWTs),
 \begin{figure}
   \centering
   \myfig{db5_modulus}{6cm}{600}
-  \caption{Daubechies 5 filters's response in the frequency domain
+  \caption{Daubechies-5 filters's response in the frequency domain
     (see this
     \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb}{notebook}).}
   \label{fig:db5_modulus}
@@ -83,7 +84,7 @@ holds for all DWTs),
 \begin{figure}
   \centering
   \myfig{bior3.5_modulus}{6cm}{600}
-  \caption{Biorthiogonal 3.5 filters's response in the frequency
+  \caption{Biorthiogonal-3.5 filters's response in the frequency
     domain (see this
     \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb}{notebook}).}
   \label{fig:bior3.5_modulus}
@@ -99,7 +100,7 @@ holds for all DWTs),
 
 \begin{figure}
   \centering \myfig{db5_phase}{6cm}{600}
-  \caption{Phase response of the Daubechies 5 filters (see this
+  \caption{Phase response of the Daubechies-5 filters (see this
     \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb}{notebook}).}
   \label{fig:db5_phase}
 \end{figure}
@@ -278,7 +279,7 @@ Please, using
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/07-DWT/dwt_filters_analysis.ipynb}{this
   notebook}, determine the frequency and phase responses of the
 \href{http://wavelets.pybytes.com/wavelet/db20/}{Daubechies 20} and
-\href{http://wavelets.pybytes.com/wavelet/bior6.8/}{Biorthogonal 6.8}
+\href{http://wavelets.pybytes.com/wavelet/bior6.8/}{Biorthogonal-6.8}
 filters. Determine also their relative gains, using the energy of the
 signal resulting of applying the synthesis transform to the impulse
 signal. The energy of a signal $x$ is found by
