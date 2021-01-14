@@ -283,9 +283,10 @@ $\Delta_{\text{Cr}}$, and $\Delta_{\text{Cb}}$ so that
 for a given total bit-rate $R$ (see this
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook})~\cite{vetterli1995wavelets,sayood2017introduction}. Therefore,
 if all the channels have the same gain\footnote{The gain of a
-transform can be determined computing the squared norm of the columns
-of the analysis transform.}, a quantization strategy that should
-approximate Eq.~\ref{eq:optimal_quantization} is to use
+transform can be determined computing the squared norm of the rows of
+the synthesis transform (the synthesis filters).}, a quantization
+strategy that should approximate Eq.~\ref{eq:optimal_quantization} is
+to use
 \begin{equation}
   \Delta_{\text{Y}} = \Delta_{\text{Cr}} = \Delta_{\text{Cb}}.
   \label{eq:simple_Q}
@@ -430,14 +431,13 @@ in 2008.} images, obtaining
   \label{eq:optimal}
 \end{equation}
 
-This transform is orthogonal. However, as \cite{malvar2008lifting}
-points it has to disadvantages:
-\begin{enumerate}
-\item The gains of the channels are different (2, 3 and 8/3).
-\item From a perceptual perspective, the influence of the green
-  channel on the luma channel should be stronger.
-\end{enumerate}
-For these reasons, \cite{malvar2008lifting} proposes
+This transform is orthogonal and the synthesis filters
+gains\footnote{The gain of a transform can be determined computing the
+squared norm of the rows of the synthesis transform (the synthesis
+filters).} are 22/9 (for Y), 25/9 (for C$_1$) and 22/9 (for C$_2$). However,
+as \cite{malvar2008lifting} points, from a perceptual perspective, the
+influence of the green channel on the luma channel should be
+stronger. For this reason the authors finally propose the transform
 \begin{equation}
   \begin{bmatrix}
     \text{Y} \\
@@ -475,27 +475,20 @@ For these reasons, \cite{malvar2008lifting} proposes
     \text{Cg}
   \end{bmatrix},
 \end{equation}
-that is near orthogonal\footnote{For example,
-  $\frac{1}{4}\frac{-1}{4} + \frac{1}{2}\frac{1}{2} +
-  \frac{1}{4}\frac{-1}{4} = \frac{1}{8}$}.
+that is near orthogonal\footnote{For example, $\frac{1}{4}\frac{-1}{4}
++ \frac{1}{2}\frac{1}{2} + \frac{1}{4}\frac{-1}{4} = \frac{1}{8}$},
+and has channel gains 3 (Y), 2 (Co) and 3 (Cg). These gains suggest that
 
 \subsubsection{Quantization}
-As happens with the RGB/YCrCb transform, the RGB/YCoCg transform is
-not orthogonal (see this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook}). Therefore,
-again (for simplicity) we will take
+The channel gain suggest to use
+\begin{equation}
+  \Delta_{\text{Y}} = \frac{3}{2}\Delta_{\text{Co}} = \Delta_{\text{Cg}}.
+\end{equation}
+However, as it can be seen in this \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook} the differences with using
 \begin{equation}
   \Delta_{\text{Y}} = \Delta_{\text{Co}} = \Delta_{\text{Cg}}.
 \end{equation}
-However, as it can be seen in the notebook, the RGB/YCoCg transform concentrates more the energy than the RGB/YCrCb transform.
-
-and the
-channels gains are the same. Therefore, the Eq.~\ref{eq:simple_Q}
-stands Eq.~\ref{eq:optimal_quantization}.  As it can be also seen in
-this \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook}w,
-the YCoCg domain can significantly concentrate the energy of the
-pixels in the Y channel. This is beneficial because quantization will
-remove (completely quantize) ``noise'' in the chroma channels.
+are very small. Therefore, this last quantization scheme will be adopted.
 
 \section{What you have to do?}
 
