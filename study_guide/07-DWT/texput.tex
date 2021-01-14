@@ -101,7 +101,9 @@ holds for all DWTs),
 \begin{figure}
   \centering \myfig{db5_phase}{6cm}{600}
   \caption{Phase response of the Daubechies-5 filters (see this
-    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb}{notebook}).}
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb}{notebook}). Notice
+    that we obtained phase responses are not completely linear (it is
+    not a straight line).}
   \label{fig:db5_phase}
 \end{figure}
 
@@ -142,8 +144,8 @@ can conclude that:
 \item There is not
   \href{https://en.wikipedia.org/wiki/Linear_phase}{phase distortion}
   (the phase of the filters is a linear function of the frequency, see
-  the Fig.~\ref{fig:haar_phase}). This means that coefficients
-  $l^{s+1}_n$ and $h^{s+1}_n$ refers to the section of signal
+  the Fig.~\ref{fig:haar_phase}). This means that both coefficients
+  $l^{s+1}_n$ and $h^{s+1}_n$ refers to the same section of signal
   $\{l^s_{2n}, l^s_{2n+1}\}$, allowing the design of entropy codecs
   for the decomposition which exploit the correlation between
   subbands. Notice that this does not hold for all filters (see
