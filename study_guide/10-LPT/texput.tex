@@ -1,23 +1,22 @@
 \input{../definitions}
-\title{\SM{} - Study Guide - Milestone 9: Laplacian Pyramid Transform (LPT)}
+\title{\SM{} - Study Guide - Milestone 9: The Tight Laplacian Pyramid Transform (TLPT)}
 
 \maketitle
+
+Pyramid frames were introduced in 1983 by Burt and Adelson. In some
+way, they can be considered one of the precursors of the wavelet
+octave band decompositions.
 
 Technically, the LPT is a frame expansion, that generates an expanded
 octave-band decomposition. The ratio of redundancy in the
 decomposition $R\rightarrow 2$ with the number of levels.
 
+Because the shift invariance, MC can be incorporated in the enhance,emt layer.
+
+The LP with orthogonal filter is a tight frame.
+
 \section{Description}
 
-The 2D-DWT can a used on sequences of images, by simply iterating as
-it is described in the Algorithm~\ref{alg:MDWT}. $I$ is the number of
-images in the sequence $V$.
-
-\begin{pseudocode}{\text{MDWT}}{V}
-  \label{alg:MDWT}
-  \FOR i \GETS 0 \TO I-1 \DO
-  V_i = \text{2D-DWT}(V_i)
-\end{pseudocode}
 
 \section{What you have to do?}
   

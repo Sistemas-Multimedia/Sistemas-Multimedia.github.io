@@ -116,15 +116,15 @@ can conclude that:
 \begin{enumerate}
 \item There exists
   \href{https://en.wikipedia.org/wiki/Aliasing}{aliasing} between the
-  filters (this holds for all DWTs) and this is a drawback
-  because: \begin{enumerate} \item The same
+  filters (this holds for all DWTs) and this is a drawback because:
+  \begin{enumerate}
+  \item The same
     \href{https://en.wikipedia.org/wiki/Information}{information} can
     be found in both subbands ($l$ and $h$). Therefore, the
-    concentration of the energy in one of the subbands is
-    smaller.  \item At it can be seen also in
-    Eq.~\ref{eq:Haar_transform}, the subbands are downsampled by 2
-    (action usually represented by $\downarrow 2$) and both subbands
-    should have, at most, a
+    concentration of the energy in one of the subbands is smaller.
+  \item At it can be seen also in Eq.~\ref{eq:Haar_transform}, the
+    subbands are downsampled by 2 (action usually represented by
+    $\downarrow 2$) and both subbands should have, at most, a
     \href{https://en.wikipedia.org/wiki/Bandwidth_(signal_processing)}{bandwidth}
     of $\frac{1}{2}$
     \href{https://en.wikipedia.org/wiki/Radian}{radians}/\href{https://en.wikipedia.org/wiki/Sampling_(signal_processing)}{sample}
@@ -133,11 +133,13 @@ can conclude that:
     thus increasing the
     \href{https://en.wikipedia.org/wiki/Perception}{perceptible}
     \href{https://en.wikipedia.org/wiki/Signal-to-noise_ratio}{quality}
-    of the low-pass subband $l$.  \end{enumerate} These problems can
-  be only solved using filters that have
+    of the low-pass subband $l$.
+  \end{enumerate}
+  These problems can be only solved using filters that have
   \href{https://en.wikipedia.org/wiki/Transfer_function}{transfer
-    functions} that overlaps a smaller area (see
-  Figs.~\ref{fig:db5_modulus} and \ref{fig:bior3.5_modulus}).
+    functions} that overlaps a smaller area\footnote{Sharper
+  transition bands.} (see Figs.~\ref{fig:db5_modulus} and
+  \ref{fig:bior3.5_modulus}).
 %\item The response of the filter bank is flat, which means that the gain of the different frequencie
 %  $|y(e^{j\omega})|=a|x(e^{j\omega})|, a\in\mathbb{R}$ (the
 %  reconstructed signal $y$ has not been filtered). % OJO
@@ -222,7 +224,9 @@ resolution levels of the analyzed signal $l^0$:
 \begin{figure}
   \centering
   \myfig{graphics/PRFB}{5cm}{500}
-  \caption{A 2-channels PRFB (Perfect Reconstruction Filter Bank).}
+  \caption{A 2-channels PRFB (Perfect Reconstruction Filter Bank). See
+    this
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/07-DWT/PRFB.ipynb}{notebook}.}
   \label{fig:PRFB}
 \end{figure}
 

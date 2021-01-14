@@ -29,6 +29,12 @@
 .ectt-1000{ font-family: monospace,monospace;}
 .ectt-1000{ font-family: monospace,monospace;}
 .ectt-1000{ font-family: monospace,monospace;}
+.ectt-1000{ font-family: monospace,monospace;}
+.ectt-1000{ font-family: monospace,monospace;}
+.ecrm-0900{font-size:90%;}
+.ecrm-0800{font-size:80%;}
+.ecti-1000{ font-style: italic;}
+.ecti-1000{ font-style: italic;}
 .ecti-1000{ font-style: italic;}
 .ecti-1000{ font-style: italic;}
 .ecti-1000{ font-style: italic;}
@@ -39,6 +45,7 @@ p.indent{text-indent:0;}
 p + p{margin-top:1em;}
 p + div, p + pre {margin-top:1em;}
 div + p, pre + p {margin-top:1em;}
+a { overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; hyphens: auto; }
 @media print {div.crosslinks {visibility:hidden;}}
 a img { border-top: 0; border-left: 0; border-right: 0; }
 center { margin-top:1em; margin-bottom:1em; }
@@ -61,7 +68,7 @@ div.obeylines-v p { margin-top:0; margin-bottom:0; }
 td.displaylines {text-align:center; white-space:nowrap;}
 .centerline {text-align:center;}
 .rightline {text-align:right;}
-div.verbatim {font-family: monospace,monospace; white-space: nowrap; text-align:left; clear:both; }
+pre.verbatim {font-family: monospace,monospace; text-align:left; clear:both; }
 .fbox {padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
 div.fbox {display:table}
 div.center div.fbox {text-align:center; clear:both; padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
@@ -128,7 +135,6 @@ p.bibitem { text-indent: -2em; margin-left: 2em; margin-top:0.6em; margin-bottom
 p.bibitem-p { text-indent: 0em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
 .paragraphHead, .likeparagraphHead { margin-top:2em; font-weight: bold;}
 .subparagraphHead, .likesubparagraphHead { font-weight: bold;}
-.quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify;}
 .verse{white-space:nowrap; margin-left:2em}
 div.maketitle {text-align:center;}
 h2.titleHead{text-align:center;}
@@ -136,7 +142,6 @@ div.maketitle{ margin-bottom: 2em; }
 div.author, div.date {text-align:center;}
 div.thanks{text-align:left; margin-left:10%; font-size:85%; font-style:italic; }
 div.author{white-space: nowrap;}
-.quotation {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; }
 .abstract p {margin-left:5%; margin-right:5%;}
 div.abstract {width:100%;}
 .equation-star td{text-align:center; vertical-align:middle; }
@@ -145,7 +150,6 @@ mtd.align-odd{margin-left:2em; text-align:right;}
 mtd.align-even{margin-right:2em; text-align:left;}
 .boxed{border: 1px solid black; padding-left:2px; padding-right:2px;}
 .rotatebox{display: inline-block;}
-.figure img.graphics {margin-left:10%;}
 div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
 table.tabular td p{margin-top:0em;}
 table.tabular {margin-left: auto; margin-right: auto;}
