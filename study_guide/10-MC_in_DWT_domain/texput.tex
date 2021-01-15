@@ -26,18 +26,34 @@ DWT coefficients.
 Unfortunately, as a consequence of the downsamplers used during the
 DWT to achieve critical sampling and the aliasing between the
 subbands, all DWT decompositions are shift variant. This can be seen
-in the Fig.~\ref{fig:dwt_shift_variance} were some DWT coefficients of a
-test video with two frames (that are ``empty'' images where a circle
-has been moved one pixel to the left) has been shown.
+in the Fig.~\ref{fig:dwt_shift_variance} were some DWT coefficients of
+a test video with two frames (that are ``empty'' images where a circle
+has been moved one pixel to the left) has been shown. As it can be
+seen, the value of the coefficients that correspond to the
+circunference of the circle are different between different subbands,
+and different to the original pixels. This makes quite difficult to
+estimate the motion, and therefore, compensate it.
 
 \begin{figure}
   \centering
-  \myfig{bior35_LL}{3cm}{300}
-  %\begin{tabular}{ccc}
-    % & \myfig{movement}{3cm}{300} &\\
-  %  &\vbox{\myfig{movement}{3cm}{300}}&
-                                         %    \end{tabular}
-  \caption{hola}
+  \begin{tabular}{ccc}
+    \vbox{\pngfig{moving_circle_000}{4cm}{400}} &
+    \vbox{\myfig{movement}{4cm}{400}} &
+    \vbox{\pngfig{difference}{4cm}{400}} \\
+    \vbox{\myfig{haar_LL}{4cm}{400}} &
+    \vbox{\myfig{db5_LL}{4cm}{400}} &
+    \vbox{\myfig{bior35_LL}{4cm}{400}} \\
+    \vbox{\myfig{haar_LH}{4cm}{400}} &
+    \vbox{\myfig{db5_LH}{4cm}{400}} &
+    \vbox{\myfig{bior35_LH}{4cm}{400}} \\ 
+    \vbox{\myfig{haar_HL}{4cm}{400}} &
+    \vbox{\myfig{db5_HL}{4cm}{400}} &
+    \vbox{\myfig{bior35_HL}{4cm}{400}} \\
+    \vbox{\myfig{haar_HH}{4cm}{400}} &
+    \vbox{\myfig{db5_HH}{4cm}{400}} &
+    \vbox{\myfig{bior35_HH}{4cm}{400}} 
+  \end{tabular}
+  \caption{A demonstration of the shift variance of the DWT.}
 \label{fig:dwt_shift_variance}
 \end{figure}
 
