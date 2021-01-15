@@ -1,0 +1,64 @@
+\input{../definitions}
+\title{\SM{} - Study Guide - Milestone 8: Motion Compensation in the DWT Domain?}
+
+\maketitle
+
+\section{Description}
+
+\subsection{Removing the temporal redundancy through Motion Compensation (MC)}
+The next level in the process of decorrelating the sequence of frames
+is to remove the temporal redundancy by means of Motion Compensation
+(MC). Basically, MC consist in substracting to the video data a
+prediction performed with the information that is avaliable to the
+decoder. If this prediction is accurate, the result of this operation
+is a residual video with a lower temporal redundancy, that can be
+compressed with a higher compression ratio.
+
+\subsection{The lack of shift-invariance in the DWT domain}
+In our case, the video data is represented in the MDWT domain. Let's
+suppose that the number of levels of the DWT is 1, and therefore, each
+frame has been decomposed into two 2D subbands $L$ and $H$ (remember
+that using the notation introduces in the previous milestone, $H$ has
+inside the three high-frequency subbands: $LH$, $HL$ and $HH$, and
+that $L=LL$). So, after using the MDET, MC must be performed using the
+DWT coefficients.
+
+Unfortunately, as a consequence of the downsamplers used during the
+DWT to achieve critical sampling and the aliasing between the
+subbands, all DWT decompositions are shift variant. This can be seen
+in the Fig.~\ref{fig:dwt_shift_variance} were some DWT coefficients of a
+test video with two frames (that are ``empty'' images where a circle
+has been moved one pixel to the left) has been shown.
+
+\begin{figure}
+  \centering
+  \myfig{bior35_LL}{3cm}{300}
+  %\begin{tabular}{ccc}
+    % & \myfig{movement}{3cm}{300} &\\
+  %  &\vbox{\myfig{movement}{3cm}{300}}&
+                                         %    \end{tabular}
+  \caption{hola}
+\label{fig:dwt_shift_variance}
+\end{figure}
+
+Shift variance is also generated after the inverse transform when the
+coefficients are filtered or quantized, because the aliasing between
+the filters is not completely cancelled in this
+case~\cite{bradley2003shift}.
+
+\section{What you have to do?}
+  
+Please, complete this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/MDWT/MDWT.ipynb}{notebook}.
+
+\section{Timming}
+
+Please, finish this notebook before the next class session.
+
+\section{Deliverables}
+
+None.
+
+\section{Resources}
+
+\bibliography{python}
