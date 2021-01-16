@@ -15,17 +15,18 @@ is a residual video with a lower temporal redundancy, that can be
 compressed with a higher compression ratio.
 
 \subsection{The lack of shift-invariance in the DWT domain}
-In our case, the video data is represented in the MDWT domain. Let's
-suppose that the number of levels of the DWT is 1, and therefore, each
-frame has been decomposed into two 2D subbands $L$ and $H$ (remember
-that using the notation introduces in the previous milestone, $H$ has
-inside the three high-frequency subbands: $LH$, $HL$ and $HH$, and
-that $L=LL$). So, after using the MDET, MC must be performed using the
-DWT coefficients.
+In our case, the video data is represented in the MDWT domain (the are
+performed the so called in-band motion estimation and
+compensation~\cite{andreopoulos2005complete}). Let's suppose that the number of levels of the
+DWT is 1, and therefore, each frame has been decomposed into two 2D
+subbands $L$ and $H$ (remember that using the notation introduces in
+the previous milestone, $H$ has inside the three high-frequency
+subbands: $LH$, $HL$ and $HH$, and that $L=LL$). So, after using the
+MDET, MC must be performed using the DWT coefficients.
 
 Unfortunately, as a consequence of the downsamplers used during the
 DWT to achieve critical sampling and the aliasing between the
-subbands, all DWT decompositions are shift variant. This can be seen
+subbands, all DWT decompositions are shift-variant. This can be seen
 in the Fig.~\ref{fig:dwt_shift_variance} were some DWT coefficients of
 a test video with two frames (that are ``empty'' images where a circle
 has been moved one pixel to the left) has been shown. As it can be
@@ -53,14 +54,26 @@ estimate the motion, and therefore, compensate it.
     \vbox{\myfig{db5_HH}{4cm}{400}} &
     \vbox{\myfig{bior35_HH}{4cm}{400}} 
   \end{tabular}
-  \caption{A demonstration of the shift variance of the DWT.}
+  \caption{A demonstration of the shift-variance of the DWT.}
 \label{fig:dwt_shift_variance}
 \end{figure}
 
-Shift variance is also generated after the inverse transform when the
+Shift-variance is also generated after the inverse transform when the
 coefficients are filtered or quantized, because the aliasing between
 the filters is not completely cancelled in this
 case~\cite{bradley2003shift}.
+
+\subsection{Near shift-invariance in the IDWT (Interpolated DWT) domain}
+As it was commented before, the causant of the shift-variance in the
+critically sampled DWT domain is the use of the downsamplers. At this
+point we have basically two different alternatives:
+\begin{enumerate}
+\item Use the Algorithme \`a Trous~\cite{mallat1999wavelet}, which
+  removes the downsamplers from the DWT. Notice that, because the
+  downsamplers are removed, the aliasing artifacts produced by the
+  downsamplers is also avoided.
+\item Regenerate 
+
 
 \section{What you have to do?}
   
