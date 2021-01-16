@@ -68,11 +68,15 @@ As it was commented before, the causant of the shift-variance in the
 critically sampled DWT domain is the use of the downsamplers. At this
 point we have basically two different alternatives:
 \begin{enumerate}
-\item Use the Algorithme \`a Trous~\cite{mallat1999wavelet}, which
+\item Use the Algorithme \`a Trous (AaT)~\cite{mallat1999wavelet}, which
   removes the downsamplers from the DWT. Notice that, because the
   downsamplers are removed, the aliasing artifacts produced by the
   downsamplers is also avoided.
-\item Regenerate 
+\item Approximate the AaT coefficients by interpolating the DWT
+  coefficients using the DWT synthesis filters. In this case, the
+  aliasing is not avoided, but the shift-variance problem is
+  reduced.
+\end{enumerate}
 
 
 \section{What you have to do?}
