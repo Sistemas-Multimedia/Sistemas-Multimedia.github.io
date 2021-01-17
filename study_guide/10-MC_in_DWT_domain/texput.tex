@@ -1,39 +1,42 @@
 \input{../definitions}
-\title{\SM{} - Study Guide - Milestone 8: Motion Compensation in the DWT Domain?}
+\title{\SM{} - Study Guide - Milestone 8: Motion Compensation in the DWT Domain}
 
 \maketitle
 
 \section{Description}
 
 \subsection{Removing the temporal redundancy through Motion Compensation (MC)}
-The next level in the process of decorrelating the sequence of frames
-is to remove the temporal redundancy by means of Motion Compensation
-(MC). Basically, MC consist in substracting to the video data a
-prediction performed with the information that is avaliable to the
-decoder. If this prediction is accurate, the result of this operation
-is a residual video with a lower temporal redundancy, that can be
-compressed with a higher compression ratio.
+The next natural step in the process of decorrelating the sequence of
+frames is to remove the temporal redundancy by means of Motion
+Compensation (MC). Basically, MC consists in substracting to the video
+data a prediction performed with the information that is avaliable to
+the decoder. If this prediction is accurate, the result of this
+operation is a residual video with a lower temporal redundancy, that
+can be compressed with a higher compression ratio.
 
 \subsection{The lack of shift-invariance in the DWT domain}
-In our case, the video data is represented in the MDWT domain (the are
-performed the so called in-band motion estimation and
-compensation~\cite{andreopoulos2005complete}). Let's suppose that the number of levels of the
-DWT is 1, and therefore, each frame has been decomposed into two 2D
-subbands $L$ and $H$ (remember that using the notation introduces in
-the previous milestone, $H$ has inside the three high-frequency
-subbands: $LH$, $HL$ and $HH$, and that $L=LL$). So, after using the
-MDET, MC must be performed using the DWT coefficients.
+In our case, the video data is represented in the DWT domain, and
+therefore, we need to perform the so called In-Band Motion Estimation
+and Compensation~\cite{andreopoulos2005complete}). Let's suppose that
+the number of levels of the DWT is 1, and therefore, each frame has
+been decomposed into two 2D subbands $L$ and $H$ (remember that using
+the notation introduces in the previous milestone, $H$ has inside the
+three high-frequency subbands: $LH$, $HL$ and $HH$, and that
+$L=LL$). So, after using the MDWT, MC must be performed using the DWT
+coefficients.
 
 Unfortunately, as a consequence of the downsamplers used during the
 DWT to achieve critical sampling and the aliasing between the
-subbands, all DWT decompositions are shift-variant. This can be seen
-in the Fig.~\ref{fig:dwt_shift_variance} were some DWT coefficients of
-a test video with two frames (that are ``empty'' images where a circle
-has been moved one pixel to the left) has been shown. As it can be
-seen, the value of the coefficients that correspond to the
-circunference of the circle are different between different subbands,
-and different to the original pixels. This makes quite difficult to
-estimate the motion, and therefore, compensate it.
+subbands, DWT decompositions are shift-variant. This can be seen in
+the Fig.~\ref{fig:dwt_shift_variance} were some DWT coefficients of a
+test video with three frames (with a 1-pixel constant speed moving (to
+the left) cicle``empty'') has been shown. As it can be seen, when the
+circle has been moved only one pixel, the value of the coefficients
+that correspond to the circunference of the circle are different
+between the reference frame and the predicted frame. This makes quite
+difficult to estimate the motion, and therefore, compensate
+it. However, when the circle has traveled two pixels, a perfect match
+is performed.
 
 \begin{figure}
   \centering
@@ -57,6 +60,45 @@ estimate the motion, and therefore, compensate it.
   \caption{A demonstration of the shift-variance of the DWT.}
 \label{fig:dwt_shift_variance}
 \end{figure}
+
+The reason why the 1-pixel movement is generating different
+coefficients in the reference and the predicted frames is because a
+1-pixel motion cannot be represented using always the same phase
+(remember that with the downsampler we are basically selecting only
+one the two possible phases of the output of the analysis
+filters). Lets suppose that the downsampler ignores the even
+coefficients (let's refer them as 0-phase coefficients). In this case,
+the 0-phase cofficients of the reference frame are the same than the
+1-phase coefficients of the predicted frame. This can be seen in this
+notebook. Therefore, in the 1D case, when the motion is ``even'' we
+should compensate the 0-phase coefficients of the reference and the
+predicted frame, while when the motion is ``odd'' we should compensate
+the 1-phase coefficients of the predicted frame with a prediction
+generated with the 0-phase coefficients of the reference frame.
+
+There are different alternatives for recovering the ``lost'' phase
+during the DWT (in the 1D case):
+\begin{enumerate}
+\item Perform first the MC stage directly over the output of the
+  analysis filters, and then, downsample the result. Notice that the
+  downsampler should select the right phase, depending on the type of
+  motion detected (``odd'' or ``even''). This information (the
+  selected phase), should be available at the decoder, along with the
+  motion fields.
+\item Perform two identical DWTs, one to the original signal, and the
+  other to a one-sample delayed signal. The output of the DWT applied
+  to the original signal will generate one of the phases and the
+  output of the DWT applied to the delayed signal will generate the
+  other one.
+\item Use the current (single phase) coefficients to compute the
+  missing phase.
+\end{enumerate}
+
+In the 2D case, and always working with only one level of the DWT, we
+have up to four different phase: (0,0)-phase, (0,1)-phase,
+(1,0)-phase, and (1,1)-phase coefficients. When all the phases are considered, we say that we are using the Overcomplete DWt (ODWT).
+
+As it was indicated before, one
 
 Shift-variance is also generated after the inverse transform when the
 coefficients are filtered or quantized, because the aliasing between
