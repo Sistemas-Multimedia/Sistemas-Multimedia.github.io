@@ -12,34 +12,36 @@ Compensation (MC). Basically, MC consists in substracting to the video
 data a prediction performed with the information that is avaliable to
 the decoder. If this prediction is accurate, the result of this
 operation is a residual video with a lower temporal redundancy, that
-can be compressed with a higher compression ratio because there is
-less information to encode in the residue sequence than in the
-original one.
+can be compressed with a higher compression ratio.
 
 \subsection{The lack of shift-invariance in the DWT domain}
-At this stage of the encoding process, the video data is represented
-in the DWT domain, and therefore, we need to perform a In-Band Motion
-Estimation and Compensation~\cite{andreopoulos2005complete}). Let's
-suppose that the number of levels of the DWT is 1, and therefore, each
-frame has been decomposed into two 2D subbands $L$ and $H$ (remember
-that using the notation introduces in the previous milestone, $H$ has
-inside the three high-frequency subbands: $LH$, $HL$ and $HH$, and
-that $L=LL$).
+In our case, the video data is represented in the DWT domain, and
+therefore, we need to perform the so called In-Band Motion Estimation
+and Compensation~\cite{andreopoulos2005complete}). Let's suppose that
+the number of levels of the DWT is 1, and therefore, each frame has
+been decomposed into two 2D subbands $L$ and $H$ (remember that using
+the notation introduces in the previous milestone, $H$ has inside the
+three high-frequency subbands: $LH$, $HL$ and $HH$, and that
+$L=LL$). So, after using the MDWT, MC must be performed using the DWT
+coefficients.
 
-Unfortunately, DWT decompositions are shift-variant as a consequence
-of the downsampling performed during the DWT to achieve critical
-sampling in the aliased subbands. This can be seen in the
-Fig.~\ref{fig:dwt_shift_variance} were some DWT coefficients of a test
-video with three frames (with a 1-pixel constant-speed
-moving-(to-the-left)-circle) has been shown. As it can be seen, when
-the circle moves only one pixel, the value of the coefficients that
-correspond to the circunference of the circle are different between
-the reference frame and the predicted frame. This makes quite
-difficult to estimate and compensate the motion between frames. Notice
-also that the effects of shift-variance is also visible after using
-the inverse transform when the coefficients are filtered or quantized,
-because the aliasing between the filters is not completely cancelled
-in this case~\cite{bradley2003shift}.
+Unfortunately, as a consequence of the downsamplers used during the
+DWT to achieve critical sampling and the aliasing between the
+subbands, DWT decompositions are shift-variant. This can be seen in
+the Fig.~\ref{fig:dwt_shift_variance} were some DWT coefficients of a
+test video with three frames (with a 1-pixel constant speed moving (to
+the left) cicle``empty'') has been shown. As it can be seen, when the
+circle has been moved only one pixel, the value of the coefficients
+that correspond to the circunference of the circle are different
+between the reference frame and the predicted frame. This makes quite
+difficult to estimate the motion, and therefore, compensate
+it. However, when the circle has traveled two pixels, a perfect match
+is performed.
+
+Notice also that shift-variance is also generated after the inverse
+transform when the coefficients are filtered or quantized, because the
+aliasing between the filters is not completely cancelled in this
+case~\cite{bradley2003shift}.
 
 \begin{figure}
   \centering
@@ -64,15 +66,12 @@ in this case~\cite{bradley2003shift}.
 \label{fig:dwt_shift_variance}
 \end{figure}
 
-However, suprisingly, at it can be also seen in the
-Fig.~\ref{fig:dwt_shift_variance}, when the circle has traveled two
-pixels, a perfect match is performed! The reason why the 1-pixel
-movement is generating different coefficients in the reference and the
-predicted frames is because a 1-pixel motion cannot be represented
-selecting always the same phase at the downsamplers (remember that
-with the downsampler we are basically selecting only one the two
-possible phases of the output of the analysis filters: the even
-samples or the odd samples). Lets suppose that the downsampler
+The reason why the 1-pixel movement is generating different
+coefficients in the reference and the predicted frames is because a
+1-pixel motion cannot be represented using always the same phase
+(remember that with the downsampler we are basically selecting only
+one the two possible phases of the output of the analysis filters: the
+even samples or the odd samples). Lets suppose that the downsampler
 discards the odd coefficients (let's refer them as odd-phase
 coefficients). In this case, the even-phase cofficients of the
 reference frame are the same than the odd-phase coefficients of the
