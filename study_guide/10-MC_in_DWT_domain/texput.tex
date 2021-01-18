@@ -16,7 +16,7 @@ can be compressed with a higher compression ratio because there is
 less information to encode in the residue sequence than in the
 original one.
 
-\subsection{The lack of shift-invariance in the DWT domain}
+\subsection{Integer pixel accuracy In-Band Motion Estimation and Compensation}
 At this stage of the encoding process, the video data is represented
 in the DWT domain, and therefore, we need to perform a In-Band Motion
 Estimation and Compensation~\cite{andreopoulos2005complete}). Let's
@@ -24,22 +24,25 @@ suppose that the number of levels of the DWT is 1, and therefore, each
 frame has been decomposed into two 2D subbands $L$ and $H$ (remember
 that using the notation introduces in the previous milestone, $H$ has
 inside the three high-frequency subbands: $LH$, $HL$ and $HH$, and
-that $L=LL$).
+that $L=LL$). This discussion will be also constrained to the case in
+which the movement of the objects in the scene is a integer number of
+pixels.
 
+\subsection{The lack of shift-invariance in the DWT domain}
 Unfortunately, DWT decompositions are shift-variant as a consequence
-of the downsampling performed during the DWT to achieve critical
-sampling in the aliased subbands. This can be seen in the
+of the downsampling performed during the DWT to achieve a critical
+representation. This can be seen in the
 Fig.~\ref{fig:dwt_shift_variance} were some DWT coefficients of a test
-video with three frames (with a 1-pixel constant-speed
-moving-(to-the-left)-circle) has been shown. As it can be seen, when
-the circle moves only one pixel, the value of the coefficients that
-correspond to the circunference of the circle are different between
-the reference frame and the predicted frame. This makes quite
-difficult to estimate and compensate the motion between frames. Notice
-also that the effects of shift-variance is also visible after using
-the inverse transform when the coefficients are filtered or quantized,
-because the aliasing between the filters is not completely cancelled
-in this case~\cite{bradley2003shift}.
+video with three test frames has been shown. As it can be seen, when
+the circle moves to the left only one pixel (between frames 0 and 1),
+the value of the coefficients that correspond to the circunference of
+the circle are different between the reference frame (0) and the
+predicted frame (1). This makes quite difficult to estimate and
+compensate the motion between frames. Notice also that the effects of
+shift-variance is also visible after using the inverse transform when
+the coefficients are filtered or quantized, because the aliasing
+between the filters is not completely cancelled in this
+case~\cite{bradley2003shift}.
 
 \begin{figure}
   \centering
@@ -66,19 +69,23 @@ in this case~\cite{bradley2003shift}.
 
 However, suprisingly, at it can be also seen in the
 Fig.~\ref{fig:dwt_shift_variance}, when the circle has traveled two
-pixels, a perfect match is performed! The reason why the 1-pixel
-movement is generating different coefficients in the reference and the
-predicted frames is because a 1-pixel motion cannot be represented
-selecting always the same phase at the downsamplers (remember that
-with the downsampler we are basically selecting only one the two
-possible phases of the output of the analysis filters: the even
-samples or the odd samples). Lets suppose that the downsampler
-discards the odd coefficients (let's refer them as odd-phase
-coefficients). In this case, the even-phase cofficients of the
-reference frame are the same than the odd-phase coefficients of the
-predicted frame (this can be seen in this notebook). Therefore, in the
-1D case, when the motion is ``even''-type (that is, a displacement of
-a even number of samples) we should compensate the even-phase
+pixels (frames 0 and 2), a perfect match is achieved! The reason why
+the 1-pixel movement is generating different coefficients in the
+reference and the predicted frames is because a 1-pixel motion cannot
+be represented selecting always the same phase at the downsamplers
+(remember that with the downsampler we are basically selecting only
+one the two possible phases of the output of the analysis filters: the
+even samples or the odd samples, see this notebook).
+
+Lets suppose that
+the downsampler discards the odd coefficients (let's refer them as
+odd-phase coefficients).
+
+In this case, the even-phase cofficients of
+the reference frame are the same than the odd-phase coefficients of
+the predicted frame (this can be seen in this notebook). Therefore, in
+the 1D case, when the motion is ``even''-type (that is, a displacement
+of a even number of samples) we should compensate the even-phase
 coefficients of the reference and the predicted frame, while when the
 motion is ``odd''-type we should compensate the odd-phase coefficients
 of the predicted frame with a prediction generated with the even-phase
