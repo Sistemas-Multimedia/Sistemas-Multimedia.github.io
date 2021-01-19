@@ -194,21 +194,21 @@ low-frequency subband $L$. More concretely, we implement:
   
 \item Estimate the motion between the interpolated version of $R.L$
   \begin{equation}
-    [R.L] = \text{DWT}^{-1}(R.L, 0)
+    [P.L] = \text{DWT}^{-1}(P.L, 0).
   \end{equation}
   and
   \begin{equation}
-    [P.L] = \text{DWT}^{-1}(P.L, 0).
+    [R.L] = \text{DWT}^{-1}(R.L, 0)
   \end{equation}
   The output of this step is a motion vectors field
-  $\overset{[R.L]\rightarrow [P.L]}{V}$, that describes how to project
-  the $[R.L]$ onto $[P.L]$. Notice that
-  $\overset{[R.L]\rightarrow [P.L]}{V}$ should also be a good
-  candidate for mapping $R$ onto $P$. Notice also that the number of
-  vectors in $\overset{[R.L]\rightarrow [P.L]}{V}$ can as high as
+  $\overset{[P.L]\rightarrow [R.L]}{V}$, that describes how to project
+  the $[P.L]$ onto $[R.L]$. Notice that
+  $\overset{[P.L]\rightarrow [R.L]}{V}$ should also be a good
+  candidate for mapping $P$ onto $R$. Notice also that the number of
+  vectors in $\overset{[P.L]\rightarrow [L.L]}{V}$ can be as high as
   the number of pixels in $R$ (and $P$).
   
-\item Use $\overset{[R.L]\rightarrow [P.L]}{V}$ and $[R.L]$ to
+\item Use $\overset{[P.L]\rightarrow [R.L]}{V}$ and $[R.L]$ to
   generate a prediction $[\hat{P}.L]$, and $[R.H]$ to generate a
   prediction $[\hat{P}.H]$. We define the prediction error in the
   low-frequency subband as
@@ -222,10 +222,10 @@ low-frequency subband $L$. More concretely, we implement:
     [E.H] = [P.H] - [\hat{P}.H].
     \label{eq:prediction_error}
   \end{equation}
-  Notice that $\overset{[R.L]\rightarrow [P.L]}{V}$ depends only on
+  Notice that $\overset{[P.L]\rightarrow [R.L]}{V}$ depends only on
   $R.L$ and $P.L$, not on the high frequency subbands.
 
-\item Compute the Element-Wise (EW) minimum of $[R.L]$ and $[E.L]$:
+\item Compute the Element-Wise (EW) minimum of $[P.L]$ and $[E.L]$:
   \begin{equation}
     \{T,M\} = \text{EW-min}([P.L], [E.L])
     \label{eq:EW-min}
@@ -248,8 +248,8 @@ low-frequency subband $L$. More concretely, we implement:
   \begin{equation}
     O_{i,j} = \left\{
       \begin{array}{ll}
-        [P.L]_{i,j} & \text{if} M_{i,j} = 0 \\
-        {[}E.L{]}_{i,j} & \text{otherwise}.
+        [P.L]_{i,j} & \text{if} M_{i,j} = 0 (\text{intra~pixel})\\
+        {[}E.L{]}_{i,j} & \text{otherwise} (\text{predicted-pixel}).
         %(E.L) & \text{otherwise}.
       \end{array}
     \right.
@@ -272,7 +272,9 @@ low-frequency subband $L$. More concretely, we implement:
 \section{What you have to do?}
 
 Please, implement Eq.~\ref{eq:output}, preferiblely in a Jupyter
-notebook. Verify also Eq.~\ref{eq:crs}.
+notebook. Use the moving circle generator (see
+this \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/DWT_shift_variance.ipynb}{notebook})
+to create the video. Verify also Eq.~\ref{eq:crs}.
 
 \section{Timming}
 
