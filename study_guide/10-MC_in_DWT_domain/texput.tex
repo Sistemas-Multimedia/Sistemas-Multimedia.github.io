@@ -145,16 +145,21 @@ Adelson~\cite{burt1987laplacian} and has been used for the design of
 spatially-scalable image and video codecs, such as
 SHVC~\cite{sullivan2012overview}.
 
-The LP is considered a frame expansion that generates an expanded (not
-critical) octave-band decomposition. Unlike in the DWT, such expansion
-is consequence of that the filters used for creating the LP levels
-does not cancel the aliasing between them (see this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/critical_LP.ipynb}{notebook}). On the other hand,
-the redundancy in the LP tends to 2 with the number of levels, which
-affects negatively to the compression ratio.
+The LP is a frame expansion that generates an expanded (not critical)
+octave-band decomposition, and in some way, it can be considered one
+of the precursors of the dyadic DWT. Unlike in the DWT, such expansion
+is consequence of that the filters used for creating the LP levels are
+not orthogonal and therefore, they do not cancel the aliasing between
+them (see this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/critical_LP.ipynb}{notebook}). On
+the other hand, the redundancy in the LP tends to 2 with the number of
+levels, which affects negatively to the compression ratio. An
+adventage of this is that the LP is shift invariant (see this
+notebook).
 
-CS-LPT is a special case of the LP where the filters are DWT
-filters. The 1-levels CS-LPT (that has two levels in its pyramid) is
+CS-LPT is a special case of the LP where the filters are
+(bi)orthogonal DWT filters (in this case, we say that the LP is a
+tight frame). The 1-levels CS-LPT (that has two levels in its pyramid)
 of the frame $X$ defined by
 \begin{equation}
   \{L, [H]\} = \{LL, \text{DWT}^{-1}(0, LH, HL, HH)\} = \{LL, \text{DWT}^{-1}(0, H)\},
