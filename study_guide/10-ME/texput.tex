@@ -1,5 +1,5 @@
 \input{../definitions}
-\title{\SM{} - Study Guide - Milestone 11: Motion Estimation}
+\title{\SM{} - Study Guide - Milestone 10: Motion Estimation}
 
 \maketitle
 
@@ -14,36 +14,87 @@ the decoder.
 
 A MC Predictor (MCP) inputs one or more reference frames $R$, a
 predicted frame $P$ (the frame that we want to compensate), and a
-motion vectors field $\overset{\rightarrow}{V}$. In the last
-milestone we saw how to find $\hat{P}$ and how to use it. In this
-milestone we show how to compute $\overset{\rightarrow}{V}$.
+motion vectors field $\overset{\rightarrow}{V}$. In the next milestone
+we will see how to find $\hat{P}$ and how to use it. In this milestone
+we show how to compute $\overset{\rightarrow}{V}$.
 
 Let's see two basic techniques to estimate the motion between 2
 frames, $R$ and $P$. In this discussion it will be supposed that the
 motion of the objects that are in both frames is bounded, and that the
-luminance, at most, only varies smoothly between adjacent frames.
+luminance varies smoothly between adjacent frames.
 
 \subsection{Disjoint block matching}
 $P$ can be divided, for example, in blocks of 16x16 pixels, and we can
-apply some distortion metric (such as the MSE) to compute the distance
-between each block of $P$ and its surrounding blocks in $R$. For each
-block a motion vector indicating the best match (smaller distance) is
-computed.
+apply some distortion metric (such as the MSE) to compute the
+\href{https://en.wikipedia.org/wiki/Euclidean_distance}{L$_2$
+  distance} between each block of $P$ and its surrounding blocks in
+$R$ (the search area). For each block a motion vector that indicates
+the best match (smaller distance) is found. The set of motion vectors
+form $\overset{\rightarrow}{V}$.
 
 \subsection{Overlaped block matching}
 This technique is similar to the previous one, except in which the
-blocks can be overlaped. The number of motion vectors is higher, which
-in general can model better the motion. The overlaped pixels are
-averaged.
+blocks can be overlaped in $P$. Obviously, the number of motion
+vectors is higher, which in general can model better the motion. The
+overlaped pixels between blocks are averaged.
 
 \subsection{(Dense) Optical flow}
-Basically, the optical flow try to establish connections between the
-pixels of frames $P$ and $R$ supposing:
+The optical flow~\cite{horn1981determining} tries to establish connections between the pixels of
+frames $P$ and $R$ supposing that:
 \begin{enumerate}
-\item That the pixel will have the same luminance.
-\item That adjacent pixels follow parallel trajectories.
+\item $P$ and $R$ are adjacent in time (if $R$ was taken at time $t$,
+  $P$ is taken at time $dt+t$) and therefore, similar in
+  content.
+\item Similarity between images implies that the pixels in both
+  frames, $R$ and $P$, will have the same luminance. If $I(x,y,t)$
+  measures the luminance of the pixel $(x,y)$ of the frame $R$,
+  similarity can be modeled by
+  \begin{equation}
+    I(x+dx, y+dy, t+dt) = I(x,y,t),
+    \label{eq:similarity}
+  \end{equation}
+  where $I(x+dx, y+dy, t+dt)$ is the corresponding pixel in the frame
+  $P$. The first part of the Eq.~\ref{eq:similarity} can be also
+  computed by (using the first-order Taylor expansion) as
+  \begin{equation}
+    I(x+dx, y+dy, t+dt) = I(x,y,t) + \frac{\partial I}{\partial x}dx + \frac{\partial I}{\partial y}dy + \frac{\partial I}{\partial t}dt,
+    \label{eq:taylor_exp}
+  \end{equation}
+  andtherefore, it must be true that
+  \begin{equation}
+    \frac{\partial I}{\partial x}dx + \frac{\partial I}{\partial y}dy + \frac{\partial I}{\partial t}dt = 0.
+    \label{eq:constraint}
+  \end{equation}
+  Dividing by $dt$, we finally get that
+  \begin{equation}
+    \frac{\partial I}{\partial x}\frac{dx}{dt} + \frac{\partial I}{\partial y}\frac{dy}{dt} + \frac{\partial I}{\partial t} = 0.
+  \end{equation}
+\item Adjacent pixels follow parallel
+  trajectories~\cite{horn1981determining}, with basically means that
+  neighbor pixels will have similar motion.
 \end{enumerate}
 
+% http://www.jonathanmugan.com/GraphicsProject/OpticalFlow/
+This one equation has two unknowns and so does not have a unique solution. This is the mathematical consequence of the aperture problem. The aperture problem is that there is not enough information in a small area to uniquely determine motion (this is what causes the barber pole illusion). To add an additional constraint, Horn and Schunck [2] use a global regularization calculation. They assume that images consist of objects undergoing rigid motion, and so over relatively large areas the optical flow will be smooth. They then minimize the square of the magnitude of the gradient of optical flow using the equation
+%
+%
+%
+In contrast, Lucas and Kanade [3] use a local least squares calculation to provide the constraint by minimizing in the neighborhood surrounding the pixel, represented in equation form by
+%
+%
+%
+
+% https://medium.com/@nabil.madali/introduction-to-optical-flow-77c8f61b04c4
+It is the instantaneous velocity of the pixel movement of the spatially moving object on the observation imaging plane. the image constraint equation
+%
+In 1981, Horn and Schunck creatively linked the two-dimensional velocity field with the gray level, introduced the optical flow constraint equation, and obtained the basic algorithm for optical flow calculation.
+%
+Assuming that the pixel intensity of the target in the image does not change between consecutive frames and let I(x,y,t) denote the gray value of the pixel at time t ,we have:
+
+\subsection{Sparse optical flow}
+This is a special case of the dense clase in which only some
+interesting points (such as the edges or the corners of the objects)
+are tracked. This speeds up the ME process.
 
 \section{What you have to do?}
 
@@ -61,126 +112,4 @@ None.
 
 \section{Resources}
 
-\bibliography{image-pyramids,DWT,motion-estimation,HEVC}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{comment}
-
-\subsection{Using (also) the lost phase in IBMC}
-There are different alternatives for recovering the ``lost'' phases
-(remember that we have two subbands, and two downsamplers) during the
-DWT (in the 1D case). The result of this procedure is know as the
-Overcomplete DWT (ODWT). Notice, however, that we are not interested
-in encoding the ODWT domain, but in encoding the DWT that is more
-compact. To achieve this, at least the following techniques can be
-used:
-
-\subsection{Performing IBMC in the 1-levels MDWT domain}
-Once that the missing phases have been recovered, the MC procedure
-between two frames (the reference frame $R$ and the predicted frame
-$P$) that we are going to implement is:
-\begin{enumerate}
-\item  Therefore, estimate the motion between the overcomplete
-  low-frequency subband of the reference frame $[R.L]$ and the
-  overcomplete low-frequency subband of the predicted frame
-  $[P.L]$. The output of this step is a motion vectors field
-  $\overrightarrow{V}$, that describes how to project the $[R.L]$ onto
-  $[P.L]$. Notice that $\overrightarrow{V}$ should be also a good
-  candidate for mapping $R$ onto $P$.
-  
-\item Use $\overrightarrow{V}$ and $[R.H]$ (notice that in 2D case,
-  $[R.H]=\{[R.HL], [R.LH], [R.HH]\}$) to generate a prediction
-  $[\hat{P}.L]$. We define the prediction error
-  in the overcomplete low-frequency subband as
-  \begin{equation}
-    [E.L] = [P.L] - [\hat{P}.L],
-    \label{eq:prediction_error_L}
-  \end{equation}
-  and the prediction error in the overcomplete high-frequency subband
-  as
-  \begin{equation}
-    [E.H] = [P.H] - [\hat{P}.H].
-    \label{eq:prediction_error}
-  \end{equation}
-
-\item Selectively subsample $[E.H]$, picking out the right phase.
-\end{enumerate}  
-
-
-  Perform first the MC stage directly over the
-  output of the analysis filters, and then, selectively downsample the
-  result. Notice that the downsampler should select the right phase,
-  depending on the type of motion detected (``odd'' or ``even''). This
-  information (the selected phase), should be available at the
-  decoder, along with the motion fields.
-\item Delay-then-DWT: Perform two identical DWTs, one to the original
-  signal, and the other to a one-sample delayed signal (remember than
-  a movement of one pixel will change the phase at the output of the
-  DWT). Thus, the the DWT applied to the original signal will generate
-  one of the phases and the DWT applied to the delayed signal will
-  generate the other one.
-\item CODWT: Use the current (single phase) L and H coefficients to
-  compute the missing phase, using the CODWT (Complete-to-Overcomplete
-  DWT)~\cite{andreopoulos2005complete} (a new type of DWT applied to
-  the DWT coefficients).
-\end{enumerate}
-Each alternative has pros and cons. If the DWT has been implemented
-using convolution, MC-then-downsample should be a fast
-alternative. However, if the DWT uses Lifting, Multiple-DWT-then-MC
-should be fast also, because only one phase is computed by the
-DWT. These two options can be used with any DWT filters. On the other
-hand, CODWT needs specific designs form each DWT filters. Notice that, in any case, the solution is reached after using the ODWT domain.
-
----
-
-is because a 1-pixel motion cannot
-be represented selecting always the same phase at the downsamplers
-(remember that with the downsampler we are basically selecting only
-one the two possible phases of the output of the analysis filters: the
-even samples or the odd samples, see this notebook).
-
-Lets suppose that
-the downsampler discards the odd coefficients (let's refer them as
-odd-phase coefficients).
-
-In this case, the even-phase cofficients of
-the reference frame are the same than the odd-phase coefficients of
-the predicted frame (this can be seen in this notebook). Therefore, in
-the 1D case, when the motion is ``even''-type (that is, a displacement
-of a even number of samples) we should compensate the even-phase
-coefficients of the reference and the predicted frame, while when the
-motion is ``odd''-type we should compensate the odd-phase coefficients
-of the predicted frame with a prediction generated with the even-phase
-coefficients of the reference frame, or viceversa.
-
-
-\subsection{Near shift-invariance in the IDWT (Interpolated DWT) domain}
-As it was commented before, the causant of the shift-variance in the
-critically sampled DWT domain is the use of the downsamplers. At this
-point we have basically two different alternatives:
-\begin{enumerate}
-\item Use the Algorithme \`a Trous (AaT)~\cite{mallat1999wavelet},
-  which removes the downsamplers from the DWT, generating the so
-  called Overcomplete DWT (ODWT). Notice that, because the
-  downsamplers are removed, the aliasing artifacts produced by the
-  downsamplers is also avoided.
-\item Approximate the AaT coefficients by interpolating the DWT
-  coefficients using the DWT synthesis filters. In this case, the
-  aliasing is not avoided, but the shift-variance problem is
-  reduced.
-\end{enumerate}
-
-\subsection{Subpixel accuracy}
-Objects in real scenes usually move a rational number of pixels, and
-therefore, even when the input frames seems to be the same,
-numerically they aren't. To deal with this drawback, interpolation can
-be used to increase the resolution of the frames (MC in the frame
-domain) or the subbands (MC in the subband domain), performing thus a
-MC with increased accuracy.
-
-Interpolation and DWT are both linear operators, and therefore, are
-interchangeable. This means that we can interpolate the input frames and work as if the motion where integer-pixel, or we can interpolate the DWT coefficients. In both options, the number of 
-
-\end{comment}
+\bibliography{motion-estimation}
