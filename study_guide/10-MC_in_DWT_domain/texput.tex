@@ -91,8 +91,6 @@ of motion detected, the corresponding phase should be selected.
 \begin{figure}
   \centering
   \begin{tabular}{ccc}
-    \vbox{\png{frame_0_Y}{300}} & \vbox{\png{frame_1_Y}{300}} & \vbox{\png{frame_2_Y}{300}} \\
-    & \vbox{\svg{movement_0}{300}} & \vbox{\svg{movement_1}{300}} \\
     \vbox{\png{f0_ohaar_LL}{300}} & \vbox{\png{f1_ohaar_LL}{300}} & \vbox{\png{f2_ohaar_LL}{300}} \\
     \vbox{\png{f0_ohaar_LH}{300}} & \vbox{\png{f1_ohaar_LH}{300}} & \vbox{\png{f2_ohaar_LH}{300}} \\
     \vbox{\png{f0_ohaar_HL}{300}} & \vbox{\png{f1_ohaar_HL}{300}} & \vbox{\png{f2_ohaar_HL}{300}} \\
@@ -120,7 +118,7 @@ Overcomplete DWT (ODWT)~\cite{mallat1999wavelet}.
 \item Considering the previous experiments, it's easy to see that if
   we shift the signal one sample and perform the DWT, we get the
   ``lost'' phase. This method has been used to perform efficient MC in
-  the DWT domain~\cite{park2000motion,li2001all}.
+  the DWT domain~\cite{park2000motion,li2001all}. See this \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/ODWT_with_delay.ipynb}{notebook}.
 \item Apply some transform (such as for example, the CODWT
   (Complete-to-Overcomplete DWT)~\cite{andreopoulos2005complete}) to
   the DWT to reconstruct the ODWT.
@@ -169,17 +167,45 @@ Adelson~\cite{burt1987laplacian} and has been used for the design of
 spatially-scalable image and video codecs, such as
 SHVC~\cite{sullivan2012overview}.
 
+\begin{figure}
+  \centering
+  \begin{tabular}{ccc}
+    \vbox{\png{f0_LP_level1}{300}} & \vbox{\png{f1_LP_level1}{300}} & \vbox{\png{f2_LP_level1}{300}} \\
+    \vbox{\png{f0_LP_level0}{300}} & \vbox{\png{f1_LP_level0}{300}} & \vbox{\png{f2_LP_level0}{300}} \\
+    & \vbox{\svg{f0_1_LP_level1}{300}} & \vbox{\svg{f0_2_LP_level1}{300}} \\
+    & \vbox{\svg{f0_1_LP_level0}{300}} & \vbox{\svg{f0_2_LP_level0}{300}}
+  \end{tabular}
+  \caption{A demonstration of the shift-invariance of the LP. See this
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/LP_shift_invariance.ipynb}{notebook}.}
+\label{fig:LP}
+\end{figure}
+
 The LP is a frame expansion that generates an expanded (not critical)
 octave-band decomposition, and in some way, it can be considered one
 of the precursors of the dyadic DWT. Unlike in the DWT, such expansion
 is consequence of that the filters used for creating the LP levels are
 not orthogonal and therefore, they do not cancel the aliasing between
 them (see this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/LP_is_not_critical.ipynb}{notebook}). On
-the other hand, the redundancy in the LP tends to 2 with the number of
-levels, which affects negatively to the compression ratio. An
-adventage of this is that the LP is shift-invariant (see this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/shift_invariance_in_LP.ipynb}{notebook}).
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/LP_is_not_critical.ipynb}{notebook}). Moreover,
+the redundancy in the LP tends to 2 with the number of levels, which
+affects negatively to the compression ratio. An adventage of this is
+that the LP is shift-invariant in the high-frequency subband (see the
+Fig.~\ref{fig:LP}), and of course, like the DWT, in the low-frequency
+subband when the motion is a multiple of 2.
+
+\begin{figure}
+  \centering
+  \begin{tabular}{ccc}
+    \vbox{\png{f0_CS-LPT_level1}{300}} & \vbox{\png{f1_CS-LPT_level1}{300}} & \vbox{\png{f2_CS-LPT_level1}{300}} \\
+    \vbox{\png{f0_CS-LPT_level0}{300}} & \vbox{\png{f1_CS-LPT_level0}{300}} & \vbox{\png{f2_CS-LPT_level0}{300}} \\
+    & \vbox{\svg{f0_1_CS-LPT_level1}{300}} & \vbox{\svg{f0_2_CS-LPT_level1}{300}} \\
+    & \vbox{\svg{f0_1_CS-LPT_level0}{300}} & \vbox{\svg{f0_2_CS-LPT_level0}{300}}
+  \end{tabular}
+  \caption{A demonstration of the shift-invariance of the CS-LPT. See
+    this
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/CS-LPT_shift_invariance.ipynb}{notebook}.}
+\label{fig:CS-LP}
+\end{figure}
 
 CS-LPT is a special case of the LP where the filters are
 (bi)orthogonal DWT filters (in this case, we say that the LP is a
