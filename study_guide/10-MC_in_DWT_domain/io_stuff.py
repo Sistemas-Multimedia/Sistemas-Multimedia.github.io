@@ -41,3 +41,9 @@ def show_motion(prefix="/tmp/", frames=5):
         plt.figure(figsize=(10,10))
         plt.title(f"{prefix}{i:03d}", fontsize=20)
         plt.imshow(diff)
+
+def write_img(frame, prefix):
+    frame = frame.astype(np.float32)
+    frame += 32768.0
+    frame = frame.astype(np.uint16)
+    cv2.imwrite(f"{prefix}.png", frame)
