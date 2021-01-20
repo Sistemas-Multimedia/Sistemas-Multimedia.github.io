@@ -54,25 +54,28 @@ case~\cite{bradley2003shift}.
   \begin{tabular}{ccc}
     \vbox{\png{frame_0_Y}{300}} & \vbox{\png{frame_1_Y}{300}} & \vbox{\png{frame_2_Y}{300}} \\
     & \vbox{\svg{movement_0}{300}} & \vbox{\svg{movement_1}{300}} \\
-    & \vbox{\svg{haar_LL_0}{300}} & \vbox{\svg{haar_LL_1}{300}} \\
-    & \vbox{\svg{haar_LH_0}{300}} & \vbox{\svg{haar_LH_1}{300}} \\
-    & \vbox{\svg{haar_HL_0}{300}} & \vbox{\svg{haar_HL_1}{300}} \\
-    & \vbox{\svg{haar_HH_0}{300}} & \vbox{\svg{haar_HH_1}{300}}
+    \vbox{\png{f0_haar_LL}{300}} & \vbox{\png{f1_haar_LL}{300}} & \vbox{\png{f2_haar_LL}{300}} \\
+    \vbox{\png{f0_haar_LH}{300}} & \vbox{\png{f1_haar_LH}{300}} & \vbox{\png{f2_haar_LH}{300}} \\
+    \vbox{\png{f0_haar_HL}{300}} & \vbox{\png{f1_haar_HL}{300}} & \vbox{\png{f2_haar_HL}{300}} \\
+    \vbox{\png{f0_haar_HH}{300}} & \vbox{\png{f1_haar_HH}{300}} & \vbox{\png{f2_haar_HH}{300}} \\
+    & \vbox{\svg{f0_1_haar_LL}{300}} & \vbox{\svg{f0_2_haar_LL}{300}} \\
+    & \vbox{\svg{f0_1_haar_LH}{300}} & \vbox{\svg{f0_2_haar_LH}{300}} \\
+    & \vbox{\svg{f0_1_haar_HL}{300}} & \vbox{\svg{f0_2_haar_HL}{300}} \\
+    & \vbox{\svg{f0_1_haar_HH}{300}} & \vbox{\svg{f0_2_haar_HH}{300}}
   \end{tabular}
   \caption{A demonstration of the shift-variance of the DWT. Similar
     results have been obtained for other filters. See this
-    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/DWT_shift_variance.ipynb}{notebook}.}
-\label{fig:dwt_shift_variance}
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/DWT_shift_invariance.ipynb}{notebook}.}
+\label{fig:dwt}
 \end{figure}
 
 However, suprisingly, at it can be also seen in the
-Fig.~\ref{fig:dwt_shift_variance}, when the circle has traveled two
-pixels (frames 0 and 2), a perfect match is achieved! The reason why
-the 1-pixel motion generates different coefficients in the
-reference and the predicted frames, and the same coefficients for a
-2-pixel motion is because, in the first case the right coefficients
-were discarded by the downsamplers, and in the second case
-not.
+Fig.~\ref{fig:dwt}, when the circle has traveled two pixels (frames 0
+and 2), a perfect match is achieved! The reason why the 1-pixel motion
+generates different coefficients in the reference and the predicted
+frames, and the same coefficients for a 2-pixel motion is because, in
+the first case the right coefficients were discarded by the
+downsamplers, and in the second case not.
 
 Usually, we call phases to the two possible coefficients resulting
 from one (1D) filter to be subsampled, being the even phase, the even
@@ -84,6 +87,25 @@ the 2D case, and always working with only one level of the DWT, we
 have up to four different phases: (even, even)-, (even, odd)-, (odd,
 even)-, and (odd, odd)-phase coefficients. Thus, depending on the type
 of motion detected, the corresponding phase should be selected.
+
+\begin{figure}
+  \centering
+  \begin{tabular}{ccc}
+    \vbox{\png{frame_0_Y}{300}} & \vbox{\png{frame_1_Y}{300}} & \vbox{\png{frame_2_Y}{300}} \\
+    & \vbox{\svg{movement_0}{300}} & \vbox{\svg{movement_1}{300}} \\
+    \vbox{\png{f0_ohaar_LL}{300}} & \vbox{\png{f1_ohaar_LL}{300}} & \vbox{\png{f2_ohaar_LL}{300}} \\
+    \vbox{\png{f0_ohaar_LH}{300}} & \vbox{\png{f1_ohaar_LH}{300}} & \vbox{\png{f2_ohaar_LH}{300}} \\
+    \vbox{\png{f0_ohaar_HL}{300}} & \vbox{\png{f1_ohaar_HL}{300}} & \vbox{\png{f2_ohaar_HL}{300}} \\
+    \vbox{\png{f0_ohaar_HH}{300}} & \vbox{\png{f1_ohaar_HH}{300}} & \vbox{\png{f2_ohaar_HH}{300}} \\
+    & \vbox{\svg{f0_1_ohaar_LL}{300}} & \vbox{\svg{f0_2_ohaar_LL}{300}} \\
+    & \vbox{\svg{f0_1_ohaar_LH}{300}} & \vbox{\svg{f0_2_ohaar_LH}{300}} \\
+    & \vbox{\svg{f0_1_ohaar_HL}{300}} & \vbox{\svg{f0_2_ohaar_HL}{300}} \\
+    & \vbox{\svg{f0_1_ohaar_HH}{300}} & \vbox{\svg{f0_2_ohaar_HH}{300}}
+  \end{tabular}
+  \caption{A demonstration of the shift-invariance of the ODWT. See this
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/ODWT_shift_invariance.ipynb}{notebook}.}
+\label{fig:odwt}
+\end{figure}
 
 \subsection{Recovering the lost phases}
 There are different alternatives for regenerating the phases discarded
@@ -103,6 +125,7 @@ Overcomplete DWT (ODWT)~\cite{mallat1999wavelet}.
   (Complete-to-Overcomplete DWT)~\cite{andreopoulos2005complete}) to
   the DWT to reconstruct the ODWT.
 \end{enumerate}
+The Fig.~\ref{fig:odwt} shows the shift invariance of the ODWT.
 
 \subsection{About using the lost phases in IBMC}
 Up to date, all the video codecs that use critically sampled IBMC also
@@ -152,7 +175,7 @@ of the precursors of the dyadic DWT. Unlike in the DWT, such expansion
 is consequence of that the filters used for creating the LP levels are
 not orthogonal and therefore, they do not cancel the aliasing between
 them (see this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/critical_LP.ipynb}{notebook}). On
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/LP_is_not_critical.ipynb}{notebook}). On
 the other hand, the redundancy in the LP tends to 2 with the number of
 levels, which affects negatively to the compression ratio. An
 adventage of this is that the LP is shift-invariant (see this
@@ -191,22 +214,24 @@ same amount of pixels. With this idea in mind, we estimate the motion
 in the $[H]$ subband using only the information provided by the
 low-frequency subband $L$. More concretely, we implement:
 \begin{enumerate}
-  
-\item Estimate the motion between the interpolated version of $R.L$
+
+\item Interpolate the low-frequency subbands of $R$ and $P$:
   \begin{equation}
-    [P.L] = \text{DWT}^{-1}(P.L, 0).
+    [P.L] = \text{DWT}^{-1}(P.L, 0),
   \end{equation}
-  and
   \begin{equation}
-    [R.L] = \text{DWT}^{-1}(R.L, 0)
+    [R.L] = \text{DWT}^{-1}(R.L, 0).
   \end{equation}
+
+\item Estimate the motion between $[P.L]$ and $[R.L]$.
   The output of this step is a motion vectors field
   $\overset{[P.L]\rightarrow [R.L]}{V}$, that describes how to project
-  the $[P.L]$ onto $[R.L]$. Notice that
-  $\overset{[P.L]\rightarrow [R.L]}{V}$ should also be a good
-  candidate for mapping $P$ onto $R$. Notice also that the number of
-  vectors in $\overset{[P.L]\rightarrow [L.L]}{V}$ can be as high as
-  the number of pixels in $R$ (and $P$).
+  the $[P.L]$ onto $[R.L]$. Notice that $\overset{[P.L]\rightarrow
+  [R.L]}{V}$ should also be a good candidate for mapping $P$ onto
+  $R$.\footnote{Notice also that the number of vectors in
+  $\overset{[P.L]\rightarrow [L.L]}{V}$ can be as high as the number
+  of pixels in $R$ (and $P$), although this will depend on the
+  accuracy of the ME/MC.}
   
 \item Use $\overset{[P.L]\rightarrow [R.L]}{V}$ and $[R.L]$ to
   generate a prediction $[\hat{P}.L]$, and $[R.H]$ to generate a
@@ -244,18 +269,18 @@ low-frequency subband $L$. More concretely, we implement:
     \right.
     \label{eq:matrix}
   \end{equation}
+  
 \item Output
   \begin{equation}
     O_{i,j} = \left\{
       \begin{array}{ll}
         [P.L]_{i,j} & \text{if} M_{i,j} = 0 (\text{intra~pixel})\\
         {[}E.L{]}_{i,j} & \text{otherwise} (\text{predicted-pixel}).
-        %(E.L) & \text{otherwise}.
       \end{array}
     \right.
     \label{eq:output}
   \end{equation}
-  Notice that it must hold that
+  Realize that it must hold that
   \begin{equation}
     \sigma^2_O \le \sigma^2_E,
     \label{eq:vars}
@@ -267,6 +292,16 @@ low-frequency subband $L$. More concretely, we implement:
   \end{equation}
   should hold, where CR stands for Compression Ratio.
 
+  $O$ is the high-frequency subband a that we will send from the
+  encoder to the decoder, and it can be seen, it is composed of
+  prediction error coefficients and original coefficients. Making a
+  comparison with the procedure followed in most video coding
+  standards, the prediction error coefficients represent predicted
+  blocks (P-type blocks) or skipped blocks (S-type
+  blocks)\footnote{S-type blocks are an special case of P-type blocks
+  that have a prediction error so small that is more beneficial not to
+  send their texture.}, and the original coefficients are equivalent
+  to the intra(coded) blocks (I-type blocks).
 \end{enumerate}
 
 \section{What you have to do?}
