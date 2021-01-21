@@ -5,6 +5,7 @@
 
 \section{Description}
 
+\subsection{Motion estimation for what?}
 Temporal correlation between video frames can be removed by MC (Motion
 Compensation). MC implies to substract to the frames those
 information, in form of a prediction frame $\hat{P}$, that can be
@@ -14,33 +15,76 @@ the decoder.
 
 A MC Predictor (MCP) inputs one or more reference frames $R$, a
 predicted frame $P$ (the frame that we want to compensate), and a
-motion vectors field $\overset{\rightarrow}{V}$. In the next milestone
-we will see how to find $\hat{P}$ and how to use it. In this milestone
-we show how to compute $\overset{\rightarrow}{V}$.
+motion vectors field $\overset{\cdot\rightarrow\cdot}{V}$. In the next
+milestone we will see how to find $\hat{P}$ and how to use it. In this
+milestone we show how to compute $\overset{R\rightarrow P}{V}$.
 
-Let's see two basic techniques to estimate the motion between 2
-frames, $R$ and $P$. In this discussion it will be supposed that the
-motion of the objects that are in both frames is bounded, and that the
-luminance varies smoothly between adjacent frames.
+\subsection{What exactly we need?}
+Our main objective is to minimize the differences (for example, the
+\href{https://en.wikipedia.org/wiki/Euclidean_distance}{L$_2$
+  distance} between $P$ and $\hat{P}$, because $E=P-\hat{P}$ will be
+more compressible. To achieve this, we can compute
+$\overset{R\rightarrow P}{V}$ that simply minimizes the L$_2$ energy
+of $E$, $|E|^2$, or we can compute a $\overset{R\rightarrow P}{V}$
+that also describes the optical flow~\cite{horn1981determining}
+between the pixels of $R$ and $P$, that although not necessary has to
+minimize $|E|^2$, tries to show the true movement of the pixels
+between $R$ and $P$. This second option has the advantage of generate
+more visually pleasing predictions.
+
+The first type of techniques are simply called ``motion estimation
+techniques'', and are usually faster than the based on the computation
+of the optical flow.
+
+%Let's see two basic techniques to estimate the motion between 2
+%frames, $R$ and $P$. In this discussion it will be supposed that the
+%motion of the objects that are in both frames is bounded, and that the
+%luminance varies smoothly between adjacent frames.
+
+Let's see some of the most used techniques for estimating the motion
+between two frames. Notice that, in general, better estimations can be
+found if more than only two frames are used because the intertia of
+the objects (with mass). However, this case will not be considered for
+now.
 
 \subsection{Disjoint block matching}
 $P$ can be divided, for example, in blocks of 16x16 pixels, and we can
-apply some distortion metric (such as the MSE) to compute the
-\href{https://en.wikipedia.org/wiki/Euclidean_distance}{L$_2$
-  distance} between each block of $P$ and its surrounding blocks in
-$R$ (the search area). For each block a motion vector that indicates
+use the MSE (that is considered a L$_2$ distance) between each block
+of $P$ and its surrounding pixels in $R$ (the so called search
+area)~\cite{zhu2000new}. For each block a motion vector that indicates
 the best match (smaller distance) is found. The set of motion vectors
-form $\overset{\rightarrow}{V}$.
+form $\overset{R\rightarrow P}{V}$ that obviously, except for a block
+size of 1x1, will be less dense than $R$ and $P$. Notice, however,
+that, it is not a good idea to use such a small block size because, in
+general, the motion vectors will not describe the optical flow.
 
 \subsection{Overlaped block matching}
-This technique is similar to the previous one, except in which the
-blocks can be overlaped in $P$. Obviously, the number of motion
-vectors is higher, which in general can model better the motion. The
-overlaped pixels between blocks are averaged.
+A better approximation to the optical flow can be found if we allow
+the blocks to overlap in $P$~\cite{orchard1994overlapped}, and the
+overlaped pixels between blocks are averaged for building
+$\hat{P}$. The main drawback of this technique is that it more
+computationally demanding than the previous one.
 
-\subsection{(Dense) Optical flow}
+\subsection{Transform analysis}
+One of the most successful techniques for computing the (dense)
+optical flow is based on the analysis of the coefficients resulting
+from transforming the frames using a polynomial expansion (the details
+of this transform and the impact of the motion in the coefficients can
+be found in the paper or Gunnar
+Farneb{\"a}ck~\cite{farneback2003two}). This is the algorithm that we
+will use in our experiments for two important reasons: (1) it is quite
+efficient in terms both of performance and speed, and (2) it is
+already
+\href{https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html}{implemented}
+in OpenCV.
+
+\subsection{Machine learning}
+ANNs (Artifical Neural Networks) can be trained to estimate the
+motion between frames~\cite{dosovitskiy2015flownet}.
+
+\begin{comment}
 The optical flow~\cite{horn1981determining} tries to establish connections between the pixels of
-frames $P$ and $R$ supposing that:
+the frames $P$ and $R$ supposing that:
 \begin{enumerate}
 \item $P$ and $R$ are adjacent in time (if $R$ was taken at time $t$,
   $P$ is taken at time $dt+t$) and therefore, similar in
@@ -73,38 +117,21 @@ frames $P$ and $R$ supposing that:
   trajectories~\cite{horn1981determining}, with basically means that
   neighbor pixels will have similar motion.
 \end{enumerate}
-
-% http://www.jonathanmugan.com/GraphicsProject/OpticalFlow/
-This one equation has two unknowns and so does not have a unique solution. This is the mathematical consequence of the aperture problem. The aperture problem is that there is not enough information in a small area to uniquely determine motion (this is what causes the barber pole illusion). To add an additional constraint, Horn and Schunck [2] use a global regularization calculation. They assume that images consist of objects undergoing rigid motion, and so over relatively large areas the optical flow will be smooth. They then minimize the square of the magnitude of the gradient of optical flow using the equation
-%
-%
-%
-In contrast, Lucas and Kanade [3] use a local least squares calculation to provide the constraint by minimizing in the neighborhood surrounding the pixel, represented in equation form by
-%
-%
-%
-
-% https://medium.com/@nabil.madali/introduction-to-optical-flow-77c8f61b04c4
-It is the instantaneous velocity of the pixel movement of the spatially moving object on the observation imaging plane. the image constraint equation
-%
-In 1981, Horn and Schunck creatively linked the two-dimensional velocity field with the gray level, introduced the optical flow constraint equation, and obtained the basic algorithm for optical flow calculation.
-%
-Assuming that the pixel intensity of the target in the image does not change between consecutive frames and let I(x,y,t) denote the gray value of the pixel at time t ,we have:
-
-\subsection{Sparse optical flow}
-This is a special case of the dense clase in which only some
-interesting points (such as the edges or the corners of the objects)
-are tracked. This speeds up the ME process.
+\end{comment}
 
 \section{What you have to do?}
 
-Please, implement Eq.~\ref{eq:output}, preferiblely in a Jupyter
-notebook. Verify also Eq.~\ref{eq:crs}.
+In this notebook you can find how to estimate the optical flow between
+two frames. Please, modify it to find suitable values for the
+parameters \texttt{levels}, \texttt{winsize} and
+\texttt{iterations}. Supposing that the impact of each parameter is
+independent from the rest, the best way of comparing two different
+configurations is render RD curves using quantization and compressing
+the residues.
 
 \section{Timming}
 
-In groups, you will present the results for this milestone during the
-examination time.
+Please, finish this milestone before the next class session.
 
 \section{Deliverables}
 
