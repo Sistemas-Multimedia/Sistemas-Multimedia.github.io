@@ -1,10 +1,36 @@
 \input{../definitions}
-\title{\SM{} - Study Guide - Milestone 12: IPPP... Video Encoding}
+\title{\SM{} - Study Guide - Milestone 12: IPP... coding in MRVC (Multi Resolution Video Codec)}
 
 \maketitle
 
 \section{Description}
 
+\subsection{The IPP... decorrelation pattern}
+It's time to put together all the tools that we have collected for
+encoding a sequence of frames. We will call to this set of images, a
+Group Of Frames (GOF), and the structure of each GOP will be (except
+for the last one) IPP..., which means that the first frame will be
+intra-coded (I-type) and the rest of frames of the GOF will be
+predicted-coded (P-type). Notice that in a I-type frame all the
+coefficients will be I-type, and in a P-type frame, the different
+coefficients can be I-type or P-type.
+
+\subsection{Multiresolution iterations}
+In each IPP... stage, only a sequence of $[H]$ subbands is
+decorrelated. Therefore, in order to increase the CR, a minimum number
+of IPP... iterations should be carried out.
+
+\subsection{Scalability}
+IPP... MRVC sequences are scalable in resolution (R). Quality (Q)
+scalability in each spatial resolution level can be achieved by simply
+using an scalable image codec such as JPEG2000. However, notice that
+the only allowed progression is RQ (first the quality is incremented
+and then, the resolution).
+
+To provide, for example, a QR progression (reconstruct first by
+quality and then, by resolution)
+
+\subsection{A block diagram of the codec}
 \svg{graphics/codec}{1200}
 
 \section{What you have to do?}
