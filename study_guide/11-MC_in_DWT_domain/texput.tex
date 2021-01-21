@@ -304,7 +304,7 @@ low-frequency subband $L$. More concretely, we implement:
   \begin{equation}
     M_{i,j} = \left\{
       \begin{array}{ll}
-        0 & \text{if} [P.L]_{i,j} < [E.L]_{i,j} \\
+        0 & \text{if}~[P.L]_{i,j} < [E.L]_{i,j} \\
         1 & \text{otherwise}.
       \end{array}
     \right.
@@ -315,8 +315,8 @@ low-frequency subband $L$. More concretely, we implement:
   \begin{equation}
     O_{i,j} = \left\{
       \begin{array}{ll}
-        [P.L]_{i,j} & \text{if} M_{i,j} = 0~(\text{intra~coefficient})\\
-        {[}E.L{]}_{i,j} & \text{otherwise}~(\text{predicted~coefficient}).
+        [P.H]_{i,j} & \text{if}~M_{i,j} = 0~(\text{intra~coefficient})\\
+        {[}E.H{]}_{i,j} & \text{otherwise}~(\text{predicted~coefficient}).
       \end{array}
     \right.
     \label{eq:output}
@@ -333,7 +333,7 @@ low-frequency subband $L$. More concretely, we implement:
   \end{equation}
   should hold, where CR stands for Compression Ratio.
 
-  $O$ is the high-frequency subband a that we will send from the
+  $O$ is the high-frequency subband that we will send from the
   encoder to the decoder, and it can be seen, it is composed of
   prediction error coefficients and original coefficients. Making a
   comparison with the procedure followed in most video coding
