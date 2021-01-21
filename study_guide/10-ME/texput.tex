@@ -16,16 +16,23 @@ the decoder.
 A MC Predictor (MCP) inputs one or more reference frames $R$, a
 predicted frame $P$ (the frame that we want to compensate), and a
 motion vectors field $\overset{\cdot\rightarrow\cdot}{V}$. In the next
-milestone we will see how to find $\hat{P}$ and how to use it. In this
-milestone we show how to compute $\overset{R\rightarrow P}{V}$.
+milestone we will see how to find
+\begin{equation}
+  \hat{P} =  \overset{P\rightarrow R}{V}(R)
+\end{equation}
+and how to use it. In this milestone we show how to compute
+$\overset{P\rightarrow R}{V}$.
 
 \subsection{What exactly we need?}
 Our main objective is to minimize the differences (for example, the
 \href{https://en.wikipedia.org/wiki/Euclidean_distance}{L$_2$
-  distance} between $P$ and $\hat{P}$, because $E=P-\hat{P}$ will be
-more compressible. To achieve this, we can compute
-$\overset{R\rightarrow P}{V}$ that simply minimizes the L$_2$ energy
-of $E$, $|E|^2$, or we can compute a $\overset{R\rightarrow P}{V}$
+  distance}) between $P$ and $\hat{P}$, because
+\begin{equation}
+  E=P-\hat{P}
+\end{equation}
+will be more compressible. To achieve this, we can compute
+$\overset{P\rightarrow R}{V}$ that simply minimizes the L$_2$ energy
+of $E$, $|E|^2$, or we can compute a $\overset{P\rightarrow R}{V}$
 that also describes the optical flow~\cite{horn1981determining}
 between the pixels of $R$ and $P$, that although not necessary has to
 minimize $|E|^2$, tries to show the true movement of the pixels
@@ -53,7 +60,7 @@ use the MSE (that is considered a L$_2$ distance) between each block
 of $P$ and its surrounding pixels in $R$ (the so called search
 area)~\cite{zhu2000new}. For each block a motion vector that indicates
 the best match (smaller distance) is found. The set of motion vectors
-form $\overset{R\rightarrow P}{V}$ that obviously, except for a block
+form $\overset{P\rightarrow R}{V}$ that obviously, except for a block
 size of 1x1, will be less dense than $R$ and $P$. Notice, however,
 that, it is not a good idea to use such a small block size because, in
 general, the motion vectors will not describe the optical flow.
@@ -81,6 +88,24 @@ in OpenCV.
 \subsection{Machine learning}
 ANNs (Artifical Neural Networks) can be trained to estimate the
 motion between frames~\cite{dosovitskiy2015flownet}.
+
+\subsection{Motion compensation in action}
+\begin{figure}
+  \svg{R}{1000}
+  \svg{P}{1000}
+  \svg{y_motion}{1000}
+  \svg{x_motion}{1000}
+  \svg{hat_P}{1000}
+  \svg{without_ME}{1000}
+  \svg{with_ME}{1000}
+  \caption{Effect of the motion estimation over the temporal redundancy removal.}
+  \label{fig:MC}
+\end{figure}
+The Fig.~\ref{fig:MC} shows an example the performace of the use of
+the optical flow, comparing the prediction error generated with and
+without ME. A motion vector has been computed between each point of
+$P$ and $R$. As it can be seen, ME reduces the temporal redundancy
+significantly.
 
 \begin{comment}
 The optical flow~\cite{horn1981determining} tries to establish connections between the pixels of
