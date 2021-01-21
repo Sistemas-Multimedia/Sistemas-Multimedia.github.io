@@ -36,7 +36,7 @@ of $E$, $|E|^2$, or we can compute a $\overset{P\rightarrow R}{V}$
 that also describes the optical flow~\cite{horn1981determining}
 between the pixels of $R$ and $P$, that although not necessary has to
 minimize $|E|^2$, tries to show the true movement of the pixels
-between $R$ and $P$. This second option has the advantage of generate
+between $R$ and $P$. This second option has the advantage of generating
 more visually pleasing predictions.
 
 The first type of techniques are simply called ``motion estimation
@@ -54,7 +54,7 @@ found if more than only two frames are used because the intertia of
 the objects (with mass). However, this case will not be considered for
 now.
 
-\subsection{Disjoint block matching}
+\subsection{\href{https://vicente-gonzalez-ruiz.github.io/video_compression/\#x1-40003}{Disjoint block matching}}
 $P$ can be divided, for example, in blocks of 16x16 pixels, and we can
 use the MSE (that is considered a L$_2$ distance) between each block
 of $P$ and its surrounding pixels in $R$ (the so called search
@@ -146,13 +146,14 @@ the frames $P$ and $R$ supposing that:
 
 \section{What you have to do?}
 
-In this notebook you can find how to estimate the optical flow between
-two frames. Please, modify it to find suitable values for the
-parameters \texttt{levels}, \texttt{winsize} and
-\texttt{iterations}. Supposing that the impact of each parameter is
-independent from the rest, the best way of comparing two different
-configurations is render RD curves using quantization and compressing
-the residues.
+In this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-ME/optical_flow.ipynb}{notebook}
+you can find how to estimate the optical flow between two
+frames. Please, modify it to find suitable values for the parameters
+\texttt{levels}, \texttt{winsize} and \texttt{iterations}. Supposing
+that the impact of each parameter is independent from the rest, the
+best way of comparing two different configurations is render RD curves
+using quantization and compressing the residues.
 
 \section{Timming}
 
