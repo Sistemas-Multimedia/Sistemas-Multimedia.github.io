@@ -6,26 +6,36 @@
 \section{Description}
 
 \subsection{The IPP... decorrelation pattern}
-It's time to put together all the tools that we have collected for
+It's time to put together all the tools that we have developed for
 encoding a sequence of frames. We will call to this set of images, a
-Group Of Frames (GOF), and the structure of each GOP will be (except
-for the last one) IPP..., which means that the first frame will be
-intra-coded (I-type) and the rest of frames of the GOF will be
-predicted-coded (P-type). Notice that in a I-type frame all the
-coefficients will be I-type, and in a P-type frame, the different
-coefficients can be I-type or P-type.
+Group Of Frames (GOF), and the structure of each GOP will be IPP...,
+which means that the first frame of each GOF will be intra-coded
+(I-type), and the rest of frames of the GOF will be predicted-coded
+(P-type). Notice that in a I-type frame all the coefficients will be
+I-type, and in a P-type frame, the different coefficients can be
+I-type or P-type.
 
 \subsection{Multiresolution iterations}
-In each IPP... stage, only a sequence of $[H]$ subbands is
-decorrelated. Therefore, in order to increase the CR, a minimum number
-of IPP... iterations should be carried out.
+In each IPP... iteration, only a sequence of $[H]$ subbands is
+decorrelated considering the information provided by the $[L]$
+subbands. Therefore, in order to increase the CR, a minimum number of
+IPP... iterations should be carried out. The number of iterations
+controls the number of SRLs (Spatial Resolution Levels) $S$ generated,
+where
+\begin{equation}
+  S = \text{the number of IPP... iterations} + 1.
+\end{equation}
 
 \subsection{Scalability}
-IPP... MRVC sequences are scalable in resolution (R). Quality (Q)
-scalability in each spatial resolution level can be achieved by simply
-using an scalable image codec such as JPEG2000. However, notice that
-the only allowed progression is RQ (first the quality is incremented
-and then, the resolution).
+It's easy to see that IPP...-type MRVC sequences are scalable in
+resolution (R), and that Quality (Q) scalability in each SRL can be
+achieved for the $[H]$ data\footnote{The $[L]$ must be always decoded
+with the quality that the encoder used.} by simply using a
+quality-scalable frame codec such as JPEG2000 for compressing the
+coefficients. However, notice that the only allowed data progression
+is RQ (first the quality is incremented and then, the resolution).
+
+Let's suppose a compression where $\text{SRLs}= 
 
 To provide, for example, a QR progression (reconstruct first by
 quality and then, by resolution)
