@@ -20,35 +20,54 @@ In each IPP... iteration, only a sequence of $[H]$ subbands is
 decorrelated considering the information provided by the $[L]$
 subbands. Therefore, in order to increase the CR, a minimum number of
 IPP... iterations should be carried out. The number of iterations
-controls the number of SRLs (Spatial Resolution Levels) $S$ generated,
-where
+controls the number of SRLs (Spatial Resolution Levels)
+$N_{\text{SRL}}$ generated, where
 \begin{equation}
-  S = \text{the number of IPP... iterations} + 1.
+  N_{\text{SRL}} = \text{the number of IPP... iterations} + 1.
 \end{equation}
+The output of an IPP... iteration will be refered as ``an
+spatial-layer of code-stream'', or simply as ``a S-layer''.
 
-\subsection{Scalability}
+\subsection{Spatial scalability}
 It's easy to see that IPP...-type MRVC sequences are scalable in
-resolution (R), and that Quality (Q) scalability in each SRL can be
-achieved for the $[H]$ data\footnote{The $[L]$ must be always decoded
-with the quality that the encoder used.} by simply using a
-quality-scalable frame codec such as JPEG2000 for compressing the
-coefficients. However, notice that the only allowed data progression
-is RQ (first the quality is incremented and then, the resolution).
+Spatial-resolution (S-progression) as long as more MC-layers are
+received, and that also Quality (Q-progression) scalability in each
+SRL can be achieved for the $[H]$ texture\footnote{The $[L]$ must be
+always decoded with the quality that the encoder used for reconstruct
+the corresponding SRL.} by simply using a quality-scalable image codec
+such as JPEG2000, generating a number $N_{\text{QL}}$ of quality-layers
+by each $[H]$ subband. Notice, however, that using this encoding
+configuration, the only allowed\footnote{Suposing that the order of
+the layers could be modified in the code-stream.} progression is the
+SQ-progression, that can be Pythonically-described by
+\begin{verbatim}
+progression = []
+for S_layer in range(N_SRL-1, 0, -1):
+  for Q_layer in range(N_QL-1, 0, -1):
+    progression.append((S_layer, Q_layer))
+\end{verbatim}
 
-Let's suppose a compression where $\text{SRLs}= 
-
-To provide, for example, a QR progression (reconstruct first by
-quality and then, by resolution)
+For example, if $N_{\text{SRL}}=3$ (2 IPP...-type iterations)
+and $N_{\text{QL}}=2$, the progression of layers would be:
+\begin{verbatim}
+progression = [
+  (S_layer=2, Q_layer=1),  <-- The first one to be recived
+  (S_layer=2, Q_layer=0),
+  (S_layer=1, Q_layer=1),
+  (S_layer=1, Q_layer=0),
+  (S_layer=0, Q_layer=1),
+  (S_layer_0, Q_layer=0) ] <-- The last one
+\end{verbatim}
+Notice that if the quality-scalable image compressor has been
+configured as lossless for the quality-layer 0, this example
+would be lossless when all the layers has been received.
 
 \subsection{A block diagram of the codec}
 \svg{graphics/codec}{1200}
 
 \section{What you have to do?}
-  
-Please, using this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/DWT_shift_variance.ipynb}{notebook},
-research the posibilities for performing MC of other DWTs available at
-\href{https://pywavelets.readthedocs.io/en/latest/}{PyWavelets}.
+
+Implement the previous codec, preferiblemente in a Jupyter notebook. 
 
 \section{Timming}
 
