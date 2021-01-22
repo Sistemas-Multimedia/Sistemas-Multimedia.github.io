@@ -6,14 +6,20 @@
 \section{Description}
 
 \subsection{The IPP... decorrelation pattern}
-It's time to put together all the tools that we have developed for
-encoding a sequence of frames. We will call to this set of images, a
-Group Of Frames (GOF), and the structure of each GOP will be IPP...,
-which means that the first frame of each GOF will be intra-coded
-(I-type), and the rest of frames of the GOF will be predicted-coded
-(P-type). Notice that in a I-type frame all the coefficients will be
-I-type, and in a P-type frame, the different coefficients can be
-I-type or P-type.
+It's time to put together all the ``tools'' that we have developed for
+encoding a sequence of DWT decompositions (``decomp'' in short). First,
+the sequence will be splitted into GODs (Group Of Decomps), and the
+structure of each GOD will be IPP..., which means that the first
+decomp of each GOD will be intra-coded (I-type), and the rest of
+decomps of the GOF will be predicted-coded (P-type), respect to the
+previous one. If we denote the dependencies between decomps with
+\texttt{->}, we have
+\begin{verbatim}
+I -> P -> P -> ... -> P
+\end{verbatim}
+Notice that in a I-type decomp all the coefficients will I-type
+coefficients (``coeffs'' in short), and in a P-type frame, the
+different coefficients can be I-type or P-type.
 
 \subsection{Multiresolution iterations}
 In each IPP... iteration, only a sequence of $[H]$ subbands is
