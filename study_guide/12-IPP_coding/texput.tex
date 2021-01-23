@@ -13,7 +13,7 @@ Decomps), and the structure of each GOD will be IPP..., which means
 that the first decomp of each GOD will be intra-coded (I-type), and
 the rest of decomps of the GOF will be predicted-coded (P-type),
 respect to the previous one\footnote{A P-type decomp except for the
-second decomp.). Notice that in a I-type decomp all the coefficients
+second decomp.}. Notice that in a I-type decomp all the coefficients
 will I-type coefficients (``coeffs'' in short), and in a P-type frame,
 the different coefficients can be I-type or P-type.
 
@@ -76,28 +76,39 @@ would be lossless when all the layers has been received.
   \label{fig:codec}
 \end{figure}
 
-The MRVC codec has been described in the Fig.~\ref{fig:coec}. The
+The MRVC codec has been described in the Fig.~\ref{fig:codec}. The
 equations that describe this system are:
 \begin{equation}
-  \{F_i.L, F_i.H\} = \text{DWT}(F_i),
+  \{F_k.L, F_k.H\} = \text{DWT}(F_k),
+  \tag{a}
 \end{equation}
-where $F_i$ is the $i$-th frame of the sequence.
+where $F_k$ is the $k$-th frame of the sequence.  Besides,
 \begin{equation}
-  [F_i.H] = \text{DWT^{-1}}(0, F_i.H),
-\end{equation}
-\begin{equation}
-  [F_i.L] = \text{DWT^{-1}}(0, F_i.L),
-\end{equation}
-\begin{equation}
-  Z^{-1}(F_i.L) = F_{i-1}.L,
+  [F_k.H] = \text{DWT}^{-1}(0, F_k.H),
+  \tag{b}
 \end{equation}
 \begin{equation}
-  [E_i.H] =
-  \left\{\begin{array}{ll}
-      [F_i.H] - [\hat{F}_i.H] & \text{(inter coded)} \\
-      [F_i.H]                 & \text{(intra codec)}
-  \end{equation}
-  
+  Z^{-1}([F_k.L]) = [F_{k-1}.L],
+  \tag{c}
+\end{equation}
+\begin{equation}
+  Z^{-1}([F_k.L]) = [F_{k-1}.L],
+  \tag{c}
+\end{equation}
+
+
+\begin{equation}
+  [F_k.L] = \text{DWT}^{-1}(0, F_k.L),
+  \tag(c)
+\end{equation}
+\begin{equation}
+  [E_i.H] = \left\{
+  \begin{array}{ll}
+    [F_i.H] - [\hat{F}_i.H] & \text{(inter coded)} \\
+    {[}F_i.H{]}                 & \text{(intra codec)}
+  \end{array}
+  \right.
+\end{equation}
 
 \section{What you have to do?}
 

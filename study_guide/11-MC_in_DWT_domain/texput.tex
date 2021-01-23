@@ -316,16 +316,16 @@ low-frequency subband $L$. More concretely, we implement:
 
 \item Compute the Element-Wise (EW) minimum of $[P.L]$ and $[E.L]$:
   \begin{equation}
-    \{T,M\} = \text{EW-min}([P.L], [E.L])
+    \{[T],[M]\} = \text{EW-min}([P.L], [E.L])
     \label{eq:EW-min}
   \end{equation}
   where
   \begin{equation}
-    T_{i,j}=\text{min}([P.L]_{i,j}, [E.L]_{i,j})
+    [T_{i,j}]=\text{min}([P.L]_{i,j}, [E.L]_{i,j})
   \end{equation}
-  and $M$ is a binary matrix defined by
+  and $[M]$ is a binary matrix defined by
   \begin{equation}
-    M_{i,j} = \left\{
+    [M]_{i,j} = \left\{
       \begin{array}{ll}
         0 & \text{if}~[P.L]_{i,j} < [E.L]_{i,j} \\
         1 & \text{otherwise}.
@@ -336,9 +336,9 @@ low-frequency subband $L$. More concretely, we implement:
   
 \item Output
   \begin{equation}
-    O_{i,j} = \left\{
+    [O]_{i,j} = \left\{
       \begin{array}{ll}
-        [P.H]_{i,j} & \text{if}~M_{i,j} = 0~(\text{intra~coefficient})\\
+        [P.H]_{i,j} & \text{if}~[M]_{i,j} = 0~(\text{intra~coefficient})\\
         {[}E.H{]}_{i,j} & \text{otherwise}~(\text{predicted~coefficient}).
       \end{array}
     \right.
@@ -349,7 +349,8 @@ low-frequency subband $L$. More concretely, we implement:
     \sigma^2_O \le \sigma^2_E,
     \label{eq:vars}
   \end{equation}
-  where $\sigma^2$ denotes the variance. Eq.~\ref{eq:vars} implies that
+  where $\sigma^2$ denotes the variance, $O=\text{DWT}([O])$, and
+  $E=\text{DWT}([O])$. Eq.~\ref{eq:vars} implies that
   \begin{equation}
     \text{CR}_O \ge \text{CR}_E
     \label{eq:crs}
