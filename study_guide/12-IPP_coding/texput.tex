@@ -78,36 +78,88 @@ would be lossless when all the layers has been received.
 
 The MRVC codec has been described in the Fig.~\ref{fig:codec}. The
 equations that describe this system are:
+
 \begin{equation}
-  \{F_k.L, F_k.H\} = \text{DWT}(F_k),
+  \{D_k.L, D_k.H\} = \text{DWT}(D_k),
   \tag{a}
 \end{equation}
-where $F_k$ is the $k$-th frame of the sequence.  Besides,
+where $D_k$ is the $k$-th decomp. of the sequence,
+
 \begin{equation}
-  [F_k.H] = \text{DWT}^{-1}(0, F_k.H),
+  [D_k.H] = \text{DWT}^{-1}(0, D_k.H),
   \tag{b}
 \end{equation}
+
 \begin{equation}
-  Z^{-1}([F_k.L]) = [F_{k-1}.L],
-  \tag{c}
-\end{equation}
-\begin{equation}
-  Z^{-1}([F_k.L]) = [F_{k-1}.L],
+  Z^{-1}([D_k.L]) = [D_{k-1}.L],
   \tag{c}
 \end{equation}
 
+\begin{equation}
+  [D_k.L] = \text{DWT}^{-1}(0, D_k.L),
+  \tag{d}
+\end{equation}
 
 \begin{equation}
-  [F_k.L] = \text{DWT}^{-1}(0, F_k.L),
-  \tag(c)
+  Z^{-1}([D_k.H]) = [D_{k-1}.H],
+  \tag{d}
 \end{equation}
+
 \begin{equation}
-  [E_i.H] = \left\{
+  \overset{k\rightarrow k+1}{V} = \text{ME}([D_k.L], [D_{k-1}.L]),
+  \tag{e}
+\end{equation}
+where ME stands for Motion Estimation,
+
+\begin{equation}
+  [\hat{D}_k.L] = \text{MCP}(\overset{k\rightarrow k+1}{V}, [D_{k-1}.L]),
+  \tag{f}
+\end{equation}
+where MCP stands for Motion Compensated Prediction,
+
+\begin{equation}
+  [E_k.L] = [D_k.L] - [\hat{D}_k.L],
+  \tag{g}
+\end{equation}
+
+\begin{equation}
+  \{[T_k],[M_k]\} = \text{EW-min}([D_k.L], [E_k.L])
+  \tag{h}
+\end{equation}
+where
+\begin{equation}
+  [T_k]_{i,j}=\text{min}([D_k.L]_{i,j}, [E_k.L]_{i,j})
+\end{equation}
+and $[M_k]$ is a binary matrix defined by
+\begin{equation}
+  [M_k]_{i,j} = \left\{
   \begin{array}{ll}
-    [F_i.H] - [\hat{F}_i.H] & \text{(inter coded)} \\
-    {[}F_i.H{]}                 & \text{(intra codec)}
+    0 & \text{if}~[D_.L]_{i,j} < [E_k.L]_{i,j} \\
+    1 & \text{otherwise},
   \end{array}
   \right.
+  \label{eq:matrix}
+\end{equation}
+(notice that $[T_k]$ is discarded)
+
+\begin{equation}
+  [D_k.H] = \text{DWT}^{-1}(0, D_k.H),
+  \tag{i}
+\end{equation}
+
+\begin{equation}
+  [E_k.H] = [D_k.H] - [\hat{D}_k.L],
+  \tag{g}
+\end{equation}
+
+\begin{equation}
+  [E_k.H] = \left\{
+  \begin{array}{ll}
+    {[}D_k.H{]} - [\hat{D}_k.H] & \text{(inter coded)} \\
+    {[}D_k.H{]}                 & \text{(intra codec)}
+  \end{array}
+  \right.
+  \tag{f}
 \end{equation}
 
 \section{What you have to do?}
