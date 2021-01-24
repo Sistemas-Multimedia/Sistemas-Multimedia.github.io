@@ -80,13 +80,13 @@ The MRVC codec has been described in the Fig.~\ref{fig:codec}. The
 equations that describe this system are:
 
 \begin{equation}
-  \{D_k.L, D_k.H\} = \text{DWT}(D_k),
+  (D_k.L, D_k.H) = \text{DWT}(D_k),
   \tag{a}
 \end{equation}
 where $D_k$ is the $k$-th decomp. of the sequence,
 
 \begin{equation}
-  [D_k.H] = \text{DWT}^{-1}(0, D_k.H),
+  [D_k.L] = \text{DWT}^{-1}(0, D_k.L),
   \tag{b}
 \end{equation}
 
@@ -94,85 +94,130 @@ where $D_k$ is the $k$-th decomp. of the sequence,
   Z^{-1}([D_k.L]) = [D_{k-1}.L],
   \tag{c}
 \end{equation}
-
-\begin{equation}
-  [D_k.L] = \text{DWT}^{-1}(0, D_k.L),
-  \tag{d}
-\end{equation}
-
-\begin{equation}
-  Z^{-1}([D_k.H]) = [D_{k-1}.H],
-  \tag{d}
-\end{equation}
+and by definition, $Z^{-1}([D_{-1}.L]) = 0$.
 
 \begin{equation}
   \overset{k\rightarrow k+1}{V} = \text{ME}([D_k.L], [D_{k-1}.L]),
-  \tag{e}
+  \tag{d}
 \end{equation}
-where ME stands for Motion Estimation,
+where ME stands for Motion Estimation, and by definition,
+$\overset{-1\rightarrow 0}{V}=0$,
 
 \begin{equation}
   [\hat{D}_k.L] = \text{MCP}(\overset{k\rightarrow k+1}{V}, [D_{k-1}.L]),
-  \tag{f}
+  \tag{e}
 \end{equation}
 where MCP stands for Motion Compensated Prediction,
 
 \begin{equation}
   [E_k.L] = [D_k.L] - [\hat{D}_k.L],
-  \tag{g}
+  \tag{f}
 \end{equation}
 
 \begin{equation}
   \{[T_k],[M_k]\} = \text{EW-min}([D_k.L], [E_k.L])
-  \tag{h}
+  \tag{g}
 \end{equation}
 where
 \begin{equation}
-  [T_k]_{i,j}=\text{min}([D_k.L]_{i,j}, [E_k.L]_{i,j})
+  [T_k]_{i,j}=\text{min}([D_k.L]_{i,j}, [E_k.L]_{i,j}),
 \end{equation}
 and $[M_k]$ is a binary matrix defined by
 \begin{equation}
   [M_k]_{i,j} = \left\{
   \begin{array}{ll}
-    0 & \text{if}~[D_.L]_{i,j} < [E_k.L]_{i,j} \\
+    0 & \text{if}~[D_k.L]_{i,j} < [E_k.L]_{i,j} \\
     1 & \text{otherwise},
   \end{array}
   \right.
   \label{eq:matrix}
 \end{equation}
-(notice that $[T_k]$ is discarded)
+(notice that $[T_k]$, that contains the item-wise minimum of both matrices, is discarded)
 
 \begin{equation}
   [D_k.H] = \text{DWT}^{-1}(0, D_k.H),
-  \tag{i}
+  \tag{h}
 \end{equation}
 
 \begin{equation}
-  [E_k.H] = [D_k.H] - [\hat{D}_k.L],
-  \tag{g}
+  [E_k.H] = [D_k.H] - [\hat{D}_k.H],
+  \tag{i}
 \end{equation}
-
+where, notice that
 \begin{equation}
   [E_k.H] = \left\{
   \begin{array}{ll}
-    {[}D_k.H{]} - [\hat{D}_k.H] & \text{(inter coded)} \\
-    {[}D_k.H{]}                 & \text{(intra codec)}
+    {[}D_k.H{]} - [\hat{D}_k.H] & \text{(inter coded coeff.)} \\
+    {[}D_k.H{]}                 & \text{(intra codec coeff.)},
   \end{array}
   \right.
-  \tag{f}
+\end{equation}
+
+\begin{equation}
+  [\tilde{E}_k.H] = \text{Q}([E_K.H]),
+  \tag{j}
+\end{equation}
+
+\begin{equation}
+  [\tilde{E}_k.H] = \text{Q}^{-1}([\tilde{E}_K.H]),
+  \tag{k}
+\end{equation}
+
+\begin{equation}
+  [\tilde{D}_k.H] = [\tilde{E}_k.H] + [\hat{D}_k.H],
+  \tag{l}
+\end{equation}
+
+\begin{equation}
+  Z^{-1}([\tilde{D}_k.H]) = [D_{k-1}.H],
+  \tag{m}
+\end{equation}
+and by definition, $Z^{-1}([D_{-1}.H]) = 0$,
+
+\begin{equation}
+  [\hat{D}_k.H] = \text{MCP}(\overset{k\rightarrow k+1}{V}, [D_{k-1}.H]),
+  \tag{n}
+\end{equation}
+
+\begin{equation}
+  (0, \tilde{E}_k.H) = \text{DWT}([\tilde{E}_k.H]),
+  \tag{o}
+\end{equation}
+
+\begin{equation}
+  \{\hat{D}_k.L, \tilde{E}_k.H\} = \text{E}(\hat{D}_k.L, \tilde{E}_k.H),
+  \tag{p}
+\end{equation}
+where E represents the entropy coding of both data sources, in two
+different code-streams,
+
+\begin{equation}
+  (\hat{D}_k.L, \tilde{E}_k.H) = \text{E}^{-1}(\{\hat{D}_k.L, \tilde{E}_k.H\}),
+  \tag{q}
+\end{equation}
+
+and
+
+\begin{equation}
+  \tilde{D}_k = \text{DWT}^{-1}(D_k.L, D_k.H).
+  \tag{r}
 \end{equation}
 
 \section{What you have to do?}
 
-Implement the previous codec, preferiblemente in a Jupyter notebook. 
+Implement the previous codec, preferiblemente in a Jupyter
+notebook. Test it by tracing a RD curve for different $\Delta$ values
+for the quantizer (Eq. (k)). Compare it with the curve generated with
+using motion compensation.
 
 \section{Timming}
 
-Please, finish this notebook before the next class session.
+In groups, you will present the results for this milestone during the
+examination time.
 
 \section{Deliverables}
 
-None.
+The notebook(s) and the presentation.
 
 \section{Resources}
 
