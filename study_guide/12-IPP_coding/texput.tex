@@ -7,15 +7,16 @@
 
 \subsection{The IPP... decorrelation pattern}
 It's time to put together all the ``tools'' that we have developed for
-encoding a sequence of DWT decompositions (\emph{decomp}s in
+encoding a sequence of DWT decompositions (\emph{decomps} in
 short). First, the sequence will be splitted into GODs (Group Of
-Decomps), and the structure of each GOD will be IPP..., which means
-that the first decomp of each GOD will be intra-coded (I-type), and
-the rest of decomps of the GOF will be predicted-coded (P-type),
-respect to the previous one\footnote{A P-type decomp except for the
-second decomp.}. Notice that in a I-type decomp all the coefficients
-(\emph{coeff}s in short) will I-type coeffs, and in a P-type frame,
-the different coeffs can be I-type or P-type.
+Decomps), and the structure of each GOD will be
+IPP...~\cite{le1991mpeg}, which means that the first decomp of each
+GOD will be intra-coded (I-type), and the rest of decomps of the GOF
+will be predicted-coded (P-type), respect to the previous
+one\footnote{A P-type decomp except for the second decomp.}. Notice
+that in an I-type decomp all the coefficients (\emph{coeff}s in short)
+will I-type coeffs, and in a P-type frame, the different coeffs can be
+I-type or P-type.
 
 \subsection{Multiresolution iterations}
 In each IPP... iteration, only the high-frequency components of the
@@ -25,10 +26,10 @@ which are losslessly\footnote{The $[L]$ information must be always
 decoded with the quality that the encoder used for reconstruct the
 corresponding SRL.} transmitted between the encoder and the decoder.
 
-In order to increase the CR, a minimum number of IPP... iterations
-should be carried out. In fact, the number of iterations controls the
-number of SRLs (Spatial Resolution Levels) $N_{\text{SRL}}$ generated,
-where
+In order to increase the compression ratio, a minimum number of
+IPP... iterations should be carried out. In fact, the number of
+iterations controls the number of SRLs (Spatial Resolution Levels)
+$N_{\text{SRL}}$ generated, where
 \begin{equation}
   N_{\text{SRL}} = \text{the number of IPP... iterations} + 1.
 \end{equation}
@@ -40,10 +41,11 @@ It's easy to see that an IPP...-type MRVC sequence is progressive in
 Spatial-resolution (S-progression) as long as more S-layers are
 received. Moreover, Quality (Q-progression) scalability in each SRL
 can be achieved in the encoding of the $[H]$ texture if a
-quality-scalable image codec such as JPEG2000 is used, generating a
-number $N_{\text{QL}}$ of quality-layers by each $[H]$
-subband. Notice, however, that using this encoding configuration, the
-only allowed\footnote{Suposing that the order of the layers could be
+quality-scalable image codec such as
+JPEG2000~\cite{taubman2002jpeg2000} is used, generating a number
+$N_{\text{QL}}$ of quality-layers by each $[H]$ subband. Notice,
+however, that using this encoding configuration, the only
+allowed\footnote{Suposing that the order of the layers could be
 modified in the code-stream.} progression is the SQ-progression, that
 can be Pythonically-described by
 \begin{verbatim}
@@ -225,4 +227,4 @@ The notebook(s) and the presentation.
 
 \section{Resources}
 
-\bibliography{python}
+\bibliography{video_compression,JPEG2000}
