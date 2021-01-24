@@ -7,15 +7,15 @@
 
 \subsection{The IPP... decorrelation pattern}
 It's time to put together all the ``tools'' that we have developed for
-encoding a sequence of DWT decompositions (``decomp''s in
+encoding a sequence of DWT decompositions (\emph{decomp}s in
 short). First, the sequence will be splitted into GODs (Group Of
 Decomps), and the structure of each GOD will be IPP..., which means
 that the first decomp of each GOD will be intra-coded (I-type), and
 the rest of decomps of the GOF will be predicted-coded (P-type),
 respect to the previous one\footnote{A P-type decomp except for the
 second decomp.}. Notice that in a I-type decomp all the coefficients
-will I-type coefficients (``coeffs'' in short), and in a P-type frame,
-the different coefficients can be I-type or P-type.
+(\emph{coeff}s in short) will I-type coeffs, and in a P-type frame,
+the different coeffs can be I-type or P-type.
 
 \subsection{Multiresolution iterations}
 In each IPP... iteration, only the high-frequency components of the
@@ -71,13 +71,13 @@ would be lossless when all the layers has been received.
 \subsection{A block diagram of the codec}
 \begin{figure}
   \centering
-  \svg{graphics/codec}{1200}
+  \svg{graphics/codec}{700}
   \caption{The IPP... MRCV video codec.}
   \label{fig:codec}
 \end{figure}
 
-The MRVC codec has been described in the Fig.~\ref{fig:codec}. The
-equations that describe this system are:
+The MRVC IPP... codec has been described in the
+Fig.~\ref{fig:codec}. The equations that describe this system are:
 
 \begin{equation}
   (D_k.L, D_k.H) = \text{DWT}(D_k),
@@ -132,7 +132,8 @@ and $[M_k]$ is a binary matrix defined by
   \right.
   \label{eq:matrix}
 \end{equation}
-(notice that $[T_k]$, that contains the item-wise minimum of both matrices, is discarded)
+(notice that $[T_k]$, that contains the element-wise minimum of both
+matrices, is discarded)
 
 \begin{equation}
   [D_k.H] = \text{DWT}^{-1}(0, D_k.H),
@@ -152,6 +153,7 @@ where, notice that
   \end{array}
   \right.
 \end{equation}
+and notice that if $[\hat{D}_k.H]=0$ then $[E_k.H] = [D_k.H]$,
 
 \begin{equation}
   [\tilde{E}_k.H] = \text{Q}([E_K.H]),
@@ -167,6 +169,8 @@ where, notice that
   [\tilde{D}_k.H] = [\tilde{E}_k.H] + [\hat{D}_k.H],
   \tag{l}
 \end{equation}
+and notice that if $[\hat{D}_k.H]=0$ then $[\tilde{D}_k.H] =
+[\tilde{E}_k.H]$,
 
 \begin{equation}
   Z^{-1}([\tilde{D}_k.H]) = [D_{k-1}.H],
@@ -205,10 +209,10 @@ and
 
 \section{What you have to do?}
 
-Implement the previous codec, preferiblemente in a Jupyter
-notebook. Test it by tracing a RD curve for different $\Delta$ values
-for the quantizer (Eq. (k)). Compare it with the curve generated with
-using motion compensation.
+Implement the previous codec, preferiblemente in a (or several)
+Jupyter notebook(s). Test it by tracing a RD curve for different
+$\Delta$ values for the quantizer (see Eqs. (j) and (k)). Compare it
+with the curve generated without using motion compensation.
 
 \section{Timming}
 
