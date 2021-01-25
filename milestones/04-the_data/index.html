@@ -40,9 +40,27 @@ class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
 class="ecrm-1200">January 25, 2021</span></div>
    </div>
+   <h3 class="likesectionHead"><a 
+ id="x1-1000"></a>Contents</h3>
+   <div class="tableofcontents">
+   <span class="sectionToc" >1 <a 
+href="#x1-20001" id="QQ2-1-2">Description</a></span>
+<br />   <span class="sectionToc" >2 <a 
+href="#x1-30002" id="QQ2-1-3">What you have to do?</a></span>
+<br />   <span class="sectionToc" >3 <a 
+href="#x1-40003" id="QQ2-1-4">Timming</a></span>
+<br />   <span class="sectionToc" >4 <a 
+href="#x1-50004" id="QQ2-1-5">Deliverables</a></span>
+<br />   <span class="sectionToc" >5 <a 
+href="#x1-60005" id="QQ2-1-6">Resources</a></span>
+<br />   <span class="sectionToc" ><a 
+href="#Q1-1-7">References</a></span>
+   </div>
+<!--l. 8--><p class="noindent" >
+</p>
    <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
- id="x1-10001"></a>Description</h3>
-<!--l. 8--><p class="noindent" >This milestone shows the structure of the <a 
+ id="x1-20001"></a>Description</h3>
+<!--l. 10--><p class="noindent" >This milestone shows the structure of the <a 
 href="https://en.wikipedia.org/wiki/Video" >videos</a> used in the <a 
 href="https://github.com/Sistemas-Multimedia/MRVC" >MRVC</a> project.
 Basically, a video is a <a 
@@ -55,7 +73,7 @@ href="https://github.com/Sistemas-Multimedia/MRVC" >MRVC</a>, a frame can be des
 href="https://en.wikipedia.org/wiki/Matrix_(mathematics)" >matrix</a> of
 <a 
 href="https://en.wikipedia.org/wiki/Pixel" >pixels</a>.
-</p><!--l. 19--><p class="indent" >   We are going to store a video as a sequence of <a 
+</p><!--l. 21--><p class="indent" >   We are going to store a video as a sequence of <a 
 href="https://en.wikipedia.org/wiki/Computer_file" >&#xFB01;les</a> with names &#x003C;pre&#xFB01;x&#x003E;000.png,
 &#x003C;pre&#xFB01;x&#x003E;001.png, ..., where &#x003C;pre&#xFB01;x&#x003E; speci&#xFB01;es the video name and &#x201C;.png&#x201D; indicates
 that the frames are coded using the <a 
@@ -72,61 +90,64 @@ remove the <a
 href="https://en.wikipedia.org/wiki/Image_compression" >spatial</a> and <a 
 href="https://en.wikipedia.org/wiki/Data_compression" >statistical redudancy</a>. Notice that no <a 
 href="https://en.wikipedia.org/wiki/YUV" >color transform</a> is
+                                                                  
+
+                                                                  
 used.
-</p><!--l. 36--><p class="indent" >   Finally, notice that all the frames of a video:
+</p><!--l. 38--><p class="indent" >   Finally, notice that all the frames of a video:
      </p><ol  class="enumerate1" >
      <li 
-  class="enumerate" id="x1-1002x1">Have the same <a 
+  class="enumerate" id="x1-2002x1">Have the same <a 
 href="https://en.wikipedia.org/wiki/Image_resolution" >spatial resolution</a>.
      </li>
      <li 
-  class="enumerate" id="x1-1004x2">Are represented in the <a 
+  class="enumerate" id="x1-2004x2">Are represented in the <a 
 href="https://en.wikipedia.org/wiki/RGB_color_model" >RGB domain</a>.
      </li>
      <li 
-  class="enumerate" id="x1-1006x3">Each color component &#x0028;channel&#x0029; has <a 
+  class="enumerate" id="x1-2006x3">Each color component &#x0028;channel&#x0029; has <a 
 href="https://en.wikipedia.org/wiki/Glossary_of_computer_graphics#bit_depth" >bit depth</a> of 16 bits, representing an
      unsigned <a 
 href="https://en.wikipedia.org/wiki/Integer_(computer_science)" >integer</a>.
      </li>
      <li 
-  class="enumerate" id="x1-1008x4">The pixel <a 
+  class="enumerate" id="x1-2008x4">The pixel <a 
 href="https://en.wikipedia.org/wiki/Luminous_intensity" >intensities</a> are displaced to the center of the <a 
 href="https://en.wikipedia.org/wiki/Range_(computer_programming)" >range of values</a> &#x0028;&#x005B;0,
      65535&#x005D;&#x0029; that the components can take &#x0028;for example, in <a 
 href="https://en.wikipedia.org/wiki/Disk_storage" >disk</a>, the component
      intensity 0 is represented by 32768&#x0029;.</li></ol>
-                                                                  
-
-                                                                  
-<!--l. 56--><p class="noindent" >
+<!--l. 58--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
- id="x1-20002"></a>What you have to do?</h3>
-<!--l. 58--><p class="noindent" >
+ id="x1-30002"></a>What you have to do?</h3>
+<!--l. 60--><p class="noindent" >
      </p><ol  class="enumerate1" >
      <li 
-  class="enumerate" id="x1-2002x1">Download <a 
+  class="enumerate" id="x1-3002x1">Download <a 
 href="https://github.com/Sistemas-Multimedia/MRVC" >MRVC</a>, preferably cloning your fork.
      </li>
      <li 
-  class="enumerate" id="x1-2004x2">Run this <a 
+  class="enumerate" id="x1-3004x2">Run this <a 
 href="https://jupyter.org/" >jupyter</a> <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/04-the_data/display_video.ipynb" >notebook</a> that shows how to read and write frames.</li></ol>
-<!--l. 66--><p class="noindent" >
+<!--l. 68--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
- id="x1-30003"></a>Timming</h3>
-<!--l. 68--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 70--><p class="noindent" >
+ id="x1-40003"></a>Timming</h3>
+<!--l. 70--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 72--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
- id="x1-40004"></a>Deliverables</h3>
-<!--l. 72--><p class="noindent" >None.
-</p><!--l. 74--><p class="noindent" >
+ id="x1-50004"></a>Deliverables</h3>
+<!--l. 74--><p class="noindent" >None.
+                                                                  
+
+                                                                  
+</p><!--l. 76--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
- id="x1-50005"></a>Resources</h3>
+ id="x1-60005"></a>Resources</h3>
    <div class="thebibliography">
    <p class="bibitem" ><span class="biblabel">
  &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
@@ -144,7 +165,7 @@ class="ecti-1000">PNG: the de&#xFB01;nitive guide</span></a>.  O&#x2019;Reilly
 </p>
    </div>
 <a 
- id="Q1-1-6"></a>
+ id="Q1-1-7"></a>
     
 </body></html> 
 
