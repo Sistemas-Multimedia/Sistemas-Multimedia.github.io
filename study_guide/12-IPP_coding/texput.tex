@@ -36,40 +36,6 @@ $N_{\text{SRL}}$ generated, where
 The output of an IPP... iteration will be refered as ``a
 spatial-layer of code-stream'', or simply as ``a S-layer''.
 
-\subsection{Scalability}
-It's easy to see that an IPP...-type MRVC sequence is progressive in
-Spatial-resolution (S-progression) as long as more S-layers are
-received. Moreover, Quality (Q-progression) scalability in each SRL
-can be achieved in the encoding of the $[H]$ texture if a
-quality-scalable image codec such as
-JPEG2000~\cite{taubman2002jpeg2000} is used, generating a number
-$N_{\text{QL}}$ of quality-layers by each $[H]$ subband. Notice,
-however, that using this encoding configuration, the only
-allowed\footnote{Suposing that the order of the layers could be
-modified in the code-stream.} progression is the SQ-progression, that
-can be Pythonically-described by
-\begin{verbatim}
-progression = []
-for S_layer in range(N_SRL-1, 0, -1):
-  for Q_layer in range(N_QL-1, 0, -1):
-    progression.append((S_layer, Q_layer))
-\end{verbatim}
-
-For example, if $N_{\text{SRL}}=3$ (2 IPP...-type iterations) and
-$N_{\text{QL}}=2$, the progression of layers would be:
-\begin{verbatim}
-progression = [
-  (S_layer=2, Q_layer=1),  <-- The first one to be recived
-  (S_layer=2, Q_layer=0),
-  (S_layer=1, Q_layer=1),
-  (S_layer=1, Q_layer=0),
-  (S_layer=0, Q_layer=1),
-  (S_layer_0, Q_layer=0) ] <-- The last one
-\end{verbatim}
-Notice that if the quality-scalable image compressor has been
-configured as lossless for the quality-layer 0, this example
-would be lossless when all the layers has been received.
-
 \subsection{A block diagram of the codec}
 \begin{figure}
   \centering
@@ -208,6 +174,46 @@ and
   \tilde{D}_k = \text{DWT}^{-1}(D_k.L, D_k.H).
   \tag{r}
 \end{equation}
+
+\subsection{Scalability}
+It's easy to see that an IPP...-type MRVC sequence is progressive in
+Spatial-resolution (S-progression) as long as more S-layers are
+received. Moreover, Quality (Q-progression) scalability in each SRL
+can be achieved in the encoding of the $[H]$ texture if a
+quality-scalable image codec such as
+JPEG2000~\cite{taubman2002jpeg2000} is used, generating a number
+$N_{\text{QL}}$ of quality-layers by each $[H]$ subband. Notice,
+however, that using this encoding configuration, the only
+allowed\footnote{Suposing that the order of the layers could be
+modified in the code-stream.} progression is the SQ-progression, that
+can be Pythonically-described by
+\begin{verbatim}
+progression = []
+for S_layer in range(N_SRL-1, 0, -1):
+  for Q_layer in range(N_QL-1, 0, -1):
+    progression.append((S_layer, Q_layer))
+\end{verbatim}
+
+For example, if $N_{\text{SRL}}=3$ (2 IPP...-type iterations) and
+$N_{\text{QL}}=2$, the progression of layers would be:
+\begin{verbatim}
+progression = [
+  (S_layer=2, Q_layer=1),  <-- The first one to be recived
+  (S_layer=2, Q_layer=0),
+  (S_layer=1, Q_layer=1),
+  (S_layer=1, Q_layer=0),
+  (S_layer=0, Q_layer=1),
+  (S_layer_0, Q_layer=0) ] <-- The last one
+\end{verbatim}
+
+The use of quality scalability boosts the possibilities in real-time
+streaming scenarios where the transmission bit-rate can be
+variable. However, notice that the use of versions of the decomps at
+the decoder side with a smaller quality (and this will depends on the
+transmission bit-rate) will generate a drift-error in the
+reconstruction of the video because the predictions used at the
+encoder and the decoder are not identical. Notice, however, that the
+spatial scalability provided by this scheme is free of drift-error.
 
 \section{What you have to do?}
 
