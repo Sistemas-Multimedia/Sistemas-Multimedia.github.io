@@ -207,13 +207,15 @@ progression = [
 \end{verbatim}
 
 The use of quality scalability boosts the possibilities in real-time
-streaming scenarios where the transmission bit-rate can be
-variable. However, notice that the use of versions of the decomps at
+streaming scenarios where the transmission bit-rate can be variable
+(sending more or less quality-layers depending on the
+bit-rate). However, notice that the use of versions of the decomps at
 the decoder side with a smaller quality (and this will depends on the
 transmission bit-rate) will generate a drift-error in the
 reconstruction of the video because the predictions used at the
-encoder and the decoder are not identical. Notice, however, that the
-spatial scalability provided by this scheme is free of drift-error.
+encoder and the decoder are not identical.
+
+When only spatial scalability is used, this scheme is free of drift-error.
 
 \section{What you have to do?}
 
