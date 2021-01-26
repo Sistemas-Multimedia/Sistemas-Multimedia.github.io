@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" 
+"http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd" > 
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Sistemas Multimedia - Study Guide - Milestone 10: Motion Estimation</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathml,html --> 
+<meta name="src" content="index.tex" /> 
+<link rel="stylesheet" type="text/css" href="index.css" /> 
+</head><body 
+>
+   <div class="maketitle">
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+
+<h2 class="titleHead"><a 
+href="http://cms.ual.es/UAL/estudios/masteres/plandeestudios/asignaturas/asignatura/MASTER7114?idAss=71142105&idTit=7114" >Sistemas Multimedia</a> - Study Guide - Milestone
+10: Motion Estimation</h2>
+ <div class="author" ><span 
+class="ecrm-1200">Vicente Gonz</span><span 
+class="ecrm-1200">&#x00E1;</span><span 
+class="ecrm-1200">lez Ruiz</span></div><br />
+<div class="date" ><span 
+class="ecrm-1200">January 25, 2021</span></div>
+   </div>
+   <h3 class="likesectionHead"><a 
+ id="x1-1000"></a>Contents</h3>
+   <div class="tableofcontents">
+   <span class="sectionToc" >1 <a 
+href="#x1-20001" id="QQ2-1-2">Description</a></span>
+<br />   &#x00A0;<span class="subsectionToc" >1.1 <a 
+href="#x1-30001.1" id="QQ2-1-3">Motion Estimation &#x0028;ME&#x0029; for what?</a></span>
+<br />   &#x00A0;<span class="subsectionToc" >1.2 <a 
+href="#x1-40001.2" id="QQ2-1-4">What exactly we need?</a></span>
+<br />   &#x00A0;<span class="subsectionToc" >1.3 <a 
+href="#x1-50001.3" id="QQ2-1-5">Disjoint block matching</a></span>
+<br />   &#x00A0;<span class="subsectionToc" >1.4 <a 
+href="#x1-60001.4" id="QQ2-1-6">Overlaped block matching</a></span>
+<br />   &#x00A0;<span class="subsectionToc" >1.5 <a 
+href="#x1-70001.5" id="QQ2-1-7">Transform analysis</a></span>
+<br />   &#x00A0;<span class="subsectionToc" >1.6 <a 
+href="#x1-80001.6" id="QQ2-1-8">Machine learning</a></span>
+<br />   &#x00A0;<span class="subsectionToc" >1.7 <a 
+href="#x1-90001.7" id="QQ2-1-9">Motion compensation in action</a></span>
+<br />   <span class="sectionToc" >2 <a 
+href="#x1-100002" id="QQ2-1-10">What you have to do?</a></span>
+<br />   <span class="sectionToc" >3 <a 
+href="#x1-110003" id="QQ2-1-11">Timming</a></span>
+<br />   <span class="sectionToc" >4 <a 
+href="#x1-120004" id="QQ2-1-12">Deliverables</a></span>
+<br />   <span class="sectionToc" >5 <a 
+href="#x1-130005" id="QQ2-1-13">Resources</a></span>
+<br />   <span class="sectionToc" ><a 
+href="#Q1-1-15">References</a></span>
+   </div>
+<!--l. 8--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-20001"></a>Description</h3>
+                                                                  
+
+                                                                  
+<!--l. 10--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
+ id="x1-30001.1"></a>Motion Estimation &#x0028;ME&#x0029; for what?</h4>
+<!--l. 11--><p class="noindent" >Temporal correlation between video frames can be removed by MC &#x0028;Motion Compensation&#x0029;.
+MC implies to substract to the frames those information, in form of a prediction frame
+<!--l. 13--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>P</mi></mrow><mo accent="true">&#x005E;</mo></mover></math>, that
+can be infered from neighbor frames, as long as these frames are known by the
+decoder or the motion information is transmited from the encoder to the
+decoder.
+</p><!--l. 18--><p class="indent" >   A MC Predictor &#x0028;MCP&#x0029; inputs one or more reference frames
+<!--l. 18--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>R</mi></math>, a predicted
+frame <!--l. 19--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi></math>
+&#x0028;the frame that we want to compensate&#x0029;, and a motion vectors &#xFB01;eld
+<!--l. 20--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mo 
+class="MathClass-bin">&#x22C5;</mo><mo 
+class="MathClass-rel">&#x2192;</mo><mo 
+class="MathClass-bin">&#x22C5;</mo></mrow></mover></math>. In
+the next milestone we will see how to &#xFB01;nd </p><table class="equation"><tr><td> <a 
+ id="x1-3001r1"></a>
+<!--l. 22--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                         <mover 
+accent="true"><mrow 
+><mi 
+>P</mi></mrow><mo accent="true">&#x005E;</mo></mover> <mo 
+class="MathClass-rel">=</mo> <mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>P</mi> <mo 
+class="MathClass-rel">&#x2192;</mo> <mi 
+>R</mi></mrow></mover><mo 
+class="MathClass-open">&#x0028;</mo><mi 
+>R</mi><mo 
+class="MathClass-close">&#x0029;</mo>
+</math></td><td class="eq-no">&#x0028;1&#x0029;</td></tr></table>
+<!--l. 25--><p class="indent" >   and how to use it. In this milestone we show how to compute
+<!--l. 26--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>P</mi> <mo 
+class="MathClass-rel">&#x2192;</mo> <mi 
+>R</mi></mrow></mover></math>.
+</p><!--l. 28--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.2   </span> <a 
+ id="x1-40001.2"></a>What exactly we need?</h4>
+<!--l. 29--><p class="noindent" >Our main objective is to minimize the di&#xFB00;erences &#x0028;for example, the
+<a 
+href="https://en.wikipedia.org/wiki/Euclidean_distance" >L<!--l. 31--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+></mrow><mrow 
+><mn>2</mn></mrow></msub 
+></math> distance</a>&#x0029;
+between <!--l. 31--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi></math>
+and <!--l. 31--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>P</mi></mrow><mo accent="true">&#x005E;</mo></mover></math>,
+because </p><table class="equation"><tr><td> <a 
+ id="x1-4001r2"></a>
+                                                                  
+
+                                                                  
+<!--l. 32--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                            <mi 
+>E</mi> <mo 
+class="MathClass-rel">=</mo> <mi 
+>P</mi> <mo 
+class="MathClass-bin">&#x2212;</mo><mover 
+accent="true"><mrow 
+><mi 
+>P</mi></mrow><mo accent="true">&#x005E;</mo></mover>
+</math></td><td class="eq-no">&#x0028;2&#x0029;</td></tr></table>
+<!--l. 35--><p class="indent" >   will be more compressible. To achieve this, we can compute
+<!--l. 36--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>P</mi> <mo 
+class="MathClass-rel">&#x2192;</mo> <mi 
+>R</mi></mrow></mover></math> that simply
+minimizes the L<!--l. 36--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+></mrow><mrow 
+><mn>2</mn></mrow></msub 
+></math>
+energy of <!--l. 37--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>E</mi></math>,
+<!--l. 37--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">&#x007C;</mo><mi 
+>E</mi><msup><mrow 
+><mo 
+class="MathClass-rel">&#x007C;</mo></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></math>, or we can
+compute a <!--l. 37--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>P</mi> <mo 
+class="MathClass-rel">&#x2192;</mo> <mi 
+>R</mi></mrow></mover></math>
+that also describes the Optical Flow&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xhorn1981determining">3</a>&#x005D;</span> &#x0028;OF&#x0029; between the pixels of
+<!--l. 39--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>R</mi></math> and
+<!--l. 39--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi></math>, that although not
+necessary has to minimize <!--l. 40--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">&#x007C;</mo><mi 
+>E</mi><msup><mrow 
+><mo 
+class="MathClass-rel">&#x007C;</mo></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></math>,
+tries to show the true movement of the pixels between
+<!--l. 41--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>R</mi></math> and
+<!--l. 41--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi></math>.
+This second option has the advantage of generating more visually pleasing
+predictions.
+</p><!--l. 44--><p class="indent" >   The &#xFB01;rst type of techniques are simply called &#x201C;ME techniques&#x201D;, and are usually
+faster than the based on the computation of the OF.
+</p><!--l. 52--><p class="indent" >   Let&#x2019;s see some of the most used techniques for estimating the motion between two
+frames. Notice that, in general, better estimations can be found if more than only two
+frames are used because the intertia of the objects &#x0028;with mass&#x0029;. However, this case
+will not be considered for now.
+</p><!--l. 58--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.3   </span> <a 
+ id="x1-50001.3"></a><a 
+href="https://vicente-gonzalez-ruiz.github.io/video_compression/#x1-40003" >Disjoint block matching</a></h4>
+<!--l. 59--><p class="noindent" ><!--l. 59--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi></math> can be
+divided, for example, in blocks of 16x16 pixels, and we can use the MSE &#x0028;that is considered a
+L<!--l. 60--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+></mrow><mrow 
+><mn>2</mn></mrow></msub 
+></math> distance&#x0029; between
+each block of <!--l. 61--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi></math> and its
+surrounding pixels in <!--l. 61--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>R</mi></math>
+&#x0028;the so called search area&#x0029;&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xzhu2000new">5</a>&#x005D;</span>. For each block a motion vector that indicates
+the best match &#x0028;smaller distance&#x0029; is found. The set of motion vectors form
+<!--l. 64--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>P</mi> <mo 
+class="MathClass-rel">&#x2192;</mo> <mi 
+>R</mi></mrow></mover></math>
+that obviously, except for a block size of 1x1, will be less dense than
+<!--l. 65--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>R</mi></math> and
+<!--l. 65--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi></math>.
+Notice, however, that, it is not a good idea to use such a small block size because, in
+general, the motion vectors will not describe the OF.
+                                                                  
+
+                                                                  
+</p><!--l. 69--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
+ id="x1-60001.4"></a>Overlaped block matching</h4>
+<!--l. 70--><p class="noindent" >A better approximation to the OF can be found if we allow the blocks to overlap in
+<!--l. 71--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi></math>&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xorchard1994overlapped">4</a>&#x005D;</span>,
+and the overlaped pixels between blocks are averaged for building
+<!--l. 73--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>P</mi></mrow><mo accent="true">&#x005E;</mo></mover></math>. The
+main drawback of this technique is that it more computationally demanding than the
+previous one.
+</p><!--l. 76--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.5   </span> <a 
+ id="x1-70001.5"></a>Transform analysis</h4>
+<!--l. 77--><p class="noindent" >One of the most successful techniques for computing the &#x0028;dense&#x0029; OF is based on the
+analysis of the coe&#xFB03;cients resulting from transforming the frames using a polynomial
+expansion &#x0028;the details of this transform and the impact of the motion in the
+coe&#xFB03;cients can be found in the paper or Gunnar Farneb&#x00E4;ck&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xfarneback2003two">2</a>&#x005D;</span>&#x0029;. This is the
+algorithm that we will use in our experiments for two important reasons: &#x0028;1&#x0029; it is
+quite e&#xFB03;cient in terms both of performance and speed, and &#x0028;2&#x0029; it is already
+<a 
+href="https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html" >implemented</a> in OpenCV.
+</p><!--l. 89--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.6   </span> <a 
+ id="x1-80001.6"></a>Machine learning</h4>
+<!--l. 90--><p class="noindent" >ANNs &#x0028;Arti&#xFB01;cal Neural Networks&#x0029; can be trained to estimate the motion between
+frames&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xdosovitskiy2015flownet">1</a>&#x005D;</span>.
+</p><!--l. 93--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.7   </span> <a 
+ id="x1-90001.7"></a>Motion compensation in action</h4>
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!--l. 95--><p class="noindent" ><div style="text-align:center;"> <img width=1000 src="R.svg" /> </div>  <div style="text-align:center;"> <img width=1000 src="P.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="y_motion.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="x_motion.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="hat_P.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="without_ME.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="with_ME.svg" /> </div>   <a 
+ id="x1-9001r1"></a>
+<a 
+ id="x1-9002"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;1: </span><span  
+class="content">E&#xFB00;ect of ME over the temporal redundancy removal.
+</span></div><!--tex4ht:label?: x1-9001r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+<!--l. 105--><p class="indent" >   The Fig.&#x00A0;<a 
+href="#x1-9001r1">1<!--tex4ht:ref: fig:MC --></a> shows an example the performace of the use of OF, comparing the prediction
+error generated with and without ME. A motion vector has been computed between each
+point of <!--l. 107--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi></math>
+and <!--l. 107--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>R</mi></math>.
+As it can be seen, ME reduces the temporal redundancy signi&#xFB01;cantly.
+</p>
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-100002"></a>What you have to do?</h3>
+<!--l. 149--><p class="noindent" >In this <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-ME/optical_flow.ipynb" >notebook</a> you can &#xFB01;nd how to estimate the OF between two frames. Please,
+modify it to &#xFB01;nd suitable values for the parameters <span 
+class="ectt-1000">levels</span>, <span 
+class="ectt-1000">winsize </span>and
+<span 
+class="ectt-1000">iterations</span>. Supposing that the impact of each parameter is independent from the
+rest, the best way of comparing two di&#xFB00;erent con&#xFB01;gurations is render RD curves
+using quantization and compressing the residues.
+</p><!--l. 158--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-110003"></a>Timming</h3>
+<!--l. 160--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 162--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-120004"></a>Deliverables</h3>
+<!--l. 164--><p class="noindent" >None.
+</p><!--l. 166--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-130005"></a>Resources</h3>
+<!--l. 1--><p class="noindent" >
+</p>
+   <h3 class="likesectionHead"><a 
+ id="x1-140005"></a>References</h3>
+<!--l. 1--><p class="noindent" >
+   </p><div class="thebibliography">
+                                                                  
+
+                                                                  
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xdosovitskiy2015flownet"></a>A.&#x00A0;Dosovitskiy, P.&#x00A0;Fischer, E.&#x00A0;Ilg, P.&#x00A0;Hausser, C.&#x00A0;Hazirbas, V.&#x00A0;Golkov,
+   P.&#x00A0;Van Der&#x00A0;Smagt, D.&#x00A0;Cremers, and T.&#x00A0;Brox. <a 
+href="https://openaccess.thecvf.com/content_iccv_2015/papers/Dosovitskiy_FlowNet_Learning_Optical_ICCV_2015_paper.pdf" >FlowNet: Learning Optical
+   Flow with Convolutional Networks</a>. In <span 
+class="ecti-1000">Proceedings of the IEEE international</span>
+   <span 
+class="ecti-1000">conference on computer vision</span>, pages 2758&#x2013;2766, 2015.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;2&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xfarneback2003two"></a>G.&#x00A0;Farneb&#x00E4;ck.  <a 
+href="https://link.springer.com/content/pdf/10.1007/3-540-45103-X_50.pdf" >Two-Frame Motion Estimation Based on Polynomial
+   Pxpansion</a>.  In <span 
+class="ecti-1000">Scandinavian conference on Image analysis</span>, pages 363&#x2013;370.
+   Springer, 2003.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;3&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xhorn1981determining"></a>B.K.P.  Horn  and  B.G.  Schunck.    <a 
+href="https://www.caam.rice.edu/~zhang/caam699/opt-flow/horn81.pdf" >Determining  Optical  Flow</a>.    In
+   <span 
+class="ecti-1000">Techniques and Applications of Image Understanding</span>, volume 281, pages
+   319&#x2013;331. International Society for Optics and Photonics, 1981.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;4&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xorchard1994overlapped"></a>M.T.   Orchard   and   G.J.   Sullivan.       <a 
+href="https://www.semanticscholar.org/paper/Overlapped-block-motion-compensation%3A-an-approach-Orchard-Sullivan/8f46f291825caa786890ef224a28cf513f049799" >Overlapped   Block   Motion
+   Compensation: An Estimation-Theoretic Approach</a>. <span 
+class="ecti-1000">IEEE Transactions on</span>
+   <span 
+class="ecti-1000">Image Processing</span>, 3&#x0028;5&#x0029;:693&#x2013;699, 1994.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;5&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xzhu2000new"></a>S.&#x00A0;Zhu  and  K.-K.  Ma.     <a 
+href="https://www.cl.cam.ac.uk/teaching/1718/SysOnChip/materials.d/mpeg-diamond-search-motion-esimation-zhu-ma-2000.pdf" >A  New  Diamond  Search  Algorithm  for
+   Fast  Block-Matching  Motion  Estimation</a>.   <span 
+class="ecti-1000">IEEE  transactions  on  Image</span>
+   <span 
+class="ecti-1000">Processing</span>, 9&#x0028;2&#x0029;:287&#x2013;290, 2000.
+</p>
+   </div>
+<a 
+ id="Q1-1-15"></a>
+    
+</body></html> 
+
+                                                                  
+
+

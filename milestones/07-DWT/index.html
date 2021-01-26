@@ -1,0 +1,1357 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" 
+"http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd" > 
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Sistemas Multimedia - Study Guide - Milestone 7: Energy Concentration and
+Spatial Multiresolution with the Discrete Wavelet Transform</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathml,html --> 
+<meta name="src" content="index.tex" /> 
+<link rel="stylesheet" type="text/css" href="index.css" /> 
+</head><body 
+>
+   <div class="maketitle">
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+
+<h2 class="titleHead"><a 
+href="http://cms.ual.es/UAL/estudios/masteres/plandeestudios/asignaturas/asignatura/MASTER7114?idAss=71142105&idTit=7114" >Sistemas Multimedia</a> - Study Guide - Milestone
+7: Energy Concentration and Spatial
+Multiresolution with the Discrete Wavelet
+Transform</h2>
+ <div class="author" ><a 
+href="https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875" ><span 
+class="ecrm-1200">Vicente Gonz</span><span 
+class="ecrm-1200">&#x00E1;</span><span 
+class="ecrm-1200">lez Ruiz</span></a> <span 
+class="ecrm-1200">- </span><a 
+href="https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm" ><span 
+class="ecrm-1200">Depto Inform</span><span 
+class="ecrm-1200">&#x00E1;</span><span 
+class="ecrm-1200">tica</span></a> <span 
+class="ecrm-1200">- </span><a 
+href="https://www.ual.es" ><span 
+class="ecrm-1200">UAL</span></a></div><br />
+<div class="date" ><span 
+class="ecrm-1200">January 25, 2021</span></div>
+   </div>
+   <h3 class="likesectionHead"><a 
+ id="x1-1000"></a>Contents</h3>
+   <div class="tableofcontents">
+   <span class="sectionToc" >1 <a 
+href="#x1-20001" id="QQ2-1-2">Description</a></span>
+<br />   &#x00A0;<span class="subsectionToc" >1.1 <a 
+href="#x1-30001.1" id="QQ2-1-3">An example of DWT: the Haar DWT</a></span>
+<br />   &#x00A0;<span class="subsectionToc" >1.2 <a 
+href="#x1-40001.2" id="QQ2-1-4">Multiresolution analysis</a></span>
+<br />   &#x00A0;<span class="subsectionToc" >1.3 <a 
+href="#x1-50001.3" id="QQ2-1-5">Orthogonal and biorthogonal DWT</a></span>
+<br />   <span class="sectionToc" >2 <a 
+href="#x1-60002" id="QQ2-1-6">What you have to do?</a></span>
+<br />   <span class="sectionToc" >3 <a 
+href="#x1-70003" id="QQ2-1-7">Timming</a></span>
+<br />   <span class="sectionToc" >4 <a 
+href="#x1-80004" id="QQ2-1-8">Deliverables</a></span>
+<br />   <span class="sectionToc" >5 <a 
+href="#x1-90005" id="QQ2-1-9">Resources</a></span>
+<br />   <span class="sectionToc" ><a 
+href="#Q1-1-10">References</a></span>
+   </div>
+<!--l. 8--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-20001"></a>Description</h3>
+<!--l. 10--><p class="noindent" >Technically, the <a 
+href="https://en.wikipedia.org/wiki/Discrete_wavelet_transform" >DWT &#x0028;Discrete Wavelet Transform&#x0029;</a> is a <a 
+href="https://en.wikipedia.org/wiki/Linearity" >linear</a> <a 
+href="https://en.wikipedia.org/wiki/Change_of_basis" >basis</a> <a 
+href="https://www.youtube.com/watch?v=P2LTAUO1TdA" >expansion</a> which
+computes a <a 
+href="https://www.dsprelated.com/freebooks/sasp/Critically_Sampled_Perfect_Reconstruction.html" >critically</a>-<a 
+href="https://en.wikipedia.org/wiki/Nyquist-Shannon_sampling_theorem" >sampled</a> <a 
+href="https://en.wikipedia.org/wiki/Octave_(electronics)" >octave</a>-<a 
+href="https://en.wikipedia.org/wiki/Frequency_band" >band</a> <a 
+href="https://www.sciencedirect.com/topics/engineering/wavelet-decomposition" >decomposition</a>&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xvetterli2014foundations">2</a>,&#x00A0;<a 
+href="#Xkovacevic2013fourier">1</a>&#x005D;</span>. Speci&#xFB01;cally, the
+                                                                  
+
+                                                                  
+DWT is a family of transforms whose output describes the &#x0028;input&#x0029; signal in a set of
+<a 
+href="https://en.wikipedia.org/wiki/Sub-band_coding" >subbands</a>. This set is also called a <a 
+href="https://en.wikipedia.org/wiki/Discrete_wavelet_transform" >decomposition</a> and the <a 
+href="https://en.wikipedia.org/wiki/Array_data_structure#Element_identifier_and_addressing_formulas" >index</a> of the subband is
+related to the <a 
+href="https://en.wikipedia.org/wiki/Frequency" >frequency</a> of the signal. For example, in the case of the <a 
+href="https://en.wikipedia.org/wiki/Digital_image" >images</a>, the
+position of the <a 
+href="https://en.wikipedia.org/wiki/Coefficient" >coe&#xFB03;cients</a> in the subbands is related to <a 
+href="https://en.wikipedia.org/wiki/Discrete_wavelet_transform#/media/File:Jpeg2000_2-level_wavelet_transform-lichtenstein.png" >the spatial area where the
+corresponding pixels are found</a>.
+</p><!--l. 38--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
+ id="x1-30001.1"></a>An example of DWT: the Haar DWT</h4>
+<!--l. 39--><p class="noindent" >As the rest of transforms, the DWT is also described by the &#xFB01;lters of the analysis matrix transform
+&#x0028;the matrix <!--l. 40--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>K</mi></math>
+in the <a 
+href="https://sistemas-multimedia.github.io/study_guide/06-color_transform/" >previous milestone</a>&#x0029;. Haar de&#xFB01;ned the analysis <a 
+href="https://en.wikipedia.org/wiki/Downsampling_(signal_processing)" >downsampling</a> &#xFB01;lters </p><table class="equation"><tr><td>
+<a 
+ id="x1-3001r1"></a>
+<!--l. 45--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+ <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center">  <msubsup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>n</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msubsup 
+>  </mtd>
+</mtr> <mtr><mtd 
+class="array"  columnalign="center">  <msubsup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>n</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msubsup 
+>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                         </mrow><mo fence="true" form="postfix">]</mo></mrow>  <mo 
+class="MathClass-rel">=</mo>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center">   <mfrac><mrow 
+><mn>1</mn></mrow> 
+<mrow 
+><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></mfrac>  </mtd><mtd 
+class="array"  columnalign="center">    <mfrac><mrow 
+><mn>1</mn></mrow> 
+<mrow 
+><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></mfrac>  </mtd>
+</mtr> <mtr><mtd 
+class="array"  columnalign="center">    <mfrac><mrow 
+><mn>1</mn></mrow> 
+<mrow 
+><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></mfrac>  </mtd><mtd 
+class="array"  columnalign="center">  <mfrac><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow> 
+<mrow 
+><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></mfrac>  </mtd>
+</mtr>    <!--*\c@MaxMatrixCols c--></mtable>                                                                                                                         </mrow><mo fence="true" form="postfix">]</mo></mrow>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"> <mtr><mtd 
+class="array"  columnalign="center">    <msubsup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>2</mn><mi 
+>n</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msubsup 
+>   </mtd>
+</mtr> <mtr><mtd 
+class="array"  columnalign="center">  <msubsup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>2</mn><mi 
+>n</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow><mrow 
+><mi 
+>s</mi></mrow></msubsup 
+>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                           </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
+class="MathClass-punc">,</mo>
+</math></td><td class="eq-no">&#x0028;1&#x0029;</td></tr></table>
+<!--l. 58--><p class="indent" >   where the superindex <!--l. 58--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>s</mi></math>
+denotes the subband, and <!--l. 58--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>n</mi></math>
+refers to the <!--l. 59--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>n</mi></math>-th
+element of the signal. By de&#xFB01;nition &#x0028;and notice that this holds for all DWTs&#x0029;, </p><table class="equation"><tr><td>
+<a 
+ id="x1-3002r2"></a>
+<!--l. 61--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                              <msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>0</mn></mrow></msup 
+> <mo 
+class="MathClass-rel">=</mo> <mi 
+>x</mi><mo 
+class="MathClass-punc">.</mo>
+</math></td><td class="eq-no">&#x0028;2&#x0029;</td></tr></table>
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!--l. 67--><p class="noindent" ><div style="text-align:center;"> <img width=600 src="haar_modulus.svg" /> </div>  <a 
+ id="x1-3003r1"></a>
+<a 
+ id="x1-3004"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;1: </span><span  
+class="content">Haar &#xFB01;lters&#x2019;s response in the frequency domain &#x0028;see this <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb" >notebook</a>&#x0029;.
+<!--l. 73--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">&#x007C;</mo><msub><mrow 
+><mi 
+>K</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-open">&#x0028;</mo><msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>j</mi><mi 
+>&#x03C9;</mi></mrow></msup 
+><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-rel">&#x007C;</mo></math>
+denotes       the       <a 
+href="https://en.wikipedia.org/wiki/Absolute_value" >modulus</a>       of       the       <a 
+href="https://en.wikipedia.org/wiki/Fourier_transform" >Fourier       transform</a>       of
+<!--l. 73--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>K</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+></math>.</span></div><!--tex4ht:label?: x1-3003r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!--l. 79--><p class="noindent" ><div style="text-align:center;"> <img width=600 src="db5_modulus.svg" /> </div>  <a 
+ id="x1-3005r2"></a>
+<a 
+ id="x1-3006"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;2:  </span><span  
+class="content">Daubechies-5  &#xFB01;lters&#x2019;s  response  in  the  frequency  domain  &#x0028;see  this
+<a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb" >notebook</a>&#x0029;.                                                         </span></div><!--tex4ht:label?: x1-3005r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!--l. 88--><p class="noindent" ><div style="text-align:center;"> <img width=600 src="bior3.5_modulus.svg" /> </div>  <a 
+ id="x1-3007r3"></a>
+<a 
+ id="x1-3008"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;3: </span><span  
+class="content">Biorthiogonal-3.5 &#xFB01;lters&#x2019;s response in the frequency domain &#x0028;see this
+<a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb" >notebook</a>&#x0029;.                                                         </span></div><!--tex4ht:label?: x1-3007r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!--l. 97--><p class="noindent" ><div style="text-align:center;"> <img width=600 src="haar_phase.svg" /> </div>  <a 
+ id="x1-3009r4"></a>
+<a 
+ id="x1-3010"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;4: </span><span  
+class="content">Phase response of the Haar &#xFB01;lters &#x0028;see this <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb" >notebook</a>&#x0029;.            </span></div><!--tex4ht:label?: x1-3009r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!--l. 104--><p class="noindent" ><div style="text-align:center;"> <img width=600 src="db5_phase.svg" /> </div>  <a 
+ id="x1-3011r5"></a>
+<a 
+ id="x1-3012"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;5: </span><span  
+class="content">Phase response of the Daubechies-5 &#xFB01;lters &#x0028;see this <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/05-DWT/dwt_filters_analysis.ipynb" >notebook</a>&#x0029;. Notice
+that we obtained phase responses are not completely linear &#x0028;it is not a straight
+line&#x0029;.                                                             </span></div><!--tex4ht:label?: x1-3011r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+<!--l. 112--><p class="indent" >   As it can be seen in the Fig.&#x00A0;<a 
+href="#x1-3003r1">1<!--tex4ht:ref: fig:Haar_modulus --></a>, <!--l. 112--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>K</mi></mrow><mrow 
+><mn>0</mn></mrow></msub 
+></math>
+is a <a 
+href="https://en.wikipedia.org/wiki/Low-pass_filter" >low-pass &#xFB01;lter</a> and <!--l. 114--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>K</mi></mrow><mrow 
+><mn>1</mn></mrow></msub 
+></math>
+is a <a 
+href="https://en.wikipedia.org/wiki/High-pass_filter" >high-pass &#xFB01;lter</a> &#x0028;this holds for all DWTs&#x0029;. Considering the Haar &#xFB01;lter, we can
+conclude that:
+     </p><ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-3014x1">There exists <a 
+href="https://en.wikipedia.org/wiki/Aliasing" >aliasing</a> between the &#xFB01;lters &#x0028;this holds for all DWTs&#x0029; and this is a
+     drawback because:
+         <ol  class="enumerate2" >
+         <li 
+  class="enumerate" id="x1-3016x1">The same <a 
+href="https://en.wikipedia.org/wiki/Information" >information</a> can be found in both subbands &#x0028;<!--l. 125--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>l</mi></math>
+         and <!--l. 125--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>h</mi></math>&#x0029;.
+         Therefore, the concentration of the energy in one of the subbands is
+         smaller.
+         </li>
+         <li 
+  class="enumerate" id="x1-3018x2">At it can be seen also in Eq.&#x00A0;<a 
+href="#x1-3001r1">1<!--tex4ht:ref: eq:Haar_transform --></a>, the subbands are downsampled by 2
+         &#x0028;action usually represented by <!--l. 129--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" > <mi 
+>&#x2193;</mi> <mn>2</mn></math>&#x0029;
+         and both subbands should have, at most, a <a 
+href="https://en.wikipedia.org/wiki/Bandwidth_(signal_processing)" >bandwidth</a> of <!--l. 131--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mfrac><mrow 
+><mn>1</mn></mrow>
+<mrow 
+><mn>2</mn></mrow></mfrac></math>
+         <a 
+href="https://en.wikipedia.org/wiki/Radian" >radians</a>/<a 
+href="https://en.wikipedia.org/wiki/Sampling_(signal_processing)" >sample</a> in order to avoid the aliasing during the <a 
+href="https://en.wikipedia.org/wiki/Downsampling_(signal_processing)" >subsampling</a>,
+         thus increasing the <a 
+href="https://en.wikipedia.org/wiki/Perception" >perceptible</a> <a 
+href="https://en.wikipedia.org/wiki/Signal-to-noise_ratio" >quality</a> of the low-pass subband <!--l. 138--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>l</mi></math>.</li></ol>
+     <!--l. 140--><p class="noindent" >These problems can be only solved using &#xFB01;lters that have <a 
+href="https://en.wikipedia.org/wiki/Transfer_function" >transfer functions</a> that overlaps a
+     smaller area<span class="footnote-mark"><a 
+href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-3019f1"></a> 
+     &#x0028;see Figs.&#x00A0;<a 
+href="#x1-3005r2">2<!--tex4ht:ref: fig:db5_modulus --></a> and <a 
+href="#x1-3007r3">3<!--tex4ht:ref: fig:bior3.5_modulus --></a>&#x0029;.
+     </p></li>
+     <li 
+  class="enumerate" id="x1-3021x2">There is not <a 
+href="https://en.wikipedia.org/wiki/Linear_phase" >phase distortion</a> &#x0028;the phase of the &#xFB01;lters is a linear function
+     of the frequency, see the Fig.&#x00A0;<a 
+href="#x1-3009r4">4<!--tex4ht:ref: fig:haar_phase --></a>&#x0029;. This means that both coe&#xFB03;cients
+     <!--l. 152--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msubsup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>n</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msubsup 
+></math> and
+     <!--l. 152--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msubsup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>n</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msubsup 
+></math> refers to the same
+     section of signal <!--l. 153--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x007B;</mo><msubsup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>2</mn><mi 
+>n</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msubsup 
+><mo 
+class="MathClass-punc">,</mo><msubsup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>2</mn><mi 
+>n</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow><mrow 
+><mi 
+>s</mi></mrow></msubsup 
+><mo 
+class="MathClass-close">&#x007D;</mo></math>,
+     allowing the design of entropy codecs for the decomposition which exploit the
+     correlation between subbands. Notice that this does not hold for all &#xFB01;lters &#x0028;see
+     Fig.&#x00A0;<a 
+href="#x1-3011r5">5<!--tex4ht:ref: fig:db5_phase --></a>&#x0029;.</li></ol>
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!--l. 162--><p class="noindent" ><div style="text-align:center;"> <img width=1000 src="graphics/DWT.svg" /> </div>  <a 
+ id="x1-3022r6"></a>
+<a 
+ id="x1-3023"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;6: </span><span  
+class="content">Computation of the <!--l. 164--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>S</mi></math>-levels
+DWT and the generated subbands.                                    </span></div><!--tex4ht:label?: x1-3022r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+<!--l. 168--><p class="indent" >   Eq.&#x00A0;<a 
+href="#x1-3001r1">1<!--tex4ht:ref: eq:Haar_transform --></a> computes the 1-levels Haar DWT. A more general expresion for this
+equation &#x0028;and this holds for all DWTs&#x0029; is </p><table class="equation"><tr><td> <a 
+ id="x1-3024r3"></a>
+<!--l. 170--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                       <mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-close">&#x007D;</mo> <mo 
+class="MathClass-rel">=</mo> <mstyle 
+class="text"><mtext  >DWT</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msup 
+><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+</math></td><td class="eq-no">&#x0028;3&#x0029;</td></tr></table>
+<!--l. 174--><p class="indent" >   where <!--l. 174--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x007B;</mo><mo 
+class="MathClass-bin">&#x22C5;</mo><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-bin">&#x22C5;</mo><mo 
+class="MathClass-close">&#x007D;</mo></math>
+denotes the concatenation of subbands. As can be seen in the Fig.&#x00A0;<a 
+href="#x1-3022r6">6<!--tex4ht:ref: fig:DWT --></a>, it&#x2019;s possible to compute
+the <!--l. 176--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>S</mi></math>-levels
+DWT, using Eq.&#x00A0;<a 
+href="#x1-3024r3">3<!--tex4ht:ref: eq:DWT --></a> iteratively over the low-frequency subband, generating the
+decomposition </p><table class="equation"><tr><td> <a 
+ id="x1-3025r4"></a>
+<!--l. 178--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+<mo 
+class="MathClass-open">&#x007B;</mo><msubsup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>0</mn></mrow><mrow 
+><mi 
+>S</mi></mrow></msubsup 
+><mo 
+class="MathClass-punc">,</mo><msubsup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+>
+<mn>0</mn></mrow><mrow 
+><mi 
+>S</mi></mrow></msubsup 
+><mo 
+class="MathClass-punc">,</mo><msubsup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+>
+<mn>0</mn></mrow><mrow 
+><mi 
+>S</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msubsup 
+><msubsup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+>
+<mn>1</mn></mrow><mrow 
+><mi 
+>S</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">,</mo><msubsup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+>
+<mn>0</mn></mrow><mrow 
+><mi 
+>S</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>2</mn></mrow></msubsup 
+><msubsup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+>
+<mn>1</mn></mrow><mrow 
+><mi 
+>S</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>2</mn></mrow></msubsup 
+><msubsup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+>
+<mn>2</mn></mrow><mrow 
+><mi 
+>S</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>2</mn></mrow></msubsup 
+><msubsup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+>
+<mn>3</mn></mrow><mrow 
+><mi 
+>S</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>2</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-rel">&#x22EF;</mo><mspace width="0.17em" class="thinspace"/><mo 
+class="MathClass-punc">,</mo><msubsup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+>
+<mn>0</mn></mrow><mrow 
+><mn>1</mn></mrow></msubsup 
+><msubsup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+>
+<mn>1</mn></mrow><mrow 
+><mn>1</mn></mrow></msubsup 
+><mo 
+class="MathClass-rel">&#x22EF;</mo><msubsup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><msup><mrow 
+>
+<mn>2</mn></mrow><mrow 
+><mi 
+>n</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow><mrow 
+><mn>1</mn></mrow></msubsup 
+><mo 
+class="MathClass-close">&#x007D;</mo> <mo 
+class="MathClass-rel">=</mo><msup><mrow 
+> <mstyle 
+class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow 
+><mi 
+>S</mi></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>0</mn></mrow></msup 
+><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+</math></td><td class="eq-no">&#x0028;4&#x0029;</td></tr></table>
+<!--l. 184--><p class="indent" >   where </p><table class="equation"><tr><td> <a 
+ id="x1-3026r5"></a>
+<!--l. 185--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                            <mi 
+>n</mi> <mo 
+class="MathClass-rel">=</mo><msub><mrow 
+><mi class="qopname"> log</mi><mo> &ApplyFunction;<!--FUNCTION APPLICATION--> </mo><!--nolimits--></mrow><mrow 
+><mn>2</mn></mrow></msub 
+><mo 
+class="MathClass-open">&#x0028;</mo><mi 
+>N</mi><mo 
+class="MathClass-close">&#x0029;</mo>
+</math></td><td class="eq-no">&#x0028;5&#x0029;</td></tr></table>
+<!--l. 188--><p class="indent" >   where <!--l. 188--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>N</mi></math>
+is the number of samples.
+                                                                  
+
+                                                                  
+</p><!--l. 190--><p class="indent" >   In the case of the Haar &#xFB01;lters, the synthesis &#x0028;inverse&#x0029;
+<!--l. 190--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>1</mn></math>-levels DWT &#x0028;that we will
+denote by <!--l. 191--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mstyle 
+class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+></math>&#x0029; is the result
+of solving the coe&#xFB03;cients <!--l. 192--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msubsup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>n</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msubsup 
+></math>
+and <!--l. 192--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msubsup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>n</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msubsup 
+></math>
+in the Eq.&#x00A0;<a 
+href="#x1-3001r1">1<!--tex4ht:ref: eq:Haar_transform --></a>. In general, for longer DWT &#xFB01;lters we are going to have more
+coe&#xFB03;cients, but the same procedure can be used for &#xFB01;nding the synthesis transform.
+Therefore, it can be written that </p><table class="equation"><tr><td> <a 
+ id="x1-3027r6"></a>
+<!--l. 196--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                      <msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msup 
+> <mo 
+class="MathClass-rel">=</mo><msup><mrow 
+> <mstyle 
+class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+</math></td><td class="eq-no">&#x0028;6&#x0029;</td></tr></table>
+<!--l. 199--><p class="indent" >   and <!--l. 199--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mstyle 
+class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mi 
+>S</mi></mrow></msup 
+></math>,
+the <!--l. 199--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>S</mi></math>-levels
+synthesis DWT, can be computed as it is also described in the Fig.&#x00A0;<a 
+href="#x1-3022r6">6<!--tex4ht:ref: fig:DWT --></a>, by simply
+reversing the analysis steps.
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.2   </span> <a 
+ id="x1-40001.2"></a><a 
+href="https://en.wikipedia.org/wiki/Multiresolution_analysis" >Multiresolution analysis</a></h4>
+<!--l. 204--><p class="noindent" >In the decomposition described in Eq.&#x00A0;<a 
+href="#x1-3025r4">4<!--tex4ht:ref: eq:S_levels_DWT --></a> there are
+<!--l. 205--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>S</mi> <mo 
+class="MathClass-bin">+</mo> <mn>1</mn></math>
+subbands, and therefore, it is possible to compute
+<!--l. 205--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>S</mi> <mo 
+class="MathClass-bin">+</mo> <mn>1</mn></math> resolution levels of
+the analyzed signal <!--l. 206--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>0</mn></mrow></msup 
+></math>:
+</p>
+     <ul class="itemize1">
+     <li class="itemize"><!--l. 208--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>S</mi></mrow></msup 
+></math>:
+     the resolution level <!--l. 208--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>S</mi></math>
+     of <!--l. 208--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>0</mn></mrow></msup 
+></math>
+     &#x0028;no <!--l. 208--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mstyle 
+class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+></math>
+     has been applied&#x0029;, with have only one sample <!--l. 209--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msubsup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>0</mn></mrow><mrow 
+><mi 
+>S</mi></mrow></msubsup 
+></math>
+     that uses to be the <a 
+href="https://en.wikipedia.org/wiki/Arithmetic_mean" >arithmetic mean</a> of <!--l. 211--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>0</mn></mrow></msup 
+></math>.
+     The coe&#xFB03;cient <!--l. 211--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msubsup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>0</mn></mrow><mrow 
+><mi 
+>S</mi></mrow></msubsup 
+></math>
+     is also called the <a 
+href="https://en.wikipedia.org/wiki/DC_bias" >DC &#x0028;Direct Current&#x0029; coe&#xFB03;cient</a>. On the contrary, the rest
+     of coe&#xFB03;cents &#x0028;high-frequency subbands&#x0029; are called the AC &#x0028;Alternating
+     Current&#x0029; coe&#xFB03;cients.
+                                                                  
+
+                                                                  
+     </li>
+     <li class="itemize"><!--l. 216--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>S</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+> <mo 
+class="MathClass-rel">=</mo><msup><mrow 
+> <mstyle 
+class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>S</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>S</mi></mrow></msup 
+><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-close">&#x0029;</mo></math>,
+     the resolution level <!--l. 216--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>S</mi> <mo 
+class="MathClass-bin">&#x2212;</mo> <mn>1</mn></math>
+     of <!--l. 216--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>0</mn></mrow></msup 
+></math>,
+     with two samples.
+     </li>
+     <li class="itemize"><!--l. 218--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>S</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>2</mn></mrow></msup 
+> <mo 
+class="MathClass-rel">=</mo><msup><mrow 
+> <mstyle 
+class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>S</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>S</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-close">&#x0029;</mo></math>,
+     the resolution level <!--l. 219--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>S</mi> <mo 
+class="MathClass-bin">&#x2212;</mo> <mn>1</mn></math>
+     of <!--l. 219--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>0</mn></mrow></msup 
+></math>,
+     with four samples.
+     </li>
+     <li class="itemize"><!--l. 220--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+class="MathClass-op">&#x22EE;</mi><mo> &ApplyFunction;<!--FUNCTION APPLICATION--></mo></math>
+     </li>
+     <li class="itemize">The resolution level <!--l. 221--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>0</mn></math>,
+     <!--l. 221--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>0</mn></mrow></msup 
+> <mo 
+class="MathClass-rel">=</mo><msup><mrow 
+> <mstyle 
+class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-close">&#x0029;</mo></math>.</li></ul>
+<!--l. 224--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.3   </span> <a 
+ id="x1-50001.3"></a>Orthogonal and biorthogonal DWT</h4>
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!--l. 228--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="graphics/PRFB.svg" /> </div>  <a 
+ id="x1-5001r7"></a>
+<a 
+ id="x1-5002"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;7: </span><span  
+class="content">A 2-channels PRFB &#x0028;Perfect Reconstruction Filter Bank&#x0029;. See this
+<a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/07-DWT/PRFB.ipynb" >notebook</a>.                                                          </span></div><!--tex4ht:label?: x1-5001r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+<!--l. 235--><p class="indent" >   All DWTs are de&#xFB01;ned by 4 &#xFB01;lters &#x0028;using a similar notation that the followed by
+<a 
+href="https://pywavelets.readthedocs.io" >PyWavelets</a>&#x0029; &#x0028;see Fig.&#x00A0;<a 
+href="#x1-5001r7">7<!--tex4ht:ref: fig:PRFB --></a>&#x0029;:
+     </p><ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-5004x1">Analysis &#x0028;downsampling&#x0029; low-pass &#xFB01;lter <!--l. 239--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>&#x03D5;</mi></mrow><mo accent="true">&#x007E;</mo></mover></math>
+     &#x0028;the decomposition scaling function&#x0029;, which computes <!--l. 240--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+></math>
+     from <!--l. 240--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msup 
+></math>.
+     </li>
+     <li 
+  class="enumerate" id="x1-5006x2">Analysis &#x0028;downsampling&#x0029; high-pass &#xFB01;lter <!--l. 241--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>&#x03C8;</mi></mrow><mo accent="true">&#x007E;</mo></mover></math>
+     &#x0028;the decomposition wavelet function&#x0029;, which computes <!--l. 242--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+></math>
+     from <!--l. 242--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msup 
+></math>.
+     </li>
+     <li 
+  class="enumerate" id="x1-5008x3">Synthesis &#x0028;upsampling&#x0029; high-pass &#xFB01;lter <!--l. 243--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03D5;</mi></math>
+     &#x0028;the reconstruction scaling function&#x0029;, which computes <!--l. 244--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x007B;</mo><msubsup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>2</mn><mi 
+>n</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msubsup 
+><mo 
+class="MathClass-close">&#x007D;</mo></math>
+     from <!--l. 245--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+></math>
+     and <!--l. 245--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+></math>.
+     </li>
+     <li 
+  class="enumerate" id="x1-5010x4">Synthesis &#x0028;upsampling&#x0029; high-pass &#xFB01;lter <!--l. 246--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03C8;</mi></math>
+     &#x0028;the reconstruction wavelet function&#x0029;, which computes <!--l. 247--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x007B;</mo><msubsup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mn>2</mn><mi 
+>n</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow><mrow 
+><mi 
+>s</mi></mrow></msubsup 
+><mo 
+class="MathClass-close">&#x007D;</mo></math>
+     from <!--l. 248--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>l</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+></math>
+     and <!--l. 248--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
+></math>.</li></ol>
+<!--l. 251--><p class="indent" >   In the context of the DWT, orthogonality provides intersubband <a 
+href="https://en.wikipedia.org/wiki/Decorrelation" >decorrelation</a>,
+which basically means that the contribution of each subbands to the reconstruction
+&#x0028;and this holds for all DWTs&#x0029; of the signal are independent. Orthogonal &#xFB01;lters can be
+recognized because:
+     </p><ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-5012x1"><!--l. 257--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>&#x03D5;</mi></mrow><mo accent="true">&#x007E;</mo></mover><mo 
+class="MathClass-rel">&#x22A5;</mo><mover 
+accent="true"><mrow 
+><mi 
+>&#x03C8;</mi></mrow><mo accent="true">&#x007E;</mo></mover></math>
+     and <!--l. 257--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03D5;</mi><mo 
+class="MathClass-rel">&#x22A5;</mo><mi 
+>&#x03C8;</mi></math>,
+     where <!--l. 257--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">&#x22A5;</mo></math>
+     denotes orthogonality.
+     </li>
+     <li 
+  class="enumerate" id="x1-5014x2">Their taps are all di&#xFB00;erent &#x0028;the &#xFB01;lters are asymmetric&#x0029;.
+     </li>
+     <li 
+  class="enumerate" id="x1-5016x3">The taps of the synthesis &#xFB01;lters can be determined simply by &#x201C;re&#xFB02;ecting&#x201D;
+     the taps of the analysis &#xFB01;lters.
+     </li>
+     <li 
+  class="enumerate" id="x1-5018x4">In general, except for the Haar DWT, orthogonal &#xFB01;lters generate phase
+     distortion.</li></ol>
+<!--l. 266--><p class="indent" >   On the other hand, in a biorthogonal DWT:
+                                                                  
+
+                                                                  
+     </p><ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-5020x1"><!--l. 268--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>&#x03D5;</mi></mrow><mo accent="true">&#x007E;</mo></mover><mo 
+class="MathClass-rel">&#x22A5;</mo><mover 
+accent="true"><mrow 
+><mi 
+>&#x03C8;</mi></mrow><mo accent="true">&#x007E;</mo></mover></math>,
+     <!--l. 268--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03D5;</mi><mo 
+class="MathClass-rel">&#x22A5;</mo><mi 
+>&#x03C8;</mi></math>,
+     <!--l. 268--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x03C8;</mi><mo 
+class="MathClass-rel">&#x22A5;</mo><mover 
+accent="true"><mrow 
+><mi 
+>&#x03D5;</mi></mrow><mo accent="true">&#x007E;</mo></mover></math>
+     and <!--l. 269--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>&#x03C8;</mi></mrow><mo accent="true">&#x007E;</mo></mover><mo 
+class="MathClass-rel">&#x22A5;</mo><mi 
+>&#x03D5;</mi></math>.
+     </li>
+     <li 
+  class="enumerate" id="x1-5022x2">All the &#xFB01;lters are symmetric.
+     </li>
+     <li 
+  class="enumerate" id="x1-5024x3">The &#xFB01;lters satisfy that <table class="equation"><tr><td> <a 
+ id="x1-5025r7"></a>
+     <!--l. 272--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                                     <mi 
+>&#x03C8;</mi> <mo 
+class="MathClass-rel">=</mo> <msup><mrow 
+><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn><mo 
+class="MathClass-close">&#x0029;</mo></mrow><mrow 
+><mi 
+>n</mi></mrow></msup 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03D5;</mi></mrow><mo accent="true">&#x007E;</mo></mover><mo 
+class="MathClass-punc">;</mo><mi 
+>&#x00A0;</mi><mi 
+>n</mi> <mo 
+class="MathClass-rel">&#x2208;</mo> <mi 
+>&#x2115;</mi><mo 
+class="MathClass-punc">,</mo>
+</math></td><td class="eq-no">&#x0028;7&#x0029;</td></tr></table>
+     <!--l. 275--><p class="noindent" >and </p><table class="equation"><tr><td> <a 
+ id="x1-5026r8"></a>
+     <!--l. 276--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                                      <mi 
+>&#x03D5;</mi> <mo 
+class="MathClass-rel">=</mo> <msup><mrow 
+><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn><mo 
+class="MathClass-close">&#x0029;</mo></mrow><mrow 
+><mi 
+>n</mi></mrow></msup 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03C8;</mi></mrow><mo accent="true">&#x007E;</mo></mover><mo 
+class="MathClass-punc">;</mo><mi 
+>&#x00A0;</mi><mi 
+>n</mi> <mo 
+class="MathClass-rel">&#x2208;</mo> <mi 
+>&#x2115;</mi>
+</math></td><td class="eq-no">&#x0028;8&#x0029;</td></tr></table>
+     <!--l. 279--><p class="noindent" >&#x0028;the odd taps are multiplied by <!--l. 279--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" > <mo 
+class="MathClass-bin">&#x2212;</mo> <mn>1</mn></math>&#x0029;.
+     Therefore, if we have the analysis &#xFB01;lters we can deduce the synthesis &#xFB01;lters and
+     viceversa.
+     </p></li>
+     <li 
+  class="enumerate" id="x1-5028x4">No phase distortion is generated.</li></ol>
+                                                                  
+
+                                                                  
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-60002"></a>What you have to do?</h3>
+<!--l. 286--><p class="noindent" >Please, using <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/07-DWT/dwt_filters_analysis.ipynb" >this notebook</a>, determine the frequency and phase responses
+of the <a 
+href="http://wavelets.pybytes.com/wavelet/db20/" >Daubechies 20</a> and <a 
+href="http://wavelets.pybytes.com/wavelet/bior6.8/" >Biorthogonal-6.8</a> &#xFB01;lters. Determine also their
+relative gains, using the energy of the signal resulting of applying the
+synthesis transform to the impulse signal. The energy of a signal
+<!--l. 293--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>x</mi></math> is
+found by </p><table class="equation"><tr><td> <a 
+ id="x1-6001r9"></a>
+<!--l. 294--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                          <mo 
+class="MathClass-open">&#x27E8;</mo><mi 
+>x</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>x</mi><mo 
+class="MathClass-close">&#x27E9;</mo> <mo 
+class="MathClass-rel">=</mo><munder class="msub"><mrow 
+><mo  
+> &#x2211;</mo>
+   </mrow><mrow 
+><mi 
+>i</mi></mrow></munder 
+><msubsup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mi 
+>i</mi></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">.</mo>
+</math></td><td class="eq-no">&#x0028;9&#x0029;</td></tr></table>
+<!--l. 298--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-70003"></a>Timming</h3>
+<!--l. 300--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 302--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-80004"></a>Deliverables</h3>
+<!--l. 304--><p class="noindent" >None.
+</p><!--l. 306--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-90005"></a>Resources</h3>
+   <div class="thebibliography">
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xkovacevic2013fourier"></a>J.&#x00A0;Kova&#x010D;evi&#x0107;,  V.K.  Goyal,  and  M.&#x00A0;Vetterli.   <a 
+href="https://foundationsofsignalprocessing.org/FWSP_a3.2_2013.pdf" ><span 
+class="ecti-1000">Fourier and Wavelet</span>
+   <span 
+class="ecti-1000">Signal Processing</span></a>. <a 
+href="http://www.fourierandwavelets.org/" class="url" ><span 
+class="ectt-1000">http://www.fourierandwavelets.org/</span></a>, 2013.
+                                                                  
+
+                                                                  
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;2&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xvetterli2014foundations"></a>M.&#x00A0;Vetterli, J.&#x00A0;Kova&#x010D;evi&#x0107;, and V.K. Goyal.  <a 
+href="http://www.fourierandwavelets.org/FSP_v1.1_2014.pdf" ><span 
+class="ecti-1000">Foundations of Signal</span>
+   <span 
+class="ecti-1000">Processing</span></a>. Cambridge University Press, 2014.
+</p>
+   </div>
+<a 
+ id="Q1-1-10"></a>
+    
+</body></html> 
+
+                                                                  
+
+
