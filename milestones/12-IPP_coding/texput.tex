@@ -16,33 +16,16 @@ IPP...~\cite{le1991mpeg}, which means that the first decomp of each
 GOD will be intra-coded (I-type), and the rest of decomps of the GOF
 will be predicted-coded (P-type), respect to the previous
 one\footnote{A P-type decomp except for the second decomp.}. Notice
-that in an I-type decomp all the coefficients (\emph{coeff}s in short)
+that in an I-type decomp all the coefficients (\emph{coeffs} in short)
 will I-type coeffs, and in a P-type frame, the different coeffs can be
 I-type or P-type.
 
-\subsection{Multiresolution iterations}
-In each IPP... iteration, only the high-frequency components of the
-sequence of decoms are decorrelated ($[H]$ subbands) considering the
-information provided by the low-frequency components ($[L]$ subbands),
-which are losslessly\footnote{The $[L]$ information must be always
-decoded with the quality that the encoder used for reconstruct the
-corresponding SRL.} transmitted between the encoder and the decoder.
-
-In order to increase the compression ratio, a minimum number of
-IPP... iterations should be carried out. In fact, the number of
-iterations controls the number of SRLs (Spatial Resolution Levels)
-$N_{\text{SRL}}$ generated, where
-\begin{equation}
-  N_{\text{SRL}} = \text{the number of IPP... iterations} + 1.
-\end{equation}
-The output of an IPP... iteration will be refered as ``a
-spatial-layer of code-stream'', or simply as ``a S-layer''.
-
 \subsection{A block diagram of the codec}
+
 \begin{figure}
   \centering
   \svg{graphics/codec}{700}
-  \caption{The IPP... MRCV video codec.}
+  \caption{The IPP... MRVC video codec.}
   \label{fig:codec}
 \end{figure}
 
@@ -177,6 +160,24 @@ and
   \tag{r}
 \end{equation}
 
+\subsection{Multiresolution iterations}
+In each IPP... iteration, only the high-frequency components of the
+sequence of decoms are decorrelated ($[H]$ subbands) considering the
+information provided by the low-frequency components ($[L]$ subbands),
+which are losslessly\footnote{The $[L]$ information must be always
+decoded with the quality that the encoder used for reconstruct the
+corresponding SRL.} transmitted between the encoder and the decoder.
+
+In order to increase the compression ratio, a minimum number of
+IPP... iterations should be carried out. In fact, the number of
+iterations controls the number of SRLs (Spatial Resolution Levels)
+$N_{\text{SRL}}$ generated, where
+\begin{equation}
+  N_{\text{SRL}} = \text{the number of IPP... iterations} + 1.
+\end{equation}
+The output of an IPP... iteration will be refered as ``a
+spatial-layer of code-stream'', or simply as ``a S-layer''.
+
 \subsection{Scalability}
 It's easy to see that an IPP...-type MRVC sequence is progressive in
 Spatial-resolution (S-progression) as long as more S-layers are
@@ -229,7 +230,7 @@ with the curve generated without using motion compensation.
 \section{Timming}
 
 In groups, you will present the results for this milestone during the
-examination time.
+exam time.
 
 \section{Deliverables}
 
