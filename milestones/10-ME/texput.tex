@@ -115,15 +115,14 @@ in the prediction frame $\hat{P}$, as it has been shown in the
 Fig.~\ref{fig:average}.
 
 \subsection{Transform analysis}
-One of the most successful techniques for computing the (dense)
-OF is based on the analysis of the coefficients resulting
-from transforming the frames using a polynomial expansion (the details
-of this transform and the impact of the motion in the coefficients can
-be found in the paper or Gunnar
-Farneb{\"a}ck~\cite{farneback2003two}). This is the algorithm that we
-will use in our experiments for two important reasons: (1) it is quite
-efficient in terms both of performance and speed, and (2) it is
-already
+One of the most successful techniques for computing the (dense) OF is
+based on the analysis of the coefficients resulting from transforming
+the frames using a polynomial expansion (the details of this transform
+and the impact of the motion in the coefficients can be found in the
+Gunnar Farneb{\"a}ck's paper~\cite{farneback2003two}). This is the
+algorithm that we will use in our experiments for two important
+reasons: (1) it is quite efficient in terms both of performance and
+speed, and (2) it is already
 \href{https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html}{implemented}
 in OpenCV.
 
@@ -145,9 +144,10 @@ motion between frames~\cite{dosovitskiy2015flownet}.
   \label{fig:MC}
 \end{figure}
 The Fig.~\ref{fig:MC} shows an example the performace of the use of
-OF, comparing the prediction error generated with and without ME. A
-motion vector has been computed between each point of $P$ and $R$. As
-it can be seen, ME reduces the temporal redundancy significantly.
+OF, comparing the prediction error generated with and without ME. In
+this experiment, a motion vector has been computed between each point
+of $P$ and $R$. As it can be seen, ME reduces the temporal redundancy
+significantly.
 
 \begin{comment}
 The OF~\cite{horn1981determining} tries to establish connections between the pixels of
