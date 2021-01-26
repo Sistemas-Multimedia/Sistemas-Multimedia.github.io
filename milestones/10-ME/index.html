@@ -5,8 +5,8 @@
 > 
 <head><title>Sistemas Multimedia - Study Guide - Milestone 10: Motion Estimation</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
-<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
-<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
 <!-- xhtml,mathml,html --> 
 <meta name="src" content="index.tex" /> 
 <link rel="stylesheet" type="text/css" href="index.css" /> 
@@ -28,7 +28,7 @@ class="ecrm-1200">Vicente Gonz</span><span
 class="ecrm-1200">&#x00E1;</span><span 
 class="ecrm-1200">lez Ruiz</span></div><br />
 <div class="date" ><span 
-class="ecrm-1200">January 25, 2021</span></div>
+class="ecrm-1200">January 26, 2021</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -71,58 +71,91 @@ href="#Q1-1-15">References</a></span>
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
  id="x1-30001.1"></a>Motion Estimation &#x0028;ME&#x0029; for what?</h4>
-<!--l. 11--><p class="noindent" >Temporal correlation between video frames can be removed by MC &#x0028;Motion Compensation&#x0029;.
-MC implies to substract to the frames those information, in form of a prediction frame
-<!--l. 13--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mover 
-accent="true"><mrow 
-><mi 
->P</mi></mrow><mo accent="true">&#x005E;</mo></mover></math>, that
-can be infered from neighbor frames, as long as these frames are known by the
-decoder or the motion information is transmited from the encoder to the
-decoder.
-</p><!--l. 18--><p class="indent" >   A MC Predictor &#x0028;MCP&#x0029; inputs one or more reference frames
-<!--l. 18--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
->R</mi></math>, a predicted
-frame <!--l. 19--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
->P</mi></math>
-&#x0028;the frame that we want to compensate&#x0029;, and a motion vectors &#xFB01;eld
+<!--l. 11--><p class="noindent" >Temporal  correlation  between  video
+frames<span class="footnote-mark"><a 
+href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-3001f1"></a> 
+can be removed by MC &#x0028;Motion Compensation&#x0029;. MC implies to decrease &#x0028;usually by
+substracting&#x0029; the amount of information in the frames. The removed information
+must be available at both, the encoder and the decoder side, in order to make the
+process reversible.
+</p><!--l. 19--><p class="indent" >   Speci&#xFB01;cally, an MC Predictor &#x0028;MCP&#x0029; inputs one &#x0028;or more&#x0029; reference frame&#x0028;s&#x0029;
 <!--l. 20--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mover class="overset"><mrow 
+display="inline" ><mrow ><mo 
+class="MathClass-open">&#x007B;</mo><mrow><msub><mrow 
+><mi 
+>R</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">&#x007D;</mo></mrow></math>, and one &#x0028;or more&#x0029;
+motion vectors &#xFB01;eld&#x0028;s&#x0029; <!--l. 21--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mrow ><mo 
+class="MathClass-open">&#x007B;</mo><mrow><msub><mrow 
+><mover class="overset"><mrow 
 ><mi 
 >V</mi> </mrow><mrow 
 ><mo 
 class="MathClass-bin">&#x22C5;</mo><mo 
 class="MathClass-rel">&#x2192;</mo><mo 
-class="MathClass-bin">&#x22C5;</mo></mrow></mover></math>. In
-the next milestone we will see how to &#xFB01;nd </p><table class="equation"><tr><td> <a 
- id="x1-3001r1"></a>
-<!--l. 22--><math 
+class="MathClass-bin">&#x22C5;</mo></mrow></mover></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">&#x007D;</mo></mrow></math>,
+and outputs a prediction frame </p><table class="equation"><tr><td> <a 
+ id="x1-3002r1"></a>
+<!--l. 23--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                          <mover 
 accent="true"><mrow 
 ><mi 
->P</mi></mrow><mo accent="true">&#x005E;</mo></mover> <mo 
+>P</mi></mrow><mo accent="true">&#x0302;</mo></mover> <mo 
 class="MathClass-rel">=</mo> <mover class="overset"><mrow 
 ><mi 
 >V</mi> </mrow><mrow 
 ><mi 
 >P</mi> <mo 
 class="MathClass-rel">&#x2192;</mo> <mi 
->R</mi></mrow></mover><mo 
-class="MathClass-open">&#x0028;</mo><mi 
->R</mi><mo 
-class="MathClass-close">&#x0029;</mo>
+>R</mi></mrow></mover><mrow ><mo 
+class="MathClass-open">&#x0028;</mo><mrow><mi 
+>R</mi></mrow><mo 
+class="MathClass-close">&#x0029;</mo></mrow>
 </math></td><td class="eq-no">&#x0028;1&#x0029;</td></tr></table>
-<!--l. 25--><p class="indent" >   and how to use it. In this milestone we show how to compute
-<!--l. 26--><math 
+<!--l. 26--><p class="indent" >   and how to use it. In this milestone we show how to compute
+<!--l. 27--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mrow ><mo 
+class="MathClass-open">&#x007B;</mo><mrow><msub><mrow 
+><mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>P</mi> <mo 
+class="MathClass-rel">&#x2192;</mo> <mi 
+>R</mi></mrow></mover></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+></mrow><mo 
+class="MathClass-close">&#x007D;</mo></mrow></math>.
+In the next milestone we will see how to remove the
+<!--l. 28--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>P</mi></mrow><mo accent="true">&#x0302;</mo></mover></math>&#x2019;s information from
+the predicted frame <!--l. 29--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi></math>.
+For the sake of simplicity, in the rest of this discussion it will be
+suppose that the number of reference frames in only 1 &#x0028;probably, the
+closest to the predicted frame&#x0029;, and therefore, only one motion &#xFB01;eld
+<!--l. 32--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover class="overset"><mrow 
 ><mi 
@@ -130,35 +163,35 @@ display="inline" ><mover class="overset"><mrow
 ><mi 
 >P</mi> <mo 
 class="MathClass-rel">&#x2192;</mo> <mi 
->R</mi></mrow></mover></math>.
-</p><!--l. 28--><p class="noindent" >
+>R</mi></mrow></mover></math> will
+be used.
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.2   </span> <a 
  id="x1-40001.2"></a>What exactly we need?</h4>
-<!--l. 29--><p class="noindent" >Our main objective is to minimize the di&#xFB00;erences &#x0028;for example, the
+<!--l. 35--><p class="noindent" >Our main objective is to minimize the di&#xFB00;erences &#x0028;for example, the
 <a 
-href="https://en.wikipedia.org/wiki/Euclidean_distance" >L<!--l. 31--><math 
+href="https://en.wikipedia.org/wiki/Euclidean_distance" >L<!--l. 37--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ></mrow><mrow 
 ><mn>2</mn></mrow></msub 
-></math> distance</a>&#x0029;
-between <!--l. 31--><math 
+></math> distance</a>&#x0029; between
+<!--l. 37--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->P</mi></math>
-and <!--l. 31--><math 
+>P</mi></math> &#x0028;the predicted
+                                                                  
+
+                                                                  
+frame&#x0029; and <!--l. 37--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover 
 accent="true"><mrow 
 ><mi 
->P</mi></mrow><mo accent="true">&#x005E;</mo></mover></math>,
-because </p><table class="equation"><tr><td> <a 
+>P</mi></mrow><mo accent="true">&#x0302;</mo></mover></math>
+&#x0028;the prediction frame&#x0029;, by means of </p><table class="equation"><tr><td> <a 
  id="x1-4001r2"></a>
-                                                                  
-
-                                                                  
-<!--l. 32--><math 
+<!--l. 39--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                             <mi 
@@ -168,10 +201,17 @@ class="MathClass-rel">=</mo> <mi
 class="MathClass-bin">&#x2212;</mo><mover 
 accent="true"><mrow 
 ><mi 
->P</mi></mrow><mo accent="true">&#x005E;</mo></mover>
+>P</mi></mrow><mo accent="true">&#x0302;</mo></mover>
 </math></td><td class="eq-no">&#x0028;2&#x0029;</td></tr></table>
-<!--l. 35--><p class="indent" >   will be more compressible. To achieve this, we can compute
-<!--l. 36--><math 
+<!--l. 42--><p class="indent" >   while expecting that <!--l. 42--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>E</mi></math> will
+be more compressible than <!--l. 42--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>P</mi></math>. To
+achieve this, we can compute <!--l. 43--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover class="overset"><mrow 
 ><mi 
@@ -179,27 +219,29 @@ display="inline" ><mover class="overset"><mrow
 ><mi 
 >P</mi> <mo 
 class="MathClass-rel">&#x2192;</mo> <mi 
->R</mi></mrow></mover></math> that simply
-minimizes the L<!--l. 36--><math 
+>R</mi></mrow></mover></math>
+that simply minimizes the L<!--l. 44--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ></mrow><mrow 
 ><mn>2</mn></mrow></msub 
 ></math>
-energy of <!--l. 37--><math 
+energy of <!--l. 44--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >E</mi></math>,
-<!--l. 37--><math 
+<!--l. 44--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
+class="MathClass-rel">&#x007C;</mo><mo 
 class="MathClass-rel">&#x007C;</mo><mi 
->E</mi><msup><mrow 
+>E</mi><mo 
+class="MathClass-rel">&#x007C;</mo><msup><mrow 
 ><mo 
 class="MathClass-rel">&#x007C;</mo></mrow><mrow 
 ><mn>2</mn></mrow></msup 
 ></math>, or we can
-compute a <!--l. 37--><math 
+compute a <!--l. 45--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover class="overset"><mrow 
 ><mi 
@@ -210,68 +252,92 @@ class="MathClass-rel">&#x2192;</mo> <mi
 >R</mi></mrow></mover></math>
 that also describes the Optical Flow&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xhorn1981determining">3</a>&#x005D;</span> &#x0028;OF&#x0029; between the pixels of
-<!--l. 39--><math 
+<!--l. 46--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >R</mi></math> and
-<!--l. 39--><math 
+<!--l. 47--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >P</mi></math>, that although not
-necessary has to minimize <!--l. 40--><math 
+necessarily has to minimize <!--l. 47--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
+class="MathClass-rel">&#x007C;</mo><mo 
 class="MathClass-rel">&#x007C;</mo><mi 
->E</mi><msup><mrow 
+>E</mi><mo 
+class="MathClass-rel">&#x007C;</mo><msup><mrow 
 ><mo 
 class="MathClass-rel">&#x007C;</mo></mrow><mrow 
 ><mn>2</mn></mrow></msup 
 ></math>,
 tries to show the true movement of the pixels between
-<!--l. 41--><math 
+<!--l. 48--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >R</mi></math> and
-<!--l. 41--><math 
+<!--l. 48--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->P</mi></math>.
-This second option has the advantage of generating more visually pleasing
-predictions.
-</p><!--l. 44--><p class="indent" >   The &#xFB01;rst type of techniques are simply called &#x201C;ME techniques&#x201D;, and are usually
-faster than the based on the computation of the OF.
-</p><!--l. 52--><p class="indent" >   Let&#x2019;s see some of the most used techniques for estimating the motion between two
-frames. Notice that, in general, better estimations can be found if more than only two
-frames are used because the intertia of the objects &#x0028;with mass&#x0029;. However, this case
-will not be considered for now.
-</p><!--l. 58--><p class="noindent" >
+>P</mi></math>. This
+second option has the advantage of generating more visually pleasing predictions and
+makes easier to predict the content of the motion &#xFB01;elds.
+</p><!--l. 53--><p class="indent" >   The &#xFB01;rst type of techniques are simply called &#x201C;ME techniques&#x201D;, and are usually
+faster than the second type, based on the computation of the OF.
+</p><!--l. 62--><p class="indent" >   Now, let&#x2019;s see some of the most used techniques for estimating the motion
+between two frames. Notice that, in general, better estimations can be found if we
+suppose motion models such as that the objects use to exhibit inertia. However, this
+case will not be considered for now.
+</p><!--l. 67--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.3   </span> <a 
  id="x1-50001.3"></a><a 
 href="https://vicente-gonzalez-ruiz.github.io/video_compression/#x1-40003" >Disjoint block matching</a></h4>
-<!--l. 59--><p class="noindent" ><!--l. 59--><math 
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-5001r1"></a>
+                                                                  
+
+                                                                  
+<!--l. 71--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="graphics/simple.svg" /> </div> 
+<a 
+ id="x1-5002"></a>
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">ME using disjoint blocks.</span></div><!--tex4ht:label?: x1-5001r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+<!--l. 76--><p class="indent" >   In the easier ME algorithm, <!--l. 76--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->P</mi></math> can be
-divided, for example, in blocks of 16x16 pixels, and we can use the MSE &#x0028;that is considered a
-L<!--l. 60--><math 
+>P</mi></math>
+can be divided, for example, in blocks of 16x16 pixels &#x0028;see the
+Fig.&#x00A0;<a 
+href="#x1-5001r1">1<!--tex4ht:ref: fig:simple --></a>&#x0029;, and we can use the MSE, that measures the distance in
+L<!--l. 78--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ></mrow><mrow 
 ><mn>2</mn></mrow></msub 
-></math> distance&#x0029; between
-each block of <!--l. 61--><math 
+></math>, between each
+block of <!--l. 78--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >P</mi></math> and its
-surrounding pixels in <!--l. 61--><math 
+surrounding pixels in <!--l. 79--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >R</mi></math>
 &#x0028;the so called search area&#x0029;&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xzhu2000new">5</a>&#x005D;</span>. For each block a motion vector that indicates
-the best match &#x0028;smaller distance&#x0029; is found. The set of motion vectors form
-<!--l. 64--><math 
+href="#Xzhu2000new">5</a>&#x005D;</span>. For each block, a motion vector that indicates the best
+match &#x0028;smaller distance&#x0029; is found. The set of motion vectors form the motion vectors
+&#xFB01;eld <!--l. 83--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover class="overset"><mrow 
 ><mi 
@@ -281,43 +347,85 @@ display="inline" ><mover class="overset"><mrow
 class="MathClass-rel">&#x2192;</mo> <mi 
 >R</mi></mrow></mover></math>
 that obviously, except for a block size of 1x1, will be less dense than
-<!--l. 65--><math 
+<!--l. 84--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >R</mi></math> and
-<!--l. 65--><math 
+<!--l. 84--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >P</mi></math>.
 Notice, however, that, it is not a good idea to use such a small block size because, in
 general, the motion vectors will not describe the OF.
-                                                                  
-
-                                                                  
-</p><!--l. 69--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
  id="x1-60001.4"></a>Overlaped block matching</h4>
-<!--l. 70--><p class="noindent" >A better approximation to the OF can be found if we allow the blocks to overlap in
-<!--l. 71--><math 
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-6001r2"></a>
+                                                                  
+
+                                                                  
+<!--l. 92--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="graphics/overlaped.svg" /> </div> 
+<a 
+ id="x1-6002"></a>
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">ME using overlaped blocks.</span></div><!--tex4ht:label?: x1-6001r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+<!--l. 97--><p class="indent" >   A better approximation to the OF for small block sizes can be found if we allow the blocks to
+overlap in <!--l. 98--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >P</mi></math>&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xorchard1994overlapped">4</a>&#x005D;</span>,
-and the overlaped pixels between blocks are averaged for building
-<!--l. 73--><math 
+in which case the block size for perform the comparisons is larger. Again, as it
+happens with the disjoint case, only the non overlaped pixels are used for
+building the prediction &#x0028;see the Fig.&#x00A0;<a 
+href="#x1-6001r2">2<!--tex4ht:ref: fig:overlaped --></a>&#x0029;. Obviously, the main drawback of this
+technique is that it more computationally demanding than the previous
+one.
+</p>
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-6003r3"></a>
+                                                                  
+
+                                                                  
+<!--l. 108--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="graphics/average.svg" /> </div> 
+<a 
+ id="x1-6004"></a>
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">ME using overlaped blocks, averaging the overlaped pixels.</span></div><!--tex4ht:label?: x1-6003r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+<!--l. 113--><p class="indent" >   An improvement of the technique can also average the overlaped pixels in the prediction
+frame <!--l. 114--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover 
 accent="true"><mrow 
 ><mi 
->P</mi></mrow><mo accent="true">&#x005E;</mo></mover></math>. The
-main drawback of this technique is that it more computationally demanding than the
-previous one.
-</p><!--l. 76--><p class="noindent" >
+>P</mi></mrow><mo accent="true">&#x0302;</mo></mover></math>, as
+it has been shown in the Fig.&#x00A0;<a 
+href="#x1-6003r3">3<!--tex4ht:ref: fig:average --></a>.
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.5   </span> <a 
  id="x1-70001.5"></a>Transform analysis</h4>
-<!--l. 77--><p class="noindent" >One of the most successful techniques for computing the &#x0028;dense&#x0029; OF is based on the
+<!--l. 118--><p class="noindent" >One of the most successful techniques for computing the &#x0028;dense&#x0029; OF is based on the
 analysis of the coe&#xFB03;cients resulting from transforming the frames using a polynomial
 expansion &#x0028;the details of this transform and the impact of the motion in the
 coe&#xFB03;cients can be found in the paper or Gunnar Farneb&#x00E4;ck&#x00A0;<span class="cite">&#x005B;<a 
@@ -326,14 +434,14 @@ algorithm that we will use in our experiments for two important reasons: &#x0028
 quite e&#xFB03;cient in terms both of performance and speed, and &#x0028;2&#x0029; it is already
 <a 
 href="https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html" >implemented</a> in OpenCV.
-</p><!--l. 89--><p class="noindent" >
+</p><!--l. 130--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.6   </span> <a 
  id="x1-80001.6"></a>Machine learning</h4>
-<!--l. 90--><p class="noindent" >ANNs &#x0028;Arti&#xFB01;cal Neural Networks&#x0029; can be trained to estimate the motion between
+<!--l. 131--><p class="noindent" >ANNs &#x0028;Arti&#xFB01;cal Neural Networks&#x0029; can be trained to estimate the motion between
 frames&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xdosovitskiy2015flownet">1</a>&#x005D;</span>.
-</p><!--l. 93--><p class="noindent" >
+</p><!--l. 134--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.7   </span> <a 
  id="x1-90001.7"></a>Motion compensation in action</h4>
@@ -342,30 +450,29 @@ href="#Xdosovitskiy2015flownet">1</a>&#x005D;</span>.
                                                                   
 
                                                                   
+<a 
+ id="x1-9001r4"></a>
                                                                   
 
                                                                   
-<!--l. 95--><p class="noindent" ><div style="text-align:center;"> <img width=1000 src="R.svg" /> </div>  <div style="text-align:center;"> <img width=1000 src="P.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="y_motion.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="x_motion.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="hat_P.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="without_ME.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="with_ME.svg" /> </div>   <a 
- id="x1-9001r1"></a>
+<!--l. 136--><p class="noindent" ><div style="text-align:center;"> <img width=1000 src="R.svg" /> </div>  <div style="text-align:center;"> <img width=1000 src="P.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="y_motion.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="x_motion.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="hat_P.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="without_ME.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="with_ME.svg" /> </div> 
 <a 
  id="x1-9002"></a>
-<br />                                                                  </p><div class="caption" 
-><span class="id">
-Figure&#x00A0;1: </span><span  
-class="content">E&#xFB00;ect of ME over the temporal redundancy removal.
-</span></div><!--tex4ht:label?: x1-9001r1 -->
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;4: </span><span  
+class="content">E&#xFB00;ect of ME over the temporal redundancy removal.</span></div><!--tex4ht:label?: x1-9001r1 -->
                                                                   
 
                                                                   
    </div><hr class="endfigure" />
-<!--l. 105--><p class="indent" >   The Fig.&#x00A0;<a 
-href="#x1-9001r1">1<!--tex4ht:ref: fig:MC --></a> shows an example the performace of the use of OF, comparing the prediction
+<!--l. 146--><p class="indent" >   The Fig.&#x00A0;<a 
+href="#x1-9001r4">4<!--tex4ht:ref: fig:MC --></a> shows an example the performace of the use of OF, comparing the prediction
 error generated with and without ME. A motion vector has been computed between each
-point of <!--l. 107--><math 
+point of <!--l. 148--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >P</mi></math>
-and <!--l. 107--><math 
+and <!--l. 148--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >R</mi></math>.
@@ -373,7 +480,7 @@ As it can be seen, ME reduces the temporal redundancy signi&#xFB01;cantly.
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-100002"></a>What you have to do?</h3>
-<!--l. 149--><p class="noindent" >In this <a 
+<!--l. 190--><p class="noindent" >In this <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-ME/optical_flow.ipynb" >notebook</a> you can &#xFB01;nd how to estimate the OF between two frames. Please,
 modify it to &#xFB01;nd suitable values for the parameters <span 
 class="ectt-1000">levels</span>, <span 
@@ -382,17 +489,17 @@ class="ectt-1000">winsize </span>and
 class="ectt-1000">iterations</span>. Supposing that the impact of each parameter is independent from the
 rest, the best way of comparing two di&#xFB00;erent con&#xFB01;gurations is render RD curves
 using quantization and compressing the residues.
-</p><!--l. 158--><p class="noindent" >
+</p><!--l. 199--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-110003"></a>Timming</h3>
-<!--l. 160--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 162--><p class="noindent" >
+<!--l. 201--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 203--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-120004"></a>Deliverables</h3>
-<!--l. 164--><p class="noindent" >None.
-</p><!--l. 166--><p class="noindent" >
+<!--l. 205--><p class="noindent" >None.
+</p><!--l. 207--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-130005"></a>Resources</h3>
