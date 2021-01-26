@@ -9,16 +9,16 @@
 
 \subsection{The IPP... decorrelation pattern}
 It's time to put together all the ``tools'' that we have developed for
-encoding a sequence of DWT decompositions (\emph{decomps} in
-short). First, the sequence will be splitted into GODs (Group Of
-Decomps), and the structure of each GOD will be
-IPP...~\cite{le1991mpeg}, which means that the first decomp of each
-GOD will be intra-coded (I-type), and the rest of decomps of the GOF
-will be predicted-coded (P-type), respect to the previous
-one\footnote{A P-type decomp except for the second decomp.}. Notice
-that in an I-type decomp all the coefficients (\emph{coeffs} in short)
-will I-type coeffs, and in a P-type frame, the different coeffs can be
-I-type or P-type.
+encoding a sequence of frames $\{F_k\}$. First, the sequence will be
+splitted into GOFs (Group Of Frames), and the structure of each GOF
+will be IPP...~\cite{le1991mpeg}, which means that the first frame of
+each GOF will be intra-coded (I-type), and the rest of frames of the
+GOF will be predicted-coded (P-type), respect to the previous
+one\footnote{A P-type frame except for the second one, that always has
+  a I-frame as reference.}. Notice that in an I-type frame all the
+coefficients (\emph{coeffs} in short, remember that we are
+compensating the motion in the DWT domain) will I-type coeffs, and in
+a P-type frame, the different coeffs can be I-type or P-type.
 
 \subsection{A block diagram of the codec}
 
@@ -33,54 +33,56 @@ The MRVC IPP... codec has been described in the
 Fig.~\ref{fig:codec}. The equations that describe this system are:
 
 \begin{equation}
-  (D_k.L, D_k.H) = \text{DWT}(D_k),
+  (F_k.L, F_k.H) \leftarrow \text{DWT}(F_k),
   \tag{a}
 \end{equation}
-where $D_k$ is the $k$-th decomp. of the sequence,
+where $\leftarrow$ denotes the
+\href{https://en.wikipedia.org/wiki/Assignment_(computer_science)}{assignment}
+operator, and $F_k$ is the $k$-th frame. of the sequence,
 
 \begin{equation}
-  [D_k.L] = \text{DWT}^{-1}(0, D_k.L),
+  [F_k.L] \leftarrow \text{DWT}^{-1}(0, F_k.L),
   \tag{b}
 \end{equation}
 
 \begin{equation}
-  Z^{-1}([D_k.L]) = [D_{k-1}.L],
+  Z^{-1}([F_k.L]) = [F_{k-1}.L],
   \tag{c}
 \end{equation}
-and by definition, $Z^{-1}([D_{-1}.L]) = 0$.
+and by definition, $Z^{-1}([F_{-1}.L]) = 0$.
 
 \begin{equation}
-  \overset{k\rightarrow k+1}{V} = \text{ME}([D_k.L], [D_{k-1}.L]),
+  \overset{k+1\rightarrow k}{V} \leftarrow \text{ME}([F_k.L], [F_{k-1}.L]),
   \tag{d}
 \end{equation}
 where ME stands for Motion Estimation, and by definition,
-$\overset{-1\rightarrow 0}{V}=0$,
+$\overset{0\rightarrow (-1)}{V}=0$,
 
 \begin{equation}
-  [\hat{D}_k.L] = \text{MCP}(\overset{k\rightarrow k+1}{V}, [D_{k-1}.L]),
+  [\hat{F}_k.L] \leftarrow \text{MCP}(\overset{k+1\rightarrow k}{V}, [F_{k-1}.L]),
   \tag{e}
 \end{equation}
 where MCP stands for Motion Compensated Prediction,
 
 \begin{equation}
-  [E_k.L] = [D_k.L] - [\hat{D}_k.L],
+  [E_k.L] \leftarrow [F_k.L] - [\hat{F}_k.L],
   \tag{f}
 \end{equation}
 
 \begin{equation}
-  \{[T_k],[M_k]\} = \text{EW-min}([D_k.L], [E_k.L])
+  \{[T_k],[M_k]\} \leftarrow \text{EW-min}([F_k.L], [E_k.L])
   \tag{g}
 \end{equation}
 where
 \begin{equation}
-  [T_k]_{i,j}=\text{min}([D_k.L]_{i,j}, [E_k.L]_{i,j}),
+  [T_k]_{i,j}=\text{min}([F_k.L]_{i,j}, [E_k.L]_{i,j}),
 \end{equation}
 and $[M_k]$ is a binary matrix defined by
 \begin{equation}
   [M_k]_{i,j} = \left\{
-  \begin{array}{ll}
-    0 & \text{if}~[D_k.L]_{i,j} < [E_k.L]_{i,j} \\
-    1 & \text{otherwise},
+  \begin{array}{lll}
+    0 & \text{if}~[F_k.L]_{i,j} < [E_k.L]_{i,j} & \text{(inter coded coeff.)} \\
+    1 & \text{otherwise} & \text{(intra codec coeff.)},
   \end{array}
   \right.
   \label{eq:matrix}
@@ -89,89 +91,89 @@ and $[M_k]$ is a binary matrix defined by
 matrices, is discarded)
 
 \begin{equation}
-  [D_k.H] = \text{DWT}^{-1}(0, D_k.H),
+  [F_k.H] \leftarrow \text{DWT}^{-1}(0, F_k.H),
   \tag{h}
 \end{equation}
 
 \begin{equation}
-  [E_k.H] = [D_k.H] - [\hat{D}_k.H],
+  [E_k.H] \leftarrow [F_k.H] - [\hat{F}_k.H],
   \tag{i}
 \end{equation}
 where, notice that
 \begin{equation}
   [E_k.H] = \left\{
   \begin{array}{ll}
-    {[}D_k.H{]} - [\hat{D}_k.H] & \text{(inter coded coeff.)} \\
-    {[}D_k.H{]}                 & \text{(intra codec coeff.)},
+    {[}F_k.H{]} - [\hat{F}_k.H] & \text{(inter coded coeff.)} \\
+    {[}F_k.H{]}                 & \text{(intra codec coeff.)},
   \end{array}
   \right.
 \end{equation}
-and notice that if $[\hat{D}_k.H]=0$ then $[E_k.H] = [D_k.H]$,
+and notice that if $[\hat{F}_k.H]=0$ then $[E_k.H] = [F_k.H]$,
 
 \begin{equation}
-  [\tilde{E}_k.H] = \text{Q}([E_K.H]),
+  [\tilde{E}_k.H] \leftarrow \text{Q}([E_K.H]),
   \tag{j}
 \end{equation}
 
 \begin{equation}
-  [\tilde{E}_k.H] = \text{Q}^{-1}([\tilde{E}_K.H]),
+  [\tilde{E}_k.H] \leftarrow  \text{Q}^{-1}([\tilde{E}_K.H]),
   \tag{k}
 \end{equation}
 
 \begin{equation}
-  [\tilde{D}_k.H] = [\tilde{E}_k.H] + [\hat{D}_k.H],
+  [\tilde{F}_k.H] \leftarrow [\tilde{E}_k.H] + [\hat{F}_k.H],
   \tag{l}
 \end{equation}
-and notice that if $[\hat{D}_k.H]=0$ then $[\tilde{D}_k.H] =
+and notice that if $[\hat{F}_k.H]=0$ then $[\tilde{F}_k.H] =
 [\tilde{E}_k.H]$,
 
 \begin{equation}
-  Z^{-1}([\tilde{D}_k.H]) = [D_{k-1}.H],
+  Z^{-1}([\tilde{F}_k.H]) = [F_{k-1}.H],
   \tag{m}
 \end{equation}
-and by definition, $Z^{-1}([D_{-1}.H]) = 0$,
+and by definition, $Z^{-1}([F_{-1}.H]) = 0$,
 
 \begin{equation}
-  [\hat{D}_k.H] = \text{MCP}(\overset{k\rightarrow k+1}{V}, [D_{k-1}.H]),
+  [\hat{F}_k.H] \leftarrow \text{MCP}(\overset{k+1\rightarrow k}{V}, [F_{k-1}.H]),
   \tag{n}
 \end{equation}
 
 \begin{equation}
-  (0, \tilde{E}_k.H) = \text{DWT}([\tilde{E}_k.H]),
+  (0, \tilde{E}_k.H) \leftarrow \text{DWT}([\tilde{E}_k.H]),
   \tag{o}
 \end{equation}
 
 \begin{equation}
-  \{\hat{D}_k.L, \tilde{E}_k.H\} = \text{E}(\hat{D}_k.L, \tilde{E}_k.H),
+  \{\hat{F}_k.L, \tilde{E}_k.H\} \leftarrow \text{E}(\hat{F}_k.L, \tilde{E}_k.H),
   \tag{p}
 \end{equation}
 where E represents the entropy coding of both data sources, in two
 different code-streams,
 
 \begin{equation}
-  (\hat{D}_k.L, \tilde{E}_k.H) = \text{E}^{-1}(\{\hat{D}_k.L, \tilde{E}_k.H\}),
+  (\hat{F}_k.L, \tilde{E}_k.H) \leftarrow \text{E}^{-1}(\{\hat{F}_k.L, \tilde{E}_k.H\}),
   \tag{q}
 \end{equation}
 
 and
 
 \begin{equation}
-  \tilde{D}_k = \text{DWT}^{-1}(D_k.L, D_k.H).
+  \tilde{F}_k \leftarrow \text{DWT}^{-1}(F_k.L, F_k.H).
   \tag{r}
 \end{equation}
 
 \subsection{Multiresolution iterations}
 In each IPP... iteration, only the high-frequency components of the
-sequence of decoms are decorrelated ($[H]$ subbands) considering the
+sequence of frames are decorrelated ($[H]$ subbands) considering the
 information provided by the low-frequency components ($[L]$ subbands),
 which are losslessly\footnote{The $[L]$ information must be always
 decoded with the quality that the encoder used for reconstruct the
 corresponding SRL.} transmitted between the encoder and the decoder.
 
 In order to increase the compression ratio, a minimum number of
-IPP... iterations should be carried out. In fact, the number of
-iterations controls the number of SRLs (Spatial Resolution Levels)
-$N_{\text{SRL}}$ generated, where
+IPP... iterations should be carried out, each one generating a new
+Spatial Resolution Level (SRL). In fact, the number of iterations
+controls the number of SRLs $N_{\text{SRL}}$ generated, where
 \begin{equation}
   N_{\text{SRL}} = \text{the number of IPP... iterations} + 1.
 \end{equation}
@@ -212,20 +214,21 @@ progression = [
 The use of quality scalability boosts the possibilities in real-time
 streaming scenarios where the transmission bit-rate can be variable
 (sending more or less quality-layers depending on the
-bit-rate). However, notice that the use of versions of the decomps at
-the decoder side with a smaller quality (and this will depends on the
-transmission bit-rate) will generate a drift-error in the
-reconstruction of the video because the predictions used at the
+bit-rate). However, notice that the rendering of the
+frames at the decoder side with a smaller quality (and this will
+depends on the transmission bit-rate) will generate a drift-error in
+the reconstruction of the video because the predictions used at the
 encoder and the decoder are not identical.
 
-When only spatial scalability is used, this scheme is free of drift-error.
+When only spatial scalability is used, this scheme is free of
+drift-error.
 
 \section{What you have to do?}
 
 Implement the previous codec, preferiblemente in a (or several)
 Jupyter notebook(s). Test it by tracing a RD curve for different
 $\Delta$ values for the quantizer (see Eqs. (j) and (k)). Compare it
-with the curve generated without using motion compensation.
+with the curve generated without using MC.
 
 \section{Timming}
 
