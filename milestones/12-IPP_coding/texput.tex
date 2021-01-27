@@ -81,8 +81,8 @@ and $[M_k]$ is a binary matrix defined by
 \begin{equation}
   [M_k]_{i,j} = \left\{
   \begin{array}{lll}
-    0 & \text{if}~[F_k.L]_{i,j} < [E_k.L]_{i,j} & \text{(inter coded coeff.)} \\
-    1 & \text{otherwise} & \text{(intra codec coeff.)},
+    0 & \text{if}~[F_k.L]_{i,j} < [E_k.L]_{i,j} & \text{(I-type coeff.)} \\
+    1 & \text{otherwise}                      & \text{(P-type coeff.)},
   \end{array}
   \right.
   \label{eq:matrix}
@@ -103,8 +103,8 @@ where, notice that
 \begin{equation}
   [E_k.H] = \left\{
   \begin{array}{ll}
-    {[}F_k.H{]} - [\hat{F}_k.H] & \text{(inter coded coeff.)} \\
-    {[}F_k.H{]}                 & \text{(intra codec coeff.)},
+    {[}F_k.H{]}                 & \text{(I-type coeff.)}\\
+    {[}F_k.H{]} - [\hat{F}_k.H] & \text{(P-type coeff.)},
   \end{array}
   \right.
 \end{equation}

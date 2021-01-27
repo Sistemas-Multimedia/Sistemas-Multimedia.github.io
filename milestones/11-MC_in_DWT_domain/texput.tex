@@ -328,8 +328,8 @@ low-frequency subband $L$. More concretely, we implement:
   \begin{equation}
     [M]_{i,j} = \left\{
       \begin{array}{ll}
-        0 & \text{if}~[P.L]_{i,j} < [E.L]_{i,j} \\
-        1 & \text{otherwise}.
+        0 & \text{if}~[P.L]_{i,j} < [E.L]_{i,j} ~(\text{I-type~coefficient})\\
+        1 & \text{otherwise}~(\text{P-type~coefficient}).
       \end{array}
     \right.
     \label{eq:matrix}
@@ -339,8 +339,8 @@ low-frequency subband $L$. More concretely, we implement:
   \begin{equation}
     [O]_{i,j} = \left\{
       \begin{array}{ll}
-        [P.H]_{i,j} & \text{if}~[M]_{i,j} = 0~(\text{intra~coefficient})\\
-        {[}E.H{]}_{i,j} & \text{otherwise}~(\text{predicted~coefficient}).
+        [P.H]_{i,j} & \text{if}~[M]_{i,j} = 0~(\text{I-type~coefficient})\\
+        {[}E.H{]}_{i,j} & \text{otherwise}~(\text{P-type~coefficient}).
       \end{array}
     \right.
     \label{eq:output}
