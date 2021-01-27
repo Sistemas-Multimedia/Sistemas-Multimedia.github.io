@@ -155,11 +155,16 @@ different code-streams,
   \tag{q}
 \end{equation}
 
+\begin{equation}
+  \tilde{F}_k \leftarrow \text{DWT}^{-1}(F_k.L, F_k.H),
+  \tag{r}
+\end{equation}
+
 and
 
 \begin{equation}
-  \tilde{F}_k \leftarrow \text{DWT}^{-1}(F_k.L, F_k.H).
-  \tag{r}
+  [\tilde{E}_k.H] \leftarrow \text{DWT}^{-1}(0, \tilde{F}_k.H).
+  \tag{s}
 \end{equation}
 
 \subsection{Multiresolution iterations}
