@@ -20,7 +20,7 @@ be predicted-coded (P-type), respect to the previous one\footnote{A
   reference.}. Notice that in an I-type frame all the coefficients
 (\emph{coeffs} in short, remember that we are compensating the motion
 in the DWT domain) will be I-type coeffs, and in a P-type frame, the
-different coeffs can be I-type or P-type.
+different coeffs will be I-type or P-type.
 
 \subsection{A block diagram of the codec}
 
@@ -40,7 +40,7 @@ Fig.~\ref{fig:codec}. The equations that describe this system are:
 \end{equation}
 where $\leftarrow$ denotes the
 \href{https://en.wikipedia.org/wiki/Assignment_(computer_science)}{assignment}
-operator, and $V_k$ is the $k$-th frame. of the sequence,
+operator, and $V_k$ is the $k$-th frame of the sequence,
 
 \begin{equation}
   [V_k.L] \leftarrow \text{DWT}^{-1}(V_k.L, 0),
@@ -252,4 +252,5 @@ The notebook(s) and the presentation.
 
 \section{Resources}
 
+\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
 \bibliography{video_compression,JPEG2000}
