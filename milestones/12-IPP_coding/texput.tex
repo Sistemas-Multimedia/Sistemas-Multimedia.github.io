@@ -10,15 +10,17 @@
 \subsection{The IPP... decorrelation pattern}
 It's time to put together all the ``tools'' that we have developed for
 encoding a sequence of frames $\{V_k\}$. First, the sequence will be
-splitted into GOFs (Group Of Frames), and the structure of each GOF
-will be IPP...~\cite{le1991mpeg}, which means that the first frame of
-each GOF will be intra-coded (I-type), and the rest of frames of the
-GOF will be predicted-coded (P-type), respect to the previous
-one\footnote{A P-type frame except for the second one, that always has
-  a I-frame as reference.}. Notice that in an I-type frame all the
-coefficients (\emph{coeffs} in short, remember that we are
-compensating the motion in the DWT domain) will I-type coeffs, and in
-a P-type frame, the different coeffs can be I-type or P-type.
+splitted into GOFs
+(\href{https://en.wikipedia.org/wiki/Group_of_pictures}{Group Of
+  Frames}), and the structure of each GOF will be
+IPP...~\cite{le1991mpeg}, which means that the first frame of each GOF
+will be intra-coded (I-type), and the rest of frames of the GOF will
+be predicted-coded (P-type), respect to the previous one\footnote{A
+  P-type frame except for the second one, that always has a I-frame as
+  reference.}. Notice that in an I-type frame all the coefficients
+(\emph{coeffs} in short, remember that we are compensating the motion
+in the DWT domain) will be I-type coeffs, and in a P-type frame, the
+different coeffs can be I-type or P-type.
 
 \subsection{A block diagram of the codec}
 

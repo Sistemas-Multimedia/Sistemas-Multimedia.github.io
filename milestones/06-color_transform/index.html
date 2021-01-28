@@ -6,8 +6,8 @@
 <head><title>Sistemas Multimedia - Study Guide - Milestone 6: Removing Redundancy with a
 Color Transform</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
-<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
-<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
 <!-- xhtml,mathml,html --> 
 <meta name="src" content="index.tex" /> 
 <link rel="stylesheet" type="text/css" href="index.css" /> 
@@ -39,7 +39,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">January 25, 2021</span></div>
+class="ecrm-1200">January 28, 2021</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -52,8 +52,16 @@ href="#x1-30001.1" id="QQ2-1-3">Introduction</a></span>
 href="#x1-40001.2" id="QQ2-1-4">Some words about transform coding</a></span>
 <br />   &#x00A0;<span class="subsectionToc" >1.3 <a 
 href="#x1-50001.3" id="QQ2-1-5">The RGB/YCrCb transform</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsubsectionToc" >1.3.1 <a 
+href="#x1-60001.3.1" id="QQ2-1-6">Analysis and synthesis</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsubsectionToc" >1.3.2 <a 
+href="#x1-70001.3.2" id="QQ2-1-7">Quantization</a></span>
 <br />   &#x00A0;<span class="subsectionToc" >1.4 <a 
 href="#x1-80001.4" id="QQ2-1-8">The RGB/YCoCg transform</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsubsectionToc" >1.4.1 <a 
+href="#x1-90001.4.1" id="QQ2-1-9">Analysis and synthesis</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsubsectionToc" >1.4.2 <a 
+href="#x1-100001.4.2" id="QQ2-1-10">Quantization</a></span>
 <br />   <span class="sectionToc" >2 <a 
 href="#x1-110002" id="QQ2-1-11">What you have to do?</a></span>
 <br />   <span class="sectionToc" >3 <a 
@@ -67,11 +75,11 @@ href="#Q1-1-15">References</a></span>
    </div>
 <!--l. 8--><p class="noindent" >
 </p>
-   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
- id="x1-20001"></a>Description</h3>
                                                                   
 
                                                                   
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-20001"></a>Description</h3>
 <!--l. 10--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
@@ -130,13 +138,13 @@ href="https://en.wikipedia.org/wiki/YCbCr" >YCrCb</a>, and &#x0028;3&#x0029; the
 <a 
 href="https://en.wikipedia.org/wiki/YCoCg" >YCoCg</a>.
 </p><!--l. 63--><p class="noindent" >
+                                                                  
+
+                                                                  
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.2   </span> <a 
  id="x1-40001.2"></a>Some words about transform coding</h4>
 <!--l. 64--><p class="noindent" >Quantization is more e&#xFB00;ective &#x0028;the compression ratios are higher&#x0029; when
-                                                                  
-
-                                                                  
 the energy of the signal is accumulated in an small number of samples
 because we can dedicate the bit-rate to encode the more energetic
 samples.<span class="footnote-mark"><a 
@@ -187,8 +195,8 @@ display="block" class="equation">
 ><mi 
 >i</mi></mrow></msub 
 > <mo 
-class="MathClass-rel">=</mo> <mo 
-class="MathClass-open">&#x27E8;</mo><msub><mrow 
+class="MathClass-rel">=</mo> <mrow ><mo 
+class="MathClass-open">&#x27E8;</mo><mrow><msub><mrow 
 ><mi 
 >K</mi></mrow><mrow 
 ><mi 
@@ -199,10 +207,13 @@ class="MathClass-punc">,</mo><msub><mrow
 >x</mi></mrow><mrow 
 ><mi 
 >i</mi></mrow></msub 
-><mo 
-class="MathClass-close">&#x27E9;</mo><mo 
+></mrow><mo 
+class="MathClass-close">&#x27E9;</mo></mrow><mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;2&#x0029;</td></tr></table>
+                                                                  
+
+                                                                  
 <!--l. 93--><p class="indent" >   where <!--l. 93--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
@@ -221,17 +232,14 @@ display="inline" ><mi
 >K</mi></math>,
 and <!--l. 93--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mo 
-class="MathClass-open">&#x27E8;</mo><mo 
+display="inline" ><mrow ><mo 
+class="MathClass-open">&#x27E8;</mo><mrow><mo 
 class="MathClass-bin">&#x22C5;</mo><mo 
 class="MathClass-punc">,</mo><mo 
-class="MathClass-bin">&#x22C5;</mo><mo 
-class="MathClass-close">&#x27E9;</mo></math>
+class="MathClass-bin">&#x22C5;</mo></mrow><mo 
+class="MathClass-close">&#x27E9;</mo></mrow></math>
 denotes the <a 
 href="https://mathworld.wolfram.com/InnerProduct.html" >inner product</a>. This basically means that
-                                                                  
-
-                                                                  
 <!--l. 96--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
@@ -293,7 +301,8 @@ href="#Xsayood2017introduction">2</a>&#x005D;</span> is de&#xFB01;ned by </p><ta
 <!--l. 112--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
- <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+ <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center">  <msub><mrow 
 ><mi 
@@ -305,8 +314,9 @@ class="array"  columnalign="center">  <msub><mrow
 ><mi 
 >y</mi></mrow><mrow 
 ><mn>1</mn></mrow></msub 
->  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                            </mrow><mo fence="true" form="postfix">]</mo></mrow>  <mo 
-class="MathClass-rel">=</mo>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                                    </mrow></mfenced> <mo 
+class="MathClass-rel">=</mo>  <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center">   <mfrac><mrow 
 ><mn>1</mn></mrow> 
@@ -326,7 +336,8 @@ class="array"  columnalign="center">  <mfrac><mrow
 class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow> 
 <mrow 
 ><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></mfrac>  </mtd>
-</mtr>    <!--*\c@MaxMatrixCols c--></mtable>                                                                                                                         </mrow><mo fence="true" form="postfix">]</mo></mrow>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+</mtr>    <!--*\c@MaxMatrixCols c--></mtable>                                                                                                                         </mrow></mfenced>  <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"> <mtr><mtd 
 class="array"  columnalign="center">  <msub><mrow 
 ><mi 
@@ -338,11 +349,14 @@ class="array"  columnalign="center">  <msub><mrow
 ><mi 
 >x</mi></mrow><mrow 
 ><mn>1</mn></mrow></msub 
->  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                                     </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
+>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                                    </mrow></mfenced> <mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;4&#x0029;</td></tr></table>
 <!--l. 125--><p class="indent" >   and it holds that </p><table class="equation"><tr><td> <a 
  id="x1-4007r5"></a>
+                                                                  
+
+                                                                  
 <!--l. 126--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
@@ -362,9 +376,6 @@ class="text"><mtext  >T</mtext></mstyle></mrow></msup
 ><mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;5&#x0029;</td></tr></table>
-                                                                  
-
-                                                                  
 <!--l. 130--><p class="indent" >   where <!--l. 130--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
@@ -384,8 +395,8 @@ href="https://en.wikipedia.org/wiki/Orthogonality" >orthogonal</a> transforms, a
 <!--l. 134--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                         <mo 
-class="MathClass-open">&#x27E8;</mo><msub><mrow 
+                         <mrow ><mo 
+class="MathClass-open">&#x27E8;</mo><mrow><msub><mrow 
 ><mi 
 >K</mi></mrow><mrow 
 ><mi 
@@ -396,8 +407,8 @@ class="MathClass-punc">,</mo><msub><mrow
 >K</mi></mrow><mrow 
 ><mi 
 >j</mi></mrow></msub 
-><mo 
-class="MathClass-close">&#x27E9;</mo> <mo 
+></mrow><mo 
+class="MathClass-close">&#x27E9;</mo></mrow> <mo 
 class="MathClass-rel">=</mo> <mn>0</mn><mo 
 class="MathClass-punc">,</mo><mi 
 class="MathClass-op">&#x2200;</mi><mo> &ApplyFunction;<!--FUNCTION APPLICATION--></mo><mi 
@@ -420,7 +431,8 @@ href="#Xmalvar2008lifting">1</a>&#x005D;</span> </p><table class="equation"><tr>
 <!--l. 142--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
- <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+ <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
 class="text"><mtext  >Y</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
@@ -428,8 +440,9 @@ class="array"  columnalign="center"> <mstyle
 class="text"><mtext  >Cr</mtext></mstyle></mtd>
 </mtr><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
-class="text"><mtext  >Cb</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                           </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
-class="MathClass-rel">=</mo>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+class="text"><mtext  >Cb</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                             </mrow></mfenced> <mo 
+class="MathClass-rel">=</mo>  <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center">   <mn>0</mn><mo 
 class="MathClass-punc">.</mo><mn>2</mn><mn>9</mn><mn>9</mn>   </mtd><mtd 
@@ -453,7 +466,8 @@ class="array"  columnalign="center"> <mo
 class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
 class="MathClass-punc">.</mo><mn>3</mn><mn>3</mn><mn>1</mn><mn>3</mn> </mtd><mtd 
 class="array"  columnalign="center">     <mn>0</mn><mo 
-class="MathClass-punc">.</mo><mn>5</mn>     </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                           </mrow><mo fence="true" form="postfix">]</mo></mrow> <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+class="MathClass-punc">.</mo><mn>5</mn>     </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                           </mrow></mfenced> <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
 class="text"><mtext  >R</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
@@ -461,9 +475,12 @@ class="array"  columnalign="center"> <mstyle
 class="text"><mtext  >G</mtext></mstyle></mtd>
 </mtr><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
-class="text"><mtext  >B</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                               </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
+class="text"><mtext  >B</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                               </mrow></mfenced> <mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;7&#x0029;</td></tr></table>
+                                                                  
+
+                                                                  
 <!--l. 162--><p class="indent" >   where Y is the luminance &#x0028;or <span 
 class="ecti-1000">luma</span>&#x0029; component and CrCb is the crominance &#x0028;or
 <span 
@@ -482,9 +499,6 @@ href="#Xmalvar2008lifting">1</a>&#x005D;</span>.
 href="#x1-6001r7">7<!--tex4ht:ref: eq:YCrCb --></a> <a 
 href="https://docs.opencv.org/3.4/de/d25/imgproc_color_conversions.html" >can be also written as</a> </p><table class="equation"><tr><td> <a 
  id="x1-6002r8"></a>
-                                                                  
-
-                                                                  
 <!--l. 177--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
@@ -509,12 +523,12 @@ class="text"><mtext  >Cr</mtext></mstyle>  </mtd><mtd
 class="array"  columnalign="center">  <mo 
 class="MathClass-rel">=</mo> </mtd><mtd 
 class="array"  columnalign="left"> <mn>0</mn><mo 
-class="MathClass-punc">.</mo><mn>7</mn><mn>1</mn><mn>3</mn><mo 
-class="MathClass-open">&#x0028;</mo><mstyle 
+class="MathClass-punc">.</mo><mn>7</mn><mn>1</mn><mn>3</mn><mrow ><mo 
+class="MathClass-open">&#x0028;</mo><mrow><mstyle 
 class="text"><mtext  >R</mtext></mstyle> <mo 
 class="MathClass-bin">&#x2212;</mo><mstyle 
-class="text"><mtext  >Y</mtext></mstyle><mo 
-class="MathClass-close">&#x0029;</mo> <mo 
+class="text"><mtext  >Y</mtext></mstyle></mrow><mo 
+class="MathClass-close">&#x0029;</mo></mrow> <mo 
 class="MathClass-bin">+</mo> <mi 
 >&#x03B4;</mi>            </mtd>
 </mtr>  <mtr><mtd 
@@ -523,12 +537,12 @@ class="text"><mtext  >Cb</mtext></mstyle>  </mtd><mtd
 class="array"  columnalign="center">  <mo 
 class="MathClass-rel">=</mo> </mtd><mtd 
 class="array"  columnalign="left"> <mn>0</mn><mo 
-class="MathClass-punc">.</mo><mn>5</mn><mn>6</mn><mn>4</mn><mo 
-class="MathClass-open">&#x0028;</mo><mstyle 
+class="MathClass-punc">.</mo><mn>5</mn><mn>6</mn><mn>4</mn><mrow ><mo 
+class="MathClass-open">&#x0028;</mo><mrow><mstyle 
 class="text"><mtext  >B</mtext></mstyle> <mo 
 class="MathClass-bin">&#x2212;</mo><mstyle 
-class="text"><mtext  >Y</mtext></mstyle><mo 
-class="MathClass-close">&#x0029;</mo> <mo 
+class="text"><mtext  >Y</mtext></mstyle></mrow><mo 
+class="MathClass-close">&#x0029;</mo></mrow> <mo 
 class="MathClass-bin">+</mo> <mi 
 >&#x03B4;</mi><mo 
 class="MathClass-punc">,</mo>           </mtd></mtr><!--lcl--></mtable>
@@ -540,7 +554,8 @@ class="MathClass-punc">,</mo>           </mtd></mtr><!--lcl--></mtable>
 display="block" class="equation">
 <mi 
 >&#x03B4;</mi> <mo 
-class="MathClass-rel">=</mo> <mrow><mo fence="true" form="prefix"> {</mo><mrow> <mtable  align="axis" style=""  
+class="MathClass-rel">=</mo> <mfenced separators="" 
+open="{"  close="" ><mrow> <mtable  align="axis" style=""  
 equalrows="false" columnlines="none" equalcolumns="false" class="array"> <mtr><mtd 
 class="array"  columnalign="left">  <mn>1</mn><mn>2</mn><mn>8</mn>     </mtd><mtd 
 class="array"  columnalign="left">  <mstyle 
@@ -555,12 +570,12 @@ class="MathClass-punc">,</mo>    </mtd>
 class="array"  columnalign="left"> <mn>0</mn><mo 
 class="MathClass-punc">.</mo><mn>5</mn>     </mtd><mtd 
 class="array"  columnalign="left">  <mstyle 
-class="text"><mtext  >for&#x00A0;&#xFB02;oating&#x00A0;point&#x00A0;&#x0028;</mtext></mstyle><mo 
-class="MathClass-open">&#x005B;</mo><mn>0</mn><mo 
-class="MathClass-punc">,</mo><mn>1</mn><mo 
-class="MathClass-close">&#x005D;</mo><mstyle 
+class="text"><mtext  >for&#x00A0;&#xFB02;oating&#x00A0;point&#x00A0;&#x0028;</mtext></mstyle><mrow ><mo 
+class="MathClass-open">&#x005B;</mo><mrow><mn>0</mn><mo 
+class="MathClass-punc">,</mo><mn>1</mn></mrow><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mstyle 
 class="text"><mtext  >&#x0029;&#x00A0;images</mtext></mstyle><mo 
-class="MathClass-punc">.</mo> </mtd></mtr> <!--ll--></mtable>                                       </mrow><mo fence="true" form="postfix"></mo></mrow>
+class="MathClass-punc">.</mo> </mtd></mtr> <!--ll--></mtable>                                       </mrow></mfenced>
 </math></td><td class="eq-no">&#x0028;9&#x0029;</td></tr></table>
 <!--l. 196--><p class="indent" >   is  used  to  avoid  negative
 components<span class="footnote-mark"><a 
@@ -591,6 +606,9 @@ class="MathClass-rel">=</mo> <mstyle
 class="text"><mtext  >B</mtext></mstyle> <mo 
 class="MathClass-rel">=</mo> <mstyle 
 class="text"><mtext  >Y</mtext></mstyle></math>, and so
+                                                                  
+
+                                                                  
 <!--l. 204--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
@@ -601,13 +619,11 @@ class="MathClass-rel">=</mo> <mn>0</mn></math>&#x00A0;<span class="cite">&#x005B
 href="#Xmalvar2008lifting">1</a>&#x005D;</span>.
 </p><!--l. 206--><p class="indent" >   The inverse &#x0028;synthesis&#x0029; transform is de&#xFB01;ned by </p><table class="equation"><tr><td> <a 
  id="x1-6005r10"></a>
-                                                                  
-
-                                                                  
 <!--l. 207--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
- <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+ <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
 class="text"><mtext  >R</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
@@ -615,8 +631,9 @@ class="array"  columnalign="center"> <mstyle
 class="text"><mtext  >G</mtext></mstyle></mtd>
 </mtr><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
-class="text"><mtext  >B</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                            </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
-class="MathClass-rel">=</mo>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+class="text"><mtext  >B</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                               </mrow></mfenced> <mo 
+class="MathClass-rel">=</mo>  <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center"> <mn>1</mn> </mtd><mtd 
 class="array"  columnalign="center">   <mn>1</mn><mo 
@@ -633,7 +650,8 @@ class="MathClass-punc">.</mo><mn>3</mn><mn>4</mn><mn>4</mn></mtd>
 class="array"  columnalign="center"> <mn>1</mn> </mtd><mtd 
 class="array"  columnalign="center">     <mn>0</mn>     </mtd><mtd 
 class="array"  columnalign="center">   <mn>1</mn><mo 
-class="MathClass-punc">.</mo><mn>7</mn><mn>7</mn><mn>2</mn>   </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                        </mrow><mo fence="true" form="postfix">]</mo></mrow> <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+class="MathClass-punc">.</mo><mn>7</mn><mn>7</mn><mn>2</mn>   </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                       </mrow></mfenced> <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
 class="text"><mtext  >Y</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
@@ -641,7 +659,7 @@ class="array"  columnalign="center"> <mstyle
 class="text"><mtext  >Cr</mtext></mstyle></mtd>
 </mtr><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
-class="text"><mtext  >Cb</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                              </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
+class="text"><mtext  >Cb</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                             </mrow></mfenced> <mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;10&#x0029;</td></tr></table>
 <!--l. 226--><p class="indent" >   or alternatively, by </p><table class="equation"><tr><td> <a 
@@ -658,12 +676,12 @@ class="MathClass-rel">=</mo> </mtd><mtd
 class="array"  columnalign="left"> <mstyle 
 class="text"><mtext  >Y</mtext></mstyle> <mo 
 class="MathClass-bin">+</mo> <mn>1</mn><mo 
-class="MathClass-punc">.</mo><mn>4</mn><mn>0</mn><mn>3</mn><mo 
-class="MathClass-open">&#x0028;</mo><mstyle 
+class="MathClass-punc">.</mo><mn>4</mn><mn>0</mn><mn>3</mn><mrow ><mo 
+class="MathClass-open">&#x0028;</mo><mrow><mstyle 
 class="text"><mtext  >Cr</mtext></mstyle> <mo 
 class="MathClass-bin">&#x2212;</mo> <mi 
->&#x03B4;</mi><mo 
-class="MathClass-close">&#x0029;</mo>                       </mtd>
+>&#x03B4;</mi></mrow><mo 
+class="MathClass-close">&#x0029;</mo></mrow>                       </mtd>
 </mtr>  <mtr><mtd 
 class="array"  columnalign="left">  <mstyle 
 class="text"><mtext  >G</mtext></mstyle>  </mtd><mtd 
@@ -672,19 +690,19 @@ class="MathClass-rel">=</mo> </mtd><mtd
 class="array"  columnalign="left"> <mstyle 
 class="text"><mtext  >Y</mtext></mstyle> <mo 
 class="MathClass-bin">&#x2212;</mo> <mn>0</mn><mo 
-class="MathClass-punc">.</mo><mn>7</mn><mn>1</mn><mn>4</mn><mo 
-class="MathClass-open">&#x0028;</mo><mstyle 
+class="MathClass-punc">.</mo><mn>7</mn><mn>1</mn><mn>4</mn><mrow ><mo 
+class="MathClass-open">&#x0028;</mo><mrow><mstyle 
 class="text"><mtext  >Cr</mtext></mstyle> <mo 
 class="MathClass-bin">&#x2212;</mo> <mi 
->&#x03B4;</mi><mo 
-class="MathClass-close">&#x0029;</mo> <mo 
+>&#x03B4;</mi></mrow><mo 
+class="MathClass-close">&#x0029;</mo></mrow> <mo 
 class="MathClass-bin">&#x2212;</mo> <mn>0</mn><mo 
-class="MathClass-punc">.</mo><mn>3</mn><mn>4</mn><mn>4</mn><mo 
-class="MathClass-open">&#x0028;</mo><mstyle 
+class="MathClass-punc">.</mo><mn>3</mn><mn>4</mn><mn>4</mn><mrow ><mo 
+class="MathClass-open">&#x0028;</mo><mrow><mstyle 
 class="text"><mtext  >Cb</mtext></mstyle> <mo 
 class="MathClass-bin">&#x2212;</mo> <mi 
->&#x03B4;</mi><mo 
-class="MathClass-close">&#x0029;</mo> </mtd>
+>&#x03B4;</mi></mrow><mo 
+class="MathClass-close">&#x0029;</mo></mrow> </mtd>
 </mtr>  <mtr><mtd 
 class="array"  columnalign="left">  <mstyle 
 class="text"><mtext  >B</mtext></mstyle>  </mtd><mtd 
@@ -693,12 +711,12 @@ class="MathClass-rel">=</mo> </mtd><mtd
 class="array"  columnalign="left"> <mstyle 
 class="text"><mtext  >Y</mtext></mstyle> <mo 
 class="MathClass-bin">+</mo> <mn>1</mn><mo 
-class="MathClass-punc">.</mo><mn>7</mn><mn>7</mn><mn>3</mn><mo 
-class="MathClass-open">&#x0028;</mo><mstyle 
+class="MathClass-punc">.</mo><mn>7</mn><mn>7</mn><mn>3</mn><mrow ><mo 
+class="MathClass-open">&#x0028;</mo><mrow><mstyle 
 class="text"><mtext  >Cb</mtext></mstyle> <mo 
 class="MathClass-bin">&#x2212;</mo> <mi 
->&#x03B4;</mi><mo 
-class="MathClass-close">&#x0029;</mo><mo 
+>&#x03B4;</mi></mrow><mo 
+class="MathClass-close">&#x0029;</mo></mrow><mo 
 class="MathClass-punc">.</mo>                   </mtd></mtr><!--lcl--></mtable>
 </math></td><td class="eq-no">&#x0028;11&#x0029;</td></tr></table>
    <h5 class="subsubsectionHead"><span class="titlemark">1.3.2   </span> <a 
@@ -714,11 +732,14 @@ image <!--l. 245--><math
 display="inline" ><mover 
 accent="true"><mrow 
 ><mi 
->X</mi></mrow><mo accent="true">&#x007E;</mo></mover></math>
+>X</mi></mrow><mo accent="true">&#x0303;</mo></mover></math>
 are not additive &#x0028;this can be seen in this <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb" >notebook</a>&#x0029;. For that reason, and only for the
 sake of simplicity, we will use </p><table class="equation"><tr><td> <a 
  id="x1-7002r12"></a>
+                                                                  
+
+                                                                  
 <!--l. 249--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
@@ -742,9 +763,6 @@ class="text"><mtext  >Cb</mtext></mstyle></mrow></msub
 ><mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;12&#x0029;</td></tr></table>
-                                                                  
-
-                                                                  
    <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
  id="x1-80001.4"></a>The <a 
 href="https://en.wikipedia.org/wiki/YCoCg" >RGB/YCoCg transform</a></h4>
@@ -769,7 +787,8 @@ images, obtaining </p><table class="equation"><tr><td> <a
 <!--l. 397--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
- <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+ <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
 class="text"><mtext  >Y</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
@@ -784,8 +803,9 @@ class="array"  columnalign="center"><msub><mrow
 >  <mstyle 
 class="text"><mtext  >C</mtext></mstyle></mrow><mrow 
 ><mn>2</mn></mrow></msub 
->  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                            </mrow><mo fence="true" form="postfix">]</mo></mrow>  <mo 
-class="MathClass-rel">=</mo>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                                    </mrow></mfenced> <mo 
+class="MathClass-rel">=</mo>  <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center">   <mfrac><mrow 
 ><mn>1</mn></mrow> 
@@ -824,7 +844,8 @@ class="array"  columnalign="center">  <mo
 class="MathClass-bin">&#x2212;</mo><mfrac><mrow 
 ><mn>1</mn></mrow>
 <mrow 
-><mn>4</mn></mrow></mfrac>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                    </mrow><mo fence="true" form="postfix">]</mo></mrow>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+><mn>4</mn></mrow></mfrac>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                    </mrow></mfenced>  <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"> <mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
 class="text"><mtext  >R</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
@@ -832,8 +853,9 @@ class="array"  columnalign="center"> <mstyle
 class="text"><mtext  >G</mtext></mstyle></mtd>
 </mtr><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
-class="text"><mtext  >B</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                               </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
-class="MathClass-rel">&#x21D4;</mo> <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+class="text"><mtext  >B</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                               </mrow></mfenced> <mo 
+class="MathClass-rel">&#x21D4;</mo> <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center"> <mstyle 
 class="text"><mtext  >R</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
@@ -841,8 +863,9 @@ class="array"  columnalign="center"> <mstyle
 class="text"><mtext  >G</mtext></mstyle></mtd>
 </mtr><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
-class="text"><mtext  >B</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                               </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
-class="MathClass-rel">=</mo>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+class="text"><mtext  >B</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                               </mrow></mfenced> <mo 
+class="MathClass-rel">=</mo>  <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center"> <mn>1</mn> </mtd><mtd 
 class="array"  columnalign="center">   <mn>1</mn>   </mtd><mtd 
@@ -866,7 +889,8 @@ class="array"  columnalign="center"> <mo
 class="MathClass-bin">&#x2212;</mo><mfrac><mrow 
 ><mn>2</mn></mrow>
 <mrow 
-><mn>3</mn></mrow></mfrac>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                     </mrow><mo fence="true" form="postfix">]</mo></mrow>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+><mn>3</mn></mrow></mfrac>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                     </mrow></mfenced>  <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"> <mtr><mtd 
 class="array"  columnalign="center">   <mstyle 
 class="text"><mtext  >Y</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
@@ -881,13 +905,16 @@ class="array"  columnalign="center"><msub><mrow
 >  <mstyle 
 class="text"><mtext  >C</mtext></mstyle></mrow><mrow 
 ><mn>2</mn></mrow></msub 
->  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                                    </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
+>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                                    </mrow></mfenced> <mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;13&#x0029;</td></tr></table>
 <!--l. 436--><p class="indent" >   This transform is orthogonal and the synthesis &#xFB01;lters
 gains<span class="footnote-mark"><a 
 href="index9.html#fn8x0"><sup class="textsuperscript">8</sup></a></span><a 
  id="x1-9004f8"></a>  are 22/9 &#x0028;for
+                                                                  
+
+                                                                  
 Y&#x0029;, 25/9 &#x0028;for C<!--l. 439--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
@@ -905,13 +932,11 @@ href="#Xmalvar2008lifting">1</a>&#x005D;</span> points, from a perceptual perspe
 channel on the luma channel should be stronger. For this reason the authors &#xFB01;nally
 propose the transform </p><table class="equation"><tr><td> <a 
  id="x1-9005r14"></a>
-                                                                  
-
-                                                                  
 <!--l. 443--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
- <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+ <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
 class="text"><mtext  >Y</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
@@ -919,8 +944,9 @@ class="array"  columnalign="center"> <mstyle
 class="text"><mtext  >Co</mtext></mstyle></mtd>
 </mtr><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
-class="text"><mtext  >Cg</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                           </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
-class="MathClass-rel">=</mo>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+class="text"><mtext  >Cg</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                             </mrow></mfenced> <mo 
+class="MathClass-rel">=</mo>  <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center">   <mfrac><mrow 
 ><mn>1</mn></mrow> 
@@ -959,7 +985,8 @@ class="array"  columnalign="center">  <mo
 class="MathClass-bin">&#x2212;</mo><mfrac><mrow 
 ><mn>1</mn></mrow>
 <mrow 
-><mn>4</mn></mrow></mfrac>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                    </mrow><mo fence="true" form="postfix">]</mo></mrow>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+><mn>4</mn></mrow></mfrac>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                    </mrow></mfenced>  <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"> <mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
 class="text"><mtext  >R</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
@@ -967,8 +994,9 @@ class="array"  columnalign="center"> <mstyle
 class="text"><mtext  >G</mtext></mstyle></mtd>
 </mtr><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
-class="text"><mtext  >B</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                               </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
-class="MathClass-rel">&#x21D4;</mo> <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+class="text"><mtext  >B</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                               </mrow></mfenced> <mo 
+class="MathClass-rel">&#x21D4;</mo> <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center"> <mstyle 
 class="text"><mtext  >R</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
@@ -976,8 +1004,9 @@ class="array"  columnalign="center"> <mstyle
 class="text"><mtext  >G</mtext></mstyle></mtd>
 </mtr><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
-class="text"><mtext  >B</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                               </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
-class="MathClass-rel">=</mo>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+class="text"><mtext  >B</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                               </mrow></mfenced> <mo 
+class="MathClass-rel">=</mo>  <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center"> <mn>1</mn> </mtd><mtd 
 class="array"  columnalign="center">   <mn>1</mn>   </mtd><mtd 
@@ -991,7 +1020,8 @@ class="array"  columnalign="center"> <mn>1</mn> </mtd><mtd
 class="array"  columnalign="center"> <mo 
 class="MathClass-bin">&#x2212;</mo><mn>1</mn> </mtd><mtd 
 class="array"  columnalign="center"> <mo 
-class="MathClass-bin">&#x2212;</mo><mn>1</mn> </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                  </mrow><mo fence="true" form="postfix">]</mo></mrow> <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+class="MathClass-bin">&#x2212;</mo><mn>1</mn> </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                  </mrow></mfenced> <mfenced separators="" 
+open="["  close="]" ><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
 class="text"><mtext  >Y</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
@@ -999,7 +1029,7 @@ class="array"  columnalign="center"> <mstyle
 class="text"><mtext  >Co</mtext></mstyle></mtd>
 </mtr><mtr><mtd 
 class="array"  columnalign="center">  <mstyle 
-class="text"><mtext  >Cg</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                              </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
+class="text"><mtext  >Cg</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                             </mrow></mfenced> <mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;14&#x0029;</td></tr></table>
 <!--l. 480--><p class="indent" >   that is near orthogonal<span class="footnote-mark"><a 
@@ -1041,6 +1071,9 @@ class="MathClass-punc">.</mo>
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb" >notebook</a> the di&#xFB00;erences with using </p><table class="equation"><tr><td>
 <a 
  id="x1-10002r16"></a>
+                                                                  
+
+                                                                  
 <!--l. 490--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
@@ -1065,9 +1098,6 @@ class="text"><mtext  >Cg</mtext></mstyle></mrow></msub
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;16&#x0029;</td></tr></table>
 <!--l. 493--><p class="indent" >   are very small. Therefore, this last quantization scheme will be adopted.
-                                                                  
-
-                                                                  
 </p><!--l. 495--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
@@ -1100,6 +1130,9 @@ href="#x1-9003r13">13<!--tex4ht:ref: eq:optimal --></a>, and compare it with the
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-130004"></a>Deliverables</h3>
 <!--l. 518--><p class="noindent" >None.
+                                                                  
+
+                                                                  
 </p><!--l. 520--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
@@ -1114,9 +1147,6 @@ class="ecti-1000">Applications of Digital</span>
    <span 
 class="ecti-1000">Image  Processing  XXXI</span>,  volume  7073,  pages  707307&#x2013;1  &#x2013;  707307&#x2013;10.
    International Society for Optics and Photonics, 2008.
-                                                                  
-
-                                                                  
    </p>
    <p class="bibitem" ><span class="biblabel">
  &#x005B;2&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
