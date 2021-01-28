@@ -83,8 +83,8 @@ and $[S_k]$ is a binary matrix defined by
 \begin{equation}
   [S_k]_{i,j} = \left\{
   \begin{array}{lll}
-    0 & \text{if}~[V_k.L]_{i,j} < [E_k.L]_{i,j} & \text{(I-type coeff.)} \\
-    1 & \text{otherwise}                      & \text{(P-type coeff.)},
+    0 & \text{if}~[V_k.L]_{i,j} < [E_k.L]_{i,j} & \text{(I-type coeff)} \\
+    1 & \text{otherwise}                      & \text{(P-type coeff)},
   \end{array}
   \right.
   \label{eq:matrix}
@@ -105,8 +105,8 @@ where, notice that
 \begin{equation}
   [E_k.H] = \left\{
   \begin{array}{ll}
-    {[}V_k.H{]}                 & \text{(I-type coeff.)}\\
-    {[}V_k.H{]} - [\hat{V}_k.H] & \text{(P-type coeff.)},
+    {[}V_k.H{]}                 & \text{(I-type coeff)}\\
+    {[}V_k.H{]} - [\hat{V}_k.H] & \text{(P-type coeff)},
   \end{array}
   \right.
 \end{equation}
@@ -146,14 +146,14 @@ and by definition, $Z^{-1}([V_{-1}.H]) = 0$,
 \end{equation}
 
 \begin{equation}
-  \{\hat{V}_k.L, \tilde{E}_k.H\} \leftarrow \text{E}(\hat{V}_k.L, \tilde{E}_k.H),
+  \{V_k.L, \tilde{E}_k.H\} \leftarrow \text{E}(V_k.L, \tilde{E}_k.H),
   \tag{p}
 \end{equation}
 where E represents the entropy coding of both data sources, in two
 different code-streams,
 
 \begin{equation}
-  (\hat{V}_k.L, \tilde{E}_k.H) \leftarrow \text{E}^{-1}(\{\hat{V}_k.L, \tilde{E}_k.H\}),
+  (V_k.L, \tilde{E}_k.H) \leftarrow \text{E}^{-1}(\{V_k.L, \tilde{E}_k.H\}),
   \tag{q}
 \end{equation}
 
