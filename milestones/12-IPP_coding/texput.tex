@@ -9,7 +9,7 @@
 
 \subsection{The IPP... decorrelation pattern}
 It's time to put together all the ``tools'' that we have developed for
-encoding a sequence of frames $\{F_k\}$. First, the sequence will be
+encoding a sequence of frames $\{V_k\}$. First, the sequence will be
 splitted into GOFs (Group Of Frames), and the structure of each GOF
 will be IPP...~\cite{le1991mpeg}, which means that the first frame of
 each GOF will be intra-coded (I-type), and the rest of frames of the
@@ -33,55 +33,55 @@ The MRVC IPP... codec has been described in the
 Fig.~\ref{fig:codec}. The equations that describe this system are:
 
 \begin{equation}
-  (F_k.L, F_k.H) \leftarrow \text{DWT}(F_k),
+  (V_k.L, V_k.H) \leftarrow \text{DWT}(V_k),
   \tag{a}
 \end{equation}
 where $\leftarrow$ denotes the
 \href{https://en.wikipedia.org/wiki/Assignment_(computer_science)}{assignment}
-operator, and $F_k$ is the $k$-th frame. of the sequence,
+operator, and $V_k$ is the $k$-th frame. of the sequence,
 
 \begin{equation}
-  [F_k.L] \leftarrow \text{DWT}^{-1}(0, F_k.L),
+  [V_k.L] \leftarrow \text{DWT}^{-1}(V_k.L, 0),
   \tag{b}
 \end{equation}
 
 \begin{equation}
-  Z^{-1}([F_k.L]) = [F_{k-1}.L],
+  Z^{-1}([V_k.L]) = [V_{k-1}.L],
   \tag{c}
 \end{equation}
-and by definition, $Z^{-1}([F_{-1}.L]) = 0$.
+and by definition, $Z^{-1}([V_{-1}.L]) = 0$.
 
 \begin{equation}
-  \overset{k+1\rightarrow k}{V} \leftarrow \text{ME}([F_k.L], [F_{k-1}.L]),
+  \overset{k+1\rightarrow k}{V} \leftarrow \text{ME}([V_k.L], [V_{k-1}.L]),
   \tag{d}
 \end{equation}
 where ME stands for Motion Estimation, and by definition,
 $\overset{0\rightarrow (-1)}{V}=0$,
 
 \begin{equation}
-  [\hat{F}_k.L] \leftarrow \text{MCP}(\overset{k+1\rightarrow k}{V}, [F_{k-1}.L]),
+  [\hat{V}_k.L] \leftarrow \text{MCP}(\overset{k+1\rightarrow k}{V}, [V_{k-1}.L]),
   \tag{e}
 \end{equation}
 where MCP stands for Motion Compensated Prediction,
 
 \begin{equation}
-  [E_k.L] \leftarrow [F_k.L] - [\hat{F}_k.L],
+  [E_k.L] \leftarrow [V_k.L] - [\hat{V}_k.L],
   \tag{f}
 \end{equation}
 
 \begin{equation}
-  \{[T_k],[M_k]\} \leftarrow \text{EW-min}([F_k.L], [E_k.L])
+  \{[M_k],[S_k]\} \leftarrow \text{EW-min}([V_k.L], [E_k.L])
   \tag{g}
 \end{equation}
 where
 \begin{equation}
-  [T_k]_{i,j}=\text{min}([F_k.L]_{i,j}, [E_k.L]_{i,j}),
+  [M_k]_{i,j}=\text{min}([V_k.L]_{i,j}, [E_k.L]_{i,j}),
 \end{equation}
-and $[M_k]$ is a binary matrix defined by
+and $[S_k]$ is a binary matrix defined by
 \begin{equation}
-  [M_k]_{i,j} = \left\{
+  [S_k]_{i,j} = \left\{
   \begin{array}{lll}
-    0 & \text{if}~[F_k.L]_{i,j} < [E_k.L]_{i,j} & \text{(I-type coeff.)} \\
+    0 & \text{if}~[V_k.L]_{i,j} < [E_k.L]_{i,j} & \text{(I-type coeff.)} \\
     1 & \text{otherwise}                      & \text{(P-type coeff.)},
   \end{array}
   \right.
@@ -91,24 +91,24 @@ and $[M_k]$ is a binary matrix defined by
 matrices, is discarded)
 
 \begin{equation}
-  [F_k.H] \leftarrow \text{DWT}^{-1}(0, F_k.H),
+  [V_k.H] \leftarrow \text{DWT}^{-1}(0, V_k.H),
   \tag{h}
 \end{equation}
 
 \begin{equation}
-  [E_k.H] \leftarrow [F_k.H] - [\hat{F}_k.H],
+  [E_k.H] \leftarrow [V_k.H] - [\hat{V}_k.H],
   \tag{i}
 \end{equation}
 where, notice that
 \begin{equation}
   [E_k.H] = \left\{
   \begin{array}{ll}
-    {[}F_k.H{]}                 & \text{(I-type coeff.)}\\
-    {[}F_k.H{]} - [\hat{F}_k.H] & \text{(P-type coeff.)},
+    {[}V_k.H{]}                 & \text{(I-type coeff.)}\\
+    {[}V_k.H{]} - [\hat{V}_k.H] & \text{(P-type coeff.)},
   \end{array}
   \right.
 \end{equation}
-and notice that if $[\hat{F}_k.H]=0$ then $[E_k.H] = [F_k.H]$,
+and notice that if $[\hat{V}_k.H]=0$ then $[E_k.H] = [V_k.H]$,
 
 \begin{equation}
   [\tilde{E}_k.H] \leftarrow \text{Q}([E_K.H]),
@@ -121,20 +121,20 @@ and notice that if $[\hat{F}_k.H]=0$ then $[E_k.H] = [F_k.H]$,
 \end{equation}
 
 \begin{equation}
-  [\tilde{F}_k.H] \leftarrow [\tilde{E}_k.H] + [\hat{F}_k.H],
+  [\tilde{V}_k.H] \leftarrow [\tilde{E}_k.H] + [\hat{V}_k.H],
   \tag{l}
 \end{equation}
-and notice that if $[\hat{F}_k.H]=0$ then $[\tilde{F}_k.H] =
+and notice that if $[\hat{V}_k.H]=0$ then $[\tilde{V}_k.H] =
 [\tilde{E}_k.H]$,
 
 \begin{equation}
-  Z^{-1}([\tilde{F}_k.H]) = [F_{k-1}.H],
+  Z^{-1}([\tilde{V}_k.H]) = [V_{k-1}.H],
   \tag{m}
 \end{equation}
-and by definition, $Z^{-1}([F_{-1}.H]) = 0$,
+and by definition, $Z^{-1}([V_{-1}.H]) = 0$,
 
 \begin{equation}
-  [\hat{F}_k.H] \leftarrow \text{MCP}(\overset{k+1\rightarrow k}{V}, [F_{k-1}.H]),
+  [\hat{V}_k.H] \leftarrow \text{MCP}(\overset{k+1\rightarrow k}{V}, [V_{k-1}.H]),
   \tag{n}
 \end{equation}
 
@@ -144,19 +144,19 @@ and by definition, $Z^{-1}([F_{-1}.H]) = 0$,
 \end{equation}
 
 \begin{equation}
-  \{\hat{F}_k.L, \tilde{E}_k.H\} \leftarrow \text{E}(\hat{F}_k.L, \tilde{E}_k.H),
+  \{\hat{V}_k.L, \tilde{E}_k.H\} \leftarrow \text{E}(\hat{V}_k.L, \tilde{E}_k.H),
   \tag{p}
 \end{equation}
 where E represents the entropy coding of both data sources, in two
 different code-streams,
 
 \begin{equation}
-  (\hat{F}_k.L, \tilde{E}_k.H) \leftarrow \text{E}^{-1}(\{\hat{F}_k.L, \tilde{E}_k.H\}),
+  (\hat{V}_k.L, \tilde{E}_k.H) \leftarrow \text{E}^{-1}(\{\hat{V}_k.L, \tilde{E}_k.H\}),
   \tag{q}
 \end{equation}
 
 \begin{equation}
-  \tilde{F}_k \leftarrow \text{DWT}^{-1}(F_k.L, F_k.H),
+  \tilde{V}_k \leftarrow \text{DWT}^{-1}(V_k.L, V_k.H),
   \tag{r}
 \end{equation}
 
@@ -213,7 +213,7 @@ progression = [
   (S_layer=1, Q_layer=1),
   (S_layer=1, Q_layer=0),
   (S_layer=0, Q_layer=1),
-  (S_layer_0, Q_layer=0) ] <-- The last one
+  (S_layer=0, Q_layer=0) ] <-- The last one
 \end{verbatim}
 
 The use of quality scalability boosts the possibilities in real-time
