@@ -26,7 +26,7 @@ different coeffs will be I-type or P-type.
 
 \begin{figure}
   \centering
-  \svg{graphics/codec}{700}
+  \svg{graphics/codec2}{1000}
   \caption{The IPP... MRVC video codec.}
   \label{fig:codec}
 \end{figure}
@@ -158,15 +158,20 @@ different code-streams,
 \end{equation}
 
 \begin{equation}
-  \tilde{V}_k \leftarrow \text{DWT}^{-1}(V_k.L, V_k.H),
+  [\tilde{E}_k.H] \leftarrow \text{DWT}^{-1}(0, \tilde{E}_k.H),
   \tag{r}
+\end{equation}
+
+\begin{equation}
+  (0, \tilde{V}_k.H) \leftarrow \text{DWT}(0, [\tilde{V}_k.H]),
+  \tag{s}
 \end{equation}
 
 and
 
 \begin{equation}
-  [\tilde{E}_k.H] \leftarrow \text{DWT}^{-1}(0, \tilde{E}_k.H).
-  \tag{s}
+  \tilde{V}_k \leftarrow \text{DWT}^{-1}(V_k.L, \tilde{V}_k.H).
+  \tag{t}
 \end{equation}
 
 This
