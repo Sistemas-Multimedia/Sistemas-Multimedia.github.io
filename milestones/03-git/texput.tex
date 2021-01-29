@@ -13,7 +13,7 @@
 \section{Description}
 
 To work in
-\href{https://github.com/Sistemas-Multimedia/PRMC}{the PRMC
+\href{https://github.com/Sistemas-Multimedia/MRVC}{the MRMC
   project} you must understand the basics of
 Git \cite{Git-book} and
 \href{https://github.com/}{GitHub}\footnote{There are other Git-based
@@ -36,7 +36,7 @@ but GitHub is the most used one.} \cite{GitHub}, and how to use the
 \item If you don't have an GitHub account, please, do the
   \href{https://guides.github.com/activities/hello-world/}{the Hello
     World guide at GitHub} and create one. Be aware that to contribute
-  to PRMC project an GitHub account is required. Notice that in the Hello
+  to MRMC project an GitHub account is required. Notice that in the Hello
   World guide, the \texttt{master} branch is named the \texttt{main}
   branch. Please, create a \texttt{README.md} file for the Hello World
   repo, as the guide suggests.
@@ -248,17 +248,17 @@ but GitHub is the most used one.} \cite{GitHub}, and how to use the
   \texttt{git}-steps (and some of them are below).
 
 \item Make a fork of the
-  \href{https://github.com/Sistemas-Multimedia/PRMC}{PRMC}
+  \href{https://github.com/Sistemas-Multimedia/MRVC}{MRVC}
   project. We will call to this repo the
   \href{https://docs.github.com/en/github/getting-started-with-github/github-glossary#upstream}{\emph{upstream}}, whose URL is
 \begin{verbatim}
-  git@github.com:Sistemas-Multimedia/PRMC.git
+  git@github.com:Sistemas-Multimedia/MRVC.git
 \end{verbatim}        
   This info can be found when you
   \href{https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository}{clone}
-  PRMC. Notice however, that action of clonning PRMC
-  is a waste of time because you cannot contribute directly to it
-  (remember, you must \texttt{clone} your own repo).
+  MRVC. Notice however, that action of clonning MRVC is a waste of
+  time because you cannot contribute directly to it (remember, you
+  must \texttt{clone} your own repo).
 
 \item Add the
   \href{https://docs.github.com/en/github/getting-started-with-github/github-glossary#remote}{remote}\footnote{Git
@@ -270,7 +270,7 @@ but GitHub is the most used one.} \cite{GitHub}, and how to use the
   \emph{remotes}.}  \emph{upstream} with:
 
   \begin{lstlisting}[language=bash]
-    git remote add upstream git@github.com:Sistemas-Multimedia/PRMC.git
+    git remote add upstream git@github.com:Sistemas-Multimedia/MRVC.git
   \end{lstlisting}
 
   Check that everything has worked with:
@@ -282,10 +282,10 @@ but GitHub is the most used one.} \cite{GitHub}, and how to use the
   where you should see two remotes: \emph{origin} and \emph{upstream}. Something similar to:
 
 \begin{verbatim}
-origin   git@github.com:you_at_GitHub/PRMC.git (fetch)
-origin   git@github.com:you_at_GitHub/PRMC.git (push)
-upstream git@github.com:Sistemas-Multimedia/PRMC.git (fetch)
-upstream git@github.com:Sistemas-Multimedia/PRMC.git (push)
+origin   git@github.com:you_at_GitHub/MRVC.git (fetch)
+origin   git@github.com:you_at_GitHub/MRVC.git (push)
+upstream git@github.com:Sistemas-Multimedia/MRVC.git (fetch)
+upstream git@github.com:Sistemas-Multimedia/MRVC.git (push)
 \end{verbatim}
 
 \item To updateyour local repowrite:
