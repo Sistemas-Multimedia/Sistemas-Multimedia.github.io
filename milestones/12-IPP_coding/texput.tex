@@ -44,36 +44,36 @@ operator, and $V_k$ is the $k$-th frame of the sequence,
 
 \begin{equation}
   [V_k.L] \leftarrow \text{DWT}^{-1}(V_k.L, 0),
-  \tag{b}
+  \tag{E.a}
 \end{equation}
 
 \begin{equation}
   Z^{-1}([V_k.L]) = [V_{k-1}.L],
-  \tag{c}
+  \tag{E.b}
 \end{equation}
 and by definition, $Z^{-1}([V_{-1}.L]) = 0$.
 
 \begin{equation}
   \overset{k+1\rightarrow k}{V} \leftarrow \text{ME}([V_k.L], [V_{k-1}.L]),
-  \tag{d}
+  \tag{E.c}
 \end{equation}
 where ME stands for Motion Estimation, and by definition,
 $\overset{0\rightarrow (-1)}{V}=0$,
 
 \begin{equation}
   [\hat{V}_k.L] \leftarrow \text{MCP}(\overset{k+1\rightarrow k}{V}, [V_{k-1}.L]),
-  \tag{e}
+  \tag{E.d}
 \end{equation}
 where MCP stands for Motion Compensated Prediction,
 
 \begin{equation}
   [E_k.L] \leftarrow [V_k.L] - [\hat{V}_k.L],
-  \tag{f}
+  \tag{E.e}
 \end{equation}
 
 \begin{equation}
   \{[M_k],[S_k]\} \leftarrow \text{EW-min}([V_k.L], [E_k.L])
-  \tag{g}
+  \tag{E.f}
 \end{equation}
 where
 \begin{equation}
@@ -89,17 +89,17 @@ and $[S_k]$ is a binary matrix defined by
   \right.
   \label{eq:matrix}
 \end{equation}
-(notice that $[T_k]$, that contains the element-wise minimum of both
+(notice that $[M_k]$, that contains the element-wise minimum of both
 matrices, is discarded)
 
 \begin{equation}
   [V_k.H] \leftarrow \text{DWT}^{-1}(0, V_k.H),
-  \tag{h}
+  \tag{b}
 \end{equation}
 
 \begin{equation}
   [E_k.H] \leftarrow [V_k.H] - [\hat{V}_k.H],
-  \tag{i}
+  \tag{c}
 \end{equation}
 where, notice that
 \begin{equation}
@@ -108,70 +108,71 @@ where, notice that
     {[}V_k.H{]}                 & \text{(I-type coeff)}\\
     {[}V_k.H{]} - [\hat{V}_k.H] & \text{(P-type coeff)},
   \end{array}
-  \right.
+\right.
+\tag{E.k}
 \end{equation}
 and notice that if $[\hat{V}_k.H]=0$ then $[E_k.H] = [V_k.H]$,
 
 \begin{equation}
   [\tilde{E}_k.H] \leftarrow \text{Q}([E_K.H]),
-  \tag{j}
+  \tag{d}
 \end{equation}
 
 \begin{equation}
   [\tilde{E}_k.H] \leftarrow  \text{Q}^{-1}([\tilde{E}_K.H]),
-  \tag{k}
+  \tag{E.g}
 \end{equation}
 
 \begin{equation}
   [\tilde{V}_k.H] \leftarrow [\tilde{E}_k.H] + [\hat{V}_k.H],
-  \tag{l}
+  \tag{E.h}
 \end{equation}
 and notice that if $[\hat{V}_k.H]=0$ then $[\tilde{V}_k.H] =
 [\tilde{E}_k.H]$,
 
 \begin{equation}
   Z^{-1}([\tilde{V}_k.H]) = [V_{k-1}.H],
-  \tag{m}
+  \tag{E.i}
 \end{equation}
 and by definition, $Z^{-1}([V_{-1}.H]) = 0$,
 
 \begin{equation}
   [\hat{V}_k.H] \leftarrow \text{MCP}(\overset{k+1\rightarrow k}{V}, [V_{k-1}.H]),
-  \tag{n}
+  \tag{E.j}
 \end{equation}
 
 \begin{equation}
   (0, \tilde{E}_k.H) \leftarrow \text{DWT}([\tilde{E}_k.H]),
-  \tag{o}
+  \tag{f}
 \end{equation}
 
 \begin{equation}
   \{V_k.L, \tilde{E}_k.H\} \leftarrow \text{E}(V_k.L, \tilde{E}_k.H),
-  \tag{p}
+  \tag{g}
 \end{equation}
 where E represents the entropy coding of both data sources, in two
 different code-streams,
 
 \begin{equation}
   (V_k.L, \tilde{E}_k.H) \leftarrow \text{E}^{-1}(\{V_k.L, \tilde{E}_k.H\}),
-  \tag{q}
+  \tag{h}
 \end{equation}
 
 \begin{equation}
   [\tilde{E}_k.H] \leftarrow \text{DWT}^{-1}(0, \tilde{E}_k.H),
-  \tag{r}
+  \tag{i}
 \end{equation}
 
 \begin{equation}
   (0, \tilde{V}_k.H) \leftarrow \text{DWT}(0, [\tilde{V}_k.H]),
-  \tag{s}
+  \tag{j}
 \end{equation}
 
 and
 
 \begin{equation}
   \tilde{V}_k \leftarrow \text{DWT}^{-1}(V_k.L, \tilde{V}_k.H).
-  \tag{t}
+  \tag{k}
 \end{equation}
 
 This
