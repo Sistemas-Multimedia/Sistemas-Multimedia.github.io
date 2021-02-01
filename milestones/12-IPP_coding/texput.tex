@@ -103,15 +103,13 @@ matrices, is discarded)
 \end{equation}
 where, notice that
 \begin{equation}
-  [E_k.H] = \left\{
+  [E_k.H]_{i,j} = \left\{
   \begin{array}{ll}
-    {[}V_k.H{]}                 & \text{(I-type coeff)}\\
-    {[}V_k.H{]} - [\hat{V}_k.H] & \text{(P-type coeff)},
+    {[}V_k.H{]}_{i,j}                       & \text{if}~{[}\hat{V'}_k.H{]}_{i,j} = 0~\text{(I-type coeff)} \\
+    {[}V_k.H{]}_{i,j} - [\hat{V'}_k.H]_{i,j} & \text{otherwise}~\text{(P-type coeff)},
   \end{array}
 \right.
-\tag{E.k}
 \end{equation}
-and notice that if $[\hat{V}_k.H]=0$ then $[E_k.H] = [V_k.H]$,
 
 \begin{equation}
   [\tilde{E}_k.H] \leftarrow \text{Q}([E_K.H]),
@@ -141,6 +139,16 @@ and by definition, $Z^{-1}([V_{-1}.H]) = 0$,
   \tag{E.j}
 \end{equation}
 
+\begin{equation}
+  [\hat{V'}_k.H]_{i,j} \leftarrow \left\{
+    \begin{array}{ll}
+      {[}\hat{V}_k.H{]}_{i_j}  & \text{if} {[}E_k.L{]}_{i,j} < {[}V_k.L{]}_{i,j} \text{(P-type coeff)} \\
+      0                       & \text{otherwise (I-type coeff)},
+    \end{array}
+  \right.
+  \tag{E.K}
+\end{equation}
+  
 \begin{equation}
   (0, \tilde{E}_k.H) \leftarrow \text{DWT}([\tilde{E}_k.H]),
   \tag{f}
