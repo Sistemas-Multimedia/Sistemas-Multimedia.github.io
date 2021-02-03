@@ -105,8 +105,8 @@ where, notice that
 \begin{equation}
   [E_k.H]_{i,j} = \left\{
   \begin{array}{ll}
-    {[}V_k.H{]}_{i,j}                       & \text{if}~{[}\hat{V'}_k.H{]}_{i,j} = 0~\text{(I-type coeff)} \\
-    {[}V_k.H{]}_{i,j} - [\hat{V'}_k.H]_{i,j} & \text{otherwise}~\text{(P-type coeff)},
+    {[}V_k.H{]}_{i,j}                       & \text{if}~{[}\hat{W}_k.H{]}_{i,j} = 0~\text{(I-type coeff)} \\
+    {[}V_k.H{]}_{i,j} - [\hat{W}_k.H]_{i,j} & \text{otherwise}~\text{(P-type coeff)},
   \end{array}
 \right.
 \end{equation}
@@ -140,13 +140,13 @@ and by definition, $Z^{-1}([V_{-1}.H]) = 0$,
 \end{equation}
 
 \begin{equation}
-  [\hat{V'}_k.H]_{i,j} \leftarrow \left\{
+  [\hat{W}_k.H]_{i,j} \leftarrow \left\{
     \begin{array}{ll}
-      {[}\hat{V}_k.H{]}_{i_j}  & \text{if} {[}E_k.L{]}_{i,j} < {[}V_k.L{]}_{i,j} \text{(P-type coeff)} \\
+      {[}\hat{V}_k.H{]}_{i,j}  & \text{if}~{[}E_k.L{]}_{i,j} < {[}V_k.L{]}_{i,j} \text{(P-type coeff)} \\
       0                       & \text{otherwise (I-type coeff)},
     \end{array}
   \right.
-  \tag{E.K}
+  \tag{E.k}
 \end{equation}
   
 \begin{equation}
@@ -186,6 +186,73 @@ and
 This
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/12-IPP_coding/DPCM.ipynb}{notebook}
 shows how to implement a simple DPCM codec.
+
+\subsection{Avoding the drift error}
+As it can be seen in the previous section, in each IPP... iteration,
+only the high-frequency information of the sequence of frames is
+decorrelated ($H$ subbands) considering the information provided by
+the low-frequency information ($L$ subband), which is losslessly
+transmitted between the encoder and the decoder. If the $L$ data
+cannot be transmitted to the decoder, a drift error will occur because
+the matrix $S_k$ will be different in the encoder and the decoder for
+the same frame $k$.
+
+Obviously (and unfortunately), this lossless transmission bounds the
+compression ratio that we will get. One solution is to perform more
+(than 1) levels at the DWT stage (Eq.~(a)) and to apply the
+IPP... MRVC codec using the lowest spatial resolution levels. If we
+represent the Spatial Resolution Level (SRL) with an superindex, being
+0 the original SRL, we can express the operation of the previous codec
+by
+\begin{equation}
+  \left\{
+    \begin{array}{l}
+      \text{C}(V^0_k) = \{V_k.L, \tilde{E}_k.H\} = \{V^1_k, \tilde{E}^0_k.H\} \\
+      \text{D}(\{V^1_k, \tilde{E}^0_k.H\}) = \tilde{V}^0_k,
+    \end{array}
+  \right.
+  \label{eq:codec_1l}
+\end{equation}
+where $\text{C}$ represents the encoder and $\text{D}$ the decoder. As
+it can be seen, Eq.~\ref{eq:codec_1l} is only valid when only one
+level of the DWT has been applied.
+
+In general, for $s$ levels of the DWT, we have that
+\begin{equation}
+  \left\{
+    \begin{array}{l}
+      \text{C}(V^{s-1}_k) = \{V^s_k, \tilde{E}^{s-1}_k.H\} \\
+      \text{D}(\{V^s_k, \tilde{E}^{s-1}_k.H\}) = \tilde{V}^{s-1}_k,
+    \end{array}
+  \right.
+  \label{eq:codec_sl}
+\end{equation}
+where $\tilde{V}^{s-1}$ is the $(s-1)$-th SRL of the reconstructed
+sequence $\tilde{V}$.
+
+The next SRL ($s-2$) is determined by
+\begin{equation}
+  \left\{
+    \begin{array}{l}
+      \text{C}(\tilde{V}^{s-2}_k) = \{\tilde{V}^{s-1}_k, \tilde{E}^{s-2}_k.H\} \\
+      \text{D}(\{\tilde{V}^{s-1}_k, \tilde{E}^{s-2}_k.H\}) = \tilde{V}^{s-2}_k,
+    \end{array}
+  \right.
+  \label{eq:codec_s1l}
+\end{equation}
+and finally,
+\begin{equation}
+  \left\{
+    \begin{array}{l}
+      \text{C}(\tilde{V}^0_k) = \{\tilde{V}^1_k, \tilde{E}^0_k.H\} \\
+      \text{D}(\{\tilde{V}^1_k, \tilde{E}^0_k.H\}) = \tilde{V}^0_k,
+    \end{array}
+  \right.
+  \label{eq:codec_s1l}
+\end{equation}
+
+So, only the lowest SRL of $\tilde{V}$, $\tilde{V}^s$ is an
+IPP... pure sequence of small frames, losslessly encoded.
 
 \subsection{Multiresolution iterations}
 In each IPP... iteration, only the high-frequency components of the
