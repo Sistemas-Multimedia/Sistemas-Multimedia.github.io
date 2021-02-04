@@ -187,23 +187,24 @@ This
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/12-IPP_coding/DPCM.ipynb}{notebook}
 shows how to implement a simple DPCM codec.
 
-\subsection{Avoding the drift error}
+\subsection{Spatial multiresolution}
 As it can be seen in the previous section, in each IPP... iteration,
 only the high-frequency information of the sequence of frames is
 decorrelated ($H$ subbands) considering the information provided by
-the low-frequency information ($L$ subband), which is losslessly
-transmitted between the encoder and the decoder. If the $L$ data
+the low-frequences ($L$ subband), which are losslessly transmitted
+between the encoder and the decoder. Notice that if the $L$ data
 cannot be transmitted to the decoder, a drift error will occur because
 the matrix $S_k$ will be different in the encoder and the decoder for
 the same frame $k$.
 
-Obviously (and unfortunately), this lossless transmission bounds the
-compression ratio that we will get. One solution is to perform more
-(than 1) levels at the DWT stage (Eq.~(a)) and to apply the
-IPP... MRVC codec using the lowest spatial resolution levels. If we
-represent the Spatial Resolution Level (SRL) with an superindex, being
-0 the original SRL, we can express the operation of the previous codec
-by
+Obviously (and unfortunately), the lossless transmission of the $L$'s
+bounds the compression ratio that we will get. One solution is to
+perform more (than 1) levels at the DWT stage (see Eq.~(a)) and to
+apply the IPP... MRVC codec by spatial resolutions, starting at the
+lowest, as the decoder will do at decompression time. If we represent
+the Spatial Resolution Level (SRL) with an superindex, being 0 the
+original SRL, we can express the operation of the codec described in
+the Fig.~\ref{fig:codec} by
 \begin{equation}
   \left\{
     \begin{array}{l}
@@ -213,9 +214,9 @@ by
   \right.
   \label{eq:codec_1l}
 \end{equation}
-where $\text{C}$ represents the encoder and $\text{D}$ the decoder. As
-it can be seen, Eq.~\ref{eq:codec_1l} is only valid when only one
-level of the DWT has been applied.
+where $\text{C}$ represents the IPP... encoder and $\text{D}$ the
+IPP... decoder. As it can be seen, Eq.~\ref{eq:codec_1l} is only valid
+when only one level of the DWT has been applied.
 
 In general, for $s$ levels of the DWT, we have that
 \begin{equation}
@@ -230,7 +231,7 @@ In general, for $s$ levels of the DWT, we have that
 where $\tilde{V}^{s-1}$ is the $(s-1)$-th SRL of the reconstructed
 sequence $\tilde{V}$.
 
-The next SRL ($s-2$) is determined by
+The next SRL ($s-2$), $\tilde{V}^{s-2}$, is determined by
 \begin{equation}
   \left\{
     \begin{array}{l}
@@ -240,12 +241,12 @@ The next SRL ($s-2$) is determined by
   \right.
   \label{eq:codec_s1l}
 \end{equation}
-and finally,
+and finally, for the highest SRL, we get $\tilde{V}^0$ 
 \begin{equation}
   \left\{
     \begin{array}{l}
       \text{C}(\tilde{V}^0_k) = \{\tilde{V}^1_k, \tilde{E}^0_k.H\} \\
-      \text{D}(\{\tilde{V}^1_k, \tilde{E}^0_k.H\}) = \tilde{V}^0_k,
+      \text{D}(\{\tilde{V}^1_k, \tilde{E}^0_k.H\}) = \tilde{V}^0_k.
     \end{array}
   \right.
   \label{eq:codec_s1l}
@@ -254,27 +255,28 @@ and finally,
 \begin{figure}
   \centering
   \svg{graphics/multiresolution}{600}
-  \caption{Implementing spatial multiresolution. $T^s$ stands for the
-    $s$-levels DWT.}
+  \caption{Implementing spatial multiresolution in
+    IPP... MRVC. $\text{T}^s$ stands for the $s$-levels DWT.}
   \label{fig:multiresolution}
 \end{figure}
 
 So, only the lowest SRL of $\tilde{V}$, $\tilde{V}^s$ is an
-IPP... pure sequence of small frames, losslessly encoded. This
+III... pure sequence of small frames, losslessly encoded. This
 multiresolution (multistage) scheme has been described in the
-Fig.~\ref{fig:multiresolution}. The output of an IPP... iteration will be refered as ``a
-spatial-layer of code-stream'', or simply as ``a S-layer''.
+Fig.~\ref{fig:multiresolution}. The output of an IPP... Encoder
+iteration will be refered as ``a spatial-layer of the code-stream'',
+or simply as ``a S-layer''.
 
 \subsection{SQ (layers) progression}
 The logical order of the S-layers in the code-stream is the one that
 allows, when the code-stream is decoded sequentially, the progressive
-incrase of the spatial resolution of the video. For example, if $s$
-levels of the DWT has been applied, the generated code-stream has
-$N_{\text{SRL}}+1$ S-layers
+increase of the spatial resolution of the video. For example, if $s$
+is the number of levels of the DWT, the generated code-stream has
+$(N_{\text{SRL}}+1)$ S-layers
 \begin{equation*}
   \{V^s,\tilde{E}^{s-1}.H,\tilde{E}^{s-2}.H,\cdots,\tilde{E}^0.H\},
 \end{equation*}
-which are able to generate $N_{\text{SRL}}+1$ progressive
+which are able to generate $(N_{\text{SRL}}+1)$ progressive
 reconstructions
 \begin{equation*}
   \{V^s,\tilde{V}^{s-1},\tilde{V}^{s-2},\cdots,\tilde{V}^0\}.
@@ -286,9 +288,9 @@ codec such as JPEG2000~\cite{taubman2002jpeg2000} replaces the PNG
 compressor, generating a number $N_{\text{QL}}$ of quality-layers
 (``Q-layers'') by each motion compensated high-frequency subband. A
 SQ-progression is defined considering both forms of scalability
-(spatial and quality), with a higher number of layers. For example, 
-For example, if $N_{\text{SRL}}=3$ (2 IPP...-type iterations) and
-$N_{\text{QL}}=2$, the progression of layers would be
+(spatial and quality), with a higher number of layers. For example, if
+$N_{\text{SRL}}=3$ (2 IPP...-type iterations) and $N_{\text{QL}}=2$,
+the progression of layers would be
 \begin{equation*}
   \{V^s[1],V^s[0],\tilde{E}^{s-1}.H[1],\tilde{E}^{s-1}.H[0],\tilde{E}^{s-2}.H[1],\tilde{E}^{s-2}.H[0],\cdots,\tilde{E}^0.H[1],\tilde{E}^0.H[0]\}.
 \end{equation*}
@@ -319,8 +321,8 @@ streaming scenarios where the transmission bit-rate can be variable
 on the bit-rate). Notice that the SQ-progression is free of
 drift-error.\footnote{Other progressions such as the QS-progression
   should generate drift because the decoder at some truncation points
-  of the code-stream would have using a low-frequency information with
-  a different quality than the encoderd used.}
+  of the code-stream would use a low-frequency information with a
+  different quality than the encoderd used.}
 
 %However, notice that the rendering of the frames at
 %the decoder side with a smaller quality (and this will depends on the
@@ -333,10 +335,11 @@ drift-error.\footnote{Other progressions such as the QS-progression
 
 \section{What you have to do?}
 
-Implement the previous codec, preferiblemente in a (or several)
-Jupyter notebook(s). Test it by tracing a RD curve for different
-$\Delta$ values for the quantizer (see Eqs. (j) and (k)). Compare it
-with the curve generated without using MC.
+Implement the codec described in the Fig.~\ref{fig:codec},
+preferiblemente in a (or several) Jupyter notebook(s). Test it by
+tracing a RD curve for different $\Delta$ values for the quantizer
+(see Eqs. (d) and (g)). Compare it with the curve generated without
+using MC (use always I-type frames).
 
 \section{Timming}
 
