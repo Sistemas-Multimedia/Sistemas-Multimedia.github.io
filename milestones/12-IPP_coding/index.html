@@ -100,7 +100,7 @@ P-type frame, the di&#xFB00;erent coe&#xFB00;s will be I-type or P-type.
                                                                   
 
                                                                   
-<!--l. 29--><p class="noindent" ><div style="text-align:center;"> <img width=1000 src="graphics/codec2.svg" /> </div>  <a 
+<!--l. 29--><p class="noindent" ><div style="text-align:center;"> <img width=1000 src="graphics/codec3.svg" /> </div>  <a 
  id="x1-4001r1"></a>
 <a 
  id="x1-4002"></a>
@@ -1802,17 +1802,30 @@ class="MathClass-punc">,</mo> </mtd></mtr><!--l--></mtable>                     
  id="x1-5006"></a>
 <br />                                                                  </p><div class="caption" 
 ><span class="id">
-Figure&#x00A0;2: </span><span  
-class="content">Implementing spatial multiresolution.                          </span></div><!--tex4ht:label?: x1-5005r1 -->
+Figure&#x00A0;2:               </span><span  
+class="content">Implementing               spatial               multiresolution.
+<!--l. 258--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>T</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msup 
+></math>
+stands for the <!--l. 258--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>s</mi></math>-levels
+DWT.                                                            </span></div><!--tex4ht:label?: x1-5005r1 -->
                                                                   
 
                                                                   
    </div><hr class="endfigure" />
-<!--l. 261--><p class="indent" >   So, only the lowest SRL of <!--l. 261--><math 
+<!--l. 262--><p class="indent" >   So, only the lowest SRL of <!--l. 262--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x1E7C;</mi></math>,
-<!--l. 261--><math 
+<!--l. 262--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mi 
@@ -1828,14 +1841,14 @@ S-layer&#x201D;.
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
  id="x1-60001.4"></a>SQ &#x0028;layers&#x0029; progression</h4>
-<!--l. 268--><p class="noindent" >The logical order of the S-layers in the code-stream is the one that allows, when the code-stream
+<!--l. 269--><p class="noindent" >The logical order of the S-layers in the code-stream is the one that allows, when the code-stream
 is decoded sequentially, the progressive incrase of the spatial resolution of the video. For
-example, if <!--l. 270--><math 
+example, if <!--l. 271--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >s</mi></math>
 levels of the DWT has been applied, the generated code-stream has
-<!--l. 272--><math 
+<!--l. 273--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -1845,7 +1858,7 @@ class="text"><mtext  >SRL</mtext></mstyle></mrow></msub
 > <mo 
 class="MathClass-bin">+</mo> <mn>1</mn></math>
 S-layers </p><table class="equation-star"><tr><td>
-<!--l. 273--><math 
+<!--l. 274--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                   <mo 
@@ -1885,7 +1898,7 @@ class="MathClass-punc">.</mo><mi
 class="MathClass-close">&#x007D;</mo><mo 
 class="MathClass-punc">,</mo>
 </math></td></tr></table>
-<!--l. 276--><p class="indent" >   which are able to generate <!--l. 276--><math 
+<!--l. 277--><p class="indent" >   which are able to generate <!--l. 277--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -1895,7 +1908,7 @@ class="text"><mtext  >SRL</mtext></mstyle></mrow></msub
 > <mo 
 class="MathClass-bin">+</mo> <mn>1</mn></math>
 progressive reconstructions </p><table class="equation-star"><tr><td>
-<!--l. 278--><math 
+<!--l. 279--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                       <mo 
@@ -1932,11 +1945,11 @@ class="MathClass-punc">.</mo>
                                                                   
 
                                                                   
-<!--l. 282--><p class="indent" >   Moreover, Quality &#x0028;Q-progression&#x0029; scalability in each SRL can be also
+<!--l. 283--><p class="indent" >   Moreover, Quality &#x0028;Q-progression&#x0029; scalability in each SRL can be also
 achieved in the high-frequency textures if a quality-scalable image codec
 such as JPEG2000&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xtaubman2002jpeg2000">2</a>&#x005D;</span> replaces the PNG compressor, generating a number
-<!--l. 285--><math 
+<!--l. 286--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -1947,7 +1960,7 @@ class="text"><mtext  >QL</mtext></mstyle></mrow></msub
 quality-layers &#x0028;&#x201C;Q-layers&#x201D;&#x0029; by each motion compensated high-frequency subband.
 A SQ-progression is de&#xFB01;ned considering both forms of scalability &#x0028;spatial
 and quality&#x0029;, with a higher number of layers. For example, For example, if
-<!--l. 289--><math 
+<!--l. 290--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -1956,7 +1969,7 @@ display="inline" ><msub><mrow
 class="text"><mtext  >SRL</mtext></mstyle></mrow></msub 
 > <mo 
 class="MathClass-rel">=</mo> <mn>3</mn></math> &#x0028;2 IPP...-type
-iterations&#x0029; and <!--l. 290--><math 
+iterations&#x0029; and <!--l. 291--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -1966,7 +1979,7 @@ class="text"><mtext  >QL</mtext></mstyle></mrow></msub
 > <mo 
 class="MathClass-rel">=</mo> <mn>2</mn></math>,
 the progression of layers would be </p><table class="equation-star"><tr><td>
-<!--l. 291--><math 
+<!--l. 292--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
 <mo 
@@ -2053,7 +2066,7 @@ class="MathClass-close">&#x005D;</mo><mo
 class="MathClass-close">&#x007D;</mo><mo 
 class="MathClass-punc">.</mo>
 </math></td></tr></table>
-<!--l. 315--><p class="indent" >   The use of quality scalability boosts the possibilities in real-time streaming scenarios
+<!--l. 316--><p class="indent" >   The use of quality scalability boosts the possibilities in real-time streaming scenarios
 where the transmission bit-rate can be variable &#x0028;sending more or less Q-layers of a given
 spatial resolution depending on the bit-rate&#x0029;. Notice that the SQ-progression is free of
 drift-error.<span class="footnote-mark"><a 
@@ -2062,29 +2075,29 @@ href="index3.html#fn2x0"><sup class="textsuperscript">2</sup></a></span><a
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-70002"></a>What you have to do?</h3>
-<!--l. 335--><p class="noindent" >Implement the previous codec, preferiblemente in a &#x0028;or several&#x0029;
+<!--l. 336--><p class="noindent" >Implement the previous codec, preferiblemente in a &#x0028;or several&#x0029;
 Jupyter notebook&#x0028;s&#x0029;. Test it by tracing a RD curve for di&#xFB00;erent
-<!--l. 337--><math 
+<!--l. 338--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x0394;</mi></math> values
 for the quantizer &#x0028;see Eqs. &#x0028;j&#x0029; and &#x0028;k&#x0029;&#x0029;. Compare it with the curve generated without
 using MC.
-</p><!--l. 340--><p class="noindent" >
+</p><!--l. 341--><p class="noindent" >
 </p>
                                                                   
 
                                                                   
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-80003"></a>Timming</h3>
-<!--l. 342--><p class="noindent" >In groups, you will present the results for this milestone during the exam
+<!--l. 343--><p class="noindent" >In groups, you will present the results for this milestone during the exam
 time.
-</p><!--l. 345--><p class="noindent" >
+</p><!--l. 346--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-90004"></a>Deliverables</h3>
-<!--l. 347--><p class="noindent" >The notebook&#x0028;s&#x0029; and the presentation.
-</p><!--l. 349--><p class="noindent" >
+<!--l. 348--><p class="noindent" >The notebook&#x0028;s&#x0029; and the presentation.
+</p><!--l. 350--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-100005"></a>Resources</h3>
