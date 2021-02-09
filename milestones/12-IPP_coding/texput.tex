@@ -214,7 +214,8 @@ the Fig.~\ref{fig:codec} by
   \right.
   \label{eq:codec_1l}
 \end{equation}
-where $\text{C}$ represents the IPP... encoder and $\text{D}$ the
+where $\text{C}(\cdot)$ represents to the operation of the
+IPP... encoder and $\text{D}(\cdot)$ to the operation of the
 IPP... decoder. As it can be seen, Eq.~\ref{eq:codec_1l} is only valid
 when only one level of the DWT has been applied.
 
@@ -241,16 +242,17 @@ The next SRL ($s-2$), $\tilde{V}^{s-2}$, is determined by
   \right.
   \label{eq:codec_s1l}
 \end{equation}
-and finally, for the highest SRL, we get $\tilde{V}^0$ 
-\begin{equation}
-  \left\{
-    \begin{array}{l}
-      \text{C}(\tilde{V}^0_k) = \{\tilde{V}^1_k, \tilde{E}^0_k.H\} \\
-      \text{D}(\{\tilde{V}^1_k, \tilde{E}^0_k.H\}) = \tilde{V}^0_k.
-    \end{array}
-  \right.
-  \label{eq:codec_s1l}
-\end{equation}
+and finally, for the highest SRL, we get $\tilde{V}^0$ defined by
+Eq.~\ref{eq:codec_1l}.
+%\begin{equation}
+%  \left\{
+%    \begin{array}{l}
+%      \text{C}(\tilde{V}^0_k) = \{\tilde{V}^1_k, \tilde{E}^0_k.H\} \\
+%      \text{D}(\{\tilde{V}^1_k, \tilde{E}^0_k.H\}) = \tilde{V}^0_k.
+%    \end{array}
+%  \right.
+%  \label{eq:codec_s1l}
+%\end{equation}
 
 \begin{figure}
   \centering
