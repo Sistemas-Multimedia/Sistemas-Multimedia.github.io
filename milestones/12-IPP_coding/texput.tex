@@ -183,6 +183,7 @@ and
   \tag{k}
 \end{equation}
 
+The IPP... codec is inspired in Differential Pulse Code Moldulation.
 This
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/12-IPP_coding/DPCM.ipynb}{notebook}
 shows how to implement a simple DPCM codec.
@@ -272,13 +273,13 @@ or simply as ``a S-layer''.
 \subsection{SQ (layers) progression}
 The logical order of the S-layers in the code-stream is the one that
 allows, when the code-stream is decoded sequentially, the progressive
-increase of the spatial resolution of the video. For example, if $s$
-is the number of levels of the DWT, the generated code-stream has
-$(N_{\text{SRL}}+1)$ S-layers
+increase of the spatial resolution of the video. For example, if
+$s$ is the number of levels of the DWT, the generated
+code-stream has $(s+1)$ S-layers
 \begin{equation*}
   \{V^s,\tilde{E}^{s-1}.H,\tilde{E}^{s-2}.H,\cdots,\tilde{E}^0.H\},
 \end{equation*}
-which are able to generate $(N_{\text{SRL}}+1)$ progressive
+which are able to generate $(s+1)$ progressive
 reconstructions
 \begin{equation*}
   \{V^s,\tilde{V}^{s-1},\tilde{V}^{s-2},\cdots,\tilde{V}^0\}.
@@ -287,12 +288,11 @@ reconstructions
 Moreover, Quality (Q-progression) scalability in each SRL can be also
 achieved in the high-frequency textures if a quality-scalable image
 codec such as JPEG2000~\cite{taubman2002jpeg2000} replaces the PNG
-compressor, generating a number $N_{\text{QL}}$ of quality-layers
-(``Q-layers'') by each motion compensated high-frequency subband. A
-SQ-progression is defined considering both forms of scalability
-(spatial and quality), with a higher number of layers. For example, if
-$N_{\text{SRL}}=3$ (2 IPP...-type iterations) and $N_{\text{QL}}=2$,
-the progression of layers would be
+compressor, generating a number $q$ of quality-layers (``Q-layers'')
+by each motion compensated high-frequency subband. A SQ-progression is
+defined considering both forms of scalability (spatial and quality),
+with a higher number of layers. For example, if $s=3$ (2 IPP...-type
+iterations) and $q=2$, the progression of layers would be
 \begin{equation*}
   \{V^s[1],V^s[0],\tilde{E}^{s-1}.H[1],\tilde{E}^{s-1}.H[0],\tilde{E}^{s-2}.H[1],\tilde{E}^{s-2}.H[0],\cdots,\tilde{E}^0.H[1],\tilde{E}^0.H[0]\}.
 \end{equation*}
