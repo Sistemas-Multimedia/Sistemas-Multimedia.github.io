@@ -266,9 +266,17 @@ So, only the lowest SRL of $\tilde{V}$, $\tilde{V}^s$ is an
 III... pure sequence of small frames, losslessly encoded. This
 multiresolution (multistage) scheme has been described in the
 Fig.~\ref{fig:encoder}. The output of an IPP... encoder will be
-refered as ``spatial-layers'', or simply as ``S-layers''.
+refered as ``spatial-layers'', or simply as ``S-layers''. The
+Fig.~\ref{fig:decoder} shows the decoder.
 
-\subsection{SQ (layers) progression}
+\begin{figure}
+  \centering
+  \svg{graphics/decoder}{320}
+  \caption{The IPP... MRVC decoder.}
+  \label{fig:decoder}
+\end{figure}
+
+\subsection{SQ (layers) progression (next milestone?)}
 The logical order of the S-layers in the code-stream is the one that
 allows, when the code-stream is decoded sequentially, the progressive
 increase of the spatial resolution of the video. For example, if

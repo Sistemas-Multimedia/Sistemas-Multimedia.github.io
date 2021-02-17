@@ -44,7 +44,7 @@ href="#x1-40001.2" id="QQ2-1-4">A block diagram of the step codec</a></span>
 <br />   &#x00A0;<span class="subsectionToc" >1.3 <a 
 href="#x1-50001.3" id="QQ2-1-5">Spatial multiresolution</a></span>
 <br />   &#x00A0;<span class="subsectionToc" >1.4 <a 
-href="#x1-60001.4" id="QQ2-1-6">SQ &#x0028;layers&#x0029; progression</a></span>
+href="#x1-60001.4" id="QQ2-1-6">SQ &#x0028;layers&#x0029; progression &#x0028;next milestone?&#x0029;</a></span>
 <br />   <span class="sectionToc" >2 <a 
 href="#x1-70002" id="QQ2-1-7">What you have to do?</a></span>
 <br />   <span class="sectionToc" >3 <a 
@@ -1771,7 +1771,7 @@ href="#x1-5001r4">4<!--tex4ht:ref: eq:codec_1l --></a>.
 <br />                                                                  </p><div class="caption" 
 ><span class="id">
 Figure&#x00A0;2: </span><span  
-class="content">The IPP... MRCV encoder.                                  </span></div><!--tex4ht:label?: x1-5004r1 -->
+class="content">The IPP... MRVC encoder.                                   </span></div><!--tex4ht:label?: x1-5004r1 -->
                                                                   
 
                                                                   
@@ -1791,19 +1791,41 @@ display="inline" ><msup><mrow
 III... pure sequence of small frames, losslessly encoded. This multiresolution
 &#x0028;multistage&#x0029; scheme has been described in the Fig.&#x00A0;<a 
 href="#x1-5004r2">2<!--tex4ht:ref: fig:encoder --></a>. The output of an IPP...
-encoder will be refered as &#x201C;spatial-layers&#x201D;, or simply as &#x201C;S-layers&#x201D;.
+encoder will be refered as &#x201C;spatial-layers&#x201D;, or simply as &#x201C;S-layers&#x201D;. The Fig.&#x00A0;<a 
+href="#x1-5006r3">3<!--tex4ht:ref: fig:decoder --></a> shows
+the decoder.
 </p>
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!--l. 274--><p class="noindent" ><div style="text-align:center;"> <img width=320 src="graphics/decoder.svg" /> </div>  <a 
+ id="x1-5006r3"></a>
+<a 
+ id="x1-5007"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;3: </span><span  
+class="content">The IPP... MRVC decoder.                                   </span></div><!--tex4ht:label?: x1-5006r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
    <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
- id="x1-60001.4"></a>SQ &#x0028;layers&#x0029; progression</h4>
-<!--l. 272--><p class="noindent" >The logical order of the S-layers in the code-stream is the one that
+ id="x1-60001.4"></a>SQ &#x0028;layers&#x0029; progression &#x0028;next milestone?&#x0029;</h4>
+<!--l. 280--><p class="noindent" >The logical order of the S-layers in the code-stream is the one that
 allows, when the code-stream is decoded sequentially, the progressive
 increase of the spatial resolution of the video. For example, if
-<!--l. 275--><math 
+<!--l. 283--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >s</mi></math>
 is the number of levels of the DWT, the generated code-stream has
-<!--l. 276--><math 
+<!--l. 284--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
 class="MathClass-open">&#x0028;</mo><mi 
@@ -1811,7 +1833,7 @@ class="MathClass-open">&#x0028;</mo><mi
 class="MathClass-bin">+</mo> <mn>1</mn><mo 
 class="MathClass-close">&#x0029;</mo></math>
 S-layers </p><table class="equation-star"><tr><td>
-<!--l. 277--><math 
+<!--l. 285--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                   <mo 
@@ -1851,7 +1873,7 @@ class="MathClass-punc">.</mo><mi
 class="MathClass-close">&#x007D;</mo><mo 
 class="MathClass-punc">,</mo>
 </math></td></tr></table>
-<!--l. 280--><p class="indent" >   which are able to generate <!--l. 280--><math 
+<!--l. 288--><p class="indent" >   which are able to generate <!--l. 288--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
 class="MathClass-open">&#x0028;</mo><mi 
@@ -1859,7 +1881,7 @@ class="MathClass-open">&#x0028;</mo><mi
 class="MathClass-bin">+</mo> <mn>1</mn><mo 
 class="MathClass-close">&#x0029;</mo></math>
 progressive reconstructions </p><table class="equation-star"><tr><td>
-<!--l. 282--><math 
+<!--l. 290--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                       <mo 
@@ -1893,32 +1915,32 @@ class="MathClass-punc">,</mo><msup><mrow
 class="MathClass-close">&#x007D;</mo><mo 
 class="MathClass-punc">.</mo>
 </math></td></tr></table>
-                                                                  
-
-                                                                  
-<!--l. 286--><p class="indent" >   Moreover, Quality &#x0028;Q-progression&#x0029; scalability in each SRL can be also
+<!--l. 294--><p class="indent" >   Moreover, Quality &#x0028;Q-progression&#x0029; scalability in each SRL can be also
 achieved in the high-frequency textures if a quality-scalable image codec
 such as JPEG2000&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xtaubman2002jpeg2000">2</a>&#x005D;</span> replaces the PNG compressor, generating a number
-<!--l. 289--><math 
+<!--l. 297--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >q</mi></math>
 of quality-layers &#x0028;&#x201C;Q-layers&#x201D;&#x0029; by each motion compensated high-frequency
 subband. A SQ-progression is de&#xFB01;ned considering both forms of scalability
+                                                                  
+
+                                                                  
 &#x0028;spatial and quality&#x0029;, with a higher number of layers. For example, if
-<!--l. 292--><math 
+<!--l. 300--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >s</mi> <mo 
 class="MathClass-rel">=</mo> <mn>3</mn></math> &#x0028;2 IPP...-type
-iterations&#x0029; and <!--l. 293--><math 
+iterations&#x0029; and <!--l. 301--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >q</mi> <mo 
 class="MathClass-rel">=</mo> <mn>2</mn></math>,
 the progression of layers would be </p><table class="equation-star"><tr><td>
-<!--l. 294--><math 
+<!--l. 302--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
 <mo 
@@ -2005,7 +2027,7 @@ class="MathClass-close">&#x005D;</mo><mo
 class="MathClass-close">&#x007D;</mo><mo 
 class="MathClass-punc">.</mo>
 </math></td></tr></table>
-<!--l. 318--><p class="indent" >   The use of quality scalability boosts the possibilities in real-time streaming scenarios
+<!--l. 326--><p class="indent" >   The use of quality scalability boosts the possibilities in real-time streaming scenarios
 where the transmission bit-rate can be variable &#x0028;sending more or less Q-layers of a given
 spatial resolution depending on the bit-rate&#x0029;. Notice that the SQ-progression is free of
 drift-error.<span class="footnote-mark"><a 
@@ -2014,30 +2036,30 @@ href="index3.html#fn2x0"><sup class="textsuperscript">2</sup></a></span><a
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-70002"></a>What you have to do?</h3>
-<!--l. 338--><p class="noindent" >Implement the codec described in the Fig.&#x00A0;<a 
+<!--l. 346--><p class="noindent" >Implement the codec described in the Fig.&#x00A0;<a 
 href="#x1-4001r1">1<!--tex4ht:ref: fig:codec --></a>, preferiblemente in a &#x0028;or
 several&#x0029; Jupyter notebook&#x0028;s&#x0029;. Test it by tracing a RD curve for di&#xFB00;erent
-<!--l. 340--><math 
+<!--l. 348--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x0394;</mi></math> values
 for the quantizer &#x0028;see Eqs. &#x0028;d&#x0029; and &#x0028;g&#x0029;&#x0029;. Compare it with the curve generated without
 using MC &#x0028;use always I-type frames&#x0029;.
-</p><!--l. 344--><p class="noindent" >
+</p><!--l. 352--><p class="noindent" >
 </p>
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-80003"></a>Timming</h3>
+<!--l. 354--><p class="noindent" >In groups, you will present the results for this milestone during the exam
+time.
                                                                   
 
                                                                   
-   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
- id="x1-80003"></a>Timming</h3>
-<!--l. 346--><p class="noindent" >In groups, you will present the results for this milestone during the exam
-time.
-</p><!--l. 349--><p class="noindent" >
+</p><!--l. 357--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-90004"></a>Deliverables</h3>
-<!--l. 351--><p class="noindent" >The notebook&#x0028;s&#x0029; and the presentation.
-</p><!--l. 353--><p class="noindent" >
+<!--l. 359--><p class="noindent" >The notebook&#x0028;s&#x0029; and the presentation.
+</p><!--l. 361--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-100005"></a>Resources</h3>
