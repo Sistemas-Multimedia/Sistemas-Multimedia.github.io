@@ -22,16 +22,16 @@ be predicted-coded (P-type), respect to the previous one\footnote{A
 in the DWT domain) will be I-type coeffs, and in a P-type frame, the
 different coeffs will be I-type or P-type.
 
-\subsection{A block diagram of the codec}
+\subsection{A block diagram of the step codec}
 
 \begin{figure}
   \centering
   \svg{graphics/codec3}{1000}
-  \caption{The IPP... MRVC video codec.}
+  \caption{The IPP... MRVC step codec.}
   \label{fig:codec}
 \end{figure}
 
-The MRVC IPP... codec has been described in the
+The MRVC IPP... step (one resolution level) codec has been described in the
 Fig.~\ref{fig:codec}. The equations that describe this system are:
 
 \begin{equation}
@@ -189,43 +189,43 @@ This
 shows how to implement a simple DPCM codec.
 
 \subsection{Spatial multiresolution}
-As it can be seen in the previous section, in each IPP... iteration,
-only the high-frequency information of the sequence of frames is
-decorrelated ($H$ subbands) considering the information provided by
-the low-frequences ($L$ subband), which are losslessly transmitted
-between the encoder and the decoder. Notice that if the $L$ data
-cannot be transmitted to the decoder, a drift error will occur because
-the matrix $S_k$ will be different in the encoder and the decoder for
-the same frame $k$.
+As it can be seen in the previous section, in each IPP... iteration of
+the step encoder, only the high-frequency information of the sequence
+of frames is decorrelated ($H$ subbands) considering the information
+provided by the low-frequences ($L$ subband), which are losslessly
+transmitted between the encoder and the decoder. Notice also that if
+the $L$ data cannot be transmitted to the decoder, a drift error will
+occur because the matrix $S_k$ will be different in the encoder and
+the decoder for the same frame $k$.
 
 Obviously (and unfortunately), the lossless transmission of the $L$'s
 bounds the compression ratio that we will get. One solution is to
 perform more (than 1) levels at the DWT stage (see Eq.~(a)) and to
-apply the IPP... MRVC codec by spatial resolutions, starting at the
-lowest, as the decoder will do at decompression time. If we represent
-the Spatial Resolution Level (SRL) with an superindex, being 0 the
-original SRL, we can express the operation of the codec described in
-the Fig.~\ref{fig:codec} by
+apply the IPP... MRVC step encoder by spatial resolutions, starting at
+the lowest, as the decoder will do at decompression time. If we
+represent the Spatial Resolution Level (SRL) with an superindex, being
+0 the original SRL, we can express the operation of the codec
+described in the Fig.~\ref{fig:codec} by
 \begin{equation}
   \left\{
     \begin{array}{l}
-      \text{C}(V^0_k) = \{V^0_k.L, \tilde{E}^0_k.H\} = \{V^1_k, \tilde{E}^0_k.H\} \\
-      \text{D}(\{V^1_k, \tilde{E}^0_k.H\}) = \tilde{V}^0_k,
+      \text{SE}(V^0_k) = \{V^0_k.L, \tilde{E}^0_k.H\} = \{V^1_k, \tilde{E}^0_k.H\} \\
+      \text{SD}(\{V^1_k, \tilde{E}^0_k.H\}) = \tilde{V}^0_k,
     \end{array}
   \right.
   \label{eq:codec_1l}
 \end{equation}
-where $\text{C}(\cdot)$ represents to the operation of the
-IPP... encoder and $\text{D}(\cdot)$ to the operation of the
-IPP... decoder. As it can be seen, Eq.~\ref{eq:codec_1l} is only valid
-when only one level of the DWT has been applied.
+where $\text{SE}(\cdot)$ represents to the operation of the
+IPP... step encoder and $\text{SD}(\cdot)$ to the operation of the
+IPP... step decoder. As it can be seen, Eq.~\ref{eq:codec_1l} is only
+valid when only one level of the DWT has been applied.
 
 In general, for $s$ levels of the DWT, we have that
 \begin{equation}
   \left\{
     \begin{array}{l}
-      \text{C}(V^{s-1}_k) = \{V^s_k, \tilde{E}^{s-1}_k.H\} \\
-      \text{D}(\{V^s_k, \tilde{E}^{s-1}_k.H\}) = \tilde{V}^{s-1}_k,
+      \text{SE}(V^{s-1}_k) = \{V^s_k, \tilde{E}^{s-1}_k.H\} \\
+      \text{SD}(\{V^s_k, \tilde{E}^{s-1}_k.H\}) = \tilde{V}^{s-1}_k,
     \end{array}
   \right.
   \label{eq:codec_sl}
@@ -237,8 +237,8 @@ The next SRL ($s-2$), $\tilde{V}^{s-2}$, is determined by
 \begin{equation}
   \left\{
     \begin{array}{l}
-      \text{C}(\tilde{V}^{s-2}_k) = \{\tilde{V}^{s-1}_k, \tilde{E}^{s-2}_k.H\} \\
-      \text{D}(\{\tilde{V}^{s-1}_k, \tilde{E}^{s-2}_k.H\}) = \tilde{V}^{s-2}_k,
+      \text{SE}(\tilde{V}^{s-2}_k) = \{\tilde{V}^{s-1}_k, \tilde{E}^{s-2}_k.H\} \\
+      \text{SD}(\{\tilde{V}^{s-1}_k, \tilde{E}^{s-2}_k.H\}) = \tilde{V}^{s-2}_k,
     \end{array}
   \right.
   \label{eq:codec_s1l}
@@ -257,18 +257,16 @@ Eq.~\ref{eq:codec_1l}.
 
 \begin{figure}
   \centering
-  \svg{graphics/multiresolution}{600}
-  \caption{Implementing spatial multiresolution in
-    IPP... MRVC. $\text{T}^s$ stands for the $s$-levels DWT.}
-  \label{fig:multiresolution}
+  \svg{graphics/encoder}{600}
+  \caption{The IPP... MRVC encoder.}
+  \label{fig:encoder}
 \end{figure}
 
 So, only the lowest SRL of $\tilde{V}$, $\tilde{V}^s$ is an
 III... pure sequence of small frames, losslessly encoded. This
 multiresolution (multistage) scheme has been described in the
-Fig.~\ref{fig:multiresolution}. The output of an IPP... Encoder
-iteration will be refered as ``a spatial-layer of the code-stream'',
-or simply as ``a S-layer''.
+Fig.~\ref{fig:encoder}. The output of an IPP... encoder will be
+refered as ``spatial-layers'', or simply as ``S-layers''.
 
 \subsection{SQ (layers) progression}
 The logical order of the S-layers in the code-stream is the one that
