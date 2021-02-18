@@ -105,8 +105,8 @@ where, notice that
 \begin{equation}
   [E_k.H]_{i,j} = \left\{
   \begin{array}{ll}
-    {[}V_k.H{]}_{i,j}                       & \text{if}~{[}\hat{W}_k.H{]}_{i,j} = 0~\text{(I-type coeff)} \\
-    {[}V_k.H{]}_{i,j} - [\hat{W}_k.H]_{i,j} & \text{otherwise}~\text{(P-type coeff)},
+    {[}V_k.H{]}_{i,j}                       & \text{if}~{[}\hat{V}'_k.H{]}_{i,j} = 0~\text{(I-type coeff)} \\
+    {[}V_k.H{]}_{i,j} - [\hat{V}'_k.H]_{i,j} & \text{otherwise}~\text{(P-type coeff)},
   \end{array}
 \right.
 \end{equation}
@@ -122,7 +122,7 @@ where, notice that
 \end{equation}
 
 \begin{equation}
-  [\tilde{V}_k.H] \leftarrow [\tilde{E}_k.H] + [\hat{V}_k.H],
+  [\tilde{V}_k.H] \leftarrow [\tilde{E}_k.H] + [\hat{V}'_k.H],
   \tag{E.h}
 \end{equation}
 and notice that if $[\hat{V}_k.H]=0$ then $[\tilde{V}_k.H] =
@@ -140,7 +140,7 @@ and by definition, $Z^{-1}([V_{-1}.H]) = 0$,
 \end{equation}
 
 \begin{equation}
-  [\hat{W}_k.H]_{i,j} \leftarrow \left\{
+  [\hat{V}'_k.H]_{i,j} \leftarrow \left\{
     \begin{array}{ll}
       {[}\hat{V}_k.H{]}_{i,j}  & \text{if}~{[}E_k.L{]}_{i,j} < {[}V_k.L{]}_{i,j} \text{(P-type coeff)} \\
       0                       & \text{otherwise (I-type coeff)},
