@@ -18,5 +18,5 @@
 *.bbl
 *.blg
 *.toc
-*/.ipynb_checkpoints/
+*.ipynb_checkpoints
 *.bak
