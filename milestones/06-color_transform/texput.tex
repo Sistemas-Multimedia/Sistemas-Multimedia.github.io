@@ -63,13 +63,13 @@ will compare are: (1)
 \subsection{Some words about transform coding}
 Quantization is more effective (the compression ratios are higher)
 when the energy of the signal is accumulated in an small number of
-samples because we can dedicate the bit-rate to encode the more
-energetic samples.\footnote{For example, is the energy of a channel is
-  small, quantization could completely remove such energy and the
-  reconstruction of the image would be reasonable. The most part of
-  entropy codecs (and of course, DEFLATE) works much better if we
-  found sequences of zeros. Therefore, quantizing will improve the
-  compression ratios.}
+samples because we can dedicate more bits to encode the more energetic
+samples.\footnote{For example, is the energy of a channel is small,
+quantization could completely remove such energy and the
+reconstruction of the image would be reasonable. The most part of
+entropy codecs (and of course, DEFLATE) works much better if we found
+sequences of zeros. Therefore, quantizing will improve the compression
+ratios.}
 \href{https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf}{Transform
   coding} can exploit
 \href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlation}
@@ -77,7 +77,7 @@ in \href{https://en.wikipedia.org/wiki/Signal}{signals} to concentrate
 the
 \href{https://en.wikipedia.org/wiki/Energy_(signal_processing)}{energy}.
 All linear\footnote{Non-linear transform are also possible, but their
-  mathematical operation can not be described using linear algebra.}
+mathematical operation can not be described using linear algebra.}
 transforms can be described by
 \href{https://en.wikipedia.org/wiki/Matrix_multiplication}{matrix-vector
   product}~\cite{strang4linear} as
@@ -236,11 +236,11 @@ or alternatively, by
 \subsubsection{Quantization}
 After analyzing the frame (representing it in the YCrCb domain), the
 next natural step is quantization. Unfortunately, the RGB/YCrCb
-transform is orthogonal is not orthogonal\footnote{The RGB/YCrCb is
-  not orthogonal because, for example, as we can see in the
-  Eq.~\ref{eq:YCrCb_analysis}, the value of Cr depends on the value of
-  Y, and therefore, there is a dependency between both
-  \href{https://en.wikipedia.org/wiki/Basis_(linear_algebra)}{basis}.}
+transform is not orthogonal\footnote{The RGB/YCrCb is not orthogonal
+because, for example, as we can see in the
+Eq.~\ref{eq:YCrCb_analysis}, the value of Cr depends on the value of
+Y, and therefore, there is a dependency between both
+\href{https://en.wikipedia.org/wiki/Basis_(linear_algebra)}{basis}.}
 and therefore the contribution of each channel to the quality of the
 reconstructed image $\tilde{X}$ are not additive (this can be seen in
 this
@@ -479,10 +479,10 @@ stronger. For this reason the authors finally propose the transform
 \end{equation}
 that is near orthogonal\footnote{For example, $\frac{1}{4}\frac{-1}{4}
 + \frac{1}{2}\frac{1}{2} + \frac{1}{4}\frac{-1}{4} = \frac{1}{8}$},
-and has channel gains 3 (Y), 2 (Co) and 3 (Cg). These gains suggest that
+and has channel gains 3 (Y), 2 (Co) and 3 (Cg). %These gains suggest that
 
 \subsubsection{Quantization}
-The channel gain suggest to use
+The previous channel gains suggest to use
 \begin{equation}
   \Delta_{\text{Y}} = \frac{3}{2}\Delta_{\text{Co}} = \Delta_{\text{Cg}}.
 \end{equation}
