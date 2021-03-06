@@ -1,5 +1,5 @@
 \input{../../definitions}
-\title{\SM{} - Study Guide - Milestone 11: Motion Compensation in the DWT Domain}
+\title{\SM{} - Study Guide - Milestone 11: Motion Compensation in the Transform Domain}
 
 \maketitle
 
@@ -8,8 +8,8 @@
 \section{Description}
 
 In this milestone we will discuss the characteristics of the motion
-estimation and compensation of frames (considering only one component)
-in the DWT domain.
+estimation and compensation of frames
+in the transform domain.
 
 \subsection{Removing the temporal redundancy through Motion Compensation (MC)}
 The next natural step in the process of decorrelating the sequence of
@@ -22,14 +22,14 @@ can be compressed with a higher compression ratio because there is
 less information to encode in the residue sequence than in the
 original one.
 
-\subsection{Integer pixel accuracy In-Band Motion Estimation and Compensation}
+\subsection{Integer pixel accuracy In-Band Motion estimation and Compensation (IBMC)}
 At this stage of the encoding process, the video data is represented
-in the DWT domain, and therefore, we need to perform a In-Band Motion
+in the DWT domain, and therefore, we need to perform an In-Band Motion
 estimation and Compensation
 (IBMC)~\cite{andreopoulos2005complete}). Let's suppose that the number
 of levels of the DWT is 1, and therefore, each frame has been
 decomposed into two 2D subbands $L$ and $H$ (remember that using the
-notation introduces in the previous milestone, $H$ has inside the
+notation introduced in the previous milestone, $H$ has inside the
 three high-frequency subbands: $LH$, $HL$ and $HH$, and that
 $L=LL$). This discussion will be also constrained to the case in which
 the movement of the objects in the scene is a integer number of
@@ -39,15 +39,15 @@ pixels.
 Unfortunately, DWT decompositions are shift-variant as a consequence
 of the downsampling performed during the DWT to achieve a critical
 representation. This can be seen in the Fig.~\ref{fig:DWT} were some
-DWT coefficients of a test video with three test frames has been
-shown. As it can be seen, when the circle moves to the left only one
-pixel (as happens in the frames 0 and 1), the value of the
-coefficients that correspond to the circunference of the circle are
-different between the reference frame (0) and the predicted frame
-(1). This makes quite difficult to estimate and compensate the motion
-between frames. Notice also that the effects of shift-variance is also
-visible after using the inverse transform when the coefficients are
-filtered or quantized, because the aliasing between the filters is not
+DWT coefficients of a test video with three frames has been shown. As
+it can be seen, when the circle moves to the left only one pixel (as
+happens between the frames 0 and 1), the value of the coefficients
+that correspond to the circunference of the circle are different
+between the reference frame (0) and the predicted frame (1). This
+makes quite difficult to estimate and compensate the motion between
+frames. Notice also that the effects of shift-variance is also visible
+after using the inverse transform when the coefficients are filtered
+or quantized, because the aliasing between the filters is not
 completely cancelled in this case~\cite{bradley2003shift}.
 
 \begin{figure}
@@ -78,16 +78,19 @@ frames, and the same coefficients for a 2-pixel motion is because, in
 the first case the right coefficients were discarded by the
 downsamplers, and in the second case not.
 
-Usually, we call phases to the two possible coefficients resulting
-from one (1D) filter to be subsampled, being the even phase, the even
-coefficients, and the odd phase, the odd coefficients. Therefore, when
-the motion is of type ``even'' (when we have a $2N$-pixels motion), we
-should use the even phase to compensate the frames, and viceversa (use
-the odd phase to compensate a $2N+1$-pixels motion). Notice that in
-the 2D case, and always working with only one level of the DWT, we
-have up to four different phases: (even, even)-, (even, odd)-, (odd,
-even)-, and (odd, odd)-phase coefficients. Thus, depending on the type
-of motion detected, the corresponding phase should be selected.
+Usually, we call \emph{phases} to the two possible coefficients
+resulting from one (1D) filter to be subsampled, being the even phase,
+the even coefficients, and the odd phase, the odd
+coefficients. Therefore, when the motion is of type ``even'' (when we
+have a $2N$-pixels motion), we should use the even phase to compensate
+the frames, and viceversa (use the odd phase to compensate a
+$2N+1$-pixels motion). Notice that in the 2D case, and always working
+with only one level of the DWT, we have up to four different phases:
+(even, even)-, (even, odd)-, (odd, even)-, and (odd, odd)-phase
+coefficients. Thus, depending on the type of motion detected, the
+corresponding phase should be selected.
+
+\subsection{Recovering the lost phases}
 
 \begin{figure}
   \centering
@@ -106,7 +109,6 @@ of motion detected, the corresponding phase should be selected.
 \label{fig:odwt}
 \end{figure}
 
-\subsection{Recovering the lost phases}
 There are different alternatives for regenerating the phases discarded
 by the subsamplers of the DWT. This is equivalent to compute the
 Overcomplete DWT (ODWT)~\cite{mallat1999wavelet}.
@@ -119,9 +121,10 @@ Overcomplete DWT (ODWT)~\cite{mallat1999wavelet}.
 \item Considering the previous experiments, it's easy to see that if
   we shift the signal one sample and perform the DWT, we get the
   ``lost'' phase. This method has been used to perform efficient MC in
-  the DWT domain~\cite{park2000motion,li2001all}. See this \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/ODWT_with_delay.ipynb}{notebook}.
+  the DWT domain~\cite{park2000motion,li2001all}. See this
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/ODWT_with_delay.ipynb}{notebook}.
 \item Apply some transform (such as for example, the CODWT
-  (Complete-to-Overcomplete DWT)~\cite{andreopoulos2005complete}) to
+  (Complete-to-Overcomplete DWT)~\cite{andreopoulos2005complete} to
   the DWT to reconstruct the ODWT.
 \end{enumerate}
 The Fig.~\ref{fig:odwt} shows the shift invariance of the ODWT.
@@ -134,37 +137,38 @@ use
 non-overlaping blocks and computes a motion vector for every block,
 that provides a projection (a prediction) $\hat{P}$ of the reference
 frame $R$ that must be as close as possible to the predicted frame
-$P$. These blocks usually have a size of 16x16 pixel.
+$P$. These blocks usually have a size of 16x16 pixels.
 
 The use of blocks imples that:
 \begin{enumerate}
-\item If $N$ is the number of pixels in a frame, $N/256$ is the number
-  of motion vectors. Therefore, if the motion vectors field has to be
-  sent to the decoder, the data overhead is small (although this
-  depends on the length of the representation of the texture).
+\item If $N$ is the number of pixels in a frame, $N/256$ (for 16x16
+  blocks) is the number of motion vectors. Therefore, if the motion
+  vectors field has to be sent to the decoder, the data overhead is
+  small (although this depends on the length of the representation of
+  the texture).
 \item All the coefficients that correspond to the same block has the
   same phase. Thus, if the phase also has to be sent to the decoder,
   again, the data overhead can be considered small.
 \end{enumerate}
 
 Unfortunately, there is a problem with mixing the phases. To
-reconstruct the border pixels of the blocks, the adjacent (same phase)
-coefficients must be also used by the decoder (see this
+reconstruct the border pixels of the blocks, the adjacent (with the
+same phase) coefficients must be also used by the decoder (see this
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/mixing_phases.ipynb}{notebook}). For
 this reason, the size of the blocks affects to the compression ratio
-(the smaller the blocks, the higher the number of adajacent
+(the smaller the blocks, the higher the number of adjacent
 coefficients, and therefore, the lower the compression ratio). We can
-think about that this effect can be mitigated using larger block
-sizes, but this will also affect to the compression ratio because the
-quality of the predictions worsen with the increment of the size of
-the blocks. This supposes an optimization problem that it's hard to
-solve, especially in real-time applications.
+think that this effect can be mitigated using larger block sizes, but
+this will also affect to the compression ratio because the quality of
+the predictions worsen with the increment of the size of the
+blocks. This carries an optimization problem that it's hard to solve,
+especially in real-time applications.
 
 \subsection{MC in the Laplacian Pyramid}
 The Laplacian Pyramid, that was proposed by Burt and
 Adelson~\cite{burt1987laplacian} and has been used for the design of
 spatially-scalable image and video codecs, such as
-SHVC~\cite{sullivan2012overview}. The
+SHVC~\cite{sullivan2012overview}.
 
 \begin{figure}
   \centering
@@ -187,13 +191,14 @@ orthogonal and therefore, they do not cancel the aliasing between them
 (see this
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/11-MC_in_DWT_domain/LP_is_not_critical.ipynb}{notebook}) when their downsampled outputs are added.
 
-As a consequence of that downsampling can not be used without
+As a consequence of that the downsampling can not be used without
 violating the perfect reconstruction, the redundancy in the LP tends
 to 2 with the number of levels of the pyramid, which affects
-negatively to the compression ratio. An adventage of this is that the
-LP is shift-invariant in the high-frequency subband (see the
-Fig.~\ref{fig:LP}), and of course, like the DWT, in the low-frequency
-subband when the motion is a multiple of 2.
+negatively to the compression ratio. On the contrary, an advantage of
+this is that the LP is shift-invariant in the high-frequency subband
+(see the Fig.~\ref{fig:LP}), and of course, like the DWT, in the
+low-frequency subband when the motion is a multiple of 2 (see the
+Fig.~\ref{fig:LP})..
 
 \begin{figure}
   \centering
@@ -208,8 +213,8 @@ subband when the motion is a multiple of 2.
 \end{figure}
 
 \subsection{Pyramid DWT (PDWT)}
-We can estimate and componsensate the motion in an alternative
-representation of the DWT decomposition inspired in the LT, that we
+Inspired in the LP, we can estimate and componsensate the motion in an alternative
+representation of the DWT decomposition, that we
 have called Pyramid DWT. In fact, a PDWT decomposition is a special
 case of a LP where the filters are (bi)orthogonal DWT filters (in this
 case, we say that the LP is a tight frame and therefore, it can be
@@ -246,8 +251,8 @@ Eq.~\ref{eq:PDWT} to the subband $L$, recursively.
 The PDWT is only near shift-invariant as it can be seen in the
 Fig.~\ref{fig:PDWT}. However, it has several advantages:
 \begin{enumerate}
-\item The CS-LPT as compact as the DWT.
-\item The phases do not need to be considered, which simplifies the
+\item The CS-LPT is as compact as the DWT.
+\item The phases are not considered, which simplifies the
   ME/MC process and enables the use of any DWT filter.
 \item The error generated by the lack of shift-invariance for the
   odd-type motion is smaller than for the DWT (see
