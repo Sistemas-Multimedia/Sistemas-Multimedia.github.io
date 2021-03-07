@@ -12,24 +12,30 @@ Temporal correlation between video frames\footnote{Remember that,
   although this discussion will deal with frames, in our particular
   case, we will decorrelate DWT subbands.} can be removed by MC
 (Motion Compensation). MC implies to decrease (usually by
-substracting) the amount of information in the frames. The removed
+substracting) an amount of information in the frames. The removed
 information must be available at both, the encoder and the decoder
-side, in order to make the process reversible.
+side, in order to make this a reversible process.
 
-Specifically, an MC Predictor (MCP) inputs one (or more) reference
-frame(s) $\{R_k\}$, and one (or more) motion vectors field(s)
-$\{\overset{\cdot\rightarrow\cdot}{V}_k\}$, and outputs a prediction
-frame
+Specifically, a MCP (MC Predictor) inputs one (or more) reference
+frame(s) $R=\{R_k\}$, and a motion vectors field
+$\overset{\cdot\rightarrow\cdot}{V}$, and outputs a prediction frame
 \begin{equation}
-  \hat{P} =  \overset{P\rightarrow R}{V}(R)
+  \hat{P_k} =  \overset{P_k\rightarrow R}{V}(R),
+  \label{eq:MCP1}
 \end{equation}
-and how to use it. In this milestone we show how to compute
-$\{\overset{P\rightarrow R}{V}_k\}$. In the next milestone we will see
-how to remove the $\hat{P}$'s information from the predicted frame
-$P$. For the sake of simplicity, in the rest of this discussion it
-will be suppose that the number of reference frames in only 1
-(probably, the closest to the predicted frame), and therefore, only
-one motion field $\overset{P\rightarrow R}{V}$ will be used.
+where $P_k$ is the predicted frame. In this milestone we show how to
+compute $\overset{P_k\rightarrow R}{V}$. In the futher milestones we
+will see how to remove the $\hat{P}$'s information from the predicted
+frame $P$. At this moment, for the sake of simplicity, in the rest of
+this discussion it will be suppose that the number of reference frames
+in only 1 (probably, the closest one to the predicted frame), and
+therefore, we don't need to specify which are the reference images to
+make the prediction. For this reason, Eq,~\ref{eq:MCP1} can be
+rewritten as
+\begin{equation}
+  \hat{P_k} =  \overset{P_k\rightarrow P_{k-1}}{V}(P_{k-1}) = \overset{k\rightarrow k-1}{V},
+  \label{eq:MCP2}
+\end{equation}
 
 \subsection{What exactly we need?}
 Our main objective is to minimize the differences (for example, the
