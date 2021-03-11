@@ -52,20 +52,20 @@ operator, and $V_k$ is the $k$-th frame of the sequence,
   Z^{-1}([V_k.L]) = [V_{k-1}.L],
   \tag{E.b}
 \end{equation}
-and by definition, $Z^{-1}([V_{-1}.L]) = 0$.
+and by definition, $Z^{-1}([V_{-1}.L]) = 0$,
 
 \begin{equation}
-  \overset{k+1\rightarrow k}{V} \leftarrow \text{ME}([V_k.L], [V_{k-1}.L]),
+  \overset{k\rightarrow k-1}{V} \leftarrow \text{M}([V_k.L], [V_{k-1}.L]),
   \tag{E.c}
 \end{equation}
-where ME stands for Motion Estimation, and by definition,
+where M stands for Motion estimation, and by definition,
 $\overset{0\rightarrow (-1)}{V}=0$,
 
 \begin{equation}
-  [\hat{V}_k.L] \leftarrow \text{MCP}(\overset{k+1\rightarrow k}{V}, [V_{k-1}.L]),
+  [\hat{V}_k.L] \leftarrow \text{P}(\overset{k\rightarrow k-1}{V}, [V_{k-1}.L]),
   \tag{E.d}
 \end{equation}
-where MCP stands for Motion Compensated Prediction,
+where P stands for motion compensated Prediction,
 
 \begin{equation}
   [E_k.L] \leftarrow [V_k.L] - [\hat{V}_k.L],
@@ -126,7 +126,7 @@ where, notice that
   [\tilde{V}_k.H] \leftarrow [\tilde{E}_k.H] + [\hat{V}'_k.H],
   \tag{E.h}
 \end{equation}
-and notice that if $[\hat{V}_k.H]=0$ then $[\tilde{V}_k.H] =
+and notice that if $[\hat{V}_k.H]=0$, then $[\tilde{V}_k.H] =
 [\tilde{E}_k.H]$,
 
 \begin{equation}
