@@ -96,8 +96,17 @@ error texture data,
 and notice that if $\overset{\wedge}{V}_k=0$, then
 $\overset{\sim}{E}_k = \overset{\sim}{V}_k$,
 
+\begin{equation}
+  \overset{\wedge}{V}_k \leftarrow \text{P}(\overset{\sim}{\overset{k\rightarrow k-1}{V}}, \overset{\sim}{V}_{k-1}),
+  \tag{j}
+\end{equation}
+where P$(\cdot,\cdot)$ is a motion compensated predictor.
+
 Notice that if $\overset{\wedge}{{V}}_k$ is similar to $V_k$, then
-$E_k$ will be approximately zero, and therefore, easely compressed.
+$E_k$ will be approximately zero, and therefore, easely
+compressed. Another interesting aspect to highlight is that the
+encoder replicates de decoder in order to use the reconstructed images
+as reference and avoid the drift error.
 
 \section{What you have to do?}
 

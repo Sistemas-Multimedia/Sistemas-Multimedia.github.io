@@ -589,20 +589,10 @@ class="MathClass-bin">&#x2227;</mo></mrow></mover></mrow><mrow
 ><mi 
 >k</mi></mrow></msub 
 > <mo 
-class="MathClass-rel">=</mo> <mn>0</mn></math>
-then <!--l. 96--><math 
+class="MathClass-rel">=</mo> <mn>0</mn></math>,
+then <!--l. 97--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
-><mover class="overset"><mrow 
-><mi 
->V</mi> </mrow><mrow 
-> <mo 
-class="MathClass-rel">&#x223C;</mo></mrow></mover></mrow><mrow 
-><mi 
->k</mi></mrow></msub 
-> <mo 
-class="MathClass-rel">=</mo> <mo 
-class="MathClass-open">&#x005B;</mo><msub><mrow 
 ><mover class="overset"><mrow 
 ><mi 
 >E</mi></mrow><mrow 
@@ -610,8 +600,70 @@ class="MathClass-open">&#x005B;</mo><msub><mrow
 class="MathClass-rel">&#x223C;</mo></mrow></mover></mrow><mrow 
 ><mi 
 >k</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo><msub><mrow 
+> <mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+> <mo 
+class="MathClass-rel">&#x223C;</mo></mrow></mover></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
 ></math>,
-</p><!--l. 99--><p class="indent" >   Notice that if <!--l. 99--><math 
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-3030r1"></a>
+<!--l. 99--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation"><msub><mrow 
+>
+                 <mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+> <mo 
+class="MathClass-bin">&#x2227;</mo></mrow></mover></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">&#x2190;</mo><mstyle 
+class="text"><mtext  >P</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mover class="overset"><mrow 
+><mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi> <mo 
+class="MathClass-rel">&#x2192;</mo> <mi 
+>k</mi> <mo 
+class="MathClass-bin">&#x2212;</mo> <mn>1</mn></mrow></mover></mrow><mrow 
+> <mo 
+class="MathClass-rel">&#x223C;</mo></mrow></mover><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+> <mo 
+class="MathClass-rel">&#x223C;</mo></mrow></mover></mrow><mrow 
+><mi 
+>k</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-3031r0"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;j&#x0029;<a 
+ id="x1-3032r0"></a></td></tr></table>
+<!--l. 103--><p class="indent" >   where P<!--l. 103--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-bin">&#x22C5;</mo><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-bin">&#x22C5;</mo><mo 
+class="MathClass-close">&#x0029;</mo></math>
+is a motion compensated predictor.
+</p><!--l. 105--><p class="indent" >   Notice that if <!--l. 105--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mover class="overset"><mrow 
@@ -622,7 +674,7 @@ class="MathClass-bin">&#x2227;</mo></mrow></mover></mrow><mrow
 ><mi 
 >k</mi></mrow></msub 
 ></math>
-is similar to <!--l. 99--><math 
+is similar to <!--l. 105--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -630,7 +682,7 @@ display="inline" ><msub><mrow
 ><mi 
 >k</mi></mrow></msub 
 ></math>,
-then <!--l. 100--><math 
+then <!--l. 106--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -638,19 +690,24 @@ display="inline" ><msub><mrow
 ><mi 
 >k</mi></mrow></msub 
 ></math>
-will be approximately zero, and therefore, easely compressed.
+will be approximately zero, and therefore, easely compressed. Another interesting
+aspect to highlight is that the encoder replicates de decoder in order to use the
+reconstructed images as reference and avoid the drift error.
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-40002"></a>What you have to do?</h3>
-<!--l. 104--><p class="noindent" >
+<!--l. 113--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-50003"></a>Timming</h3>
-<!--l. 106--><p class="noindent" >
+<!--l. 115--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-60004"></a>Deliverables</h3>
-<!--l. 108--><p class="noindent" >
+                                                                  
+
+                                                                  
+<!--l. 117--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-70005"></a>Resources</h3>
