@@ -9,12 +9,10 @@
 
 It's time to test the performance of the ME/MC process previously
 described. We will encode a sequence of frames $\{W_k\}$ using the
-pattern IPP... which means that the first frame will be intra-coded
+pattern IPP..., which means that the first frame will be intra-coded
 (I-type frame) and the rest of frames of the GOF (Group Of
-(\href{https://en.wikipedia.org/wiki/Group_of_pictures}{Frames}) will
+\href{https://en.wikipedia.org/wiki/Group_of_pictures}{Frames}) will
 be predicted-coded (P-type frame), respect to the previous one.
-
-\subsection{A block diagram of the step codec}
 
 \begin{figure}
   \centering
@@ -24,7 +22,7 @@ be predicted-coded (P-type frame), respect to the previous one.
 \end{figure}
 
 The IPP... coding can be done by the codec shown in the
-Fig.~\ref{fig:IPP_codec}, where:
+Fig.~\ref{fig:IPP_codec}, where (for the case of the YCoCg transform):
 
 \begin{equation}
   V_k \leftarrow \text{C}(W_k) =
@@ -108,6 +106,12 @@ encoder replicates de decoder in order to use the reconstructed images
 as reference and avoid the drift error.
 
 \section{What you have to do?}
+
+Run the notebook \href{}{image_IPP.ipynb}. Use a different video (see
+this
+\href{https://github.com/Sistemas-Multimedia/MRVC/tree/master/sequences}{directory}). Check
+the improvement of IPP... coding over III... coding. Visualize the
+reconstructed sequence using \\href{https://ffmpeg.org/ffplay.html}{texttt{ffplay}}.
 
 \section{Timming}
 
