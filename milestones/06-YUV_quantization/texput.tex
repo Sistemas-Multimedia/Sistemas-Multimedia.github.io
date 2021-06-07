@@ -23,7 +23,7 @@ a video), a pixel is represented usually through three color components
 one measuring the energy in a different band of the
 \href{https://en.wikipedia.org/wiki/Visible_spectrum}{visible
   spectrum}, and one source of redundancy is the possible correlation
-between those color components.
+between these color components.
 
 To estimate the
 \href{https://en.wikipedia.org/wiki/Redundancy_(information_theory)}{redundancy}
@@ -65,7 +65,7 @@ Quantization is more effective (the compression ratios are higher)
 when the energy of the signal is accumulated in an small number of
 samples because we can dedicate more bits to encode the more energetic
 samples.\footnote{For example, is the energy of a channel is small,
-quantization could completely remove such energy and the
+quantization could completely makes zero such channel, but the
 reconstruction of the image would be reasonable. The most part of
 entropy codecs (and of course, DEFLATE) works much better if we found
 sequences of zeros. Therefore, quantizing will improve the compression
@@ -98,9 +98,9 @@ denotes the
 between the input signal $x$ and the
 \href{https://en.wikipedia.org/wiki/Finite_impulse_response}{taps} of
 the \href{https://en.wikipedia.org/wiki/Digital_filter}{filter}
-$K_i$. These
+$K_i$.\footnote{These
 \href{https://cseweb.ucsd.edu/classes/fa17/cse166-a/lec13.pdf}{slides}
-can help you with this key idea. The inverse (synthesis) transform is
+can help you with this key idea.} The inverse (synthesis) transform is
 computed by
 \begin{equation}
   x = K^{-1}y,
