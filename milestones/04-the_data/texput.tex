@@ -12,9 +12,9 @@ This milestone shows the structure of the
 \theproject{} project. Basically, a video is a
 \href{https://en.wikipedia.org/wiki/Sequence}{sequence} of
 (\href{https://en.wikipedia.org/wiki/Digital_data}{digital})
-\href{https://en.wikipedia.org/wiki/Image}{images}, that we prefer to
-name ``\href{https://en.wikipedia.org/wiki/Film_frame}{frames}''. In
-the context of \theproject{}, a frame can be described as a
+\href{https://en.wikipedia.org/wiki/Image}{images} (or
+\href{https://en.wikipedia.org/wiki/Film_frame}{frames}). In the
+context of \theproject{}, an image can be described as a
 \href{https://en.wikipedia.org/wiki/Matrix_(mathematics)}{matrix} of
 \href{https://en.wikipedia.org/wiki/Pixel}{pixels}.
 
@@ -34,6 +34,16 @@ to remove the
 \href{https://en.wikipedia.org/wiki/Data_compression}{statistical
   redudancy}. Notice that no
 \href{https://en.wikipedia.org/wiki/YUV}{color transform} is used.
+
+We will use \href{https://vicente-gonzalez-ruiz.github.io/PNG/}{PNG}
+basically as an
+\href{https://en.wikipedia.org/wiki/Entropy_encoding}{entropy codec},
+which is a combination of
+\href{https://vicente-gonzalez-ruiz.github.io/Huffman_coding/}{Huffman
+  Coding} and
+\href{https://vicente-gonzalez-ruiz.github.io/LZ77/}{Lempel-Ziv-77
+  Coding}. However, notice that any other lossless image compressor
+could be used.
 
 Finally, notice that all the frames of a video:
 \begin{enumerate}
