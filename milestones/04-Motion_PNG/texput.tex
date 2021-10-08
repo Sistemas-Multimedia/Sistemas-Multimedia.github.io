@@ -9,8 +9,9 @@
 
 This milestone shows the structure of the
 \href{https://en.wikipedia.org/wiki/Video}{videos} used in the
-\theproject{} project. Basically, a digital video is a
-\href{https://en.wikipedia.org/wiki/Sequence}{sequence} of
+\theproject{} project. Basically, a
+(\href{https://en.wikipedia.org/wiki/Raster}{raster}) digital video is
+a \href{https://en.wikipedia.org/wiki/Sequence}{sequence} of
 (\href{https://en.wikipedia.org/wiki/Digital_data}{digital})
 \href{https://en.wikipedia.org/wiki/Image}{images} (or
 \href{https://en.wikipedia.org/wiki/Film_frame}{frames}). In the
@@ -18,29 +19,31 @@ context of \theproject{}, an image can be described as a
 \href{https://en.wikipedia.org/wiki/Matrix_(mathematics)}{matrix} of
 \href{https://en.wikipedia.org/wiki/Pixel}{pixels} (PIcture X-ray
 ELementS), arranged in a regular rectangular grid. Such sequences are
-usully captured by a CCD (Charge Coupled Device). In the digital world, a
-video can be denoted by
+usully captured by a CCD (Charge Coupled Device). In the digital
+world, a video can be denoted by
 \begin{equation*}
   \mathbf{V}_{t,y,x}
 \end{equation*}
-where the spatial coordinatinates
-$(y,x)\in\mathbb{N}\times\mathbb{N}$, the temporal index
-$t\in\mathbb{N}$, and $\mathbf{V}_{t,y,x}\in\mathbf{P}$, the
-\emph{pixel values domain}~\cite{burger2016digital}.
+where the spatial
+\href{https://en.wikipedia.org/wiki/Coordinate_system}{coordinatinates}
+$(y,x)\in\mathbb{N}\times\mathbb{N}$, the temporal coordinate
+$t\in\mathbb{N}$, and $\mathbf{V}_{t,y,x}\in\mathbf{P}$ is the pixel
+value, where $\mathbb{P}^{k}$ is the (pixels) \emph{values
+  domain}~\cite{burger2016digital}. $t$ indexes the $t$-th image in
+the video and its resolution is measured in FPS (Frames Per
+Second). $(x,y$) identify a pixel in an image and
+$0\le x< \mathrm{the~image~width}$:
+$0\le y< \mathrm{the~image~height}$.\footnote{The total number of
+  images in a video is rarely specified in its description.}
 
-The temporal
-\href{https://en.wikipedia.org/wiki/Coordinate_system}{coordinate} $t$
-identifies an image inside of the video, and has as a main feature the
-temporal resolution beasured in Frames (images) Per Second (FPS). The
-spatial coordinate $(y,x)$ ranges depending on the spatial resolution,
-$y$ depends on the \emph{height} of the video, and $x$ on its
-\emph{width}.
-
-
-The pixel values domain is also known and the
-\emph{depth} of the video (in bits per pixel, and can be a vector (for
-example, at it happens in color videos, where at each element of such
-vector is called a \emph{color component}) of integer values.
+Depending on the $k$ dimension of $\mathbb{P}$ (the number of
+components of a pixel), we usually can have grayscale pixels ($k=1$)
+or color (panchromatic) pixels ($k=3$).\footnote{When $k>3$ we use the
+  term ``super/hyper-spectral'' pixels/images/videos.} Finally, if we
+take into consideration the number of bits/component (usually 8,
+although this value can be larger specially for grayscale images), the
+pixel-depth will be 8 bits/pixel for grayscale sequences or
+$3\times 8=24$ bits/pixel for color ones.
 
 We are going to store a video as a sequence of
 \href{https://en.wikipedia.org/wiki/Computer_file}{files} with names
@@ -48,7 +51,7 @@ We are going to store a video as a sequence of
 video name and ``.png'' indicates that the frames are coded using the
 \href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless}
 \href{https://en.wikipedia.org/wiki/Portable_Network_Graphics}{PNG}
-image format~\cite{roelofs1999png}. PNG uses
+(pronounced ``ping'') image format~\cite{roelofs1999png}. PNG uses
 \href{https://en.wikipedia.org/wiki/Differential_pulse-code_modulation}{DPCM}
 and the \href{https://en.wikipedia.org/wiki/DEFLATE}{DEFLATE} codec
 (\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman coding} +
@@ -66,10 +69,12 @@ which is a combination of
 \href{https://vicente-gonzalez-ruiz.github.io/Huffman_coding/}{Huffman
   Coding} and
 \href{https://vicente-gonzalez-ruiz.github.io/LZ77/}{Lempel-Ziv-77
-  Coding}. However, notice that any other lossless image compressor
+  Coding}. However, notice that any other lossless image compressing
+file format (such as \href{https://en.wikipedia.org/wiki/TIFF}{TIFF})
 could be used.
 
-Finally, notice that all the frames of a video:
+Finally, notice that all the frames of the videos used in this
+subject:
 \begin{enumerate}
 \item Have the same
   \href{https://en.wikipedia.org/wiki/Image_resolution}{spatial
@@ -96,6 +101,7 @@ Finally, notice that all the frames of a video:
 \item Run this \href{https://jupyter.org/}{jupyter}
   \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestone/04-the_data/display_video.ipynb}{notebook}
   that shows how to read and write frames.
+\item Please, try to dig a little bit into the insights of the notebook.
 %\item Understand the insights of the notebook.
 \end{enumerate}
 
