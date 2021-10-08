@@ -58,7 +58,24 @@ color components of each pixel of $X$. The
 will compare are: (1)
 \href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB}, (2) the
 \href{https://en.wikipedia.org/wiki/YCbCr}{YCrCb}, and (3) the
-\href{https://en.wikipedia.org/wiki/YCoCg}{YCoCg}.
+\href{https://en.wikipedia.org/wiki/YCoCg}{YCoCg}. These luma-based
+color domains rely on the idea of separating the luminance component Y
+from two chroma components (red and blue in the case of YCrCb) and,
+instead of directly encoding colors, encoding color diﬀerences. This
+presents two main advantages~\cite{burger2016digital}:
+\begin{eumerate}
+\item Compatibility with legacy black and white systems is maintained
+  while at the same time the bandwidth of the signal can be optimized
+  by using diﬀerent transmission bandwidths for the brightness and the
+  color components.
+\item Since the human visual system is not able to perceive detail in
+  the color components as well as it does in the intensity part of a
+  video signal, the amount of information, and consequently bandwidth,
+  used in the color channel can be reduced to approximately 1/4 of
+  that used for the intensity component. This fact is also used when
+  compressing digital still images and is why, for example, the JPEG
+  codec converts RGB images to YCrCb.
+\end{enumerate}
 
 \subsection{Some words about transform coding}
 Quantization is more effective (the compression ratios are higher)
