@@ -21,7 +21,7 @@ which provides
 
 In this milestone we will quantize a frame in the
 \href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB\footnote{Red,
-  Green and Blue: the primary colors.} color domain}. RGB is an additive color system, which means that all colors start with black and are created by adding the primary colors~\cite{urger2016digital}}. A
+  Green and Blue: the primary colors.} color domain}. RGB is an additive color system, which means that all colors start with black and are created by adding the primary colors~\cite{burger2016digital}. A
 \href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{\textbf{quantizer}}
 (typically denoted by $\text{Q}$) is an
 \href{https://en.wikipedia.org/wiki/Data_compression}{encoding system}
@@ -172,16 +172,16 @@ color vector $C_i = (R_i, G_i, B_i )$ or pixel in the image is treated
 as a single entity. Starting from a set of original color tuples $C
 = \{c_1, c_2, \ldots ,c_m\}$, the task of vector quantization is:
 \begin{enumerate}
-\item to
-ﬁnd a set of $n$ representative color vectors $C' = \{c'_1, c'_2
-,\ldots , c'_n \}$ and
-\item to replace each original color $C_i$ by one of
-the new color vectors $C'_j\in C'$, where $n$ is usually predetermined
-($n < m$) and the resulting deviation from the original image shall be
-minimal. This is a combinatorial optimization problem in a rather
-large search space, which usually makes it impossible to determine a
-global optimum in adequate time. This is the reason why VQ methods
-only compute a ``local'' optimum at best~\cite{burger2016digital}.
+\item to ﬁnd a set of $n$ representative color vectors $C' = \{c'_1,
+  c'_2 ,\ldots , c'_n \}$ and
+\item to replace each original color $C_i$ by one of the new color
+  vectors $C'_j\in C'$, where $n$ is usually predetermined ($n < m$)
+  and the resulting deviation from the original image shall be
+  minimal. This is a combinatorial optimization problem in a rather
+  large search space, which usually makes it impossible to determine a
+  global optimum in adequate time. This is the reason why VQ methods
+  only compute a ``local'' optimum at best~\cite{burger2016digital}.
+\end{enumerate}
 
 Another key aspect to take into consideration is that the problem
 previously mentioned about the under-optimality of quantizing directly
@@ -313,4 +313,4 @@ None.
 \section{Resources}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{data-compression,signal-processing,DWT}
+\bibliography{data-compression,signal-processing,DWT,image-processing}
