@@ -39,7 +39,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">October 8, 2021</span></div>
+class="ecrm-1200">October 9, 2021</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -47,7 +47,7 @@ class="ecrm-1200">October 8, 2021</span></div>
    &#x00A0;<span class="sectionToc" >1 <a 
 href="#x1-20001" id="QQ2-1-2">Description</a></span>
 <br />   &#x00A0;<span class="sectionToc" >2 <a 
-href="#x1-30002" id="QQ2-1-3">What you have to do?</a></span>
+href="#x1-30002" id="QQ2-1-3">What do I have to do?</a></span>
 <br />   &#x00A0;<span class="sectionToc" >3 <a 
 href="#x1-40003" id="QQ2-1-4">Timming</a></span>
 <br />   &#x00A0;<span class="sectionToc" >4 <a 
@@ -62,12 +62,13 @@ href="#x1-60005" id="QQ2-1-6">Resources</a></span>
 <!--l. 10--><p class="noindent" >This milestone shows the structure of the <a 
 href="https://en.wikipedia.org/wiki/Video" >videos</a> used in the <a 
 href="https://github.com/Sistemas-Multimedia/MRVC" >MRVC</a> project.
-Basically, a digital video is a <a 
+Basically, a &#x0028;<a 
+href="https://en.wikipedia.org/wiki/Raster" >raster</a>&#x0029; digital video is a <a 
 href="https://en.wikipedia.org/wiki/Sequence" >sequence</a> of &#x0028;<a 
 href="https://en.wikipedia.org/wiki/Digital_data" >digital</a>&#x0029; <a 
 href="https://en.wikipedia.org/wiki/Image" >images</a> &#x0028;or <a 
-href="https://en.wikipedia.org/wiki/Film_frame" >frames</a>&#x0029;. In the context
-of <a 
+href="https://en.wikipedia.org/wiki/Film_frame" >frames</a>&#x0029;. In the
+context of <a 
 href="https://github.com/Sistemas-Multimedia/MRVC" >MRVC</a>, an image can be described as a <a 
 href="https://en.wikipedia.org/wiki/Matrix_(mathematics)" >matrix</a> of <a 
 href="https://en.wikipedia.org/wiki/Pixel" >pixels</a> &#x0028;PIcture X-ray
@@ -77,7 +78,7 @@ denoted by </p><table class="equation-star"><tr><td>
                                                                   
 
                                                                   
-<!--l. 23--><math 
+<!--l. 24--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                               <mstyle mathvariant="bold"><mi 
@@ -91,7 +92,8 @@ class="MathClass-punc">,</mo><mi
 >x</mi></mrow></msub 
 >
 </math></td></tr></table>
-<!--l. 26--><p class="indent" >   where the spatial coordinatinates <!--l. 27--><math 
+<!--l. 27--><p class="indent" >   where the spatial <a 
+href="https://en.wikipedia.org/wiki/Coordinate_system" >coordinatinates</a> <!--l. 29--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
 class="MathClass-open">&#x0028;</mo><mi 
@@ -103,13 +105,13 @@ class="MathClass-rel">&#x2208;</mo> <mi
 >&#x2115;</mi> <mo 
 class="MathClass-bin">&#x00D7;</mo> <mi 
 >&#x2115;</mi></math>,
-the temporal index <!--l. 28--><math 
+the temporal coordinate <!--l. 30--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >t</mi> <mo 
 class="MathClass-rel">&#x2208;</mo> <mi 
 >&#x2115;</mi></math>,
-and <!--l. 28--><math 
+and <!--l. 30--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >V</mi><msub><mrow 
@@ -122,90 +124,155 @@ class="MathClass-punc">,</mo><mi
 >x</mi></mrow></msub 
 > <mo 
 class="MathClass-rel">&#x2208;</mo><mstyle mathvariant="bold"><mi 
->P</mi></mstyle></math>,
-the <span 
-class="ecti-1000">pixel values domain</span>&#x00A0;<span class="cite">&#x005B;<span 
-class="ecbx-1000">?</span>&#x005D;</span>.
-</p><!--l. 31--><p class="indent" >   The temporal <a 
-href="https://en.wikipedia.org/wiki/Coordinate_system" >coordinate</a> <!--l. 32--><math 
+>P</mi></mstyle></math> is the pixel value,
+where <!--l. 31--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>&#x2119;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msup 
+></math> is the &#x0028;pixels&#x0029;
+<span 
+class="ecti-1000">values domain</span>&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xburger2016digital">1</a>&#x005D;</span>. <!--l. 32--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >t</mi></math>
-identi&#xFB01;es an image inside of the video, and has as a main feature the temporal
-resolution beasured in Frames &#x0028;images&#x0029; Per Second &#x0028;FPS&#x0029;. The spatial coordinate
-<!--l. 35--><math 
+indexes the <!--l. 32--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>t</mi></math>-th
+image in the video and its resolution is measured in FPS &#x0028;Frames Per Second&#x0029;.
+<!--l. 34--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
 class="MathClass-open">&#x0028;</mo><mi 
->y</mi><mo 
-class="MathClass-punc">,</mo><mi 
 >x</mi><mo 
-class="MathClass-close">&#x0029;</mo></math> ranges depending on the
-spatial resolution, <!--l. 36--><math 
+class="MathClass-punc">,</mo><mi 
+>y</mi></math>&#x0029; identify a pixel
+in an image and <!--l. 35--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>0</mn> <mo 
+class="MathClass-rel">&#x2264;</mo> <mi 
+>x</mi> <mo 
+class="MathClass-rel">&#x003C;</mo> <mstyle mathvariant="normal"><mi 
+>t</mi><mi 
+>h</mi><mi 
+>e</mi><mi 
+>&#x00A0;</mi><mi 
+>i</mi><mi 
+>m</mi><mi 
+>a</mi><mi 
+>g</mi><mi 
+>e</mi><mi 
+>&#x00A0;</mi><mi 
+>w</mi><mi 
+>i</mi><mi 
+>d</mi><mi 
+>t</mi><mi 
+>h</mi></mstyle></math>:
+<!--l. 36--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>0</mn> <mo 
+class="MathClass-rel">&#x2264;</mo> <mi 
+>y</mi> <mo 
+class="MathClass-rel">&#x003C;</mo> <mstyle mathvariant="normal"><mi 
+>t</mi><mi 
+>h</mi><mi 
+>e</mi><mi 
+>&#x00A0;</mi><mi 
+>i</mi><mi 
+>m</mi><mi 
+>a</mi><mi 
+>g</mi><mi 
+>e</mi><mi 
+>&#x00A0;</mi><mi 
+>h</mi><mi 
+>e</mi><mi 
+>i</mi><mi 
+>g</mi><mi 
+>h</mi><mi 
+>t</mi></mstyle></math>.<span class="footnote-mark"><a 
+href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-2001f1"></a> 
+</p><!--l. 39--><p class="indent" >   Depending on the <!--l. 39--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->y</mi></math> depends on
-the <span 
-class="ecti-1000">height </span>of the video, and <!--l. 36--><math 
+>k</mi></math>
+dimension of <!--l. 39--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->x</mi></math>
-on its <span 
-class="ecti-1000">width</span>.
-</p><!--l. 40--><p class="indent" >   The pixel values domain is also known and the <span 
-class="ecti-1000">depth </span>of the video &#x0028;in bits
-per pixel, and can be a vector &#x0028;for example, at it happens in color videos,
-where at each element of such vector is called a <span 
-class="ecti-1000">color component</span>&#x0029; of integer
-values.
-</p><!--l. 45--><p class="indent" >   We are going to store a video as a sequence of <a 
+>&#x2119;</mi></math>
+&#x0028;the number of components of a pixel&#x0029;, we usually can have grayscale pixels
+&#x0028;<!--l. 40--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>k</mi> <mo 
+class="MathClass-rel">=</mo> <mn>1</mn></math>&#x0029; or color &#x0028;panchromatic&#x0029; pixels
+&#x0028;<!--l. 41--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>k</mi> <mo 
+class="MathClass-rel">=</mo> <mn>3</mn></math>&#x0029;.<span class="footnote-mark"><a 
+href="index3.html#fn2x0"><sup class="textsuperscript">2</sup></a></span><a 
+ id="x1-2002f2"></a> 
+Finally, if we take into consideration the number of bits/component
+&#x0028;usually 8, although this value can be larger specially for grayscale
+images&#x0029;, the pixel-depth will be 8 bits/pixel for grayscale sequences or
+<!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>3</mn> <mo 
+class="MathClass-bin">&#x00D7;</mo> <mn>8</mn> <mo 
+class="MathClass-rel">=</mo> <mn>2</mn><mn>4</mn></math>
+bits/pixel for color ones.
+</p><!--l. 48--><p class="indent" >   We are going to store a video as a sequence of <a 
 href="https://en.wikipedia.org/wiki/Computer_file" >&#xFB01;les</a> with names &#x003C;pre&#xFB01;x&#x003E;000.png,
 &#x003C;pre&#xFB01;x&#x003E;001.png, ..., where &#x003C;pre&#xFB01;x&#x003E; speci&#xFB01;es the video name and &#x201C;.png&#x201D; indicates
 that the frames are coded using the <a 
 href="https://en.wikipedia.org/wiki/Lossless_compression" >lossless</a> <a 
-href="https://en.wikipedia.org/wiki/Portable_Network_Graphics" >PNG</a> image format&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xroelofs1999png">2</a>&#x005D;</span>. PNG
-uses <a 
+href="https://en.wikipedia.org/wiki/Portable_Network_Graphics" >PNG</a> &#x0028;pronounced &#x201C;ping&#x201D;&#x0029; image
+format&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xroelofs1999png">3</a>&#x005D;</span>. PNG uses <a 
 href="https://en.wikipedia.org/wiki/Differential_pulse-code_modulation" >DPCM</a> and the <a 
 href="https://en.wikipedia.org/wiki/DEFLATE" >DEFLATE</a> codec &#x0028;<a 
-href="https://en.wikipedia.org/wiki/Huffman_coding" >Hu&#xFB00;man coding</a> + <a 
+href="https://en.wikipedia.org/wiki/Huffman_coding" >Hu&#xFB00;man coding</a> +
+<a 
 href="https://en.wikipedia.org/wiki/Lempel-Ziv-Storer-Szymanski" >LZSS</a>&#x0029;&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xnelson96datacompression">1</a>&#x005D;</span> to
-remove the <a 
+href="#Xnelson96datacompression">2</a>&#x005D;</span> to remove the <a 
 href="https://en.wikipedia.org/wiki/Image_compression" >spatial</a> and <a 
 href="https://en.wikipedia.org/wiki/Data_compression" >statistical redudancy</a>. Notice that no <a 
-href="https://en.wikipedia.org/wiki/YUV" >color transform</a> is
-used.
-</p><!--l. 62--><p class="indent" >   We will use <a 
+href="https://en.wikipedia.org/wiki/YUV" >color
+transform</a> is used.
+</p><!--l. 65--><p class="indent" >   We will use <a 
 href="https://vicente-gonzalez-ruiz.github.io/PNG/" >PNG</a> basically as an <a 
 href="https://en.wikipedia.org/wiki/Entropy_encoding" >entropy codec</a>, which is a combination of
 <a 
 href="https://vicente-gonzalez-ruiz.github.io/Huffman_coding/" >Hu&#xFB00;man Coding</a> and <a 
 href="https://vicente-gonzalez-ruiz.github.io/LZ77/" >Lempel-Ziv-77 Coding</a>. However, notice that any other lossless
-image compressor could be used.
-</p><!--l. 72--><p class="indent" >   Finally, notice that all the frames of a video:
-     </p><ol  class="enumerate1" >
-     <li 
-  class="enumerate" id="x1-2002x1">Have the same <a 
-href="https://en.wikipedia.org/wiki/Image_resolution" >spatial resolution</a>.
-     </li>
-     <li 
-  class="enumerate" id="x1-2004x2">Are represented in the <a 
-href="https://en.wikipedia.org/wiki/RGB_color_model" >RGB domain</a>.
-     </li>
-     <li 
-  class="enumerate" id="x1-2006x3">Depending on the frame, each color component &#x0028;channel&#x0029; has <a 
-href="https://en.wikipedia.org/wiki/Glossary_of_computer_graphics#bit_depth" >bit depth</a> of
-     8 or 16 bits, representing an unsigned <a 
-href="https://en.wikipedia.org/wiki/Integer_(computer_science)" >integer</a>.</li></ol>
+image compressing &#xFB01;le format &#x0028;such as <a 
+href="https://en.wikipedia.org/wiki/TIFF" >TIFF</a>&#x0029; could be used.
+</p><!--l. 76--><p class="indent" >   Finally, notice that all the frames of the videos used in this subject:
                                                                   
 
                                                                   
-<!--l. 92--><p class="noindent" >
-</p>
+     </p><ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-2004x1">Have the same <a 
+href="https://en.wikipedia.org/wiki/Image_resolution" >spatial resolution</a>.
+     </li>
+     <li 
+  class="enumerate" id="x1-2006x2">Are represented in the <a 
+href="https://en.wikipedia.org/wiki/RGB_color_model" >RGB domain</a>.
+     </li>
+     <li 
+  class="enumerate" id="x1-2008x3">Depending on the frame, each color component &#x0028;channel&#x0029; has <a 
+href="https://en.wikipedia.org/wiki/Glossary_of_computer_graphics#bit_depth" >bit depth</a> of
+     8 or 16 bits, representing an unsigned <a 
+href="https://en.wikipedia.org/wiki/Integer_(computer_science)" >integer</a>.</li></ol>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
- id="x1-30002"></a>What you have to do?</h3>
-<!--l. 94--><p class="noindent" >
+ id="x1-30002"></a>What do I have to do?</h3>
+<!--l. 99--><p class="noindent" >
      </p><ol  class="enumerate1" >
      <li 
   class="enumerate" id="x1-3002x1">Download <a 
@@ -214,31 +281,45 @@ href="https://github.com/Sistemas-Multimedia/MRVC" >MRVC</a>, preferably cloning
      <li 
   class="enumerate" id="x1-3004x2">Run this <a 
 href="https://jupyter.org/" >jupyter</a> <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestone/04-the_data/display_video.ipynb" >notebook</a> that shows how to read and write frames.</li></ol>
-<!--l. 102--><p class="noindent" >
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestone/04-the_data/display_video.ipynb" >notebook</a> that shows how to read and write frames.
+     </li>
+     <li 
+  class="enumerate" id="x1-3006x3">Please, try to dig a little bit into the insights of the notebook.</li></ol>
+<!--l. 108--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-40003"></a>Timming</h3>
-<!--l. 104--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 106--><p class="noindent" >
+<!--l. 110--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 112--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-50004"></a>Deliverables</h3>
-<!--l. 108--><p class="noindent" >None.
-</p><!--l. 110--><p class="noindent" >
+<!--l. 114--><p class="noindent" >None.
+</p><!--l. 116--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-60005"></a>Resources</h3>
    <div class="thebibliography">
    <p class="bibitem" ><span class="biblabel">
  &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xburger2016digital"></a>W.&#x00A0;Burger and M.J. Burge.  <a 
+href="https://educons.edu.rs/wp-content/uploads/2020/05/2016-Digital-Image-Processing.pdf" ><span 
+class="ecti-1000">Digital Image Processing: An Algorithmic</span>
+   <span 
+class="ecti-1000">Introduction Using Java</span></a>. Springer, 2016.
+                                                                  
+
+                                                                  
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;2&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
  id="Xnelson96datacompression"></a>Nelson M. and Gailly J.  <a 
 href="http://index-of.co.uk/Information-Theory/The%20Data%20Compression%20Book%202nd%20Ed%20-%20Mark%20Nelson.pdf" ><span 
 class="ecti-1000">The Data Compression Book</span></a>.  M&#x0026;T Books,
    1996.
    </p>
    <p class="bibitem" ><span class="biblabel">
- &#x005B;2&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ &#x005B;3&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
  id="Xroelofs1999png"></a>Greg Roelofs and Richard Koman.  <a 
 href="http://www.libpng.org/pub/png/book/" ><span 
 class="ecti-1000">PNG: the de&#xFB01;nitive guide</span></a>.  O&#x2019;Reilly
