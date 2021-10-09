@@ -184,7 +184,7 @@ class="MathClass-punc">,</mo>
                                                                   
 
                                                                   
-<!--l. 46--><p class="noindent" ><div style="text-align:center;"> <img width=200 src="graphics/Q.svg" /> </div>  <a 
+<!--l. 46--><p class="noindent" ><div style="text-align:center;"> <img width=300 src="graphics/Q.svg" /> </div>  <a 
  id="x1-2004r1"></a>
 <a 
  id="x1-2005"></a>
@@ -504,16 +504,17 @@ href="#x1-2037r7">7<!--tex4ht:ref: fig:qe_dz --></a> describe the behaviour of 3
 <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-quantization/digital_quantization.ipynb" >notebook</a> to gain more insights about quantization.
 </p><!--l. 160--><p class="indent" >   Scalar quantization is an optimal solution only if the image colors are uniformly
-distributed within the RGB cube. However, the typical color distribution in natural
+distributed within <a 
+href="https://en.wikipedia.org/wiki/RGB_color_model" >the RGB cube</a>. However, the typical color distribution in natural
 images is anything but uniform, with some regions of the color space being densely
 populated and many colors entirely missing. In this case, scalar quantization is not
 optimal because the interesting colors may not be sampled with su&#xFB03;cient density
 while at the same time colors are represented that do not appear in the image at
 all&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xburger2016digital">1</a>&#x005D;</span>.
-</p><!--l. 169--><p class="indent" >   On the other hand, vector quantization does not treat the individual color
+</p><!--l. 171--><p class="indent" >   On the other hand, vector quantization does not treat the individual color
 components separately as does scalar quantization, but each color vector
-<!--l. 171--><math 
+<!--l. 173--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -542,7 +543,7 @@ class="MathClass-punc">,</mo><msub><mrow
 ><mo 
 class="MathClass-close">&#x0029;</mo></math> or pixel
 in the image is treated as a single entity. Starting from a set of original color tuples
-<!--l. 172--><math 
+<!--l. 174--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >C</mi> <mo 
@@ -569,11 +570,11 @@ class="MathClass-close">&#x007D;</mo></math>, the
 task of vector quantization is:
      </p><ol  class="enumerate1" >
      <li 
-  class="enumerate" id="x1-2040x1">to &#xFB01;nd a set of <!--l. 175--><math 
+  class="enumerate" id="x1-2040x1">to &#xFB01;nd a set of <!--l. 177--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >n</mi></math>
-     representative color vectors <!--l. 175--><math 
+     representative color vectors <!--l. 177--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mi 
@@ -610,7 +611,7 @@ class="MathClass-close">&#x007D;</mo></math>
      and
      </li>
      <li 
-  class="enumerate" id="x1-2042x2">to replace each original color <!--l. 177--><math 
+  class="enumerate" id="x1-2042x2">to replace each original color <!--l. 179--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -618,7 +619,7 @@ display="inline" ><msub><mrow
 ><mi 
 >i</mi></mrow></msub 
 ></math>
-     by one of the new color vectors <!--l. 178--><math 
+     by one of the new color vectors <!--l. 180--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msubsup><mrow 
 ><mi 
@@ -634,11 +635,11 @@ class="MathClass-rel">&#x2208;</mo> <msup><mrow
 ><mi 
 >&#x2032;</mi></mrow></msup 
 ></math>,
-     where <!--l. 178--><math 
+     where <!--l. 180--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >n</mi></math>
-     is usually predetermined &#x0028;<!--l. 178--><math 
+     is usually predetermined &#x0028;<!--l. 180--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >n</mi> <mo 
@@ -650,7 +651,7 @@ class="MathClass-rel">&#x003C;</mo> <mi
      in adequate time. This is the reason why VQ methods only compute a
      &#x201C;local&#x201D; optimum at best&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xburger2016digital">1</a>&#x005D;</span>.</li></ol>
-<!--l. 186--><p class="indent" >   Another key aspect to take into consideration is that the problem previously
+<!--l. 188--><p class="indent" >   Another key aspect to take into consideration is that the problem previously
 mentioned about the under-optimality of quantizing directly in the RGB domain can
 be minimized when the values of each color component are decorrelated &#x0028;using for
 example a spatial transform as we will see in a future milestone&#x0029;, requesting much
@@ -658,9 +659,9 @@ less computational resources than VQ.
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
  id="x1-30001.1"></a>Quantization in the RGB domain</h4>
-<!--l. 194--><p class="noindent" >Supposing that we will use a static uniform dead-zone quantizer, a
+<!--l. 196--><p class="noindent" >Supposing that we will use a static uniform dead-zone quantizer, a
 color RGB image can be quantized chanel by channel, using QSs
-<!--l. 196--><math 
+<!--l. 198--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -668,7 +669,7 @@ display="inline" ><msub><mrow
 ><mstyle 
 class="text"><mtext  >R</mtext></mstyle></mrow></msub 
 ></math>,
-<!--l. 196--><math 
+<!--l. 198--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -676,7 +677,7 @@ display="inline" ><msub><mrow
 ><mstyle 
 class="text"><mtext  >G</mtext></mstyle></mrow></msub 
 ></math>, and
-<!--l. 196--><math 
+<!--l. 198--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -688,7 +689,7 @@ class="text"><mtext  >B</mtext></mstyle></mrow></msub
 
                                                                   
 A reasonable question that arises here is: given a target bit-rate
-<!--l. 197--><math 
+<!--l. 199--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >R</mi></math> for
@@ -697,7 +698,7 @@ this point we can consider two di&#xFB00;erent optimization perspectives. In the
 consider strictly visual considerations, and obviously, any alternative di&#xFB00;erent from </p><table class="equation"><tr><td>
 <a 
  id="x1-3001r2"></a>
-<!--l. 202--><math 
+<!--l. 204--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                           <msub><mrow 
@@ -719,9 +720,9 @@ class="MathClass-rel">=</mo> <msub><mrow
 class="text"><mtext  >B</mtext></mstyle></mrow></msub 
 >
 </math></td><td class="eq-no">&#x0028;2&#x0029;</td></tr></table>
-<!--l. 206--><p class="indent" >   will produce some alteration in the color &#x0028;also called the &#x201C;chroma&#x201D;&#x0029; of the
+<!--l. 208--><p class="indent" >   will produce some alteration in the color &#x0028;also called the &#x201C;chroma&#x201D;&#x0029; of the
 reconstructed frame.
-</p><!--l. 209--><p class="indent" >   In the second one, only a pure <a 
+</p><!--l. 211--><p class="indent" >   In the second one, only a pure <a 
 href="https://en.wikipedia.org/wiki/Rate-distortion_theory" >Rate/Distortion &#x0028;RD&#x0029; performance</a> is
 considered. From a RD perspective, the best combination of QSs is those that
 optimizes &#x0028;makes closer to the origin of coordinates&#x0029; the RD curve. A RD curve
@@ -741,7 +742,7 @@ QS.
                                                                   
 
                                                                   
-<!--l. 225--><p class="noindent" ><div style="text-align:center;"> <img width=300 src="graphics/RD_slopes.svg" /> </div>  <a 
+<!--l. 227--><p class="noindent" ><div style="text-align:center;"> <img width=300 src="graphics/RD_slopes.svg" /> </div>  <a 
  id="x1-3002r8"></a>
 <a 
  id="x1-3003"></a>
@@ -753,9 +754,9 @@ class="content">Two RD curves with di&#xFB00;erent shape.                       
 
                                                                   
    </div><hr class="endfigure" />
-<!--l. 230--><p class="indent" >   Normal RD curves are convex &#x0028;see Fig.&#x00A0;<a 
+<!--l. 232--><p class="indent" >   Normal RD curves are convex &#x0028;see Fig.&#x00A0;<a 
 href="#x1-3002r8">8<!--tex4ht:ref: fig:RD_slopes --></a>&#x0029;, which means that if
-<!--l. 231--><math 
+<!--l. 233--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -763,13 +764,13 @@ display="inline" ><msub><mrow
 ><mi 
 >i</mi></mrow></msub 
 ></math> is the slope of the curve
-measured at the <!--l. 232--><math 
+measured at the <!--l. 234--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >i</mi></math>-th
 point of the curve &#x0028;starting at the lowest bit-rate&#x0029;, it always hold that </p><table class="equation"><tr><td> <a 
  id="x1-3004r3"></a>
-<!--l. 234--><math 
+<!--l. 236--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                              <msub><mrow 
@@ -787,7 +788,7 @@ class="MathClass-bin">+</mo><mn>1</mn></mrow></msub
 ><mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;3&#x0029;</td></tr></table>
-<!--l. 237--><p class="indent" >   <!--l. 237--><math 
+<!--l. 239--><p class="indent" >   <!--l. 239--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x03BB;</mi></math>
@@ -796,7 +797,7 @@ negative&#x0029; while the bit-rate increases &#x0028;the higher the slope, the 
 we suppose now that the contribution to the quality of each channel are additive,
 that is </p><table class="equation"><tr><td> <a 
  id="x1-3005r4"></a>
-<!--l. 241--><math 
+<!--l. 243--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                        <mi 
@@ -821,7 +822,7 @@ class="text"><mtext  >B</mtext></mstyle></mrow></msub
 ><mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;4&#x0029;</td></tr></table>
-<!--l. 244--><p class="indent" >   where <!--l. 244--><math 
+<!--l. 246--><p class="indent" >   where <!--l. 246--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >D</mi></math>
@@ -832,7 +833,7 @@ href="#Xsayood2017introduction">2</a>&#x005D;</span> </p><table class="equation"
                                                                   
 
                                                                   
-<!--l. 246--><math 
+<!--l. 248--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                           <msub><mrow 
@@ -855,8 +856,8 @@ class="text"><mtext  >B</mtext></mstyle></mrow></msub
 ><mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;5&#x0029;</td></tr></table>
-<!--l. 251--><p class="indent" >   To see this, lets suppose that we have used, for example, a set of QSs so that
-<!--l. 253--><math 
+<!--l. 253--><p class="indent" >   To see this, lets suppose that we have used, for example, a set of QSs so that
+<!--l. 255--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -877,9 +878,9 @@ class="MathClass-rel">=</mo> <mn>2</mn><msub><mrow
 class="text"><mtext  >B</mtext></mstyle></mrow></msub 
 ><mo 
 class="MathClass-punc">,</mo></math> and
-that we still have room for spending more bits encoding the frame. In this
+that we still have room for spending more bits to encode the frame. In this
 situation, the maximum bene&#xFB01;t would be obtained if and only if we decrease
-<!--l. 256--><math 
+<!--l. 258--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -887,10 +888,10 @@ display="inline" ><msub><mrow
 ><mstyle 
 class="text"><mtext  >R</mtext></mstyle></mrow></msub 
 ></math>
-because the slope doubles the slope of the other curves. Therefore, the optimal QSs
-are obtained when Eq.&#x00A0;<a 
+because the slope for the red channel doubles the slope of the other curves.
+Therefore, the optimal QSs are obtained when Eq.&#x00A0;<a 
 href="#x1-3006r5">5<!--tex4ht:ref: eq:optimal_quantization --></a> is true.
-</p><!--l. 272--><p class="indent" >   Unfortunately, the previous procedure implies the computation of the RD curve
+</p><!--l. 274--><p class="indent" >   Unfortunately, the previous procedure implies the computation of the RD curve
 for each channel, which is a time-consuming operation. For this reason, and
 supposing that the statistics of each channel are similar and therefore, each channel is
 going to generate a RD curve with the same slopes for the same QSs, we can suppose
@@ -900,31 +901,31 @@ href="#x1-3006r5">5<!--tex4ht:ref: eq:optimal_quantization --></a>.
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-40002"></a>What you have to do?</h3>
-<!--l. 280--><p class="noindent" >
+<!--l. 282--><p class="noindent" >
      </p><ol  class="enumerate1" >
      <li 
   class="enumerate" id="x1-4002x1">Please, improve this jupyter <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-quantization/performance.ipynb" >notebook</a> to test if Eq.&#x00A0;<a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-RGB_quantization/performance.ipynb" >notebook</a> to test if Eq.&#x00A0;<a 
 href="#x1-3001r2">2<!--tex4ht:ref: eq:simple_Q --></a> is not optimal &#x0028;at
      least there is a di&#xFB00;erent con&#xFB01;guration of QSs better that this equation&#x0029;.
      </li>
      <li 
   class="enumerate" id="x1-4004x2">Do you think that our life would be easier if we had an entropy encoder
      that allows to select the quantization step by its slope?</li></ol>
-<!--l. 305--><p class="noindent" >
+<!--l. 307--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-50003"></a>Timming</h3>
-<!--l. 307--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 309--><p class="noindent" >
+<!--l. 309--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 311--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-60004"></a>Deliverables</h3>
-<!--l. 311--><p class="noindent" >None.
+<!--l. 313--><p class="noindent" >None.
                                                                   
 
                                                                   
-</p><!--l. 313--><p class="noindent" >
+</p><!--l. 315--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-70005"></a>Resources</h3>
@@ -939,9 +940,10 @@ class="ecti-1000">Introduction Using Java</span></a>. Springer, 2016.
    </p>
    <p class="bibitem" ><span class="biblabel">
  &#x005B;2&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
- id="Xsayood2017introduction"></a>K.&#x00A0;Sayood. <a 
+ id="Xsayood2017introduction"></a>K.&#x00A0;Sayood.   <a 
 href="http://rahilshaikh.weebly.com/uploads/1/1/6/3/11635894/data_compression.pdf" ><span 
-class="ecti-1000">Introduction to data compression</span></a>. Morgan Kaufmann, 2017.
+class="ecti-1000">Introduction to Data Compression</span></a>.   Morgan  Kaufmann,
+   2017.
    </p>
    <p class="bibitem" ><span class="biblabel">
  &#x005B;3&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 

@@ -43,7 +43,7 @@ that obviously, should be minimized.
 
 \begin{figure}
   \centering
-  \myfig{graphics/Q}{2cm}{200}
+  \myfig{graphics/Q}{3cm}{300}
   \caption{Scalar quantization and dequantization of a signal.}
   \label{fig:Q}
 \end{figure}
@@ -158,13 +158,15 @@ behaviour of 3 different quantizers.  Use this
 to gain more insights about quantization.
 
 Scalar quantization is an optimal solution only if the image colors
-are uniformly distributed within the RGB cube. However, the typical
-color distribution in natural images is anything but uniform, with
-some regions of the color space being densely populated and many
-colors entirely missing. In this case, scalar quantization is not
-optimal because the interesting colors may not be sampled with
-suﬃcient density while at the same time colors are represented that do
-not appear in the image at all~\cite{burger2016digital}.
+are uniformly distributed within
+\href{https://en.wikipedia.org/wiki/RGB_color_model}{the RGB
+  cube}. However, the typical color distribution in natural images is
+anything but uniform, with some regions of the color space being
+densely populated and many colors entirely missing. In this case,
+scalar quantization is not optimal because the interesting colors may
+not be sampled with suﬃcient density while at the same time colors are
+represented that do not appear in the image at
+all~\cite{burger2016digital}.
 
 On the other hand, vector quantization does not treat the individual
 color components separately as does scalar quantization, but each
@@ -251,11 +253,11 @@ that~\cite{vetterli1995wavelets,sayood2017introduction}
 To see this, lets suppose that we have used, for example, a set of QSs
 so that
 $\lambda_{\text{R}} = 2\lambda_{\text{G}} = 2\lambda_{\text{B}},$ and
-that we still have room for spending more bits encoding the frame. In
+that we still have room for spending more bits to encode the frame. In
 this situation, the maximum benefit would be obtained if and only if
-we decrease $\Delta_{\text{R}}$ because the slope doubles the slope
-of the other curves. Therefore, the optimal QSs are obtained when
-Eq.~\ref{eq:optimal_quantization} is true.
+we decrease $\Delta_{\text{R}}$ because the slope for the red channel
+doubles the slope of the other curves. Therefore, the optimal QSs are
+obtained when Eq.~\ref{eq:optimal_quantization} is true.
 
 \begin{comment}
 Thus, the optimal QSs should
@@ -279,7 +281,7 @@ Eq.~\ref{eq:simple_Q} satisfies Eq.~\ref{eq:optimal_quantization}.
 \section{What you have to do?}
 \begin{enumerate}
 \item Please, improve this jupyter
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-quantization/performance.ipynb}{notebook}
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-RGB_quantization/RGB_quantization.ipynb}{notebook}
   to test if Eq.~\ref{eq:simple_Q} is not optimal (at least there is a
   different configuration of QSs better that this equation).
 \item Do you think that our life would be easier if we had an entropy
