@@ -38,7 +38,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">October 9, 2021</span></div>
+class="ecrm-1200">October 10, 2021</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -659,8 +659,8 @@ less computational resources than VQ.
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
  id="x1-30001.1"></a>Quantization in the RGB domain</h4>
-<!--l. 196--><p class="noindent" >Supposing that we will use a static uniform dead-zone quantizer, a
-color RGB image can be quantized chanel by channel, using QSs
+<!--l. 196--><p class="noindent" >Supposing that we will use a static uniform dead-zone quantizer, a color RGB
+image can be quantized component &#x0028;channel&#x0029; by component, using QSs
 <!--l. 198--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
@@ -677,7 +677,7 @@ display="inline" ><msub><mrow
 ><mstyle 
 class="text"><mtext  >G</mtext></mstyle></mrow></msub 
 ></math>, and
-<!--l. 198--><math 
+<!--l. 199--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -689,7 +689,7 @@ class="text"><mtext  >B</mtext></mstyle></mrow></msub
 
                                                                   
 A reasonable question that arises here is: given a target bit-rate
-<!--l. 199--><math 
+<!--l. 200--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >R</mi></math> for
@@ -698,7 +698,7 @@ this point we can consider two di&#xFB00;erent optimization perspectives. In the
 consider strictly visual considerations, and obviously, any alternative di&#xFB00;erent from </p><table class="equation"><tr><td>
 <a 
  id="x1-3001r2"></a>
-<!--l. 204--><math 
+<!--l. 205--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                           <msub><mrow 
@@ -720,16 +720,16 @@ class="MathClass-rel">=</mo> <msub><mrow
 class="text"><mtext  >B</mtext></mstyle></mrow></msub 
 >
 </math></td><td class="eq-no">&#x0028;2&#x0029;</td></tr></table>
-<!--l. 208--><p class="indent" >   will produce some alteration in the color &#x0028;also called the &#x201C;chroma&#x201D;&#x0029; of the
+<!--l. 209--><p class="indent" >   will produce some alteration in the color &#x0028;also called the &#x201C;chroma&#x201D;&#x0029; of the
 reconstructed frame.
-</p><!--l. 211--><p class="indent" >   In the second one, only a pure <a 
+</p><!--l. 212--><p class="indent" >   In the second one, only a pure <a 
 href="https://en.wikipedia.org/wiki/Rate-distortion_theory" >Rate/Distortion &#x0028;RD&#x0029; performance</a> is
 considered. From a RD perspective, the best combination of QSs is those that
 optimizes &#x0028;makes closer to the origin of coordinates&#x0029; the RD curve. A RD curve
 expresses the distortion &#x0028;typically the <a 
 href="https://en.wikipedia.org/wiki/Root-mean-square_deviation" >Root Mean Square Error &#x0028;RMSE&#x0029;</a>&#x0029; as a
 function of the bit-rate. In the case of encoding a RGB image, we have 3 RD
-curves, one for each channel. Thus, for example, the RD curve for the red
+curves, one for each component. Thus, for example, the RD curve for the red
 channel measures, for di&#xFB00;erent QSs, the distortion of reconstructing only the
 red channel as a function of the bit-rate generated for the corresponding
 QS.
@@ -742,7 +742,7 @@ QS.
                                                                   
 
                                                                   
-<!--l. 227--><p class="noindent" ><div style="text-align:center;"> <img width=300 src="graphics/RD_slopes.svg" /> </div>  <a 
+<!--l. 228--><p class="noindent" ><div style="text-align:center;"> <img width=300 src="graphics/RD_slopes.svg" /> </div>  <a 
  id="x1-3002r8"></a>
 <a 
  id="x1-3003"></a>
@@ -754,9 +754,9 @@ class="content">Two RD curves with di&#xFB00;erent shape.                       
 
                                                                   
    </div><hr class="endfigure" />
-<!--l. 232--><p class="indent" >   Normal RD curves are convex &#x0028;see Fig.&#x00A0;<a 
+<!--l. 233--><p class="indent" >   Normal RD curves are convex &#x0028;see Fig.&#x00A0;<a 
 href="#x1-3002r8">8<!--tex4ht:ref: fig:RD_slopes --></a>&#x0029;, which means that if
-<!--l. 233--><math 
+<!--l. 234--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -764,13 +764,13 @@ display="inline" ><msub><mrow
 ><mi 
 >i</mi></mrow></msub 
 ></math> is the slope of the curve
-measured at the <!--l. 234--><math 
+measured at the <!--l. 235--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >i</mi></math>-th
 point of the curve &#x0028;starting at the lowest bit-rate&#x0029;, it always hold that </p><table class="equation"><tr><td> <a 
  id="x1-3004r3"></a>
-<!--l. 236--><math 
+<!--l. 237--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                              <msub><mrow 
@@ -788,16 +788,16 @@ class="MathClass-bin">+</mo><mn>1</mn></mrow></msub
 ><mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;3&#x0029;</td></tr></table>
-<!--l. 239--><p class="indent" >   <!--l. 239--><math 
+<!--l. 240--><p class="indent" >   <!--l. 240--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x03BB;</mi></math>
 quanti&#xFB01;es the trade-o&#xFB00; between decreasing the distortion &#x0028;the slopes are always
-negative&#x0029; while the bit-rate increases &#x0028;the higher the slope, the high the bene&#xFB01;t&#x0029;. If
+negative&#x0029; while the bit-rate increases &#x0028;the higher the slope, the higher the bene&#xFB01;t&#x0029;. If
 we suppose now that the contribution to the quality of each channel are additive,
 that is </p><table class="equation"><tr><td> <a 
  id="x1-3005r4"></a>
-<!--l. 243--><math 
+<!--l. 244--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                        <mi 
@@ -822,7 +822,7 @@ class="text"><mtext  >B</mtext></mstyle></mrow></msub
 ><mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;4&#x0029;</td></tr></table>
-<!--l. 246--><p class="indent" >   where <!--l. 246--><math 
+<!--l. 247--><p class="indent" >   where <!--l. 247--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >D</mi></math>
@@ -833,7 +833,7 @@ href="#Xsayood2017introduction">2</a>&#x005D;</span> </p><table class="equation"
                                                                   
 
                                                                   
-<!--l. 248--><math 
+<!--l. 249--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                           <msub><mrow 
@@ -856,7 +856,7 @@ class="text"><mtext  >B</mtext></mstyle></mrow></msub
 ><mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;5&#x0029;</td></tr></table>
-<!--l. 253--><p class="indent" >   To see this, lets suppose that we have used, for example, a set of QSs so that
+<!--l. 254--><p class="indent" >   To see this, lets suppose that we have used, for example, a set of QSs so that
 <!--l. 255--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
@@ -864,14 +864,15 @@ display="inline" ><msub><mrow
 >&#x03BB;</mi></mrow><mrow 
 ><mstyle 
 class="text"><mtext  >R</mtext></mstyle></mrow></msub 
-> <mo 
-class="MathClass-rel">=</mo> <mn>2</mn><msub><mrow 
+><mo 
+class="MathClass-bin">&#x2215;</mo><mn>2</mn> <mo 
+class="MathClass-rel">=</mo> <msub><mrow 
 ><mi 
 >&#x03BB;</mi></mrow><mrow 
 ><mstyle 
 class="text"><mtext  >G</mtext></mstyle></mrow></msub 
 > <mo 
-class="MathClass-rel">=</mo> <mn>2</mn><msub><mrow 
+class="MathClass-rel">=</mo> <msub><mrow 
 ><mi 
 >&#x03BB;</mi></mrow><mrow 
 ><mstyle 
@@ -887,45 +888,41 @@ display="inline" ><msub><mrow
 >&#x0394;</mi></mrow><mrow 
 ><mstyle 
 class="text"><mtext  >R</mtext></mstyle></mrow></msub 
-></math>
+></math>,
 because the slope for the red channel doubles the slope of the other curves.
 Therefore, the optimal QSs are obtained when Eq.&#x00A0;<a 
-href="#x1-3006r5">5<!--tex4ht:ref: eq:optimal_quantization --></a> is true.
-</p><!--l. 274--><p class="indent" >   Unfortunately, the previous procedure implies the computation of the RD curve
-for each channel, which is a time-consuming operation. For this reason, and
-supposing that the statistics of each channel are similar and therefore, each channel is
-going to generate a RD curve with the same slopes for the same QSs, we can suppose
-that Eq.&#x00A0;<a 
-href="#x1-3001r2">2<!--tex4ht:ref: eq:simple_Q --></a> satis&#xFB01;es Eq.&#x00A0;<a 
-href="#x1-3006r5">5<!--tex4ht:ref: eq:optimal_quantization --></a>.
+href="#x1-3006r5">5<!--tex4ht:ref: eq:optimal_quantization --></a> is true. This can be seen in this
+<a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-RGB_quantization/RGB_quantization.ipynb" >notebook</a>.
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-40002"></a>What do I have to do?</h3>
-<!--l. 282--><p class="noindent" >
+<!--l. 284--><p class="noindent" >
      </p><ol  class="enumerate1" >
      <li 
-  class="enumerate" id="x1-4002x1">Please, improve this jupyter <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-RGB_quantization/RGB_quantization.ipynb" >notebook</a> to test if Eq.&#x00A0;<a 
-href="#x1-3001r2">2<!--tex4ht:ref: eq:simple_Q --></a> is not optimal &#x0028;at
-     least there is a di&#xFB00;erent con&#xFB01;guration of QSs better that this equation&#x0029;.
+  class="enumerate" id="x1-4002x1">Please, using this <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-RGB_quantization/RGB_quantization.ipynb" >notebook</a> try to &#xFB01;nd a QSs con&#xFB01;guration where Eq.&#x00A0;<a 
+href="#x1-3001r2">2<!--tex4ht:ref: eq:simple_Q --></a>
+     is not optimal &#x0028;or at least there is a di&#xFB00;erent con&#xFB01;guration of QSs better
+     that this equation&#x0029;.
      </li>
      <li 
-  class="enumerate" id="x1-4004x2">Do you think that our life would be easier if we had an entropy encoder
-     that allows to select the quantization step by its slope?</li></ol>
-<!--l. 307--><p class="noindent" >
+  class="enumerate" id="x1-4004x2">Do  you  think  that  our  life  would  be  easier  if  we  had  an  image  lossy
+     compressor that allows to select the quantization step by its slope?</li></ol>
+<!--l. 311--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-50003"></a>Timming</h3>
-<!--l. 309--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 311--><p class="noindent" >
+<!--l. 313--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 315--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-60004"></a>Deliverables</h3>
-<!--l. 313--><p class="noindent" >None.
+<!--l. 317--><p class="noindent" >None.
                                                                   
 
                                                                   
-</p><!--l. 315--><p class="noindent" >
+</p><!--l. 319--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-70005"></a>Resources</h3>

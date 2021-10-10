@@ -194,13 +194,14 @@ resources than VQ.
 
 \subsection{Quantization in the RGB domain}
 Supposing that we will use a static uniform dead-zone quantizer, a
-color RGB image can be quantized chanel by channel, using QSs
-$\Delta_{\text{R}}$, $\Delta_{\text{G}}$, and $\Delta_{\text{B}}$. A
-reasonable question that arises here is: given a target bit-rate $R$
-for the compressed frame, how the QSs should be chosen to minimize the
-distortion?  At this point we can consider two different optimization
-perspectives. In the first one, we consider strictly visual
-considerations, and obviously, any alternative different from
+color RGB image can be quantized component (channel) by component,
+using QSs $\Delta_{\text{R}}$, $\Delta_{\text{G}}$, and
+$\Delta_{\text{B}}$. A reasonable question that arises here is: given
+a target bit-rate $R$ for the compressed frame, how the QSs should be
+chosen to minimize the distortion?  At this point we can consider two
+different optimization perspectives. In the first one, we consider
+strictly visual considerations, and obviously, any alternative
+different from
 \begin{equation}
   \Delta_{\text{R}} = \Delta_{\text{G}} = \Delta_{\text{B}}
   \label{eq:simple_Q}
@@ -217,7 +218,7 @@ of coordinates) the RD curve. A RD curve expresses the distortion
 \href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{Root
   Mean Square Error (RMSE)}) as a function of the bit-rate. In the
 case of encoding a RGB image, we have 3 RD curves, one for each
-channel. Thus, for example, the RD curve for the red channel measures,
+component. Thus, for example, the RD curve for the red channel measures,
 for different QSs, the distortion of reconstructing only the red
 channel as a function of the bit-rate generated for the corresponding
 QS.
@@ -238,7 +239,7 @@ hold that
 \end{equation}
 $\lambda$ quantifies the trade-off between decreasing the distortion
 (the slopes are always negative) while the bit-rate increases (the
-higher the slope, the high the benefit). If we suppose now that the
+higher the slope, the higher the benefit). If we suppose now that the
 contribution to the quality of each channel are additive, that is
 \begin{equation}
   D = D_{\text{R}} + D_{\text{G}} + D_{\text{B}},
@@ -251,13 +252,14 @@ that~\cite{vetterli1995wavelets,sayood2017introduction}
 \end{equation}
 
 To see this, lets suppose that we have used, for example, a set of QSs
-so that
-$\lambda_{\text{R}} = 2\lambda_{\text{G}} = 2\lambda_{\text{B}},$ and
-that we still have room for spending more bits to encode the frame. In
-this situation, the maximum benefit would be obtained if and only if
-we decrease $\Delta_{\text{R}}$ because the slope for the red channel
-doubles the slope of the other curves. Therefore, the optimal QSs are
-obtained when Eq.~\ref{eq:optimal_quantization} is true.
+so that $\lambda_{\text{R}}/2 = \lambda_{\text{G}}
+= \lambda_{\text{B}},$ and that we still have room for spending more
+bits to encode the frame. In this situation, the maximum benefit would
+be obtained if and only if we decrease $\Delta_{\text{R}}$, because
+the slope for the red channel doubles the slope of the other
+curves. Therefore, the optimal QSs are obtained when
+Eq.~\ref{eq:optimal_quantization} is true. This can be seen in
+this \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-RGB_quantization/RGB_quantization.ipynb}{notebook}.
 
 \begin{comment}
 Thus, the optimal QSs should
@@ -269,7 +271,6 @@ operate in the curves with the same RD slope,
 for a given total bit-rate $R$, which implies that the contribution of each channel (the ratio between
 quality and bit-rate) to the quality of $\tilde{x}$ has been highest
 possible~\cite{vetterli1995wavelets,sayood2017introduction}.
-\end{comment}
 
 Unfortunately, the previous procedure implies the computation of the
 RD curve for each channel, which is a time-consuming operation. For
@@ -277,15 +278,18 @@ this reason, and supposing that the statistics of each channel are
 similar and therefore, each channel is going to generate a RD curve
 with the same slopes for the same QSs, we can suppose that
 Eq.~\ref{eq:simple_Q} satisfies Eq.~\ref{eq:optimal_quantization}.
+\end{comment}
 
 \section{What do I have to do?}
 \begin{enumerate}
-\item Please, improve this jupyter
+\item Please, using this
   \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-RGB_quantization/RGB_quantization.ipynb}{notebook}
-  to test if Eq.~\ref{eq:simple_Q} is not optimal (at least there is a
-  different configuration of QSs better that this equation).
-\item Do you think that our life would be easier if we had an entropy
-  encoder that allows to select the quantization step by its slope?
+  try to find a QSs configuration where Eq.~\ref{eq:simple_Q} is not
+  optimal (or at least there is a different configuration of QSs
+  better that this equation).
+\item Do you think that our life would be easier if we had an image
+  lossy compressor that allows to select the quantization step by its
+  slope?
 \end{enumerate}
 %\begin{enumerate}
 %\item Please, modify this
