@@ -755,24 +755,29 @@ href="https://en.wikipedia.org/wiki/YCoCg" >RGB/YCoCg transform</a></h4>
 </p>
    <h5 class="subsubsectionHead"><span class="titlemark">1.4.1   </span> <a 
  id="x1-90001.4.1"></a>Analysis and synthesis</h5>
-<!--l. 401--><p class="noindent" >Clearly, orthogonality is a desired property in compression systems because
-it helps to quantify the impact of each component on the quality of the
-reconstruction of the image in an isolated way &#x0028;without considering the rest
-of components&#x0029;, signi&#xFB01;cantly simplifying the determination of the pattern
-of quantization steps that generate the optimal RD curve. On the other
-hand, Eqs.&#x00A0;<a 
+<!--l. 401--><p class="noindent" >Clearly, orthogonality is a desired property in lossy compression systems because it helps
+to isolate<span class="footnote-mark"><a 
+href="index8.html#fn7x0"><sup class="textsuperscript">7</sup></a></span><a 
+ id="x1-9001f7"></a> 
+the impact of each component on the quality of the reconstruction of the
+image, signi&#xFB01;cantly thus simplifying the determination of the pattern of
+quantization steps that generate the optimal RD curve. On the other hand,
+Eqs.&#x00A0;<a 
 href="#x1-6001r7">7<!--tex4ht:ref: eq:YCrCb --></a> and <a 
 href="#x1-6003r9">9<!--tex4ht:ref: eq:iYCrCb --></a> were derived by <a 
 href="https://en.wikipedia.org/wiki/Principal_component_analysis" >Principal Component Analysis &#x0028;PCA&#x0029;</a> on
 old<span class="footnote-mark"><a 
-href="index8.html#fn7x0"><sup class="textsuperscript">7</sup></a></span><a 
- id="x1-9001f7"></a> 
-video data. The same procedure has been carried out with
-newer<span class="footnote-mark"><a 
 href="index9.html#fn8x0"><sup class="textsuperscript">8</sup></a></span><a 
  id="x1-9002f8"></a> 
+video data. The same procedure has been carried out with
+newer<span class="footnote-mark"><a 
+href="index10.html#fn9x0"><sup class="textsuperscript">9</sup></a></span><a 
+ id="x1-9003f9"></a> 
 images, obtaining </p><table class="equation"><tr><td> <a 
- id="x1-9003r13"></a>
+ id="x1-9004r13"></a>
+                                                                  
+
+                                                                  
 <!--l. 413--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
@@ -891,14 +896,11 @@ class="text"><mtext  >C</mtext></mstyle></mrow><mrow
 >  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                                    </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;13&#x0029;</td></tr></table>
-                                                                  
-
-                                                                  
 <!--l. 452--><p class="indent" >   This transform is orthogonal and the synthesis &#xFB01;lters
 gains<span class="footnote-mark"><a 
-href="index10.html#fn9x0"><sup class="textsuperscript">9</sup></a></span><a 
- id="x1-9004f9"></a>  are 22/9 &#x0028;for
-Y&#x0029;, 25/9 &#x0028;for C<!--l. 455--><math 
+href="index11.html#fn10x0"><sup class="textsuperscript">10</sup></a></span><a 
+ id="x1-9005f10"></a>  are 22/9
+&#x0028;for Y&#x0029;, 25/9 &#x0028;for C<!--l. 455--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ></mrow><mrow 
@@ -914,7 +916,7 @@ However, as <span class="cite">&#x005B;<a
 href="#Xmalvar2008lifting">2</a>&#x005D;</span> points, from a perceptual perspective, the in&#xFB02;uence of the green
 channel on the luma channel should be stronger. For this reason the authors &#xFB01;nally
 propose the transform </p><table class="equation"><tr><td> <a 
- id="x1-9005r14"></a>
+ id="x1-9006r14"></a>
 <!--l. 459--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
@@ -1010,14 +1012,17 @@ class="text"><mtext  >Cg</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c-
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;14&#x0029;</td></tr></table>
 <!--l. 496--><p class="indent" >   that is near orthogonal<span class="footnote-mark"><a 
-href="index11.html#fn10x0"><sup class="textsuperscript">10</sup></a></span><a 
- id="x1-9006f10"></a> ,
+href="index12.html#fn11x0"><sup class="textsuperscript">11</sup></a></span><a 
+ id="x1-9007f11"></a> ,
 and has channel gains 3 &#x0028;Y&#x0029;, 2 &#x0028;Co&#x0029; and 3 &#x0028;Cg&#x0029;.
 </p>
    <h5 class="subsubsectionHead"><span class="titlemark">1.4.2   </span> <a 
  id="x1-100001.4.2"></a>Quantization</h5>
 <!--l. 501--><p class="noindent" >The previous channel gains suggest to use </p><table class="equation"><tr><td> <a 
  id="x1-10001r15"></a>
+                                                                  
+
+                                                                  
 <!--l. 502--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
@@ -1048,9 +1053,6 @@ class="MathClass-punc">.</mo>
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb" >notebook</a> the di&#xFB00;erences with using </p><table class="equation"><tr><td>
 <a 
  id="x1-10002r16"></a>
-                                                                  
-
-                                                                  
 <!--l. 506--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
@@ -1095,8 +1097,11 @@ href="https://en.wikipedia.org/wiki/JPEG_2000#Color_components_transformation" >
      </li>
      <li 
   class="enumerate" id="x1-11006x3">Implement the transform described in Eq.&#x00A0;<a 
-href="#x1-9003r13">13<!--tex4ht:ref: eq:optimal --></a>, and compare it with the
+href="#x1-9004r13">13<!--tex4ht:ref: eq:optimal --></a>, and compare it with the
      other transforms.</li></ol>
+                                                                  
+
+                                                                  
 <!--l. 528--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
@@ -1107,9 +1112,6 @@ href="#x1-9003r13">13<!--tex4ht:ref: eq:optimal --></a>, and compare it with the
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-130004"></a>Deliverables</h3>
 <!--l. 534--><p class="noindent" >None.
-                                                                  
-
-                                                                  
 </p><!--l. 536--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 

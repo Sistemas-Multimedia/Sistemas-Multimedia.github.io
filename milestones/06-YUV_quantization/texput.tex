@@ -399,12 +399,12 @@ intercomponent redundancy from a pure mathematical point of view.
 \subsection{The \href{https://en.wikipedia.org/wiki/YCoCg}{RGB/YCoCg transform}}
 \subsubsection{Analysis and synthesis}
 Clearly, orthogonality is a desired property in lossy compression
-systems because it helps to quantify the impact of each component on
-the quality of the reconstruction of the image in an isolated way
-(without considering the rest of components), significantly
-simplifying the determination of the pattern of quantization steps
-that generate the optimal RD curve. On the other hand,
-Eqs.~\ref{eq:YCrCb} and \ref{eq:iYCrCb} were derived by
+systems because it helps to isolate\footnote{Without considering the
+rest of components.} the impact of each component on the quality of
+the reconstruction of the image, significantly thus simplifying the
+determination of the pattern of quantization steps that generate the
+optimal RD curve. On the other hand, Eqs.~\ref{eq:YCrCb} and
+\ref{eq:iYCrCb} were derived by
 \href{https://en.wikipedia.org/wiki/Principal_component_analysis}{Principal
   Component Analysis (PCA)} on old\footnote{Recorded with the first
 analog color cameras in the 70's.} video data. The same procedure has
