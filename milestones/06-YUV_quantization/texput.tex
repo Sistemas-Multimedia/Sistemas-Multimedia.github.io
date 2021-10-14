@@ -246,6 +246,25 @@ or alternatively, by
   \label{eq:synthesis}
 \end{equation}
 
+As it can be seen, considering that the RGB values ranges between 0
+and 255 (and rounding to the nearest integer), $0\le\text{Y}\le 255$,
+$-128\le\text{Cr}\le 127$ and $-128\le\text{Cb}\le 127$, and
+therefore, the number of bits that are necessary to represent each
+YCrCb component is 8. Therefore, we can use the same QS range for each
+component.
+
+Finally, notice that the YCrCb transform is not orthogonal because the
+analysis filters are not independent. This can be seen in the
+Eq.~\ref{eq:YCrCb_analysis}, where the Cr values depend on the values
+of Y, and therefore, there is a dependency between both
+\href{https://en.wikipedia.org/wiki/Basis_(linear_algebra)}{basis},
+and something similar happens for the Cb components. This can be also
+easely checked: $0.299*0.5 + 0.587*(-0.4187) + 0.114*(-0.0813) =
+-0.1055451 \neq 0$, $0.299*(-0.1687) + 0.587*(-0.3313) + 0.114*0.5 =
+-0.1879144 \neq 0$, and $0.5*(-0.1687) + (-0.4187)*(-0.3313 ) +
+(-0.0813)*0.5 = 0.01371531 \neq 0$.
+
+\begin{comment}
 \subsubsection{Quantization}
 After analyzing the frame (representing it in the YCrCb domain), the
 next natural step is quantization. Unfortunately, the RGB/YCrCb
@@ -263,6 +282,7 @@ that reason, and only for the sake of simplicity, we will use
   \Delta_{\text{Y}} = \Delta_{\text{Cr}} = \Delta_{\text{Cb}}.
   \label{eq:simple_Q}
 \end{equation}
+\end{comment}
 
 \begin{comment}
 Lets suppose that we use a static

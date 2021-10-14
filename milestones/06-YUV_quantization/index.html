@@ -39,7 +39,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">October 13, 2021</span></div>
+class="ecrm-1200">October 14, 2021</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -53,15 +53,15 @@ href="#x1-40001.2" id="QQ2-1-4">Some words about transform coding</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.3 <a 
 href="#x1-50001.3" id="QQ2-1-5">The RGB/YCrCb transform</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.4 <a 
-href="#x1-80001.4" id="QQ2-1-8">The RGB/YCoCg transform</a></span>
+href="#x1-70001.4" id="QQ2-1-7">The RGB/YCoCg transform</a></span>
 <br />   &#x00A0;<span class="sectionToc" >2 <a 
-href="#x1-110002" id="QQ2-1-11">What you have to do?</a></span>
+href="#x1-100002" id="QQ2-1-10">What you have to do?</a></span>
 <br />   &#x00A0;<span class="sectionToc" >3 <a 
-href="#x1-120003" id="QQ2-1-12">Timming</a></span>
+href="#x1-110003" id="QQ2-1-11">Timming</a></span>
 <br />   &#x00A0;<span class="sectionToc" >4 <a 
-href="#x1-130004" id="QQ2-1-13">Deliverables</a></span>
+href="#x1-120004" id="QQ2-1-12">Deliverables</a></span>
 <br />   &#x00A0;<span class="sectionToc" >5 <a 
-href="#x1-140005" id="QQ2-1-14">Resources</a></span>
+href="#x1-130005" id="QQ2-1-13">Resources</a></span>
    </div>
 <!--l. 8--><p class="noindent" >
 </p>
@@ -705,61 +705,128 @@ class="MathClass-bin">&#x2212;</mo> <mi
 class="MathClass-close">&#x0029;</mo><mo 
 class="MathClass-punc">.</mo>                   </mtd></mtr><!--lcl--></mtable>
 </math></td><td class="eq-no">&#x0028;11&#x0029;</td></tr></table>
-   <h5 class="subsubsectionHead"><span class="titlemark">1.3.2   </span> <a 
- id="x1-70001.3.2"></a>Quantization</h5>
-<!--l. 250--><p class="noindent" >After analyzing the frame &#x0028;representing it in the YCrCb domain&#x0029;, the next
-natural step is quantization. Unfortunately, the RGB/YCrCb transform is not
-orthogonal<span class="footnote-mark"><a 
-href="index7.html#fn6x0"><sup class="textsuperscript">6</sup></a></span><a 
- id="x1-7001f6"></a> 
-and therefore the contribution of each channel to the quality of the reconstructed
-image <!--l. 258--><math 
+<!--l. 249--><p class="indent" >   As it can be seen, considering that the RGB values ranges
+between 0 and 255 &#x0028;and rounding to the nearest integer&#x0029;,
+<!--l. 250--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mover 
-accent="true"><mrow 
-><mi 
->X</mi></mrow><mo accent="true">&#x007E;</mo></mover></math>
-are not additive &#x0028;this can be seen in this <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb" >notebook</a>&#x0029;. For that reason, and only for the
-sake of simplicity, we will use </p><table class="equation"><tr><td> <a 
- id="x1-7002r12"></a>
+display="inline" ><mn>0</mn> <mo 
+class="MathClass-rel">&#x2264;</mo><mstyle 
+class="text"><mtext  >Y</mtext></mstyle> <mo 
+class="MathClass-rel">&#x2264;</mo> <mn>2</mn><mn>5</mn><mn>5</mn></math>,
+<!--l. 251--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" > <mo 
+class="MathClass-bin">&#x2212;</mo> <mn>1</mn><mn>2</mn><mn>8</mn> <mo 
+class="MathClass-rel">&#x2264;</mo><mstyle 
+class="text"><mtext  >Cr</mtext></mstyle> <mo 
+class="MathClass-rel">&#x2264;</mo> <mn>1</mn><mn>2</mn><mn>7</mn></math> and
+<!--l. 251--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" > <mo 
+class="MathClass-bin">&#x2212;</mo> <mn>1</mn><mn>2</mn><mn>8</mn> <mo 
+class="MathClass-rel">&#x2264;</mo><mstyle 
+class="text"><mtext  >Cb</mtext></mstyle> <mo 
+class="MathClass-rel">&#x2264;</mo> <mn>1</mn><mn>2</mn><mn>7</mn></math>, and
+therefore, the number of bits that are necessary to represent each YCrCb component
+is 8. Therefore, we can use the same QS range for each component.
+</p><!--l. 256--><p class="indent" >   Finally, notice that the YCrCb transform is not orthogonal because the analysis
+&#xFB01;lters are not independent. This can be seen in the Eq.&#x00A0;<span 
+class="ecbx-1000">??</span>, where the Cr values depend
+on the values of Y, and therefore, there is a dependency between both <a 
+href="https://en.wikipedia.org/wiki/Basis_(linear_algebra)" >basis</a>, and
+something similar happens for the Cb components. This can be also easely checked:
+<!--l. 262--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>2</mn><mn>9</mn><mn>9</mn> <mo 
+class="MathClass-bin">&#x2217;</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>5</mn> <mo 
+class="MathClass-bin">+</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>5</mn><mn>8</mn><mn>7</mn> <mo 
+class="MathClass-bin">&#x2217;</mo> <mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>4</mn><mn>1</mn><mn>8</mn><mn>7</mn><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-bin">+</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>1</mn><mn>1</mn><mn>4</mn> <mo 
+class="MathClass-bin">&#x2217;</mo> <mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>0</mn><mn>8</mn><mn>1</mn><mn>3</mn><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>1</mn><mn>0</mn><mn>5</mn><mn>5</mn><mn>4</mn><mn>5</mn><mn>1</mn><mo 
+class="MathClass-rel">&#x2260;</mo><mn>0</mn></math>,
+<!--l. 263--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>2</mn><mn>9</mn><mn>9</mn> <mo 
+class="MathClass-bin">&#x2217;</mo> <mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>1</mn><mn>6</mn><mn>8</mn><mn>7</mn><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-bin">+</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>5</mn><mn>8</mn><mn>7</mn> <mo 
+class="MathClass-bin">&#x2217;</mo> <mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>3</mn><mn>3</mn><mn>1</mn><mn>3</mn><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-bin">+</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>1</mn><mn>1</mn><mn>4</mn> <mo 
+class="MathClass-bin">&#x2217;</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>5</mn> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>1</mn><mn>8</mn><mn>7</mn><mn>9</mn><mn>1</mn><mn>4</mn><mn>4</mn><mo 
+class="MathClass-rel">&#x2260;</mo><mn>0</mn></math>, and
+<!--l. 264--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>5</mn> <mo 
+class="MathClass-bin">&#x2217;</mo> <mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>1</mn><mn>6</mn><mn>8</mn><mn>7</mn><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-bin">+</mo> <mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>4</mn><mn>1</mn><mn>8</mn><mn>7</mn><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-bin">&#x2217;</mo> <mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>3</mn><mn>3</mn><mn>1</mn><mn>3</mn><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-bin">+</mo> <mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>0</mn><mn>8</mn><mn>1</mn><mn>3</mn><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-bin">&#x2217;</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>5</mn> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>0</mn><mn>1</mn><mn>3</mn><mn>7</mn><mn>1</mn><mn>5</mn><mn>3</mn><mn>1</mn><mo 
+class="MathClass-rel">&#x2260;</mo><mn>0</mn></math>.
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
+ id="x1-70001.4"></a>The <a 
+href="https://en.wikipedia.org/wiki/YCoCg" >RGB/YCoCg transform</a></h4>
                                                                   
 
                                                                   
-<!--l. 262--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="block" class="equation">
-                         <msub><mrow 
-><mi 
->&#x0394;</mi></mrow><mrow 
-><mstyle 
-class="text"><mtext  >Y</mtext></mstyle></mrow></msub 
-> <mo 
-class="MathClass-rel">=</mo> <msub><mrow 
-><mi 
->&#x0394;</mi></mrow><mrow 
-><mstyle 
-class="text"><mtext  >Cr</mtext></mstyle></mrow></msub 
-> <mo 
-class="MathClass-rel">=</mo> <msub><mrow 
-><mi 
->&#x0394;</mi></mrow><mrow 
-><mstyle 
-class="text"><mtext  >Cb</mtext></mstyle></mrow></msub 
-><mo 
-class="MathClass-punc">.</mo>
-</math></td><td class="eq-no">&#x0028;12&#x0029;</td></tr></table>
-   <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
- id="x1-80001.4"></a>The <a 
-href="https://en.wikipedia.org/wiki/YCoCg" >RGB/YCoCg transform</a></h4>
-<!--l. 401--><p class="noindent" >
+<!--l. 421--><p class="noindent" >
 </p>
    <h5 class="subsubsectionHead"><span class="titlemark">1.4.1   </span> <a 
- id="x1-90001.4.1"></a>Analysis and synthesis</h5>
-<!--l. 402--><p class="noindent" >Clearly, orthogonality is a desired property in lossy compression systems because it helps
+ id="x1-80001.4.1"></a>Analysis and synthesis</h5>
+<!--l. 422--><p class="noindent" >Clearly, orthogonality is a desired property in lossy compression systems because it helps
 to isolate<span class="footnote-mark"><a 
-href="index8.html#fn7x0"><sup class="textsuperscript">7</sup></a></span><a 
- id="x1-9001f7"></a> 
+href="index7.html#fn6x0"><sup class="textsuperscript">6</sup></a></span><a 
+ id="x1-8001f6"></a> 
 the impact of each component on the quality of the reconstruction of the
 image, signi&#xFB01;cantly thus simplifying the determination of the pattern of
 quantization steps that generate the optimal RD curve. On the other hand,
@@ -768,18 +835,15 @@ href="#x1-6001r7">7<!--tex4ht:ref: eq:YCrCb --></a> and <a
 href="#x1-6003r9">9<!--tex4ht:ref: eq:iYCrCb --></a> were derived by <a 
 href="https://en.wikipedia.org/wiki/Principal_component_analysis" >Principal Component Analysis &#x0028;PCA&#x0029;</a> on
 old<span class="footnote-mark"><a 
-href="index9.html#fn8x0"><sup class="textsuperscript">8</sup></a></span><a 
- id="x1-9002f8"></a> 
+href="index8.html#fn7x0"><sup class="textsuperscript">7</sup></a></span><a 
+ id="x1-8002f7"></a> 
 video data. The same procedure has been carried out with
 newer<span class="footnote-mark"><a 
-href="index10.html#fn9x0"><sup class="textsuperscript">9</sup></a></span><a 
- id="x1-9003f9"></a> 
+href="index9.html#fn8x0"><sup class="textsuperscript">8</sup></a></span><a 
+ id="x1-8003f8"></a> 
 images, obtaining </p><table class="equation"><tr><td> <a 
- id="x1-9004r13"></a>
-                                                                  
-
-                                                                  
-<!--l. 414--><math 
+ id="x1-8004r12"></a>
+<!--l. 434--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
@@ -896,18 +960,18 @@ class="text"><mtext  >C</mtext></mstyle></mrow><mrow
 ><mn>2</mn></mrow></msub 
 >  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                                    </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
 class="MathClass-punc">.</mo>
-</math></td><td class="eq-no">&#x0028;13&#x0029;</td></tr></table>
-<!--l. 453--><p class="indent" >   This transform is orthogonal and the synthesis &#xFB01;lters
+</math></td><td class="eq-no">&#x0028;12&#x0029;</td></tr></table>
+<!--l. 473--><p class="indent" >   This transform is orthogonal and the synthesis &#xFB01;lters
 gains<span class="footnote-mark"><a 
-href="index11.html#fn10x0"><sup class="textsuperscript">10</sup></a></span><a 
- id="x1-9005f10"></a>  are 22/9
-&#x0028;for Y&#x0029;, 25/9 &#x0028;for C<!--l. 456--><math 
+href="index10.html#fn9x0"><sup class="textsuperscript">9</sup></a></span><a 
+ id="x1-8005f9"></a>  are 22/9 &#x0028;for
+Y&#x0029;, 25/9 &#x0028;for C<!--l. 476--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ></mrow><mrow 
 ><mn>1</mn></mrow></msub 
 ></math>&#x0029;
-and 22/9 &#x0028;for C<!--l. 456--><math 
+and 22/9 &#x0028;for C<!--l. 476--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ></mrow><mrow 
@@ -917,8 +981,11 @@ However, as <span class="cite">&#x005B;<a
 href="#Xmalvar2008lifting">2</a>&#x005D;</span> points, from a perceptual perspective, the in&#xFB02;uence of the green
 channel on the luma channel should be stronger. For this reason the authors &#xFB01;nally
 propose the transform </p><table class="equation"><tr><td> <a 
- id="x1-9006r14"></a>
-<!--l. 460--><math 
+ id="x1-8006r13"></a>
+                                                                  
+
+                                                                  
+<!--l. 480--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
@@ -1011,20 +1078,17 @@ class="text"><mtext  >Co</mtext></mstyle></mtd>
 class="array"  columnalign="center">  <mstyle 
 class="text"><mtext  >Cg</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                              </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
 class="MathClass-punc">,</mo>
-</math></td><td class="eq-no">&#x0028;14&#x0029;</td></tr></table>
-<!--l. 497--><p class="indent" >   that is near orthogonal<span class="footnote-mark"><a 
-href="index12.html#fn11x0"><sup class="textsuperscript">11</sup></a></span><a 
- id="x1-9007f11"></a> ,
+</math></td><td class="eq-no">&#x0028;13&#x0029;</td></tr></table>
+<!--l. 517--><p class="indent" >   that is near orthogonal<span class="footnote-mark"><a 
+href="index11.html#fn10x0"><sup class="textsuperscript">10</sup></a></span><a 
+ id="x1-8007f10"></a> ,
 and has channel gains 3 &#x0028;Y&#x0029;, 2 &#x0028;Co&#x0029; and 3 &#x0028;Cg&#x0029;.
 </p>
    <h5 class="subsubsectionHead"><span class="titlemark">1.4.2   </span> <a 
- id="x1-100001.4.2"></a>Quantization</h5>
-<!--l. 502--><p class="noindent" >The previous channel gains suggest to use </p><table class="equation"><tr><td> <a 
- id="x1-10001r15"></a>
-                                                                  
-
-                                                                  
-<!--l. 503--><math 
+ id="x1-90001.4.2"></a>Quantization</h5>
+<!--l. 523--><p class="noindent" >The previous channel gains suggest to use </p><table class="equation"><tr><td> <a 
+ id="x1-9001r14"></a>
+<!--l. 524--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                         <msub><mrow 
@@ -1049,12 +1113,12 @@ class="MathClass-rel">=</mo> <msub><mrow
 class="text"><mtext  >Cg</mtext></mstyle></mrow></msub 
 ><mo 
 class="MathClass-punc">.</mo>
-</math></td><td class="eq-no">&#x0028;15&#x0029;</td></tr></table>
-<!--l. 506--><p class="indent" >   However, as it can be seen in this <a 
+</math></td><td class="eq-no">&#x0028;14&#x0029;</td></tr></table>
+<!--l. 527--><p class="indent" >   However, as it can be seen in this <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb" >notebook</a> the di&#xFB00;erences with using </p><table class="equation"><tr><td>
 <a 
- id="x1-10002r16"></a>
-<!--l. 507--><math 
+ id="x1-9002r15"></a>
+<!--l. 528--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                         <msub><mrow 
@@ -1076,47 +1140,47 @@ class="MathClass-rel">=</mo> <msub><mrow
 class="text"><mtext  >Cg</mtext></mstyle></mrow></msub 
 ><mo 
 class="MathClass-punc">.</mo>
-</math></td><td class="eq-no">&#x0028;16&#x0029;</td></tr></table>
-<!--l. 510--><p class="indent" >   are very small. Therefore, this last quantization scheme will be adopted.
-</p><!--l. 512--><p class="noindent" >
+</math></td><td class="eq-no">&#x0028;15&#x0029;</td></tr></table>
+                                                                  
+
+                                                                  
+<!--l. 531--><p class="indent" >   are very small. Therefore, this last quantization scheme will be adopted.
+</p><!--l. 533--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
- id="x1-110002"></a>What you have to do?</h3>
-<!--l. 514--><p class="noindent" >
+ id="x1-100002"></a>What you have to do?</h3>
+<!--l. 535--><p class="noindent" >
      </p><ol  class="enumerate1" >
      <li 
-  class="enumerate" id="x1-11002x1">Please,  run  the  previous  <a 
+  class="enumerate" id="x1-10002x1">Please,  run  the  previous  <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb" >notebook</a>  to  learn  some  insights  about  the
      problem of the optimal quantization in the color domain.
      </li>
      <li 
-  class="enumerate" id="x1-11004x2">Include  in  the  previous  <a 
+  class="enumerate" id="x1-10004x2">Include  in  the  previous  <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb" >notebook</a>  an  implementation  of  the  <a 
 href="https://en.wikipedia.org/wiki/JPEG_2000#Color_components_transformation" >RCT
      &#x0028;Reversible Color Transform&#x0029;</a> and compare it&#x2019;s RD performance with the
      other transforms.
      </li>
      <li 
-  class="enumerate" id="x1-11006x3">Implement the transform described in Eq.&#x00A0;<a 
-href="#x1-9004r13">13<!--tex4ht:ref: eq:optimal --></a>, and compare it with the
+  class="enumerate" id="x1-10006x3">Implement the transform described in Eq.&#x00A0;<a 
+href="#x1-8004r12">12<!--tex4ht:ref: eq:optimal --></a>, and compare it with the
      other transforms.</li></ol>
-                                                                  
-
-                                                                  
-<!--l. 529--><p class="noindent" >
+<!--l. 550--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
- id="x1-120003"></a>Timming</h3>
-<!--l. 531--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 533--><p class="noindent" >
+ id="x1-110003"></a>Timming</h3>
+<!--l. 552--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 554--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
- id="x1-130004"></a>Deliverables</h3>
-<!--l. 535--><p class="noindent" >None.
-</p><!--l. 537--><p class="noindent" >
+ id="x1-120004"></a>Deliverables</h3>
+<!--l. 556--><p class="noindent" >None.
+</p><!--l. 558--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
- id="x1-140005"></a>Resources</h3>
+ id="x1-130005"></a>Resources</h3>
    <div class="thebibliography">
    <p class="bibitem" ><span class="biblabel">
  &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
@@ -1125,6 +1189,9 @@ href="https://educons.edu.rs/wp-content/uploads/2020/05/2016-Digital-Image-Proce
 class="ecti-1000">Digital Image Processing: An Algorithmic</span>
    <span 
 class="ecti-1000">Introduction Using Java</span></a>. Springer, 2016.
+                                                                  
+
+                                                                  
    </p>
    <p class="bibitem" ><span class="biblabel">
  &#x005B;2&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
