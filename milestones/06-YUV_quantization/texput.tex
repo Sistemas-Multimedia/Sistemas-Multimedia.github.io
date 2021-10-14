@@ -175,8 +175,9 @@ the RGB/YCrCb (analysis) transform~\cite{malvar2008lifting}
 \end{equation}
 where Y is the luma component and CrCb are the chromas. The main
 reason for such mapping is that the HVS is much less sensitive to the
-high-frequency information in the chromas. Thus, compression systems
-such as \href{https://en.wikipedia.org/wiki/JPEG}{JPEG} can
+high-frequency information in the
+chromas~\cite{burger2016digital}. Thus, compression systems such as
+\href{https://en.wikipedia.org/wiki/JPEG}{JPEG} can
 \href{https://en.wikipedia.org/wiki/Downsampling_(signal_processing)}{downsample}
 the chroma components (usually by 2:1 in each of the horizontal and
 vertical directions), as well as increase their quantization step
@@ -494,8 +495,9 @@ stronger. For this reason the authors finally propose the transform
   \end{bmatrix},
 \end{equation}
 that is near orthogonal\footnote{For example, $\frac{1}{4}\frac{-1}{4}
-+ \frac{1}{2}\frac{1}{2} + \frac{1}{4}\frac{-1}{4} = \frac{1}{8}$},
-and has channel gains 3 (Y), 2 (Co) and 3 (Cg). %These gains suggest that
++ \frac{1}{2}\frac{1}{2} + \frac{1}{4}\frac{-1}{4} = \frac{1}{8}$, and
+we should obtain always 0.}, and has channel gains 3 (Y), 2 (Co) and 3
+(Cg). %These gains suggest that
 
 \subsubsection{Quantization}
 The previous channel gains suggest to use
