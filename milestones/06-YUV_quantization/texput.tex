@@ -150,7 +150,7 @@ transforms, and therefore
 \end{equation}
 
 \subsection{The \href{https://en.wikipedia.org/wiki/YCbCr}{RGB/YCrCb transform}}
-\subsubsection{Analysis and synthesis}
+%\subsubsection{Analysis and synthesis}
 To convert a (color) pixel from the RGB domain into the YCrCb one, we use
 the RGB/YCrCb (analysis) transform~\cite{malvar2008lifting}
 \begin{equation}
@@ -193,7 +193,7 @@ Eq.~\ref{eq:YCrCb}
     \text{Cr} & = & 0.713(\text{R} - \text{Y}) + \delta \\
     \text{Cb} & = & 0.564(\text{B} - \text{Y}) + \delta,
   \end{array}
-  \label{eq:analysis}
+  \label{eq:alternative_YCrCb}
 \end{equation}
 where,
 \begin{equation}
@@ -204,7 +204,6 @@ where,
     0.5 & \text{for floating point (}[0,1]\text{) images}.
   \end{array}
   \right.
-  \label{eq:iYCrCb}
 \end{equation}
 is used to avoid negative components\footnote{In most transforms
   schemes, the output elements of the analysis transform are commonly
@@ -243,20 +242,27 @@ or alternatively, by
     \text{G} & = & \text{Y} - 0.714(\text{Cr} - \delta) - 0.344(\text{Cb} - \delta)\\
     \text{B} & = & \text{Y} + 1.773(\text{Cb} - \delta).
   \end{array}
-  \label{eq:synthesis}
+  \label{eq:iYCrCb}
 \end{equation}
 
 As it can be seen, considering that the RGB values ranges between 0
 and 255 (and rounding to the nearest integer), $0\le\text{Y}\le 255$,
 $-128\le\text{Cr}\le 127$ and $-128\le\text{Cb}\le 127$, and
 therefore, the number of bits that are necessary to represent each
-YCrCb component is 8. Therefore, we can use the same QS range for each
-component.
+YCrCb component is 8 (although we must use floating point arithmetic to perform the transform).
+
+The synthesis filters generates a gain of $||1^2 + 1^2 + 1^2||^2=3$
+(squared norm) for the Y component, $||1.402^2 + 0.714^2 +
+0^2||^2=2.4754$ for the Cr component, and $||0^2 + 0.344^2+
+1.772^2||^2=3.25832$ for the Cb component. So, when compressing an
+image through quantization, the QSs should be modulated accordinly
+(the higher the gain, the higher the quantization error, and
+therefore, the smaller the QS should be).
 
 Finally, notice that the YCrCb transform is not orthogonal because the
 analysis filters are not independent. This can be seen in the
-Eq.~\ref{eq:YCrCb_analysis}, where the Cr values depend on the values
-of Y, and therefore, there is a dependency between both
+Eq.~\ref{eq:alternative_YCrCb}, where the Cr values depend on the
+values of Y, and therefore, there is a dependency between both
 \href{https://en.wikipedia.org/wiki/Basis_(linear_algebra)}{basis},
 and something similar happens for the Cb components. This can be also
 easely checked: $0.299*0.5 + 0.587*(-0.4187) + 0.114*(-0.0813) =
@@ -418,14 +424,15 @@ intercomponent redundancy from a pure mathematical point of view.
 \end{comment}
 
 \subsection{The \href{https://en.wikipedia.org/wiki/YCoCg}{RGB/YCoCg transform}}
-\subsubsection{Analysis and synthesis}
+%\subsubsection{Analysis and synthesis}
 Clearly, orthogonality is a desired property in lossy compression
 systems because it helps to isolate\footnote{Without considering the
-rest of components.} the impact of each component on the quality of
-the reconstruction of the image, significantly thus simplifying the
-determination of the pattern of quantization steps that generate the
-optimal RD curve. On the other hand, Eqs.~\ref{eq:YCrCb} and
-\ref{eq:iYCrCb} were derived by
+rest of components.} the impact (in the case of a color transform) of
+each component on the quality of the reconstruction of the image,
+simplifying significantly the determination of the pattern of QSs that
+generate the optimal RD curve.
+
+Moreover, Eqs.~\ref{eq:YCrCb} and \ref{eq:iYCrCb} were derived by
 \href{https://en.wikipedia.org/wiki/Principal_component_analysis}{Principal
   Component Analysis (PCA)} on old\footnote{Recorded with the first
 analog color cameras in the 70's.} video data. The same procedure has
@@ -473,10 +480,15 @@ in 2008.} images, obtaining
 This transform is orthogonal and the synthesis filters
 gains\footnote{The gain of a transform can be determined computing the
 squared norm of the rows of the synthesis transform (the synthesis
-filters).} are 22/9 (for Y), 25/9 (for C$_1$) and 22/9 (for C$_2$). However,
-as \cite{malvar2008lifting} points, from a perceptual perspective, the
-influence of the green channel on the luma channel should be
-stronger. For this reason the authors finally propose the transform
+filters).} are 22/9 (for Y), 25/9 (for C$_1$) and 22/9 (for
+C$_2$).
+
+Unfortunately, from a perceptual perspective we must impose (thinking
+of the subsampling of the chromas) some features in a color transform
+(such as the influence of the green channel on the luma channel should
+be high) that violates the orthogonality constrain
+\cite{malvar2008lifting}. For this reason the authors finally propose
+the transform
 \begin{equation}
   \begin{bmatrix}
     \text{Y} \\
@@ -518,6 +530,13 @@ that is near orthogonal\footnote{For example, $\frac{1}{4}\frac{-1}{4}
 + \frac{1}{2}\frac{1}{2} + \frac{1}{4}\frac{-1}{4} = \frac{1}{8}$, and
 we should obtain always 0.}, and has channel gains 3 (Y), 2 (Co) and 3
 (Cg). %These gains suggest that
+
+Again, notice that if the RGB values ranges between 0
+and 255 (and rounding to the nearest integer), $0\le\text{Y}\le 255$,
+$-128\le\text{Co}\le 127$ and $-128\le\text{Cg}\le 127$, and
+therefore, the number of bits that are necessary to represent each
+component is 8. Therefore, we can use the same QS range for each
+component.
 
 \subsubsection{Quantization}
 The previous channel gains suggest to use
