@@ -19,31 +19,26 @@ context of \theproject{}, an image can be described as a
 \href{https://en.wikipedia.org/wiki/Matrix_(mathematics)}{matrix} of
 \href{https://en.wikipedia.org/wiki/Pixel}{pixels} (PIcture X-ray
 ELementS), arranged in a regular rectangular grid. Such sequences are
-usully captured by a CCD (Charge Coupled Device). In the digital
-world, a video can be denoted by
-\begin{equation*}
-  \mathbf{V}_{t,y,x}
-\end{equation*}
-where the spatial
-\href{https://en.wikipedia.org/wiki/Coordinate_system}{coordinatinates}
-$(y,x)\in\mathbb{N}\times\mathbb{N}$, the temporal coordinate
-$t\in\mathbb{N}$, and $\mathbf{V}_{t,y,x}\in\mathbf{P}$ is the pixel
-value, where $\mathbb{P}^{k}$ is the (pixels) \emph{values
-  domain}~\cite{burger2016digital}. $t$ indexes the $t$-th image in
-the video and its resolution is measured in FPS (Frames Per
-Second). $(x,y$) identify a pixel in an image and
-$0\le x< \mathrm{the~image~width}$:
-$0\le y< \mathrm{the~image~height}$.\footnote{The total number of
-  images in a video is rarely specified in its description.}
+usully captured by a
+\href{https://en.wikipedia.org/wiki/Charge-coupled_device}{CCD (Charge
+  Coupled Device)}.
 
-Depending on the $k$ dimension of $\mathbb{P}$ (the number of
-components of a pixel), we usually can have grayscale pixels ($k=1$)
-or color (panchromatic) pixels ($k=3$).\footnote{When $k>3$ we use the
-  term ``super/hyper-spectral'' pixels/images/videos.} Finally, if we
+In the digital world, a video can be denoted by
+\begin{equation*}
+  \{{\mathbf V}_{t,y,x}\in\mathbb{P}^{k}, (t,y,x)\in\mathbb{N}^3\}
+\end{equation*}
+where $t$ is a temporal coordinate, $(y,x)$ is a spatial coordinate,
+and $\mathbb{P}^{k}$ is the (pixels) \emph{values domain}, with
+dimension (number of pixel components) $k$~\cite{burger2016digital}.
+
+
+Depending on the $k$, we can have grayscale pixels ($k=1$) or
+color (panchromatic) pixels ($k=3$).\footnote{When $k>3$ we use the
+term ``super/hyper-spectral'' pixels/images/videos.} Finally, if we
 take into consideration the number of bits/component (usually 8,
 although this value can be larger specially for grayscale images), the
-pixel-depth will be 8 bits/pixel for grayscale sequences or
-$3\times 8=24$ bits/pixel for color ones.
+pixel-depth will be $8$ bits/pixel for grayscale sequences or $3\times
+8=24$ bits/pixel for color ones.
 
 We are going to store a video as a sequence of
 \href{https://en.wikipedia.org/wiki/Computer_file}{files} with names
@@ -61,21 +56,22 @@ to remove the
 \href{https://en.wikipedia.org/wiki/Image_compression}{spatial} and
 \href{https://en.wikipedia.org/wiki/Data_compression}{statistical
   redudancy}. Notice that no
-\href{https://en.wikipedia.org/wiki/YUV}{color transform} is used.
-
-We will use \href{https://vicente-gonzalez-ruiz.github.io/PNG/}{PNG}
+\href{https://en.wikipedia.org/wiki/YUV}{color transform} is used. We will use \href{https://vicente-gonzalez-ruiz.github.io/PNG/}{PNG}
 basically as an
-\href{https://en.wikipedia.org/wiki/Entropy_encoding}{entropy codec},
-which is a combination of
-\href{https://vicente-gonzalez-ruiz.github.io/Huffman_coding/}{Huffman
-  Coding} and
-\href{https://vicente-gonzalez-ruiz.github.io/LZ77/}{Lempel-Ziv-77
-  Coding}. However, notice that any other lossless image compressing
-file format (such as \href{https://en.wikipedia.org/wiki/TIFF}{TIFF})
-could be used.
+\href{https://en.wikipedia.org/wiki/Entropy_encoding}{entropy codec}.
 
-Finally, notice that all the frames of the videos used in this
-subject:
+% We will use \href{https://vicente-gonzalez-ruiz.github.io/PNG/}{PNG}
+% basically as an
+% \href{https://en.wikipedia.org/wiki/Entropy_encoding}{entropy codec},
+% which is a combination of
+% \href{https://vicente-gonzalez-ruiz.github.io/Huffman_coding/}{Huffman
+%   Coding} and
+% \href{https://vicente-gonzalez-ruiz.github.io/LZ77/}{Lempel-Ziv-77
+%   Coding}. However, notice that any other lossless image compressing
+% file format (such as \href{https://en.wikipedia.org/wiki/TIFF}{TIFF})
+% could be used.
+
+Finally, notice that all the frames of a video usually:
 \begin{enumerate}
 \item Have the same
   \href{https://en.wikipedia.org/wiki/Image_resolution}{spatial
@@ -84,7 +80,7 @@ subject:
   \href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB domain}.
 \item Depending on the frame, each color component (channel) has
   \href{https://en.wikipedia.org/wiki/Glossary_of_computer_graphics#bit_depth}{bit
-    depth} of 8 or 16 bits, representing an unsigned
+    depth} of $8$ or $16$ bits, representing an unsigned
   \href{https://en.wikipedia.org/wiki/Integer_(computer_science)}{integer}.
 %\item The pixel
 %  \href{https://en.wikipedia.org/wiki/Luminous_intensity}{intensities}
@@ -98,11 +94,11 @@ subject:
 \section{What do I have to do?}
 
 \begin{enumerate}
-\item Download \theproject{}, preferably cloning your fork.
+\item Download \theproject{}, preferably cloning your own fork.
 \item Run this \href{https://jupyter.org/}{jupyter}
   \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestone/04-the_data/display_video.ipynb}{notebook}
   that shows how to read and write frames.
-\item Please, try to dig a little bit into the insights of the notebook.
+%\item Please, try to dig a little bit into the insights of the notebook.
 %\item Understand the insights of the notebook.
 \end{enumerate}
 
