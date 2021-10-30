@@ -29,7 +29,7 @@ we have basically two options:
   exact measure of the expected bit-rate achieved by an
   \href{https://en.wikipedia.org/wiki/Arithmetic_coding}{arithmetic
     encoder}. Unfortunately, the 0-order entropy is usually only a
-  lower bound for the estimation of the redundancy.
+  lower bound of the redundancy estimation.
 \item A better way is to use an
   \href{https://en.wikipedia.org/wiki/Data_compression}{lossless
     compressor}: the higher the length of the compressed file compared
@@ -43,46 +43,48 @@ we have basically two options:
   estimations).
 \end{enumerate}
 
-In this milestone we are going to remove the intercomponent redundancy
-that may exist between the color components of each pixel of an
-image. The \href{https://en.wikipedia.org/wiki/Color_space}{color
-  spaces} that we will compare are: (1)
-\href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB} (the original one), (2) the
-\href{https://en.wikipedia.org/wiki/YCbCr}{YCrCb}, and (3) the
-\href{https://en.wikipedia.org/wiki/YCoCg}{YCoCg}. The last two
-\emph{luma}-based (luminance-based) color domains rely on the idea of
-separating the luminance component Y from two \emph{chroma} components
-(red and blue in the case of YCrCb, orange and green in the case of
-YCoCg) and, instead of directly encoding colors, encoding color
-diﬀerences. This presents two main
-advantages~\cite{burger2016digital}:
+In this milestone, the intercomponent redundancy that may exist
+between the color components of each pixel of an image is removed. The
+\href{https://en.wikipedia.org/wiki/Color_space}{color spaces} that we
+will compare are: (1)
+\href{https://en.wikipedia.org/wiki/RGB_color_model}{$\text{RGB}$}
+(the original one), (2) the
+\href{https://en.wikipedia.org/wiki/YCbCr}{$\text{YCrCb}$}, and (3)
+the \href{https://en.wikipedia.org/wiki/YCoCg}{$\text{YCoCg}$}. The
+last two , which are \emph{luma}-based (luminance-based) color
+domains, rely on the idea of separating the luminance component Y from
+two \emph{chroma} components (red and blue in the case of
+$\text{YCrCb}$, orange and green in the case of $\text{YCoCg}$) and,
+instead of directly encoding the components, encoding components
+diﬀerences. This has two main advantages~\cite{burger2016digital}:
 \begin{enumerate}
 \item Compatibility with legacy black and white systems is maintained
   while at the same time the bandwidth of the signal can be optimized
   by using diﬀerent transmission bandwidths for the brightness and the
-  color components.
+  chroma components.
 \item Since the \href{https://en.wikipedia.org/wiki/Visual_system}{HVS
   (Human Visual System)} is not able to perceive detail in the color
   components as well as it does in the intensity part of a video
-  signal, the amount of information, and consequently bandwidth, used
-  in the color channel can be reduced to approximately 1/4 of that
-  used for the intensity component without a noticeable
-  distortion. This fact is also used when compressing digital still
-  images and is why, for example, the
-  \href{https://en.wikipedia.org/wiki/JPEG}{JPEG} codec converts RGB
-  images to YCrCb.
+  signal, the amount of information, and
+  consequently \href{https://en.wikipedia.org/wiki/Bandwidth_(signal_processing)}{bandwidth},
+  used in the color channel can be reduced to approximately 1/4 of
+  that used for the intensity component without a noticeable
+  distortion. This \href{https://en.wikipedia.org/wiki/Bandwidth_(computing)}{fact
+  is also used when compressing} digital still images and is why, for
+  example, the \href{https://en.wikipedia.org/wiki/JPEG}{JPEG} codec
+  converts RGB images to $\text{YCrCb}$.
 \end{enumerate}
 
 \subsection{Some words about transform coding}
 Quantization is more effective (the lossy compression ratios are
 higher) when the energy of the signal is accumulated in an small
 number of samples because we can dedicate more bits to encode the more
-energetic samples.\footnote{For example, is the energy of a channel is
-small, quantization could completely makes zero such channel, but the
+energetic samples.\footnote{For example, if the energy of a channel is
+low, quantization could completely makes zero such channel, but the
 reconstruction of the image would be reasonable. The most part of
-entropy codecs (and of course, PNG's DEFLATE) works much better if we
-found sequences of zeros. Therefore, quantizing will improve the
-compression ratios.}
+entropy codecs (and of course, PNG's DEFLATE) works much better with
+sequences of zeros. Therefore, quantizing will improve the compression
+ratios.}
 \href{https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf}{Transform
   coding} can exploit
 \href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlation}
@@ -141,18 +143,19 @@ and it holds that
   \mathbf{K}={\mathbf{K}}^{-1}={\mathbf{K}}^{\text T},
   \label{eq:orthogonal_matrix}
 \end{equation}
-where ${\mathbf{K}}^{\text T}$ represents the transpose matrix of $\mathbf{K}$. The
-Eq.~\ref{eq:orthogonal_matrix} is true for all
+where ${\mathbf{K}}^{\text T}$ represents the transpose matrix of
+$\mathbf{K}$.  Eq.~\ref{eq:orthogonal_matrix} is true for all
 \href{https://en.wikipedia.org/wiki/Orthogonality}{orthogonal}
 transforms, and therefore
 \begin{equation}
   \langle {\mathbf{K}}_i, {\mathbf{K}}_j\rangle = 0, \forall i\neq j.
 \end{equation}
 
-\subsection{The \href{https://en.wikipedia.org/wiki/YCbCr}{RGB/YCrCb transform}}
+\subsection{The \href{https://en.wikipedia.org/wiki/YCbCr}{$\text{RGB/YCrCb}$ transform}}
 %\subsubsection{Analysis and synthesis}
-To convert a (color) pixel from the RGB domain into the YCrCb one, we use
-the RGB/YCrCb (analysis) transform~\cite{malvar2008lifting}
+To convert a (color) pixel from the $\text{RGB}$ domain into the
+$\text{YCrCb}$ one, we use the $\text{RGB/YCrCb}$ (analysis)
+transform~\cite{malvar2008lifting}
 \begin{equation}
   \begin{bmatrix}
     \text{Y} \\
@@ -173,15 +176,16 @@ the RGB/YCrCb (analysis) transform~\cite{malvar2008lifting}
   \end{bmatrix},
   \label{eq:YCrCb}
 \end{equation}
-where Y is the luma component and CrCb are the chromas. The main
-reason for such mapping is that the HVS is much less sensitive to the
-high-frequency information in the
-chromas~\cite{burger2016digital}. Thus, compression systems such as
+where $\text{Y}$ is the luma component and $\text{CrCb}$ are the
+chromas. The main reason for such mapping is that the HVS is much less
+sensitive to the high-frequency information in the
+chromas~\cite{burger2016digital}. Thus, as we mentioned above,
+compression systems such as
 \href{https://en.wikipedia.org/wiki/JPEG}{JPEG} can
 \href{https://en.wikipedia.org/wiki/Downsampling_(signal_processing)}{downsample}
-the chroma components (usually by 2:1 in each of the horizontal and
-vertical directions), as well as increase their quantization step
-sizes with respect to luma, to achieve further
+the chroma components (usually by 2:1 in the horizontal and vertical
+directions), as well as increase their quantization step sizes with
+respect to the luma, to achieve further
 \href{https://en.wikipedia.org/wiki/Data_compression_ratio}{compression}~\cite{malvar2008lifting}.
 
 Eq.~\ref{eq:YCrCb}
@@ -201,18 +205,19 @@ where,
   \begin{array}{ll}
     128 & \text{for 8 bits (unsigned) images},\\
     32768 & \text{for 16 bits (unsigned) images},\\
-    0.5 & \text{for floating point (}[0,1]\text{) images}.
+    0.5 & \text{for floating point (}[0,1]\text{) images}
   \end{array}
   \right.
 \end{equation}
 is used to avoid negative components\footnote{In most transforms
-  schemes, the output elements of the analysis transform are commonly
-  called coefficients. However, in the context of the color transform,
-  the most used term is component.}. As it can be seen, Cr and Cb are
-scaled versions of $\text{R} - \text{Y}$ and $\text{B} - \text{Y}$, so
-Cr and Cb can be interpreted as measures of how much red and blue
-content in a pixel differs from luma, respectively. Notice also that
-for a gray pixel, $\text{R}=\text{G}=\text{B}=\text{Y}$, and so
+schemes, the output elements of the analysis transform are commonly
+called coefficients. However, in the context of the color transform,
+the most used term is component.}. As it can be seen, $\text{Cr}$ and
+$\text{Cb}$ are scaled versions of $\text{R} - \text{Y}$ and $\text{B}
+- \text{Y}$, so $\text{Cr}$ and $\text{Cb}$ can be interpreted as
+measures of how much red and blue content in a pixel differs from
+luma, respectively. Notice also that for a gray pixel,
+$\text{R}=\text{G}=\text{B}=\text{Y}$, and so
 $\text{Cr}=\text{Cb}=0$~\cite{malvar2008lifting}.
 
 The inverse (synthesis) transform is defined by
@@ -245,28 +250,30 @@ or alternatively, by
   \label{eq:iYCrCb}
 \end{equation}
 
-As it can be seen, considering that the RGB values ranges between 0
-and 255 (and rounding to the nearest integer), $0\le\text{Y}\le 255$,
-$-128\le\text{Cr}\le 127$ and $-128\le\text{Cb}\le 127$, and
-therefore, the number of bits that are necessary to represent each
-YCrCb component is 8 (although we must use floating point arithmetic to perform the transform).
+As it can be seen, considering that the $\text{RGB}$ values ranges
+between $0$ and $255$ (and rounding to the nearest integer),
+$0\le\text{Y}\le 255$, $-128\le\text{Cr}\le 127$ and
+$-128\le\text{Cb}\le 127$, and therefore, the number of bits that are
+necessary to represent each $\text{YCrCb}$ component is 8 (although we
+must use floating point arithmetic to perform the transform).
 
 The synthesis filters generates a gain of $||1^2 + 1^2 + 1^2||^2=3$
-(squared norm) for the Y component, $||1.402^2 + 0.714^2 +
-0^2||^2=2.4754$ for the Cr component, and $||0^2 + 0.344^2+
-1.772^2||^2=3.25832$ for the Cb component. So, when compressing an
-image through quantization, the QSs should be modulated accordinly
-(the higher the gain, the higher the quantization error, and
-therefore, the smaller the QS should be).
+(squared norm) for the $\text{Y}$ component, $||1.402^2 + 0.714^2 +
+0^2||^2=2.4754$ for the $\text{Cr}$ component, and $||0^2 + 0.344^2+
+1.772^2||^2=3.25832$ for the $\text{Cb}$ component. So, when
+compressing an image through quantization, the QSs should be modulated
+accordinly (the higher the gain, the higher the quantization error,
+and therefore, the smaller the QS should be).
 
-Finally, notice that the YCrCb transform is not orthogonal because the
-analysis filters are not independent. This can be seen in the
-Eq.~\ref{eq:alternative_YCrCb}, where the Cr values depend on the
-values of Y, and therefore, there is a dependency between both
+Finally, notice that the $\text{YCrCb}$ transform is not orthogonal
+because the analysis filters are not independent. This can be seen in
+the Eq.~\ref{eq:alternative_YCrCb}, where the $\text{Cr}$ values
+depend on the values of $\text{Y}$, and therefore, there is a
+dependency between both
 \href{https://en.wikipedia.org/wiki/Basis_(linear_algebra)}{basis},
-and something similar happens for the Cb components. This can be also
-easely checked: $0.299*0.5 + 0.587*(-0.4187) + 0.114*(-0.0813) =
--0.1055451 \neq 0$, $0.299*(-0.1687) + 0.587*(-0.3313) + 0.114*0.5 =
+and something similar happens for the $\text{Cb}$ components. This can
+be also easely checked: $0.299*0.5 + 0.587*(-0.4187) + 0.114*(-0.0813)
+= -0.1055451 \neq 0$, $0.299*(-0.1687) + 0.587*(-0.3313) + 0.114*0.5 =
 -0.1879144 \neq 0$, and $0.5*(-0.1687) + (-0.4187)*(-0.3313 ) +
 (-0.0813)*0.5 = 0.01371531 \neq 0$.
 
@@ -423,7 +430,7 @@ and therefore, it can be an interesting tool for removing the
 intercomponent redundancy from a pure mathematical point of view.
 \end{comment}
 
-\subsection{The \href{https://en.wikipedia.org/wiki/YCoCg}{RGB/YCoCg transform}}
+\subsection{The \href{https://en.wikipedia.org/wiki/YCoCg}{$\text{RGB/YCoCg}$ transform}}
 %\subsubsection{Analysis and synthesis}
 Clearly, orthogonality is a desired property in lossy compression
 systems because it helps to isolate\footnote{Without considering the
@@ -480,8 +487,8 @@ in 2008.} images, obtaining
 This transform is orthogonal and the synthesis filters
 gains\footnote{The gain of a transform can be determined computing the
 squared norm of the rows of the synthesis transform (the synthesis
-filters).} are 22/9 (for Y), 25/9 (for C$_1$) and 22/9 (for
-C$_2$).
+filters).} are 22/9 (for $\text{Y}$), 25/9 (for $\text{C}_1$) and 22/9
+(for $\text{C}_2$).
 
 Unfortunately, from a perceptual perspective we must impose (thinking
 of the subsampling of the chromas) some features in a color transform
@@ -528,14 +535,14 @@ the transform
 \end{equation}
 that is near orthogonal\footnote{For example, $\frac{1}{4}\frac{-1}{4}
 + \frac{1}{2}\frac{1}{2} + \frac{1}{4}\frac{-1}{4} = \frac{1}{8}$, and
-we should obtain always 0.}, and has channel gains 3 (Y), 2 (Co) and 3
-(Cg). %These gains suggest that
+we should obtain always 0.}, and has channel gains 3 ($\text{Y}$), 2
+($\text{Co}$) and 3 ($\text{Cg}$). %These gains suggest that
 
-Again, notice that if the RGB values ranges between 0
-and 255 (and rounding to the nearest integer), $0\le\text{Y}\le 255$,
+Again, notice that if the $\text{RGB}$ values ranges between $0$
+and $255$ (and rounding to the nearest integer), $0\le\text{Y}\le 255$,
 $-128\le\text{Co}\le 127$ and $-128\le\text{Cg}\le 127$, and
 therefore, the number of bits that are necessary to represent each
-component is 8. Therefore, we can use the same QS range for each
+component is $8$. Therefore, we can use the same QS range for each
 component.
 
 \subsubsection{Quantization}
