@@ -6,12 +6,12 @@ import os
 import numpy as np
 import math
 
-import image_3 as RGB_img
+import image_3 as color_img
 import image_1 as gray_img
 import colored
 
 def show(img, title):
-    img = RGB_img.normalize(img)
+    img = color_img.normalize(img)
     plt.figure(figsize=(10,10))
     plt.title(title, fontsize=20)
     plt.imshow(img)
@@ -38,15 +38,15 @@ def entropy_in_bits_per_symbol(sequence_of_symbols):
 
     return entropy
 
-# Number of bytes that a img "img" requires in disk.
-def bytes_per_RGB_img(img, fn="img"):
-    RGB_img.write(img, "/tmp/" + fn)
+# Number of bytes that an image "img" requires in disk.
+def bytes_per_color_img(img, fn="img"):
+    color_img.write(img, "/tmp/" + fn)
     length_in_bytes = os.path.getsize("/tmp/" + fn + "000.png")
     return length_in_bytes
 
 # The same value, but in bits/pixel.
-def bits_per_RGB_pixel(img, fn="img"):
-    return 8*bytes_per_RGB_img(img, fn)/(img.shape[0]*img.shape[1])
+def bits_per_color_pixel(img, fn="img"):
+    return 8*bytes_per_color_img(img, fn)/(img.shape[0]*img.shape[1])
 
 # Specific version for grayscale images.
 def bytes_per_gray_img(img, fn="img"):
