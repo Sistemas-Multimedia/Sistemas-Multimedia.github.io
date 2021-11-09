@@ -305,6 +305,8 @@ that in matrix form is
   \end{bmatrix},
 \end{equation}
 
+The synthesis filters gains are important because the quantization steps of each YCrCb component should be adjusted in order to effectively provide the desired number of \href{http://www.winlab.rutgers.edu/~crose/322_html/quantization.pdf}{bins} (different dequantized values) in each component.
+
 The synthesis filters generates a gain of $||1^2 + 1^2 + 1^2||_2^2=3$
 (square of the Euclidean norm) for the $\text{Y}$ component, $||1.402^2 + 0.714^2 +
 0^2||_2^2=2.4754$ for the $\text{Cr}$ component, and $||0^2 + 0.344^2+
