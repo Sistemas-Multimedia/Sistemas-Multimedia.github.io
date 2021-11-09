@@ -11,15 +11,17 @@ import image_1 as gray_img
 import colored
 
 def show(img, title):
+    _max, _min = np.max(img), np.min(img)
     img = color_img.normalize(img)
     plt.figure(figsize=(10,10))
-    plt.title(title, fontsize=20)
+    plt.title(f"{title} max={_max} min={_min}", fontsize=20)
     plt.imshow(img)
 
 def show_gray(img, title):
+    _max, _min = np.max(img), np.min(img)
     img = gray_img.normalize(img)
     plt.figure(figsize=(10,10))
-    plt.title(title, fontsize=20)
+    plt.title(f"{title} max={_max} min={_min}", fontsize=20)
     plt.imshow(img, cmap='gray')
 
 # Entropy of a sequence of symbols (pixels). This is a theoretical measure
@@ -57,8 +59,8 @@ def bytes_per_gray_img(img, fn="img"):
 
 # The same value, but in bits/pixel.
 def bits_per_gray_pixel(img, fn="img"):
-    #return 8*bytes_per_gray_img(img, fn)/(img.shape[0]*img.shape[1])
-    return entropy_in_bits_per_symbol(img.flatten())
+    return 8*bytes_per_gray_img(img, fn)/(img.shape[0]*img.shape[1])
+    #return entropy_in_bits_per_symbol(img.flatten())
 
 def compute_slopes(RD_points):
     extended_RD_points = [(0.0, 0.0, '', -1)] + RD_points
