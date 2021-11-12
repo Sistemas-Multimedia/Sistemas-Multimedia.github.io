@@ -11,17 +11,17 @@ import image_1 as gray_img
 import colored
 
 def show(img, title):
-    _max, _min = np.max(img), np.min(img)
+    _max, _min, _avg = np.max(img), np.min(img), np.average(img)
     img = color_img.normalize(img)
     plt.figure(figsize=(10,10))
-    plt.title(f"{title} max={_max} min={_min}", fontsize=20)
+    plt.title(f"{title} max={_max} min={_min} avg={_avg}", fontsize=20)
     plt.imshow(img)
 
 def show_gray(img, title):
-    _max, _min = np.max(img), np.min(img)
+    _max, _min, _avg = np.max(img), np.min(img), np.average(img)
     img = gray_img.normalize(img)
     plt.figure(figsize=(10,10))
-    plt.title(f"{title} max={_max} min={_min}", fontsize=20)
+    plt.title(f"{title} max={_max} min={_min} avg={_avg}", fontsize=20)
     plt.imshow(img, cmap='gray')
 
 # Entropy of a sequence of symbols (pixels). This is a theoretical measure
