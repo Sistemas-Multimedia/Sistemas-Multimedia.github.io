@@ -62,7 +62,7 @@ def bits_per_gray_pixel(img, fn="img"):
     return 8*bytes_per_gray_img(img, fn)/(img.shape[0]*img.shape[1])
     #return entropy_in_bits_per_symbol(img.flatten())
 
-def compute_slopes(RD_points):
+def compute_slopes_old(RD_points):
     extended_RD_points = [(0.0, 0.0, '', -1)] + RD_points
     counter = 0
     RD_slopes = [(9.0E9, RD_points[0])]
@@ -82,4 +82,53 @@ def compute_slopes(RD_points):
         print((slope, i), delta_MSE, delta_BPP)
         RD_slopes.append((slope, i))
         counter += 1
+    return RD_slopes
+
+def compute_slope(left_BPP, left_MSE, right_BPP, right_MSE):
+    delta_BPP = right_BPP - left_BPP
+    delta_MSE = left_MSE - right_MSE
+    if delta_BPP > 0:
+        slope = delta_MSE / delta_BPP
+    else:
+        slope = 0
+    return slope
+
+def compute_slopes(RD_points):
+    counter = 0
+    _RD_slopes = []
+    points_iterator = iter(RD_points)
+    left = next(points_iterator)
+    left_BPP = left[0]
+    left_MSE = left[1]
+    right = next(points_iterator)
+    right_BPP = right[0]
+    right_MSE = right[1]
+    slope = compute_slope(left_BPP, left_MSE, right_BPP, right_MSE)
+    _RD_slopes.append((slope, left[2], left[3]))
+    _RD_slopes.append((slope, right[2], right[3]))
+    left = right
+    for right in points_iterator:
+        right_BPP = right[0]
+        right_MSE = right[1]
+        #print(RD_points[counter])
+        slope = compute_slope(left_BPP, left_MSE, right_BPP, right_MSE)
+        _RD_slopes.append((slope, right[2], right[3]))
+        counter += 1
+        left = right
+        left_BPP = left[0]
+        left_MSE = left[1]
+        #left_BPP = right_BPP
+        #left_MSE = right_MSE
+    RD_slopes = []
+    slopes_iterator = iter(_RD_slopes)
+    left = next(slopes_iterator)
+    #print("-->",_RD_slopes)
+    #return _RD_slopes
+    #RD_slopes.append(left)
+    #print(left)
+    for right in slopes_iterator:
+        #print(left, right)
+        RD_slopes.append((((left[0] + right[0])/2), right[1], left[2]))
+        left = right
+    RD_slopes.append(right)
     return RD_slopes
