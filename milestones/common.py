@@ -132,3 +132,16 @@ def compute_slopes(RD_points):
         left = right
     RD_slopes.append(right)
     return RD_slopes
+
+def filter_slopes(slopes):
+    filtered_slopes = []
+    slopes_iterator = iter(slopes)
+    prev = next(slopes_iterator)
+    for curr in slopes_iterator:
+        if prev[0] < curr[0]:
+            print(f"deleted {prev}")
+        else:
+            filtered_slopes.append(prev)
+        prev = curr
+    filtered_slopes.append(prev)
+    return filtered_slopes
