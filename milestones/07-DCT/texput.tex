@@ -7,20 +7,28 @@
 
 \section{Description}
 
-Transforms concentrate (compact) information in a few output
-coefficients by decorrelating the input
-samples~\cite{sayood2017introduction}.
+Transforms concentrate (compact) information (that can be estimated
+through the variance of the entropy) in a few output coefficients by
+decorrelating the input samples~\cite{sayood2017introduction}. Such
+concentration normally implies an increment in the number of bits
+necessary to represent the coefficients when we use an fixed-length
+\href{https://en.wikipedia.org/wiki/Binary_code}{binary code}.
 
-The DCT (discrete
+The DCT (Discrete Cosine Transform) is used in some of the most
+succesful image and video compressors, such as
+\href{https://en.wikipedia.org/wiki/JPEG}{JPEG} and
+\href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{H.264},
+\href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{HEVC} and
+\href{https://en.wikipedia.org/wiki/Versatile_Video_Coding}{VVC}.
 
 In the 1D case, the forward DCT for a signal $g(n)$ of
 length $N$ is defined as~\cite{burger2016digital}
 \begin{equation}
-  G(u) = \sqrt{\frac{2}{N}}\sum_{x=0}^{N-1}g(x)C_u\cos\Big(\pi\frac{u(2x+1)}{2N}\Big),
+  {\mathbf h}_u = \sqrt{\frac{2}{N}}\sum_{x=0}^{N-1}{\mathbf g}_xC_u\cos\Big(\pi\frac{u(2x+1)}{2N}\Big),
 \end{equation}
 for $0<u<N$, and the inverse transform is
 \begin{equation}
-  g(n) = \sqrt{\frac{2}{N}}\sum_{u=0}^{N-1}G(u)C_u\cos\Big(\pi\frac{u(2x+1)}{2N}\Big),
+  {\mathbf g}_x = \sqrt{\frac{2}{N}}\sum_{u=0}^{N-1}h_uC_u\cos\Big(\pi\frac{u(2x+1)}{2N}\Big),
 \end{equation}
 for $0<n<N$, with
 \begin{equation}
@@ -31,6 +39,15 @@ for $0<n<N$, with
     \end{array}
 \end{equation}
 
+The transformed signal is a sequence of coefficients ${\mathbf h}_u$
+with the same length than the original signal ${\mathbf g}_x$, and the
+position of the coefficients in the transform domain indicate the
+contribution of such coefficient to the corresponding (in this case,
+spatial) frequency. For example, the coefficient at the position 0
+(that is commonly refered as DC (Direct Current)) is equal to the
+average of the signal. The rest of coefficients high-frequency
+coefficients are called AC (Alternating Current) coefficients.
+
 The 2D-DCT is separable, which means that it can be computed by
 appliying the 1D-DCT to the two dimenssions of the signal. For the
 inverse 2D-DCT, the procedure is similar, but appliying the inverse
@@ -38,7 +55,33 @@ inverse 2D-DCT, the procedure is similar, but appliying the inverse
 
 The DCT can be also expressed in matrix form as
 \begin{equation}
-  G = Ag
+  {\mathbf h} = {\mathbf A}{\mathbf{g},
+\end{equation}
+where ${\mathbf A}$ is the forward transform matrix. The rows of the
+transform matrix are often referred to as the basis vectors for the
+transform because they form an orthonormal basis set, and the elements
+of the transformed sequence are often called the transform
+coefficients. Obviously, the inverse transform is computed by
+\begin{equation}
+  {\mathbf g} = {\mathbf A}^{-1}{\mathbf{h},
+\end{equation}
+where ${\mathbf A}^{-1}$ denotes the inverse matrix of ${\mathbf
+  A}$. In the case of the DCT, ${\mathbf A}$ and therefore, ${\mathbf
+  A}^{-1}={\mathbf A}^{\text T}$, where $\cdot^{\text T}$$ denotes the
+transpose o ${\mathbf A}$.
+
+The DCT is usually applied by blocks which, in most of the previous
+image and video compression standards, are of 8x8 pixels. This a
+direct consequence of that, usually (depending on the signal
+characteristics) the DCT loss compactation efficiency when the block
+size is increased. When we group the coefficients of several blocks
+are considered together, they form a subband, and the collection of
+subbands, a decomposition~\cite{Kovacevic...}.
+
+The DCT is orthonormal (orthogonal + unitary). Orthonormal transforms
+are energy preserving; that is, the sum of the squares of the
+transformed sequence is the same as the sum of the squares of the
+original sequence.
 
 \section{Timming}
 
