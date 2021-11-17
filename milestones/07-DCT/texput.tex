@@ -1,0 +1,54 @@
+\input{../../definitions}
+\title{\SM{} - Study Guide - Milestone 7: Removing Spatial Redundancy with the Discrete Cosine Transform}
+
+\maketitle
+
+\tableofcontents
+
+\section{Description}
+
+Transforms concentrate (compact) information in a few output
+coefficients by decorrelating the input
+samples~\cite{sayood2017introduction}.
+
+The DCT (discrete
+
+In the 1D case, the forward DCT for a signal $g(n)$ of
+length $N$ is defined as~\cite{burger2016digital}
+\begin{equation}
+  G(u) = \sqrt{\frac{2}{N}}\sum_{x=0}^{N-1}g(x)C_u\cos\Big(\pi\frac{u(2x+1)}{2N}\Big),
+\end{equation}
+for $0<u<N$, and the inverse transform is
+\begin{equation}
+  g(n) = \sqrt{\frac{2}{N}}\sum_{u=0}^{N-1}G(u)C_u\cos\Big(\pi\frac{u(2x+1)}{2N}\Big),
+\end{equation}
+for $0<n<N$, with
+\begin{equation}
+  c_u = \left\{
+  \begin{array}{ll}
+    \frac{1}{\sqrt{2}} & \quad for $u=0$, \\
+    1 & \quad \text{otherwise}.
+    \end{array}
+\end{equation}
+
+The 2D-DCT is separable, which means that it can be computed by
+appliying the 1D-DCT to the two dimenssions of the signal. For the
+inverse 2D-DCT, the procedure is similar, but appliying the inverse
+1D-DWT in reverse order.
+
+The DCT can be also expressed in matrix form as
+\begin{equation}
+  G = Ag
+
+\section{Timming}
+
+Please, finish this milestone before the next class session.
+
+\section{Deliverables}
+
+None.
+
+\section{Resources}
+
+\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
+\bibliography{maths,data-compression,signal-processing,DWT,image-compression,image-processing}
