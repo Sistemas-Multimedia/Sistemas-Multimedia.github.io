@@ -11,8 +11,7 @@ Transforms concentrate (compact) information (that can be estimated
 through the variance of the entropy) in a few output coefficients by
 decorrelating the input samples~\cite{sayood2017introduction}. Such
 concentration normally implies an increment in the number of bits
-necessary to represent the coefficients when we use an fixed-length
-\href{https://en.wikipedia.org/wiki/Binary_code}{binary code}.
+necessary to represent the coefficients with a higher information.
 
 The DCT (Discrete Cosine Transform) is used in some of the most
 succesful image and video compressors, such as
@@ -24,19 +23,22 @@ succesful image and video compressors, such as
 In the 1D case, the forward DCT for a signal $g(n)$ of
 length $N$ is defined as~\cite{burger2016digital}
 \begin{equation}
-  {\mathbf h}_u = \sqrt{\frac{2}{N}}\sum_{x=0}^{N-1}{\mathbf g}_xC_u\cos\Big(\pi\frac{u(2x+1)}{2N}\Big),
+  {\mathbf h}_u = \sqrt{\frac{2}{N}}\sum_{x=0}^{N-1}{\mathbf
+    g}_xC_u\cos\Big(\pi\frac{u(2x+1)}{2N}\Big),
 \end{equation}
 for $0<u<N$, and the inverse transform is
 \begin{equation}
-  {\mathbf g}_x = \sqrt{\frac{2}{N}}\sum_{u=0}^{N-1}h_uC_u\cos\Big(\pi\frac{u(2x+1)}{2N}\Big),
+  {\mathbf g}_x = \sqrt{\frac{2}{N}}\sum_{u=0}^{N-1}{\mathbf
+    h}_uC_u\cos\Big(\pi\frac{u(2x+1)}{2N}\Big),
 \end{equation}
 for $0<n<N$, with
 \begin{equation}
   c_u = \left\{
   \begin{array}{ll}
-    \frac{1}{\sqrt{2}} & \quad for $u=0$, \\
+    \frac{1}{\sqrt{2}} & \quad \text{for} u=0, \\
     1 & \quad \text{otherwise}.
-    \end{array}
+  \end{array}
+  \right.
 \end{equation}
 
 The transformed signal is a sequence of coefficients ${\mathbf h}_u$
@@ -49,34 +51,46 @@ average of the signal. The rest of coefficients high-frequency
 coefficients are called AC (Alternating Current) coefficients.
 
 The 2D-DCT is separable, which means that it can be computed by
-appliying the 1D-DCT to the two dimenssions of the signal. For the
+appliying the 1D-DCT to the two dimensions of the signal. For the
 inverse 2D-DCT, the procedure is similar, but appliying the inverse
-1D-DWT in reverse order.
+1D-DWT in reverse order. The Fig.~\ref{fig:2D-DCT_basis} show the
+first 64 2D-DCT basis (see this \href{}{notebook}).
 
-The DCT can be also expressed in matrix form as
+\begin{figure}
+  \centering
+  \myfig{2D-DCT_basis}{6cm}{600}
+  \caption{First 64 2D-DCT basis functions.}
+  \label{fig:2D-DCT_basis}
+\end{figure}
+
+The DCT can be also expressed in matrix~\cite{sayood2017introduction}
+form as
 \begin{equation}
-  {\mathbf h} = {\mathbf A}{\mathbf{g},
+  {\mathbf h} = {\mathbf A}{\mathbf g},
 \end{equation}
 where ${\mathbf A}$ is the forward transform matrix. The rows of the
 transform matrix are often referred to as the basis vectors for the
-transform because they form an orthonormal basis set, and the elements
-of the transformed sequence are often called the transform
-coefficients. Obviously, the inverse transform is computed by
+transform because they form an orthonormal basis set (see these
+\href{https://cseweb.ucsd.edu/classes/fa17/cse166-a/lec13.pdf}{slides}),
+and the elements of the transformed sequence are often called the
+transform coefficients. Obviously, the inverse transform is computed
+by
 \begin{equation}
-  {\mathbf g} = {\mathbf A}^{-1}{\mathbf{h},
+  {\mathbf g} = {\mathbf A}^{-1}{\mathbf h},
 \end{equation}
 where ${\mathbf A}^{-1}$ denotes the inverse matrix of ${\mathbf
   A}$. In the case of the DCT, ${\mathbf A}$ and therefore, ${\mathbf
-  A}^{-1}={\mathbf A}^{\text T}$, where $\cdot^{\text T}$$ denotes the
-transpose o ${\mathbf A}$.
+  A}^{-1}={\mathbf A}^{\text T}$, where $\cdot^{\text T}$ denotes the
+transpose of ${\mathbf A}$.
 
-The DCT is usually applied by blocks which, in most of the previous
+The DCT is usually applied by 2D blocks which, in most of the previous
 image and video compression standards, are of 8x8 pixels. This a
-direct consequence of that, usually (depending on the signal
-characteristics) the DCT loss compactation efficiency when the block
-size is increased. When we group the coefficients of several blocks
-are considered together, they form a subband, and the collection of
-subbands, a decomposition~\cite{Kovacevic...}.
+direct consequence of that, usually the DCT losses compactation
+efficiency when the block size is increased (although this depends on
+the signal characteristics). When we group the coefficients of several
+blocks are considered together, they form a subband, and the
+collection of subbands, a
+decomposition~\cite{vetterli2014foundations}.
 
 The DCT is orthonormal (orthogonal + unitary). Orthonormal transforms
 are energy preserving; that is, the sum of the squares of the
