@@ -75,15 +75,24 @@ diﬀerences. This has two main advantages~\cite{burger2016digital}:
 \item Since the \href{https://en.wikipedia.org/wiki/Visual_system}{HVS
   (Human Visual System)} is not able to perceive detail in the color
   components as well as it does in the intensity part of a video
-  signal, the amount of information, and
-  consequently \href{https://en.wikipedia.org/wiki/Bandwidth_(signal_processing)}{bandwidth},
+  signal, the amount of information, and consequently
+  \href{https://en.wikipedia.org/wiki/Bandwidth_(signal_processing)}{bandwidth},
   used in the color channel can be reduced to approximately 1/4 of
   that used for the intensity component without a noticeable
-  distortion. This \href{https://en.wikipedia.org/wiki/Bandwidth_(computing)}{fact
-  is also used when compressing} digital still images and is why, for
+  distortion (see Fig.~\ref{fig:san-diego_chroma_subsampled}). This
+  \href{https://en.wikipedia.org/wiki/Bandwidth_(computing)}{fact is
+    also used when compressing} digital still images and is why, for
   example, the \href{https://en.wikipedia.org/wiki/JPEG}{JPEG} codec
-  converts RGB images to $\text{YCrCb}$. See also this \href{}{notebook}.
+  converts RGB images to $\text{YCrCb}$. See also this
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/chroma_subsampling.ipynb}{notebook}.
 \end{enumerate}
+
+\begin{figure}
+  \centering
+  \png{san-diego_chroma_subsampled}{1000}
+  \caption{Visual effect of chroma subsamplig in the YCrCb domain.}
+  \label{fig:san-diego_chroma_subsampled}
+\end{figure}
 
 \subsection{Some words about transform coding}
 Quantization is more effective (the lossy compression ratios are
