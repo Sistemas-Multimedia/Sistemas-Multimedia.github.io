@@ -94,7 +94,7 @@ diﬀerences. This has two main advantages~\cite{burger2016digital}:
   \label{fig:san-diego_chroma_subsampled}
 \end{figure}
 
-\subsection{Some words about transform coding}
+\subsection{Transform coding}
 Quantization is more effective (the lossy compression ratios are
 higher) when the energy of the signal is accumulated in an small
 number of samples because we can dedicate more bits to encode the more
@@ -141,7 +141,24 @@ computed by
   \mathbf{x} = {\mathbf{K}}^{-1}\mathbf{y},
   \label{eq:backward_transform_matrix_form}
 \end{equation}
-where ${\mathbf{K}}^{-1}$ denotes to the inverse matrix of $\mathbf{K}$. For example, the
+where ${\mathbf{K}}^{-1}$ denotes to the inverse matrix of $\mathbf{K}$.
+
+Transforms are used in signal coding to provide relative (between
+subbands) energy compaction. The capatility of a transform to
+achieve this can be estimated by the so called Transform Coding
+Gain~\cite{vetterli1995wavelets,sayood2017introduction} defined by
+\begin{equation}
+G = \frac{\frac{1}{N}\sum_{n=1}^N{\sigma_n^2}}{(\prod_{n=1}^N\sigma_n^2)^{\frac{1}{N}}},
+\end{equation}
+where $N$ is the number of coefficients in a block (in our case, the
+number of components in a pixel, i.e., $N=3$), and $\sigma_n^2$ is the
+variance of the $n$-th coefficient in the block. As it can be seen,
+$G$ is the ratio of the arithmetic mean of the variances of the
+transform coefficients to their geometric mean. Notice that $G$ is
+computed inside of a block, not among blocks.
+
+\subsection{The $\text{RGB}\leftrightarrow\text{DCT}$ transform}
+For example, the
 2x2-\href{https://en.wikipedia.org/wiki/Karhunen-Loeve_theorem}{KLT}~\cite{sayood2017introduction}
 is defined by
 \begin{equation}
@@ -170,18 +187,6 @@ transforms, and therefore
   \langle {\mathbf{K}}_i, {\mathbf{K}}_j\rangle = 0, \forall i\neq j.
 \end{equation}
 
-Transforms are used in signal coding to provide relative (between
-subbands) energy compaction. The capatility of a transform to
-achieve this can be estimated by the so called Transform Coding
-Gain~\cite{vetterli1995wavelets,sayood2017introduction} defined by
-\begin{equation}
-G = \frac{\frac{1}{N}\sum_{n=1}^N{\sigma_n^2}}{(\prod_{n=1}^N\sigma_n^2)^{\frac{1}{N}}},
-\end{equation}
-where $N$ is the number of coefficients in a block (in our case, the
-number of components in a pixel, i.e., $N=3$), and $\sigma_n^2$ is the
-variance of the $n$-th coefficient in the block. As it can be seen,
-$G$ is the ratio of the arithmetic mean of the variances of the
-transform coefficients to their geometric mean.
 
 \subsection{The \href{https://en.wikipedia.org/wiki/YCbCr}{$\text{RGB/YCrCb}$ transform}}
 %\subsubsection{Analysis and synthesis}
