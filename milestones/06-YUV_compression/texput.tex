@@ -141,7 +141,19 @@ computed by
   \mathbf{x} = {\mathbf{K}}^{-1}\mathbf{y},
   \label{eq:backward_transform_matrix_form}
 \end{equation}
-where ${\mathbf{K}}^{-1}$ denotes to the inverse matrix of $\mathbf{K}$.
+where ${\mathbf{K}}^{-1}$ denotes to the inverse matrix of $\mathbf{K}$. When $K$ is orthonormal, it holds that
+\begin{equation}
+  \mathbf{K}={\mathbf{K}}^{-1}={\mathbf{K}}^{\text T},
+  \label{eq:orthogonal_matrix}
+\end{equation}
+where ${\mathbf{K}}^{\text T}$ represents the transpose matrix of
+$\mathbf{K}$. Without considering scale factors,
+Eq.~\ref{eq:orthogonal_matrix} is true also for all
+\href{https://en.wikipedia.org/wiki/Orthogonality}{orthogonal}
+transforms. Orthogonal and orthonormal transforms satisfy that
+\begin{equation}
+  \langle {\mathbf{K}}_i, {\mathbf{K}}_j\rangle = 0, \forall i\neq j.
+\end{equation}
 
 Transforms are used in signal coding to provide relative (between
 subbands) energy compaction. The capatility of a transform to
@@ -157,7 +169,49 @@ $G$ is the ratio of the arithmetic mean of the variances of the
 transform coefficients to their geometric mean. Notice that $G$ is
 computed inside of a block, not among blocks.
 
-\subsection{The $\text{RGB}\leftrightarrow\text{DCT}$ transform}
+\subsection{The $\text{RGB}\Leftrightarrow\text{DCT}$ transform}
+For example, the 3x3-\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT} orthonormal forward transform is defined by
+
+\begin{equation}
+  \begin{bmatrix}
+    \text{DCT0} \\
+    \text{DCT1} \\
+    \text{DCT2}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    0.57735027 & 0.70710678 & 0.40824829 \\
+    0.57735027 & 0.0 & -0.81649658 \\
+    0.57735027 & -0.70710678 & 0.40824829
+  \end{bmatrix}
+  \begin{bmatrix}
+    \text{R} \\
+    \text{G} \\
+    \text{B}
+  \end{bmatrix},
+\end{equation}
+and the inverse transform by
+\begin{equation}
+  \begin{bmatrix}
+    \text{R} \\
+    \text{G} \\
+    \text{B}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    0.57735027 & 0.57735027 & 0.57735027 \\
+    0.70710678 & 0.0 & -0.70710678 \\
+    0.40824829 & -0.81649658 & 0.40824829
+  \end{bmatrix}
+  \begin{bmatrix}
+    \text{DCT0} \\
+    \text{DCT1} \\
+    \text{DCT2}
+  \end{bmatrix}.
+\end{equation}
+See this \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/color-DCT_matrix.ipynb}{notebook}.
+
+\begin{comment}
 For example, the
 2x2-\href{https://en.wikipedia.org/wiki/Karhunen-Loeve_theorem}{KLT}~\cite{sayood2017introduction}
 is defined by
@@ -186,9 +240,20 @@ transforms, and therefore
 \begin{equation}
   \langle {\mathbf{K}}_i, {\mathbf{K}}_j\rangle = 0, \forall i\neq j.
 \end{equation}
+\end{comment}
 
+\subsubsection{Quantization in the Color-DCT domain}
+The synthesis filters of orthonormal transforms have exactly the unity
+gain.\footnote{The quantization error is the same in all the subbands
+because all of them have exactly the same gain.} Therefore, without
+considering that the entropy coding stage can performs better for some
+subbands, the optimal quantization pattern should be
+\begin{equation}
+  \Delta_{\text{DCT0}} = \Delta_{\text{DCT1}} = \Delta_{\text{DCT2}}.
+\end{equation}
+See this \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/color-DCT_quantization.ipynb.ipynb}{notebook}.
 
-\subsection{The \href{https://en.wikipedia.org/wiki/YCbCr}{$\text{RGB/YCrCb}$ transform}}
+\subsection{The \href{https://en.wikipedia.org/wiki/YCbCr}{$\text{RGB} \Leftrightarrow \text{YCrCb}$ transform}}
 %\subsubsection{Analysis and synthesis}
 To convert a (color) pixel from the $\text{RGB}$ domain into the
 $\text{YCrCb}$ one, we use the $\text{RGB/YCrCb}$ (analysis)
@@ -329,6 +394,19 @@ that in matrix form is
   \end{bmatrix},
 \end{equation}
 
+\subsubsection{Quantization in the YCrCb domain}
+The YCrCb transform is not orthogonal and the relative synthesis
+filters gains depends on the energy of the inversely transformed
+components. In such case, there is not optimal
+\emph{constant}\footnote{Always using the same relative quantization
+steps for each RD point.} quantization pattern and the only way of
+finding a good quantization of the components consists in computing
+the RD slopes (measured in the RGB domain) of each quantization point,
+sort the points by their slope, and to apply the corresponding
+quantization patterns (see this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/YCrCb_quantization.ipynb.ipynb}{notebook}).
+
+\begin{comment}
 The synthesis filters gains are important because the quantization steps of each YCrCb component should be adjusted in order to effectively provide the desired number of \href{http://www.winlab.rutgers.edu/~crose/322_html/quantization.pdf}{bins} (different dequantized values) in each component.
 
 The synthesis filters generates a gain of $||1^2 + 1^2 + 1^2||_2^2=3$
@@ -338,6 +416,7 @@ The synthesis filters generates a gain of $||1^2 + 1^2 + 1^2||_2^2=3$
 compressing an image through quantization, the QSs should be modulated
 accordinly (the higher the gain, the higher the quantization error,
 and therefore, the smaller the QS should be).
+\end{comment}
 
 \begin{comment}
 \subsubsection{Quantization}
@@ -605,18 +684,16 @@ and $255$ (and rounding to the nearest integer), $0\le\text{Y}\le 255$,
 $-128\le\text{Co}\le 127$ and $-128\le\text{Cg}\le 127$, and
 therefore, the number of bits that are necessary to represent each
 component is $8$. Therefore, we can use the same QS range for each
-component.
+component. See this \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/YCrCb_matrix.ipynb}{notebook}.
 
-\subsubsection{Quantization}
-The previous channel gains suggest to use
+\subsubsection{Quantization in the YCoCg domain}
+Again, like in the color-DCT, ignoring the possible effects of the
+entropy encoding stage (that could compress more some components), the
+previous channel gains suggest to use
 \begin{equation}
   \Delta_{\text{Y}} = \frac{3}{2}\Delta_{\text{Co}} = \Delta_{\text{Cg}}.
 \end{equation}
-However, as it can be seen in this \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook} the differences with using
-\begin{equation}
-  \Delta_{\text{Y}} = \Delta_{\text{Co}} = \Delta_{\text{Cg}}.
-\end{equation}
-are very small. Therefore, this last quantization scheme will be adopted.
+See this \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/YCrCb_matrix.ipynb}{notebook}.
 
 \section{What you have to do?}
 

@@ -56,29 +56,31 @@ href="#x1-60001.4" id="QQ2-1-6">The <!--l. 8--><math
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >RGB</mtext></mstyle> <mo 
-class="MathClass-rel">&#x2194;</mo><mstyle 
+class="MathClass-rel">&#x21D4;</mo><mstyle 
 class="text"><mtext  >DCT</mtext></mstyle></math>
 transform</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.5 <a 
-href="#x1-70001.5" id="QQ2-1-7">The <!--l. 9--><math 
+href="#x1-80001.5" id="QQ2-1-8">The <!--l. 10--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
-class="text"><mtext  >RGB/YCrCb</mtext></mstyle></math>
+class="text"><mtext  >RGB</mtext></mstyle> <mo 
+class="MathClass-rel">&#x21D4;</mo><mstyle 
+class="text"><mtext  >YCrCb</mtext></mstyle></math>
 transform</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.6 <a 
-href="#x1-80001.6" id="QQ2-1-8">The <!--l. 10--><math 
+href="#x1-100001.6" id="QQ2-1-10">The <!--l. 12--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >RGB/YCoCg</mtext></mstyle></math>
 transform</a></span>
 <br />   &#x00A0;<span class="sectionToc" >2 <a 
-href="#x1-100002" id="QQ2-1-10">What you have to do?</a></span>
+href="#x1-120002" id="QQ2-1-12">What you have to do?</a></span>
 <br />   &#x00A0;<span class="sectionToc" >3 <a 
-href="#x1-110003" id="QQ2-1-11">Timming</a></span>
+href="#x1-130003" id="QQ2-1-13">Timming</a></span>
 <br />   &#x00A0;<span class="sectionToc" >4 <a 
-href="#x1-120004" id="QQ2-1-12">Deliverables</a></span>
+href="#x1-140004" id="QQ2-1-14">Deliverables</a></span>
 <br />   &#x00A0;<span class="sectionToc" >5 <a 
-href="#x1-130005" id="QQ2-1-13">Resources</a></span>
+href="#x1-150005" id="QQ2-1-15">Resources</a></span>
    </div>
 <!--l. 8--><p class="noindent" >
 </p>
@@ -374,16 +376,83 @@ the inverse matrix of <!--l. 144--><math
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >K</mi></mstyle></math>.
-</p><!--l. 146--><p class="indent" >   Transforms are used in signal coding to provide relative &#x0028;between subbands&#x0029;
+When <!--l. 144--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>K</mi></math>
+is orthonormal, it holds that </p><table class="equation"><tr><td> <a 
+ id="x1-5007r4"></a>
+<!--l. 145--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                          <mstyle mathvariant="bold"><mi 
+>K</mi></mstyle> <mo 
+class="MathClass-rel">=</mo><msup><mrow 
+> <mstyle mathvariant="bold"><mi 
+>K</mi></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+> <mo 
+class="MathClass-rel">=</mo><msup><mrow 
+> <mstyle mathvariant="bold"><mi 
+>K</mi></mstyle></mrow><mrow 
+><mstyle 
+class="text"><mtext  >T</mtext></mstyle></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo>
+</math></td><td class="eq-no">&#x0028;4&#x0029;</td></tr></table>
+                                                                  
+
+                                                                  
+<!--l. 149--><p class="indent" >   where <!--l. 149--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mstyle mathvariant="bold"><mi 
+>K</mi></mstyle></mrow><mrow 
+><mstyle 
+class="text"><mtext  >T</mtext></mstyle></mrow></msup 
+></math> represents the
+transpose matrix of <!--l. 150--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle mathvariant="bold"><mi 
+>K</mi></mstyle></math>.
+Without considering scale factors, Eq.&#x00A0;<a 
+href="#x1-5007r4">4<!--tex4ht:ref: eq:orthogonal_matrix --></a> is true also for all <a 
+href="https://en.wikipedia.org/wiki/Orthogonality" >orthogonal</a> transforms.
+Orthogonal and orthonormal transforms satisfy that </p><table class="equation"><tr><td> <a 
+ id="x1-5008r5"></a>
+<!--l. 154--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                         <mo 
+class="MathClass-open">&#x27E8;</mo><msub><mrow 
+><mstyle mathvariant="bold"><mi 
+>K</mi></mstyle></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mstyle mathvariant="bold"><mi 
+>K</mi></mstyle></mrow><mrow 
+><mi 
+>j</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x27E9;</mo> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mo 
+class="MathClass-punc">,</mo><mi 
+class="MathClass-op">&#x2200;</mi><mo> &ApplyFunction;<!--FUNCTION APPLICATION--></mo><mi 
+>i</mi><mo 
+class="MathClass-rel">&#x2260;</mo><mi 
+>j</mi><mo 
+class="MathClass-punc">.</mo>
+</math></td><td class="eq-no">&#x0028;5&#x0029;</td></tr></table>
+<!--l. 158--><p class="indent" >   Transforms are used in signal coding to provide relative &#x0028;between subbands&#x0029;
 energy compaction. The capatility of a transform to achieve this can be estimated by
 the so called Transform Coding Gain&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xvetterli1995wavelets">5</a>,&#x00A0;<a 
 href="#Xsayood2017introduction">3</a>&#x005D;</span> de&#xFB01;ned by </p><table class="equation"><tr><td> <a 
- id="x1-5007r4"></a>
-                                                                  
-
-                                                                  
-<!--l. 150--><math 
+ id="x1-5009r6"></a>
+<!--l. 162--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                         <mi 
@@ -436,18 +505,18 @@ class="MathClass-close">&#x0029;</mo></mrow><mrow
 >N</mi></mrow></mfrac> </mrow></msup 
 ></mrow></mfrac><mo 
 class="MathClass-punc">,</mo>
-</math></td><td class="eq-no">&#x0028;4&#x0029;</td></tr></table>
-<!--l. 153--><p class="indent" >   where <!--l. 153--><math 
+</math></td><td class="eq-no">&#x0028;6&#x0029;</td></tr></table>
+<!--l. 165--><p class="indent" >   where <!--l. 165--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >N</mi></math>
 is the number of coe&#xFB03;cients in a block &#x0028;in our case, the number of components in a pixel,
-i.e., <!--l. 154--><math 
+i.e., <!--l. 166--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >N</mi> <mo 
 class="MathClass-rel">=</mo> <mn>3</mn></math>&#x0029;, and
-<!--l. 154--><math 
+<!--l. 166--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msubsup><mrow 
 ><mi 
@@ -456,170 +525,196 @@ display="inline" ><msubsup><mrow
 >n</mi></mrow><mrow 
 ><mn>2</mn></mrow></msubsup 
 ></math> is the variance of the
-<!--l. 155--><math 
+<!--l. 167--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >n</mi></math>-th coe&#xFB03;cient in the
-block. As it can be seen, <!--l. 156--><math 
+block. As it can be seen, <!--l. 168--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >G</mi></math>
-is the ratio of the arithmetic mean of the variances of the transform coe&#xFB03;cients to
-their geometric mean.
+is the ratio of the arithmetic mean of the variances of the transform coe&#xFB03;cients to their geometric
+mean. Notice that <!--l. 169--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>G</mi></math>
+is computed inside of a block, not among blocks.
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
- id="x1-60001.4"></a>The <!--l. 159--><math 
+ id="x1-60001.4"></a>The <!--l. 172--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >RGB</mtext></mstyle> <mo 
-class="MathClass-rel">&#x2194;</mo><mstyle 
+class="MathClass-rel">&#x21D4;</mo><mstyle 
 class="text"><mtext  >DCT</mtext></mstyle></math>
 transform</h4>
-<!--l. 160--><p class="noindent" >For example, the 2x2-<a 
-href="https://en.wikipedia.org/wiki/Karhunen-Loeve_theorem" >KLT</a>&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xsayood2017introduction">3</a>&#x005D;</span> is de&#xFB01;ned by </p><table class="equation"><tr><td> <a 
- id="x1-6001r5"></a>
-<!--l. 163--><math 
+<!--l. 173--><p class="noindent" >For example, the 3x3-<a 
+href="https://en.wikipedia.org/wiki/Discrete_cosine_transform" >DCT</a> orthonormal forward transform is de&#xFB01;ned by
+                                                                  
+
+                                                                  
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-6001r7"></a>
+<!--l. 175--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
-class="array"  columnalign="center"><msub><mrow 
->  <mstyle mathvariant="bold"><mi 
->y</mi></mstyle></mrow><mrow 
-><mn>0</mn></mrow></msub 
->  </mtd>
-</mtr> <mtr><mtd 
-class="array"  columnalign="center"><msub><mrow 
->  <mstyle mathvariant="bold"><mi 
->y</mi></mstyle></mrow><mrow 
-><mn>1</mn></mrow></msub 
->  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                            </mrow><mo fence="true" form="postfix">]</mo></mrow>  <mo 
+class="array"  columnalign="center">  <mstyle 
+class="text"><mtext  >DCT0</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
+class="array"  columnalign="center"> <mstyle 
+class="text"><mtext  >DCT1</mtext></mstyle></mtd>
+</mtr><mtr><mtd 
+class="array"  columnalign="center">  <mstyle 
+class="text"><mtext  >DCT2</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                         </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
 class="MathClass-rel">=</mo>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
-class="array"  columnalign="center">   <mfrac><mrow 
-><mn>1</mn></mrow> 
-<mrow 
-><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></mfrac>  </mtd><mtd 
-class="array"  columnalign="center">    <mfrac><mrow 
-><mn>1</mn></mrow> 
-<mrow 
-><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></mfrac>  </mtd>
-</mtr> <mtr><mtd 
-class="array"  columnalign="center">    <mfrac><mrow 
-><mn>1</mn></mrow> 
-<mrow 
-><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></mfrac>  </mtd><mtd 
-class="array"  columnalign="center">  <mfrac><mrow 
-><mo 
-class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow> 
-<mrow 
-><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></mfrac>  </mtd>
-</mtr>    <!--*\c@MaxMatrixCols c--></mtable>                                                                                                                         </mrow><mo fence="true" form="postfix">]</mo></mrow>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
-equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"> <mtr><mtd 
-class="array"  columnalign="center"><msub><mrow 
->  <mstyle mathvariant="bold"><mi 
->x</mi></mstyle></mrow><mrow 
-><mn>0</mn></mrow></msub 
->  </mtd>
-</mtr> <mtr><mtd 
-class="array"  columnalign="center"><msub><mrow 
->  <mstyle mathvariant="bold"><mi 
->x</mi></mstyle></mrow><mrow 
-><mn>1</mn></mrow></msub 
->  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                                     </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
+class="array"  columnalign="center"> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>5</mn><mn>7</mn><mn>7</mn><mn>3</mn><mn>5</mn><mn>0</mn><mn>2</mn><mn>7</mn> </mtd><mtd 
+class="array"  columnalign="center">   <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>7</mn><mn>0</mn><mn>7</mn><mn>1</mn><mn>0</mn><mn>6</mn><mn>7</mn><mn>8</mn>   </mtd><mtd 
+class="array"  columnalign="center">   <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>4</mn><mn>0</mn><mn>8</mn><mn>2</mn><mn>4</mn><mn>8</mn><mn>2</mn><mn>9</mn>   </mtd></mtr> <mtr><mtd 
+class="array"  columnalign="center"> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>5</mn><mn>7</mn><mn>7</mn><mn>3</mn><mn>5</mn><mn>0</mn><mn>2</mn><mn>7</mn> </mtd> <mtd 
+class="array"  columnalign="center"> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>0</mn> </mtd> <mtd 
+class="array"  columnalign="center"> <mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>8</mn><mn>1</mn><mn>6</mn><mn>4</mn><mn>9</mn><mn>6</mn><mn>5</mn><mn>8</mn></mtd>
+</mtr><mtr><mtd 
+class="array"  columnalign="center"> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>5</mn><mn>7</mn><mn>7</mn><mn>3</mn><mn>5</mn><mn>0</mn><mn>2</mn><mn>7</mn> </mtd><mtd 
+class="array"  columnalign="center"> <mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>7</mn><mn>0</mn><mn>7</mn><mn>1</mn><mn>0</mn><mn>6</mn><mn>7</mn><mn>8</mn> </mtd><mtd 
+class="array"  columnalign="center">   <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>4</mn><mn>0</mn><mn>8</mn><mn>2</mn><mn>4</mn><mn>8</mn><mn>2</mn><mn>9</mn>   </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                            </mrow><mo fence="true" form="postfix">]</mo></mrow> <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center">  <mstyle 
+class="text"><mtext  >R</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
+class="array"  columnalign="center"> <mstyle 
+class="text"><mtext  >G</mtext></mstyle></mtd>
+</mtr><mtr><mtd 
+class="array"  columnalign="center">  <mstyle 
+class="text"><mtext  >B</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                               </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
 class="MathClass-punc">,</mo>
-</math></td><td class="eq-no">&#x0028;5&#x0029;</td></tr></table>
-<!--l. 176--><p class="indent" >   and it holds that </p><table class="equation"><tr><td> <a 
- id="x1-6002r6"></a>
-<!--l. 177--><math 
+</math></td><td class="eq-no">&#x0028;7&#x0029;</td></tr></table>
+<!--l. 193--><p class="indent" >   and the inverse transform by </p><table class="equation"><tr><td> <a 
+ id="x1-6002r8"></a>
+<!--l. 194--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                          <mstyle mathvariant="bold"><mi 
->K</mi></mstyle> <mo 
-class="MathClass-rel">=</mo><msup><mrow 
-> <mstyle mathvariant="bold"><mi 
->K</mi></mstyle></mrow><mrow 
-><mo 
-class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
-> <mo 
-class="MathClass-rel">=</mo><msup><mrow 
-> <mstyle mathvariant="bold"><mi 
->K</mi></mstyle></mrow><mrow 
-><mstyle 
-class="text"><mtext  >T</mtext></mstyle></mrow></msup 
-><mo 
-class="MathClass-punc">,</mo>
-</math></td><td class="eq-no">&#x0028;6&#x0029;</td></tr></table>
+ <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center">  <mstyle 
+class="text"><mtext  >R</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
+class="array"  columnalign="center"> <mstyle 
+class="text"><mtext  >G</mtext></mstyle></mtd>
+</mtr><mtr><mtd 
+class="array"  columnalign="center">  <mstyle 
+class="text"><mtext  >B</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                            </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
+class="MathClass-rel">=</mo>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center"> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>5</mn><mn>7</mn><mn>7</mn><mn>3</mn><mn>5</mn><mn>0</mn><mn>2</mn><mn>7</mn> </mtd><mtd 
+class="array"  columnalign="center">   <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>5</mn><mn>7</mn><mn>7</mn><mn>3</mn><mn>5</mn><mn>0</mn><mn>2</mn><mn>7</mn>   </mtd><mtd 
+class="array"  columnalign="center">   <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>5</mn><mn>7</mn><mn>7</mn><mn>3</mn><mn>5</mn><mn>0</mn><mn>2</mn><mn>7</mn>   </mtd></mtr> <mtr><mtd 
+class="array"  columnalign="center"> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>7</mn><mn>0</mn><mn>7</mn><mn>1</mn><mn>0</mn><mn>6</mn><mn>7</mn><mn>8</mn> </mtd> <mtd 
+class="array"  columnalign="center"> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>0</mn> </mtd> <mtd 
+class="array"  columnalign="center"> <mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>7</mn><mn>0</mn><mn>7</mn><mn>1</mn><mn>0</mn><mn>6</mn><mn>7</mn><mn>8</mn></mtd>
+</mtr><mtr><mtd 
+class="array"  columnalign="center"> <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>4</mn><mn>0</mn><mn>8</mn><mn>2</mn><mn>4</mn><mn>8</mn><mn>2</mn><mn>9</mn> </mtd><mtd 
+class="array"  columnalign="center"> <mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>8</mn><mn>1</mn><mn>6</mn><mn>4</mn><mn>9</mn><mn>6</mn><mn>5</mn><mn>8</mn> </mtd><mtd 
+class="array"  columnalign="center">   <mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>4</mn><mn>0</mn><mn>8</mn><mn>2</mn><mn>4</mn><mn>8</mn><mn>2</mn><mn>9</mn>   </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                            </mrow><mo fence="true" form="postfix">]</mo></mrow> <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center"> <mstyle 
+class="text"><mtext  >DCT0</mtext></mstyle>  </mtd></mtr> <mtr><mtd 
+class="array"  columnalign="center"> <mstyle 
+class="text"><mtext  >DCT1</mtext></mstyle></mtd>
+</mtr><mtr><mtd 
+class="array"  columnalign="center">  <mstyle 
+class="text"><mtext  >DCT2</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                         </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
+class="MathClass-punc">.</mo>
+</math></td><td class="eq-no">&#x0028;8&#x0029;</td></tr></table>
+<!--l. 212--><p class="indent" >   See this <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/color-DCT_matrix.ipynb" >notebook</a>.
+</p><!--l. 245--><p class="noindent" >
+</p>
+   <h5 class="subsubsectionHead"><span class="titlemark">1.4.1   </span> <a 
+ id="x1-70001.4.1"></a>Quantization in the Color-DCT domain</h5>
+<!--l. 246--><p class="noindent" >The synthesis &#xFB01;lters of orthonormal transforms have exactly the unity
+gain.<span class="footnote-mark"><a 
+href="index6.html#fn5x0"><sup class="textsuperscript">5</sup></a></span><a 
+ id="x1-7001f5"></a> 
+Therefore, without considering that the entropy coding stage can performs better for
+some subbands, the optimal quantization pattern should be </p><table class="equation"><tr><td> <a 
+ id="x1-7002r9"></a>
                                                                   
 
                                                                   
-<!--l. 181--><p class="indent" >   where <!--l. 181--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><msup><mrow 
-><mstyle mathvariant="bold"><mi 
->K</mi></mstyle></mrow><mrow 
-><mstyle 
-class="text"><mtext  >T</mtext></mstyle></mrow></msup 
-></math> represents the
-transpose matrix of <!--l. 182--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mstyle mathvariant="bold"><mi 
->K</mi></mstyle></math>.
-Eq.&#x00A0;<a 
-href="#x1-6002r6">6<!--tex4ht:ref: eq:orthogonal_matrix --></a> is true for all <a 
-href="https://en.wikipedia.org/wiki/Orthogonality" >orthogonal</a> transforms, and therefore </p><table class="equation"><tr><td> <a 
- id="x1-6003r7"></a>
-<!--l. 185--><math 
+<!--l. 251--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                         <mo 
-class="MathClass-open">&#x27E8;</mo><msub><mrow 
-><mstyle mathvariant="bold"><mi 
->K</mi></mstyle></mrow><mrow 
+                    <msub><mrow 
 ><mi 
->i</mi></mrow></msub 
-><mo 
-class="MathClass-punc">,</mo><msub><mrow 
-><mstyle mathvariant="bold"><mi 
->K</mi></mstyle></mrow><mrow 
+>&#x0394;</mi></mrow><mrow 
+><mstyle 
+class="text"><mtext  >DCT0</mtext></mstyle></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <msub><mrow 
 ><mi 
->j</mi></mrow></msub 
+>&#x0394;</mi></mrow><mrow 
+><mstyle 
+class="text"><mtext  >DCT1</mtext></mstyle></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <msub><mrow 
+><mi 
+>&#x0394;</mi></mrow><mrow 
+><mstyle 
+class="text"><mtext  >DCT2</mtext></mstyle></mrow></msub 
 ><mo 
-class="MathClass-close">&#x27E9;</mo> <mo 
-class="MathClass-rel">=</mo> <mn>0</mn><mo 
-class="MathClass-punc">,</mo><mi 
-class="MathClass-op">&#x2200;</mi><mo> &ApplyFunction;<!--FUNCTION APPLICATION--></mo><mi 
->i</mi><mo 
-class="MathClass-rel">&#x2260;</mo><mi 
->j</mi><mo 
 class="MathClass-punc">.</mo>
-</math></td><td class="eq-no">&#x0028;7&#x0029;</td></tr></table>
-<!--l. 190--><p class="noindent" >
+</math></td><td class="eq-no">&#x0028;9&#x0029;</td></tr></table>
+<!--l. 254--><p class="indent" >   See this <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/color-DCT_quantization.ipynb.ipynb" >notebook</a>.
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.5   </span> <a 
- id="x1-70001.5"></a>The <a 
-href="https://en.wikipedia.org/wiki/YCbCr" ><!--l. 190--><math 
+ id="x1-80001.5"></a>The <a 
+href="https://en.wikipedia.org/wiki/YCbCr" ><!--l. 256--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
-class="text"><mtext  >RGB/YCrCb</mtext></mstyle></math>
+class="text"><mtext  >RGB</mtext></mstyle> <mo 
+class="MathClass-rel">&#x21D4;</mo><mstyle 
+class="text"><mtext  >YCrCb</mtext></mstyle></math>
 transform</a></h4>
-<!--l. 192--><p class="noindent" >To convert a &#x0028;color&#x0029; pixel from the <!--l. 192--><math 
+<!--l. 258--><p class="noindent" >To convert a &#x0028;color&#x0029; pixel from the <!--l. 258--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >RGB</mtext></mstyle></math>
-domain into the <!--l. 193--><math 
+domain into the <!--l. 259--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >YCrCb</mtext></mstyle></math>
-one, we use the <!--l. 193--><math 
+one, we use the <!--l. 259--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >RGB/YCrCb</mtext></mstyle></math>
 &#x0028;analysis&#x0029; transform&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xmalvar2008lifting">2</a>&#x005D;</span> </p><table class="equation"><tr><td> <a 
- id="x1-7001r8"></a>
-<!--l. 198--><math 
+ id="x1-8001r10"></a>
+<!--l. 264--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
  <mtable  align="axis" style=""  
@@ -666,13 +761,10 @@ class="MathClass-close">&#x0029;</mo> <mo
 class="MathClass-bin">+</mo> <mi 
 >&#x03B4;</mi><mo 
 class="MathClass-punc">,</mo>           </mtd></mtr><!--lcl--></mtable>
-</math></td><td class="eq-no">&#x0028;8&#x0029;</td></tr></table>
-<!--l. 206--><p class="indent" >   where, </p><table class="equation"><tr><td> <a 
- id="x1-7002r9"></a>
-                                                                  
-
-                                                                  
-<!--l. 207--><math 
+</math></td><td class="eq-no">&#x0028;10&#x0029;</td></tr></table>
+<!--l. 272--><p class="indent" >   where, </p><table class="equation"><tr><td> <a 
+ id="x1-8002r11"></a>
+<!--l. 273--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
 <mi 
@@ -697,42 +789,45 @@ class="MathClass-open">&#x005B;</mo><mn>0</mn><mo
 class="MathClass-punc">,</mo><mn>1</mn><mo 
 class="MathClass-close">&#x005D;</mo><mstyle 
 class="text"><mtext  >&#x0029;&#x00A0;images</mtext></mstyle>  </mtd></mtr> <!--ll--></mtable>                                               </mrow><mo fence="true" form="postfix"></mo></mrow>
-</math></td><td class="eq-no">&#x0028;9&#x0029;</td></tr></table>
-<!--l. 216--><p class="indent" >   is  used  to  avoid  negative
+</math></td><td class="eq-no">&#x0028;11&#x0029;</td></tr></table>
+                                                                  
+
+                                                                  
+<!--l. 282--><p class="indent" >   is  used  to  avoid  negative
 components<span class="footnote-mark"><a 
-href="index6.html#fn5x0"><sup class="textsuperscript">5</sup></a></span><a 
- id="x1-7003f5"></a> . As
-it can be seen, <!--l. 219--><math 
+href="index7.html#fn6x0"><sup class="textsuperscript">6</sup></a></span><a 
+ id="x1-8003f6"></a> . As
+it can be seen, <!--l. 285--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >Cr</mtext></mstyle></math>
-and <!--l. 220--><math 
+and <!--l. 286--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >Cb</mtext></mstyle></math> are scaled
-versions of <!--l. 220--><math 
+versions of <!--l. 286--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >R</mtext></mstyle> <mo 
 class="MathClass-bin">&#x2212;</mo><mstyle 
 class="text"><mtext  >Y</mtext></mstyle></math>
-and <!--l. 220--><math 
+and <!--l. 286--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >B</mtext></mstyle> <mo 
 class="MathClass-bin">&#x2212;</mo><mstyle 
 class="text"><mtext  >Y</mtext></mstyle></math>,
-so <!--l. 221--><math 
+so <!--l. 287--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >Cr</mtext></mstyle></math>
-and <!--l. 221--><math 
+and <!--l. 287--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >Cb</mtext></mstyle></math>
 can be interpreted as measures of how much red and blue content in
 a pixel di&#xFB00;ers from luma, respectively. Notice also that for a gray pixel,
-<!--l. 224--><math 
+<!--l. 290--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >R</mtext></mstyle> <mo 
@@ -742,7 +837,7 @@ class="MathClass-rel">=</mo> <mstyle
 class="text"><mtext  >B</mtext></mstyle> <mo 
 class="MathClass-rel">=</mo> <mstyle 
 class="text"><mtext  >Y</mtext></mstyle></math>, and so
-<!--l. 225--><math 
+<!--l. 291--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >Cr</mtext></mstyle> <mo 
@@ -750,11 +845,11 @@ class="MathClass-rel">=</mo> <mstyle
 class="text"><mtext  >Cb</mtext></mstyle> <mo 
 class="MathClass-rel">=</mo> <mn>0</mn></math>&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xmalvar2008lifting">2</a>&#x005D;</span>.
-where <!--l. 248--><math 
+where <!--l. 314--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >Y</mtext></mstyle></math> is the luma
-component and <!--l. 248--><math 
+component and <!--l. 314--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >CrCb</mtext></mstyle></math>
@@ -769,68 +864,68 @@ increase their quantization step sizes with respect to the luma, to achieve furt
 <a 
 href="https://en.wikipedia.org/wiki/Data_compression_ratio" >compression</a>&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xmalvar2008lifting">2</a>&#x005D;</span>.
-</p><!--l. 260--><p class="indent" >   As it can be seen, considering that the
-<!--l. 260--><math 
+</p><!--l. 326--><p class="indent" >   As it can be seen, considering that the
+<!--l. 326--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >RGB</mtext></mstyle></math> values ranges
-between <!--l. 261--><math 
+between <!--l. 327--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>0</mn></math> and
-<!--l. 261--><math 
+<!--l. 327--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>2</mn><mn>5</mn><mn>5</mn></math> &#x0028;and rounding to the
-nearest integer&#x0029;, <!--l. 262--><math 
+nearest integer&#x0029;, <!--l. 328--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>0</mn> <mo 
 class="MathClass-rel">&#x2264;</mo><mstyle 
 class="text"><mtext  >Y</mtext></mstyle> <mo 
 class="MathClass-rel">&#x2264;</mo> <mn>2</mn><mn>5</mn><mn>5</mn></math>,
-<!--l. 262--><math 
+<!--l. 328--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>0</mn> <mo 
 class="MathClass-rel">&#x2264;</mo><mstyle 
 class="text"><mtext  >Cr</mtext></mstyle> <mo 
 class="MathClass-rel">&#x2264;</mo> <mn>2</mn><mn>5</mn><mn>5</mn></math> and
-<!--l. 263--><math 
+<!--l. 329--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>0</mn> <mo 
 class="MathClass-rel">&#x2264;</mo><mstyle 
 class="text"><mtext  >Cb</mtext></mstyle> <mo 
 class="MathClass-rel">&#x2264;</mo> <mn>2</mn><mn>5</mn><mn>5</mn></math>,
 and therefore, the number of bits that are necessary to represent each
-<!--l. 264--><math 
+<!--l. 330--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >YCrCb</mtext></mstyle></math>
 component is 8 &#x0028;although we must use &#xFB02;oating point arithmetic to perform the
 transform&#x0029;.
-</p><!--l. 267--><p class="indent" >   Finally, notice that the <!--l. 267--><math 
+</p><!--l. 333--><p class="indent" >   Finally, notice that the <!--l. 333--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >YCrCb</mtext></mstyle></math>
-                                                                  
-
-                                                                  
 transform is not orthogonal because the analysis &#xFB01;lters are
 not independent. This can be seen in the Eq.&#x00A0;<a 
-href="#x1-7001r8">8<!--tex4ht:ref: eq:alternative_YCrCb --></a>, where the
-<!--l. 269--><math 
+href="#x1-8001r10">10<!--tex4ht:ref: eq:alternative_YCrCb --></a>, where the
+<!--l. 335--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >Cr</mtext></mstyle></math> values depend
-on the values of <!--l. 270--><math 
+on the values of <!--l. 336--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >Y</mtext></mstyle></math>,
 and therefore, there is a dependency between both <a 
 href="https://en.wikipedia.org/wiki/Basis_(linear_algebra)" >basis</a>, and something similar happens
-for the <!--l. 273--><math 
+for the <!--l. 339--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >Cb</mtext></mstyle></math>
 components. This can be also easely checked:
-<!--tex4ht:inline--></p><!--l. 274--><math 
+                                                                  
+
+                                                                  
+<!--tex4ht:inline--></p><!--l. 340--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" >
     <mn>0</mn><mo 
@@ -857,8 +952,8 @@ class="MathClass-punc">.</mo><mn>1</mn><mn>0</mn><mn>5</mn><mn>5</mn><mn>4</mn><
 class="MathClass-rel">&#x2260;</mo><mn>0</mn><mo 
 class="MathClass-punc">,</mo>
 </math>
-<!--l. 275--><p class="nopar" >
-<!--tex4ht:inline--></p><!--l. 275--><math 
+<!--l. 341--><p class="nopar" >
+<!--tex4ht:inline--></p><!--l. 341--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" >
   <mn>0</mn><mo 
@@ -889,11 +984,8 @@ class="MathClass-punc">,</mo><mi
 >n</mi><mi 
 >d</mi></mstyle>
 </math>
-<!--l. 276--><p class="nopar" >
-                                                                  
-
-                                                                  
-<!--tex4ht:inline--></p><!--l. 276--><math 
+<!--l. 342--><p class="nopar" >
+<!--tex4ht:inline--></p><!--l. 342--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" >
   <mn>0</mn><mo 
@@ -925,11 +1017,14 @@ class="MathClass-punc">.</mo><mn>0</mn><mn>1</mn><mn>3</mn><mn>7</mn><mn>1</mn><
 class="MathClass-rel">&#x2260;</mo><mn>0</mn><mo 
 class="MathClass-punc">.</mo>
 </math>
-<!--l. 277--><p class="nopar" >
-</p><!--l. 279--><p class="indent" >   The inverse &#x0028;synthesis&#x0029; transform is de&#xFB01;ned by
+<!--l. 343--><p class="nopar" >
+</p><!--l. 345--><p class="indent" >   The inverse &#x0028;synthesis&#x0029; transform is de&#xFB01;ned by
 </p><table class="equation"><tr><td> <a 
- id="x1-7004r10"></a>
-<!--l. 302--><math 
+ id="x1-8004r12"></a>
+                                                                  
+
+                                                                  
+<!--l. 368--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
  <mtable  align="axis" style=""  
@@ -983,10 +1078,10 @@ class="MathClass-bin">&#x2212;</mo> <mi
 >&#x03B4;</mi><mo 
 class="MathClass-close">&#x0029;</mo><mo 
 class="MathClass-punc">.</mo>                   </mtd></mtr><!--lcl--></mtable>
-</math></td><td class="eq-no">&#x0028;10&#x0029;</td></tr></table>
-<!--l. 310--><p class="indent" >   that in matrix form is </p><table class="equation"><tr><td> <a 
- id="x1-7005r11"></a>
-<!--l. 311--><math 
+</math></td><td class="eq-no">&#x0028;12&#x0029;</td></tr></table>
+<!--l. 376--><p class="indent" >   that in matrix form is </p><table class="equation"><tr><td> <a 
+ id="x1-8005r13"></a>
+<!--l. 377--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
@@ -1029,134 +1124,52 @@ class="text"><mtext  >Cb</mtext></mstyle> <mo
 class="MathClass-bin">&#x2212;</mo> <mi 
 >&#x03B4;</mi> </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                           </mrow><mo fence="true" form="postfix">]</mo></mrow><mo 
 class="MathClass-punc">,</mo>
-</math></td><td class="eq-no">&#x0028;11&#x0029;</td></tr></table>
-<!--l. 331--><p class="indent" >   The synthesis &#xFB01;lters gains are important because the quantization steps of each
-YCrCb component should be adjusted in order to e&#xFB00;ectively provide the desired
-number of <a 
-href="http://www.winlab.rutgers.edu/~crose/322_html/quantization.pdf" >bins</a> &#x0028;di&#xFB00;erent dequantized values&#x0029; in each component.
-</p><!--l. 333--><p class="indent" >   The synthesis &#xFB01;lters generates a gain of
-<!--l. 333--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mo 
-class="MathClass-rel">&#x007C;</mo><mo 
-class="MathClass-rel">&#x007C;</mo><msup><mrow 
-><mn>1</mn></mrow><mrow 
-><mn>2</mn></mrow></msup 
-> <mo 
-class="MathClass-bin">+</mo> <msup><mrow 
-><mn>1</mn></mrow><mrow 
-><mn>2</mn></mrow></msup 
-> <mo 
-class="MathClass-bin">+</mo> <msup><mrow 
-><mn>1</mn></mrow><mrow 
-><mn>2</mn></mrow></msup 
-><mo 
-class="MathClass-rel">&#x007C;</mo><msubsup><mrow 
-><mo 
-class="MathClass-rel">&#x007C;</mo></mrow><mrow 
-><mn>2</mn></mrow><mrow 
-><mn>2</mn></mrow></msubsup 
-> <mo 
-class="MathClass-rel">=</mo> <mn>3</mn></math> &#x0028;square of the
-Euclidean norm&#x0029; for the <!--l. 334--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mstyle 
-class="text"><mtext  >Y</mtext></mstyle></math>
-component, <!--l. 334--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mo 
-class="MathClass-rel">&#x007C;</mo><mo 
-class="MathClass-rel">&#x007C;</mo><mn>1</mn><mo 
-class="MathClass-punc">.</mo><mn>4</mn><mn>0</mn><msup><mrow 
-><mn>2</mn></mrow><mrow 
-><mn>2</mn></mrow></msup 
-> <mo 
-class="MathClass-bin">+</mo> <mn>0</mn><mo 
-class="MathClass-punc">.</mo><mn>7</mn><mn>1</mn><msup><mrow 
-><mn>4</mn></mrow><mrow 
-><mn>2</mn></mrow></msup 
-> <mo 
-class="MathClass-bin">+</mo> <msup><mrow 
-><mn>0</mn></mrow><mrow 
-><mn>2</mn></mrow></msup 
-><mo 
-class="MathClass-rel">&#x007C;</mo><msubsup><mrow 
-><mo 
-class="MathClass-rel">&#x007C;</mo></mrow><mrow 
-><mn>2</mn></mrow><mrow 
-><mn>2</mn></mrow></msubsup 
-> <mo 
-class="MathClass-rel">=</mo> <mn>2</mn><mo 
-class="MathClass-punc">.</mo><mn>4</mn><mn>7</mn><mn>5</mn><mn>4</mn></math>
-for the <!--l. 335--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mstyle 
-class="text"><mtext  >Cr</mtext></mstyle></math>
-component, and <!--l. 335--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mo 
-class="MathClass-rel">&#x007C;</mo><mo 
-class="MathClass-rel">&#x007C;</mo><msup><mrow 
-><mn>0</mn></mrow><mrow 
-><mn>2</mn></mrow></msup 
-> <mo 
-class="MathClass-bin">+</mo> <mn>0</mn><mo 
-class="MathClass-punc">.</mo><mn>3</mn><mn>4</mn><msup><mrow 
-><mn>4</mn></mrow><mrow 
-><mn>2</mn></mrow></msup 
-> <mo 
-class="MathClass-bin">+</mo> <mn>1</mn><mo 
-class="MathClass-punc">.</mo><mn>7</mn><mn>7</mn><msup><mrow 
-><mn>2</mn></mrow><mrow 
-><mn>2</mn></mrow></msup 
-><mo 
-class="MathClass-rel">&#x007C;</mo><msubsup><mrow 
-><mo 
-class="MathClass-rel">&#x007C;</mo></mrow><mrow 
-><mn>2</mn></mrow><mrow 
-><mn>2</mn></mrow></msubsup 
-> <mo 
-class="MathClass-rel">=</mo> <mn>3</mn><mo 
-class="MathClass-punc">.</mo><mn>2</mn><mn>5</mn><mn>8</mn><mn>3</mn><mn>2</mn></math>
-for the <!--l. 336--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mstyle 
-class="text"><mtext  >Cb</mtext></mstyle></math>
-                                                                  
-
-                                                                  
-component. So, when compressing an image through quantization, the QSs should be
-modulated accordinly &#x0028;the higher the gain, the higher the quantization error, and
-therefore, the smaller the QS should be&#x0029;.
+</math></td><td class="eq-no">&#x0028;13&#x0029;</td></tr></table>
+   <h5 class="subsubsectionHead"><span class="titlemark">1.5.1   </span> <a 
+ id="x1-90001.5.1"></a>Quantization in the YCrCb domain</h5>
+<!--l. 398--><p class="noindent" >The YCrCb transform is not orthogonal and the relative synthesis &#xFB01;lters gains depends on
+the energy of the inversely transformed components. In such case, there is not optimal
+<span 
+class="ecti-1000">constant</span><span class="footnote-mark"><a 
+href="index8.html#fn7x0"><sup class="textsuperscript">7</sup></a></span><a 
+ id="x1-9001f7"></a> 
+quantization pattern and the only way of &#xFB01;nding a good quantization of the
+components consists in computing the RD slopes &#x0028;measured in the RGB domain&#x0029; of
+each quantization point, sort the points by their slope, and to apply the
+corresponding quantization patterns &#x0028;see this <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/YCrCb_quantization.ipynb.ipynb" >notebook</a>&#x0029;.
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.6   </span> <a 
- id="x1-80001.6"></a>The <a 
-href="https://en.wikipedia.org/wiki/YCoCg" ><!--l. 494--><math 
+ id="x1-100001.6"></a>The <a 
+href="https://en.wikipedia.org/wiki/YCoCg" ><!--l. 574--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >RGB/YCoCg</mtext></mstyle></math>
 transform</a></h4>
-<!--l. 496--><p class="noindent" >Clearly, orthogonality is a desired property in lossy compression systems because it helps
+<!--l. 576--><p class="noindent" >Clearly, orthogonality is a desired property in lossy compression systems because it helps
 to isolate<span class="footnote-mark"><a 
-href="index7.html#fn6x0"><sup class="textsuperscript">6</sup></a></span><a 
- id="x1-8001f6"></a> 
+href="index9.html#fn8x0"><sup class="textsuperscript">8</sup></a></span><a 
+ id="x1-10001f8"></a> 
 the impact &#x0028;in the case of a color transform&#x0029; of each component on the quality of the
+                                                                  
+
+                                                                  
 reconstruction of the image, simplifying signi&#xFB01;cantly the determination of the pattern
 of QSs that generate the optimal RD curve.
-</p><!--l. 503--><p class="indent" >   Moreover, Eqs.&#x00A0;<span 
+</p><!--l. 583--><p class="indent" >   Moreover, Eqs.&#x00A0;<span 
 class="ecbx-1000">??</span> and <a 
-href="#x1-7004r10">10<!--tex4ht:ref: eq:iYCrCb --></a> were derived by <a 
+href="#x1-8004r12">12<!--tex4ht:ref: eq:iYCrCb --></a> were derived by <a 
 href="https://en.wikipedia.org/wiki/Principal_component_analysis" >Principal Component Analysis &#x0028;PCA&#x0029;</a> on
 old<span class="footnote-mark"><a 
-href="index8.html#fn7x0"><sup class="textsuperscript">7</sup></a></span><a 
- id="x1-8002f7"></a> 
+href="index10.html#fn9x0"><sup class="textsuperscript">9</sup></a></span><a 
+ id="x1-10002f9"></a> 
 video data. The same procedure has been carried out with
 newer<span class="footnote-mark"><a 
-href="index9.html#fn8x0"><sup class="textsuperscript">8</sup></a></span><a 
- id="x1-8003f8"></a> 
+href="index11.html#fn10x0"><sup class="textsuperscript">10</sup></a></span><a 
+ id="x1-10003f10"></a> 
 images, obtaining </p><table class="equation"><tr><td> <a 
- id="x1-8004r12"></a>
-<!--l. 509--><math 
+ id="x1-10004r14"></a>
+<!--l. 589--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
@@ -1273,40 +1286,40 @@ class="text"><mtext  >C</mtext></mstyle></mrow><mrow
 ><mn>2</mn></mrow></msub 
 >  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                                                    </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
 class="MathClass-punc">.</mo>
-</math></td><td class="eq-no">&#x0028;12&#x0029;</td></tr></table>
-<!--l. 548--><p class="indent" >   This transform is orthogonal and the synthesis &#xFB01;lters
+</math></td><td class="eq-no">&#x0028;14&#x0029;</td></tr></table>
+<!--l. 628--><p class="indent" >   This transform is orthogonal and the synthesis &#xFB01;lters
 gains<span class="footnote-mark"><a 
-href="index10.html#fn9x0"><sup class="textsuperscript">9</sup></a></span><a 
- id="x1-8005f9"></a>  are
-22/9 &#x0028;for <!--l. 551--><math 
+href="index12.html#fn11x0"><sup class="textsuperscript">11</sup></a></span><a 
+ id="x1-10005f11"></a>  are
+22/9 &#x0028;for <!--l. 631--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >Y</mtext></mstyle></math>&#x0029;,
-25/9 &#x0028;for <!--l. 551--><math 
+25/9 &#x0028;for <!--l. 631--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mstyle 
 class="text"><mtext  >C</mtext></mstyle></mrow><mrow 
 ><mn>1</mn></mrow></msub 
 ></math>&#x0029; and
-22/9 &#x0028;for <!--l. 552--><math 
+22/9 &#x0028;for <!--l. 632--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mstyle 
 class="text"><mtext  >C</mtext></mstyle></mrow><mrow 
 ><mn>2</mn></mrow></msub 
 ></math>&#x0029;.
-                                                                  
-
-                                                                  
-</p><!--l. 554--><p class="indent" >   Unfortunately, from a perceptual perspective we must impose &#x0028;thinking of the
+</p><!--l. 634--><p class="indent" >   Unfortunately, from a perceptual perspective we must impose &#x0028;thinking of the
 subsampling of the chromas&#x0029; some features in a color transform &#x0028;such as the in&#xFB02;uence
 of the green channel on the luma channel should be high&#x0029; that violates the
 orthogonality constrain <span class="cite">&#x005B;<a 
 href="#Xmalvar2008lifting">2</a>&#x005D;</span>. For this reason the authors &#xFB01;nally propose the transform </p><table class="equation"><tr><td>
 <a 
- id="x1-8006r13"></a>
-<!--l. 560--><math 
+ id="x1-10006r15"></a>
+                                                                  
+
+                                                                  
+<!--l. 640--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
@@ -1399,46 +1412,46 @@ class="text"><mtext  >Co</mtext></mstyle></mtd>
 class="array"  columnalign="center">  <mstyle 
 class="text"><mtext  >Cg</mtext></mstyle>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                              </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
 class="MathClass-punc">,</mo>
-</math></td><td class="eq-no">&#x0028;13&#x0029;</td></tr></table>
-<!--l. 597--><p class="indent" >   that is near orthogonal<span class="footnote-mark"><a 
-href="index11.html#fn10x0"><sup class="textsuperscript">10</sup></a></span><a 
- id="x1-8007f10"></a> ,
-and has channel gains 3 &#x0028;<!--l. 599--><math 
+</math></td><td class="eq-no">&#x0028;15&#x0029;</td></tr></table>
+<!--l. 677--><p class="indent" >   that is near orthogonal<span class="footnote-mark"><a 
+href="index13.html#fn12x0"><sup class="textsuperscript">12</sup></a></span><a 
+ id="x1-10007f12"></a> ,
+and has channel gains 3 &#x0028;<!--l. 679--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >Y</mtext></mstyle></math>&#x0029;,
-2 &#x0028;<!--l. 600--><math 
+2 &#x0028;<!--l. 680--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >Co</mtext></mstyle></math>&#x0029; and
-3 &#x0028;<!--l. 600--><math 
+3 &#x0028;<!--l. 680--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >Cg</mtext></mstyle></math>&#x0029;.
-</p><!--l. 602--><p class="indent" >   Again, notice that if the <!--l. 602--><math 
+</p><!--l. 682--><p class="indent" >   Again, notice that if the <!--l. 682--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >RGB</mtext></mstyle></math>
-values ranges between <!--l. 602--><math 
+values ranges between <!--l. 682--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>0</mn></math>
-and <!--l. 603--><math 
+and <!--l. 683--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>2</mn><mn>5</mn><mn>5</mn></math> &#x0028;and rounding to
-the nearest integer&#x0029;, <!--l. 603--><math 
+the nearest integer&#x0029;, <!--l. 683--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>0</mn> <mo 
 class="MathClass-rel">&#x2264;</mo><mstyle 
 class="text"><mtext  >Y</mtext></mstyle> <mo 
 class="MathClass-rel">&#x2264;</mo> <mn>2</mn><mn>5</mn><mn>5</mn></math>,
-<!--l. 604--><math 
+<!--l. 684--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" > <mo 
 class="MathClass-bin">&#x2212;</mo> <mn>1</mn><mn>2</mn><mn>8</mn> <mo 
 class="MathClass-rel">&#x2264;</mo><mstyle 
 class="text"><mtext  >Co</mtext></mstyle> <mo 
 class="MathClass-rel">&#x2264;</mo> <mn>1</mn><mn>2</mn><mn>7</mn></math> and
-<!--l. 604--><math 
+<!--l. 684--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" > <mo 
 class="MathClass-bin">&#x2212;</mo> <mn>1</mn><mn>2</mn><mn>8</mn> <mo 
@@ -1446,19 +1459,19 @@ class="MathClass-rel">&#x2264;</mo><mstyle
 class="text"><mtext  >Cg</mtext></mstyle> <mo 
 class="MathClass-rel">&#x2264;</mo> <mn>1</mn><mn>2</mn><mn>7</mn></math>, and
 therefore, the number of bits that are necessary to represent each component is
-<!--l. 606--><math 
+<!--l. 686--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>8</mn></math>.
-Therefore, we can use the same QS range for each component.
+Therefore, we can use the same QS range for each component. See this <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/YCrCb_matrix.ipynb" >notebook</a>.
 </p>
    <h5 class="subsubsectionHead"><span class="titlemark">1.6.1   </span> <a 
- id="x1-90001.6.1"></a>Quantization</h5>
-<!--l. 610--><p class="noindent" >The previous channel gains suggest to use </p><table class="equation"><tr><td> <a 
- id="x1-9001r14"></a>
-                                                                  
-
-                                                                  
-<!--l. 611--><math 
+ id="x1-110001.6.1"></a>Quantization in the YCoCg domain</h5>
+<!--l. 690--><p class="noindent" >Again, like in the color-DCT, ignoring the possible e&#xFB00;ects of the entropy encoding
+stage &#x0028;that could compress more some components&#x0029;, the previous channel gains
+suggest to use </p><table class="equation"><tr><td> <a 
+ id="x1-11001r16"></a>
+<!--l. 693--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                         <msub><mrow 
@@ -1483,74 +1496,48 @@ class="MathClass-rel">=</mo> <msub><mrow
 class="text"><mtext  >Cg</mtext></mstyle></mrow></msub 
 ><mo 
 class="MathClass-punc">.</mo>
-</math></td><td class="eq-no">&#x0028;14&#x0029;</td></tr></table>
-<!--l. 614--><p class="indent" >   However, as it can be seen in this <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb" >notebook</a> the di&#xFB00;erences with using </p><table class="equation"><tr><td>
-<a 
- id="x1-9002r15"></a>
-<!--l. 615--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="block" class="equation">
-                        <msub><mrow 
-><mi 
->&#x0394;</mi></mrow><mrow 
-><mstyle 
-class="text"><mtext  >Y</mtext></mstyle></mrow></msub 
-> <mo 
-class="MathClass-rel">=</mo> <msub><mrow 
-><mi 
->&#x0394;</mi></mrow><mrow 
-><mstyle 
-class="text"><mtext  >Co</mtext></mstyle></mrow></msub 
-> <mo 
-class="MathClass-rel">=</mo> <msub><mrow 
-><mi 
->&#x0394;</mi></mrow><mrow 
-><mstyle 
-class="text"><mtext  >Cg</mtext></mstyle></mrow></msub 
-><mo 
-class="MathClass-punc">.</mo>
-</math></td><td class="eq-no">&#x0028;15&#x0029;</td></tr></table>
-<!--l. 618--><p class="indent" >   are very small. Therefore, this last quantization scheme will be adopted.
-</p><!--l. 620--><p class="noindent" >
+</math></td><td class="eq-no">&#x0028;16&#x0029;</td></tr></table>
+<!--l. 696--><p class="indent" >   See this <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/YCrCb_matrix.ipynb" >notebook</a>.
+                                                                  
+
+                                                                  
+</p><!--l. 698--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
- id="x1-100002"></a>What you have to do?</h3>
-<!--l. 622--><p class="noindent" >
+ id="x1-120002"></a>What you have to do?</h3>
+<!--l. 700--><p class="noindent" >
      </p><ol  class="enumerate1" >
      <li 
-  class="enumerate" id="x1-10002x1">Please,  run  the  previous  <a 
+  class="enumerate" id="x1-12002x1">Please,  run  the  previous  <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb" >notebook</a>  to  learn  some  insights  about  the
      problem of the optimal quantization in the color domain.
      </li>
      <li 
-  class="enumerate" id="x1-10004x2">Include  in  the  previous  <a 
+  class="enumerate" id="x1-12004x2">Include  in  the  previous  <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb" >notebook</a>  an  implementation  of  the  <a 
 href="https://en.wikipedia.org/wiki/JPEG_2000#Color_components_transformation" >RCT
      &#x0028;Reversible Color Transform&#x0029;</a> and compare it&#x2019;s RD performance with the
      other transforms.
      </li>
      <li 
-  class="enumerate" id="x1-10006x3">Implement the transform described in Eq.&#x00A0;<a 
-href="#x1-8004r12">12<!--tex4ht:ref: eq:optimal --></a>, and compare it with the
+  class="enumerate" id="x1-12006x3">Implement the transform described in Eq.&#x00A0;<a 
+href="#x1-10004r14">14<!--tex4ht:ref: eq:optimal --></a>, and compare it with the
      other transforms.</li></ol>
-                                                                  
-
-                                                                  
-<!--l. 637--><p class="noindent" >
+<!--l. 715--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
- id="x1-110003"></a>Timming</h3>
-<!--l. 639--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 641--><p class="noindent" >
+ id="x1-130003"></a>Timming</h3>
+<!--l. 717--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 719--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
- id="x1-120004"></a>Deliverables</h3>
-<!--l. 643--><p class="noindent" >None.
-</p><!--l. 645--><p class="noindent" >
+ id="x1-140004"></a>Deliverables</h3>
+<!--l. 721--><p class="noindent" >None.
+</p><!--l. 723--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
- id="x1-130005"></a>Resources</h3>
+ id="x1-150005"></a>Resources</h3>
    <div class="thebibliography">
    <p class="bibitem" ><span class="biblabel">
  &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
@@ -1560,6 +1547,9 @@ class="ecti-1000">Digital Image Processing: An Algorithmic</span>
    <span 
 class="ecti-1000">Introduction Using Java</span></a>. Springer, 2016.
    </p>
+                                                                  
+
+                                                                  
    <p class="bibitem" ><span class="biblabel">
  &#x005B;2&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
  id="Xmalvar2008lifting"></a>H.S. Malvar, G.J. Sullivan, and S.&#x00A0;Srinivasan.  <a 
@@ -1592,9 +1582,6 @@ class="ecti-1000">Wavelets  and  Subband  Coding</span></a>.
    Prentice-hall, 1995.
 </p>
    </div>
-                                                                  
-
-                                                                  
     
 </body></html> 
 
