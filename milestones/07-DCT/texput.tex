@@ -70,9 +70,9 @@ first 64 2D-DCT basis (see this
 The DCT can be also expressed in matrix~\cite{sayood2017introduction}
 form as
 \begin{equation}
-  {\mathbf h} = {\mathbf A}{\mathbf g},
+  {\mathbf h} = {\mathbf K}{\mathbf g},
 \end{equation}
-where ${\mathbf A}$ is the forward transform matrix. The rows of the
+where ${\mathbf K}$ is the forward transform matrix. The rows of the
 transform matrix are often referred to as the basis vectors for the
 transform because they form an orthonormal basis set (see these
 \href{https://cseweb.ucsd.edu/classes/fa17/cse166-a/lec13.pdf}{slides}),
@@ -80,12 +80,12 @@ and the elements of the transformed sequence are often called the
 transform coefficients. Obviously, the inverse transform is computed
 by
 \begin{equation}
-  {\mathbf g} = {\mathbf A}^{-1}{\mathbf h},
+  {\mathbf g} = {\mathbf K}^{-1}{\mathbf h},
 \end{equation}
-where ${\mathbf A}^{-1}$ denotes the inverse matrix of ${\mathbf
-  A}$. In the case of the DCT, ${\mathbf A}$ and therefore, ${\mathbf
-  A}^{-1}={\mathbf A}^{\text T}$, where $\cdot^{\text T}$ denotes the
-transpose of ${\mathbf A}$.
+where ${\mathbf K}^{-1}$ denotes the inverse matrix of ${\mathbf
+  K}$. In the case of the DCT, ${\mathbf K}$ and therefore, ${\mathbf
+  K}^{-1}={\mathbf K}^{\text T}$, where $\cdot^{\text T}$ denotes the
+transpose of ${\mathbf K}$.
 
 The DCT is usually applied by 2D blocks which, in most of the previous
 image and video compression standards are of 8x8 pixels. This a direct
