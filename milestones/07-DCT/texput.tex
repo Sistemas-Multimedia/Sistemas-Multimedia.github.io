@@ -7,14 +7,15 @@
 
 \section{Description}
 
+\subsection{Decorrelating with the \href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT
+(Discrete Cosine Transform)}}
+
 Transforms concentrate (compact) information (that can be estimated
 through the variance of the entropy) in a few output coefficients by
 decorrelating the input samples~\cite{sayood2017introduction}. Such
 energy concentration can be used to find good compression schemes. In
-this milestone, we will use
-the \href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT
-(Discrete Cosine Transform)} to remove the spatial redundancy in the
-components of an image.
+this milestone, we will use DCT to remove the spatial redundancy in
+the components of an image.
 
 Notice that the DCT is used in some of the most succesful image and
 video compressors, such as
@@ -53,20 +54,6 @@ spatial) frequency. For example, the coefficient at the position 0
 average of the signal. The rest of high-frequency coefficients are
 called AC (Alternating Current) coefficients.
 
-The 2D-DCT is separable, which means that it can be computed by
-appliying the 1D-DCT to the two dimensions of the signal. For the
-inverse 2D-DCT, the procedure is similar, but appliying the inverse
-1D-DWT in reverse order. The Fig.~\ref{fig:2D-DCT_basis} show the
-first 64 2D-DCT basis (see this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/DCT_basis.ipynb}{notebook}).
-
-\begin{figure}
-  \centering
-  \png{2D-DCT_basis}{600}
-  \caption{First 64 2D-DCT basis functions.}
-  \label{fig:2D-DCT_basis}
-\end{figure}
-
 The DCT can be also expressed in matrix~\cite{sayood2017introduction}
 form as
 \begin{equation}
@@ -86,6 +73,24 @@ where ${\mathbf K}^{-1}$ denotes the inverse matrix of ${\mathbf
   K}$. In the case of the DCT, ${\mathbf K}$ and therefore, ${\mathbf
   K}^{-1}={\mathbf K}^{\text T}$, where $\cdot^{\text T}$ denotes the
 transpose of ${\mathbf K}$.
+
+\subsection{The 2D-DCT}
+
+The 2D-DCT is separable, which means that it can be computed by
+appliying the 1D-DCT to the two dimensions of the signal. For the
+inverse 2D-DCT, the procedure is similar, but appliying the inverse
+1D-DWT in reverse order. The Fig.~\ref{fig:2D-DCT_basis} show the
+first 64 2D-DCT basis (see this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/DCT_basis.ipynb}{notebook}).
+
+\begin{figure}
+  \centering
+  \png{2D-DCT_basis}{600}
+  \caption{First 64 2D-DCT basis functions.}
+  \label{fig:2D-DCT_basis}
+\end{figure}
+
+\subsection{Block-based transform coding}
 
 The DCT is usually applied by 2D blocks which, in most of the previous
 image and video compression standards are of 8x8 pixels. This a direct
@@ -112,6 +117,10 @@ The DCT is orthonormal (orthogonal + unitary). Orthonormal transforms
 are energy preserving; that is, the sum of the squares of the
 transformed sequence is the same as the sum of the squares of the
 original sequence.
+
+\subsection{Quantization in the (spatial) DCT domain}
+
+The DCT is orthonormal, which implies that the gain of each block-based 2D-DWT subband is equal to 1.
 
 \section{Timming}
 
