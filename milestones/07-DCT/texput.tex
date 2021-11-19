@@ -92,8 +92,21 @@ image and video compression standards are of 8x8 pixels. This a direct
 consequence of that, usually the DCT losses compaction efficiency when
 the block size is increased (although this depends on the signal
 characteristics). When the coefficients of several blocks are
-considered together, they form a subband, and the collection of
-subbands, a decomposition~\cite{vetterli2014foundations}.
+considered together, they form a
+\href{https://en.wikipedia.org/wiki/Sub-band_coding}{subband}, and the
+collection of subbands, a
+\href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform}{decomposition}~\cite{vetterli2014foundations},
+and the
+\href{https://en.wikipedia.org/wiki/Array_data_structure#Element_identifier_and_addressing_formulas}{index}
+of the subband is related to the
+\href{https://en.wikipedia.org/wiki/Frequency}{frequency} of the
+signal. For example, in the case of the
+\href{https://en.wikipedia.org/wiki/Digital_image}{images}, the
+position of the
+\href{https://en.wikipedia.org/wiki/Coefficient}{coefficients} in the
+subbands is related to
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/block_DCT_compression.ipynb}{the
+  spatial area where the corresponding pixels are found}.
 
 The DCT is orthonormal (orthogonal + unitary). Orthonormal transforms
 are energy preserving; that is, the sum of the squares of the
