@@ -10,11 +10,14 @@
 Transforms concentrate (compact) information (that can be estimated
 through the variance of the entropy) in a few output coefficients by
 decorrelating the input samples~\cite{sayood2017introduction}. Such
-concentration normally implies an increment in the number of bits
-necessary to represent the coefficients with a higher information.
+energy concentration can be used to find good compression schemes. In
+this milestone, we will use
+the \href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT
+(Discrete Cosine Transform)} to remove the spatial redundancy in the
+components of an image.
 
-The DCT (Discrete Cosine Transform) is used in some of the most
-succesful image and video compressors, such as
+Notice that the DCT is used in some of the most succesful image and
+video compressors, such as
 \href{https://en.wikipedia.org/wiki/JPEG}{JPEG} and
 \href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{H.264},
 \href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{HEVC} and
@@ -47,8 +50,8 @@ position of the coefficients in the transform domain indicate the
 contribution of such coefficient to the corresponding (in this case,
 spatial) frequency. For example, the coefficient at the position 0
 (that is commonly refered as DC (Direct Current)) is equal to the
-average of the signal. The rest of coefficients high-frequency
-coefficients are called AC (Alternating Current) coefficients.
+average of the signal. The rest of high-frequency coefficients are
+called AC (Alternating Current) coefficients.
 
 The 2D-DCT is separable, which means that it can be computed by
 appliying the 1D-DCT to the two dimensions of the signal. For the
