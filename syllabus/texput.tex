@@ -30,36 +30,46 @@ milestones.
   \end{description}
   ~\newline
 
-\item [Day 2: {\normalfont Removing color redundancy.}] \emph{Color
-    components are correlated, and human beings are more sensitive to
-    slow variations of the color than to high frequency changes.}
+\item [Day 2: {\normalfont Compressing color images.}] \emph{Quantization and entropy coding, two key compression techniques.}
   \begin{description}
   \item [Milestone 4: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/04-Motion_PNG/}{Entropy coding of images with PNG}.}]
   \item [Milestone 5: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/05-RGB_quantization/}{Quantizing in the RGB domain}.}]
-  \item [Milestone 6: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/06-YUV_quantization/}{Quantizing in the YUV domain}.}] %{Decorrelating with Color Transforms}.
   \end{description}
   ~\newline
 
-\item [Day 3: {\normalfont Removing spatial redundancy with transforms.}]
-  \emph{Pixels are spatially correlated, and human beings prefer low
-    spatial frequencies to high ones.}
+\item [Day 3: {\normalfont Removing color redundancy.}] \emph{Color
+    components are correlated, and human beings are more sensitive to
+    slow variations of the color than to high frequency changes.}
+  \begin{description}
+   \item [Milestone 6: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/06-YUV_quantization/}{Quantizing in the luma/chroma domain}.}]
+  \end{description}
+  ~\newline
+
+\item [Day 5: {\normalfont Removing spatial redundancy with transforms I.}]
+  \emph{Quantization in the transform domain is more efficient than in the image domain.}
   \begin{description}
   \item [Milestone 7: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/07-DWT/}{The DCT (Discrete Cosine Transform)}.}]
+  \end{description}
+  ~\newline
+
+\item [Day 6: {\normalfont Removing spatial redundancy with transforms II.}]
+  \emph{Providing spatial multiresolution to image coding.}
+  \begin{description}
   \item [Milestone 8: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/08-DWT/}{The DWT (Discrete Wavelet Transform)}.}]
   %\item [Milestone 9: {\normalfont \href{}{LP (Laplacian Pyramid) (unfinished)}.}]
   \end{description}
   ~\newline
 
-\item [Day 4: {\normalfont Removing temporal redundancy with motion estimation.}]
-  \emph{Video sequences are correlated in time, too!}
+\item [Day 7: {\normalfont Removing temporal redundancy with motion estimation.}]
+  \emph{Video sequences are correlated in time, and determining how the objects move can help to compress more.}
   \begin{description}
   \item [Milestone 9: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/10-ME/}{Motion estimation and compensation in the image domain}.}]
   \item [Milestone 10: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/11-image_domain_IPP/}{IPP... coding in the image domain}.}]
   \end{description}
   ~\newline
 
-\item [Days 5-8: {\normalfont MRVC (Muti-Resolution Video Coding).}]
-  \emph{Increasing the spatial scalabilty.}
+\item [Days 8: {\normalfont MRVC (Muti-Resolution Video Coding).}]
+  \emph{Providing spatial multiresolution to video coding.}
   \begin{description}
   \item [Milestone 11: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/12-transform_domain_MC/}{Motion compensation in the transform domain}.}]
   \item [Milestone 12: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/13-transform_domain_IPP/}{IPP... coding in the transform domain}.}]
