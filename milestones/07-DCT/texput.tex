@@ -120,7 +120,23 @@ original sequence.
 
 \subsection{Quantization in the (spatial) DCT domain}
 
-The DCT is orthonormal, which implies that the gain of each block-based 2D-DWT subband is equal to 1.
+The DCT is orthonormal, which implies that the gain of each
+block-based 2D-DWT subband is equal to 1, and also that the
+quantization error is \emph{amplificated} with the same gain in all
+the subbands. However, this does not mean that all the subbands should
+be quantized using the same $\Delta$, because some subbands can be
+compressed more efficienly than others and their SNR (after
+quantization) can be
+different. This \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/block_DCT_compression.ipynb}{notebook}
+shows how to use RD optimization to determine, given a target
+bit-rate, the best combination of quantization steps per subbands.
+
+\section{What you have to do?}
+With the aim of checking that distortion can be measured in both, the
+transform and the image (RGB) domain, extend the
+previous \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/block_DCT_compression.ipynb}{notebook}
+to compute the distortion in the RGB domain. Check that the result is
+the same.
 
 \section{Timming}
 
