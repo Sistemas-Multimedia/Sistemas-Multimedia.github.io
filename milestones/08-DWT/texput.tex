@@ -7,6 +7,8 @@
 
 \section{Description}
 
+\subsection{The transform}
+
 Technically, the
 \href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform}{DWT
   (Discrete Wavelet Transform)} is a
@@ -16,25 +18,28 @@ Technically, the
 computes a
 \href{https://www.dsprelated.com/freebooks/sasp/Critically_Sampled_Perfect_Reconstruction.html}{critically}-\href{https://en.wikipedia.org/wiki/Nyquist-Shannon_sampling_theorem}{sampled}
 \href{https://en.wikipedia.org/wiki/Octave_(electronics)}{octave}-\href{https://en.wikipedia.org/wiki/Frequency_band}{band}
-\href{https://www.sciencedirect.com/topics/engineering/wavelet-decomposition}{decomposition}~\cite{vetterli2014foundations,kovacevic2013fourier}. Specifically,
-the DWT is a family of transforms whose output describes the (input)
-signal in a set of
-\href{https://en.wikipedia.org/wiki/Sub-band_coding}{subbands}. This
-set is also called
-a \href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform}{decomposition}
-and the
-\href{https://en.wikipedia.org/wiki/Array_data_structure#Element_identifier_and_addressing_formulas}{index}
-of the subband is related to the
-\href{https://en.wikipedia.org/wiki/Frequency}{frequency} of the
-signal. For example, in the case of the
-\href{https://en.wikipedia.org/wiki/Digital_image}{images}, the
-position of the
-\href{https://en.wikipedia.org/wiki/Coefficient}{coefficients} in the
-subbands is related to
-\href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform#/media/File:Jpeg2000_2-level_wavelet_transform-lichtenstein.png}{the
-  spatial area where the corresponding pixels are found}.
+\href{https://www.sciencedirect.com/topics/engineering/wavelet-decomposition}{decomposition}~\cite{vetterli2014foundations,kovacevic2013fourier}. As the rest of transform:
+\begin{enumerate}
+\item The output of the DWT describes the (input) signal in a set of
+  \href{https://en.wikipedia.org/wiki/Sub-band_coding}{subbands},
+  producing the so called a
+  \href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform}{decomposition}.
+\item The
+  \href{https://en.wikipedia.org/wiki/Array_data_structure#Element_identifier_and_addressing_formulas}{index}
+  of the subband is related to the
+  \href{https://en.wikipedia.org/wiki/Frequency}{frequency} of the
+  signal. For example, in the case of the
+  \href{https://en.wikipedia.org/wiki/Digital_image}{images}, the
+  position of the
+  \href{https://en.wikipedia.org/wiki/Coefficient}{coefficients} in
+  the subbands is related to
+  \href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform#/media/File:Jpeg2000_2-level_wavelet_transform-lichtenstein.png}{the
+    spatial area where the corresponding pixels are found}.
+\end{enumerate}
 
-\subsection{An example of DWT: the Haar DWT}
+\subsection{1D case}
+
+\subsubsection{An example of DWT: the Haar DWT}
 As the rest of transforms, the DWT is also described by the filters of
 the analysis matrix transform (the matrix ${\mathbf K}$ in the
 \href{https://sistemas-multimedia.github.io/study_guide/06-color_transform/}{previous
@@ -201,7 +206,7 @@ and $\text{DWT}^{-S}$, the $S$-levels synthesis DWT, can be computed
 as it is also described in the Fig.~\ref{fig:DWT}, by simply reversing
 the analysis steps.
 
-\subsection{\href{https://en.wikipedia.org/wiki/Multiresolution_analysis}{Multiresolution analysis}}
+\subsubsection{\href{https://en.wikipedia.org/wiki/Multiresolution_analysis}{Multiresolution analysis}}
 In the decomposition described in Eq.~\ref{eq:S_levels_DWT} there are
 $S+1$ subbands, and therefore, it is possible to compute $S+1$
 resolution levels of the analyzed signal ${\mathbf l}^0$:
@@ -225,7 +230,7 @@ resolution levels of the analyzed signal ${\mathbf l}^0$:
   l}^0=\text{DWT}^{-1}(\{{\mathbf l}^1, {\mathbf h}^1\})$.
 \end{itemize}  
 
-\subsection{Orthogonal and biorthogonal DWT}
+\subsubsection{Filters}
 
 \begin{figure}
   \centering
@@ -285,7 +290,203 @@ On the other hand, in a biorthogonal DWT:
     (the odd taps are multiplied by $-1$). Therefore, if we have the
   analysis filters we can deduce the synthesis filters and viceversa.
 \item No phase distortion is generated.
+\item In orthogonal transform, all the subbands have the same gain,
+  but this is not true for biorthogonal DWTs.
 \end{enumerate}
+
+\subsubsection{Quantization}
+In the case of biorthogonal transforms, and in absence of RD optimization, the quantization steps uses for each subband should be inversely
+proportional to the L$_2$ synthesis gain of the subbands\footnote{If a
+  subband has a high gain, this means that its contribution to the
+  reconstruction of the signal is going to be high, also. Therefore,
+  it's desirable to introduce a small quantization error in this
+  subband, reducing the quantization
+  step.}~\cite{marcellin2002overview}. However, notice that in orthogonal DWTs all the subbands have the same gain.
+
+\subsection{2D case}
+
+(Digital) Images are 2D (2-Dimensional,
+\href{https://en.wikipedia.org/wiki/Discrete_time_and_continuous_time}{discrete}
+in \href{https://en.wikipedia.org/wiki/Space}{space} and
+\href{https://en.wikipedia.org/wiki/Amplitude}{amplitude})
+signals. The 2D-DWT of an image can be computed using (1)
+\href{https://en.wikipedia.org/wiki/Separable_filter}{separable} 1D
+filters, and (2)
+\href{https://en.wikipedia.org/wiki/Non-separable_wavelet}{nonseparable}
+2D filters.~\cite{sayood2017introduction} Except in very special
+cases, all 2D-DWT implementations use separable filters by simplicity.
+
+Separability in the DWT context means that we can compute the 1-levels
+2D-DWT using the 1D filters, by applying them to each dimension, and
+using
+\href{https://en.wikipedia.org/wiki/In-place_algorithm}{in-place}
+operations. This procedure has been described in the
+Algorithms~\ref{alg:Rows-DWT}, \ref{alg:Columns-DWT} and
+\ref{alg:2D-DWT}, where $X_{r,*}$ refers to the $r$-th row of the
+matrix $X$ and $X_{*,c}$ to the $c$-th column, being $R$ and $C$ the
+number of rows and columns of the input image $X$. See also the
+Fig.~\ref{fig:2D-DWT}.
+
+\begin{pseudocode}{\text{Rows-DWT}}{X}
+  \label{alg:Rows-DWT}
+  \FOR r \GETS 0 \TO R-1 \DO
+  X_{r,*} = \text{DWT}(X_{r,*})\\
+  \RETURN{X}
+\end{pseudocode}
+
+\begin{pseudocode}{\text{Columns-DWT}}{X}
+  \label{alg:Columns-DWT}
+  \FOR c \GETS 0 \TO C-1 \DO
+  X_{*,c} = \text{DWT}(X_{*,c})\\
+  \RETURN{X}
+\end{pseudocode}
+
+\begin{pseudocode}{\text{2D-DWT}}{X}
+  \label{alg:2D-DWT}
+  X = \text{Rows-DWT}(X)\\
+  X = \text{Columns-DWT}(X)\\
+  \RETURN{X}
+  %\FOR r \GETS 0 \TO R-1 \DO
+  %X_{r,*} = \text{DWT}(X_{r,*})
+  %\\
+  %\FOR c \GETS 0 \TO C-1 \DO
+  %X_{*,c} = \text{DWT}(X_{*,c})
+\end{pseudocode}
+
+\begin{figure}
+  \centering
+  \begin{tabular}{cccc}
+    \vbox{\myfig{graphics/rows_DWT}{2cm}{200}} & \vbox{\myfig{graphics/2D-DWT}{2cm}{200}} & \vbox{\myfig{graphics/n-levels-2D-DWT}{2cm}{200}} & \vbox{\myfig{graphics/resolutions}{2cm}{200}} \\
+    (a) & (b) & (c) & (d)
+  \end{tabular}
+  \caption{Decomposition generated by $\text{2D-DWT}^2(X)$. In the
+    Subfig.~(a), the rows of the image has been transformed using the
+    1-levels (1D) DWT (this is the output of the
+    Alg.~\ref{alg:Rows-DWT}). In the Subfig.~(b), the columns of the
+    previously rows-transformed image has been also transformed using
+    the 1-levels DWT (this is the output of the
+    Alg.~\ref{alg:Columns-DWT}) applied to the previous
+    data. Subfig.~(b) is also the output of the Alg.~\ref{alg:2D-DWT}
+    applied to the initial image. In the Subfig.~(c) the 1-levels
+    2D-DWT has been also applied to the LL$^1$ subband, generating a
+    2-levels 2D decomposition. In the Subfig.~(d) a simplified
+    representation of Subfig.~(c) has been used, where the different
+    spatial resolution levels are highlighted.}
+  \label{fig:2D-DWT}
+\end{figure}
+
+As it can be seen in the Fig~\ref{fig:2D-DWT}, the obtained 2D decomposition is expressed by
+\begin{equation}
+  \begin{bmatrix}
+    \text{LL} & \text{HL} \\
+    \text{LH} & \text{HH}
+  \end{bmatrix}
+  =
+  \text{2D-DWT}(X),
+  \label{eq:2D-DWT}
+\end{equation}
+where $L$ stands for low-pass filtering and $H$ for high-pass
+filtering. Notice that $\text{LL}=\text{LL}^1$,
+$\text{LH}=\text{LH}^1$, $\text{HL}=\text{HL}^1$, and
+$\text{HH}=\text{HH}^1$.
+
+Eq.~\ref{eq:2D-DWT} describes the $1$-levels (analysis)
+2D-DWT. Replacing $\text{LL}=L^{s+1}$, $X=L^s$, and
+$\{\text{HL}, \text{LH}, \text{HH}\}=H^{s+1}$ in the previous
+expression, the $S$-levels 2D-DWT of $L^0=X$ ($\text{2D-DWT}^S(L^0)$)
+can be computed applying $S$-times
+\begin{equation}
+  \{L^{s+1}, H^{s+1}\} = \text{2D-DWT}(L^s)
+\end{equation}
+to the low-frequency subband $L^s$. As an example, the
+Fig.~\ref{fig:lena_2D-DWT} shows the $3$-levels 2D-DWT of the image
+lena.
+
+\begin{figure}
+  \centering
+  \begin{tabular}{ccc}
+    \vbox{\pngfig{lena}{5cm}{500}} & \vbox{\pngfig{dwt_lena}{5cm}{500}} & \vbox{\pngfig{dwt_lena_normalized}{5cm}{500}}\\
+    (a) & (b) & (c)
+  \end{tabular}
+  \caption{Subfig.~(a): the Lena image. Subfig.~(b):
+    $\text{2D-DWT}^3(\text{Lena})$'s decomposition. Subfig.~(c):
+    $\text{2D-DWT}^3(\text{Lena})$'s normalized decomposition. See
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/08-2D-DWT/dwt_lena.ipynb}{this
+      notebook}.}
+  \label{fig:lena_2D-DWT}
+\end{figure}
+
+\subsubsection{Multiresolution}
+Similarly to the 1D case, a $\text{2D-DWT}^S(\cdot)$ provides $S+1$
+spatial resolution levels. An example of this can be seen in the
+Subfig.~\ref{fig:2D-DWT}-(d), where there are 3 possible
+resolutions. In the Subfig.~\ref{fig:lena_2D-DWT} there are 4
+resolutions.
+
+\subsubsection{Quantization}
+To find the gains in the 2D case we can compute the energy of the
+signal generated by the inverse transform of the unitary impulse
+discrete 2D signal
+\begin{equation}
+  \delta_{i,j}(x,y) = 
+  \left\{
+  \begin{array}{ll}
+    1 & \text{if $i=x$ and $j=y$}\\
+    0 & \text{otherwise},
+  \end{array}
+  \right.
+\end{equation}
+where the
+\href{https://en.wikipedia.org/wiki/Energy_(signal_processing)}{energy
+  of a discrete signal} $x$ is defined as
+\begin{equation}
+  \langle x, x\rangle =  \sum_{i}{x_i^2}.
+\end{equation}
+
+Notice that (see the Fig.~\ref{fig:lena_2D-DWT}) the low-frequency
+subbands concentrate more of the energy (and the visual
+information). Therefore, given a target bit-rate, these subbands are going to contribute more the the quality of the reconstruction.
+
+\subsection{Motion DWT}
+
+The
+\href{https://sistemas-multimedia.github.io/milestones/06-2D-DWT/}{2D-DWT}
+can a used on sequences of frames (images) by simply iterating as it
+is described in the
+Algorithm~\ref{alg:MDWT}~\cite{taubman2002jpeg2000}. $N$ is the number
+of frames in the sequence $V$, and $S$ the number of levels. The
+synthesis transform is computed using the 2D-DWT$^{-S}$.
+
+\begin{pseudocode}{$\text{MDWT}$}{V, S}
+  \label{alg:MDWT}
+  \FOR i \GETS 0 \TO N-1 \DO
+  V_i = \text{2D-DWT}^S(V_i)
+\end{pseudocode}
+
+In the Fig.~\ref{fig:MDWT} there is an example of the decomposition
+generated for three frames $V_0$, $V_1$ and $V_2$.
+
+\begin{figure}
+  \centering
+  \myfig{graphics/forward_MDWT}{6cm}{600}
+  \caption{Decomposition generated by $\text{MDWT}(\{V_0, V_1, \cdots, V_{N-1}\}, S=1)$.}
+  \label{fig:MDWT}
+\end{figure}
+
+\subsubsection{Multiresolution}
+The $\text{MDWT}$ provides dyadic spatial multiresolution and full
+temporal multiresolution.
+
+\subsubsection{Quantization}
+As usually, we can use
+\begin{equation}
+  \Delta_0=\Delta_1=\dots=\Delta_{N-1},
+\end{equation}
+where $\Delta_i$ is the quantization step used for the $i$-th frame of
+the sequence. However, notice that this quantization pattern does not
+necessaryly optimizes the RD tradeoff. The RD curves of each frame
+should be taken into consideration in order to perform a good
+rate-control.
 
 \section{What you have to do?}
 
