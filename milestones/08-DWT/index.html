@@ -40,7 +40,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">November 21, 2021</span></div>
+class="ecrm-1200">November 23, 2021</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -86,7 +86,7 @@ href="https://en.wikipedia.org/wiki/Nyquist-Shannon_sampling_theorem" >sampled</
 href="https://en.wikipedia.org/wiki/Octave_(electronics)" >octave</a>-<a 
 href="https://en.wikipedia.org/wiki/Frequency_band" >band</a> <a 
 href="https://www.sciencedirect.com/topics/engineering/wavelet-decomposition" >decomposition</a>&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvetterli2014foundations">3</a>,&#x00A0;<a 
+href="#Xvetterli2014foundations">5</a>,&#x00A0;<a 
 href="#Xkovacevic2013fourier">1</a>&#x005D;</span>. As the rest of
 transform:
      </p><ol  class="enumerate1" >
@@ -1304,8 +1304,8 @@ display="inline" ><msub><mrow
 ></math> synthesis gain of
 the subbands<span class="footnote-mark"><a 
 href="index3.html#fn2x0"><sup class="textsuperscript">2</sup></a></span><a 
- id="x1-8001f2"></a> &#x00A0;<span class="cite">&#x005B;<span 
-class="ecbx-1000">?</span>&#x005D;</span>.
+ id="x1-8001f2"></a> &#x00A0;<span class="cite">&#x005B;<a 
+href="#Xmarcellin2002overview">2</a>&#x005D;</span>.
 However, notice that in orthogonal DWTs all the subbands have the same
 gain.
 </p>
@@ -1319,7 +1319,7 @@ The 2D-DWT of an image can be computed using &#x0028;1&#x0029; <a
 href="https://en.wikipedia.org/wiki/Separable_filter" >separable</a> 1D &#xFB01;lters, and
 &#x0028;2&#x0029; <a 
 href="https://en.wikipedia.org/wiki/Non-separable_wavelet" >nonseparable</a> 2D &#xFB01;lters.&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xsayood2017introduction">2</a>&#x005D;</span> Except in very special cases, all 2D-DWT
+href="#Xsayood2017introduction">3</a>&#x005D;</span> Except in very special cases, all 2D-DWT
 implementations use separable &#xFB01;lters by simplicity.
 </p><!--l. 319--><p class="indent" >   Separability in the DWT context means that we can compute the 1-levels 2D-DWT
 using the 1D &#xFB01;lters, by applying them to each dimension, and using <a 
@@ -1954,10 +1954,10 @@ reconstruction.
    <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
  id="x1-120001.4"></a>Motion DWT</h4>
 <!--l. 452--><p class="noindent" >The <a 
-href="https://sistemas-multimedia.github.io/milestones/06-2D-DWT/" >2D-DWT</a> can a used on sequences of frames &#x0028;images&#x0029;
-by simply iterating as it is described in the Algorithm&#x00A0;<a 
-href="#x1-12001r4">1.4<!--tex4ht:ref: alg:MDWT --></a>&#x00A0;<span class="cite">&#x005B;<span 
-class="ecbx-1000">?</span>&#x005D;</span>.
+href="https://sistemas-multimedia.github.io/milestones/06-2D-DWT/" >2D-DWT</a> can a used on sequences of frames &#x0028;images&#x0029; by
+simply iterating as it is described in the Algorithm&#x00A0;<a 
+href="#x1-12001r4">1.4<!--tex4ht:ref: alg:MDWT --></a>&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xtaubman2002jpeg2000">4</a>&#x005D;</span>.
 <!--l. 456--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
@@ -2221,13 +2221,33 @@ class="ectt-1000">http://www.fourierandwavelets.org/</span></a>, 2013.
    </p>
    <p class="bibitem" ><span class="biblabel">
  &#x005B;2&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xmarcellin2002overview"></a>M.W. Marcellin, M.A. Lepley, A.&#x00A0;Bilgin, T.J. Flohr, T.T. Chinen, and
+   J.H. Kasner. <a 
+href="https://www.sciencedirect.com/science/article/pii/S0923596501000273?casa_token=hmHFwHhdLm4AAAAA:qn_nSH1UaCLppBoOzPSmeADZNCclshdkNFwjATluVredX8cIebjQ_PITzqeNbOqPazUhcHJtGqw" >An overview of quantization in JPEG 2000</a>. <span 
+class="ecti-1000">Signal Processing:</span>
+   <span 
+class="ecti-1000">Image Communication</span>, 17&#x0028;1&#x0029;:73&#x2013;84, 2002.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;3&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
  id="Xsayood2017introduction"></a>K.&#x00A0;Sayood.   <a 
 href="http://rahilshaikh.weebly.com/uploads/1/1/6/3/11635894/data_compression.pdf" ><span 
 class="ecti-1000">Introduction to Data Compression</span></a>.   Morgan  Kaufmann,
    2017.
+                                                                  
+
+                                                                  
    </p>
    <p class="bibitem" ><span class="biblabel">
- &#x005B;3&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ &#x005B;4&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xtaubman2002jpeg2000"></a>D.S. Taubman and W.M. Marcellin.   <a 
+href="https://shorturl.at/rtvLZ" ><span 
+class="ecti-1000">JPEG2000. Image Compression</span>
+   <span 
+class="ecti-1000">Fundamentals, Standards and Practice</span></a>. Kluwer Academic Publishers, 2002.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;5&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
  id="Xvetterli2014foundations"></a>M.&#x00A0;Vetterli, J.&#x00A0;Kova&#x010D;evi&#x0107;, and V.K. Goyal.  <a 
 href="http://www.fourierandwavelets.org/FSP_v1.1_2014.pdf" ><span 
 class="ecti-1000">Foundations of Signal</span>
@@ -2235,9 +2255,6 @@ class="ecti-1000">Foundations of Signal</span>
 class="ecti-1000">Processing</span></a>. Cambridge University Press, 2014.
 </p>
    </div>
-                                                                  
-
-                                                                  
     
 </body></html> 
 
