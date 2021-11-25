@@ -78,7 +78,7 @@ motion between two frames. Notice that, in general, better estimations
 can be found if we suppose motion models such as that the objects
 exhibit inertia. However, this case will not be considered for now.
 
-\subsection{\href{https://vicente-gonzalez-ruiz.github.io/video_compression/\#x1-40003}{Disjoint block matching}}
+\subsection{\href{https://vicente-gonzalez-ruiz.github.io/video_compression/\#x1-40003}{Block-based disjoint motion estimation}}
 
 \begin{figure}
   \centering
@@ -88,7 +88,7 @@ exhibit inertia. However, this case will not be considered for now.
 \end{figure}
 
 In the simplest ME algorithm (see the Fig.~\ref{fig:simple}),
-${\mathbf P}$ is divided in blocks of 16x16 pixels, and we can use the
+${\mathbf P}$ is divided in blocks of (for example) 16x16 pixels, and we can use the
 MSE that measures the distance in L$_2$ between each block of
 ${\mathbf P}$ and its surrounding pixels in ${\mathbf R}$ (the so
 called search area)~\cite{zhu2000new}. For each block, a motion vector
