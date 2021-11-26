@@ -7,12 +7,17 @@
 
 \section{Description}
 
+\href{https://en.wikipedia.org/wiki/Motion_estimation}{ME (Motion
+  Estimation)} is the process of determining the MVs (Motion Vectors)
+that describe the mapping of the pixels from one frame (2D image) to
+another.
+
 \subsection{Motion Estimation (ME) for what?}
 Temporal correlation between video frames\footnote{Remember that,
-  although this discussion will deal with frames, in our particular
-  case, we will decorrelate DWT subbands.} can be removed by MC
-(Motion Compensation). MC implies to decrease (usually by
-substracting) an amount of information in the frames. The removed
+although this discussion will deal with frames, in our particular
+case, we will decorrelate subbands.} can be removed by MC (Motion
+Compensation). MC implies to decrease (usually by substracting a
+prediction frame) the amount of information in the frames. The removed
 information must be available at both, the encoder and the decoder
 side, in order to make this a reversible process.
 
@@ -22,51 +27,53 @@ $\overset{{\mathbf R}\rightarrow{\mathbf P}}{\mathbf V}$ that
 indicates how to project ${\mathbf R}$ onto the predicted frame ${\mathbf P}$, and outputs
 a prediction frame
 \begin{equation}
-  \hat{{\mathbf P}} =  \overset{{\mathbf P}\rightarrow {\mathbf R}}{\mathbf V}({\mathbf R}).
+  \hat{{\mathbf P}} =  \overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf V}({\mathbf R}).
   \label{eq:MCP1}
 \end{equation}
 In this milestone we analyze different algorithms to determine
-$\overset{{\mathbf P}\rightarrow {\mathbf R}}{\mathbf V}$ (in a futher
+$\overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf V}$ (in a futher
 milestone we will see how to remove the $\hat{{\mathbf P}}$'s
 information from ${\mathbf P}$). At this moment, for the sake of
 simplicity, in the rest of this discussion it will be supposed that the
-number of reference frames in only 1 (probably, the closest one to the
-predicted frame), and therefore, we don't need to specify which are
-the reference images to make the prediction. For this reason,
-Eq,~\ref{eq:MCP1} can be rewritten as
-\begin{equation}
-  \hat{\mathbf W}_k = \overset{{\mathbf W}_{k-1}\rightarrow {\mathbf
-  W}_{k}}{\mathbf V}({\mathbf W}_{k-1}) = \overset{(k-1)\rightarrow
-          k}{\mathbf V}({\mathbf W}_{k-1})
-%  \hat{{\mathbf P}_k} = \overset{{\mathbf P}_k\rightarrow {\mathbf
-%  P}_{k-1}}{\mathbf V}({\mathbf P}_{k-1}) = \overset{k\rightarrow
-%          k-1}{\mathbf V},
-  \label{eq:MCP2}
-\end{equation}
+number of reference frames in only 1.
+%(probably, the closest one to the
+%predicted frame), and therefore, we don't need to specify which are
+%the reference images to make the prediction. For this reason,
+%Eq,~\ref{eq:MCP1} can be rewritten as
+%\begin{equation}
+%  \hat{\mathbf W}_k = \overset{{\mathbf W}_{k-1}\rightarrow {\mathbf
+%  W}_{k}}{\mathbf V}({\mathbf W}_{k-1}) = \overset{(k-1)\rightarrow
+%          k}{\mathbf V}({\mathbf W}_{k-1})
+%%  \hat{{\mathbf P}_k} = \overset{{\mathbf P}_k\rightarrow {\mathbf
+%%  P}_{k-1}}{\mathbf V}({\mathbf P}_{k-1}) = \overset{k\rightarrow
+%%          k-1}{\mathbf V},
+%  \label{eq:MCP2}
+%\end{equation}
 
 \subsection{But ... what exactly do we need?}
 Our main objective is to minimize the differences (for example, the
 \href{https://en.wikipedia.org/wiki/Euclidean_distance}{L$_2$
-  distance}) between ${\mathbf W}_k$ (the predicted frame) and $\hat{\mathbf W}_k$ (the
+  distance}) between ${\mathbf P}k$ (the predicted frame) and $\hat{\mathbf P}k$ (the
 prediction frame), i.e. minimizing
 \begin{equation}
-  {\mathbf E}_k = {\mathbf W}_k - \hat{\mathbf W}_k
+  {\mathbf E} = {\mathbf P} - \hat{\mathbf P}
 \end{equation}
 in order to get that ${\mathbf E}$ will be more compressible than
-${\mathbf W}$. To achieve this, we can compute ${\mathbf V}$ that
-simply minimizes the L$_2$ energy of ${\mathbf E}$, $||{\mathbf
-  E}||^2$, or we can compute a ${\mathbf V}$ that also describes the
-Optical Flow~\cite{horn1981determining} (OF) between the pixels of
-${\mathbf W}_{k-1}$ and ${\mathbf W}_k$, that although not necessarily
-has to minimize $||{\mathbf E}||^2$, tries to show the true movement
-of the pixels between the both frames. This second option has the
-advantage of generating more visually pleasing reconstructions when
-the code-stream is partially received and makes easier to predict the
+${\mathbf P}$. To achieve this, we can compute $\overset{{\mathbf
+    R}\rightarrow {\mathbf P}}{\mathbf V}$ that simply minimizes the
+L$_2$ energy of ${\mathbf E}$, $||{\mathbf E}||^2$, or we can compute
+a $\overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf V}$ that also describes the Optical
+Flow~\cite{horn1981determining} (OF) between the pixels of ${\mathbf
+  R}$ and ${\mathbf P}$, that although not necessarily has to
+minimize $||{\mathbf E}||^2$, tries to show the true movement of the
+pixels between the both frames. This second option has the advantage
+of generating more visually pleasing reconstructions when the
+code-stream is partially received and makes easier to predict the
 content of the motion fields.
 
 The first type of techniques are simply called ``ME techniques'', and
-are usually faster than the second type, based on the estimation of
-the OF.
+are usually faster\footnote{Obviously, depending on the algorithm.}
+than the second type, based on the estimation of the OF.
 
 %Let's see two basic techniques to estimate the motion between 2
 %frames, $R$ and $P$. In this discussion it will be supposed that the
@@ -78,21 +85,25 @@ motion between two frames. Notice that, in general, better estimations
 can be found if we suppose motion models such as that the objects
 exhibit inertia. However, this case will not be considered for now.
 
-\subsection{\href{https://vicente-gonzalez-ruiz.github.io/video_compression/\#x1-40003}{Block-based disjoint motion estimation}}
+\subsection{\href{https://vicente-gonzalez-ruiz.github.io/video_compression/\#x1-40003}{Block-based motion estimation}}
 
 \begin{figure}
   \centering
   \svg{graphics/simple}{500}
-  \caption{ME using disjoint blocks.}
+  \caption{ME using disjoint blocks. $(x,y)$ are the coordinates of
+    the block. $({\mathbf V}_x, {\mathbf V}_y)$ is the motion vector
+    that indicates where the block in ${\mathbf P}$ and ${\mathbf R}$
+    matches.}
   \label{fig:simple}
 \end{figure}
 
-In the simplest ME algorithm (see the Fig.~\ref{fig:simple}),
-${\mathbf P}$ is divided in blocks of (for example) 16x16 pixels, and we can use the
-MSE that measures the distance in L$_2$ between each block of
-${\mathbf P}$ and its surrounding pixels in ${\mathbf R}$ (the so
-called search area)~\cite{zhu2000new}. For each block, a motion vector
-that indicates the best match (smaller distance) is found. The set of
+Block-based ME is the simplest ME algorithm (see the
+Fig.~\ref{fig:simple}), ${\mathbf P}$ is divided in blocks of (for
+example) 16x16 pixels, and we can use the MSE that measures the
+distance in L$_2$ between each block of ${\mathbf P}$ and its
+surrounding pixels in ${\mathbf R}$ (the so called search
+area)~\cite{zhu2000new}. For each block, a motion vector that
+indicates the best match (smaller distance) is found. The set of
 motion vectors form the motion vectors field $\overset{{\mathbf
     R}\rightarrow {\mathbf P}}{\mathbf V}$ that obviously, except for
 a block size of 1x1, will be less dense than ${\mathbf R}$ and
@@ -100,11 +111,51 @@ ${\mathbf P}$. Notice, however, that, it is not a good idea to use
 such a small block size because, in general, the motion vectors will
 not describe the OF.
 
+\begin{figure}
+  \centering
+  \png{stockholm_R}{800}
+  \caption{A tile of the first image of the stockhold sequence. The reference (${\mathbf R}$) frame.}
+  \label{fig:R}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \png{stockholm_P}{800}
+  \caption{A tile of the second image of the stockhold sequence. The predicted (${\mathbf P}$) frame.}
+  \label{fig:P}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \png{stockholm_MVs}{800}
+  \caption{Motion vectors to map ${\mathbf P}$ (which is divided into disjoint blocks) onto ${\mathbf R}$. }
+  \label{fig:MVs}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \png{stockholm_hatP}{800}
+  \caption{The prediction frame (${\hat{\mathbf P}}$).}
+  \label{fig:hatP}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \png{stockholm_error}{800}
+  \caption{The prediction error frame (${\mathbf R} - {\hat{\mathbf P}}$).}
+  \label{fig:error}
+\end{figure}
+
+As it can be seen in the Figs \ref{fig:R}, \ref{fig:P}, \ref{fig:MVs},
+\ref{fig:hatP}, and \ref{fig:error}, the motion information not always
+represents the true motion in the scene in the case of using
+block-based matching.
+
 \subsection{Overlaped block matching}
 
 \begin{figure}
   \centering
-  \svg{graphics/overlaped}{500}
+  \svg{graphics/overlaped}{800}
   \caption{ME using overlaped blocks.}
   \label{fig:overlaped}
 \end{figure}
