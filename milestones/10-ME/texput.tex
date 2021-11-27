@@ -220,17 +220,30 @@ An improvement of the previous technique can also average the
 overlaped pixels in the prediction frame $\hat{P}$, as it has been
 shown in the Fig.~\ref{fig:average}.
 
-\subsection{Transform analysis}
-One of the most successful techniques for computing the (dense) OF is
-based on the analysis of the coefficients resulting from transforming
-the frames using a polynomial expansion (the details of this transform
-and the impact of the motion in the coefficients can be found in the
-Gunnar Farneb{\"a}ck's paper~\cite{farneback2003two}). This is the
-algorithm that we will use in our experiments for two important
-reasons: (1) it is quite efficient in terms both of performance and
-speed, and (2) it is already
-\href{https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html}{implemented}
-in OpenCV.
+\subsection{ME in the transform domain}
+
+\begin{figure}
+  %\begin{tabular}{cccccc}
+  %  \png{one} & \png{x} & \png{y} & \png{x2} & \png{y2} & \png{xy} \\
+  %\end{tabular}
+  \png{one} \png{x}
+  \caption{Correlation kernels (basis functions) used by the
+    \emph{polynomial expansion} of the Farneb{\"a}ck's ME
+    alghrithm.}
+  \label{fig:FarnebacK_basis}
+\end{figure}
+
+The motion can be estimated also in the transform domain. One of these
+estimators is the Farneb{\"a}ck's algorithm~\cite{farneback2003two},
+which uses the transform defined by the basis functions
+\begin{equation}
+    \{1, x, y, x^2, y^2, xy\}
+\end{equation}
+(see the Figure~\ref{fig:FarnebacK_basis}). In this transform domain,
+which is applied by overlapped regions, the corresponding subbands
+quantifiey the tendency of the image to increase its intensity in
+different 2D directions, and therefore, it is more efficient to know
+the direction in which the objects are moving. The Farneback's ME is a dense ME.
 
 \subsection{Machine learning}
 ANNs (Artifical Neural Networks) can be trained to estimate the motion
