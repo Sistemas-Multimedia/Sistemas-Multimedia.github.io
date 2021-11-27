@@ -28,7 +28,7 @@ class="ecrm-1200">Vicente Gonz</span><span
 class="ecrm-1200">&#x00E1;</span><span 
 class="ecrm-1200">lez Ruiz</span></div><br />
 <div class="date" ><span 
-class="ecrm-1200">November 26, 2021</span></div>
+class="ecrm-1200">November 27, 2021</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -517,7 +517,11 @@ href="#x1-5005r3">3<!--tex4ht:ref: fig:P --></a>, <a
 href="#x1-5007r4">4<!--tex4ht:ref: fig:MVs --></a>, <a 
 href="#x1-5009r5">5<!--tex4ht:ref: fig:hatP --></a>, and <a 
 href="#x1-5011r6">6<!--tex4ht:ref: fig:error --></a>, the motion information not always
-represents the true motion in the scene.
+represents the true motion in the scene in the case of using block-based matching.
+This can be a drawback, for example, for solving object tracking problems. In
+the case of video coding, the main disadvantage of such issue is that the
+entropy of the motion &#xFB01;elds arises, which also decreases the compression
+ratio.
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
  id="x1-60001.4"></a>Overlaped block matching</h4>
@@ -529,7 +533,7 @@ represents the true motion in the scene.
                                                                   
 
                                                                   
-<!--l. 157--><p class="noindent" ><div style="text-align:center;"> <img width=800 src="graphics/overlaped.svg" /> </div>  <a 
+<!--l. 159--><p class="noindent" ><div style="text-align:center;"> <img width=800 src="graphics/overlaped.svg" /> </div>  <a 
  id="x1-6001r7"></a>
 <a 
  id="x1-6002"></a>
@@ -541,8 +545,8 @@ class="content">ME using overlaped blocks.                                  </sp
 
                                                                   
    </div><hr class="endfigure" />
-<!--l. 162--><p class="indent" >   A better approximation to the OF for small block sizes can be found if we allow the blocks to
-overlap in <!--l. 163--><math 
+<!--l. 164--><p class="indent" >   A better approximation to the OF for small block sizes can be found if we allow the blocks to
+overlap in <!--l. 165--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></math>&#x00A0;<span class="cite">&#x005B;<a 
@@ -551,7 +555,7 @@ case in which the block size for performing the comparisons must be larger. Agai
 it happens with the disjoint case, only the non overlaped pixels are used for
 building the prediction &#x0028;see the Fig.&#x00A0;<a 
 href="#x1-6001r7">7<!--tex4ht:ref: fig:overlaped --></a>&#x0029;. Obviously, the main drawback of this
-technique is that it more computationally demanding than the previous
+technique is that it can be more computationally demanding than the previous
 one.
 </p>
    <hr class="figure" /><div class="figure" 
@@ -562,7 +566,7 @@ one.
                                                                   
 
                                                                   
-<!--l. 173--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="graphics/average.svg" /> </div>  <a 
+<!--l. 175--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="graphics/average.svg" /> </div>  <a 
  id="x1-6003r8"></a>
 <a 
  id="x1-6004"></a>
@@ -574,8 +578,8 @@ class="content">ME using overlaped blocks, averaging the overlaped pixels.      
 
                                                                   
    </div><hr class="endfigure" />
-<!--l. 178--><p class="indent" >   An improvement of the previous technique can also average the overlaped pixels in the
-prediction frame <!--l. 179--><math 
+<!--l. 180--><p class="indent" >   An improvement of the previous technique can also average the overlaped pixels in the
+prediction frame <!--l. 181--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover 
 accent="true"><mrow 
@@ -586,7 +590,7 @@ href="#x1-6003r8">8<!--tex4ht:ref: fig:average --></a>.
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.5   </span> <a 
  id="x1-70001.5"></a>Transform analysis</h4>
-<!--l. 183--><p class="noindent" >One of the most successful techniques for computing the &#x0028;dense&#x0029; OF is based on the
+<!--l. 185--><p class="noindent" >One of the most successful techniques for computing the &#x0028;dense&#x0029; OF is based on the
 analysis of the coe&#xFB03;cients resulting from transforming the frames using a polynomial
 expansion &#x0028;the details of this transform and the impact of the motion in the
 coe&#xFB03;cients can be found in the Gunnar Farneb&#x00E4;ck&#x2019;s paper&#x00A0;<span class="cite">&#x005B;<a 
@@ -595,15 +599,15 @@ algorithm that we will use in our experiments for two important reasons: &#x0028
 quite e&#xFB03;cient in terms both of performance and speed, and &#x0028;2&#x0029; it is already
 <a 
 href="https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html" >implemented</a> in OpenCV.
-</p><!--l. 194--><p class="noindent" >
+</p><!--l. 196--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.6   </span> <a 
  id="x1-80001.6"></a>Machine learning</h4>
-<!--l. 195--><p class="noindent" >ANNs &#x0028;Arti&#xFB01;cal Neural Networks&#x0029; can be trained to estimate the motion between
+<!--l. 197--><p class="noindent" >ANNs &#x0028;Arti&#xFB01;cal Neural Networks&#x0029; can be trained to estimate the motion between
 frames&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xdosovitskiy2015flownet">1</a>&#x005D;</span>. For the training of ANNs, animation videos are generally used where the
 motion &#xFB01;elds are known with precision.
-</p><!--l. 200--><p class="noindent" >
+</p><!--l. 202--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.7   </span> <a 
  id="x1-90001.7"></a>Motion compensation in action</h4>
@@ -615,7 +619,7 @@ motion &#xFB01;elds are known with precision.
                                                                   
 
                                                                   
-<!--l. 202--><p class="noindent" ><div style="text-align:center;"> <img width=1000 src="R.svg" /> </div>  <div style="text-align:center;"> <img width=1000 src="P.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="y_motion.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="x_motion.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="hat_P.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="without_ME.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="with_ME.svg" /> </div>   <a 
+<!--l. 204--><p class="noindent" ><div style="text-align:center;"> <img width=1000 src="R.svg" /> </div>  <div style="text-align:center;"> <img width=1000 src="P.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="y_motion.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="x_motion.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="hat_P.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="without_ME.svg" /> </div>   <div style="text-align:center;"> <img width=1000 src="with_ME.svg" /> </div>   <a 
  id="x1-9001r9"></a>
 <a 
  id="x1-9002"></a>
@@ -628,15 +632,15 @@ class="content">E&#xFB00;ect of ME &#x0028;using OF&#x0029; over the temporal re
 
                                                                   
    </div><hr class="endfigure" />
-<!--l. 213--><p class="indent" >   The Fig.&#x00A0;<a 
+<!--l. 215--><p class="indent" >   The Fig.&#x00A0;<a 
 href="#x1-9001r9">9<!--tex4ht:ref: fig:MC --></a> shows an example the performace of the use of OF,
 comparing the prediction error generated with and without ME. In this
 experiment, a motion vector has been computed between each point of
-<!--l. 216--><math 
+<!--l. 218--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></math> and
-<!--l. 216--><math 
+<!--l. 218--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle></math>. As it
@@ -644,7 +648,7 @@ can be seen, the OF can reduce the temporal redundancy signi&#xFB01;cantly.
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-100002"></a>What you have to do?</h3>
-<!--l. 258--><p class="noindent" >In this <a 
+<!--l. 260--><p class="noindent" >In this <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/optical_flow.ipynb" >notebook</a> you can &#xFB01;nd how to estimate the OF between two frames. Please,
 modify it to &#xFB01;nd suitable values for the parameters <span 
 class="ectt-1000">levels</span>, <span 
@@ -653,17 +657,17 @@ class="ectt-1000">winsize </span>and
 class="ectt-1000">iterations</span>. Supposing that the impact of each parameter is independent from the
 rest, the best way of comparing two di&#xFB00;erent con&#xFB01;gurations is to trace RD curves
 using quantization and compressing the residues.
-</p><!--l. 267--><p class="noindent" >
+</p><!--l. 269--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-110003"></a>Timming</h3>
-<!--l. 269--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 271--><p class="noindent" >
+<!--l. 271--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 273--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-120004"></a>Deliverables</h3>
-<!--l. 273--><p class="noindent" >None.
-</p><!--l. 275--><p class="noindent" >
+<!--l. 275--><p class="noindent" >None.
+</p><!--l. 277--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-130005"></a>Resources</h3>
