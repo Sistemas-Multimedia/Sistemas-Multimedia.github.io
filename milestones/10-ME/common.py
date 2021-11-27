@@ -11,7 +11,7 @@ def normalize(img):
 def show_frame(frame, prefix=None):
     #frame = normalize(frame)
     plt.figure(figsize=(10,10))
-    plt.title(prefix, fontsize=10)
+    plt.title(prefix, fontsize=20)
     plt.imshow(frame)
 
 def show_vectors2(flow, dpi=150, downsampling=1):

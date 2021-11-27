@@ -113,44 +113,57 @@ not describe the OF.
 
 \begin{figure}
   \centering
-  \png{stockholm_R}{800}
+  \png{stockholm_R_block}{800}
   \caption{A tile of the first image of the stockhold sequence. The reference (${\mathbf R}$) frame.}
-  \label{fig:R}
+  \label{fig:R_block}
 \end{figure}
 
 \begin{figure}
   \centering
-  \png{stockholm_P}{800}
+  \png{stockholm_P_block}{800}
   \caption{A tile of the second image of the stockhold sequence. The predicted (${\mathbf P}$) frame.}
-  \label{fig:P}
+  \label{fig:P_block}
 \end{figure}
 
 \begin{figure}
   \centering
-  \png{stockholm_MVs}{800}
-  \caption{Motion vectors to map ${\mathbf P}$ (which is divided into disjoint blocks) onto ${\mathbf R}$. }
-  \label{fig:MVs}
+  \png{stockholm_PR_block}{800}
+  \caption{${\mathbf P} - {\mathbf R}$: shows the differences between both images.}
+  \label{fig:RP_block}
 \end{figure}
 
 \begin{figure}
   \centering
-  \png{stockholm_hatP}{800}
+  \png{stockholm_hat_P_block}{800}
   \caption{The prediction frame (${\hat{\mathbf P}}$).}
-  \label{fig:hatP}
+  \label{fig:hat_P_block}
 \end{figure}
 
 \begin{figure}
   \centering
-  \png{stockholm_error}{800}
+  \png{stockholm_error_block}{800}
   \caption{The prediction error frame (${\mathbf R} - {\hat{\mathbf P}}$).}
-  \label{fig:error}
+  \label{fig:error_block}
 \end{figure}
 
-As it can be seen in the Figs \ref{fig:R}, \ref{fig:P}, \ref{fig:MVs},
-\ref{fig:hatP}, and \ref{fig:error}, the motion information not always
+As it can be seen in the Figures \ref{fig:R_block}, \ref{fig:P_block},
+\ref{fig:RP_block}, \ref{fig:hat_P_block}, and \ref{fig:error_block}, the MVs generated
+by block-based ME can significantly decrease the entropy.
+
+\begin{figure}
+  \centering
+  \png{stockholm_MVs_block}{800}
+  \caption{Motion vectors to map ${\mathbf P}$ (which is divided into disjoint blocks) onto ${\mathbf R}$. }
+  \label{fig:MVs_block}
+\end{figure}
+
+However, as it can be seen in the Figure~\ref{fig:MVs_block}, the
+motion information computed by the block-based ME algorithm not always
 represents the true motion in the scene in the case of using
 block-based matching. This can be a drawback, for example, for solving
-object tracking problems. In the case of video coding, the main disadvantage of such issue is that the entropy of the motion fields arises, which also decreases the compression ratio.
+object tracking problems. In the case of video coding, the main
+disadvantage of such issue is that the entropy of the motion fields
+arises, which also decreases the compression ratio.
 
 \subsection{Overlaped block matching}
 
@@ -169,6 +182,32 @@ the disjoint case, only the non overlaped pixels are used for building
 the prediction (see the Fig.~\ref{fig:overlaped}). Obviously, the main
 drawback of this technique is that it can be more computationally
 demanding than the previous one.
+
+\begin{figure}
+  \centering
+  \png{stockholm_hat_P_dense}{800}
+  \caption{The prediction frame (${\hat{\mathbf P}}$).}
+  \label{fig:hat_P_dense}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \png{stockholm_error_dense}{800}
+  \caption{The prediction error frame (${\mathbf R} - {\hat{\mathbf P}}$).}
+  \label{fig:error_dense}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \png{stockholm_MVs_dense}{800}
+  \caption{Motion vectors to map ${\mathbf P}$ (from which each pixel has been mapped) onto ${\mathbf R}$. }
+  \label{fig:MVs_dense}
+\end{figure}
+
+The dense ME algorithm can obtain better predictions than the
+block-based one, as it can be seen in the
+Figures~\ref{fig:hat_P_dense} and \ref{fig:error_dense}. The MVs are
+also more coherent (see Figure~\ref{fig:MVs_dense}).
 
 \begin{figure}
   \centering
