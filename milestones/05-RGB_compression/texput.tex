@@ -1,5 +1,5 @@
 \input{../../definitions}
-\title{\SM{} - Study Guide - Milestone 5: Quantization in the RGB (Red, Green, and Blue) domain}
+\title{\SM{} - Study Guide - Milestone 5: Compression of RGB (Red, Green, and Blue) images}
 
 \maketitle
 
@@ -19,11 +19,11 @@ which provides
 \href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless
   coding}.
 
-In this milestone we will quantize a frame in the
+In this milestone we will quantize an image in the
 \href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB\footnote{Red,
     Green and Blue: the primary colors.} color domain}. RGB is an
 additive color system, which means that all colors \emph{start} with
-black and are created by adding the primary
+black and are created by adding some intensity of the primary
 colors~\cite{burger2016digital}. A digital
 \href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{\textbf{quantizer}}
 (typically denoted by $\text{Q}$) is an
@@ -34,7 +34,7 @@ indexes ${\mathbf k}$ (see the Fig.~\ref{fig:Q}). The inverse system,
 called a \textbf{dequantizer} (denoted by $\text{Q}^{-1}$), recovers
 an approximate version of ${\mathbf x}$ that we will denote by
 $\tilde{{\mathbf x}}$, whose similitude with ${\mathbf x}$ inversely
-depends on a frame quantization step (QS) $\Delta$. %Notice that
+depends on the quantization step $\Delta$. %Notice that
 %although $\Delta$ is an input parameter to the quantizer, it has not
 %been considered in the figure to keep it simpler.
 
@@ -65,9 +65,10 @@ Quantizers can be classifies into:
   and therefore, is more efficient than Scalar Quantization
   (SQ). Unfortunately, the computational requirements of VQ are, by
   far, much higher than the needed by SQ. If we also consider that
-  there are other techniques (such as transform coding) that are able
-  to decorrelate the samples requiring less computational resources
-  than VQ, we can understand why SQ has been selected, for example, in
+  there are other techniques (such as transform coding, that we will
+  see later) that are able to decorrelate the samples requiring less
+  computational resources than VQ, we can understand why SQ has been
+  selected, for example, in
   most \href{https://en.wikipedia.org/wiki/Image_compression}{image}
   and \href{https://en.wikipedia.org/wiki/Video_coding_format}{video
   codecs}.
@@ -115,6 +116,9 @@ Finally, quantizers can be classified as:
 \item \textbf{No dead-zone quantizers}, when the dead-zone does not
   exist.
 \end{enumerate}
+
+Notice that the dead-zone is placed where the SNR is smaller, because
+the energy of the signal is very close to 0.
 
 \begin{comment}
 \begin{figure}
@@ -179,9 +183,8 @@ not be sampled with suﬃcient density while at the same time colors are
 represented that do not appear in the image at
 all~\cite{burger2016digital}.
 
-On the other hand, vector quantization does not treat the individual
-color components separately as does scalar quantization, but each
-color vector
+On the other hand, VQ does not treat the individual color components
+separately as does scalar quantization, but each color vector
 ${\mathbf C}_i = ({\mathbf R}_i, {\mathbf G}_i, {\mathbf B}_i )$ (or
 pixel) in the image is treated as a single entity. Starting from a set
 of original color tuples ${\mathbf C} = \{c_1, c_2, \ldots ,c_m\}$,
@@ -210,15 +213,15 @@ than VQ.
 
 \subsection{Quantization in the RGB domain}
 Supposing that we are using a static uniform dead-zone quantizer, a
-color RGB image can be quantized, component
-(\href{https://en.wikipedia.org/wiki/Color_image}{channel}) by
-component, using QSs $\Delta_{\text{R}}$, $\Delta_{\text{G}}$, and
-$\Delta_{\text{B}}$. A reasonable question that arises here is: given
-a target bit-rate $R$ for the compressed frame, how the QSs should be
-chosen to minimize the distortion? At this point we can consider two
-different optimization perspectives. In the first one, we consider
-strictly visual considerations, and obviously, any alternative
-different from
+color RGB image can be quantized, component (sometimes also refered by
+\href{https://en.wikipedia.org/wiki/Color_image}{channel} in the case
+of the RGB images) by component, using QSs $\Delta_{\text{R}}$,
+$\Delta_{\text{G}}$, and $\Delta_{\text{B}}$. A reasonable question
+that arises here is: given a target bit-rate $R$ for the compressed
+frame, how the QSs should be chosen to minimize the distortion? At
+this point we can consider two different optimization perspectives. In
+the first one, we consider strictly visual considerations, and
+obviously, any alternative different from
 \begin{equation}
   \Delta_{\text{R}} = \Delta_{\text{G}} = \Delta_{\text{B}}
   \label{eq:simple_Q}
@@ -229,18 +232,12 @@ will produce some alteration in the color (also called the
 In the second perspective, only a pure
 \href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{Rate/Distortion
   (RD) performance} is considered. From a RD point of view, the best
-combination of QSs is those that optimizes (makes closer to the origin
-of coordinates) the RD curve. A RD curve represents the trade-off
-between the distortion (typically the
+combination of quantization steps is those that optimizes
+(makes closer to the origin of coordinates) the RD curve. A RD curve
+represents the trade-off between the distortion (typically the
 \href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{Root
-  Mean Square Error (RMSE)}) and the bit-rate (RMSE versus bit/pixel,
-for example). In the case of encoding a RGB image, we have 3 RD
-curves, one for each component. Thus, the RD curve for each channel
-measures, variying the QS, the distortion (comparing to the original
-RGB image) of the reconstructed image considering only the
-corresponding channel versus the bit-rate required by the quantization
-indexes.\footnote{In our case, required by the PNG compression of the
-quantization indexes.}
+  Mean Square Error (RMSE)}) and the bit-rate (therefore, RMSE versus
+bit/pixel).
 
 \begin{figure}
   \centering
@@ -251,8 +248,8 @@ quantization indexes.}
 
 Normal RD curves are convex (see Fig.~\ref{fig:RD_slopes}), which
 means that if $\lambda_i$ is the slope of the curve measured at the
-$i$-th point of the curve (starting at the lowest bit-rate), it always
-hold that
+$i$-th point of the curve (starting at the lowest bit-rate), it
+usually hold that
 \begin{equation}
   \lambda_i > \lambda_{i+1}.
 \end{equation}
@@ -260,7 +257,7 @@ where $\lambda$ quantifies the trade-off between decreasing the
 distortion\footnote{For this reason, the slopes are negative.} while
 the bit-rate increases. Notice that, the higher the slope, the higher
 the benefit in terms of RD. If we suppose now that the contribution to
-the quality of each channel is additive, that is
+the quality of each component is additive, that is
 \begin{equation}
   D = D_{\text{R}} + D_{\text{G}} + D_{\text{B}},
 \end{equation}
@@ -276,10 +273,24 @@ so that $\lambda_{\text{R}}/2 = \lambda_{\text{G}} =
 \lambda_{\text{B}},$ and that we still have room for more bits to
 encode the frame. In this situation, the maximum benefit would be
 obtained if and only if we decrease $\Delta_{\text{R}}$, because the
-slope for the red channel doubles the slope of the other
+slope for the red component doubles the slope of the other
 curves. Therefore, the optimal QSs are obtained when
 Eq.~\ref{eq:optimal_quantization} is true. This can be seen in this
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-RGB_quantization/RGB_quantization.ipynb}{notebook}.
+
+As it has been indicated, the previous quantization steps pattern (see
+Equation~\ref{eq:simple_Q}) can be used to find the optimal RD curve
+that relates distortion versus bit-rate. However, it is important to
+realize that such relation between the quantization steps can be
+determined because the contribution to the distortion satisfy two key
+properties:
+\begin{enumerate}
+\item The contributions of the components are independent, and
+  therefore, the total distortion is a linear combination of
+  individual distortions.
+\item The constribution to the distortion of each component is exactly
+  the same.
+\end{enumerate}
 
 \begin{comment}
 Thus, the optimal QSs should
@@ -288,14 +299,15 @@ operate in the curves with the same RD slope,
   \lambda_{\text{R}} = \lambda_{\text{G}} = \lambda_{\text{B}},
   \label{eq:optimal_quantization}
 \end{equation}
-for a given total bit-rate $R$, which implies that the contribution of each channel (the ratio between
-quality and bit-rate) to the quality of $\tilde{x}$ has been highest
+for a given total bit-rate $R$, which implies that the contribution of
+each component (the ratio between quality and bit-rate) to the quality
+of $\tilde{x}$ has been highest
 possible~\cite{vetterli1995wavelets,sayood2017introduction}.
 
 Unfortunately, the previous procedure implies the computation of the
-RD curve for each channel, which is a time-consuming operation. For
-this reason, and supposing that the statistics of each channel are
-similar and therefore, each channel is going to generate a RD curve
+RD curve for each component, which is a time-consuming operation. For
+this reason, and supposing that the statistics of each component are
+similar and therefore, each component is going to generate a RD curve
 with the same slopes for the same QSs, we can suppose that
 Eq.~\ref{eq:simple_Q} satisfies Eq.~\ref{eq:optimal_quantization}.
 \end{comment}
