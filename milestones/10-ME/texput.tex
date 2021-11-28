@@ -135,14 +135,14 @@ not describe the OF.
 \begin{figure}
   \centering
   \png{stockholm_hat_P_block}{800}
-  \caption{The prediction frame (${\hat{\mathbf P}}$).}
+  \caption{The prediction frame (${\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_block_ME.ipynb}{this}.}
   \label{fig:hat_P_block}
 \end{figure}
 
 \begin{figure}
   \centering
   \png{stockholm_error_block}{800}
-  \caption{The prediction error frame (${\mathbf R} - {\hat{\mathbf P}}$).}
+  \caption{The prediction error frame (${\mathbf R} - {\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_block_ME.ipynb}{this}.}
   \label{fig:error_block}
 \end{figure}
 
@@ -153,7 +153,7 @@ by block-based ME can significantly decrease the entropy.
 \begin{figure}
   \centering
   \png{stockholm_MVs_block}{800}
-  \caption{Motion vectors to map ${\mathbf P}$ (which is divided into disjoint blocks) onto ${\mathbf R}$. }
+  \caption{Motion vectors to map ${\mathbf P}$ (which is divided into disjoint blocks) onto ${\mathbf R}$. See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_block_ME.ipynb}{this}.}
   \label{fig:MVs_block}
 \end{figure}
 
@@ -186,21 +186,21 @@ demanding than the previous one.
 \begin{figure}
   \centering
   \png{stockholm_hat_P_dense}{800}
-  \caption{The prediction frame (${\hat{\mathbf P}}$).}
+  \caption{The prediction frame (${\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_dense_ME.ipynb}{this}.}
   \label{fig:hat_P_dense}
 \end{figure}
 
 \begin{figure}
   \centering
   \png{stockholm_error_dense}{800}
-  \caption{The prediction error frame (${\mathbf R} - {\hat{\mathbf P}}$).}
+  \caption{The prediction error frame (${\mathbf R} - {\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_dense_ME.ipynb}{this}.}
   \label{fig:error_dense}
 \end{figure}
 
 \begin{figure}
   \centering
   \png{stockholm_MVs_dense}{800}
-  \caption{Motion vectors to map ${\mathbf P}$ (from which each pixel has been mapped) onto ${\mathbf R}$. }
+  \caption{Motion vectors to map ${\mathbf P}$ (from which each pixel has been mapped) onto ${\mathbf R}$. See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_dense_ME.ipynb}{this}.}
   \label{fig:MVs_dense}
 \end{figure}
 
@@ -226,10 +226,12 @@ shown in the Fig.~\ref{fig:average}.
   %\begin{tabular}{cccccc}
   %  \png{one} & \png{x} & \png{y} & \png{x2} & \png{y2} & \png{xy} \\
   %\end{tabular}
-  \png{one} \png{x}
+  \begin{tabular}{cccccc}
+    \png{one}{200} & \png{x}{200} & \png{y}{200} & \png{x2}{200} & \png{y2}{200} & \png{xy}{200}
+  \end{tabular}
   \caption{Correlation kernels (basis functions) used by the
     \emph{polynomial expansion} of the Farneb{\"a}ck's ME
-    alghrithm.}
+    algorithm. See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/farneback_ME.ipynb}{this}.}
   \label{fig:FarnebacK_basis}
 \end{figure}
 
@@ -241,9 +243,36 @@ which uses the transform defined by the basis functions
 \end{equation}
 (see the Figure~\ref{fig:FarnebacK_basis}). In this transform domain,
 which is applied by overlapped regions, the corresponding subbands
-quantifiey the tendency of the image to increase its intensity in
+quantify the tendency of the image to increase its intensity in
 different 2D directions, and therefore, it is more efficient to know
-the direction in which the objects are moving. The Farneback's ME is a dense ME.
+the direction in which the objects are moving.
+
+\begin{figure}
+  \centering
+  \png{stockholm_hat_P_farneback}{800}
+  \caption{The prediction frame (${\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/farneback_ME.ipynb}{this}.}
+  \label{fig:hat_P_farneback}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \png{stockholm_error_farneback}{800}
+  \caption{The prediction error frame (${\mathbf R} - {\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/farneback_ME.ipynb}{this}.}
+  \label{fig:error_farneback}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \png{stockholm_MVs_farneback}{800}
+  \caption{Motion vectors to map ${\mathbf P}$ (from which each pixel has been mapped) onto ${\mathbf R}$. See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/farneback_ME.ipynb}{this}.}
+  \label{fig:MVs_farneback}
+\end{figure}
+
+The Farneback's ME is a dense ME, and it provides subpixel
+interpolation because the MVs are real numbers (see the
+Figures~\ref{fig:hat_P_farneback}, \ref{fig:error_farneback} and
+\ref{fig:MVs_farneback}). Notice that the prediction is the best of
+the all tested algorithms, probably by the subpixel accuracy.
 
 \subsection{Machine learning}
 ANNs (Artifical Neural Networks) can be trained to estimate the motion
@@ -251,6 +280,7 @@ between frames~\cite{dosovitskiy2015flownet}. For the training of
 ANNs, animation videos are generally used where the motion fields are
 known with precision.
 
+\begin{comment}
 \subsection{Motion compensation in action}
 \begin{figure}
   \svg{R}{1000}
@@ -269,6 +299,7 @@ OF, comparing the prediction error generated with and without ME. In
 this experiment, a motion vector has been computed between each point
 of ${\mathbf P}$ and ${\mathbf R}$. As it can be seen, the OF can
 reduce the temporal redundancy significantly.
+\end{comment}
 
 \begin{comment}
 The OF~\cite{horn1981determining} tries to establish connections between the pixels of
