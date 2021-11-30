@@ -122,41 +122,94 @@ class="ectt-1000">C</span></span></span>, and a 4x4-DCT applied to each frame, w
      |&#x00A0;Ac&#x00A0;Bc&#x00A0;Cc&#x00A0;|&#x00A0;Ad&#x00A0;Bd&#x00A0;Cd&#x00A0;|&#x00A0;Ae&#x00A0;Be&#x00A0;Ce&#x00A0;|&#x00A0;Af&#x00A0;Bf&#x00A0;Cf&#x00A0;|
      +----------+----------+----------+----------+
 </pre>
-     <!--l. 48--><p class="nopar" > and it can be seen, the subbands <span class="obeylines-h"><span class="verb"><span 
+     <!--l. 49--><p class="nopar" > and it can be seen, the subbands <span class="obeylines-h"><span class="verb"><span 
 class="ectt-1000">A0</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
 class="ectt-1000">A1</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
 class="ectt-1000">A2</span></span></span>, all of them low-frequency
      subbands are contiguous. This should improve the compression ratio provided
-     by PNG.
+     by PNG. Notice that any other transform that generates subbands &#x0028;such as the
+     DWT&#x0029; can be used in this stage, although the subbands should be distributed
+     considering the descomposition.
      </p></li>
      <li 
-  class="enumerate" id="x1-4010x5">Find the optimal progression of quantization steps patterns. Notice that YCoCg
-     is near orthogonal and DCT is orthogonal, and therefore, the optimal
-     progression of patterns can be found simply by considering in the current
-     pattern the contribution
-     <!--l. 54--><p class="noindent" >For example, after applying a quantization pattern such:
+  class="enumerate" id="x1-4010x5">Find the optimal progression of quantization steps combinations. Notice that
+     YCoCg is near orthogonal and DCT is orthogonal, and therefore, the optimal
+     progression can be determined by simply sorting the RD points by their slope
+     in the transform &#x0028;YCoCg+DCT&#x0029; domain .
+     <!--l. 63--><p class="noindent" >For example, considering the quantization steps
+     <!--l. 63--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x007B;</mo><mn>1</mn><mn>2</mn><mn>8</mn><mo 
+class="MathClass-punc">,</mo><mn>6</mn><mn>4</mn><mo 
+class="MathClass-punc">,</mo><mn>3</mn><mn>2</mn><mo 
+class="MathClass-punc">,</mo><mn>1</mn><mn>6</mn><mo 
+class="MathClass-punc">,</mo><mn>8</mn><mo 
+class="MathClass-punc">,</mo><mn>4</mn><mo 
+class="MathClass-punc">,</mo><mn>2</mn><mo 
+class="MathClass-punc">,</mo><mn>1</mn><mo 
+class="MathClass-close">&#x007D;</mo></math>,
+     the &#xFB01;rst combination of quantization steps to test could be &#x0028;the combinations
+     must not be applied in this order&#x0029;:
                                                                   
 
                                                                   
 </p>
      <pre class="verbatim" id="verbatim-3">
-     +----------+----------+----------+----------+
+     +-------------+-------------+-------------+-------------+
      |&#x00A0;128&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|
-     |&#x00A0;A4&#x00A0;B4&#x00A0;C4&#x00A0;|&#x00A0;A5&#x00A0;B5&#x00A0;C5&#x00A0;|&#x00A0;A6&#x00A0;B6&#x00A0;C6&#x00A0;|&#x00A0;A7&#x00A0;B7&#x00A0;C7&#x00A0;|
-     |&#x00A0;A8&#x00A0;B8&#x00A0;C8&#x00A0;|&#x00A0;A9&#x00A0;B9&#x00A0;C9&#x00A0;|&#x00A0;Aa&#x00A0;Ba&#x00A0;Ca&#x00A0;|&#x00A0;Ab&#x00A0;Bb&#x00A0;Cb&#x00A0;|
-     |&#x00A0;Ac&#x00A0;Bc&#x00A0;Cc&#x00A0;|&#x00A0;Ad&#x00A0;Bd&#x00A0;Cd&#x00A0;|&#x00A0;Ae&#x00A0;Be&#x00A0;Ce&#x00A0;|&#x00A0;Af&#x00A0;Bf&#x00A0;Cf&#x00A0;|
-     +----------+----------+----------+----------+
+     |&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|
+     |&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|
+     |&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|
+     +-------------+-------------+-------------+-------------+
 </pre>
-     <!--l. 63--><p class="nopar" ></p></li></ol>
-<!--l. 66--><p class="noindent" >
+     <!--l. 73--><p class="nopar" > The second one could be:
+                                                                  
+
+                                                                  
+</p>
+     <pre class="verbatim" id="verbatim-4">
+     +-------------+-------------+-------------+-------------+
+     |&#x00A0;&#x00A0;64&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|
+     |&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|
+     |&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|
+     |&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|
+     +-------------+-------------+-------------+-------------+
+</pre>
+     <!--l. 82--><p class="nopar" > And the last one:
+                                                                  
+
+                                                                  
+</p>
+     <pre class="verbatim" id="verbatim-5">
+     +-------------+-------------+-------------+-------------+
+     |&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|
+     |&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|
+     |&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|
+     |&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|
+     +-------------+-------------+-------------+-------------+
+</pre>
+     <!--l. 91--><p class="nopar" ></p></li></ol>
+<!--l. 94--><p class="indent" >   Notice that we have a total of <!--l. 94--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>3</mn> <mo 
+class="MathClass-bin">&#x2217;</mo> <mn>1</mn><mn>6</mn> <mo 
+class="MathClass-rel">=</mo> <mn>4</mn><mn>8</mn></math>
+subbands, and the total number of quantization points is
+<!--l. 95--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>4</mn><mn>8</mn> <mo 
+class="MathClass-bin">&#x2217;</mo> <mn>8</mn> <mo 
+class="MathClass-rel">=</mo> <mn>3</mn><mn>8</mn><mn>4</mn></math>.
+</p><!--l. 97--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-50002"></a>What you have to do?</h3>
-<!--l. 68--><p class="noindent" >Please, create an experiment in which the frame quantization step is di&#xFB00;erent for
+<!--l. 99--><p class="noindent" >Please, create an experiment in which the frame quantization step is di&#xFB00;erent for
 each frame of a sequence, and another experiment that uses the same quantization
 step for all the frames. Compute the average RD curves. Which one is better? Do you
 think that </p><table class="equation-star"><tr><td>
-<!--l. 72--><math 
+<!--l. 103--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                             <mi 
@@ -175,12 +228,12 @@ class="MathClass-rel">=</mo><munder class="msub"><mrow
 ><mo 
 class="MathClass-punc">,</mo>
 </math></td></tr></table>
-<!--l. 75--><p class="indent" >   where <!--l. 75--><math 
+<!--l. 106--><p class="indent" >   where <!--l. 106--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >D</mi></math>
 is the distortion generated for the complete sequence and
-<!--l. 76--><math 
+<!--l. 107--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -188,7 +241,7 @@ display="inline" ><msub><mrow
 ><mi 
 >i</mi></mrow></msub 
 ></math> is the distortion
-only for the <!--l. 76--><math 
+only for the <!--l. 107--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >i</mi></math>-th
@@ -196,17 +249,17 @@ frame, holds?
                                                                   
 
                                                                   
-</p><!--l. 90--><p class="noindent" >
+</p><!--l. 121--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-60003"></a>Timming</h3>
-<!--l. 92--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 94--><p class="noindent" >
+<!--l. 123--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 125--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-70004"></a>Deliverables</h3>
-<!--l. 96--><p class="noindent" >None.
-</p><!--l. 98--><p class="noindent" >
+<!--l. 127--><p class="noindent" >None.
+</p><!--l. 129--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-80005"></a>Resources</h3>

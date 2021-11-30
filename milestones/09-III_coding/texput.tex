@@ -35,6 +35,7 @@ Basically, we are going to:
 | Ac Ad Ae Af | | Bc Bd Be Bf | | Cc Cd Ce Cf |
 +-------------+ +-------------+ +-------------+
 \end{verbatim}
+
 \item Reorder the subbands in the decomposition, generating a single
   2D structure where similar (same frequency) subbands are placed
   together. Continuing with the previous example:
@@ -48,20 +49,50 @@ Basically, we are going to:
 \end{verbatim}
   and it can be seen, the subbands \verb|A0|, \verb|A1|, and
   \verb|A2|, all of them low-frequency subbands are contiguous. This
-  should improve the compression ratio provided by PNG.
-\item Find the optimal progression of quantization steps patterns. Notice that YCoCg is near orthogonal and DCT is orthogonal, and therefore, the optimal progression of patterns can be found simply by considering in the current pattern the contribution 
+  should improve the compression ratio provided by PNG.  Notice that
+  any other transform that generates subbands (such as the DWT) can be
+  used in this stage, although the subbands should be distributed
+  considering the descomposition.
 
-  For
-  example, after applying a quantization pattern such:
+\item Find the optimal progression of quantization steps
+  combinations. Notice that YCoCg is near orthogonal and DCT is
+  orthogonal, and therefore, the optimal progression can be determined
+  by simply sorting the RD points by their slope in the transform
+  (YCoCg+DCT) domain .
+
+  For example, considering the quantization steps $\{128, 64, 32, 16,
+  8, 4, 2, 1\}$, the first combination of quantization steps to test
+  could be (the combinations must not be applied in this order):
 \begin{verbatim}
-+----------+----------+----------+----------+
++-------------+-------------+-------------+-------------+
 | 128 inf inf | inf inf inf | inf inf inf | inf inf inf |
-| A4 B4 C4 | A5 B5 C5 | A6 B6 C6 | A7 B7 C7 |
-| A8 B8 C8 | A9 B9 C9 | Aa Ba Ca | Ab Bb Cb |
-| Ac Bc Cc | Ad Bd Cd | Ae Be Ce | Af Bf Cf |
-+----------+----------+----------+----------+
+| inf inf inf | inf inf inf | inf inf inf | inf inf inf | 
+| inf inf inf | inf inf inf | inf inf inf | inf inf inf | 
+| inf inf inf | inf inf inf | inf inf inf | inf inf inf | 
++-------------+-------------+-------------+-------------+
+\end{verbatim}
+  The second one could be:
+\begin{verbatim}
++-------------+-------------+-------------+-------------+
+|  64 inf inf | inf inf inf | inf inf inf | inf inf inf |
+| inf inf inf | inf inf inf | inf inf inf | inf inf inf | 
+| inf inf inf | inf inf inf | inf inf inf | inf inf inf | 
+| inf inf inf | inf inf inf | inf inf inf | inf inf inf | 
++-------------+-------------+-------------+-------------+
+\end{verbatim}
+  And the last one:
+\begin{verbatim}
++-------------+-------------+-------------+-------------+
+|   1   1   1 |   1   1   1 |   1   1   1 |   1   1   1 |
+|   1   1   1 |   1   1   1 |   1   1   1 |   1   1   1 | 
+|   1   1   1 |   1   1   1 |   1   1   1 |   1   1   1 | 
+|   1   1   1 |   1   1   1 |   1   1   1 |   1   1   1 | 
++-------------+-------------+-------------+-------------+
 \end{verbatim}
 \end{enumerate}
+
+Notice that we have a total of $3*16=48$ subbands, and the total
+number of quantization points is $48*8=384$.
 
 \section{What you have to do?}
 
