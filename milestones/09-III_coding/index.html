@@ -3,7 +3,7 @@
 "http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd" > 
 <html xmlns="http://www.w3.org/1999/xhtml"  
 > 
-<head><title>Sistemas Multimedia - Study Guide - Milestone 9: III... coding</title> 
+<head><title>Sistemas Multimedia - Study Guide - Milestone 9: IIII... coding</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
 <meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
 <meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
@@ -22,7 +22,7 @@
 
 <h2 class="titleHead"><a 
 href="https://sistemas-multimedia.github.io/" >Sistemas Multimedia</a> - Study Guide - Milestone
-9: III... coding</h2>
+9: IIII... coding</h2>
  <div class="author" ><a 
 href="https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875" ><span 
 class="ecrm-1200">Vicente Gonz</span><span 
@@ -37,7 +37,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">November 30, 2021</span></div>
+class="ecrm-1200">December 1, 2021</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -115,14 +115,29 @@ class="ectt-1000">C</span></span></span>, and a 4x4-DCT applied to each frame, w
 
                                                                   
      <pre class="verbatim" id="verbatim-2">
-     +----------+----------+----------+----------+
-     |&#x00A0;A0&#x00A0;B0&#x00A0;C0&#x00A0;|&#x00A0;A1&#x00A0;B1&#x00A0;C1&#x00A0;|&#x00A0;A2&#x00A0;B2&#x00A0;C2&#x00A0;|&#x00A0;A3&#x00A0;B3&#x00A0;C3&#x00A0;|
-     |&#x00A0;A4&#x00A0;B4&#x00A0;C4&#x00A0;|&#x00A0;A5&#x00A0;B5&#x00A0;C5&#x00A0;|&#x00A0;A6&#x00A0;B6&#x00A0;C6&#x00A0;|&#x00A0;A7&#x00A0;B7&#x00A0;C7&#x00A0;|
-     |&#x00A0;A8&#x00A0;B8&#x00A0;C8&#x00A0;|&#x00A0;A9&#x00A0;B9&#x00A0;C9&#x00A0;|&#x00A0;Aa&#x00A0;Ba&#x00A0;Ca&#x00A0;|&#x00A0;Ab&#x00A0;Bb&#x00A0;Cb&#x00A0;|
-     |&#x00A0;Ac&#x00A0;Bc&#x00A0;Cc&#x00A0;|&#x00A0;Ad&#x00A0;Bd&#x00A0;Cd&#x00A0;|&#x00A0;Ae&#x00A0;Be&#x00A0;Ce&#x00A0;|&#x00A0;Af&#x00A0;Bf&#x00A0;Cf&#x00A0;|
-     +----------+----------+----------+----------+
+     +----------+
+     |&#x00A0;A0&#x00A0;B0&#x00A0;C0&#x00A0;|
+     |&#x00A0;A4&#x00A0;B4&#x00A0;C4&#x00A0;|
+     |&#x00A0;A8&#x00A0;B8&#x00A0;C8&#x00A0;|
+     |&#x00A0;Ac&#x00A0;Bc&#x00A0;Cc&#x00A0;|
+     +----------+
+     |&#x00A0;A1&#x00A0;B1&#x00A0;C1&#x00A0;|
+     |&#x00A0;A5&#x00A0;B5&#x00A0;C5&#x00A0;|
+     |&#x00A0;A9&#x00A0;B9&#x00A0;C9&#x00A0;|
+     |&#x00A0;Ad&#x00A0;Bd&#x00A0;Cd&#x00A0;|
+     +----------+
+     |&#x00A0;A2&#x00A0;B2&#x00A0;C2&#x00A0;|
+     |&#x00A0;A6&#x00A0;B6&#x00A0;C6&#x00A0;|
+     |&#x00A0;Aa&#x00A0;Ba&#x00A0;Ca&#x00A0;|
+     |&#x00A0;Ae&#x00A0;Be&#x00A0;Ce&#x00A0;|
+     +----------+
+     |&#x00A0;A3&#x00A0;B3&#x00A0;C3&#x00A0;|
+     |&#x00A0;A7&#x00A0;B7&#x00A0;C7&#x00A0;|
+     |&#x00A0;Ab&#x00A0;Bb&#x00A0;Cb&#x00A0;|
+     |&#x00A0;Af&#x00A0;Bf&#x00A0;Cf&#x00A0;|
+     +----------+
 </pre>
-     <!--l. 49--><p class="nopar" > and it can be seen, the subbands <span class="obeylines-h"><span class="verb"><span 
+     <!--l. 64--><p class="nopar" > and it can be seen, the subbands <span class="obeylines-h"><span class="verb"><span 
 class="ectt-1000">A0</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
 class="ectt-1000">A1</span></span></span>, and <span class="obeylines-h"><span class="verb"><span 
 class="ectt-1000">A2</span></span></span>, all of them low-frequency
@@ -136,8 +151,8 @@ class="ectt-1000">A2</span></span></span>, all of them low-frequency
      YCoCg is near orthogonal and DCT is orthogonal, and therefore, the optimal
      progression can be determined by simply sorting the RD points by their slope
      in the transform &#x0028;YCoCg+DCT&#x0029; domain .
-     <!--l. 63--><p class="noindent" >For example, considering the quantization steps
-     <!--l. 63--><math 
+     <!--l. 78--><p class="noindent" >For example, considering the quantization steps
+     <!--l. 78--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
 class="MathClass-open">&#x007B;</mo><mn>1</mn><mn>2</mn><mn>8</mn><mo 
@@ -163,7 +178,7 @@ class="MathClass-close">&#x007D;</mo></math>,
      |&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|
      +-------------+-------------+-------------+-------------+
 </pre>
-     <!--l. 73--><p class="nopar" > The second one could be:
+     <!--l. 88--><p class="nopar" > The second one could be:
                                                                   
 
                                                                   
@@ -176,7 +191,7 @@ class="MathClass-close">&#x007D;</mo></math>,
      |&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|&#x00A0;inf&#x00A0;inf&#x00A0;inf&#x00A0;|
      +-------------+-------------+-------------+-------------+
 </pre>
-     <!--l. 82--><p class="nopar" > And the last one:
+     <!--l. 97--><p class="nopar" > And the last one:
                                                                   
 
                                                                   
@@ -189,27 +204,27 @@ class="MathClass-close">&#x007D;</mo></math>,
      |&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;|
      +-------------+-------------+-------------+-------------+
 </pre>
-     <!--l. 91--><p class="nopar" ></p></li></ol>
-<!--l. 94--><p class="indent" >   Notice that we have a total of <!--l. 94--><math 
+     <!--l. 106--><p class="nopar" ></p></li></ol>
+<!--l. 109--><p class="indent" >   Notice that we have a total of <!--l. 109--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>3</mn> <mo 
 class="MathClass-bin">&#x2217;</mo> <mn>1</mn><mn>6</mn> <mo 
 class="MathClass-rel">=</mo> <mn>4</mn><mn>8</mn></math>
 subbands, and the total number of quantization points is
-<!--l. 95--><math 
+<!--l. 110--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>4</mn><mn>8</mn> <mo 
 class="MathClass-bin">&#x2217;</mo> <mn>8</mn> <mo 
 class="MathClass-rel">=</mo> <mn>3</mn><mn>8</mn><mn>4</mn></math>.
-</p><!--l. 97--><p class="noindent" >
+</p><!--l. 112--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-50002"></a>What you have to do?</h3>
-<!--l. 99--><p class="noindent" >Please, create an experiment in which the frame quantization step is di&#xFB00;erent for
+<!--l. 114--><p class="noindent" >Please, create an experiment in which the frame quantization step is di&#xFB00;erent for
 each frame of a sequence, and another experiment that uses the same quantization
 step for all the frames. Compute the average RD curves. Which one is better? Do you
 think that </p><table class="equation-star"><tr><td>
-<!--l. 103--><math 
+<!--l. 118--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                             <mi 
@@ -228,12 +243,12 @@ class="MathClass-rel">=</mo><munder class="msub"><mrow
 ><mo 
 class="MathClass-punc">,</mo>
 </math></td></tr></table>
-<!--l. 106--><p class="indent" >   where <!--l. 106--><math 
+<!--l. 121--><p class="indent" >   where <!--l. 121--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >D</mi></math>
 is the distortion generated for the complete sequence and
-<!--l. 107--><math 
+<!--l. 122--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -241,7 +256,7 @@ display="inline" ><msub><mrow
 ><mi 
 >i</mi></mrow></msub 
 ></math> is the distortion
-only for the <!--l. 107--><math 
+only for the <!--l. 122--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >i</mi></math>-th
@@ -249,17 +264,17 @@ frame, holds?
                                                                   
 
                                                                   
-</p><!--l. 121--><p class="noindent" >
+</p><!--l. 136--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-60003"></a>Timming</h3>
-<!--l. 123--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 125--><p class="noindent" >
+<!--l. 138--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 140--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-70004"></a>Deliverables</h3>
-<!--l. 127--><p class="noindent" >None.
-</p><!--l. 129--><p class="noindent" >
+<!--l. 142--><p class="noindent" >None.
+</p><!--l. 144--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-80005"></a>Resources</h3>
