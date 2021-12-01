@@ -7,28 +7,27 @@
 
 \section{Description}
 
-The \href{https://github.com/Sistemas-Multimedia/MRVC/}{MRVC
-  (Multi Resolution Video Codec) project}~\cite{MRVC} is basically a
-video compressor. In this milestone we are going to install the
-working environment for using (and extending) it.
+The \href{https://github.com/Sistemas-Multimedia/MRVC/}{MRVC (Multi
+  Resolution Video Codec) project}~\cite{MRVC} is basically a video
+compressor. In this milestone we are going to install the working
+environment for using (and extending) it.
 
 This milestone (the installation of a dedicated Linux distribution for
-running MRVC) is optional , but it is highly
-recommend to do it because you'll give technical support in a reasonable
-time in the case you are in trouble. Futhermore, it is recommend to run
-MRVC in a Xubuntu 21.04 (Hirsute Hippo) \cite{xubuntu},
-running natively
-(no \href{https://en.wikipedia.org/wiki/Virtualization}{virtualization}). Xubuntu
-is fully functional (at least for developing our project) and demand a
-low amount of hardware resources.
+running MRVC) is optional, but it is highly recommend to do it because
+you'll give technical support in a reasonable time in the case you are
+in trouble. Futhermore, it is recommend to run MRVC in a Xubuntu
+21.10, (Impish Indri) \cite{xubuntu}, running natively (no
+\href{https://en.wikipedia.org/wiki/Virtualization}{virtualization}),
+if possible. Xubuntu is fully functional (at least for developing our
+project) and demand a low amount of hardware resources.
 
-The following ``guide'' helps you to install Xubuntu in an
-external \href{https://en.wikipedia.org/wiki/USB_flash_drive}{USB
-drive}, which must have at least 16GB of capacity (the minimal
-installation of Xubuntu needs about 5GB). You will need also a
-temporal external USB disk with at least 4GB to boot from it the
-installation Xubuntu image (or to burn
-an \href{https://en.wikipedia.org/wiki/Optical_disc}{optical disk}).
+The following ``guide'' helps you to install Xubuntu in an external
+\href{https://en.wikipedia.org/wiki/USB_flash_drive}{USB drive}, which
+must have at least 16GB of capacity (the minimal installation of
+Xubuntu needs about 5GB). You will need also a temporal external USB
+disk with at least 4GB to boot from it the installation Xubuntu image
+(or to burn an
+\href{https://en.wikipedia.org/wiki/Optical_disc}{optical disk}).
 
 Finally, if you have a computer with enough resources (at least 8 GB
 of RAM), you can also install Xubuntu in a virtual machine
@@ -73,7 +72,7 @@ nvme0n1     259:0    0 238,5G  0 disk
 +-nvme0n1p2 259:2    0     8G  0 part [SWAP]
 +-nvme0n1p3 259:3    0   513M  0 part /boot/efi
 +-nvme0n1p4 259:4    0  31,5G  0 part /
-[vruiz@pluton Descargas]$ sudo dd bs=4M if=xubuntu-21.04-desktop-amd64.iso of=/dev/sda conv=fsync oflag=direct status=progress
+[vruiz@pluton Descargas]$ sudo dd bs=4M if=xubuntu-21.10-desktop-amd64.iso of=/dev/sda conv=fsync oflag=direct status=progress
 1929379840 bytes (1,9 GB, 1,8 GiB) copied, 151 s, 12,8 MB/s
 466+1 registros leídos
 466+1 registros escritos
@@ -143,7 +142,7 @@ nvme0n1     259:0    0 238.5G  0 disk
   \href{https://en.wikipedia.org/wiki/Disk_partitioning}{partition
     table}).
   
-\item Select \texttt{Install Xubuntu 21.04}.
+\item Select \texttt{Install Xubuntu 21.10}.
   
 \item Select English as the language used during the installation and the
   installed system. This will help in the case you need to search
@@ -176,7 +175,9 @@ nvme0n1     259:0    0 238.5G  0 disk
 \item Choose \texttt{Download updates while installing Xubuntu} and
   \texttt{Install third-party software for graphics and Wi-Fi hardware
     and additional media formats}, in order to have access to the
-    ultimate software available for Ubuntu (and derivatives).
+  ultimate software available for Ubuntu (and derivatives). Notice
+  that at the UAL all non secure traffic is forbiden (for example, you
+  will not able to connect to \verb|http:| servers.
 
 \item Choose \texttt{Erase disk and install Xubuntu}. Ignore the
   \verb|Advanced Features|. Then, wait for a couple of minutes :-/

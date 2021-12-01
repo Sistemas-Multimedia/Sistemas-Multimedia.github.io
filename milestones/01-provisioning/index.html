@@ -64,36 +64,36 @@ href="#XMRVC">2</a>&#x005D;</span> is basically a video
 compressor. In this milestone we are going to install the working environment for
 using &#x0028;and extending&#x0029; it.
 </p><!--l. 15--><p class="indent" >   This milestone &#x0028;the installation of a dedicated Linux distribution for
-running MRVC&#x0029; is optional , but it is highly recommend to do it because you&#x2019;ll
+running MRVC&#x0029; is optional, but it is highly recommend to do it because you&#x2019;ll
 give technical support in a reasonable time in the case you are in trouble.
-Futhermore, it is recommend to run MRVC in a Xubuntu 21.04 &#x0028;Hirsute Hippo&#x0029;
-<span class="cite">&#x005B;<a 
-href="#Xxubuntu">1</a>&#x005D;</span>, running natively &#x0028;no <a 
-href="https://en.wikipedia.org/wiki/Virtualization" >virtualization</a>&#x0029;. Xubuntu is fully functional &#x0028;at
+Futhermore, it is recommend to run MRVC in a Xubuntu 21.10, &#x0028;Impish Indri&#x0029; <span class="cite">&#x005B;<a 
+href="#Xxubuntu">1</a>&#x005D;</span>,
+running natively &#x0028;no <a 
+href="https://en.wikipedia.org/wiki/Virtualization" >virtualization</a>&#x0029;, if possible. Xubuntu is fully functional &#x0028;at
 least for developing our project&#x0029; and demand a low amount of hardware
 resources.
                                                                   
 
                                                                   
-</p><!--l. 25--><p class="indent" >   The following &#x201C;guide&#x201D; helps you to install Xubuntu in an external <a 
+</p><!--l. 24--><p class="indent" >   The following &#x201C;guide&#x201D; helps you to install Xubuntu in an external <a 
 href="https://en.wikipedia.org/wiki/USB_flash_drive" >USB drive</a>,
 which must have at least 16GB of capacity &#x0028;the minimal installation of Xubuntu
 needs about 5GB&#x0029;. You will need also a temporal external USB disk with at least
 4GB to boot from it the installation Xubuntu image &#x0028;or to burn an <a 
 href="https://en.wikipedia.org/wiki/Optical_disc" >optical
 disk</a>&#x0029;.
-</p><!--l. 33--><p class="indent" >   Finally, if you have a computer with enough resources &#x0028;at least 8 GB of RAM&#x0029;,
+</p><!--l. 32--><p class="indent" >   Finally, if you have a computer with enough resources &#x0028;at least 8 GB of RAM&#x0029;,
 you can also install Xubuntu in a virtual machine &#x0028;VirtualBox, for example&#x0029;.
 In this case, dedicate at least 4 GB of RAM and 16 GB of disk space to
 Xubuntu.
-</p><!--l. 38--><p class="noindent" >
+</p><!--l. 37--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-30002"></a>What do I have to do?</h3>
-<!--l. 40--><p class="noindent" >Supposing that you have decided to use Xubuntu in an USB disk, these are the steps
+<!--l. 39--><p class="noindent" >Supposing that you have decided to use Xubuntu in an USB disk, these are the steps
 you should perform &#x0028;to install Xubuntu in a &#x201C;hard&#x201D; disk partition of your computer
 the instructions are almost the same&#x0029;:
-</p><!--l. 44--><p class="indent" >
+</p><!--l. 43--><p class="indent" >
      </p><ol  class="enumerate1" >
      <li 
   class="enumerate" id="x1-3002x1">Download the installation <a 
@@ -131,13 +131,13 @@ href="https://askubuntu.com/questions/372607/how-to-create-a-bootable-ubuntu-usb
      +-nvme0n1p2&#x00A0;259:2&#x00A0;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;8G&#x00A0;&#x00A0;0&#x00A0;part&#x00A0;&#x005B;SWAP&#x005D;
      +-nvme0n1p3&#x00A0;259:3&#x00A0;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;513M&#x00A0;&#x00A0;0&#x00A0;part&#x00A0;/boot/efi
      +-nvme0n1p4&#x00A0;259:4&#x00A0;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;31,5G&#x00A0;&#x00A0;0&#x00A0;part&#x00A0;/
-     &#x005B;vruiz@pluton&#x00A0;Descargas&#x005D;$&#x00A0;sudo&#x00A0;dd&#x00A0;bs=4M&#x00A0;if=xubuntu-21.04-desktop-amd64.iso&#x00A0;of=/dev/sda&#x00A0;conv=fsync&#x00A0;oflag=direct&#x00A0;status=progress
+     &#x005B;vruiz@pluton&#x00A0;Descargas&#x005D;$&#x00A0;sudo&#x00A0;dd&#x00A0;bs=4M&#x00A0;if=xubuntu-21.10-desktop-amd64.iso&#x00A0;of=/dev/sda&#x00A0;conv=fsync&#x00A0;oflag=direct&#x00A0;status=progress
      1929379840&#x00A0;bytes&#x00A0;&#x0028;1,9&#x00A0;GB,&#x00A0;1,8&#x00A0;GiB&#x0029;&#x00A0;copied,&#x00A0;151&#x00A0;s,&#x00A0;12,8&#x00A0;MB/s
      466+1&#x00A0;registros&#x00A0;le&#x00ED;dos
      466+1&#x00A0;registros&#x00A0;escritos
      1958051840&#x00A0;bytes&#x00A0;&#x0028;2,0&#x00A0;GB,&#x00A0;1,8&#x00A0;GiB&#x0029;&#x00A0;copied,&#x00A0;152,555&#x00A0;s,&#x00A0;12,8&#x00A0;MB/s
 </pre>
-     <!--l. 81--><p class="nopar" >
+     <!--l. 80--><p class="nopar" >
      </p></li>
      <li 
   class="enumerate" id="x1-3006x3">Boot the image. Most of PCs can choose the boot device by pressing the
@@ -169,7 +169,7 @@ class="ectt-1000">Try Xubuntu without installing</span>.
      +-nvme0n1p3&#x00A0;259:3&#x00A0;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;513M&#x00A0;&#x00A0;0&#x00A0;part
      +-nvme0n1p4&#x00A0;259:4&#x00A0;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;31.5G&#x00A0;&#x00A0;0&#x00A0;part
 </pre>
-     <!--l. 106--><p class="nopar" >
+     <!--l. 105--><p class="nopar" >
      </p></li>
      <li 
   class="enumerate" id="x1-3012x6">When the OS is running, con&#xFB01;gure the network. Thus, you will have access to
@@ -202,8 +202,8 @@ class="ectt-1000">Try Xubuntu without installing</span>.
      +-nvme0n1p3&#x00A0;259:3&#x00A0;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;513M&#x00A0;&#x00A0;0&#x00A0;part
      +-nvme0n1p4&#x00A0;259:4&#x00A0;&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;31.5G&#x00A0;&#x00A0;0&#x00A0;part
 </pre>
-     <!--l. 136--><p class="nopar" >
-     </p><!--l. 138--><p class="noindent" >Don&#x2019;t worry if the &#x003E;16GB USB disk is mounted by <a 
+     <!--l. 135--><p class="nopar" >
+     </p><!--l. 137--><p class="noindent" >Don&#x2019;t worry if the &#x003E;16GB USB disk is mounted by <a 
 href="https://gitlab.xfce.org/xfce/thunar" >Thunar</a> &#x0028;the default &#xFB01;le
      manager in Xubuntu&#x0029;. The installer will ask to unmount the devices when this
      is necessary &#x0028;notice that the destination device &#x003E;16GB USB drive must be
@@ -212,7 +212,7 @@ href="https://en.wikipedia.org/wiki/Disk_partitioning" >partition table</a>&#x00
      </p></li>
      <li 
   class="enumerate" id="x1-3016x8">Select <span 
-class="ectt-1000">Install Xubuntu 21.04</span>.
+class="ectt-1000">Install Xubuntu 21.10</span>.
      </li>
      <li 
   class="enumerate" id="x1-3018x9">Select English as the language used during the installation and the installed
@@ -236,10 +236,13 @@ class="ectt-1000">Install</span>
 class="ectt-1000">third-party software for graphics and Wi-Fi hardware and</span>
      <span 
 class="ectt-1000">additional media formats</span>, in order to have access to the ultimate software
-     available for Ubuntu &#x0028;and derivatives&#x0029;.
                                                                   
 
                                                                   
+     available for Ubuntu &#x0028;and derivatives&#x0029;. Notice that at the UAL all non secure
+     tra&#xFB03;c is forbiden &#x0028;for example, you will not able to connect to <span class="obeylines-h"><span class="verb"><span 
+class="ectt-1000">http:</span></span></span>
+     servers.
      </li>
      <li 
   class="enumerate" id="x1-3026x13">Choose <span 
@@ -311,7 +314,7 @@ class="ectt-1000">&#x00A0;Now</span></span></span>. You&#x2019;ll read something
      &#x00A0;partition&#x00A0;#1&#x00A0;of&#x00A0;SCSI8&#x00A0;&#x0028;0,0,0&#x0029;&#x00A0;&#x0028;sdb&#x0029;&#x00A0;as&#x00A0;ESP
      &#x00A0;partition&#x00A0;#2&#x00A0;of&#x00A0;SCSI8&#x00A0;&#x0028;0,0,0&#x0029;&#x00A0;&#x0028;sdb&#x0029;&#x00A0;as&#x00A0;ext4
 </pre>
-     <!--l. 228--><p class="nopar" >
+     <!--l. 229--><p class="nopar" >
      </p></li>
      <li 
   class="enumerate" id="x1-3036x18">Choose your time zone.
@@ -326,20 +329,20 @@ href="https://en.wikipedia.org/wiki/Login" >login</a>
   class="enumerate" id="x1-3040x20">Wait for the end of the installation and boot your new Xubuntu. Don&#x2019;t worry if
      GRUB labels Xubuntu as Ubuntu. This is normal.
      </li></ol>
-<!--l. 242--><p class="noindent" >
+<!--l. 243--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-40003"></a>Timming</h3>
-<!--l. 244--><p class="noindent" >You should &#xFB01;nish this milestone before the next class.
-</p><!--l. 246--><p class="noindent" >
+<!--l. 245--><p class="noindent" >You should &#xFB01;nish this milestone before the next class.
+</p><!--l. 247--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-50004"></a>Deliverables</h3>
-<!--l. 248--><p class="noindent" >None.
+<!--l. 249--><p class="noindent" >None.
                                                                   
 
                                                                   
-</p><!--l. 250--><p class="noindent" >
+</p><!--l. 251--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-60005"></a>Resources</h3>
