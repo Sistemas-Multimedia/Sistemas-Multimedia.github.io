@@ -1,5 +1,5 @@
 \input{../../definitions}
-\title{\SM{} - Study Guide - Milestone 9: RDO (Rate/Distortion Optimization) in III... coding}
+\title{\SM{} - Study Guide - Milestone 9: IIII... coding}
 
 \maketitle
 
@@ -27,40 +27,37 @@ Basically, we are going to:
   4x4-DCT applied to each frame, we will obtain the decomposition
   (subbands structure):
 \begin{verbatim}
-    frame A         frame B         frame C
-+-------------+ +-------------+ +-------------+
-| A0 A1 A2 A3 | | B0 B1 B2 B3 | | C0 C1 C2 C3 |
-| A4 A5 A6 A7 | | B4 B5 B6 B7 | | C4 C5 C6 C7 |
-| A8 A9 Aa Ab | | B8 B9 Ba Bb | | C8 C9 Ca Cb |
-| Ac Ad Ae Af | | Bc Bd Be Bf | | Cc Cd Ce Cf |
-+-------------+ +-------------+ +-------------+
+   frame A      frame B
++----------+ +----------+
+| A0 A1 A2 | | B0 B1 B2 |
+| A3 A4 A5 | | B3 B4 B5 |
+| A6 A7 A8 | | B6 B7 B8 |
+| A9 Aa Ab | | B9 Ba Bb |
++----------+ +----------+
 \end{verbatim}
 
 \item Reorder the subbands in the decomposition, generating a single
   2D structure where similar (same frequency) subbands are placed
   together. Continuing with the previous example:
 \begin{verbatim}
-+----------+
-| A0 B0 C0 |
-| A4 B4 C4 |
-| A8 B8 C8 |
-| Ac Bc Cc |
-+----------+
-| A1 B1 C1 |
-| A5 B5 C5 |
-| A9 B9 C9 |
-| Ad Bd Cd |
-+----------+
-| A2 B2 C2 |
-| A6 B6 C6 |
-| Aa Ba Ca |
-| Ae Be Ce |
-+----------+
-| A3 B3 C3 |
-| A7 B7 C7 |
-| Ab Bb Cb |
-| Af Bf Cf |
-+----------+
+            frames_per_GOF
+              <------->
+            ^ +-------+ ^
+            | | A0 B0 | |
+blocks_in_y | | A3 B3 | |
+            | | A6 B6 | |
+            | | A9 B9 | |
+            v +-------+ |
+              | A1 B1 | |
+              | A4 B4 | | blocks_in_x*blocks_in_y
+              | A7 B7 | |
+              | Aa Ba | |
+              +-------+ |
+              | A2 B2 | |
+              | A5 B5 | |
+              | A8 B8 | |
+              | Ab Bb | |
+              +-------+ v
 \end{verbatim}
   and it can be seen, the subbands \verb|A0|, \verb|A1|, and
   \verb|A2|, all of them low-frequency subbands are contiguous. This
@@ -109,7 +106,7 @@ Basically, we are going to:
 Notice that we have a total of $3*16=48$ subbands, and the total
 number of quantization points is $48*8=384$.
 
-\section{What do I have to do?}
+\section{What you have to do?}
 
 Please, create an experiment in which the frame quantization step is
 different for each frame of a sequence, and another experiment that
