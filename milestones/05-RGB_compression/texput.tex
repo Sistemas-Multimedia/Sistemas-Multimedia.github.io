@@ -6,6 +6,13 @@
 \tableofcontents
 
 \section{Description}
+In this milestone we will quantize an image in the
+\href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB\footnote{Red,
+    Green and Blue: the primary colors.} color domain}. RGB is an
+additive color system, which means that all colors \emph{start} with
+black and are created by adding some intensity of the primary
+colors~\cite{burger2016digital}.
+
 \href{https://en.wikipedia.org/wiki/Visual_system}{Humans} are quite
 efficient recognizing the information stored in images (and frames of
 a video), even when this information has been degraded or partially
@@ -19,12 +26,7 @@ which provides
 \href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless
   coding}.
 
-In this milestone we will quantize an image in the
-\href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB\footnote{Red,
-    Green and Blue: the primary colors.} color domain}. RGB is an
-additive color system, which means that all colors \emph{start} with
-black and are created by adding some intensity of the primary
-colors~\cite{burger2016digital}. A digital
+A digital
 \href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{\textbf{quantizer}}
 (typically denoted by $\text{Q}$) is an
 \href{https://en.wikipedia.org/wiki/Data_compression}{encoding system}
@@ -105,14 +107,14 @@ Moreover, all quantizers can be classified into:
 
 Finally, quantizers can be classified as:
 \begin{enumerate}
-\item \textbf{Dead-zone quantizers}, that are characterized by a QS of
-  length $2\Delta$ for ${\mathbf x}_i=0$. Deadzone quantizers tends to
-  remove the
+\item \textbf{Dead-zone quantizers}, that are characterized by a
+  quantization step of length $2\Delta$ for ${\mathbf
+    x}_i=0$. Deadzone quantizers tends to remove the
   \href{https://en.wikipedia.org/wiki/Noise_(electronics)}{electronic
-    noise} (that usually has an small amplitude compared to the input
+    noise} (that usually has a small amplitude compared to the input
   signal ${\mathbf x}$).\footnote{Notice that dead-zone quantizers
-  should not be consdered uniform, and that all dead-zone quantizers,
-  by definition, are mid-tread.}
+    should not be consdered uniform, and that all dead-zone
+    quantizers, by definition, are mid-tread.}
 \item \textbf{No dead-zone quantizers}, when the dead-zone does not
   exist.
 \end{enumerate}
@@ -164,7 +166,7 @@ the energy of the signal is very close to 0.
 \end{figure}
 \end{comment}
 
-The \href{https://github.com/vicente-gonzalez-ruiz/quantization/blob/master/digital_quantization.ipynb}{notebook} describes the behaviour of some scalar quantizers.
+This \href{https://github.com/vicente-gonzalez-ruiz/quantization/blob/master/digital_quantization.ipynb}{notebook} describes the behaviour of some scalar quantizers.
 %Figs.~\ref{fig:iomap_mr}, \ref{fig:qe_mr}, \ref{fig:iomap_mt},
 %\ref{fig:qe_mt}, \ref{fig:iomap_dz}, and \ref{fig:qe_dz} describe the
 %behaviour of 3 different quantizers.  Use this
@@ -215,13 +217,14 @@ than VQ.
 Supposing that we are using a static uniform dead-zone quantizer, a
 color RGB image can be quantized, component (sometimes also refered by
 \href{https://en.wikipedia.org/wiki/Color_image}{channel} in the case
-of the RGB images) by component, using QSs $\Delta_{\text{R}}$,
-$\Delta_{\text{G}}$, and $\Delta_{\text{B}}$. A reasonable question
-that arises here is: given a target bit-rate $R$ for the compressed
-frame, how the QSs should be chosen to minimize the distortion? At
-this point we can consider two different optimization perspectives. In
-the first one, we consider strictly visual considerations, and
-obviously, any alternative different from
+of the RGB images) by component, using quantization steps
+$\Delta_{\text{R}}$, $\Delta_{\text{G}}$, and $\Delta_{\text{B}}$. A
+reasonable question that arises here is: given a target bit-rate $R$
+for the compressed frame, how the quantization steps should be chosen
+to minimize the distortion? At this point we can consider two
+different optimization perspectives. In the first one, we consider
+strictly visual considerations, and obviously, any alternative
+different from
 \begin{equation}
   \Delta_{\text{R}} = \Delta_{\text{G}} = \Delta_{\text{B}}
   \label{eq:simple_Q}
@@ -232,9 +235,12 @@ will produce some alteration in the color (also called the
 In the second perspective, only a pure
 \href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{Rate/Distortion
   (RD) performance} is considered. From a RD point of view, the best
-combination of quantization steps is those that optimizes
-(makes closer to the origin of coordinates) the RD curve. A RD curve
-represents the trade-off between the distortion (typically the
+combination of quantization steps is those that optimizes (generally
+by minimizing, that is, making it closer to the origin of coordinates)
+the RD curve.
+
+Notice that a RD curve represents the trade-off between the distortion
+(typically the
 \href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{Root
   Mean Square Error (RMSE)}) and the bit-rate (therefore, RMSE versus
 bit/pixel).
@@ -261,8 +267,8 @@ the quality of each component is additive, that is
 \begin{equation}
   D = D_{\text{R}} + D_{\text{G}} + D_{\text{B}},
 \end{equation}
-where $D$ denotes distortion, then the optimal QSs must satisfy
-that~\cite{vetterli1995wavelets,sayood2017introduction}
+where $D$ denotes distortion, then the optimal quantization steps must
+satisfy that~\cite{vetterli1995wavelets,sayood2017introduction}
 \begin{equation}
   \lambda_{\text{R}} = \lambda_{\text{G}} = \lambda_{\text{B}}.
   \label{eq:optimal_quantization}
@@ -315,10 +321,10 @@ Eq.~\ref{eq:simple_Q} satisfies Eq.~\ref{eq:optimal_quantization}.
 \section{What do I have to do?}
 \begin{enumerate}
 \item Please, using this
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-RGB_compression/RGB_quantization.ipynb}{notebook}
-  try to find a QSs configuration where Eq.~\ref{eq:simple_Q} is not
-  optimal (or at least there is a different configuration of QSs
-  better that this equation).
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-RGB_compression/RGB_compression.ipynb}{notebook}
+  try to find a quantization steps combination where
+  Eq.~\ref{eq:simple_Q} is not optimal (or at least there is a
+  different configuration of QSs better that this equation).
 \item Do you think that our lifes would be easier, to compress a RGB
   image, if we had an gray-image (lossy) compressor that allows to
   select the quantization step by its slope?
