@@ -314,7 +314,20 @@ signals. The 2D-DWT of an image can be computed using (1)
 filters, and (2)
 \href{https://en.wikipedia.org/wiki/Non-separable_wavelet}{nonseparable}
 2D filters.~\cite{sayood2017introduction} Except in very special
-cases, all 2D-DWT implementations use separable filters by simplicity.
+cases, all 2D-DWT implementations use separable filters by
+simplicity. The Figure~\ref{fig:2D-DWT_basis} show an example of basis functions used by a $3$-levels 2D-DWT.
+
+\begin{figure}
+  \centering
+  \begin{tabular}{cccc}
+    \png{LL3}{200} & \png{LH3}{200} & \png{LH2}{200} & \png{HH1}{200} \\
+    \png{HL3}{200} & \png{HH3}{200} &                &                \\
+    \png{HL2}{200} &                & \png{HH2}{200} &                \\
+    \png{HL1}{200} &                &                & \png{HH1}{200}
+  \end{tabular}
+  \caption{2D-DWT basis functions (see this notebook).}
+  \label{fig:2D-DWT_basis}
+\end{figure}
 
 Separability in the DWT context means that we can compute the 1-levels
 2D-DWT using the 1D filters, by applying them to each dimension, and

@@ -40,7 +40,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">December 6, 2021</span></div>
+class="ecrm-1200">December 8, 2021</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -1316,19 +1316,74 @@ href="https://en.wikipedia.org/wiki/Discrete_time_and_continuous_time" >discrete
 href="https://en.wikipedia.org/wiki/Space" >space</a> and <a 
 href="https://en.wikipedia.org/wiki/Amplitude" >amplitude</a>&#x0029; signals.
 The 2D-DWT of an image can be computed using &#x0028;1&#x0029; <a 
-href="https://en.wikipedia.org/wiki/Separable_filter" >separable</a> 1D &#xFB01;lters, and
-&#x0028;2&#x0029; <a 
+href="https://en.wikipedia.org/wiki/Separable_filter" >separable</a> 1D &#xFB01;lters, and &#x0028;2&#x0029;
+<a 
 href="https://en.wikipedia.org/wiki/Non-separable_wavelet" >nonseparable</a> 2D &#xFB01;lters.&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xsayood2017introduction">3</a>&#x005D;</span> Except in very special cases, all 2D-DWT
-implementations use separable &#xFB01;lters by simplicity.
-</p><!--l. 319--><p class="indent" >   Separability in the DWT context means that we can compute the 1-levels 2D-DWT
+href="#Xsayood2017introduction">3</a>&#x005D;</span> Except in very special cases, all 2D-DWT implementations use
+separable &#xFB01;lters by simplicity. The Figure&#x00A0;<a 
+href="#x1-9001r8">8<!--tex4ht:ref: fig:2D-DWT_basis --></a> show an example of basis functions used by
+a <!--l. 318--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>3</mn></math>-levels
+2D-DWT.
+</p>
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<div class="tabular"> <table id="TBL-5" class="tabular" 
+ 
+><colgroup id="TBL-5-1g"><col 
+id="TBL-5-1" /><col 
+id="TBL-5-2" /><col 
+id="TBL-5-3" /><col 
+id="TBL-5-4" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-5-1-"><td  style="text-align:center; white-space:nowrap;" id="TBL-5-1-1"  
+class="td11"> <div style="text-align:center;"> <img width=200 src="LL3.png" /> </div>   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-1-2"  
+class="td11"> <div style="text-align:center;"> <img width=200 src="LH3.png" /> </div>   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-1-3"  
+class="td11"> <div style="text-align:center;"> <img width=200 src="LH2.png" /> </div>   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-1-4"  
+class="td11"> <div style="text-align:center;"> <img width=200 src="HH1.png" /> </div>   </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-2-"><td  style="text-align:center; white-space:nowrap;" id="TBL-5-2-1"  
+class="td11"> <div style="text-align:center;"> <img width=200 src="HL3.png" /> </div>  </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-2-2"  
+class="td11"> <div style="text-align:center;"> <img width=200 src="HH3.png" /> </div>  </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-2-3"  
+class="td11"> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-2-4"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-3-"><td  style="text-align:center; white-space:nowrap;" id="TBL-5-3-1"  
+class="td11"> <div style="text-align:center;"> <img width=200 src="HL2.png" /> </div>   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-3-2"  
+class="td11">   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-3-3"  
+class="td11"> <div style="text-align:center;"> <img width=200 src="HH2.png" /> </div>   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-3-4"  
+class="td11">   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-4-"><td  style="text-align:center; white-space:nowrap;" id="TBL-5-4-1"  
+class="td11"> <div style="text-align:center;"> <img width=200 src="HL1.png" /> </div>   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-4-2"  
+class="td11">   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-4-3"  
+class="td11">   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-5-4-4"  
+class="td11"> <div style="text-align:center;"> <img width=200 src="HH1.png" /> </div>   </td></tr></table></div><a 
+ id="x1-9001r8"></a>
+<a 
+ id="x1-9002"></a>
+<br />                                                                  <div class="caption" 
+><span class="id">
+Figure&#x00A0;8: </span><span  
+class="content">2D-DWT basis functions &#x0028;see this notebook&#x0029;.
+</span></div><!--tex4ht:label?: x1-9001r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+<!--l. 332--><p class="indent" >   Separability in the DWT context means that we can compute the 1-levels 2D-DWT
 using the 1D &#xFB01;lters, by applying them to each dimension, and using <a 
 href="https://en.wikipedia.org/wiki/In-place_algorithm" >in-place</a> operations.
 This procedure has been described in the Algorithms&#x00A0;<a 
-href="#x1-9001r1">1.1<!--tex4ht:ref: alg:Rows-DWT --></a>, <a 
-href="#x1-9002r2">1.2<!--tex4ht:ref: alg:Columns-DWT --></a> and <a 
-href="#x1-9003r3">1.3<!--tex4ht:ref: alg:2D-DWT --></a>, where
-<!--l. 325--><math 
+href="#x1-9003r1">1.1<!--tex4ht:ref: alg:Rows-DWT --></a>, <a 
+href="#x1-9004r2">1.2<!--tex4ht:ref: alg:Columns-DWT --></a> and <a 
+href="#x1-9005r3">1.3<!--tex4ht:ref: alg:2D-DWT --></a>, where
+<!--l. 338--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -1338,15 +1393,15 @@ display="inline" ><msub><mrow
 class="MathClass-punc">,</mo><mo 
 class="MathClass-bin">&#x2217;</mo></mrow></msub 
 ></math> refers to the
-<!--l. 325--><math 
+<!--l. 338--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >r</mi></math>-th row of
-the matrix <!--l. 326--><math 
+the matrix <!--l. 339--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >X</mi></math>
-and <!--l. 326--><math 
+and <!--l. 339--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -1356,28 +1411,28 @@ class="MathClass-bin">&#x2217;</mo><mo
 class="MathClass-punc">,</mo><mi 
 >c</mi></mrow></msub 
 ></math> to the
-<!--l. 326--><math 
+<!--l. 339--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >c</mi></math>-th column,
-being <!--l. 326--><math 
+being <!--l. 339--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >R</mi></math>
-and <!--l. 326--><math 
+and <!--l. 339--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >C</mi></math>
 the number of rows and columns of the input image
-<!--l. 327--><math 
+<!--l. 340--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >X</mi></math>. See
 also the Fig.&#x00A0;<a 
-href="#x1-9004r8">8<!--tex4ht:ref: fig:2D-DWT --></a>.
+href="#x1-9006r9">9<!--tex4ht:ref: fig:2D-DWT --></a>.
 <a 
- id="x1-9001r1"></a>
-<!--l. 335--><p class="noindent" ></p><div class="minipage"><span 
+ id="x1-9003r1"></a>
+<!--l. 348--><p class="noindent" ></p><div class="minipage"><span 
 class="ecbx-1000">Algorithm 1.1:</span> <span 
 class="eccc1000-"><span 
 class="small-caps">&#x0052;</span><span 
@@ -1387,11 +1442,11 @@ class="small-caps">&#x0073;</span><span
 class="small-caps">&#x002D;</span><span 
 class="small-caps">&#x0044;</span><span 
 class="small-caps">&#x0057;</span><span 
-class="small-caps">&#x0054;</span></span>&#x0028;<!--l. 330--><math 
+class="small-caps">&#x0054;</span></span>&#x0028;<!--l. 343--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >X</mi></math>&#x0029;<br 
-class="newline" /> <!--l. 330--><math 
+class="newline" /> <!--l. 343--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" > <mtable  align="axis" style=""  
 equalrows="false" columnlines="none" equalcolumns="false" class="array"> <mtr><mtd 
@@ -1430,11 +1485,8 @@ class="MathClass-open">&#x0028;</mo><mi
 >X</mi><mo 
 class="MathClass-close">&#x0029;</mo>                  </mtd></mtr><!--@{\pcode@tab {1}}lr@{}--></mtable>                                                      </math></div>
 <a 
- id="x1-9002r2"></a>
-                                                                  
-
-                                                                  
-<!--l. 342--><p class="noindent" ></p><div class="minipage"><span 
+ id="x1-9004r2"></a>
+<!--l. 355--><p class="noindent" ></p><div class="minipage"><span 
 class="ecbx-1000">Algorithm</span>
 <span 
 class="ecbx-1000">1.2:</span> <span 
@@ -1449,11 +1501,11 @@ class="small-caps">&#x0073;</span><span
 class="small-caps">&#x002D;</span><span 
 class="small-caps">&#x0044;</span><span 
 class="small-caps">&#x0057;</span><span 
-class="small-caps">&#x0054;</span></span>&#x0028;<!--l. 337--><math 
+class="small-caps">&#x0054;</span></span>&#x0028;<!--l. 350--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >X</mi></math>&#x0029;<br 
-class="newline" /> <!--l. 337--><math 
+class="newline" /> <!--l. 350--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" > <mtable  align="axis" style=""  
 equalrows="false" columnlines="none" equalcolumns="false" class="array"> <mtr><mtd 
@@ -1492,8 +1544,8 @@ class="MathClass-open">&#x0028;</mo><mi
 >X</mi><mo 
 class="MathClass-close">&#x0029;</mo>                  </mtd></mtr><!--@{\pcode@tab {1}}lr@{}--></mtable>                                                      </math></div>
 <a 
- id="x1-9003r3"></a>
-<!--l. 354--><p class="noindent" ></p><div class="minipage"><span 
+ id="x1-9005r3"></a>
+<!--l. 367--><p class="noindent" ></p><div class="minipage"><span 
 class="ecbx-1000">Algorithm 1.3:</span> <span 
 class="eccc1000-"><span 
 class="small-caps">&#x0032;</span><span 
@@ -1501,11 +1553,11 @@ class="small-caps">&#x0044;</span><span
 class="small-caps">&#x002D;</span><span 
 class="small-caps">&#x0044;</span><span 
 class="small-caps">&#x0057;</span><span 
-class="small-caps">&#x0054;</span></span>&#x0028;<!--l. 344--><math 
+class="small-caps">&#x0054;</span></span>&#x0028;<!--l. 357--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >X</mi></math>&#x0029;<br 
-class="newline" /> <!--l. 344--><math 
+class="newline" /> <!--l. 357--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" > <mtable  align="axis" style=""  
 equalrows="false" columnlines="none" equalcolumns="false" class="array"> <mtr><mtd 
@@ -1539,32 +1591,32 @@ class="MathClass-close">&#x0029;</mo>                 </mtd></mtr><!--@{\pcode@t
                                                                   
 
                                                                   
-<div class="tabular"> <table id="TBL-8" class="tabular" 
+<div class="tabular"> <table id="TBL-9" class="tabular" 
  
-><colgroup id="TBL-8-1g"><col 
-id="TBL-8-1" /><col 
-id="TBL-8-2" /><col 
-id="TBL-8-3" /><col 
-id="TBL-8-4" /></colgroup><tr  
- style="vertical-align:baseline;" id="TBL-8-1-"><td  style="text-align:center; white-space:nowrap;" id="TBL-8-1-1"  
-class="td11"> <!--l. 359--><p class="noindent" ><div style="text-align:center;"> <img width=200 src="graphics/rows_DWT.svg" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-8-1-2"  
-class="td11"> <!--l. 359--><p class="noindent" ><div style="text-align:center;"> <img width=200 src="graphics/2D-DWT.svg" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-8-1-3"  
-class="td11"> <!--l. 359--><p class="noindent" ><div style="text-align:center;"> <img width=200 src="graphics/n-levels-2D-DWT.svg" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-8-1-4"  
-class="td11"> <!--l. 359--><p class="noindent" ><div style="text-align:center;"> <img width=200 src="graphics/resolutions.svg" /> </div>                                                                    </p></td>
+><colgroup id="TBL-9-1g"><col 
+id="TBL-9-1" /><col 
+id="TBL-9-2" /><col 
+id="TBL-9-3" /><col 
+id="TBL-9-4" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-9-1-"><td  style="text-align:center; white-space:nowrap;" id="TBL-9-1-1"  
+class="td11"> <!--l. 372--><p class="noindent" ><div style="text-align:center;"> <img width=200 src="graphics/rows_DWT.svg" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-9-1-2"  
+class="td11"> <!--l. 372--><p class="noindent" ><div style="text-align:center;"> <img width=200 src="graphics/2D-DWT.svg" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-9-1-3"  
+class="td11"> <!--l. 372--><p class="noindent" ><div style="text-align:center;"> <img width=200 src="graphics/n-levels-2D-DWT.svg" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-9-1-4"  
+class="td11"> <!--l. 372--><p class="noindent" ><div style="text-align:center;"> <img width=200 src="graphics/resolutions.svg" /> </div>                                                                    </p></td>
 </tr><tr  
- style="vertical-align:baseline;" id="TBL-8-2-"><td  style="text-align:center; white-space:nowrap;" id="TBL-8-2-1"  
-class="td11">                                 &#x0028;a&#x0029;                                                    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-8-2-2"  
-class="td11">                                 &#x0028;b&#x0029;                                                    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-8-2-3"  
-class="td11">                                 &#x0028;c&#x0029;                                                    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-8-2-4"  
+ style="vertical-align:baseline;" id="TBL-9-2-"><td  style="text-align:center; white-space:nowrap;" id="TBL-9-2-1"  
+class="td11">                                 &#x0028;a&#x0029;                                                    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-9-2-2"  
+class="td11">                                 &#x0028;b&#x0029;                                                    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-9-2-3"  
+class="td11">                                 &#x0028;c&#x0029;                                                    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-9-2-4"  
 class="td11">                                 &#x0028;d&#x0029;                                                    </td></tr></table>
 </div> <a 
- id="x1-9004r8"></a>
+ id="x1-9006r9"></a>
 <a 
- id="x1-9005"></a>
+ id="x1-9007"></a>
 <br />                                                                  <div class="caption" 
 ><span class="id">
-Figure&#x00A0;8: </span><span  
-class="content">Decomposition generated by <!--l. 374--><math 
+Figure&#x00A0;9: </span><span  
+class="content">Decomposition generated by <!--l. 387--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mstyle 
@@ -1576,14 +1628,14 @@ class="MathClass-open">&#x0028;</mo><mi
 class="MathClass-close">&#x0029;</mo></math>.
 In the Sub&#xFB01;g.&#x00A0;&#x0028;a&#x0029;, the rows of the image has been transformed using the 1-levels
 &#x0028;1D&#x0029; DWT &#x0028;this is the output of the Alg.&#x00A0;<a 
-href="#x1-9001r1">1.1<!--tex4ht:ref: alg:Rows-DWT --></a>&#x0029;. In the Sub&#xFB01;g.&#x00A0;&#x0028;b&#x0029;, the columns
+href="#x1-9003r1">1.1<!--tex4ht:ref: alg:Rows-DWT --></a>&#x0029;. In the Sub&#xFB01;g.&#x00A0;&#x0028;b&#x0029;, the columns
 of  the  previously  rows-transformed  image  has  been  also  transformed  using
 the 1-levels DWT &#x0028;this is the output of the Alg.&#x00A0;<a 
-href="#x1-9002r2">1.2<!--tex4ht:ref: alg:Columns-DWT --></a>&#x0029; applied to the previous
+href="#x1-9004r2">1.2<!--tex4ht:ref: alg:Columns-DWT --></a>&#x0029; applied to the previous
 data.  Sub&#xFB01;g.&#x00A0;&#x0028;b&#x0029;  is  also  the  output  of  the  Alg.&#x00A0;<a 
-href="#x1-9003r3">1.3<!--tex4ht:ref: alg:2D-DWT --></a>  applied  to  the  initial
+href="#x1-9005r3">1.3<!--tex4ht:ref: alg:2D-DWT --></a>  applied  to  the  initial
 image. In the Sub&#xFB01;g.&#x00A0;&#x0028;c&#x0029; the 1-levels 2D-DWT has been also applied to the
-LL<!--l. 374--><math 
+LL<!--l. 387--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ></mrow><mrow 
@@ -1592,16 +1644,16 @@ display="inline" ><msup><mrow
 subband, generating a 2-levels 2D decomposition. In the Sub&#xFB01;g.&#x00A0;&#x0028;d&#x0029; a simpli&#xFB01;ed
 representation  of  Sub&#xFB01;g.&#x00A0;&#x0028;c&#x0029;  has  been  used,  where  the  di&#xFB00;erent  spatial
 resolution levels are highlighted.
-</span></div><!--tex4ht:label?: x1-9004r1 -->
+</span></div><!--tex4ht:label?: x1-9006r1 -->
                                                                   
 
                                                                   
    </div><hr class="endfigure" />
-<!--l. 378--><p class="indent" >   As it can be seen in the Fig&#x00A0;<a 
-href="#x1-9004r8">8<!--tex4ht:ref: fig:2D-DWT --></a>, the obtained 2D decomposition is expressed by </p><table class="equation"><tr><td>
+<!--l. 391--><p class="indent" >   As it can be seen in the Fig&#x00A0;<a 
+href="#x1-9006r9">9<!--tex4ht:ref: fig:2D-DWT --></a>, the obtained 2D decomposition is expressed by </p><table class="equation"><tr><td>
 <a 
- id="x1-9006r9"></a>
-<!--l. 379--><math 
+ id="x1-9008r9"></a>
+<!--l. 392--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
@@ -1621,15 +1673,15 @@ class="MathClass-open">&#x0028;</mo><mi
 class="MathClass-close">&#x0029;</mo><mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;9&#x0029;</td></tr></table>
-<!--l. 388--><p class="indent" >   where <!--l. 388--><math 
+<!--l. 401--><p class="indent" >   where <!--l. 401--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >L</mi></math> stands for low-pass
-&#xFB01;ltering and <!--l. 388--><math 
+&#xFB01;ltering and <!--l. 401--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >H</mi></math> for high-pass
-&#xFB01;ltering. Notice that <!--l. 389--><math 
+&#xFB01;ltering. Notice that <!--l. 402--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >LL</mtext></mstyle> <mo 
@@ -1638,7 +1690,7 @@ class="MathClass-rel">=</mo><msup><mrow
 class="text"><mtext  >LL</mtext></mstyle></mrow><mrow 
 ><mn>1</mn></mrow></msup 
 ></math>,
-<!--l. 390--><math 
+<!--l. 403--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >LH</mtext></mstyle> <mo 
@@ -1647,7 +1699,7 @@ class="MathClass-rel">=</mo><msup><mrow
 class="text"><mtext  >LH</mtext></mstyle></mrow><mrow 
 ><mn>1</mn></mrow></msup 
 ></math>,
-<!--l. 390--><math 
+<!--l. 403--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >HL</mtext></mstyle> <mo 
@@ -1656,7 +1708,7 @@ class="MathClass-rel">=</mo><msup><mrow
 class="text"><mtext  >HL</mtext></mstyle></mrow><mrow 
 ><mn>1</mn></mrow></msup 
 ></math>, and
-<!--l. 391--><math 
+<!--l. 404--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >HH</mtext></mstyle> <mo 
@@ -1665,11 +1717,11 @@ class="MathClass-rel">=</mo><msup><mrow
 class="text"><mtext  >HH</mtext></mstyle></mrow><mrow 
 ><mn>1</mn></mrow></msup 
 ></math>.
-</p><!--l. 393--><p class="indent" >   Eq.&#x00A0;<a 
-href="#x1-9006r9">9<!--tex4ht:ref: eq:2D-DWT --></a> describes the <!--l. 393--><math 
+</p><!--l. 406--><p class="indent" >   Eq.&#x00A0;<a 
+href="#x1-9008r9">9<!--tex4ht:ref: eq:2D-DWT --></a> describes the <!--l. 406--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>1</mn></math>-levels
-&#x0028;analysis&#x0029; 2D-DWT. Replacing <!--l. 394--><math 
+&#x0028;analysis&#x0029; 2D-DWT. Replacing <!--l. 407--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >LL</mtext></mstyle> <mo 
@@ -1680,7 +1732,7 @@ class="MathClass-rel">=</mo> <msup><mrow
 >s</mi><mo 
 class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
 ></math>,
-<!--l. 394--><math 
+<!--l. 407--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >X</mi> <mo 
@@ -1690,7 +1742,7 @@ class="MathClass-rel">=</mo> <msup><mrow
 ><mi 
 >s</mi></mrow></msup 
 ></math>, and
-<!--l. 395--><math 
+<!--l. 408--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
 class="MathClass-open">&#x007B;</mo><mstyle 
@@ -1707,11 +1759,11 @@ class="MathClass-rel">=</mo> <msup><mrow
 >s</mi><mo 
 class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
 ></math> in the previous
-expression, the <!--l. 396--><math 
+expression, the <!--l. 409--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >S</mi></math>-levels
-2D-DWT of <!--l. 396--><math 
+2D-DWT of <!--l. 409--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mi 
@@ -1720,7 +1772,7 @@ display="inline" ><msup><mrow
 > <mo 
 class="MathClass-rel">=</mo> <mi 
 >X</mi></math>
-&#x0028;<!--l. 396--><math 
+&#x0028;<!--l. 409--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mstyle 
@@ -1734,13 +1786,13 @@ class="MathClass-open">&#x0028;</mo><msup><mrow
 ><mn>0</mn></mrow></msup 
 ><mo 
 class="MathClass-close">&#x0029;</mo></math>&#x0029; can be computed
-applying <!--l. 397--><math 
+applying <!--l. 410--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >S</mi></math>-times
 </p><table class="equation"><tr><td> <a 
- id="x1-9007r10"></a>
-<!--l. 398--><math 
+ id="x1-9009r10"></a>
+<!--l. 411--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                     <mo 
@@ -1769,7 +1821,7 @@ class="MathClass-open">&#x0028;</mo><msup><mrow
 ><mo 
 class="MathClass-close">&#x0029;</mo>
 </math></td><td class="eq-no">&#x0028;10&#x0029;</td></tr></table>
-<!--l. 401--><p class="indent" >   to the low-frequency subband <!--l. 401--><math 
+<!--l. 414--><p class="indent" >   to the low-frequency subband <!--l. 414--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mi 
@@ -1777,9 +1829,9 @@ display="inline" ><msup><mrow
 ><mi 
 >s</mi></mrow></msup 
 ></math>.
-As  an  example,  the  Fig.&#x00A0;<a 
-href="#x1-9008r9">9<!--tex4ht:ref: fig:lena_2D-DWT --></a>  shows  the
-<!--l. 402--><math 
+As an example, the Fig.&#x00A0;<a 
+href="#x1-9010r10">10<!--tex4ht:ref: fig:lena_2D-DWT --></a> shows the
+<!--l. 415--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>3</mn></math>-levels
 2D-DWT of the image lena.
@@ -1795,30 +1847,30 @@ display="inline" ><mn>3</mn></math>-levels
                                                                   
 
                                                                   
-<div class="tabular"> <table id="TBL-10" class="tabular" 
+<div class="tabular"> <table id="TBL-11" class="tabular" 
  
-><colgroup id="TBL-10-1g"><col 
-id="TBL-10-1" /><col 
-id="TBL-10-2" /><col 
-id="TBL-10-3" /></colgroup><tr  
- style="vertical-align:baseline;" id="TBL-10-1-"><td  style="text-align:center; white-space:nowrap;" id="TBL-10-1-1"  
-class="td11"> <!--l. 408--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="lena.png" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-10-1-2"  
-class="td11"> <!--l. 408--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="dwt_lena.png" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-10-1-3"  
-class="td11"> <!--l. 408--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="dwt_lena_normalized.png" /> </div>                                                                    </p></td>
+><colgroup id="TBL-11-1g"><col 
+id="TBL-11-1" /><col 
+id="TBL-11-2" /><col 
+id="TBL-11-3" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-11-1-"><td  style="text-align:center; white-space:nowrap;" id="TBL-11-1-1"  
+class="td11"> <!--l. 421--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="lena.png" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-11-1-2"  
+class="td11"> <!--l. 421--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="dwt_lena.png" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-11-1-3"  
+class="td11"> <!--l. 421--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="dwt_lena_normalized.png" /> </div>                                                                    </p></td>
 </tr><tr  
- style="vertical-align:baseline;" id="TBL-10-2-"><td  style="text-align:center; white-space:nowrap;" id="TBL-10-2-1"  
-class="td11">                                 &#x0028;a&#x0029;                                                    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-10-2-2"  
-class="td11">                                 &#x0028;b&#x0029;                                                    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-10-2-3"  
+ style="vertical-align:baseline;" id="TBL-11-2-"><td  style="text-align:center; white-space:nowrap;" id="TBL-11-2-1"  
+class="td11">                                 &#x0028;a&#x0029;                                                    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-11-2-2"  
+class="td11">                                 &#x0028;b&#x0029;                                                    </td><td  style="text-align:center; white-space:nowrap;" id="TBL-11-2-3"  
 class="td11">                                 &#x0028;c&#x0029;                                                    </td></tr></table>
 </div> <a 
- id="x1-9008r9"></a>
+ id="x1-9010r10"></a>
 <a 
- id="x1-9009"></a>
+ id="x1-9011"></a>
 <br />                                                                  <div class="caption" 
 ><span class="id">
-Figure&#x00A0;9:        </span><span  
+Figure&#x00A0;10:        </span><span  
 class="content">Sub&#xFB01;g.&#x00A0;&#x0028;a&#x0029;:        the        Lena        image.        Sub&#xFB01;g.&#x00A0;&#x0028;b&#x0029;:
-<!--l. 415--><math 
+<!--l. 428--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mstyle 
@@ -1828,7 +1880,7 @@ class="text"><mtext  >2D-DWT</mtext></mstyle></mrow><mrow
 class="MathClass-open">&#x0028;</mo><mstyle 
 class="text"><mtext  >Lena</mtext></mstyle><mo 
 class="MathClass-close">&#x0029;</mo></math>&#x2019;s
-decomposition. Sub&#xFB01;g.&#x00A0;&#x0028;c&#x0029;: <!--l. 415--><math 
+decomposition. Sub&#xFB01;g.&#x00A0;&#x0028;c&#x0029;: <!--l. 428--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mstyle 
@@ -1840,14 +1892,14 @@ class="text"><mtext  >Lena</mtext></mstyle><mo
 class="MathClass-close">&#x0029;</mo></math>&#x2019;s
 normalized decomposition. See <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/08-2D-DWT/dwt_lena.ipynb" >this notebook</a>.
-</span></div><!--tex4ht:label?: x1-9008r1 -->
+</span></div><!--tex4ht:label?: x1-9010r1 -->
                                                                   
 
                                                                   
    </div><hr class="endfigure" />
    <h5 class="subsubsectionHead"><span class="titlemark">1.3.1   </span> <a 
  id="x1-100001.3.1"></a>Multiresolution</h5>
-<!--l. 420--><p class="noindent" >Similarly to the 1D case, a <!--l. 420--><math 
+<!--l. 433--><p class="noindent" >Similarly to the 1D case, a <!--l. 433--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mstyle 
@@ -1858,24 +1910,24 @@ class="text"><mtext  >2D-DWT</mtext></mstyle></mrow><mrow
 class="MathClass-open">&#x0028;</mo><mo 
 class="MathClass-bin">&#x22C5;</mo><mo 
 class="MathClass-close">&#x0029;</mo></math>
-provides <!--l. 420--><math 
+provides <!--l. 433--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >S</mi> <mo 
 class="MathClass-bin">+</mo> <mn>1</mn></math>
 spatial resolution levels. An example of this can be seen in the Sub&#xFB01;g.&#x00A0;<a 
-href="#x1-9004r8">8<!--tex4ht:ref: fig:2D-DWT --></a>-&#x0028;d&#x0029;, where
+href="#x1-9006r9">9<!--tex4ht:ref: fig:2D-DWT --></a>-&#x0028;d&#x0029;, where
 there are 3 possible resolutions. In the Sub&#xFB01;g.&#x00A0;<a 
-href="#x1-9008r9">9<!--tex4ht:ref: fig:lena_2D-DWT --></a> there are 4 resolutions.
-</p><!--l. 426--><p class="noindent" >
+href="#x1-9010r10">10<!--tex4ht:ref: fig:lena_2D-DWT --></a> there are 4 resolutions.
+</p><!--l. 439--><p class="noindent" >
 </p>
    <h5 class="subsubsectionHead"><span class="titlemark">1.3.2   </span> <a 
  id="x1-110001.3.2"></a>Quantization</h5>
-<!--l. 427--><p class="noindent" >To &#xFB01;nd the gains in the 2D case we can compute the energy of the signal
+<!--l. 440--><p class="noindent" >To &#xFB01;nd the gains in the 2D case we can compute the energy of the signal
 generated by the inverse transform of the unitary impulse discrete 2D signal </p><table class="equation"><tr><td>
 <a 
  id="x1-11001r11"></a>
-<!--l. 430--><math 
+<!--l. 443--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation"><msub><mrow 
 >
@@ -1909,15 +1961,15 @@ class="array"  columnalign="left">  <mstyle
 class="text"><mtext  >otherwise</mtext></mstyle> <mo 
 class="MathClass-punc">,</mo></mtd></mtr> <!--ll--></mtable>                                                            </mrow><mo fence="true" form="postfix"></mo></mrow>
 </math></td><td class="eq-no">&#x0028;11&#x0029;</td></tr></table>
-<!--l. 439--><p class="indent" >   where the <a 
+<!--l. 452--><p class="indent" >   where the <a 
 href="https://en.wikipedia.org/wiki/Energy_(signal_processing)" >energy of a discrete signal</a>
-<!--l. 441--><math 
+<!--l. 454--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >x</mi></math> is
 de&#xFB01;ned as </p><table class="equation"><tr><td> <a 
  id="x1-11002r12"></a>
-<!--l. 442--><math 
+<!--l. 455--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                           <mo 
@@ -1944,34 +1996,34 @@ class="MathClass-punc">.</mo>
                                                                   
 
                                                                   
-<!--l. 446--><p class="indent" >   Notice that &#x0028;see the Fig.&#x00A0;<a 
-href="#x1-9008r9">9<!--tex4ht:ref: fig:lena_2D-DWT --></a>&#x0029; the low-frequency subbands concentrate
+<!--l. 459--><p class="indent" >   Notice that &#x0028;see the Fig.&#x00A0;<a 
+href="#x1-9010r10">10<!--tex4ht:ref: fig:lena_2D-DWT --></a>&#x0029; the low-frequency subbands concentrate
 more of the energy &#x0028;and the visual information&#x0029;. Therefore, given a target
 bit-rate, these subbands are going to contribute more the the quality of the
 reconstruction.
-</p><!--l. 450--><p class="noindent" >
+</p><!--l. 463--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
  id="x1-120001.4"></a>Motion DWT</h4>
-<!--l. 452--><p class="noindent" >The <a 
+<!--l. 465--><p class="noindent" >The <a 
 href="https://sistemas-multimedia.github.io/milestones/06-2D-DWT/" >2D-DWT</a> can a used on sequences of frames &#x0028;images&#x0029; by
 simply iterating as it is described in the Algorithm&#x00A0;<a 
 href="#x1-12001r4">1.4<!--tex4ht:ref: alg:MDWT --></a>&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xtaubman2002jpeg2000">4</a>&#x005D;</span>.
-<!--l. 456--><math 
+<!--l. 469--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >N</mi></math> is the number of
-frames in the sequence <!--l. 457--><math 
+frames in the sequence <!--l. 470--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >V</mi> </math>,
-and <!--l. 457--><math 
+and <!--l. 470--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >S</mi></math>
 the number of levels. The synthesis transform is computed using the
-2D-DWT<!--l. 458--><math 
+2D-DWT<!--l. 471--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ></mrow><mrow 
@@ -1981,19 +2033,19 @@ class="MathClass-bin">&#x2212;</mo><mi
 ></math>.
 <a 
  id="x1-12001r4"></a>
-<!--l. 464--><p class="noindent" ></p><div class="minipage"><span 
+<!--l. 477--><p class="noindent" ></p><div class="minipage"><span 
 class="ecbx-1000">Algorithm</span>
 <span 
-class="ecbx-1000">1.4:</span> <!--l. 460--><math 
+class="ecbx-1000">1.4:</span> <!--l. 473--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
-class="text"><mtext  >&#x004D;&#x0044;&#x0057;&#x0054;</mtext></mstyle></math>&#x0028;<!--l. 460--><math 
+class="text"><mtext  >&#x004D;&#x0044;&#x0057;&#x0054;</mtext></mstyle></math>&#x0028;<!--l. 473--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >V</mi><mo 
 class="MathClass-punc">,</mo><mi 
 >S</mi></math>&#x0029;<br 
-class="newline" /> <!--l. 460--><math 
+class="newline" /> <!--l. 473--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" > <mtable  align="axis" style=""  
 equalrows="false" columnlines="none" equalcolumns="false" class="array"> <mtr><mtd 
@@ -2026,23 +2078,23 @@ class="MathClass-open">&#x0028;</mo><msub><mrow
 >i</mi></mrow></msub 
 ><mo 
 class="MathClass-close">&#x0029;</mo> </mtd></mtr><!--@{\pcode@tab {1}}lr@{}--></mtable>                                                    </math></div>
-</p><!--l. 466--><p class="indent" >   In the Fig.&#x00A0;<a 
-href="#x1-12002r10">10<!--tex4ht:ref: fig:MDWT --></a> there is an example of the decomposition generated for three frames
-<!--l. 467--><math 
+</p><!--l. 479--><p class="indent" >   In the Fig.&#x00A0;<a 
+href="#x1-12002r11">11<!--tex4ht:ref: fig:MDWT --></a> there is an example of the decomposition generated for three frames
+<!--l. 480--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
 >V</mi> </mrow><mrow 
 ><mn>0</mn></mrow></msub 
 ></math>,
-<!--l. 467--><math 
+<!--l. 480--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
 >V</mi> </mrow><mrow 
 ><mn>1</mn></mrow></msub 
 ></math> and
-<!--l. 467--><math 
+<!--l. 480--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -2058,14 +2110,14 @@ display="inline" ><msub><mrow
                                                                   
 
                                                                   
-<!--l. 471--><p class="noindent" ><div style="text-align:center;"> <img width=600 src="graphics/forward_MDWT.svg" /> </div>  <a 
- id="x1-12002r10"></a>
+<!--l. 484--><p class="noindent" ><div style="text-align:center;"> <img width=600 src="graphics/forward_MDWT.svg" /> </div>  <a 
+ id="x1-12002r11"></a>
 <a 
  id="x1-12003"></a>
 <br />                                                                  </p><div class="caption" 
 ><span class="id">
-Figure&#x00A0;10: </span><span  
-class="content">Decomposition generated by <!--l. 472--><math 
+Figure&#x00A0;11: </span><span  
+class="content">Decomposition generated by <!--l. 485--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >MDWT</mtext></mstyle><mo 
@@ -2100,18 +2152,18 @@ class="MathClass-close">&#x0029;</mo></math>.</span></div><!--tex4ht:label?: x1-
    </div><hr class="endfigure" />
    <h5 class="subsubsectionHead"><span class="titlemark">1.4.1   </span> <a 
  id="x1-130001.4.1"></a>Multiresolution</h5>
-<!--l. 477--><p class="noindent" >The <!--l. 477--><math 
+<!--l. 490--><p class="noindent" >The <!--l. 490--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle 
 class="text"><mtext  >MDWT</mtext></mstyle></math>
 provides dyadic spatial multiresolution and full temporal multiresolution.
-</p><!--l. 480--><p class="noindent" >
+</p><!--l. 493--><p class="noindent" >
 </p>
    <h5 class="subsubsectionHead"><span class="titlemark">1.4.2   </span> <a 
  id="x1-140001.4.2"></a>Quantization</h5>
-<!--l. 481--><p class="noindent" >As usually, we can use </p><table class="equation"><tr><td> <a 
+<!--l. 494--><p class="noindent" >As usually, we can use </p><table class="equation"><tr><td> <a 
  id="x1-14001r13"></a>
-<!--l. 482--><math 
+<!--l. 495--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                        <msub><mrow 
@@ -2135,7 +2187,7 @@ class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msub
 ><mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;13&#x0029;</td></tr></table>
-<!--l. 485--><p class="indent" >   where <!--l. 485--><math 
+<!--l. 498--><p class="indent" >   where <!--l. 498--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -2143,25 +2195,25 @@ display="inline" ><msub><mrow
 ><mi 
 >i</mi></mrow></msub 
 ></math> is the quantization
-step used for the <!--l. 485--><math 
+step used for the <!--l. 498--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >i</mi></math>-th
 frame of the sequence. However, notice that this quantization pattern does not
 necessaryly optimizes the RD tradeo&#xFB00;. The RD curves of each frame should be taken
 into consideration in order to perform a good rate-control.
-</p><!--l. 491--><p class="noindent" >
+</p><!--l. 504--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-150002"></a>What do I have to do?</h3>
-<!--l. 493--><p class="noindent" >Please, using <a 
+<!--l. 506--><p class="noindent" >Please, using <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DWT/dwt_filters_analysis.ipynb" >this notebook</a>, determine the frequency and phase responses
 of the <a 
 href="http://wavelets.pybytes.com/wavelet/db20/" >Daubechies 20</a> and <a 
 href="http://wavelets.pybytes.com/wavelet/bior6.8/" >Biorthogonal-6.8</a> &#xFB01;lters. Determine also their
 relative gains, using the energy of the signal resulting of applying the
 synthesis transform to the impulse signal. The energy of a signal
-<!--l. 500--><math 
+<!--l. 513--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >x</mi></mstyle></math> is
@@ -2170,7 +2222,7 @@ found by </p><table class="equation"><tr><td> <a
                                                                   
 
                                                                   
-<!--l. 501--><math 
+<!--l. 514--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                           <mo 
@@ -2194,17 +2246,17 @@ class="MathClass-rel">=</mo><munder class="msub"><mrow
 ><mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;14&#x0029;</td></tr></table>
-<!--l. 505--><p class="noindent" >
+<!--l. 518--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-160003"></a>Timming</h3>
-<!--l. 507--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 509--><p class="noindent" >
+<!--l. 520--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 522--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-170004"></a>Deliverables</h3>
-<!--l. 511--><p class="noindent" >None.
-</p><!--l. 513--><p class="noindent" >
+<!--l. 524--><p class="noindent" >None.
+</p><!--l. 526--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-180005"></a>Resources</h3>
