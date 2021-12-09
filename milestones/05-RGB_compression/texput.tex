@@ -61,8 +61,8 @@ Quantizers can be classifies into:
   index ${\mathbf k}_i$ by each input sample ${\mathbf x}_i$.
 \item \textbf{Vector quantizers}: that process the input by blocks of
   samples, called vectors, producing a quantization index by vector.
-  Usually, the length of the quantization index is much shorter than
-  the length of the vector, generating the compression. Vector
+  Usually, the lengths of the quantization indexes are much shorter than
+  the lengths of the vectors, generating the compression. Vector
   Quantization (VQ) can remove auto-correlation in the encoded signal
   and therefore, is more efficient than Scalar Quantization
   (SQ). Unfortunately, the computational requirements of VQ are, by
@@ -79,7 +79,7 @@ Quantizers can be classifies into:
 Quantizers can also be classified in:
 \begin{enumerate}
 \item \textbf{Uniform quantizers}: those in which $\Delta$ is
-  idependent on the amplitude of the samples.
+  independent on the amplitude of the samples.
 \item \textbf{Non-unifom quantizers}: on the contrary, when $\Delta$
   depends (directly or indirectly) on the amplitude of the samples. An
   example is a
@@ -112,7 +112,8 @@ Finally, quantizers can be classified as:
     x}_i=0$. Deadzone quantizers tends to remove the
   \href{https://en.wikipedia.org/wiki/Noise_(electronics)}{electronic
     noise} (that usually has a small amplitude compared to the input
-  signal ${\mathbf x}$).\footnote{Notice that dead-zone quantizers
+  signal ${\mathbf x}$), precisely where the signal-to-noise ratio is
+  lowest.\footnote{Notice that, by definition, dead-zone quantizers
     should not be consdered uniform, and that all dead-zone
     quantizers, by definition, are mid-tread.}
 \item \textbf{No dead-zone quantizers}, when the dead-zone does not

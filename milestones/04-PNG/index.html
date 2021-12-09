@@ -39,7 +39,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">December 7, 2021</span></div>
+class="ecrm-1200">December 9, 2021</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -136,22 +136,35 @@ display="inline" ><msup><mrow
 ></math>
 is the &#x0028;pixels&#x0029; <span 
 class="ecti-1000">values domain</span>, with dimension &#x0028;number of pixel components&#x0029;
-<!--l. 32--><math 
+<!--l. 33--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >k</mi></math>&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xburger2016digital">1</a>&#x005D;</span>.
-</p><!--l. 35--><p class="indent" >   Depending on the <!--l. 35--><math 
+href="#Xburger2016digital">1</a>&#x005D;</span>. Notice that
+<!--l. 33--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
->k</mi></math>, we
-can have grayscale pixels &#x0028;<!--l. 35--><math 
+>k</mi></math> is not related to the
+3D coordinates <!--l. 34--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x0028;</mo><mi 
+>t</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>y</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>x</mi><mo 
+class="MathClass-close">&#x0029;</mo></math>.
+</p><!--l. 36--><p class="indent" >   Depending on the <!--l. 36--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>k</mi></math>, we can have
+grayscale pixels &#x0028;<!--l. 36--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >k</mi> <mo 
-class="MathClass-rel">=</mo> <mn>1</mn></math>&#x0029;
-or  color  &#x0028;panchromatic&#x0029;  pixels
-&#x0028;<!--l. 36--><math 
+class="MathClass-rel">=</mo> <mn>1</mn></math>&#x0029; or color pixels
+&#x0028;<!--l. 37--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >k</mi> <mo 
@@ -160,16 +173,16 @@ href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a
  id="x1-2001f1"></a> 
 Finally, if we take into consideration the number of bits/component &#x0028;usually 8, although
 this value can be larger specially for grayscale images&#x0029;, the pixel-depth will be
-<!--l. 40--><math 
+<!--l. 41--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>8</mn></math> bits/pixel for
-grayscale sequences or <!--l. 40--><math 
+grayscale sequences or <!--l. 42--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>3</mn> <mo 
 class="MathClass-bin">&#x00D7;</mo> <mn>8</mn> <mo 
 class="MathClass-rel">=</mo> <mn>2</mn><mn>4</mn></math>
 bits/pixel for color ones.
-</p><!--l. 43--><p class="indent" >   We are going to store a video as a sequence of <a 
+</p><!--l. 44--><p class="indent" >   We are going to store a video as a sequence of <a 
 href="https://en.wikipedia.org/wiki/Computer_file" >&#xFB01;les</a> with names &#x003C;pre&#xFB01;x&#x003E;000.png,
 &#x003C;pre&#xFB01;x&#x003E;001.png, ..., where &#x003C;pre&#xFB01;x&#x003E; speci&#xFB01;es the video name and &#x201C;.png&#x201D;
 indicates that the frames are coded using the <a 
@@ -191,7 +204,7 @@ href="https://en.wikipedia.org/wiki/YUV" >color transform</a> is used. We will u
 href="https://vicente-gonzalez-ruiz.github.io/PNG/" >PNG</a> basically as an <a 
 href="https://en.wikipedia.org/wiki/Entropy_encoding" >entropy
 codec</a>.
-</p><!--l. 74--><p class="indent" >   Finally, notice that all the frames of a video usually:
+</p><!--l. 75--><p class="indent" >   Finally, notice that all the frames of a video usually:
      </p><ol  class="enumerate1" >
      <li 
   class="enumerate" id="x1-2003x1">Have the same <a 
@@ -204,20 +217,20 @@ href="https://en.wikipedia.org/wiki/RGB_color_model" >RGB domain</a>.
      <li 
   class="enumerate" id="x1-2007x3">Depending on the frame, each color component &#x0028;channel&#x0029; has <a 
 href="https://en.wikipedia.org/wiki/Glossary_of_computer_graphics#bit_depth" >bit depth</a> of
-     <!--l. 83--><math 
+     <!--l. 84--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>8</mn></math>
-     or <!--l. 83--><math 
+                                                                  
+
+                                                                  
+     or <!--l. 84--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>1</mn><mn>6</mn></math>
      bits, representing an unsigned <a 
 href="https://en.wikipedia.org/wiki/Integer_(computer_science)" >integer</a>.</li></ol>
-                                                                  
-
-                                                                  
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-30002"></a>What do I have to do?</h3>
-<!--l. 96--><p class="noindent" >
+<!--l. 97--><p class="noindent" >
      </p><ol  class="enumerate1" >
      <li 
   class="enumerate" id="x1-3002x1">Download <a 
@@ -227,17 +240,17 @@ href="https://github.com/Sistemas-Multimedia/MRVC" >MRVC</a>, preferably cloning
   class="enumerate" id="x1-3004x2">Run this <a 
 href="https://jupyter.org/" >jupyter</a> <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/04-PNG/display_video.ipynb" >notebook</a> that shows how to read and write frames.</li></ol>
-<!--l. 105--><p class="noindent" >
+<!--l. 106--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-40003"></a>Timming</h3>
-<!--l. 107--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 109--><p class="noindent" >
+<!--l. 108--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 110--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-50004"></a>Deliverables</h3>
-<!--l. 111--><p class="noindent" >None.
-</p><!--l. 113--><p class="noindent" >
+<!--l. 112--><p class="noindent" >None.
+</p><!--l. 114--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-60005"></a>Resources</h3>
@@ -256,6 +269,9 @@ class="ecti-1000">Introduction Using Java</span></a>. Springer, 2016.
 href="https://www.w3.org/TR/PNG/" >Portable Network Graphics &#x0028;PNG&#x0029;
    Speci&#xFB01;cation</a>. <span 
 class="ecti-1000">https://www.w3.org/TR/PNG/</span>, 2003.
+                                                                  
+
+                                                                  
    </p>
    <p class="bibitem" ><span class="biblabel">
  &#x005B;3&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
@@ -263,9 +279,6 @@ class="ecti-1000">https://www.w3.org/TR/PNG/</span>, 2003.
 href="http://index-of.co.uk/Information-Theory/The%20Data%20Compression%20Book%202nd%20Ed%20-%20Mark%20Nelson.pdf" ><span 
 class="ecti-1000">The Data Compression Book</span></a>.  M&#x0026;T Books,
    1996.
-                                                                  
-
-                                                                  
    </p>
    <p class="bibitem" ><span class="biblabel">
  &#x005B;4&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 

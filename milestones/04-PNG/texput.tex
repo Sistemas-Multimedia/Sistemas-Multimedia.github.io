@@ -29,16 +29,17 @@ In the digital world, a video can be denoted by
 \end{equation*}
 where $t$ is a temporal coordinate, $(y,x)$ is a spatial coordinate,
 and $\mathbb{P}^{k}$ is the (pixels) \emph{values domain}, with
-dimension (number of pixel components) $k$~\cite{burger2016digital}.
+dimension (number of pixel components)
+$k$~\cite{burger2016digital}. Notice that $k$ is not related to the 3D
+coordinates $(t, y, x)$.
 
-
-Depending on the $k$, we can have grayscale pixels ($k=1$) or
-color (panchromatic) pixels ($k=3$).\footnote{When $k>3$ we use the
-term ``super/hyper-spectral'' pixels/images/videos.} Finally, if we
-take into consideration the number of bits/component (usually 8,
-although this value can be larger specially for grayscale images), the
-pixel-depth will be $8$ bits/pixel for grayscale sequences or $3\times
-8=24$ bits/pixel for color ones.
+Depending on the $k$, we can have grayscale pixels ($k=1$) or color
+pixels ($k=3$).\footnote{When $k>3$ we use the term
+  ``super/hyper-spectral'' pixels/images/videos.} Finally, if we take
+into consideration the number of bits/component (usually 8, although
+this value can be larger specially for grayscale images), the
+pixel-depth will be $8$ bits/pixel for grayscale sequences or
+$3\times 8=24$ bits/pixel for color ones.
 
 We are going to store a video as a sequence of
 \href{https://en.wikipedia.org/wiki/Computer_file}{files} with names
