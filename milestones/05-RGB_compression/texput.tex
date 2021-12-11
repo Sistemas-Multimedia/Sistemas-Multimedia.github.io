@@ -167,7 +167,9 @@ the energy of the signal is very close to 0.
 \end{figure}
 \end{comment}
 
-This \href{https://github.com/vicente-gonzalez-ruiz/quantization/blob/master/digital_quantization.ipynb}{notebook} describes the behaviour of some scalar quantizers.
+This
+\href{https://github.com/vicente-gonzalez-ruiz/quantization/blob/master/digital_quantization.ipynb}{notebook}
+describes the behaviour of some scalar quantizers.
 %Figs.~\ref{fig:iomap_mr}, \ref{fig:qe_mr}, \ref{fig:iomap_mt},
 %\ref{fig:qe_mt}, \ref{fig:iomap_dz}, and \ref{fig:qe_dz} describe the
 %behaviour of 3 different quantizers.  Use this
@@ -186,8 +188,10 @@ not be sampled with suﬃcient density while at the same time colors are
 represented that do not appear in the image at
 all~\cite{burger2016digital}.
 
-On the other hand, VQ does not treat the individual color components
-separately as does scalar quantization, but each color vector
+On the other hand, VQ does not treat the individual RGB (sometimes
+also refered by
+\href{https://en.wikipedia.org/wiki/Color_image}{channel}s separately
+as does scalar quantization, but each color vector
 ${\mathbf C}_i = ({\mathbf R}_i, {\mathbf G}_i, {\mathbf B}_i )$ (or
 pixel) in the image is treated as a single entity. Starting from a set
 of original color tuples ${\mathbf C} = \{c_1, c_2, \ldots ,c_m\}$,
@@ -210,22 +214,20 @@ the task of vector quantization is:
 Another key aspect to take into consideration is that the problem
 previously mentioned about the under-optimality when quantizing
 directly in the RGB domain can be minimized when the values of each
-color component are decorrelated (using for example a color transform
+channel are decorrelated (using for example a color transform
 as we will see in a future milestone), requesting less computation
 than VQ.
 
 \subsection{Quantization in the RGB domain}
 Supposing that we are using a static uniform dead-zone quantizer, a
-color RGB image can be quantized, component (sometimes also refered by
-\href{https://en.wikipedia.org/wiki/Color_image}{channel} in the case
-of the RGB images) by component, using quantization steps
-$\Delta_{\text{R}}$, $\Delta_{\text{G}}$, and $\Delta_{\text{B}}$. A
-reasonable question that arises here is: given a target bit-rate $R$
-for the compressed frame, how the quantization steps should be chosen
-to minimize the distortion? At this point we can consider two
-different optimization perspectives. In the first one, we consider
-strictly visual considerations, and obviously, any alternative
-different from
+color RGB image can be quantized, channel by channel, using
+quantization steps $\Delta_{\text{R}}$, $\Delta_{\text{G}}$, and
+$\Delta_{\text{B}}$. A reasonable question that arises here is: given
+a target bit-rate $R$ for the compressed frame, how the quantization
+steps should be chosen to minimize the distortion? At this point we
+can consider two different optimization perspectives. In the first
+one, we consider strictly visual considerations, and obviously, any
+alternative different from
 \begin{equation}
   \Delta_{\text{R}} = \Delta_{\text{G}} = \Delta_{\text{B}}
   \label{eq:simple_Q}
@@ -264,7 +266,7 @@ where $\lambda$ quantifies the trade-off between decreasing the
 distortion\footnote{For this reason, the slopes are negative.} while
 the bit-rate increases. Notice that, the higher the slope, the higher
 the benefit in terms of RD. If we suppose now that the contribution to
-the quality of each component is additive, that is
+the quality of each channel is additive, that is
 \begin{equation}
   D = D_{\text{R}} + D_{\text{G}} + D_{\text{B}},
 \end{equation}
@@ -276,13 +278,14 @@ satisfy that~\cite{vetterli1995wavelets,sayood2017introduction}
 \end{equation}
 
 To see this, lets suppose that we have used, for example, a set of QSs
-so that $\lambda_{\text{R}}/2 = \lambda_{\text{G}} =
-\lambda_{\text{B}},$ and that we still have room for more bits to
-encode the frame. In this situation, the maximum benefit would be
-obtained if and only if we decrease $\Delta_{\text{R}}$, because the
-slope for the red component doubles the slope of the other
-curves. Therefore, the optimal QSs are obtained when
-Eq.~\ref{eq:optimal_quantization} is true. This can be seen in this
+so that
+$\lambda_{\text{R}}/2 = \lambda_{\text{G}} = \lambda_{\text{B}},$ and
+that we still have room for more bits to encode the frame. In this
+situation, the maximum benefit would be obtained if and only if we
+decrease $\Delta_{\text{R}}$, because the slope for the red channel
+doubles the slope of the other curves. Therefore, the optimal QSs are
+obtained when Eq.~\ref{eq:optimal_quantization} is true. This can be
+seen in this
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-RGB_compression/RGB_compression.ipynb}{notebook}.
 
 As it has been indicated, the previous quantization steps pattern (see
@@ -292,10 +295,10 @@ realize that such relation between the quantization steps can be
 determined because the contribution to the distortion satisfy two key
 properties:
 \begin{enumerate}
-\item The contributions of the components are independent, and
+\item The contributions of the channels are independent, and
   therefore, the total distortion is a linear combination of
   individual distortions.
-\item The constribution to the distortion of each component is exactly
+\item The constribution to the distortion of each channel is exactly
   the same.
 \end{enumerate}
 
@@ -307,14 +310,14 @@ operate in the curves with the same RD slope,
   \label{eq:optimal_quantization}
 \end{equation}
 for a given total bit-rate $R$, which implies that the contribution of
-each component (the ratio between quality and bit-rate) to the quality
+each channel (the ratio between quality and bit-rate) to the quality
 of $\tilde{x}$ has been highest
 possible~\cite{vetterli1995wavelets,sayood2017introduction}.
 
 Unfortunately, the previous procedure implies the computation of the
-RD curve for each component, which is a time-consuming operation. For
-this reason, and supposing that the statistics of each component are
-similar and therefore, each component is going to generate a RD curve
+RD curve for each channel, which is a time-consuming operation. For
+this reason, and supposing that the statistics of each channel are
+similar and therefore, each channel is going to generate a RD curve
 with the same slopes for the same QSs, we can suppose that
 Eq.~\ref{eq:simple_Q} satisfies Eq.~\ref{eq:optimal_quantization}.
 \end{comment}
