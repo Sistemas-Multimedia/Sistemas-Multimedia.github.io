@@ -231,20 +231,18 @@ class="MathClass-punc">.</mo> </mtd></mtr> <!--ll--></mtable>                   
 <!--l. 48--><p class="indent" >   The transformed signal is a sequence of coe&#xFB03;cients
 <!--l. 48--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><msub><mrow 
-><mstyle mathvariant="bold"><mi 
->h</mi></mstyle></mrow><mrow 
-><mi 
->u</mi></mrow></msub 
-></math> with the same length
+display="inline" ><mstyle mathvariant="bold"><mi 
+>h</mi></mstyle><mo 
+class="MathClass-open">&#x005B;</mo><mi 
+>u</mi><mo 
+class="MathClass-close">&#x005D;</mo></math> with the same length
 than the original signal <!--l. 49--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><msub><mrow 
-><mstyle mathvariant="bold"><mi 
->g</mi></mstyle></mrow><mrow 
-><mi 
->x</mi></mrow></msub 
-></math>,
+display="inline" ><mstyle mathvariant="bold"><mi 
+>g</mi></mstyle><mo 
+class="MathClass-open">&#x005B;</mo><mi 
+>n</mi><mo 
+class="MathClass-close">&#x005D;</mo></math>,
 and the position of the coe&#xFB03;cients in the transform domain indicate the contribution
 of such coe&#xFB03;cient to the corresponding &#x0028;in this case, spatial&#x0029; frequency. For example,
 the coe&#xFB03;cient at the position 0 &#x0028;that is commonly refered as DC &#x0028;Direct Current&#x0029;&#x0029; is
@@ -306,8 +304,9 @@ display="inline" ><mstyle mathvariant="bold"><mi
 the case of the DCT, <!--l. 73--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
->K</mi></mstyle></math>
-and therefore, <!--l. 73--><math 
+>K</mi></mstyle></math> is
+<a 
+href="https://en.wikipedia.org/wiki/Orthogonal_matrix" >orthogonal</a> and therefore, <!--l. 75--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mstyle mathvariant="bold"><mi 
@@ -321,7 +320,7 @@ class="MathClass-rel">=</mo><msup><mrow
 ><mstyle 
 class="text"><mtext  >T</mtext></mstyle></mrow></msup 
 ></math>,
-where <!--l. 74--><math 
+where <!--l. 76--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" > <msup><mrow 
 ><mo 
@@ -329,15 +328,15 @@ class="MathClass-bin">&#x22C5;</mo></mrow><mrow
 ><mstyle 
 class="text"><mtext  >T</mtext></mstyle></mrow></msup 
 ></math> denotes
-the transpose of <!--l. 75--><math 
+the transpose of <!--l. 76--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >K</mi></mstyle></math>.
-</p><!--l. 77--><p class="noindent" >
+</p><!--l. 78--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.2   </span> <a 
  id="x1-40001.2"></a>The 2D-DCT</h4>
-<!--l. 79--><p class="noindent" >The 2D-DCT is separable, which means that it can be computed by appliying the
+<!--l. 80--><p class="noindent" >The 2D-DCT is separable, which means that it can be computed by appliying the
 1D-DCT to the two dimensions of the signal. For the inverse 2D-DCT, the procedure
 is similar, but appliying the inverse 1D-DWT in reverse order. The Fig.&#x00A0;<a 
 href="#x1-4001r1">1<!--tex4ht:ref: fig:2D-DCT_basis --></a> show the
@@ -352,7 +351,7 @@ href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/
                                                                   
 
                                                                   
-<!--l. 88--><p class="noindent" ><div style="text-align:center;"> <img width=600 src="2D-DCT_basis.png" /> </div>  <a 
+<!--l. 89--><p class="noindent" ><div style="text-align:center;"> <img width=600 src="2D-DCT_basis.png" /> </div>  <a 
  id="x1-4001r1"></a>
 <a 
  id="x1-4002"></a>
@@ -366,36 +365,41 @@ class="content">First 64 2D-DCT basis functions.                             </s
    </div><hr class="endfigure" />
    <h4 class="subsectionHead"><span class="titlemark">1.3   </span> <a 
  id="x1-50001.3"></a>Block-based transform coding</h4>
-<!--l. 95--><p class="noindent" >The DCT is usually applied by 2D blocks which, in most of the previous image and
-video compression standards are of 8x8 pixels. This a direct consequence of that,
-usually the DCT losses compaction e&#xFB03;ciency when the block size is increased
-&#x0028;although this depends on the signal characteristics&#x0029;. When the coe&#xFB03;cients of several
-blocks are considered together, they form a <a 
-href="https://en.wikipedia.org/wiki/Sub-band_coding" >subband</a>, and the collection of subbands,
-a <a 
+<!--l. 96--><p class="noindent" >The DCT is usually applied by 2D blocks which, in most of
+the previous image and video compression standards are of
+<!--l. 97--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mn>8</mn> <mo 
+class="MathClass-bin">&#x00D7;</mo> <mn>8</mn></math>
+pixels. This a direct consequence of that, usually the DCT losses compaction
+e&#xFB03;ciency when the block size is increased &#x0028;although this depends on the signal
+characteristics&#x0029;. When the coe&#xFB03;cients of several blocks are considered together,
+they form a <a 
+href="https://en.wikipedia.org/wiki/Sub-band_coding" >subband</a>, and the collection of subbands, a <a 
 href="https://en.wikipedia.org/wiki/Discrete_wavelet_transform" >decomposition</a>&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvetterli2014foundations">3</a>&#x005D;</span>, and the <a 
+href="#Xvetterli2014foundations">3</a>&#x005D;</span>,
+and the <a 
 href="https://en.wikipedia.org/wiki/Array_data_structure#Element_identifier_and_addressing_formulas" >index</a> of the subband is related to the <a 
-href="https://en.wikipedia.org/wiki/Frequency" >frequency</a> of the
-signal. For example, in the case of the <a 
+href="https://en.wikipedia.org/wiki/Frequency" >frequency</a> of the signal. For
+example, in the case of the <a 
 href="https://en.wikipedia.org/wiki/Digital_image" >images</a>, the position of the <a 
 href="https://en.wikipedia.org/wiki/Coefficient" >coe&#xFB03;cients</a> in the
 subbands is related to <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/block_DCT_compression.ipynb" >the spatial area where the corresponding pixels are
 found</a>.
-</p><!--l. 116--><p class="indent" >   The DCT is orthonormal &#x0028;orthogonal + unitary&#x0029;. Orthonormal transforms are
-energy preserving; that is, the sum of the squares of the transformed sequence is the
-same as the sum of the squares of the original sequence.
-</p><!--l. 121--><p class="noindent" >
+</p><!--l. 117--><p class="indent" >   The DCT is <a 
+href="https://en.wikipedia.org/wiki/Orthonormality" >orthonormal</a> &#x0028;orthogonal + unitary&#x0029;. Unitary transforms are energy
+preserving; that is, the sum of the squares of the transformed sequence is the same as
+the sum of the squares of the original sequence.
+</p><!--l. 123--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
  id="x1-60001.4"></a>Quantization in the &#x0028;spatial&#x0029; DCT domain</h4>
-<!--l. 123--><p class="noindent" >The DCT is orthonormal, which implies that the gain of each block-based
-2D-DWT subband is equal to 1, and also that the quantization error
-is <span 
-class="ecti-1000">ampli&#xFB01;cated </span>with the same gain in all the subbands. However, this
-does not mean that all the subbands should be quantized using the same
-<!--l. 127--><math 
+<!--l. 125--><p class="noindent" >Since the DCT is orthonormal, the gain of each block-based 2D-DWT subband is equal
+to 1, and also that the quantization error is <span 
+class="ecti-1000">ampli&#xFB01;cated </span>with the same gain in all the
+subbands. However, this does not mean that all the subbands should be quantized using
+the same <!--l. 129--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x0394;</mi></math>,
@@ -404,28 +408,28 @@ because some subbands can be compressed more e&#xFB03;cienly than others and the
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/block_DCT_compression.ipynb" >notebook</a> shows how to use RD
 optimization to determine, given a target bit-rate, the best combination of
 quantization steps per subbands.
-</p><!--l. 134--><p class="noindent" >
+</p><!--l. 135--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-70002"></a>What do I have to do?</h3>
-<!--l. 135--><p class="noindent" >With the aim of checking that distortion can be measured in both, the transform and
+<!--l. 136--><p class="noindent" >With the aim of checking that distortion can be measured in both, the transform and
 the image &#x0028;RGB&#x0029; domain, extend the previous <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/block_DCT_compression.ipynb" >notebook</a> to compute the distortion in
 the RGB domain. Check that the result is the same.
-</p><!--l. 141--><p class="noindent" >
+</p><!--l. 142--><p class="noindent" >
 </p>
-   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
- id="x1-80003"></a>Timming</h3>
                                                                   
 
                                                                   
-<!--l. 143--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 145--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-80003"></a>Timming</h3>
+<!--l. 144--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 146--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-90004"></a>Deliverables</h3>
-<!--l. 147--><p class="noindent" >None.
-</p><!--l. 149--><p class="noindent" >
+<!--l. 148--><p class="noindent" >None.
+</p><!--l. 150--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-100005"></a>Resources</h3>
