@@ -67,25 +67,27 @@ href="#x1-100005" id="QQ2-1-10">Resources</a></span>
  id="x1-30001.1"></a>Decorrelating with the <a 
 href="https://en.wikipedia.org/wiki/Discrete_cosine_transform" >DCT &#x0028;Discrete Cosine Transform&#x0029;</a></h4>
 <!--l. 13--><p class="noindent" >Transforms concentrate &#x0028;compact&#x0029; information &#x0028;that can be estimated through the
-variance of the entropy&#x0029; in a few output coe&#xFB03;cients by decorrelating the input
+<a 
+href="https://en.wikipedia.org/wiki/Variance" >variance</a> or the <a 
+href="https://en.wikipedia.org/wiki/Entropy" >entropy</a>&#x0029; in a few output coe&#xFB03;cients by decorrelating the input
 samples&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xsayood2017introduction">2</a>&#x005D;</span>. Such energy concentration can be used to &#xFB01;nd good compression
 schemes. In this milestone, we will use DCT to remove the spatial redundancy in the
-components of an image.
-</p><!--l. 20--><p class="indent" >   Notice that the DCT is used in some of the most succesful image and video
-compressors, such as <a 
+components of an image. Notice that the DCT is used in some of the most
+succesful image and video compressors, such as <a 
 href="https://en.wikipedia.org/wiki/JPEG" >JPEG</a> and <a 
 href="https://en.wikipedia.org/wiki/Advanced_Video_Coding" >H.264</a>, <a 
-href="https://en.wikipedia.org/wiki/Advanced_Video_Coding" >HEVC</a> and <a 
+href="https://en.wikipedia.org/wiki/Advanced_Video_Coding" >HEVC</a> and
+<a 
 href="https://en.wikipedia.org/wiki/Versatile_Video_Coding" >VVC</a>.
 </p><!--l. 27--><p class="indent" >   In the 1D case, the forward DCT for a signal
 <!--l. 27--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
->g</mi><mo 
-class="MathClass-open">&#x0028;</mo><mi 
+display="inline" ><mstyle mathvariant="bold"><mi 
+>g</mi></mstyle><mo 
+class="MathClass-open">&#x005B;</mo><mi 
 >n</mi><mo 
-class="MathClass-close">&#x0029;</mo></math> of length
+class="MathClass-close">&#x005D;</mo></math> of length
 <!--l. 28--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
@@ -95,13 +97,12 @@ href="#Xburger2016digital">1</a>&#x005D;</span> </p><table class="equation"><tr>
  id="x1-3001r1"></a>
 <!--l. 29--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="block" class="equation"><msub><mrow 
->
-               <mstyle mathvariant="bold"><mi 
->h</mi></mstyle></mrow><mrow 
-><mi 
->u</mi></mrow></msub 
-> <mo 
+display="block" class="equation">
+             <mstyle mathvariant="bold"><mi 
+>h</mi></mstyle><mo 
+class="MathClass-open">&#x005B;</mo><mi 
+>u</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
 class="MathClass-rel">=</mo> <msqrt><mrow> <mfrac> <mrow 
 > <mn>2</mn></mrow>
 <mrow 
@@ -111,23 +112,20 @@ class="MathClass-rel">=</mo> <msqrt><mrow> <mfrac> <mrow
 >&#x2211;</mo>
   </mrow><mrow 
 ><mi 
->x</mi><mo 
+>n</mi><mo 
 class="MathClass-rel">=</mo><mn>0</mn></mrow><mrow 
 ><mi 
 >N</mi><mo 
 class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></munderover 
-><msub><mrow 
 ><mstyle mathvariant="bold"><mi 
->g</mi></mstyle></mrow><mrow 
->
-<mi 
->x</mi></mrow></msub 
-><msub><mrow 
-><mi 
->C</mi></mrow><mrow 
-><mi 
->u</mi></mrow></msub 
-><mi class="qopname"> cos</mi><mo> &ApplyFunction;<!--FUNCTION APPLICATION--> </mo><!--nolimits--><mstyle mathsize="1.61em"><mrow><mo fence="true" form="prefix"> (</mo><mrow></mrow><mo fence="true" form="postfix"></mo></mrow></mstyle><mi 
+>g</mi></mstyle><mo 
+class="MathClass-open">&#x005B;</mo><mi 
+>x</mi><mo 
+class="MathClass-close">&#x005D;</mo><mstyle mathvariant="bold"><mi 
+>c</mi></mstyle><mo 
+class="MathClass-open">&#x005B;</mo><mi 
+>u</mi><mo 
+class="MathClass-close">&#x005D;</mo><mi class="qopname">cos</mi><mo> &ApplyFunction;<!--FUNCTION APPLICATION--> </mo><!--nolimits--><mstyle mathsize="1.61em"><mrow><mo fence="true" form="prefix"> (</mo><mrow></mrow><mo fence="true" form="postfix"></mo></mrow></mstyle><mi 
 >&#x03C0;</mi><mfrac><mrow 
 ><mi 
 >u</mi><mo 
@@ -151,13 +149,12 @@ and the inverse transform is </p><table class="equation"><tr><td> <a
  id="x1-3002r2"></a>
 <!--l. 34--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="block" class="equation"><msub><mrow 
->
-               <mstyle mathvariant="bold"><mi 
->g</mi></mstyle></mrow><mrow 
-><mi 
->x</mi></mrow></msub 
-> <mo 
+display="block" class="equation">
+             <mstyle mathvariant="bold"><mi 
+>g</mi></mstyle><mo 
+class="MathClass-open">&#x005B;</mo><mi 
+>n</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
 class="MathClass-rel">=</mo> <msqrt><mrow> <mfrac> <mrow 
 > <mn>2</mn></mrow>
 <mrow 
@@ -172,18 +169,15 @@ class="MathClass-rel">=</mo><mn>0</mn></mrow><mrow
 ><mi 
 >N</mi><mo 
 class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></munderover 
-><msub><mrow 
 ><mstyle mathvariant="bold"><mi 
->h</mi></mstyle></mrow><mrow 
->
-<mi 
->u</mi></mrow></msub 
-><msub><mrow 
-><mi 
->C</mi></mrow><mrow 
-><mi 
->u</mi></mrow></msub 
-><mi class="qopname"> cos</mi><mo> &ApplyFunction;<!--FUNCTION APPLICATION--> </mo><!--nolimits--><mstyle mathsize="1.61em"><mrow><mo fence="true" form="prefix"> (</mo><mrow></mrow><mo fence="true" form="postfix"></mo></mrow></mstyle><mi 
+>h</mi></mstyle><mo 
+class="MathClass-open">&#x005B;</mo><mi 
+>u</mi><mo 
+class="MathClass-close">&#x005D;</mo><mstyle mathvariant="bold"><mi 
+>c</mi></mstyle><mo 
+class="MathClass-open">&#x005B;</mo><mi 
+>u</mi><mo 
+class="MathClass-close">&#x005D;</mo><mi class="qopname">cos</mi><mo> &ApplyFunction;<!--FUNCTION APPLICATION--> </mo><!--nolimits--><mstyle mathsize="1.61em"><mrow><mo fence="true" form="prefix"> (</mo><mrow></mrow><mo fence="true" form="postfix"></mo></mrow></mstyle><mi 
 >&#x03C0;</mi><mfrac><mrow 
 ><mi 
 >u</mi><mo 
@@ -210,13 +204,12 @@ with </p><table class="equation"><tr><td> <a
                                                                   
 <!--l. 39--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="block" class="equation"><msub><mrow 
->
-<mi 
->c</mi></mrow><mrow 
-><mi 
->u</mi></mrow></msub 
-> <mo 
+display="block" class="equation">
+<mstyle mathvariant="bold"><mi 
+>c</mi></mstyle><mo 
+class="MathClass-open">&#x005B;</mo><mi 
+>u</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
 class="MathClass-rel">=</mo> <mrow><mo fence="true" form="prefix"> {</mo><mrow> <mtable  align="axis" style=""  
 equalrows="false" columnlines="none" equalcolumns="false" class="array"> <mtr><mtd 
 class="array"  columnalign="left">   <mfrac><mrow 
@@ -225,9 +218,10 @@ class="array"  columnalign="left">   <mfrac><mrow
 ><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></mfrac>  </mtd><mtd 
 class="array"  columnalign="left">  <mspace width="1em" class="quad"/><mstyle 
 class="text"><mtext  >for</mtext></mstyle><mi 
+>&#x00A0;</mi><mi 
 >u</mi> <mo 
 class="MathClass-rel">=</mo> <mn>0</mn><mo 
-class="MathClass-punc">,</mo>   </mtd>
+class="MathClass-punc">,</mo> </mtd>
 </mtr>  <mtr><mtd 
 class="array"  columnalign="left"> <mn>1</mn>    </mtd><mtd 
 class="array"  columnalign="left">  <mspace width="1em" class="quad"/><mstyle 
