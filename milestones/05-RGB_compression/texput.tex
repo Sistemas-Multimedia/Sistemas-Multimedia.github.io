@@ -121,7 +121,12 @@ Finally, quantizers can be classified as:
 \end{enumerate}
 
 Notice that the dead-zone is placed where the SNR is smaller, because
-the energy of the signal is very close to 0.
+the energy of the signal is very close to 0, where the
+\href{https://en.wikipedia.org/wiki/Energy_(signal_processing)}{energy
+  of a discrete signal} $x$ is defined as
+\begin{equation}
+  \langle x, x\rangle =  \sum_{i}{x_i^2}.
+\end{equation}
 
 \begin{comment}
 \begin{figure}

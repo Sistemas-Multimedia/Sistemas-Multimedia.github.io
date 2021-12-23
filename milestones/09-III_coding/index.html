@@ -3,7 +3,7 @@
 "http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd" > 
 <html xmlns="http://www.w3.org/1999/xhtml"  
 > 
-<head><title>Sistemas Multimedia - Study Guide - Milestone 9: IIII... coding</title> 
+<head><title>Sistemas Multimedia - Study Guide - Milestone 9: III... coding</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
 <meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
 <meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
@@ -22,7 +22,7 @@
 
 <h2 class="titleHead"><a 
 href="https://sistemas-multimedia.github.io/" >Sistemas Multimedia</a> - Study Guide - Milestone
-9: IIII... coding</h2>
+9: III... coding</h2>
  <div class="author" ><a 
 href="https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875" ><span 
 class="ecrm-1200">Vicente Gonz</span><span 
@@ -37,7 +37,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">December 6, 2021</span></div>
+class="ecrm-1200">December 18, 2021</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -45,17 +45,19 @@ class="ecrm-1200">December 6, 2021</span></div>
    &#x00A0;<span class="sectionToc" >1 <a 
 href="#x1-20001" id="QQ2-1-2">Description</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.1 <a 
-href="#x1-30001.1" id="QQ2-1-3">Intra-coding</a></span>
+href="#x1-30001.1" id="QQ2-1-3">Motion DWT</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.2 <a 
-href="#x1-40001.2" id="QQ2-1-4">Algorithm</a></span>
+href="#x1-40001.2" id="QQ2-1-4">Intra-coding</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.3 <a 
+href="#x1-50001.3" id="QQ2-1-5">Algorithm</a></span>
 <br />   &#x00A0;<span class="sectionToc" >2 <a 
-href="#x1-50002" id="QQ2-1-5">What do you have to do?</a></span>
+href="#x1-60002" id="QQ2-1-6">What do you have to do?</a></span>
 <br />   &#x00A0;<span class="sectionToc" >3 <a 
-href="#x1-60003" id="QQ2-1-6">Timming</a></span>
+href="#x1-70003" id="QQ2-1-7">Timming</a></span>
 <br />   &#x00A0;<span class="sectionToc" >4 <a 
-href="#x1-70004" id="QQ2-1-7">Deliverables</a></span>
+href="#x1-80004" id="QQ2-1-8">Deliverables</a></span>
 <br />   &#x00A0;<span class="sectionToc" >5 <a 
-href="#x1-80005" id="QQ2-1-8">Resources</a></span>
+href="#x1-90005" id="QQ2-1-9">Resources</a></span>
    </div>
 <!--l. 8--><p class="noindent" >
 </p>
@@ -64,35 +66,182 @@ href="#x1-80005" id="QQ2-1-8">Resources</a></span>
 <!--l. 10--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
- id="x1-30001.1"></a>Intra-coding</h4>
-<!--l. 12--><p class="noindent" >In the previous milestones we have studied how to compress images &#x0028;or frames in a
-sequence of video&#x0029;, performing both a color and a spatial transformation, and then,
-using PNG, performing RDO &#x0028;Rate/Distortion Optimization&#x0029;. In this milestone we
+ id="x1-30001.1"></a>Motion DWT</h4>
                                                                   
 
                                                                   
+<!--l. 12--><p class="noindent" >The <a 
+href="https://sistemas-multimedia.github.io/milestones/06-2D-DWT/" >2D-DWT</a> can a used on sequences of frames &#x0028;images&#x0029; by
+simply iterating as it is described in the Algorithm&#x00A0;<a 
+href="#x1-3001r1">1.1<!--tex4ht:ref: alg:MDWT --></a>&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xtaubman2002jpeg2000">1</a>&#x005D;</span>.
+<!--l. 16--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>N</mi></math> is the number of
+frames in the sequence <!--l. 17--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>V</mi> </math>,
+and <!--l. 17--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>S</mi></math>
+the number of levels. The synthesis transform is computed using the
+2D-DWT<!--l. 18--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mi 
+>S</mi></mrow></msup 
+></math>.
+<a 
+ id="x1-3001r1"></a>
+<!--l. 24--><p class="noindent" ></p><div class="minipage"><span 
+class="ecbx-1000">Algorithm</span>
+<span 
+class="ecbx-1000">1.1:</span> <!--l. 20--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle 
+class="text"><mtext  >&#x004D;&#x0044;&#x0057;&#x0054;</mtext></mstyle></math>&#x0028;<!--l. 20--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>V</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>S</mi></math>&#x0029;<br 
+class="newline" /> <!--l. 20--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" > <mtable  align="axis" style=""  
+equalrows="false" columnlines="none" equalcolumns="false" class="array"> <mtr><mtd 
+class="array"  columnalign="left"><mspace width="4.3045pt"/> <mstyle 
+class="mbox"><mtext  >for&#x00A0;</mtext></mstyle><mi 
+>i</mi> <mo 
+class="MathClass-rel">&#x2190;</mo> <mn>0</mn><mstyle 
+class="mbox"><mtext  >&#x00A0;to&#x00A0;</mtext></mstyle><mi 
+>N</mi> <mo 
+class="MathClass-bin">&#x2212;</mo> <mn>1</mn>          </mtd></mtr>  <mtr><mtd 
+class="array"  columnalign="left"><mspace width="4.3045pt"/>  <mspace width="4.3045pt"/> <mstyle 
+class="mbox"><mtext  >&#x00A0;do&#x00A0;</mtext></mstyle> <msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+>
+<mi 
+>i</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo><msup><mrow 
+> <mstyle 
+class="text"><mtext  >2D-DWT</mtext></mstyle></mrow><mrow 
+><mi 
+>S</mi></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+>
+<mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x0029;</mo> </mtd></mtr><!--@{\pcode@tab {1}}lr@{}--></mtable>                                                    </math></div>
+</p><!--l. 26--><p class="indent" >   In the Fig.&#x00A0;<a 
+href="#x1-3002r1">1<!--tex4ht:ref: fig:MDWT --></a> there is an example of the decomposition generated for three frames
+<!--l. 27--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mn>0</mn></mrow></msub 
+></math>,
+<!--l. 27--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mn>1</mn></mrow></msub 
+></math> and
+<!--l. 27--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mn>2</mn></mrow></msub 
+></math>.
+</p>
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!--l. 31--><p class="noindent" ><div style="text-align:center;"> <img width=600 src="graphics/forward_MDWT.svg" /> </div>  <a 
+ id="x1-3002r1"></a>
+<a 
+ id="x1-3003"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;1: </span><span  
+class="content">Decomposition generated by <!--l. 32--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle 
+class="text"><mtext  >MDWT</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x007B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mn>0</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-rel">&#x22EF;</mo><mspace width="0.17em" class="thinspace"/><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>N</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-punc">,</mo><mi 
+>S</mi> <mo 
+class="MathClass-rel">=</mo> <mn>1</mn><mo 
+class="MathClass-close">&#x0029;</mo></math>.</span></div><!--tex4ht:label?: x1-3002r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+   <h4 class="subsectionHead"><span class="titlemark">1.2   </span> <a 
+ id="x1-40001.2"></a>Intra-coding</h4>
+<!--l. 38--><p class="noindent" >In the previous milestones we have studied how to compress images &#x0028;or frames in a
+sequence of video&#x0029;, performing both a color and a spatial transformation, and then,
+using PNG, performing RDO &#x0028;Rate/Distortion Optimization&#x0029;. In this milestone we
 will learn how to perform RDO over a sequence of frames. Because each frame is
 encoded independently, we speak about I &#x0028;Intra-coded&#x0029; frames, and III... video
 coding.
-</p><!--l. 19--><p class="indent" >   In this milestone we consider the RDO of the sequence of frames.
-</p><!--l. 21--><p class="noindent" >
+</p><!--l. 45--><p class="indent" >   In this milestone we consider the RDO of the sequence of frames.
+</p><!--l. 47--><p class="noindent" >
 </p>
-   <h4 class="subsectionHead"><span class="titlemark">1.2   </span> <a 
- id="x1-40001.2"></a>Algorithm</h4>
-<!--l. 23--><p class="noindent" >Basically, we are going to:
+   <h4 class="subsectionHead"><span class="titlemark">1.3   </span> <a 
+ id="x1-50001.3"></a>Algorithm</h4>
+<!--l. 49--><p class="noindent" >Basically, we are going to:
      </p><ol  class="enumerate1" >
      <li 
-  class="enumerate" id="x1-4002x1">YCoCg-transform each frame of a GOF &#x0028;Group Of Frames&#x0029;, of length
-     <!--l. 25--><math 
+  class="enumerate" id="x1-5002x1">YCoCg-transform each frame of a GOF &#x0028;Group Of Frames&#x0029;, of length
+     <!--l. 51--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >G</mi></math>.
      </li>
      <li 
-  class="enumerate" id="x1-4004x2">DCT each YCoCg component.
+  class="enumerate" id="x1-5004x2">DCT each YCoCg component.
      </li>
      <li 
-  class="enumerate" id="x1-4006x3">Build the DCT subbands of each component, generating a decomposition of
+  class="enumerate" id="x1-5006x3">Build the DCT subbands of each component, generating a decomposition of
      subband-components. For example, for two &#x0028;usually consecutive&#x0029; frames <span class="obeylines-h"><span class="verb"><span 
 class="ectt-1000">A</span></span></span>, and
      <span class="obeylines-h"><span class="verb"><span 
@@ -112,33 +261,33 @@ class="ectt-1000">D_B</span></span></span> &#x0028;only subbands are showed&#x00
      |&#x00A0;A9&#x00A0;Aa&#x00A0;Ab&#x00A0;|&#x00A0;|&#x00A0;B9&#x00A0;Ba&#x00A0;Bb&#x00A0;|
      +----------+&#x00A0;+----------+
 </pre>
-     <!--l. 40--><p class="nopar" > where each subband has 3 &#x0028;YCoCg&#x0029; components. <span class="obeylines-h"><span class="verb"><span 
+     <!--l. 66--><p class="nopar" > where each subband has 3 &#x0028;YCoCg&#x0029; components. <span class="obeylines-h"><span class="verb"><span 
 class="ectt-1000">TF</span></span></span> stands for
      Transformed Frame. Notice that in this example we have a total of
-     <!--l. 43--><math 
+     <!--l. 69--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>3</mn> <mo 
 class="MathClass-bin">&#x2217;</mo> <mn>1</mn><mn>2</mn> <mo 
 class="MathClass-rel">=</mo> <mn>3</mn><mn>6</mn></math> subband-components.
-     If <!--l. 43--><math 
+     If <!--l. 69--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>5</mn></math>
      quantization steps were used, the total number of points in the RD curve per frame would
-     be <!--l. 45--><math 
+     be <!--l. 71--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>3</mn><mn>6</mn> <mo 
 class="MathClass-bin">&#x2217;</mo> <mn>5</mn> <mo 
 class="MathClass-rel">=</mo> <mn>1</mn><mn>8</mn><mn>0</mn></math>.
      Finally, the total number of RD points in the GOP would be
-     <!--l. 46--><math 
+     <!--l. 72--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>2</mn> <mo 
 class="MathClass-bin">&#x2217;</mo> <mn>1</mn><mn>8</mn><mn>0</mn> <mo 
 class="MathClass-rel">=</mo> <mn>3</mn><mn>6</mn><mn>0</mn></math>.
      </p></li>
      <li 
-  class="enumerate" id="x1-4008x4">Find the optimal progression of quantization steps combinations, considering the RD points
-     of the <!--l. 49--><math 
+  class="enumerate" id="x1-5008x4">Find the optimal progression of quantization steps combinations, considering the RD points
+     of the <!--l. 75--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >G</mi></math>
@@ -150,7 +299,7 @@ display="inline" ><mi
      subband-component.
      </li>
      <li 
-  class="enumerate" id="x1-4010x5">Concatenate in the vertical &#x0028;Y&#x0029; dimension the decompositions:
+  class="enumerate" id="x1-5010x5">Concatenate in the vertical &#x0028;Y&#x0029; dimension the decompositions:
                                                                   
 
                                                                   
@@ -167,17 +316,17 @@ display="inline" ><mi
      |&#x00A0;B9&#x00A0;Ba&#x00A0;Bb&#x00A0;|
      +----------+
 </pre>
-     <!--l. 70--><p class="nopar" > This is done basically to avoid using a new PNG header for each
+     <!--l. 96--><p class="nopar" > This is done basically to avoid using a new PNG header for each
      decomposition.</p></li></ol>
-<!--l. 76--><p class="noindent" >
+<!--l. 102--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
- id="x1-50002"></a>What do you have to do?</h3>
-<!--l. 78--><p class="noindent" >Please, create an experiment in which the frame quantization step is di&#xFB00;erent for
+ id="x1-60002"></a>What do you have to do?</h3>
+<!--l. 104--><p class="noindent" >Please, create an experiment in which the frame quantization step is di&#xFB00;erent for
 each frame of a sequence, and another experiment that uses the same quantization
 step for all the frames. Compute the average RD curves. Which one is better? Do you
 think that </p><table class="equation-star"><tr><td>
-<!--l. 82--><math 
+<!--l. 108--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                             <mi 
@@ -196,12 +345,12 @@ class="MathClass-rel">=</mo><munder class="msub"><mrow
 ><mo 
 class="MathClass-punc">,</mo>
 </math></td></tr></table>
-<!--l. 85--><p class="indent" >   where <!--l. 85--><math 
+<!--l. 111--><p class="indent" >   where <!--l. 111--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >D</mi></math>
 is the distortion generated for the complete sequence and
-<!--l. 86--><math 
+<!--l. 112--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mi 
@@ -209,7 +358,7 @@ display="inline" ><msub><mrow
 ><mi 
 >i</mi></mrow></msub 
 ></math> is the distortion
-only for the <!--l. 86--><math 
+only for the <!--l. 112--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >i</mi></math>-th
@@ -217,20 +366,30 @@ frame, holds?
                                                                   
 
                                                                   
-</p><!--l. 100--><p class="noindent" >
+</p><!--l. 126--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
- id="x1-60003"></a>Timming</h3>
-<!--l. 102--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 104--><p class="noindent" >
+ id="x1-70003"></a>Timming</h3>
+<!--l. 128--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 130--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
- id="x1-70004"></a>Deliverables</h3>
-<!--l. 106--><p class="noindent" >None.
-</p><!--l. 108--><p class="noindent" >
+ id="x1-80004"></a>Deliverables</h3>
+<!--l. 132--><p class="noindent" >None.
+</p><!--l. 134--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
- id="x1-80005"></a>Resources</h3>
+ id="x1-90005"></a>Resources</h3>
+   <div class="thebibliography">
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xtaubman2002jpeg2000"></a>D.S. Taubman and W.M. Marcellin.   <a 
+href="https://shorturl.at/rtvLZ" ><span 
+class="ecti-1000">JPEG2000. Image Compression</span>
+   <span 
+class="ecti-1000">Fundamentals, Standards and Practice</span></a>. Kluwer Academic Publishers, 2002.
+</p>
+   </div>
     
 </body></html> 
 
