@@ -37,7 +37,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">December 18, 2021</span></div>
+class="ecrm-1200">January 6, 2022</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -210,6 +210,35 @@ class="MathClass-close">&#x007D;</mo><mo
 class="MathClass-punc">,</mo><mi 
 >S</mi> <mo 
 class="MathClass-rel">=</mo> <mn>1</mn><mo 
+class="MathClass-close">&#x0029;</mo></math>
+and <!--l. 32--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle 
+class="text"><mtext  >MDCT</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x007B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mn>0</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-rel">&#x22EF;</mo><mspace width="0.17em" class="thinspace"/><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>N</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-punc">,</mo><mi 
+>S</mi> <mo 
+class="MathClass-rel">=</mo> <mn>1</mn><mo 
 class="MathClass-close">&#x0029;</mo></math>.</span></div><!--tex4ht:label?: x1-3002r1 -->
                                                                   
 
@@ -231,14 +260,13 @@ coding.
 <!--l. 49--><p class="noindent" >Basically, we are going to:
      </p><ol  class="enumerate1" >
      <li 
-  class="enumerate" id="x1-5002x1">YCoCg-transform each frame of a GOF &#x0028;Group Of Frames&#x0029;, of length
-     <!--l. 51--><math 
+  class="enumerate" id="x1-5002x1">YUV-transform each frame of a GOF &#x0028;Group Of Frames&#x0029;, of length <!--l. 51--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >G</mi></math>.
      </li>
      <li 
-  class="enumerate" id="x1-5004x2">DCT each YCoCg component.
+  class="enumerate" id="x1-5004x2">DCT each YUV component.
      </li>
      <li 
   class="enumerate" id="x1-5006x3">Build the DCT subbands of each component, generating a decomposition of
@@ -261,7 +289,7 @@ class="ectt-1000">D_B</span></span></span> &#x0028;only subbands are showed&#x00
      |&#x00A0;A9&#x00A0;Aa&#x00A0;Ab&#x00A0;|&#x00A0;|&#x00A0;B9&#x00A0;Ba&#x00A0;Bb&#x00A0;|
      +----------+&#x00A0;+----------+
 </pre>
-     <!--l. 66--><p class="nopar" > where each subband has 3 &#x0028;YCoCg&#x0029; components. <span class="obeylines-h"><span class="verb"><span 
+     <!--l. 66--><p class="nopar" > where each subband has 3 &#x0028;YUV&#x0029; components. <span class="obeylines-h"><span class="verb"><span 
 class="ectt-1000">TF</span></span></span> stands for
      Transformed Frame. Notice that in this example we have a total of
      <!--l. 69--><math 
@@ -318,68 +346,29 @@ display="inline" ><mi
 </pre>
      <!--l. 96--><p class="nopar" > This is done basically to avoid using a new PNG header for each
      decomposition.</p></li></ol>
-<!--l. 102--><p class="noindent" >
+<!--l. 101--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-60002"></a>What do you have to do?</h3>
-<!--l. 104--><p class="noindent" >Please, create an experiment in which the frame quantization step is di&#xFB00;erent for
-each frame of a sequence, and another experiment that uses the same quantization
-step for all the frames. Compute the average RD curves. Which one is better? Do you
-think that </p><table class="equation-star"><tr><td>
-<!--l. 108--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="block" class="equation">
-                            <mi 
->D</mi> <mo 
-class="MathClass-rel">=</mo><munder class="msub"><mrow 
-><mo  
-> &#x2211;</mo>
-   </mrow><mrow 
-><mi 
->i</mi></mrow></munder 
-><msub><mrow 
-><mi 
->D</mi></mrow><mrow 
-><mi 
->i</mi></mrow></msub 
-><mo 
-class="MathClass-punc">,</mo>
-</math></td></tr></table>
-<!--l. 111--><p class="indent" >   where <!--l. 111--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
->D</mi></math>
-is the distortion generated for the complete sequence and
-<!--l. 112--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><msub><mrow 
-><mi 
->D</mi></mrow><mrow 
-><mi 
->i</mi></mrow></msub 
-></math> is the distortion
-only for the <!--l. 112--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
->i</mi></math>-th
-frame, holds?
-                                                                  
-
-                                                                  
-</p><!--l. 126--><p class="noindent" >
+<!--l. 103--><p class="noindent" >Try to implement the TODO sections of this <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-III_coding/III_compression.ipynb" >notebook</a>.
+</p><!--l. 129--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-70003"></a>Timming</h3>
-<!--l. 128--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 130--><p class="noindent" >
+<!--l. 131--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 133--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-80004"></a>Deliverables</h3>
-<!--l. 132--><p class="noindent" >None.
-</p><!--l. 134--><p class="noindent" >
+<!--l. 135--><p class="noindent" >None.
+</p><!--l. 137--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-90005"></a>Resources</h3>
+                                                                  
+
+                                                                  
    <div class="thebibliography">
    <p class="bibitem" ><span class="biblabel">
  &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
