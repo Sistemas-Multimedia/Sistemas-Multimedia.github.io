@@ -38,7 +38,7 @@ computes a
 \subsection{1D case}
 
 The 1D-DWT convolves the input signal with a set of basis functions
-(you can see the basis functions of several DWT in the
+(you can see the basis functions of several DWTs in the
 \href{http://wavelets.pybytes.com/}{Wavelet Browser}) defined by a
 \href{https://tecnologias-multimedia.github.io/milestones/12-temporal_coding/}{cascade
   of filters banks}, building a dyadic signal decomposition in the
@@ -175,18 +175,18 @@ can conclude that:
 Eq.~\ref{eq:Haar_transform} computes the 1-levels Haar DWT. A more
 general expresion for this equation (and this holds for all DWTs) is
 \begin{equation}
-  \{{\mathbf l}^{s+1}, {\mathbf h}^{s+1}\} = \text{DWT}({\mathbf l}^s),
+  {\mathbf l}^{s+1} | {\mathbf h}^{s+1} = \text{DWT}({\mathbf l}^s),
   \label{eq:DWT}
 \end{equation}
-where $\{\cdot,\cdot\}$ denotes the concatenation of subbands. As can
+where $\cdot|\cdot$ denotes the concatenation of subbands. As can
 be seen in the Fig.~\ref{fig:DWT}, it's possible to compute the
 $S$-levels DWT, using Eq.~\ref{eq:DWT} iteratively over the
 low-frequency subband, generating the decomposition
 \begin{equation}
-  \{{\mathbf l}^S_0, {\mathbf h}^S_0, {\mathbf h}^{S-1}_0 {\mathbf
-    h}^{S-1}_1, {\mathbf h}^{S-2}_0 {\mathbf h}^{S-2}_1 {\mathbf
-    h}^{S-2}_2 {\mathbf h}^{S-2}_3, \cdots, {\mathbf h}^1_0 h^1_1
-  \cdots {\mathbf h}^1_{2^{n-1}-1}\}=\text{DWT}^S({\mathbf l}^0),
+  {\mathbf l}^S_0 | {\mathbf h}^S_0 | {\mathbf h}^{S-1}_0 {\mathbf
+    h}^{S-1}_1 | {\mathbf h}^{S-2}_0 {\mathbf h}^{S-2}_1 {\mathbf
+    h}^{S-2}_2 {\mathbf h}^{S-2}_3 | \cdots | {\mathbf h}^1_0 h^1_1
+  \cdots {\mathbf h}^1_{2^{n-1}-1}=\text{DWT}^S({\mathbf l}^0),
   \label{eq:S_levels_DWT}
 \end{equation}
 where
@@ -202,7 +202,7 @@ Eq.~\ref{eq:Haar_transform}. In general, for longer DWT filters we are
 going to have more coefficients, but the same procedure can be used
 for finding the synthesis transform. Therefore, it can be written that
 \begin{equation}
-  {\mathbf l}^s = \text{DWT}^{-1}(\{{\mathbf l}^{s+1}, {\mathbf h}^{s+1}\}),
+  {\mathbf l}^s = \text{DWT}^{-1}({\mathbf l}^{s+1} | {\mathbf h}^{s+1}),
 \end{equation}
 and $\text{DWT}^{-S}$, the $S$-levels synthesis DWT, can be computed
 as it is also described in the Fig.~\ref{fig:DWT}, by simply reversing
@@ -221,15 +221,15 @@ resolution levels of the analyzed signal ${\mathbf l}^0$:
     (Direct Current) coefficient}. On the contrary, the rest of
   coefficents (high-frequency subbands) are called the AC (Alternating
   Current) coefficients.
-\item ${\mathbf l}^{S-1}=\text{DWT}^{-1}(\{{\mathbf l}^S, {\mathbf
-  h}^S\})$, the resolution level $S-1$ of ${\mathbf l}^0$, with two
+\item ${\mathbf l}^{S-1}=\text{DWT}^{-1}({\mathbf l}^S | {\mathbf
+  h}^S)$, the resolution level $S-1$ of ${\mathbf l}^0$, with two
   samples.
-\item ${\mathbf l}^{S-2}=\text{DWT}^{-1}(\{{\mathbf l}^{S-1}, {\mathbf
-  h}^{S-1}\})$, the resolution level $S-1$ of ${\mathbf l}^0$, with
+\item ${\mathbf l}^{S-2}=\text{DWT}^{-1}({\mathbf l}^{S-1} | {\mathbf
+  h}^{S-1})$, the resolution level $S-1$ of ${\mathbf l}^0$, with
   four samples.
 \item $\vdots$
 \item The resolution level $0$, ${\mathbf
-  l}^0=\text{DWT}^{-1}(\{{\mathbf l}^1, {\mathbf h}^1\})$.
+  l}^0=\text{DWT}^{-1}({\mathbf l}^1 | {\mathbf h}^1)$.
 \end{itemize}  
 
 \subsubsection{Filters}
@@ -292,7 +292,7 @@ On the other hand, in a biorthogonal DWT:
     (the odd taps are multiplied by $-1$). Therefore, if we have the
   analysis filters we can deduce the synthesis filters and viceversa.
 \item No phase distortion is generated.
-\item In orthogonal transform, all the subbands have the same gain,
+\item In orthogonal DWTs, all the subbands have the same gain,
   but this is not true for biorthogonal DWTs.
 \end{enumerate}
 
@@ -328,10 +328,12 @@ using
 \href{https://en.wikipedia.org/wiki/In-place_algorithm}{in-place}
 operations. This procedure has been described in the
 Algorithms~\ref{alg:Rows-DWT}, \ref{alg:Columns-DWT} and
-\ref{alg:2D-DWT}, where $X_{r,*}$ refers to the $r$-th row of the
-matrix $X$ and $X_{*,c}$ to the $c$-th column, being $R$ and $C$ the
-number of rows and columns of the input image $X$. See also the
-Fig.~\ref{fig:2D-DWT}.
+\ref{alg:2D-DWT}, where ${\mathbf X}_{r,*}$ refers to the $r$-th row of the
+matrix ${\mathbf X}$ and ${\mathbf X}_{*,c}$ to the $c$-th column,
+being $R$ and $C$ the number of rows and columns of the input image
+${\mathbf X}$. See also the Fig.~\ref{fig:2D-DWT}.
+
+%\subsubsection[Algorithm]{Rows-DWT(${\mathbf X}$)}
 
 \begin{pseudocode}{\text{Rows-DWT}}{X}
   \label{alg:Rows-DWT}

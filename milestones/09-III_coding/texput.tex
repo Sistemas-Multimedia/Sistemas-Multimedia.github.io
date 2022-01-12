@@ -7,17 +7,30 @@
 
 \section{Description}
 
-\subsection{Motion DWT}
+\subsection{Intra (I) video coding mode}
 
-The
-\href{https://sistemas-multimedia.github.io/milestones/06-2D-DWT/}{2D-DWT}
-can a used on sequences of frames (images) by simply iterating as it
-is described in the
-Algorithm~\ref{alg:MDWT}~\cite{taubman2002jpeg2000}. $N$ is the number
-of frames in the sequence $V$, and $S$ the number of levels. The
-synthesis transform is computed using the 2D-DWT$^{-S}$.
+In the III... (or Intra video) coding mode, the
+\href{https://sistemas-multimedia.github.io/milestones/07-DCT/}{2D
+  block-DWT}, the
+\href{https://sistemas-multimedia.github.io/milestones/08-DWT/}{2D
+  DWT}, and obviously any other spatial transform, can a used on
+sequences of frames (images) to exploit the spatial correlation by
+simply iterating the decorrelation as it is described in the
+Algorithm~\ref{alg:MDWT}~\cite{taubman2002jpeg2000}, where $N$ is the
+number of frames in the sequence $V$, and $S$ controls the number of
+spatial resolution levels. The synthesis transform is computed using
+the 2D-DWT$^{-S}$.
 
-\begin{pseudocode}{$\text{MDWT}$}{V, S}
+\paragraph*{III-coding}($\mathbf{V}$ /* Video sequence */, $S$ /* Number of levels */):
+\label{alg:III_coding}
+\begin{enumerate}
+\item for ${\mathbf V}_i\in {\mathbf V}$:
+  \begin{enumerate}
+  \item Output spatial transform $\text{2D-T}^{S}({\mathbf V}_i)$.
+  \end{enumerate}
+\end{enumerate}
+
+\begin{pseudocode}{$\text{III-coding}$}{V, S}
   \label{alg:MDWT}
   \FOR i \GETS 0 \TO N-1 \DO
   V_i = \text{2D-DWT}^S(V_i)
