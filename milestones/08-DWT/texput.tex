@@ -335,24 +335,24 @@ ${\mathbf X}$. See also the Fig.~\ref{fig:2D-DWT}.
 
 %\subsubsection[Algorithm]{Rows-DWT(${\mathbf X}$)}
 
-\begin{pseudocode}{\text{Rows-DWT}}{X}
+\begin{pseudocode}{\text{Rows-DWT}}{\mathbf X}
   \label{alg:Rows-DWT}
   \FOR r \GETS 0 \TO R-1 \DO
-  X_{r,*} = \text{DWT}(X_{r,*})\\
-  \RETURN{X}
+  {\mathbf X}_{r,*} = \text{DWT}({\mathbf X}_{r,*})\\
+  \RETURN{\mathbf X}
 \end{pseudocode}
 
-\begin{pseudocode}{\text{Columns-DWT}}{X}
+\begin{pseudocode}{\text{Columns-DWT}}{\mathbf X}
   \label{alg:Columns-DWT}
   \FOR c \GETS 0 \TO C-1 \DO
-  X_{*,c} = \text{DWT}(X_{*,c})\\
-  \RETURN{X}
+  {\mathbf X}_{*,c} = \text{DWT}({\mathbf X}_{*,c})\\
+  \RETURN{\mathbf X}
 \end{pseudocode}
 
-\begin{pseudocode}{\text{2D-DWT}}{X}
+\begin{pseudocode}{\text{2D-DWT}}{\mathbf X}
   \label{alg:2D-DWT}
-  X = \text{Rows-DWT}(X)\\
-  X = \text{Columns-DWT}(X)\\
+  {\mathbf X} = \text{Rows-DWT}({\mathbf X})\\
+  {\mathbf X} = \text{Columns-DWT}({\mathbf X})\\
   \RETURN{X}
   %\FOR r \GETS 0 \TO R-1 \DO
   %X_{r,*} = \text{DWT}(X_{r,*})
@@ -386,27 +386,29 @@ ${\mathbf X}$. See also the Fig.~\ref{fig:2D-DWT}.
 As it can be seen in the Fig~\ref{fig:2D-DWT}, the obtained 2D decomposition is expressed by
 \begin{equation}
   \begin{bmatrix}
-    \text{LL} & \text{HL} \\
-    \text{LH} & \text{HH}
+    {\mathbf ll} & {\mathbf hl} \\
+    {\mathbf lh} & {\mathbf hh}
   \end{bmatrix}
   =
   \text{2D-DWT}(X),
   \label{eq:2D-DWT}
 \end{equation}
-where $L$ stands for low-pass filtering and $H$ for high-pass
-filtering. Notice that $\text{LL}=\text{LL}^1$,
-$\text{LH}=\text{LH}^1$, $\text{HL}=\text{HL}^1$, and
-$\text{HH}=\text{HH}^1$.
+where ${\mathbf l}$ stands for low-pass filtering and ${\mathbf h}$
+for high-pass filtering. Notice that ${\mathbf ll}={\mathbf ll}^1$,
+${\mathbf lh}={\mathbf lh}^1$, ${\mathbf hl}={\mathbf hl}^1$, and
+${\mathbf hh}={\mathbf hh}^1$.
 
 Eq.~\ref{eq:2D-DWT} describes the $1$-levels (analysis)
-2D-DWT. Replacing $\text{LL}=L^{s+1}$, $X=L^s$, and
-$\{\text{HL}, \text{LH}, \text{HH}\}=H^{s+1}$ in the previous
-expression, the $S$-levels 2D-DWT of $L^0=X$ ($\text{2D-DWT}^S(L^0)$)
-can be computed applying $S$-times
+2D-DWT. Replacing ${\mathbf ll}={\mathbf l}^{s+1}$,
+${\mathbf X}={\mathbf l}^s$, and
+${\mathbf hl}, {\mathbf lh}, {\mathbf hh}\}={\mathbf h}^{s+1}$ in the
+previous expression, the $S$-levels 2D-DWT of
+${\mathbf l}^0={\mathbf X}$ ($\text{2D-DWT}^S({\mathbf l}^0)$) can be computed
+applying $S$-times
 \begin{equation}
-  \{L^{s+1}, H^{s+1}\} = \text{2D-DWT}(L^s)
+  \{{\mathbf l}^{s+1}, {\mathbf h}^{s+1}\} = \text{2D-DWT}({\mathbf l}^s)
 \end{equation}
-to the low-frequency subband $L^s$. As an example, the
+to the low-frequency subband ${\mathbf l}^s$. As an example, the
 Fig.~\ref{fig:lena_2D-DWT} shows the $3$-levels 2D-DWT of the image
 lena.
 
