@@ -53,7 +53,7 @@ number of reference frames in only 1.
 \subsection{But ... what exactly do we need?}
 Our main objective is to minimize the differences (for example, the
 \href{https://en.wikipedia.org/wiki/Euclidean_distance}{L$_2$
-  distance}) between ${\mathbf P}k$ (the predicted frame) and $\hat{\mathbf P}k$ (the
+  distance}) between ${\mathbf P}$ (the predicted frame) and $\hat{\mathbf P}$ (the
 prediction frame), i.e. minimizing
 \begin{equation}
   {\mathbf E} = {\mathbf P} - \hat{\mathbf P}
@@ -83,52 +83,58 @@ than the second type, based on the estimation of the OF.
 Now, let's see some of the most used techniques for estimating the
 motion between two frames. Notice that, in general, better estimations
 can be found if we suppose motion models such as that the objects
-exhibit inertia. However, this case will not be considered for now.
+exhibit
+\href{https://en.wikipedia.org/wiki/Inertia}{inertia}. However, this
+case will not be considered for now.
 
 \subsection{\href{https://vicente-gonzalez-ruiz.github.io/video_compression/\#x1-40003}{Block-based motion estimation}}
 
 \begin{figure}
   \centering
   \svg{graphics/simple}{400}
-  \caption{ME using disjoint blocks. $(x,y)$ are the coordinates of
-    the block. $({\mathbf V}_x, {\mathbf V}_y)$ is the motion vector
-    that indicates where the block in ${\mathbf P}$ and ${\mathbf R}$
-    matches.}
+  \caption{ME using disjoint blocks. $({\mathbf V}_x, {\mathbf V}_y)$
+    is the motion vector that indicates where the block $(x,y)$ of
+    ${\mathbf P}$ is found in ${\mathbf R}$.}
   \label{fig:simple}
 \end{figure}
 
 Block-based ME is the simplest ME algorithm (see the
 Fig.~\ref{fig:simple}), ${\mathbf P}$ is divided in blocks of (for
-example) 16x16 pixels, and we can use the MSE that measures the
-distance in L$_2$ between each block of ${\mathbf P}$ and its
-surrounding pixels in ${\mathbf R}$ (the so called search
-area)~\cite{zhu2000new}. For each block, a motion vector that
-indicates the best match (smaller distance) is found. The set of
-motion vectors form the motion vectors field $\overset{{\mathbf
-    R}\rightarrow {\mathbf P}}{\mathbf V}$ that obviously, except for
-a block size of 1x1, will be less dense than ${\mathbf R}$ and
-${\mathbf P}$. Notice, however, that, it is not a good idea to use
-such a small block size because, in general, the motion vectors will
-not describe the OF.
+example) 16x16 pixels, and we can use the (R)MSE that measures the
+distance in L$_2$ (also known as the Euclidean distance) between each
+block of ${\mathbf P}$ and its surrounding pixels in ${\mathbf R}$
+(the so called search area)~\cite{zhu2000new}. For each block, a
+motion vector that indicates the best match (smaller distance) is
+found. The set of motion vectors form the motion vectors field
+$\overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf V}$ that
+obviously, except for a block size of 1x1, will be less dense than
+${\mathbf R}$ and ${\mathbf P}$. Notice, however, that, it is not a
+good idea to use such a small block size because, in general, the
+motion vectors will not describe the true motion in the scene.
 
 \begin{figure}
   \centering
   \png{stockholm_R_block}{800}
-  \caption{A tile of the first image of the stockhold sequence. The reference (${\mathbf R}$) frame.}
+  \caption{A tile of the first image of the \emph{Stockholm}
+    sequence. This is the reference (${\mathbf R}$) frame.}
   \label{fig:R_block}
 \end{figure}
 
 \begin{figure}
   \centering
   \png{stockholm_P_block}{800}
-  \caption{A tile of the second image of the stockhold sequence. The predicted (${\mathbf P}$) frame.}
+  \caption{The same (coordinates) tile of the second image of the
+    \emph{stockholm} sequence. This is the predicted (${\mathbf P}$)
+    frame.}
   \label{fig:P_block}
 \end{figure}
 
 \begin{figure}
   \centering
   \png{stockholm_PR_block}{800}
-  \caption{${\mathbf P} - {\mathbf R}$: shows the differences between both tiles.}
+  \caption{${\mathbf P} - {\mathbf R}$: shows the differences between
+    both tiles. The entropy of the residue is displayed between
+    parentheses.}
   \label{fig:RP_block}
 \end{figure}
 
@@ -142,7 +148,9 @@ not describe the OF.
 \begin{figure}
   \centering
   \png{stockholm_error_block}{800}
-  \caption{The prediction error frame (${\mathbf R} - {\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_block_ME.ipynb}{this}.}
+  \caption{The prediction-error frame
+    (${\mathbf R} - {\hat{\mathbf P}}$). See
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_block_ME.ipynb}{this}.}
   \label{fig:error_block}
 \end{figure}
 
@@ -153,7 +161,9 @@ by block-based ME can significantly decrease the entropy.
 \begin{figure}
   \centering
   \png{stockholm_MVs_block}{800}
-  \caption{Motion vectors to map ${\mathbf P}$ (which is divided into disjoint blocks) onto ${\mathbf R}$. See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_block_ME.ipynb}{this}.}
+  \caption{Motion vectors to map ${\mathbf P}$ (which is divided into
+    disjoint blocks) onto ${\mathbf R}$. See
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_block_ME.ipynb}{this}.}
   \label{fig:MVs_block}
 \end{figure}
 
