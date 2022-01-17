@@ -30,7 +30,7 @@ class="ecrm-1200">Vicente Gonz</span><span
 class="ecrm-1200">&#x00E1;</span><span 
 class="ecrm-1200">lez Ruiz</span></div><br />
 <div class="date" ><span 
-class="ecrm-1200">January 12, 2022</span></div>
+class="ecrm-1200">January 17, 2022</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -42,17 +42,17 @@ href="#x1-30001.1" id="QQ2-1-3">Decorrelating with the DCT &#x0028;Discrete Cosi
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.2 <a 
 href="#x1-40001.2" id="QQ2-1-4">The 2D-DCT</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.3 <a 
-href="#x1-50001.3" id="QQ2-1-5">Block-based transform coding</a></span>
+href="#x1-50001.3" id="QQ2-1-6">Block-based transform coding</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.4 <a 
-href="#x1-60001.4" id="QQ2-1-6">Quantization in the &#x0028;spatial&#x0029; DCT domain</a></span>
+href="#x1-60001.4" id="QQ2-1-7">Quantization in the &#x0028;spatial&#x0029; DCT domain</a></span>
 <br />   &#x00A0;<span class="sectionToc" >2 <a 
-href="#x1-70002" id="QQ2-1-7">What do I have to do?</a></span>
+href="#x1-70002" id="QQ2-1-8">What do I have to do?</a></span>
 <br />   &#x00A0;<span class="sectionToc" >3 <a 
-href="#x1-80003" id="QQ2-1-8">Timming</a></span>
+href="#x1-80003" id="QQ2-1-9">Timming</a></span>
 <br />   &#x00A0;<span class="sectionToc" >4 <a 
-href="#x1-90004" id="QQ2-1-9">Deliverables</a></span>
+href="#x1-90004" id="QQ2-1-10">Deliverables</a></span>
 <br />   &#x00A0;<span class="sectionToc" >5 <a 
-href="#x1-100005" id="QQ2-1-10">Resources</a></span>
+href="#x1-100005" id="QQ2-1-11">Resources</a></span>
    </div>
 <!--l. 8--><p class="noindent" >
 </p>
@@ -85,24 +85,24 @@ href="https://en.wikipedia.org/wiki/Versatile_Video_Coding" >VVC</a>.
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >g</mi></mstyle><mo 
-class="MathClass-open">&#x005B;</mo><mi 
+class="MathClass-open" stretchy="false">&#x005B;</mo><mi 
 >n</mi><mo 
-class="MathClass-close">&#x005D;</mo></math> of length
+class="MathClass-close" stretchy="false">&#x005D;</mo></math> of length
 <!--l. 28--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >N</mi></math> is
 de&#xFB01;ned as&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xburger2016digital">1</a>&#x005D;</span> </p><table class="equation"><tr><td> <a 
- id="x1-3001r1"></a>
+href="#Xburger2016digital">1</a>&#x005D;</span> </p><table class="equation"><tr><td>
 <!--l. 29--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-             <mstyle mathvariant="bold"><mi 
->h</mi></mstyle><mo 
-class="MathClass-open">&#x005B;</mo><mi 
+             <mstyle 
+   id="x1-3001r1"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false"><mstyle mathvariant="bold">h</mstyle></mo><mo 
+class="MathClass-open" stretchy="false">&#x005B;</mo><mi 
 >u</mi><mo 
-class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-close" stretchy="false">&#x005D;</mo> <mo 
 class="MathClass-rel">=</mo> <msqrt><mrow> <mfrac> <mrow 
 > <mn>2</mn></mrow>
 <mrow 
@@ -119,20 +119,20 @@ class="MathClass-rel">=</mo><mn>0</mn></mrow><mrow
 class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></munderover 
 ><mstyle mathvariant="bold"><mi 
 >g</mi></mstyle><mo 
-class="MathClass-open">&#x005B;</mo><mi 
+class="MathClass-open" stretchy="false">&#x005B;</mo><mi 
 >n</mi><mo 
-class="MathClass-close">&#x005D;</mo><mstyle mathvariant="bold"><mi 
+class="MathClass-close" stretchy="false">&#x005D;</mo><mstyle mathvariant="bold"><mi 
 >c</mi></mstyle><mo 
-class="MathClass-open">&#x005B;</mo><mi 
+class="MathClass-open" stretchy="false">&#x005B;</mo><mi 
 >u</mi><mo 
-class="MathClass-close">&#x005D;</mo><mi class="qopname">cos</mi><mo> &ApplyFunction;<!--FUNCTION APPLICATION--> </mo><!--nolimits--><mstyle mathsize="1.61em"><mrow><mo fence="true" form="prefix"> (</mo><mrow></mrow><mo fence="true" form="postfix"></mo></mrow></mstyle><mi 
+class="MathClass-close" stretchy="false">&#x005D;</mo><mi class="qopname">cos</mi><mo> &#x2061;<!--FUNCTION APPLICATION--> </mo><!--nolimits--><mstyle mathsize="1.61em"><mrow><mo fence="true" form="prefix"> (</mo><mrow></mrow><mo fence="true" form="postfix"></mo></mrow></mstyle><mi 
 >&#x03C0;</mi><mfrac><mrow 
 ><mi 
 >u</mi><mo 
-class="MathClass-open">&#x0028;</mo><mn>2</mn><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mn>2</mn><mi 
 >x</mi> <mo 
 class="MathClass-bin">+</mo> <mn>1</mn><mo 
-class="MathClass-close">&#x0029;</mo></mrow> 
+class="MathClass-close" stretchy="false">&#x0029;</mo></mrow> 
     <mrow 
 ><mn>2</mn><mi 
 >N</mi></mrow></mfrac>    <mstyle mathsize="1.61em"><mrow><mo fence="true" form="prefix"> )</mo><mrow></mrow><mo fence="true" form="postfix"></mo></mrow></mstyle><mo 
@@ -145,16 +145,16 @@ class="MathClass-rel">&#x003C;</mo> <mi
 >u</mi> <mo 
 class="MathClass-rel">&#x003C;</mo> <mi 
 >N</mi></math>,
-and the inverse transform is </p><table class="equation"><tr><td> <a 
- id="x1-3002r2"></a>
+and the inverse transform is </p><table class="equation"><tr><td>
 <!--l. 34--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-             <mstyle mathvariant="bold"><mi 
->g</mi></mstyle><mo 
-class="MathClass-open">&#x005B;</mo><mi 
+             <mstyle 
+   id="x1-3002r2"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false"><mstyle mathvariant="bold">g</mstyle></mo><mo 
+class="MathClass-open" stretchy="false">&#x005B;</mo><mi 
 >n</mi><mo 
-class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-close" stretchy="false">&#x005D;</mo> <mo 
 class="MathClass-rel">=</mo> <msqrt><mrow> <mfrac> <mrow 
 > <mn>2</mn></mrow>
 <mrow 
@@ -171,20 +171,20 @@ class="MathClass-rel">=</mo><mn>0</mn></mrow><mrow
 class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></munderover 
 ><mstyle mathvariant="bold"><mi 
 >h</mi></mstyle><mo 
-class="MathClass-open">&#x005B;</mo><mi 
+class="MathClass-open" stretchy="false">&#x005B;</mo><mi 
 >u</mi><mo 
-class="MathClass-close">&#x005D;</mo><mstyle mathvariant="bold"><mi 
+class="MathClass-close" stretchy="false">&#x005D;</mo><mstyle mathvariant="bold"><mi 
 >c</mi></mstyle><mo 
-class="MathClass-open">&#x005B;</mo><mi 
+class="MathClass-open" stretchy="false">&#x005B;</mo><mi 
 >u</mi><mo 
-class="MathClass-close">&#x005D;</mo><mi class="qopname">cos</mi><mo> &ApplyFunction;<!--FUNCTION APPLICATION--> </mo><!--nolimits--><mstyle mathsize="1.61em"><mrow><mo fence="true" form="prefix"> (</mo><mrow></mrow><mo fence="true" form="postfix"></mo></mrow></mstyle><mi 
+class="MathClass-close" stretchy="false">&#x005D;</mo><mi class="qopname">cos</mi><mo> &#x2061;<!--FUNCTION APPLICATION--> </mo><!--nolimits--><mstyle mathsize="1.61em"><mrow><mo fence="true" form="prefix"> (</mo><mrow></mrow><mo fence="true" form="postfix"></mo></mrow></mstyle><mi 
 >&#x03C0;</mi><mfrac><mrow 
 ><mi 
 >u</mi><mo 
-class="MathClass-open">&#x0028;</mo><mn>2</mn><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mn>2</mn><mi 
 >x</mi> <mo 
 class="MathClass-bin">+</mo> <mn>1</mn><mo 
-class="MathClass-close">&#x0029;</mo></mrow> 
+class="MathClass-close" stretchy="false">&#x0029;</mo></mrow> 
     <mrow 
 ><mn>2</mn><mi 
 >N</mi></mrow></mfrac>    <mstyle mathsize="1.61em"><mrow><mo fence="true" form="prefix"> )</mo><mrow></mrow><mo fence="true" form="postfix"></mo></mrow></mstyle><mo 
@@ -197,19 +197,19 @@ class="MathClass-rel">&#x003C;</mo> <mi
 >n</mi> <mo 
 class="MathClass-rel">&#x003C;</mo> <mi 
 >N</mi></math>,
-with </p><table class="equation"><tr><td> <a 
- id="x1-3003r3"></a>
+with </p><table class="equation"><tr><td>
                                                                   
 
                                                                   
 <!--l. 39--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-<mstyle mathvariant="bold"><mi 
->c</mi></mstyle><mo 
-class="MathClass-open">&#x005B;</mo><mi 
+<mstyle 
+   id="x1-3003r3"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false"><mstyle mathvariant="bold">c</mstyle></mo><mo 
+class="MathClass-open" stretchy="false">&#x005B;</mo><mi 
 >u</mi><mo 
-class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-close" stretchy="false">&#x005D;</mo> <mo 
 class="MathClass-rel">=</mo> <mrow><mo fence="true" form="prefix"> {</mo><mrow> <mtable  align="axis" style=""  
 equalrows="false" columnlines="none" equalcolumns="false" class="array"> <mtr><mtd 
 class="array"  columnalign="left">   <mfrac><mrow 
@@ -233,29 +233,29 @@ class="MathClass-punc">.</mo> </mtd></mtr> <!--ll--></mtable>                   
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >h</mi></mstyle><mo 
-class="MathClass-open">&#x005B;</mo><mi 
+class="MathClass-open" stretchy="false">&#x005B;</mo><mi 
 >u</mi><mo 
-class="MathClass-close">&#x005D;</mo></math> with the same length
+class="MathClass-close" stretchy="false">&#x005D;</mo></math> with the same length
 than the original signal <!--l. 49--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >g</mi></mstyle><mo 
-class="MathClass-open">&#x005B;</mo><mi 
+class="MathClass-open" stretchy="false">&#x005B;</mo><mi 
 >n</mi><mo 
-class="MathClass-close">&#x005D;</mo></math>,
+class="MathClass-close" stretchy="false">&#x005D;</mo></math>,
 and the position of the coe&#xFB03;cients in the transform domain indicate the contribution
 of such coe&#xFB03;cient to the corresponding &#x0028;in this case, spatial&#x0029; frequency. For example,
 the coe&#xFB03;cient at the position 0 &#x0028;that is commonly refered as DC &#x0028;Direct Current&#x0029;&#x0029; is
 equal to the average of the signal. The rest of high-frequency coe&#xFB03;cients are called
 AC &#x0028;Alternating Current&#x0029; coe&#xFB03;cients.
 </p><!--l. 57--><p class="indent" >   The DCT can be also expressed in matrix&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xsayood2017introduction">2</a>&#x005D;</span> form as </p><table class="equation"><tr><td> <a 
- id="x1-3004r4"></a>
+href="#Xsayood2017introduction">2</a>&#x005D;</span> form as </p><table class="equation"><tr><td>
 <!--l. 59--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                             <mstyle mathvariant="bold"><mi 
->h</mi></mstyle> <mo 
+                             <mstyle 
+   id="x1-3004r4"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false"><mstyle mathvariant="bold">h</mstyle></mo> <mo 
 class="MathClass-rel">=</mo> <mstyle mathvariant="bold"><mi 
 >K</mi></mstyle><mstyle mathvariant="bold"><mi 
 >g</mi></mstyle><mo 
@@ -268,18 +268,18 @@ display="inline" ><mstyle mathvariant="bold"><mi
 is the forward transform matrix. The rows of the transform matrix are often referred
 to as the basis vectors for the transform because they form an orthonormal basis set
 &#x0028;see these <a 
-href="https://cseweb.ucsd.edu/classes/fa17/cse166-a/lec13.pdf" >slides</a>&#x0029;, and the elements of the transformed sequence are often called the
-transform coe&#xFB03;cients. Obviously, the inverse transform is computed by </p><table class="equation"><tr><td>
-<a 
- id="x1-3005r5"></a>
+href="https://cseweb.ucsd.edu/classes/fa17/cse166-a/lec13.pdf" >slides</a>&#x0029;, and the elements of the transformed sequence are often called
+the transform coe&#xFB03;cients. Obviously, the inverse transform is computed by
+</p><table class="equation"><tr><td>
                                                                   
 
                                                                   
 <!--l. 69--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                            <mstyle mathvariant="bold"><mi 
->g</mi></mstyle> <mo 
+                            <mstyle 
+   id="x1-3005r5"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false"><mstyle mathvariant="bold">g</mstyle></mo> <mo 
 class="MathClass-rel">=</mo><msup><mrow 
 > <mstyle mathvariant="bold"><mi 
 >K</mi></mstyle></mrow><mrow 
@@ -401,8 +401,7 @@ class="ecti-1000">ampli&#xFB01;cated </span>with the same gain in all the
 subbands. However, this does not mean that all the subbands should be quantized using
 the same <!--l. 129--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
->&#x0394;</mi></math>,
+display="inline" ><mi mathvariant="normal">&#x0394;</mi></math>,
 because some subbands can be compressed more e&#xFB03;cienly than others and their SNR
 &#x0028;after quantization&#x0029; can be di&#xFB00;erent. This <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/block_DCT_compression.ipynb" >notebook</a> shows how to use RD
@@ -433,7 +432,12 @@ the RGB domain. Check that the result is the same.
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-100005"></a>Resources</h3>
-   <div class="thebibliography">
+<!--l. 1--><p class="noindent" >
+</p>
+   <h3 class="likesectionHead"><a 
+ id="x1-110005"></a>References</h3>
+<!--l. 1--><p class="noindent" >
+   </p><div class="thebibliography">
    <p class="bibitem" ><span class="biblabel">
  &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
  id="Xburger2016digital"></a>W.&#x00A0;Burger and M.J. Burge.  <a 

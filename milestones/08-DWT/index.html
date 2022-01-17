@@ -3,7 +3,7 @@
 "http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd" > 
 <html xmlns="http://www.w3.org/1999/xhtml"  
 > 
-<head><title>Sistemas Multimedia - Study Guide - Milestone 7: Energy Concentration and
+<head><title>Sistemas Multimedia - Study Guide - Milestone 8: Energy Concentration and
 Spatial Multiresolution with the Discrete Wavelet Transform</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
 <meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
@@ -23,7 +23,7 @@ Spatial Multiresolution with the Discrete Wavelet Transform</title>
 
 <h2 class="titleHead"><a 
 href="https://sistemas-multimedia.github.io/" >Sistemas Multimedia</a> - Study Guide - Milestone
-7: Energy Concentration and Spatial
+8: Energy Concentration and Spatial
 Multiresolution with the Discrete Wavelet
 Transform</h2>
  <div class="author" ><a 
@@ -40,7 +40,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">January 12, 2022</span></div>
+class="ecrm-1200">January 17, 2022</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -50,19 +50,19 @@ href="#x1-20001" id="QQ2-1-2">The transform</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.1 <a 
 href="#x1-30001.1" id="QQ2-1-3">1D case</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.2 <a 
-href="#x1-70001.2" id="QQ2-1-7">2D case</a></span>
+href="#x1-70001.2" id="QQ2-1-14">2D case</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.3 <a 
-href="#x1-80001.3" id="QQ2-1-8">Multiresolution</a></span>
+href="#x1-80001.3" id="QQ2-1-18">Multiresolution</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.4 <a 
-href="#x1-110001.4" id="QQ2-1-11">Quantization</a></span>
+href="#x1-110001.4" id="QQ2-1-21">Quantization</a></span>
 <br />   &#x00A0;<span class="sectionToc" >2 <a 
-href="#x1-140002" id="QQ2-1-14">What do I have to do?</a></span>
+href="#x1-140002" id="QQ2-1-24">What do I have to do?</a></span>
 <br />   &#x00A0;<span class="sectionToc" >3 <a 
-href="#x1-150003" id="QQ2-1-15">Timming</a></span>
+href="#x1-150003" id="QQ2-1-25">Timming</a></span>
 <br />   &#x00A0;<span class="sectionToc" >4 <a 
-href="#x1-160004" id="QQ2-1-16">Deliverables</a></span>
+href="#x1-160004" id="QQ2-1-26">Deliverables</a></span>
 <br />   &#x00A0;<span class="sectionToc" >5 <a 
-href="#x1-170005" id="QQ2-1-17">Resources</a></span>
+href="#x1-170005" id="QQ2-1-27">Resources</a></span>
    </div>
 <!--l. 8--><p class="noindent" >
 </p>
@@ -86,14 +86,16 @@ transforms:
 
                                                                   
      </p><ol  class="enumerate1" >
-     <li 
-  class="enumerate" id="x1-2002x1">The output of the DWT describes the &#x0028;input&#x0029; signal in a set of <a 
+<li 
+  class="enumerate" id="x1-2002x1">
+     <!--l. 21--><p class="noindent" >The output of the DWT describes the &#x0028;input&#x0029; signal in a set of <a 
 href="https://en.wikipedia.org/wiki/Sub-band_coding" >subbands</a>,
      producing the so called a <a 
 href="https://en.wikipedia.org/wiki/Discrete_wavelet_transform" >decomposition</a>.
-     </li>
-     <li 
-  class="enumerate" id="x1-2004x2">The <a 
+     </p></li>
+<li 
+  class="enumerate" id="x1-2004x2">
+     <!--l. 25--><p class="noindent" >The <a 
 href="https://en.wikipedia.org/wiki/Array_data_structure#Element_identifier_and_addressing_formulas" >index</a> of the subband is related to the <a 
 href="https://en.wikipedia.org/wiki/Frequency" >frequency</a> of the signal. For
      example, in the case of the <a 
@@ -101,7 +103,7 @@ href="https://en.wikipedia.org/wiki/Digital_image" >images</a>, the position of 
 href="https://en.wikipedia.org/wiki/Coefficient" >coe&#xFB03;cients</a> in the
      subbands is related to <a 
 href="https://en.wikipedia.org/wiki/Discrete_wavelet_transform#/media/File:Jpeg2000_2-level_wavelet_transform-lichtenstein.png" >the spatial area where the corresponding pixels are
-     found</a>.</li></ol>
+     found</a>.</p></li></ol>
 <!--l. 38--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
@@ -120,35 +122,27 @@ domain.
 <!--l. 49--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
->K</mi></mstyle></math>
-in previous milestones&#x0029;. Haar de&#xFB01;ned the analysis <a 
+>K</mi></mstyle></math> in
+previous milestones&#x0029;. Haar de&#xFB01;ned the analysis <a 
 href="https://en.wikipedia.org/wiki/Downsampling_(signal_processing)" >downsampling</a> &#xFB01;lters </p><table class="equation"><tr><td>
-<a 
- id="x1-4001r1"></a>
 <!--l. 53--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
- <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+<mstyle 
+   id="x1-4001r1"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false"> <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center"><msubsup><mrow 
->  <mstyle mathvariant="bold"><mi 
->l</mi></mstyle></mrow><mrow 
-><mi 
->n</mi></mrow><mrow 
-><mi 
->s</mi><mo 
-class="MathClass-bin">+</mo><mn>1</mn></mrow></msubsup 
+>  <mstyle mathvariant="bold">l</mstyle></mrow><mrow 
+>n</mrow><mrow 
+>s+1</mrow></msubsup 
 >  </mtd>
 </mtr> <mtr><mtd 
 class="array"  columnalign="center"><msubsup><mrow 
->  <mstyle mathvariant="bold"><mi 
->h</mi></mstyle></mrow><mrow 
-><mi 
->n</mi></mrow><mrow 
-><mi 
->s</mi><mo 
-class="MathClass-bin">+</mo><mn>1</mn></mrow></msubsup 
->  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                         </mrow><mo fence="true" form="postfix">]</mo></mrow>  <mo 
+>  <mstyle mathvariant="bold">h</mstyle></mrow><mrow 
+>n</mrow><mrow 
+>s+1</mrow></msubsup 
+>  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable></mo>                                                         </mrow><mo fence="true" form="postfix">]</mo></mrow>  <mo 
 class="MathClass-rel">=</mo>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
 class="array"  columnalign="center">   <mfrac><mrow 
@@ -191,6 +185,9 @@ class="MathClass-bin">+</mo><mn>1</mn></mrow><mrow
 >  </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                                           </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;1&#x0029;</td></tr></table>
+                                                                  
+
+                                                                  
 <!--l. 66--><p class="indent" >   where the superindex <!--l. 66--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
@@ -203,18 +200,15 @@ refers to the <!--l. 67--><math
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >n</mi></math>-th
-element of the signal. By de&#xFB01;nition &#x0028;and notice that this holds for all DWTs&#x0029;, </p><table class="equation"><tr><td>
-<a 
- id="x1-4002r2"></a>
-                                                                  
-
-                                                                  
+element of the signal. By de&#xFB01;nition &#x0028;and notice that this holds for all DWTs&#x0029;,
+</p><table class="equation"><tr><td>
 <!--l. 69--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="block" class="equation"><msup><mrow 
->
-                              <mstyle mathvariant="bold"><mi 
->l</mi></mstyle></mrow><mrow 
+display="block" class="equation">
+                              <mstyle 
+   id="x1-4002r2"  class="label" ></mstyle><!--endlabel--><msup><mrow 
+><mo 
+class="MathClass-open" stretchy="false"><mstyle mathvariant="bold">l</mstyle></mo></mrow><mrow 
 ><mn>0</mn></mrow></msup 
 > <mo 
 class="MathClass-rel">=</mo> <mstyle mathvariant="bold"><mi 
@@ -247,14 +241,14 @@ class="MathClass-rel">&#x007C;</mo><msub><mrow
 ><mi 
 >i</mi></mrow></msub 
 ><mo 
-class="MathClass-open">&#x0028;</mo><msup><mrow 
+class="MathClass-open" stretchy="false">&#x0028;</mo><msup><mrow 
 ><mi 
 >e</mi></mrow><mrow 
 ><mi 
 >j</mi><mi 
 >&#x03C9;</mi></mrow></msup 
 ><mo 
-class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo><mo 
 class="MathClass-rel">&#x007C;</mo></math>
 denotes       the       <a 
 href="https://en.wikipedia.org/wiki/Absolute_value" >modulus</a>       of       the       <a 
@@ -379,13 +373,15 @@ is a <a
 href="https://en.wikipedia.org/wiki/High-pass_filter" >high-pass &#xFB01;lter</a> &#x0028;this holds for all DWTs&#x0029;. Considering the Haar &#xFB01;lter, we can
 conclude that:
      </p><ol  class="enumerate1" >
-     <li 
-  class="enumerate" id="x1-4014x1">There exists <a 
+<li 
+  class="enumerate" id="x1-4014x1">
+     <!--l. 127--><p class="noindent" >There exists <a 
 href="https://en.wikipedia.org/wiki/Aliasing" >aliasing</a> between the &#xFB01;lters &#x0028;this is also true for all DWTs&#x0029; and this
      is a drawback because:
-         <ol  class="enumerate2" >
-         <li 
-  class="enumerate" id="x1-4016x1">The same <a 
+         </p><ol  class="enumerate2" >
+<li 
+  class="enumerate" id="x1-4016x1">
+         <!--l. 130--><p class="noindent" >The same <a 
 href="https://en.wikipedia.org/wiki/Information" >information</a> can be found in both subbands &#x0028;<!--l. 132--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
@@ -396,9 +392,10 @@ display="inline" ><mstyle mathvariant="bold"><mi
 >h</mi></mstyle></math>&#x0029;.
          Therefore, the concentration of the energy in one of the subbands is
          smaller.
-         </li>
-         <li 
-  class="enumerate" id="x1-4018x2">At it can be seen also in Eq.&#x00A0;<a 
+         </p></li>
+<li 
+  class="enumerate" id="x1-4018x2">
+         <!--l. 134--><p class="noindent" >At it can be seen also in Eq.&#x00A0;<a 
 href="#x1-4001r1">1<!--tex4ht:ref: eq:Haar_transform --></a>, the subbands are downsampled by 2
          &#x0028;action usually represented by <!--l. 136--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
@@ -420,7 +417,7 @@ href="https://en.wikipedia.org/wiki/Perception" >perceptible</a> <a
 href="https://en.wikipedia.org/wiki/Signal-to-noise_ratio" >quality</a> of the low-pass subband <!--l. 146--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
->l</mi></mstyle></math>.</li></ol>
+>l</mi></mstyle></math>.</p></li></ol>
      <!--l. 146--><p class="noindent" >These problems can be only solved using &#xFB01;lters that have <a 
 href="https://en.wikipedia.org/wiki/Transfer_function" >transfer functions</a> that overlaps a
      smaller area<span class="footnote-mark"><a 
@@ -430,8 +427,9 @@ href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a
 href="#x1-4005r2">2<!--tex4ht:ref: fig:db5_modulus --></a> and <a 
 href="#x1-4007r3">3<!--tex4ht:ref: fig:bior3.5_modulus --></a>&#x0029;.
      </p></li>
-     <li 
-  class="enumerate" id="x1-4021x2">There is not <a 
+<li 
+  class="enumerate" id="x1-4021x2">
+     <!--l. 155--><p class="noindent" >There is not <a 
 href="https://en.wikipedia.org/wiki/Linear_phase" >phase distortion</a> &#x0028;the phase of the &#xFB01;lters is a linear function
      of the frequency, see the Fig.&#x00A0;<a 
 href="#x1-4009r4">4<!--tex4ht:ref: fig:haar_phase --></a>&#x0029;. This means that both coe&#xFB03;cients
@@ -460,7 +458,7 @@ class="MathClass-bin">+</mo><mn>1</mn></mrow></msubsup
      section of signal <!--l. 160--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
-class="MathClass-open">&#x007B;</mo><msubsup><mrow 
+class="MathClass-open" stretchy="false">&#x007B;</mo><msubsup><mrow 
 ><mstyle mathvariant="bold"><mi 
 >l</mi></mstyle></mrow><mrow 
 ><mn>2</mn><mi 
@@ -477,11 +475,11 @@ class="MathClass-bin">+</mo><mn>1</mn></mrow><mrow
 ><mi 
 >s</mi></mrow></msubsup 
 ><mo 
-class="MathClass-close">&#x007D;</mo></math>,
+class="MathClass-close" stretchy="false">&#x007D;</mo></math>,
      allowing the design of entropy codecs for the decomposition which exploit the
      correlation between subbands. Notice that this does not hold for all &#xFB01;lters &#x0028;see
      Fig.&#x00A0;<a 
-href="#x1-4011r5">5<!--tex4ht:ref: fig:db5_phase --></a>&#x0029;.</li></ol>
+href="#x1-4011r5">5<!--tex4ht:ref: fig:db5_phase --></a>&#x0029;.</p></li></ol>
    <hr class="figure" /><div class="figure" 
 >
                                                                   
@@ -508,14 +506,14 @@ DWT and the generated subbands.                                    </span></div>
    </div><hr class="endfigure" />
 <!--l. 175--><p class="indent" >   Eq.&#x00A0;<a 
 href="#x1-4001r1">1<!--tex4ht:ref: eq:Haar_transform --></a> computes the 1-levels Haar DWT. A more general expresion for this
-equation &#x0028;and this holds for all DWTs&#x0029; is </p><table class="equation"><tr><td> <a 
- id="x1-4024r3"></a>
+equation &#x0028;and this holds for all DWTs&#x0029; is </p><table class="equation"><tr><td>
 <!--l. 177--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="block" class="equation"><msup><mrow 
->
-                        <mstyle mathvariant="bold"><mi 
->l</mi></mstyle></mrow><mrow 
+display="block" class="equation">
+                        <mstyle 
+   id="x1-4024r3"  class="label" ></mstyle><!--endlabel--><msup><mrow 
+><mo 
+class="MathClass-open" stretchy="false"><mstyle mathvariant="bold">l</mstyle></mo></mrow><mrow 
 ><mi 
 >s</mi><mo 
 class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
@@ -529,13 +527,13 @@ class="MathClass-bin">+</mo><mn>1</mn></mrow></msup
 > <mo 
 class="MathClass-rel">=</mo> <mstyle 
 class="text"><mtext  >DWT</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><msup><mrow 
+class="MathClass-open" stretchy="false">&#x0028;</mo><msup><mrow 
 ><mstyle mathvariant="bold"><mi 
 >l</mi></mstyle></mrow><mrow 
 ><mi 
 >s</mi></mrow></msup 
 ><mo 
-class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo><mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;3&#x0029;</td></tr></table>
 <!--l. 181--><p class="indent" >   where <!--l. 181--><math 
@@ -552,14 +550,14 @@ display="inline" ><mi
 >S</mi></math>-levels
 DWT, using Eq.&#x00A0;<a 
 href="#x1-4024r3">3<!--tex4ht:ref: eq:DWT --></a> iteratively over the low-frequency subband, generating the
-decomposition </p><table class="equation"><tr><td> <a 
- id="x1-4025r4"></a>
+decomposition </p><table class="equation"><tr><td>
 <!--l. 185--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="block" class="equation"><msubsup><mrow 
->
-<mstyle mathvariant="bold"><mi 
->l</mi></mstyle></mrow><mrow 
+display="block" class="equation">
+<mstyle 
+   id="x1-4025r4"  class="label" ></mstyle><!--endlabel--><msubsup><mrow 
+><mo 
+class="MathClass-open" stretchy="false"><mstyle mathvariant="bold">l</mstyle></mo></mrow><mrow 
 ><mn>0</mn></mrow><mrow 
 ><mi 
 >S</mi></mrow></msubsup 
@@ -656,28 +654,28 @@ class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow
 ><mi 
 >S</mi></mrow></msup 
 ><mo 
-class="MathClass-open">&#x0028;</mo><msup><mrow 
+class="MathClass-open" stretchy="false">&#x0028;</mo><msup><mrow 
 ><mstyle mathvariant="bold"><mi 
 >l</mi></mstyle></mrow><mrow 
 ><mn>0</mn></mrow></msup 
 ><mo 
-class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo><mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;4&#x0029;</td></tr></table>
-<!--l. 192--><p class="indent" >   where </p><table class="equation"><tr><td> <a 
- id="x1-4026r5"></a>
+<!--l. 192--><p class="indent" >   where </p><table class="equation"><tr><td>
 <!--l. 193--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                            <mi 
->n</mi> <mo 
+                            <mstyle 
+   id="x1-4026r5"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false">n</mo> <mo 
 class="MathClass-rel">=</mo><msub><mrow 
-><mi class="qopname"> log</mi><mo> &ApplyFunction;<!--FUNCTION APPLICATION--> </mo><!--nolimits--></mrow><mrow 
+><mi class="qopname"> log</mi><mo> &#x2061;<!--FUNCTION APPLICATION--> </mo><!--nolimits--></mrow><mrow 
 ><mn>2</mn></mrow></msub 
 ><mo 
-class="MathClass-open">&#x0028;</mo><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mi 
 >N</mi><mo 
-class="MathClass-close">&#x0029;</mo>
+class="MathClass-close" stretchy="false">&#x0029;</mo>
 </math></td><td class="eq-no">&#x0028;5&#x0029;</td></tr></table>
 <!--l. 196--><p class="indent" >   where <!--l. 196--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
@@ -724,14 +722,14 @@ class="MathClass-bin">+</mo><mn>1</mn></mrow></msubsup
 in the Eq.&#x00A0;<a 
 href="#x1-4001r1">1<!--tex4ht:ref: eq:Haar_transform --></a>. In general, for longer DWT &#xFB01;lters we are going to have more
 coe&#xFB03;cients, but the same procedure can be used for &#xFB01;nding the synthesis transform.
-Therefore, it can be written that </p><table class="equation"><tr><td> <a 
- id="x1-4027r6"></a>
+Therefore, it can be written that </p><table class="equation"><tr><td>
 <!--l. 204--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="block" class="equation"><msup><mrow 
->
-                       <mstyle mathvariant="bold"><mi 
->l</mi></mstyle></mrow><mrow 
+display="block" class="equation">
+                       <mstyle 
+   id="x1-4027r6"  class="label" ></mstyle><!--endlabel--><msup><mrow 
+><mo 
+class="MathClass-open" stretchy="false"><mstyle mathvariant="bold">l</mstyle></mo></mrow><mrow 
 ><mi 
 >s</mi></mrow></msup 
 > <mo 
@@ -741,7 +739,7 @@ class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow
 ><mo 
 class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
 ><mo 
-class="MathClass-open">&#x0028;</mo><msup><mrow 
+class="MathClass-open" stretchy="false">&#x0028;</mo><msup><mrow 
 ><mstyle mathvariant="bold"><mi 
 >l</mi></mstyle></mrow><mrow 
 ><mi 
@@ -755,7 +753,7 @@ class="MathClass-rel">&#x007C;</mo><msup><mrow
 >s</mi><mo 
 class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
 ><mo 
-class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo><mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;6&#x0029;</td></tr></table>
 <!--l. 207--><p class="indent" >   and <!--l. 207--><math 
@@ -800,7 +798,8 @@ display="inline" ><msup><mrow
 ></math>:
 </p>
      <ul class="itemize1">
-     <li class="itemize"><!--l. 216--><math 
+     <li class="itemize">
+     <!--l. 216--><p class="noindent" ><!--l. 216--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mstyle mathvariant="bold"><mi 
@@ -856,13 +855,14 @@ display="inline" ><msubsup><mrow
 ></math>
      is also called the <a 
 href="https://en.wikipedia.org/wiki/DC_bias" >DC &#x0028;Direct Current&#x0029; coe&#xFB03;cient</a>. On the contrary, the rest
-     of coe&#xFB03;cents &#x0028;high-frequency subbands&#x0029; are called the AC &#x0028;Alternating
                                                                   
 
                                                                   
+     of coe&#xFB03;cents &#x0028;high-frequency subbands&#x0029; are called the AC &#x0028;Alternating
      Current&#x0029; coe&#xFB03;cients.
-     </li>
-     <li class="itemize"><!--l. 224--><math 
+     </p></li>
+     <li class="itemize">
+     <!--l. 224--><p class="noindent" ><!--l. 224--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mstyle mathvariant="bold"><mi 
@@ -877,7 +877,7 @@ class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow
 ><mo 
 class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
 ><mo 
-class="MathClass-open">&#x0028;</mo><msup><mrow 
+class="MathClass-open" stretchy="false">&#x0028;</mo><msup><mrow 
 ><mstyle mathvariant="bold"><mi 
 >l</mi></mstyle></mrow><mrow 
 ><mi 
@@ -889,7 +889,7 @@ class="MathClass-rel">&#x007C;</mo><msup><mrow
 ><mi 
 >S</mi></mrow></msup 
 ><mo 
-class="MathClass-close">&#x0029;</mo></math>,
+class="MathClass-close" stretchy="false">&#x0029;</mo></math>,
      the resolution level <!--l. 225--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
@@ -903,8 +903,9 @@ display="inline" ><msup><mrow
 ><mn>0</mn></mrow></msup 
 ></math>,
      with two samples.
-     </li>
-     <li class="itemize"><!--l. 227--><math 
+     </p></li>
+     <li class="itemize">
+     <!--l. 227--><p class="noindent" ><!--l. 227--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
 ><mstyle mathvariant="bold"><mi 
@@ -919,7 +920,7 @@ class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow
 ><mo 
 class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
 ><mo 
-class="MathClass-open">&#x0028;</mo><msup><mrow 
+class="MathClass-open" stretchy="false">&#x0028;</mo><msup><mrow 
 ><mstyle mathvariant="bold"><mi 
 >l</mi></mstyle></mrow><mrow 
 ><mi 
@@ -933,7 +934,7 @@ class="MathClass-rel">&#x007C;</mo><msup><mrow
 >S</mi><mo 
 class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
 ><mo 
-class="MathClass-close">&#x0029;</mo></math>,
+class="MathClass-close" stretchy="false">&#x0029;</mo></math>,
      the resolution level <!--l. 228--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
@@ -947,13 +948,15 @@ display="inline" ><msup><mrow
 ><mn>0</mn></mrow></msup 
 ></math>,
      with four samples.
-     </li>
-     <li class="itemize"><!--l. 230--><math 
+     </p></li>
+     <li class="itemize">
+     <!--l. 230--><p class="noindent" ><!--l. 230--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
-class="MathClass-op">&#x22EE;</mi><mo> &ApplyFunction;<!--FUNCTION APPLICATION--></mo></math>
-     </li>
-     <li class="itemize">The resolution level <!--l. 231--><math 
+class="MathClass-op">&#x22EE;</mi><mo> &#x2061;<!--FUNCTION APPLICATION--></mo></math>
+     </p></li>
+     <li class="itemize">
+     <!--l. 231--><p class="noindent" >The resolution level <!--l. 231--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mn>0</mn></math>,
      <!--l. 231--><math 
@@ -969,7 +972,7 @@ class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow
 ><mo 
 class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
 ><mo 
-class="MathClass-open">&#x0028;</mo><msup><mrow 
+class="MathClass-open" stretchy="false">&#x0028;</mo><msup><mrow 
 ><mstyle mathvariant="bold"><mi 
 >l</mi></mstyle></mrow><mrow 
 ><mn>1</mn></mrow></msup 
@@ -979,7 +982,7 @@ class="MathClass-rel">&#x007C;</mo><msup><mrow
 >h</mi></mstyle></mrow><mrow 
 ><mn>1</mn></mrow></msup 
 ><mo 
-class="MathClass-close">&#x0029;</mo></math>.</li></ul>
+class="MathClass-close" stretchy="false">&#x0029;</mo></math>.</p></li></ul>
 <!--l. 235--><p class="noindent" >
 </p>
    <h5 class="subsubsectionHead"><span class="titlemark">1.1.3   </span> <a 
@@ -1011,8 +1014,9 @@ href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/
 href="https://pywavelets.readthedocs.io" >PyWavelets</a>&#x0029; &#x0028;see Fig.&#x00A0;<a 
 href="#x1-6001r7">7<!--tex4ht:ref: fig:PRFB --></a>&#x0029;:
      </p><ol  class="enumerate1" >
-     <li 
-  class="enumerate" id="x1-6004x1">Analysis &#x0028;downsampling&#x0029; low-pass &#xFB01;lter <!--l. 250--><math 
+<li 
+  class="enumerate" id="x1-6004x1">
+     <!--l. 250--><p class="noindent" >Analysis &#x0028;downsampling&#x0029; low-pass &#xFB01;lter <!--l. 250--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover 
 accent="true"><mrow 
@@ -1035,9 +1039,10 @@ display="inline" ><msup><mrow
 ><mi 
 >s</mi></mrow></msup 
 ></math>.
-     </li>
-     <li 
-  class="enumerate" id="x1-6006x2">Analysis &#x0028;downsampling&#x0029; high-pass &#xFB01;lter <!--l. 253--><math 
+     </p></li>
+<li 
+  class="enumerate" id="x1-6006x2">
+     <!--l. 253--><p class="noindent" >Analysis &#x0028;downsampling&#x0029; high-pass &#xFB01;lter <!--l. 253--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover 
 accent="true"><mrow 
@@ -1060,16 +1065,17 @@ display="inline" ><msup><mrow
 ><mi 
 >s</mi></mrow></msup 
 ></math>.
-     </li>
-     <li 
-  class="enumerate" id="x1-6008x3">Synthesis &#x0028;upsampling&#x0029; high-pass &#xFB01;lter <!--l. 256--><math 
+     </p></li>
+<li 
+  class="enumerate" id="x1-6008x3">
+     <!--l. 256--><p class="noindent" >Synthesis &#x0028;upsampling&#x0029; high-pass &#xFB01;lter <!--l. 256--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x03D5;</mi></math>
      &#x0028;the reconstruction scaling function&#x0029;, which computes <!--l. 257--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
-class="MathClass-open">&#x007B;</mo><msubsup><mrow 
+class="MathClass-open" stretchy="false">&#x007B;</mo><msubsup><mrow 
 ><mstyle mathvariant="bold"><mi 
 >l</mi></mstyle></mrow><mrow 
 ><mn>2</mn><mi 
@@ -1077,7 +1083,7 @@ class="MathClass-open">&#x007B;</mo><msubsup><mrow
 ><mi 
 >s</mi></mrow></msubsup 
 ><mo 
-class="MathClass-close">&#x007D;</mo></math>
+class="MathClass-close" stretchy="false">&#x007D;</mo></math>
      from <!--l. 258--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
@@ -1096,16 +1102,17 @@ display="inline" ><msup><mrow
 >s</mi><mo 
 class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
 ></math>.
-     </li>
-     <li 
-  class="enumerate" id="x1-6010x4">Synthesis &#x0028;upsampling&#x0029; high-pass &#xFB01;lter <!--l. 259--><math 
+     </p></li>
+<li 
+  class="enumerate" id="x1-6010x4">
+     <!--l. 259--><p class="noindent" >Synthesis &#x0028;upsampling&#x0029; high-pass &#xFB01;lter <!--l. 259--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >&#x03C8;</mi></math>
      &#x0028;the reconstruction wavelet function&#x0029;, which computes <!--l. 260--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
-class="MathClass-open">&#x007B;</mo><msubsup><mrow 
+class="MathClass-open" stretchy="false">&#x007B;</mo><msubsup><mrow 
 ><mstyle mathvariant="bold"><mi 
 >l</mi></mstyle></mrow><mrow 
 ><mn>2</mn><mi 
@@ -1114,7 +1121,7 @@ class="MathClass-bin">+</mo><mn>1</mn></mrow><mrow
 ><mi 
 >s</mi></mrow></msubsup 
 ><mo 
-class="MathClass-close">&#x007D;</mo></math>
+class="MathClass-close" stretchy="false">&#x007D;</mo></math>
      from <!--l. 261--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
@@ -1132,15 +1139,16 @@ display="inline" ><msup><mrow
 ><mi 
 >s</mi><mo 
 class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
-></math>.</li></ol>
+></math>.</p></li></ol>
 <!--l. 264--><p class="indent" >   In the context of the DWT, orthogonality provides intersubband <a 
 href="https://en.wikipedia.org/wiki/Decorrelation" >decorrelation</a>,
 which basically means that the contribution of each subbands to the reconstruction
 &#x0028;and this holds for all DWTs&#x0029; of the signal are independent. Orthogonal &#xFB01;lters can be
 recognized because:
      </p><ol  class="enumerate1" >
-     <li 
-  class="enumerate" id="x1-6012x1"><!--l. 270--><math 
+<li 
+  class="enumerate" id="x1-6012x1">
+     <!--l. 270--><p class="noindent" ><!--l. 270--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover 
 accent="true"><mrow 
@@ -1161,24 +1169,28 @@ class="MathClass-rel">&#x22A5;</mo><mi
 display="inline" ><mo 
 class="MathClass-rel">&#x22A5;</mo></math>
      denotes orthogonality.
-     </li>
-     <li 
-  class="enumerate" id="x1-6014x2">Their taps are all di&#xFB00;erent &#x0028;the &#xFB01;lters are asymmetric&#x0029;.
-     </li>
-     <li 
-  class="enumerate" id="x1-6016x3">The taps of the synthesis &#xFB01;lters can be determined simply by &#x201C;re&#xFB02;ecting&#x201D;
-     the taps of the analysis &#xFB01;lters.
-     </li>
-     <li 
-  class="enumerate" id="x1-6018x4">In general, except for the Haar DWT, orthogonal &#xFB01;lters generate phase
-     distortion.</li></ol>
-<!--l. 279--><p class="indent" >   On the other hand, in a biorthogonal DWT:
                                                                   
 
                                                                   
+     </p></li>
+<li 
+  class="enumerate" id="x1-6014x2">
+     <!--l. 272--><p class="noindent" >Their taps are all di&#xFB00;erent &#x0028;the &#xFB01;lters are asymmetric&#x0029;.
+     </p></li>
+<li 
+  class="enumerate" id="x1-6016x3">
+     <!--l. 273--><p class="noindent" >The taps of the synthesis &#xFB01;lters can be determined simply by &#x201C;re&#xFB02;ecting&#x201D;
+     the taps of the analysis &#xFB01;lters.
+     </p></li>
+<li 
+  class="enumerate" id="x1-6018x4">
+     <!--l. 275--><p class="noindent" >In general, except for the Haar DWT, orthogonal &#xFB01;lters generate phase
+     distortion.</p></li></ol>
+<!--l. 279--><p class="indent" >   On the other hand, in a biorthogonal DWT:
      </p><ol  class="enumerate1" >
-     <li 
-  class="enumerate" id="x1-6020x1"><!--l. 281--><math 
+<li 
+  class="enumerate" id="x1-6020x1">
+     <!--l. 281--><p class="noindent" ><!--l. 281--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover 
 accent="true"><mrow 
@@ -1210,23 +1222,25 @@ accent="true"><mrow
 >&#x03C8;</mi></mrow><mo accent="true">&#x007E;</mo></mover><mo 
 class="MathClass-rel">&#x22A5;</mo><mi 
 >&#x03D5;</mi></math>.
-     </li>
-     <li 
-  class="enumerate" id="x1-6022x2">All the &#xFB01;lters are symmetric.
-     </li>
-     <li 
-  class="enumerate" id="x1-6024x3">The &#xFB01;lters satisfy that <table class="equation"><tr><td> <a 
- id="x1-6025r7"></a>
+     </p></li>
+<li 
+  class="enumerate" id="x1-6022x2">
+     <!--l. 283--><p class="noindent" >All the &#xFB01;lters are symmetric.
+     </p></li>
+<li 
+  class="enumerate" id="x1-6024x3">
+     <!--l. 284--><p class="noindent" >The &#xFB01;lters satisfy that </p><table class="equation"><tr><td>
      <!--l. 285--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                                     <mi 
->&#x03C8;</mi> <mo 
+                                     <mstyle 
+   id="x1-6025r7"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false">&#x03C8;</mo> <mo 
 class="MathClass-rel">=</mo> <msup><mrow 
 ><mo 
-class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mo 
 class="MathClass-bin">&#x2212;</mo><mn>1</mn><mo 
-class="MathClass-close">&#x0029;</mo></mrow><mrow 
+class="MathClass-close" stretchy="false">&#x0029;</mo></mrow><mrow 
 ><mi 
 >n</mi></mrow></msup 
 ><mover 
@@ -1240,18 +1254,21 @@ class="MathClass-rel">&#x2208;</mo> <mi
 >&#x2115;</mi><mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;7&#x0029;</td></tr></table>
-     <!--l. 288--><p class="noindent" >and </p><table class="equation"><tr><td> <a 
- id="x1-6026r8"></a>
+                                                                  
+
+                                                                  
+     <!--l. 288--><p class="noindent" >and </p><table class="equation"><tr><td>
      <!--l. 289--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                                      <mi 
->&#x03D5;</mi> <mo 
+                                      <mstyle 
+   id="x1-6026r8"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false">&#x03D5;</mo> <mo 
 class="MathClass-rel">=</mo> <msup><mrow 
 ><mo 
-class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mo 
 class="MathClass-bin">&#x2212;</mo><mn>1</mn><mo 
-class="MathClass-close">&#x0029;</mo></mrow><mrow 
+class="MathClass-close" stretchy="false">&#x0029;</mo></mrow><mrow 
 ><mi 
 >n</mi></mrow></msup 
 ><mover 
@@ -1271,15 +1288,14 @@ class="MathClass-bin">&#x2212;</mo> <mn>1</mn></math>&#x0029;.
      Therefore, if we have the analysis &#xFB01;lters we can deduce the synthesis &#xFB01;lters and
      viceversa.
      </p></li>
-     <li 
-  class="enumerate" id="x1-6028x4">No phase distortion is generated.
-     </li>
-     <li 
-  class="enumerate" id="x1-6030x5">In orthogonal DWTs, all the subbands have the same gain, but this is not true
-     for biorthogonal DWTs.</li></ol>
-                                                                  
-
-                                                                  
+<li 
+  class="enumerate" id="x1-6028x4">
+     <!--l. 294--><p class="noindent" >No phase distortion is generated.
+     </p></li>
+<li 
+  class="enumerate" id="x1-6030x5">
+     <!--l. 295--><p class="noindent" >In orthogonal DWTs, all the subbands have the same gain, but this is not true
+     for biorthogonal DWTs.</p></li></ol>
    <h4 class="subsectionHead"><span class="titlemark">1.2   </span> <a 
  id="x1-70001.2"></a>2D case</h4>
 <!--l. 301--><p class="noindent" >&#x0028;Digital&#x0029; Images are 2D &#x0028;2-Dimensional, <a 
@@ -1441,7 +1457,7 @@ class="MathClass-bin">&#x2217;</mo></mrow></msub
 > <mo 
 class="MathClass-rel">=</mo> <mstyle 
 class="text"><mtext  >DWT</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><msub><mrow 
+class="MathClass-open" stretchy="false">&#x0028;</mo><msub><mrow 
 ><mstyle mathvariant="bold"><mi 
 >X</mi></mstyle></mrow><mrow 
 ><mi 
@@ -1449,13 +1465,13 @@ class="MathClass-open">&#x0028;</mo><msub><mrow
 class="MathClass-punc">,</mo><mo 
 class="MathClass-bin">&#x2217;</mo></mrow></msub 
 ><mo 
-class="MathClass-close">&#x0029;</mo> </mtd>
+class="MathClass-close" stretchy="false">&#x0029;</mo> </mtd>
 </mtr>  <mtr><mtd 
 class="array"  columnalign="left"><mspace width="4.3045pt"/> <mstyle 
 class="mbox"><mtext  >return&#x00A0;</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><mstyle mathvariant="bold"><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle mathvariant="bold"><mi 
 >X</mi></mstyle><mo 
-class="MathClass-close">&#x0029;</mo>                  </mtd></mtr><!--@{\pcode@tab {1}}lr@{}--></mtable>                                                      </math></div>
+class="MathClass-close" stretchy="false">&#x0029;</mo>                  </mtd></mtr><!--@{\pcode@tab {1}}lr@{}--></mtable>                                                      </math></div>
 <a 
  id="x1-7004r2"></a>
 <!--l. 350--><p class="noindent" ></p><div class="minipage"><span 
@@ -1500,7 +1516,7 @@ class="MathClass-punc">,</mo><mi
 > <mo 
 class="MathClass-rel">=</mo> <mstyle 
 class="text"><mtext  >DWT</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><msub><mrow 
+class="MathClass-open" stretchy="false">&#x0028;</mo><msub><mrow 
 ><mstyle mathvariant="bold"><mi 
 >X</mi></mstyle></mrow><mrow 
 ><mo 
@@ -1508,13 +1524,13 @@ class="MathClass-bin">&#x2217;</mo><mo
 class="MathClass-punc">,</mo><mi 
 >c</mi></mrow></msub 
 ><mo 
-class="MathClass-close">&#x0029;</mo> </mtd>
+class="MathClass-close" stretchy="false">&#x0029;</mo> </mtd>
 </mtr>  <mtr><mtd 
 class="array"  columnalign="left"><mspace width="4.3045pt"/> <mstyle 
 class="mbox"><mtext  >return&#x00A0;</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><mstyle mathvariant="bold"><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle mathvariant="bold"><mi 
 >X</mi></mstyle><mo 
-class="MathClass-close">&#x0029;</mo>                  </mtd></mtr><!--@{\pcode@tab {1}}lr@{}--></mtable>                                                      </math></div>
+class="MathClass-close" stretchy="false">&#x0029;</mo>                  </mtd></mtr><!--@{\pcode@tab {1}}lr@{}--></mtable>                                                      </math></div>
 <a 
  id="x1-7005r3"></a>
 <!--l. 362--><p class="noindent" ></p><div class="minipage"><span 
@@ -1537,23 +1553,23 @@ class="array"  columnalign="left"><mspace width="4.3045pt"/> <mstyle mathvariant
 >X</mi></mstyle> <mo 
 class="MathClass-rel">=</mo> <mstyle 
 class="text"><mtext  >Rows-DWT</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><mstyle mathvariant="bold"><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle mathvariant="bold"><mi 
 >X</mi></mstyle><mo 
-class="MathClass-close">&#x0029;</mo>      </mtd>
+class="MathClass-close" stretchy="false">&#x0029;</mo>      </mtd>
 </mtr>  <mtr><mtd 
 class="array"  columnalign="left"><mspace width="4.3045pt"/> <mstyle mathvariant="bold"><mi 
 >X</mi></mstyle> <mo 
 class="MathClass-rel">=</mo> <mstyle 
 class="text"><mtext  >Columns-DWT</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><mstyle mathvariant="bold"><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle mathvariant="bold"><mi 
 >X</mi></mstyle><mo 
-class="MathClass-close">&#x0029;</mo> </mtd>
+class="MathClass-close" stretchy="false">&#x0029;</mo> </mtd>
 </mtr>  <mtr><mtd 
 class="array"  columnalign="left"><mspace width="4.3045pt"/> <mstyle 
 class="mbox"><mtext  >return&#x00A0;</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mi 
 >X</mi><mo 
-class="MathClass-close">&#x0029;</mo>                 </mtd></mtr><!--@{\pcode@tab {1}}lr@{}--></mtable>                                                       </math></div>
+class="MathClass-close" stretchy="false">&#x0029;</mo>                 </mtd></mtr><!--@{\pcode@tab {1}}lr@{}--></mtable>                                                       </math></div>
 </p>
    <hr class="figure" /><div class="figure" 
 >
@@ -1595,9 +1611,9 @@ display="inline" ><msup><mrow
 class="text"><mtext  >2D-DWT</mtext></mstyle></mrow><mrow 
 ><mn>2</mn></mrow></msup 
 ><mo 
-class="MathClass-open">&#x0028;</mo><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mi 
 >X</mi><mo 
-class="MathClass-close">&#x0029;</mo></math>.
+class="MathClass-close" stretchy="false">&#x0029;</mo></math>.
 In the Sub&#xFB01;g.&#x00A0;&#x0028;a&#x0029;, the rows of the image has been transformed using the 1-levels
 &#x0028;1D&#x0029; DWT &#x0028;this is the output of the Alg.&#x00A0;<a 
 href="#x1-7003r1">1.1<!--tex4ht:ref: alg:Rows-DWT --></a>&#x0029;. In the Sub&#xFB01;g.&#x00A0;&#x0028;b&#x0029;, the columns
@@ -1622,31 +1638,24 @@ resolution levels are highlighted.
                                                                   
    </div><hr class="endfigure" />
 <!--l. 386--><p class="indent" >   As it can be seen in the Fig&#x00A0;<a 
-href="#x1-7006r9">9<!--tex4ht:ref: fig:2D-DWT --></a>, the obtained 2D decomposition is expressed by </p><table class="equation"><tr><td>
-<a 
- id="x1-7008r9"></a>
+href="#x1-7006r9">9<!--tex4ht:ref: fig:2D-DWT --></a>, the obtained 2D decomposition is expressed by
+</p><table class="equation"><tr><td>
 <!--l. 387--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
- <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+<mstyle 
+   id="x1-7008r9"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false"> <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
 equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
-class="array"  columnalign="center">  <mstyle mathvariant="bold"><mi 
->l</mi><mi 
->l</mi></mstyle>  </mtd><mtd 
-class="array"  columnalign="center">  <mstyle mathvariant="bold"><mi 
->h</mi><mi 
->l</mi></mstyle>  </mtd></mtr> <mtr><mtd 
-class="array"  columnalign="center"> <mstyle mathvariant="bold"> <mi 
->l</mi><mi 
->h</mi> </mstyle> </mtd> <mtd 
-class="array"  columnalign="center"> <mstyle mathvariant="bold"> <mi 
->h</mi><mi 
->h</mi> </mstyle></mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                        </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
+class="array"  columnalign="center">  <mstyle mathvariant="bold">ll</mstyle>  </mtd><mtd 
+class="array"  columnalign="center">  <mstyle mathvariant="bold">hl</mstyle>  </mtd></mtr> <mtr><mtd 
+class="array"  columnalign="center"> <mstyle mathvariant="bold"> lh </mstyle> </mtd> <mtd 
+class="array"  columnalign="center"> <mstyle mathvariant="bold"> hh </mstyle></mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable></mo>                                                        </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
 class="MathClass-rel">=</mo> <mstyle 
 class="text"><mtext  >2D-DWT</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mi 
 >X</mi><mo 
-class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo><mo 
 class="MathClass-punc">,</mo>
 </math></td><td class="eq-no">&#x0028;9&#x0029;</td></tr></table>
 <!--l. 396--><p class="indent" >   where <!--l. 396--><math 
@@ -1738,7 +1747,7 @@ class="MathClass-punc">,</mo><mstyle mathvariant="bold"><mi
 class="MathClass-punc">,</mo><mstyle mathvariant="bold"><mi 
 >h</mi></mstyle><mi 
 >h</mi><mo 
-class="MathClass-close">&#x007D;</mo> <mo 
+class="MathClass-close" stretchy="false">&#x007D;</mo> <mo 
 class="MathClass-rel">=</mo><msup><mrow 
 > <mstyle mathvariant="bold"><mi 
 >h</mi></mstyle></mrow><mrow 
@@ -1767,23 +1776,23 @@ class="text"><mtext  >2D-DWT</mtext></mstyle></mrow><mrow
 ><mi 
 >S</mi></mrow></msup 
 ><mo 
-class="MathClass-open">&#x0028;</mo><msup><mrow 
+class="MathClass-open" stretchy="false">&#x0028;</mo><msup><mrow 
 ><mstyle mathvariant="bold"><mi 
 >l</mi></mstyle></mrow><mrow 
 ><mn>0</mn></mrow></msup 
 ><mo 
-class="MathClass-close">&#x0029;</mo></math>&#x0029; can be computed
+class="MathClass-close" stretchy="false">&#x0029;</mo></math>&#x0029; can be computed
 applying <!--l. 407--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >S</mi></math>-times
-</p><table class="equation"><tr><td> <a 
- id="x1-7009r10"></a>
+</p><table class="equation"><tr><td>
 <!--l. 408--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                     <mo 
-class="MathClass-open">&#x007B;</mo><msup><mrow 
+                     <mstyle 
+   id="x1-7009r10"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false">&#x007B;</mo><msup><mrow 
 ><mstyle mathvariant="bold"><mi 
 >l</mi></mstyle></mrow><mrow 
 ><mi 
@@ -1797,16 +1806,16 @@ class="MathClass-punc">,</mo><msup><mrow
 >s</mi><mo 
 class="MathClass-bin">+</mo><mn>1</mn></mrow></msup 
 ><mo 
-class="MathClass-close">&#x007D;</mo> <mo 
+class="MathClass-close" stretchy="false">&#x007D;</mo> <mo 
 class="MathClass-rel">=</mo> <mstyle 
 class="text"><mtext  >2D-DWT</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><msup><mrow 
+class="MathClass-open" stretchy="false">&#x0028;</mo><msup><mrow 
 ><mstyle mathvariant="bold"><mi 
 >l</mi></mstyle></mrow><mrow 
 ><mi 
 >s</mi></mrow></msup 
 ><mo 
-class="MathClass-close">&#x0029;</mo>
+class="MathClass-close" stretchy="false">&#x0029;</mo>
 </math></td><td class="eq-no">&#x0028;10&#x0029;</td></tr></table>
 <!--l. 411--><p class="indent" >   to the low-frequency subband <!--l. 411--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
@@ -1864,9 +1873,9 @@ display="inline" ><msup><mrow
 class="text"><mtext  >2D-DWT</mtext></mstyle></mrow><mrow 
 ><mn>3</mn></mrow></msup 
 ><mo 
-class="MathClass-open">&#x0028;</mo><mstyle 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle 
 class="text"><mtext  >Lena</mtext></mstyle><mo 
-class="MathClass-close">&#x0029;</mo></math>&#x2019;s
+class="MathClass-close" stretchy="false">&#x0029;</mo></math>&#x2019;s
 decomposition. Sub&#xFB01;g.&#x00A0;&#x0028;c&#x0029;: <!--l. 425--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msup><mrow 
@@ -1874,9 +1883,9 @@ display="inline" ><msup><mrow
 class="text"><mtext  >2D-DWT</mtext></mstyle></mrow><mrow 
 ><mn>3</mn></mrow></msup 
 ><mo 
-class="MathClass-open">&#x0028;</mo><mstyle 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle 
 class="text"><mtext  >Lena</mtext></mstyle><mo 
-class="MathClass-close">&#x0029;</mo></math>&#x2019;s
+class="MathClass-close" stretchy="false">&#x0029;</mo></math>&#x2019;s
 normalized decomposition. See this <a 
 href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/08-DWT/DWT_lena.ipynb" >notebook</a>.
 </span></div><!--tex4ht:label?: x1-7010r1 -->
@@ -1898,9 +1907,9 @@ class="text"><mtext  >2D-DWT</mtext></mstyle></mrow><mrow
 ><mi 
 >S</mi></mrow></msup 
 ><mo 
-class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mo 
 class="MathClass-bin">&#x22C5;</mo><mo 
-class="MathClass-close">&#x0029;</mo></math>
+class="MathClass-close" stretchy="false">&#x0029;</mo></math>
 provides <!--l. 432--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
@@ -1924,25 +1933,25 @@ provides dyadic spatial multiresolution and full temporal multiresolution.
    <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
  id="x1-110001.4"></a>Quantization</h4>
 <!--l. 443--><p class="noindent" >To &#xFB01;nd the gains in the 2D case we can compute the energy of the signal
-generated by the inverse transform of the unitary impulse discrete 2D signal </p><table class="equation"><tr><td>
-<a 
- id="x1-11001r11"></a>
+generated by the inverse transform of the unitary impulse discrete 2D signal
+</p><table class="equation"><tr><td>
 <!--l. 446--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="block" class="equation"><msub><mrow 
->
-<mi 
->&#x03B4;</mi></mrow><mrow 
+display="block" class="equation">
+<mstyle 
+   id="x1-11001r11"  class="label" ></mstyle><!--endlabel--><msub><mrow 
+><mo 
+class="MathClass-open" stretchy="false">&#x03B4;</mo></mrow><mrow 
 ><mi 
 >i</mi><mo 
 class="MathClass-punc">,</mo><mi 
 >j</mi></mrow></msub 
 ><mo 
-class="MathClass-open">&#x0028;</mo><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mi 
 >x</mi><mo 
 class="MathClass-punc">,</mo><mi 
 >y</mi><mo 
-class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo> <mo 
 class="MathClass-rel">=</mo> <mrow><mo fence="true" form="prefix"> {</mo><mrow> <mtable  align="axis" style=""  
 equalrows="false" columnlines="none" equalcolumns="false" class="array"> <mtr><mtd 
 class="array"  columnalign="left">  <mn>1</mn> </mtd><mtd 
@@ -1990,26 +1999,23 @@ gain.
 </p>
    <h5 class="subsubsectionHead"><span class="titlemark">1.4.2   </span> <a 
  id="x1-130001.4.2"></a>Quantization</h5>
-<!--l. 470--><p class="noindent" >As usually, we can use </p><table class="equation"><tr><td> <a 
- id="x1-13001r12"></a>
+<!--l. 470--><p class="noindent" >As usually, we can use </p><table class="equation"><tr><td>
 <!--l. 471--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                       <msub><mrow 
-><mi 
->&#x0394;</mi></mrow><mrow 
+                        <mstyle 
+   id="x1-13001r12"  class="label" ></mstyle><!--endlabel--><msub><mrow 
+><mi mathvariant="normal">&#x0394;</mi></mrow><mrow 
 ><mn>0</mn></mrow></msub 
 > <mo 
-class="MathClass-rel">=</mo> <msub><mrow 
-><mi 
->&#x0394;</mi></mrow><mrow 
+class="MathClass-rel">=</mo><msub><mrow 
+> <mi mathvariant="normal">&#x0394;</mi></mrow><mrow 
 ><mn>1</mn></mrow></msub 
 > <mo 
 class="MathClass-rel">=</mo> <mo 
 class="MathClass-rel">&#x22EF;</mo> <mo 
-class="MathClass-rel">=</mo> <msub><mrow 
-><mi 
->&#x0394;</mi></mrow><mrow 
+class="MathClass-rel">=</mo><msub><mrow 
+> <mi mathvariant="normal">&#x0394;</mi></mrow><mrow 
 ><mi 
 >N</mi><mo 
 class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msub 
@@ -2019,8 +2025,7 @@ class="MathClass-punc">,</mo>
 <!--l. 474--><p class="indent" >   where <!--l. 474--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
-><mi 
->&#x0394;</mi></mrow><mrow 
+><mi mathvariant="normal">&#x0394;</mi></mrow><mrow 
 ><mi 
 >i</mi></mrow></msub 
 ></math> is the quantization
