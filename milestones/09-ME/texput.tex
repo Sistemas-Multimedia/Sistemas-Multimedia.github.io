@@ -89,7 +89,7 @@ exhibit inertia. However, this case will not be considered for now.
 
 \begin{figure}
   \centering
-  \svg{graphics/simple}{500}
+  \svg{graphics/simple}{400}
   \caption{ME using disjoint blocks. $(x,y)$ are the coordinates of
     the block. $({\mathbf V}_x, {\mathbf V}_y)$ is the motion vector
     that indicates where the block in ${\mathbf P}$ and ${\mathbf R}$
@@ -128,21 +128,21 @@ not describe the OF.
 \begin{figure}
   \centering
   \png{stockholm_PR_block}{800}
-  \caption{${\mathbf P} - {\mathbf R}$: shows the differences between both images.}
+  \caption{${\mathbf P} - {\mathbf R}$: shows the differences between both tiles.}
   \label{fig:RP_block}
 \end{figure}
 
 \begin{figure}
   \centering
   \png{stockholm_hat_P_block}{800}
-  \caption{The prediction frame (${\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_block_ME.ipynb}{this}.}
+  \caption{The prediction frame (${\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_block_ME.ipynb}{this}.}
   \label{fig:hat_P_block}
 \end{figure}
 
 \begin{figure}
   \centering
   \png{stockholm_error_block}{800}
-  \caption{The prediction error frame (${\mathbf R} - {\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_block_ME.ipynb}{this}.}
+  \caption{The prediction error frame (${\mathbf R} - {\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_block_ME.ipynb}{this}.}
   \label{fig:error_block}
 \end{figure}
 
@@ -153,7 +153,7 @@ by block-based ME can significantly decrease the entropy.
 \begin{figure}
   \centering
   \png{stockholm_MVs_block}{800}
-  \caption{Motion vectors to map ${\mathbf P}$ (which is divided into disjoint blocks) onto ${\mathbf R}$. See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_block_ME.ipynb}{this}.}
+  \caption{Motion vectors to map ${\mathbf P}$ (which is divided into disjoint blocks) onto ${\mathbf R}$. See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_block_ME.ipynb}{this}.}
   \label{fig:MVs_block}
 \end{figure}
 
@@ -163,13 +163,13 @@ represents the true motion in the scene in the case of using
 block-based matching. This can be a drawback, for example, for solving
 object tracking problems. In the case of video coding, the main
 disadvantage of such issue is that the entropy of the motion fields
-arises, which also decreases the compression ratio.
+increases, which also decreases the compression ratio.
 
 \subsection{Overlaped block matching}
 
 \begin{figure}
   \centering
-  \svg{graphics/overlaped}{800}
+  \svg{graphics/overlaped}{400}
   \caption{ME using overlaped blocks.}
   \label{fig:overlaped}
 \end{figure}
@@ -186,21 +186,21 @@ demanding than the previous one.
 \begin{figure}
   \centering
   \png{stockholm_hat_P_dense}{800}
-  \caption{The prediction frame (${\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_dense_ME.ipynb}{this}.}
+  \caption{The prediction frame (${\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_dense_ME.ipynb}{this}.}
   \label{fig:hat_P_dense}
 \end{figure}
 
 \begin{figure}
   \centering
   \png{stockholm_error_dense}{800}
-  \caption{The prediction error frame (${\mathbf R} - {\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_dense_ME.ipynb}{this}.}
+  \caption{The prediction error frame (${\mathbf R} - {\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_dense_ME.ipynb}{this}.}
   \label{fig:error_dense}
 \end{figure}
 
 \begin{figure}
   \centering
   \png{stockholm_MVs_dense}{800}
-  \caption{Motion vectors to map ${\mathbf P}$ (from which each pixel has been mapped) onto ${\mathbf R}$. See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_dense_ME.ipynb}{this}.}
+  \caption{Motion vectors to map ${\mathbf P}$ (from which each pixel has been mapped) onto ${\mathbf R}$. See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_dense_ME.ipynb}{this}.}
   \label{fig:MVs_dense}
 \end{figure}
 
@@ -211,7 +211,7 @@ also more coherent (see Figure~\ref{fig:MVs_dense}).
 
 \begin{figure}
   \centering
-  \svg{graphics/average}{500}
+  \svg{graphics/average}{400}
   \caption{ME using overlaped blocks, averaging the overlaped pixels.}
   \label{fig:average}
 \end{figure}
@@ -220,22 +220,23 @@ An improvement of the previous technique can also average the
 overlaped pixels in the prediction frame $\hat{P}$, as it has been
 shown in the Fig.~\ref{fig:average}.
 
-\subsection{ME in the transform domain}
+\subsection{ME in a transformed domain}
 
 \begin{figure}
   %\begin{tabular}{cccccc}
   %  \png{one} & \png{x} & \png{y} & \png{x2} & \png{y2} & \png{xy} \\
   %\end{tabular}
   \begin{tabular}{cccccc}
-    \png{one}{200} & \png{x}{200} & \png{y}{200} & \png{x2}{200} & \png{y2}{200} & \png{xy}{200}
+    \png{one}{200} & \png{x}{200} & \png{y}{200} & \png{x2}{200} & \png{y2}{200} & \png{xy}{200} \\
+    No motion & Constant velocity in $X$ & Constant velocity in $Y$ & Constant acceleration in $X$ & Constant acceleration in $Y$ & Constant accelarion in diagonal
   \end{tabular}
   \caption{Correlation kernels (basis functions) used by the
     \emph{polynomial expansion} of the Farneb{\"a}ck's ME
-    algorithm. See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/farneback_ME.ipynb}{this}.}
+    algorithm. See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/farneback_ME.ipynb}{this}. The analized motion is depicted below the plot of each basis.}
   \label{fig:FarnebacK_basis}
 \end{figure}
 
-The motion can be estimated also in the transform domain. One of these
+The motion can be estimated also in a transformed domain. One of these
 estimators is the Farneb{\"a}ck's algorithm~\cite{farneback2003two},
 which uses the transform defined by the basis functions
 \begin{equation}
@@ -250,21 +251,21 @@ the direction in which the objects are moving.
 \begin{figure}
   \centering
   \png{stockholm_hat_P_farneback}{800}
-  \caption{The prediction frame (${\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/farneback_ME.ipynb}{this}.}
+  \caption{The prediction frame (${\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/farneback_ME.ipynb}{this}.}
   \label{fig:hat_P_farneback}
 \end{figure}
 
 \begin{figure}
   \centering
   \png{stockholm_error_farneback}{800}
-  \caption{The prediction error frame (${\mathbf R} - {\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/farneback_ME.ipynb}{this}.}
+  \caption{The prediction error frame (${\mathbf R} - {\hat{\mathbf P}}$). See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/farneback_ME.ipynb}{this}.}
   \label{fig:error_farneback}
 \end{figure}
 
 \begin{figure}
   \centering
   \png{stockholm_MVs_farneback}{800}
-  \caption{Motion vectors to map ${\mathbf P}$ (from which each pixel has been mapped) onto ${\mathbf R}$. See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/farneback_ME.ipynb}{this}.}
+  \caption{Motion vectors to map ${\mathbf P}$ (from which each pixel has been mapped) onto ${\mathbf R}$. See \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/farneback_ME.ipynb}{this}.}
   \label{fig:MVs_farneback}
 \end{figure}
 
@@ -341,13 +342,13 @@ the frames $P$ and $R$ supposing that:
 \section{What do I have to do?}
 
 In this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/optical_flow.ipynb}{notebook}
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/optical_flow.ipynb}{notebook}
 you can find how to estimate the OF between two frames. Please, modify
 it to find suitable values for the parameters \texttt{levels},
 \texttt{winsize} and \texttt{iterations}. Supposing that the impact of
-each parameter is independent from the rest, the best way of comparing
-two different configurations is to trace RD curves using quantization
-and compressing the residues.
+each parameter is independent from the rest, a way of comparing two
+different configurations is to trace RD curves using a spatial
+decorrelation, quantization and compressing the MC residues.
 
 \section{Timming}
 

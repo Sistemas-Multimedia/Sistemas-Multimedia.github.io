@@ -28,7 +28,7 @@ class="ecrm-1200">Vicente Gonz</span><span
 class="ecrm-1200">&#x00E1;</span><span 
 class="ecrm-1200">lez Ruiz</span></div><br />
 <div class="date" ><span 
-class="ecrm-1200">December 17, 2021</span></div>
+class="ecrm-1200">January 17, 2022</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -42,19 +42,19 @@ href="#x1-40001.2" id="QQ2-1-4">But ... what exactly do we need?</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.3 <a 
 href="#x1-50001.3" id="QQ2-1-5">Block-based motion estimation</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.4 <a 
-href="#x1-60001.4" id="QQ2-1-6">Overlaped block matching</a></span>
+href="#x1-60001.4" id="QQ2-1-13">Overlaped block matching</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.5 <a 
-href="#x1-70001.5" id="QQ2-1-7">ME in the transform domain</a></span>
+href="#x1-70001.5" id="QQ2-1-19">ME in a transformed domain</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.6 <a 
-href="#x1-80001.6" id="QQ2-1-8">Machine learning</a></span>
+href="#x1-80001.6" id="QQ2-1-24">Machine learning</a></span>
 <br />   &#x00A0;<span class="sectionToc" >2 <a 
-href="#x1-90002" id="QQ2-1-9">What do I have to do?</a></span>
+href="#x1-90002" id="QQ2-1-25">What do I have to do?</a></span>
 <br />   &#x00A0;<span class="sectionToc" >3 <a 
-href="#x1-100003" id="QQ2-1-10">Timming</a></span>
+href="#x1-100003" id="QQ2-1-26">Timming</a></span>
 <br />   &#x00A0;<span class="sectionToc" >4 <a 
-href="#x1-110004" id="QQ2-1-11">Deliverables</a></span>
+href="#x1-110004" id="QQ2-1-27">Deliverables</a></span>
 <br />   &#x00A0;<span class="sectionToc" >5 <a 
-href="#x1-120005" id="QQ2-1-12">Resources</a></span>
+href="#x1-120005" id="QQ2-1-28">Resources</a></span>
    </div>
 <!--l. 8--><p class="noindent" >
 </p>
@@ -85,13 +85,13 @@ order to make this a reversible process.
 display="inline" ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle> <mo 
 class="MathClass-rel">=</mo> <mo 
-class="MathClass-open">&#x007B;</mo><msub><mrow 
+class="MathClass-open" stretchy="false">&#x007B;</mo><msub><mrow 
 ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle></mrow><mrow 
 ><mi 
 >i</mi></mrow></msub 
 ><mo 
-class="MathClass-close">&#x007D;</mo></math>, and a motion vectors
+class="MathClass-close" stretchy="false">&#x007D;</mo></math>, and a motion vectors
 &#xFB01;eld <!--l. 26--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover class="overset"><mrow 
@@ -109,15 +109,15 @@ the predicted frame <!--l. 27--><math
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></math>,
-and outputs a prediction frame </p><table class="equation"><tr><td> <a 
- id="x1-3002r1"></a>
+and outputs a prediction frame </p><table class="equation"><tr><td>
 <!--l. 29--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                         <mover 
+                         <mstyle 
+   id="x1-3002r1"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false"><mover 
 accent="true"><mrow 
-><mstyle mathvariant="bold"><mi 
->P</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover> <mo 
+><mstyle mathvariant="bold">P</mstyle></mrow><mo accent="true">&#x005E;</mo></mover></mo> <mo 
 class="MathClass-rel">=</mo> <mover class="overset"><mrow 
 ><mstyle mathvariant="bold"><mi 
 >V</mi></mstyle></mrow><mrow 
@@ -125,9 +125,9 @@ class="MathClass-rel">=</mo> <mover class="overset"><mrow
 >R</mi></mstyle> <mo 
 class="MathClass-rel">&#x2192;</mo><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></mrow></mover><mo 
-class="MathClass-open">&#x0028;</mo><mstyle mathvariant="bold"><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle><mo 
-class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo><mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;1&#x0029;</td></tr></table>
 <!--l. 33--><p class="indent" >   In this milestone we analyze di&#xFB00;erent algorithms to determine
@@ -179,13 +179,13 @@ accent="true"><mrow
                                                                   
 
                                                                   
-&#x0028;the prediction frame&#x0029;, i.e. minimizing </p><table class="equation"><tr><td> <a 
- id="x1-4001r2"></a>
+&#x0028;the prediction frame&#x0029;, i.e. minimizing </p><table class="equation"><tr><td>
 <!--l. 58--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                            <mstyle mathvariant="bold"><mi 
->E</mi></mstyle> <mo 
+                            <mstyle 
+   id="x1-4001r2"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false"><mstyle mathvariant="bold">E</mstyle></mo> <mo 
 class="MathClass-rel">=</mo> <mstyle mathvariant="bold"><mi 
 >P</mi></mstyle> <mo 
 class="MathClass-bin">&#x2212;</mo><mover 
@@ -286,7 +286,7 @@ href="https://vicente-gonzalez-ruiz.github.io/video_compression/#x1-40003" >Bloc
                                                                   
 
                                                                   
-<!--l. 92--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="graphics/simple.svg" /> </div>  <a 
+<!--l. 92--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="graphics/simple.svg" /> </div>  <a 
  id="x1-5001r1"></a>
 <a 
  id="x1-5002"></a>
@@ -297,16 +297,16 @@ class="content">ME               using               disjoint               bloc
 <!--l. 96--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
-class="MathClass-open">&#x0028;</mo><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mi 
 >x</mi><mo 
 class="MathClass-punc">,</mo><mi 
 >y</mi><mo 
-class="MathClass-close">&#x0029;</mo></math>
+class="MathClass-close" stretchy="false">&#x0029;</mo></math>
 are             the             coordinates             of             the             block.
 <!--l. 96--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
-class="MathClass-open">&#x0028;</mo><msub><mrow 
+class="MathClass-open" stretchy="false">&#x0028;</mo><msub><mrow 
 ><mstyle mathvariant="bold"><mi 
 >V</mi></mstyle></mrow><mrow 
 ><mi 
@@ -318,7 +318,7 @@ class="MathClass-punc">,</mo><msub><mrow
 ><mi 
 >y</mi></mrow></msub 
 ><mo 
-class="MathClass-close">&#x0029;</mo></math>
+class="MathClass-close" stretchy="false">&#x0029;</mo></math>
 is     the     motion     vector     that     indicates     where     the     block     in
 <!--l. 96--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
@@ -450,7 +450,7 @@ display="inline" ><mstyle mathvariant="bold"><mi
 >P</mi></mstyle> <mo 
 class="MathClass-bin">&#x2212;</mo><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle></math>:
-shows the di&#xFB00;erences between both images.                              </span></div><!--tex4ht:label?: x1-5007r1 -->
+shows the di&#xFB00;erences between both tiles.                                </span></div><!--tex4ht:label?: x1-5007r1 -->
                                                                   
 
                                                                   
@@ -477,7 +477,7 @@ accent="true"><mrow
 ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover></math>&#x0029;.
 See <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_block_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-5009r1 -->
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_block_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-5009r1 -->
                                                                   
 
                                                                   
@@ -506,7 +506,7 @@ accent="true"><mrow
 ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover></math>&#x0029;.
 See <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_block_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-5011r1 -->
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_block_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-5011r1 -->
                                                                   
 
                                                                   
@@ -544,7 +544,7 @@ display="inline" ><mstyle mathvariant="bold"><mi
 display="inline" ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle></math>.
 See <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_block_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-5013r1 -->
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_block_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-5013r1 -->
                                                                   
 
                                                                   
@@ -554,8 +554,8 @@ href="#x1-5013r7">7<!--tex4ht:ref: fig:MVs_block --></a>, the motion information
 the block-based ME algorithm not always represents the true motion in the scene in
 the case of using block-based matching. This can be a drawback, for example, for
 solving object tracking problems. In the case of video coding, the main disadvantage
-of such issue is that the entropy of the motion &#xFB01;elds arises, which also decreases the
-compression ratio.
+of such issue is that the entropy of the motion &#xFB01;elds increases, which also decreases
+the compression ratio.
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
  id="x1-60001.4"></a>Overlaped block matching</h4>
@@ -567,7 +567,7 @@ compression ratio.
                                                                   
 
                                                                   
-<!--l. 172--><p class="noindent" ><div style="text-align:center;"> <img width=800 src="graphics/overlaped.svg" /> </div>  <a 
+<!--l. 172--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="graphics/overlaped.svg" /> </div>  <a 
  id="x1-6001r8"></a>
 <a 
  id="x1-6002"></a>
@@ -614,7 +614,7 @@ accent="true"><mrow
 ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover></math>&#x0029;.
 See <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_dense_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-6003r1 -->
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_dense_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-6003r1 -->
                                                                   
 
                                                                   
@@ -643,7 +643,7 @@ accent="true"><mrow
 ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover></math>&#x0029;.
 See <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_dense_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-6005r1 -->
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_dense_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-6005r1 -->
                                                                   
 
                                                                   
@@ -673,7 +673,7 @@ display="inline" ><mstyle mathvariant="bold"><mi
 display="inline" ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle></math>.
 See <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/full_search_dense_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-6007r1 -->
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_dense_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-6007r1 -->
                                                                   
 
                                                                   
@@ -693,7 +693,7 @@ href="#x1-6007r11">11<!--tex4ht:ref: fig:MVs_dense --></a>&#x0029;.
                                                                   
 
                                                                   
-<!--l. 214--><p class="noindent" ><div style="text-align:center;"> <img width=500 src="graphics/average.svg" /> </div>  <a 
+<!--l. 214--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="graphics/average.svg" /> </div>  <a 
  id="x1-6009r12"></a>
 <a 
  id="x1-6010"></a>
@@ -716,7 +716,7 @@ as it has been shown in the Fig.&#x00A0;<a
 href="#x1-6009r12">12<!--tex4ht:ref: fig:average --></a>.
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.5   </span> <a 
- id="x1-70001.5"></a>ME in the transform domain</h4>
+ id="x1-70001.5"></a>ME in a transformed domain</h4>
    <hr class="figure" /><div class="figure" 
 >
                                                                   
@@ -735,12 +735,32 @@ id="TBL-2-4" /><col
 id="TBL-2-5" /><col 
 id="TBL-2-6" /></colgroup><tr  
  style="vertical-align:baseline;" id="TBL-2-1-"><td  style="text-align:center; white-space:nowrap;" id="TBL-2-1-1"  
-class="td11"> <div style="text-align:center;"> <img width=200 src="one.png" /> </div>   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-1-2"  
-class="td11"> <div style="text-align:center;"> <img width=200 src="x.png" /> </div>   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-1-3"  
-class="td11"> <div style="text-align:center;"> <img width=200 src="y.png" /> </div>   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-1-4"  
-class="td11"> <div style="text-align:center;"> <img width=200 src="x2.png" /> </div>   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-1-5"  
-class="td11"> <div style="text-align:center;"> <img width=200 src="y2.png" /> </div>   </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-1-6"  
-class="td11"> <div style="text-align:center;"> <img width=200 src="xy.png" /> </div>   </td></tr></table>
+class="td11">     <div style="text-align:center;"> <img width=200 src="one.png" /> </div>       </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-1-2"  
+class="td11">                                          <div style="text-align:center;"> <img width=200 src="x.png" /> </div>                                            </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-1-3"  
+class="td11">                                          <div style="text-align:center;"> <img width=200 src="y.png" /> </div>                                            </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-1-4"  
+class="td11">                                            <div style="text-align:center;"> <img width=200 src="x2.png" /> </div>                                              </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-1-5"  
+class="td11">                                            <div style="text-align:center;"> <img width=200 src="y2.png" /> </div>                                              </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-1-6"  
+class="td11">              <div style="text-align:center;"> <img width=200 src="xy.png" /> </div>                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="text-align:center; white-space:nowrap;" id="TBL-2-2-1"  
+class="td11"> No motion  </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-2-2"  
+class="td11"> Constant velocity in <!--l. 231--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>X</mi></math>  </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-2-3"  
+class="td11"> Constant velocity in <!--l. 231--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Y</mi> </math>  </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-2-4"  
+class="td11"> Constant acceleration in <!--l. 231--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>X</mi></math>  </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-2-5"  
+class="td11"> Constant acceleration in <!--l. 231--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>Y</mi> </math>  </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-2-6"  
+class="td11"> Constant accelarion in diagonal  </td></tr></table>
 </div> <a 
  id="x1-7001r13"></a>
 <a 
@@ -752,22 +772,23 @@ class="content">Correlation  kernels  &#x0028;basis  functions&#x0029;  used  by
 class="ecti-1000">polynomial</span>
 <span 
 class="ecti-1000">expansion </span>of the Farneb&#x00E4;ck&#x2019;s ME algorithm. See <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/farneback_ME.ipynb" >this</a>.
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/farneback_ME.ipynb" >this</a>. The analized motion is
+depicted below the plot of each basis.
 </span></div><!--tex4ht:label?: x1-7001r1 -->
                                                                   
 
                                                                   
    </div><hr class="endfigure" />
-<!--l. 238--><p class="indent" >   The motion can be estimated also in the transform domain. One of these
+<!--l. 239--><p class="indent" >   The motion can be estimated also in a transformed domain. One of these
 estimators is the Farneb&#x00E4;ck&#x2019;s algorithm&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xfarneback2003two">2</a>&#x005D;</span>, which uses the transform de&#xFB01;ned by the
-basis functions </p><table class="equation"><tr><td> <a 
- id="x1-7003r3"></a>
-<!--l. 241--><math 
+basis functions </p><table class="equation"><tr><td>
+<!--l. 242--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                         <mo 
-class="MathClass-open">&#x007B;</mo><mn>1</mn><mo 
+                         <mstyle 
+   id="x1-7003r3"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false">&#x007B;</mo><mn>1</mn><mo 
 class="MathClass-punc">,</mo><mi 
 >x</mi><mo 
 class="MathClass-punc">,</mo><mi 
@@ -785,9 +806,9 @@ class="MathClass-punc">,</mo><msup><mrow
 class="MathClass-punc">,</mo><mi 
 >x</mi><mi 
 >y</mi><mo 
-class="MathClass-close">&#x007D;</mo>
+class="MathClass-close" stretchy="false">&#x007D;</mo>
 </math></td><td class="eq-no">&#x0028;3&#x0029;</td></tr></table>
-<!--l. 244--><p class="indent" >   &#x0028;see the Figure&#x00A0;<a 
+<!--l. 245--><p class="indent" >   &#x0028;see the Figure&#x00A0;<a 
 href="#x1-7001r13">13<!--tex4ht:ref: fig:FarnebacK_basis --></a>&#x0029;. In this transform domain, which is applied by overlapped
 regions, the corresponding subbands quantify the tendency of the image to increase
 its intensity in di&#xFB00;erent 2D directions, and therefore, it is more e&#xFB03;cient to know the
@@ -801,21 +822,21 @@ direction in which the objects are moving.
                                                                   
 
                                                                   
-<!--l. 252--><p class="noindent" ><div style="text-align:center;"> <img width=800 src="stockholm_hat_P_farneback.png" /> </div>  <a 
+<!--l. 253--><p class="noindent" ><div style="text-align:center;"> <img width=800 src="stockholm_hat_P_farneback.png" /> </div>  <a 
  id="x1-7004r14"></a>
 <a 
  id="x1-7005"></a>
 <br />                                                                  </p><div class="caption" 
 ><span class="id">
 Figure&#x00A0;14: </span><span  
-class="content">The prediction frame &#x0028;<!--l. 253--><math 
+class="content">The prediction frame &#x0028;<!--l. 254--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover 
 accent="true"><mrow 
 ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover></math>&#x0029;.
 See <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/farneback_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-7004r1 -->
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/farneback_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-7004r1 -->
                                                                   
 
                                                                   
@@ -828,14 +849,14 @@ href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/
                                                                   
 
                                                                   
-<!--l. 259--><p class="noindent" ><div style="text-align:center;"> <img width=800 src="stockholm_error_farneback.png" /> </div>  <a 
+<!--l. 260--><p class="noindent" ><div style="text-align:center;"> <img width=800 src="stockholm_error_farneback.png" /> </div>  <a 
  id="x1-7006r15"></a>
 <a 
  id="x1-7007"></a>
 <br />                                                                  </p><div class="caption" 
 ><span class="id">
 Figure&#x00A0;15: </span><span  
-class="content">The prediction error frame &#x0028;<!--l. 260--><math 
+class="content">The prediction error frame &#x0028;<!--l. 261--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle> <mo 
@@ -844,7 +865,7 @@ accent="true"><mrow
 ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover></math>&#x0029;.
 See <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/farneback_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-7006r1 -->
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/farneback_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-7006r1 -->
                                                                   
 
                                                                   
@@ -857,29 +878,29 @@ href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/
                                                                   
 
                                                                   
-<!--l. 266--><p class="noindent" ><div style="text-align:center;"> <img width=800 src="stockholm_MVs_farneback.png" /> </div>  <a 
+<!--l. 267--><p class="noindent" ><div style="text-align:center;"> <img width=800 src="stockholm_MVs_farneback.png" /> </div>  <a 
  id="x1-7008r16"></a>
 <a 
  id="x1-7009"></a>
 <br />                                                                  </p><div class="caption" 
 ><span class="id">
 Figure&#x00A0;16: </span><span  
-class="content">Motion vectors to map <!--l. 267--><math 
+class="content">Motion vectors to map <!--l. 268--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></math>
 &#x0028;from       which       each       pixel       has       been       mapped&#x0029;       onto
-<!--l. 267--><math 
+<!--l. 268--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle></math>.
 See <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/farneback_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-7008r1 -->
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/farneback_ME.ipynb" >this</a>.                                                           </span></div><!--tex4ht:label?: x1-7008r1 -->
                                                                   
 
                                                                   
    </div><hr class="endfigure" />
-<!--l. 271--><p class="indent" >   The Farneback&#x2019;s ME is a dense ME, and it provides subpixel interpolation
+<!--l. 272--><p class="indent" >   The Farneback&#x2019;s ME is a dense ME, and it provides subpixel interpolation
 because the MVs are real numbers &#x0028;see the Figures&#x00A0;<a 
 href="#x1-7004r14">14<!--tex4ht:ref: fig:hat_P_farneback --></a>, <a 
 href="#x1-7006r15">15<!--tex4ht:ref: fig:error_farneback --></a> and <a 
@@ -889,34 +910,35 @@ accuracy.
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.6   </span> <a 
  id="x1-80001.6"></a>Machine learning</h4>
-<!--l. 278--><p class="noindent" >ANNs &#x0028;Arti&#xFB01;cal Neural Networks&#x0029; can be trained to estimate the motion between
+<!--l. 279--><p class="noindent" >ANNs &#x0028;Arti&#xFB01;cal Neural Networks&#x0029; can be trained to estimate the motion between
 frames&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xdosovitskiy2015flownet">1</a>&#x005D;</span>. For the training of ANNs, animation videos are generally used where the
 motion &#xFB01;elds are known with precision.
-</p><!--l. 341--><p class="noindent" >
+</p><!--l. 342--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-90002"></a>What do I have to do?</h3>
-<!--l. 343--><p class="noindent" >In this <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/10-ME/optical_flow.ipynb" >notebook</a> you can &#xFB01;nd how to estimate the OF between two frames. Please,
+<!--l. 344--><p class="noindent" >In this <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/optical_flow.ipynb" >notebook</a> you can &#xFB01;nd how to estimate the OF between two frames. Please,
 modify it to &#xFB01;nd suitable values for the parameters <span 
 class="ectt-1000">levels</span>, <span 
 class="ectt-1000">winsize </span>and
 <span 
-class="ectt-1000">iterations</span>. Supposing that the impact of each parameter is independent from the
-rest, the best way of comparing two di&#xFB00;erent con&#xFB01;gurations is to trace RD curves
-using quantization and compressing the residues.
-</p><!--l. 352--><p class="noindent" >
+class="ectt-1000">iterations</span>. Supposing that the impact of each parameter is independent from
+the rest, a way of comparing two di&#xFB00;erent con&#xFB01;gurations is to trace RD
+curves using a spatial decorrelation, quantization and compressing the MC
+residues.
+</p><!--l. 353--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-100003"></a>Timming</h3>
-<!--l. 354--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 356--><p class="noindent" >
+<!--l. 355--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 357--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-110004"></a>Deliverables</h3>
-<!--l. 358--><p class="noindent" >None.
-</p><!--l. 360--><p class="noindent" >
+<!--l. 359--><p class="noindent" >None.
+</p><!--l. 361--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-120005"></a>Resources</h3>
