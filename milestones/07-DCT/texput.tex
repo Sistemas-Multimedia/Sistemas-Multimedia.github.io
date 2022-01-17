@@ -1,5 +1,5 @@
 \input{../../definitions}
-\title{\SM{} - Study Guide - Milestone 7: Removing Spatial Redundancy with the Discrete Cosine Transform}
+\title{\SM{} - Study Guide - Milestone 7: Removing Spatial Redundancy with the 2D-Discrete Cosine Transform}
 
 \maketitle
 
@@ -11,42 +11,42 @@
 (Discrete Cosine Transform)}}
 
 Transforms concentrate (compact) information (that can be estimated
-through the variance of the entropy) in a few output coefficients by
-decorrelating the input samples~\cite{sayood2017introduction}. Such
-energy concentration can be used to find good compression schemes. In
-this milestone, we will use DCT to remove the spatial redundancy in
-the components of an image.
-
-Notice that the DCT is used in some of the most succesful image and
+through the \href{https://en.wikipedia.org/wiki/Variance}{variance} or
+the \href{https://en.wikipedia.org/wiki/Entropy}{entropy}) in a few
+output coefficients by decorrelating the input
+samples~\cite{sayood2017introduction}. Such energy concentration can
+be used to find good compression schemes. In this milestone, we will
+use DCT to remove the spatial redundancy in the components of an
+image. Notice that the DCT is used in some of the most succesful image and
 video compressors, such as
 \href{https://en.wikipedia.org/wiki/JPEG}{JPEG} and
 \href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{H.264},
 \href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{HEVC} and
 \href{https://en.wikipedia.org/wiki/Versatile_Video_Coding}{VVC}.
 
-In the 1D case, the forward DCT for a signal $g(n)$ of
+In the 1D case, the forward DCT for a signal $\mathbf{g}[n]$ of
 length $N$ is defined as~\cite{burger2016digital}
 \begin{equation}
-  {\mathbf h}_u = \sqrt{\frac{2}{N}}\sum_{x=0}^{N-1}{\mathbf
-    g}_xC_u\cos\Big(\pi\frac{u(2x+1)}{2N}\Big),
+  {\mathbf h}[u] = \sqrt{\frac{2}{N}}\sum_{n=0}^{N-1}{\mathbf
+    g}[n]{\mathbf c}[u]\cos\Big(\pi\frac{u(2x+1)}{2N}\Big),
 \end{equation}
 for $0<u<N$, and the inverse transform is
 \begin{equation}
-  {\mathbf g}_x = \sqrt{\frac{2}{N}}\sum_{u=0}^{N-1}{\mathbf
-    h}_uC_u\cos\Big(\pi\frac{u(2x+1)}{2N}\Big),
+  {\mathbf g}[n] = \sqrt{\frac{2}{N}}\sum_{u=0}^{N-1}{\mathbf
+    h}[u]{\mathbf c}[u]\cos\Big(\pi\frac{u(2x+1)}{2N}\Big),
 \end{equation}
 for $0<n<N$, with
 \begin{equation}
-  c_u = \left\{
+  {\mathbf c}[u] = \left\{
   \begin{array}{ll}
-    \frac{1}{\sqrt{2}} & \quad \text{for} u=0, \\
+    \frac{1}{\sqrt{2}} & \quad \text{for}~u=0, \\
     1 & \quad \text{otherwise}.
   \end{array}
   \right.
 \end{equation}
 
-The transformed signal is a sequence of coefficients ${\mathbf h}_u$
-with the same length than the original signal ${\mathbf g}_x$, and the
+The transformed signal is a sequence of coefficients ${\mathbf h}[u]$
+with the same length than the original signal ${\mathbf g}[n]$, and the
 position of the coefficients in the transform domain indicate the
 contribution of such coefficient to the corresponding (in this case,
 spatial) frequency. For example, the coefficient at the position 0
@@ -70,9 +70,10 @@ by
   {\mathbf g} = {\mathbf K}^{-1}{\mathbf h},
 \end{equation}
 where ${\mathbf K}^{-1}$ denotes the inverse matrix of ${\mathbf
-  K}$. In the case of the DCT, ${\mathbf K}$ and therefore, ${\mathbf
-  K}^{-1}={\mathbf K}^{\text T}$, where $\cdot^{\text T}$ denotes the
-transpose of ${\mathbf K}$.
+  K}$. In the case of the DCT, ${\mathbf K}$ is
+\href{https://en.wikipedia.org/wiki/Orthogonal_matrix}{orthogonal} and
+therefore, ${\mathbf K}^{-1}={\mathbf K}^{\text T}$, where
+$\cdot^{\text T}$ denotes the transpose of ${\mathbf K}$.
 
 \subsection{The 2D-DCT}
 
@@ -93,7 +94,7 @@ first 64 2D-DCT basis (see this
 \subsection{Block-based transform coding}
 
 The DCT is usually applied by 2D blocks which, in most of the previous
-image and video compression standards are of 8x8 pixels. This a direct
+image and video compression standards are of $8\times 8$ pixels. This a direct
 consequence of that, usually the DCT losses compaction efficiency when
 the block size is increased (although this depends on the signal
 characteristics). When the coefficients of several blocks are
@@ -113,21 +114,21 @@ subbands is related to
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/block_DCT_compression.ipynb}{the
   spatial area where the corresponding pixels are found}.
 
-The DCT is orthonormal (orthogonal + unitary). Orthonormal transforms
-are energy preserving; that is, the sum of the squares of the
-transformed sequence is the same as the sum of the squares of the
-original sequence.
+The DCT is
+\href{https://en.wikipedia.org/wiki/Orthonormality}{orthonormal}
+(orthogonal + unitary). Unitary transforms are energy preserving;
+that is, the sum of the squares of the transformed sequence is the
+same as the sum of the squares of the original sequence.
 
 \subsection{Quantization in the (spatial) DCT domain}
 
-The DCT is orthonormal, which implies that the gain of each
-block-based 2D-DWT subband is equal to 1, and also that the
-quantization error is \emph{amplificated} with the same gain in all
-the subbands. However, this does not mean that all the subbands should
-be quantized using the same $\Delta$, because some subbands can be
-compressed more efficienly than others and their SNR (after
-quantization) can be
-different. This \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/block_DCT_compression.ipynb}{notebook}
+Since the DCT is orthonormal, the gain of each block-based 2D-DWT
+subband is equal to 1, and also that the quantization error is
+\emph{amplificated} with the same gain in all the subbands. However,
+this does not mean that all the subbands should be quantized using the
+same $\Delta$, because some subbands can be compressed more efficienly
+than others and their SNR (after quantization) can be different. This
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/block_DCT_compression.ipynb}{notebook}
 shows how to use RD optimization to determine, given a target
 bit-rate, the best combination of quantization steps per subbands.
 
