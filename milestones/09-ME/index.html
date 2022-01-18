@@ -42,19 +42,19 @@ href="#x1-40001.2" id="QQ2-1-4">But ... what exactly do we need?</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.3 <a 
 href="#x1-50001.3" id="QQ2-1-5">Block-based motion estimation</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.4 <a 
-href="#x1-60001.4" id="QQ2-1-13">Overlaped block matching</a></span>
+href="#x1-60001.4" id="QQ2-1-6">Overlapped block matching</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.5 <a 
-href="#x1-70001.5" id="QQ2-1-19">ME in a transformed domain</a></span>
+href="#x1-70001.5" id="QQ2-1-7">ME in a transformed domain</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.6 <a 
-href="#x1-80001.6" id="QQ2-1-24">Machine learning</a></span>
+href="#x1-80001.6" id="QQ2-1-8">Machine learning</a></span>
 <br />   &#x00A0;<span class="sectionToc" >2 <a 
-href="#x1-90002" id="QQ2-1-25">What do I have to do?</a></span>
+href="#x1-90002" id="QQ2-1-9">What do I have to do?</a></span>
 <br />   &#x00A0;<span class="sectionToc" >3 <a 
-href="#x1-100003" id="QQ2-1-27">Timming</a></span>
+href="#x1-100003" id="QQ2-1-10">Timming</a></span>
 <br />   &#x00A0;<span class="sectionToc" >4 <a 
-href="#x1-110004" id="QQ2-1-28">Deliverables</a></span>
+href="#x1-110004" id="QQ2-1-11">Deliverables</a></span>
 <br />   &#x00A0;<span class="sectionToc" >5 <a 
-href="#x1-120005" id="QQ2-1-29">Resources</a></span>
+href="#x1-120005" id="QQ2-1-12">Resources</a></span>
    </div>
 <!--l. 8--><p class="noindent" >
 </p>
@@ -85,13 +85,13 @@ order to make this a reversible process.
 display="inline" ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle> <mo 
 class="MathClass-rel">=</mo> <mo 
-class="MathClass-open" stretchy="false">&#x007B;</mo><msub><mrow 
+class="MathClass-open">&#x007B;</mo><msub><mrow 
 ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle></mrow><mrow 
 ><mi 
 >i</mi></mrow></msub 
 ><mo 
-class="MathClass-close" stretchy="false">&#x007D;</mo></math>, and a motion vectors
+class="MathClass-close">&#x007D;</mo></math>, and a motion vectors
 &#xFB01;eld <!--l. 26--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover class="overset"><mrow 
@@ -109,15 +109,15 @@ the predicted frame <!--l. 27--><math
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></math>,
-and outputs a prediction frame </p><table class="equation"><tr><td>
+and outputs a prediction frame </p><table class="equation"><tr><td> <a 
+ id="x1-3002r1"></a>
 <!--l. 29--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                         <mstyle 
-   id="x1-3002r1"  class="label" ></mstyle><!--endlabel--><mo 
-class="MathClass-open" stretchy="false"><mover 
+                         <mover 
 accent="true"><mrow 
-><mstyle mathvariant="bold">P</mstyle></mrow><mo accent="true">&#x005E;</mo></mover></mo> <mo 
+><mstyle mathvariant="bold"><mi 
+>P</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover> <mo 
 class="MathClass-rel">=</mo> <mover class="overset"><mrow 
 ><mstyle mathvariant="bold"><mi 
 >V</mi></mstyle></mrow><mrow 
@@ -125,9 +125,9 @@ class="MathClass-rel">=</mo> <mover class="overset"><mrow
 >R</mi></mstyle> <mo 
 class="MathClass-rel">&#x2192;</mo><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></mrow></mover><mo 
-class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle mathvariant="bold"><mi 
+class="MathClass-open">&#x0028;</mo><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle><mo 
-class="MathClass-close" stretchy="false">&#x0029;</mo><mo 
+class="MathClass-close">&#x0029;</mo><mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;1&#x0029;</td></tr></table>
 <!--l. 33--><p class="indent" >   In this milestone we analyze di&#xFB00;erent algorithms to determine
@@ -177,13 +177,13 @@ accent="true"><mrow
                                                                   
 
                                                                   
-&#x0028;the prediction frame&#x0029;, i.e. minimizing </p><table class="equation"><tr><td>
+&#x0028;the prediction frame&#x0029;, i.e. minimizing </p><table class="equation"><tr><td> <a 
+ id="x1-4001r2"></a>
 <!--l. 58--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                            <mstyle 
-   id="x1-4001r2"  class="label" ></mstyle><!--endlabel--><mo 
-class="MathClass-open" stretchy="false"><mstyle mathvariant="bold">E</mstyle></mo> <mo 
+                            <mstyle mathvariant="bold"><mi 
+>E</mi></mstyle> <mo 
 class="MathClass-rel">=</mo> <mstyle mathvariant="bold"><mi 
 >P</mi></mstyle> <mo 
 class="MathClass-bin">&#x2212;</mo><mover 
@@ -295,7 +295,7 @@ Figure&#x00A0;1: </span><span
 class="content">ME using disjoint blocks. <!--l. 97--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
-class="MathClass-open" stretchy="false">&#x0028;</mo><msub><mrow 
+class="MathClass-open">&#x0028;</mo><msub><mrow 
 ><mstyle mathvariant="bold"><mi 
 >V</mi></mstyle></mrow><mrow 
 ><mi 
@@ -307,16 +307,16 @@ class="MathClass-punc">,</mo><msub><mrow
 ><mi 
 >y</mi></mrow></msub 
 ><mo 
-class="MathClass-close" stretchy="false">&#x0029;</mo></math>
+class="MathClass-close">&#x0029;</mo></math>
 is      the      motion      vector      that      indicates      where      the      block
 <!--l. 97--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
-class="MathClass-open" stretchy="false">&#x0028;</mo><mi 
+class="MathClass-open">&#x0028;</mo><mi 
 >x</mi><mo 
 class="MathClass-punc">,</mo><mi 
 >y</mi><mo 
-class="MathClass-close" stretchy="false">&#x0029;</mo></math>
+class="MathClass-close">&#x0029;</mo></math>
 of <!--l. 97--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
@@ -559,7 +559,7 @@ of such issue is that the entropy of the motion &#xFB01;elds increases, which al
 the compression ratio.
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
- id="x1-60001.4"></a>Overlaped block matching</h4>
+ id="x1-60001.4"></a>Overlapped block matching</h4>
    <hr class="figure" /><div class="figure" 
 >
                                                                   
@@ -783,13 +783,13 @@ depicted below the plot of each basis.
 <!--l. 249--><p class="indent" >   The motion can be estimated also in a transformed domain. One of these
 estimators is the Farneb&#x00E4;ck&#x2019;s algorithm&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xfarneback2003two">2</a>&#x005D;</span>, which uses the transform de&#xFB01;ned by the
-basis functions </p><table class="equation"><tr><td>
+basis functions </p><table class="equation"><tr><td> <a 
+ id="x1-7003r3"></a>
 <!--l. 252--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                         <mstyle 
-   id="x1-7003r3"  class="label" ></mstyle><!--endlabel--><mo 
-class="MathClass-open" stretchy="false">&#x007B;</mo><mn>1</mn><mo 
+                         <mo 
+class="MathClass-open">&#x007B;</mo><mn>1</mn><mo 
 class="MathClass-punc">,</mo><mi 
 >x</mi><mo 
 class="MathClass-punc">,</mo><mi 
@@ -807,7 +807,7 @@ class="MathClass-punc">,</mo><msup><mrow
 class="MathClass-punc">,</mo><mi 
 >x</mi><mi 
 >y</mi><mo 
-class="MathClass-close" stretchy="false">&#x007D;</mo>
+class="MathClass-close">&#x007D;</mo>
 </math></td><td class="eq-no">&#x0028;3&#x0029;</td></tr></table>
 <!--l. 255--><p class="indent" >   &#x0028;see the Figure&#x00A0;<a 
 href="#x1-7001r13">13<!--tex4ht:ref: fig:FarnebacK_basis --></a>&#x0029;. In this transform domain, which is applied by overlapped
@@ -957,22 +957,21 @@ class="text"><mtext  >Q</mtext></mstyle></mrow><mrow
 ><mstyle mathvariant="bold"><mi 
 >E</mi></mstyle></mrow></msub 
 ></math> that
-minimize in the RD domain &#x0028;the RD curve of&#x0029; </p><table class="equation"><tr><td>
+minimize in the RD domain &#x0028;the RD curve of&#x0029; </p><table class="equation"><tr><td> <a 
+ id="x1-9003r4"></a>
 <!--l. 363--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
          <mstyle 
-   id="x1-9003r4"  class="label" ></mstyle><!--endlabel--><mo 
-class="MathClass-open" stretchy="false"><mstyle 
-class="text"><mtext  >MSE</mtext></mstyle></mo><mo 
-class="MathClass-open" stretchy="false">&#x0028;</mo><mo 
-class="MathClass-open" stretchy="false">&#x007B;</mo><mstyle mathvariant="bold"><mi 
+class="text"><mtext  >MSE</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x007B;</mo><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle><mo 
 class="MathClass-punc">,</mo><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle><mo 
-class="MathClass-close" stretchy="false">&#x007D;</mo><mo 
+class="MathClass-close">&#x007D;</mo><mo 
 class="MathClass-punc">,</mo><mo 
-class="MathClass-open" stretchy="false">&#x007B;</mo><mover 
+class="MathClass-open">&#x007B;</mo><mover 
 accent="true"><mrow 
 ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover><mo 
@@ -980,27 +979,27 @@ class="MathClass-punc">,</mo><mover
 accent="true"><mrow 
 ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover><mo 
-class="MathClass-close" stretchy="false">&#x007D;</mo><mo 
-class="MathClass-close" stretchy="false">&#x0029;</mo> <mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
 class="MathClass-rel">=</mo> <mfrac><mrow 
 ><mstyle 
 class="text"><mtext  >MSE</mtext></mstyle><mo 
-class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle mathvariant="bold"><mi 
+class="MathClass-open">&#x0028;</mo><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle><mo 
 class="MathClass-punc">,</mo><mover 
 accent="true"><mrow 
 ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover><mo 
-class="MathClass-close" stretchy="false">&#x0029;</mo> <mo 
+class="MathClass-close">&#x0029;</mo> <mo 
 class="MathClass-bin">+</mo> <mstyle 
 class="text"><mtext  >MSE</mtext></mstyle><mo 
-class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle mathvariant="bold"><mi 
+class="MathClass-open">&#x0028;</mo><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle><mo 
 class="MathClass-punc">,</mo><mover 
 accent="true"><mrow 
 ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover><mo 
-class="MathClass-close" stretchy="false">&#x0029;</mo></mrow> 
+class="MathClass-close">&#x0029;</mo></mrow> 
                   <mrow 
 ><mn>2</mn></mrow></mfrac>                  <mo 
 class="MathClass-punc">.</mo>
