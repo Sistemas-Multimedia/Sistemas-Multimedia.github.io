@@ -351,6 +351,20 @@ the frames $P$ and $R$ supposing that:
 
 \section{What do I have to do?}
 
+\begin{figure}
+  \centering
+  \myfig{graphics/problem}{3cm}{300}
+  \caption{Basic encoding problem.}
+  \label{fig:problem}
+\end{figure}
+
+Using the encoding system described in the Figure~\ref{fig:problem},
+find $\text{Q}_{\mathbf{R}}$ and $\text{Q}_{\mathbf{E}}$ that minimize in the RD domain (the RD curve of)
+\begin{equation}
+  \text{MSE}(\{\mathbf{R},\mathbf{P}\},\{\hat{\mathbf{R}},\hat{\mathbf{P}}\}) = \frac{\text{MSE}({\mathbf R},\hat{\mathbf R}) + \text{MSE}({\mathbf P},\hat{\mathbf P})}{2}.
+\end{equation}
+  
+\begin{comment}
 In this
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/optical_flow.ipynb}{notebook}
 you can find how to estimate the OF between two frames. Please, modify
@@ -359,6 +373,7 @@ it to find suitable values for the parameters \texttt{levels},
 each parameter is independent from the rest, a way of comparing two
 different configurations is to trace RD curves using a spatial
 decorrelation, quantization and compressing the MC residues.
+\end{comment}
 
 \section{Timming}
 
