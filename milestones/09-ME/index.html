@@ -28,7 +28,7 @@ class="ecrm-1200">Vicente Gonz</span><span
 class="ecrm-1200">&#x00E1;</span><span 
 class="ecrm-1200">lez Ruiz</span></div><br />
 <div class="date" ><span 
-class="ecrm-1200">January 18, 2022</span></div>
+class="ecrm-1200">January 19, 2022</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -42,19 +42,19 @@ href="#x1-40001.2" id="QQ2-1-4">But ... what exactly do we need?</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.3 <a 
 href="#x1-50001.3" id="QQ2-1-5">Block-based motion estimation</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.4 <a 
-href="#x1-60001.4" id="QQ2-1-6">Overlapped block matching</a></span>
+href="#x1-60001.4" id="QQ2-1-13">Overlapped block matching</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.5 <a 
-href="#x1-70001.5" id="QQ2-1-7">ME in a transformed domain</a></span>
+href="#x1-70001.5" id="QQ2-1-19">ME in a transformed domain</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.6 <a 
-href="#x1-80001.6" id="QQ2-1-8">Machine learning</a></span>
+href="#x1-80001.6" id="QQ2-1-24">Machine learning</a></span>
 <br />   &#x00A0;<span class="sectionToc" >2 <a 
-href="#x1-90002" id="QQ2-1-9">What do I have to do?</a></span>
+href="#x1-90002" id="QQ2-1-25">What do I have to do?</a></span>
 <br />   &#x00A0;<span class="sectionToc" >3 <a 
-href="#x1-100003" id="QQ2-1-10">Timming</a></span>
+href="#x1-100003" id="QQ2-1-27">Timming</a></span>
 <br />   &#x00A0;<span class="sectionToc" >4 <a 
-href="#x1-110004" id="QQ2-1-11">Deliverables</a></span>
+href="#x1-110004" id="QQ2-1-28">Deliverables</a></span>
 <br />   &#x00A0;<span class="sectionToc" >5 <a 
-href="#x1-120005" id="QQ2-1-12">Resources</a></span>
+href="#x1-120005" id="QQ2-1-29">Resources</a></span>
    </div>
 <!--l. 8--><p class="noindent" >
 </p>
@@ -85,13 +85,13 @@ order to make this a reversible process.
 display="inline" ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle> <mo 
 class="MathClass-rel">=</mo> <mo 
-class="MathClass-open">&#x007B;</mo><msub><mrow 
+class="MathClass-open" stretchy="false">&#x007B;</mo><msub><mrow 
 ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle></mrow><mrow 
 ><mi 
 >i</mi></mrow></msub 
 ><mo 
-class="MathClass-close">&#x007D;</mo></math>, and a motion vectors
+class="MathClass-close" stretchy="false">&#x007D;</mo></math>, and a motion vectors
 &#xFB01;eld <!--l. 26--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mover class="overset"><mrow 
@@ -109,15 +109,15 @@ the predicted frame <!--l. 27--><math
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></math>,
-and outputs a prediction frame </p><table class="equation"><tr><td> <a 
- id="x1-3002r1"></a>
+and outputs a prediction frame </p><table class="equation"><tr><td>
 <!--l. 29--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                         <mover 
+                         <mstyle 
+   id="x1-3002r1"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false"><mover 
 accent="true"><mrow 
-><mstyle mathvariant="bold"><mi 
->P</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover> <mo 
+><mstyle mathvariant="bold">P</mstyle></mrow><mo accent="true">&#x005E;</mo></mover></mo> <mo 
 class="MathClass-rel">=</mo> <mover class="overset"><mrow 
 ><mstyle mathvariant="bold"><mi 
 >V</mi></mstyle></mrow><mrow 
@@ -125,9 +125,9 @@ class="MathClass-rel">=</mo> <mover class="overset"><mrow
 >R</mi></mstyle> <mo 
 class="MathClass-rel">&#x2192;</mo><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></mrow></mover><mo 
-class="MathClass-open">&#x0028;</mo><mstyle mathvariant="bold"><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle><mo 
-class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo><mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;1&#x0029;</td></tr></table>
 <!--l. 33--><p class="indent" >   In this milestone we analyze di&#xFB00;erent algorithms to determine
@@ -177,13 +177,13 @@ accent="true"><mrow
                                                                   
 
                                                                   
-&#x0028;the prediction frame&#x0029;, i.e. minimizing </p><table class="equation"><tr><td> <a 
- id="x1-4001r2"></a>
+&#x0028;the prediction frame&#x0029;, i.e. minimizing </p><table class="equation"><tr><td>
 <!--l. 58--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                            <mstyle mathvariant="bold"><mi 
->E</mi></mstyle> <mo 
+                            <mstyle 
+   id="x1-4001r2"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false"><mstyle mathvariant="bold">E</mstyle></mo> <mo 
 class="MathClass-rel">=</mo> <mstyle mathvariant="bold"><mi 
 >P</mi></mstyle> <mo 
 class="MathClass-bin">&#x2212;</mo><mover 
@@ -295,7 +295,7 @@ Figure&#x00A0;1: </span><span
 class="content">ME using disjoint blocks. <!--l. 97--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
-class="MathClass-open">&#x0028;</mo><msub><mrow 
+class="MathClass-open" stretchy="false">&#x0028;</mo><msub><mrow 
 ><mstyle mathvariant="bold"><mi 
 >V</mi></mstyle></mrow><mrow 
 ><mi 
@@ -307,16 +307,16 @@ class="MathClass-punc">,</mo><msub><mrow
 ><mi 
 >y</mi></mrow></msub 
 ><mo 
-class="MathClass-close">&#x0029;</mo></math>
+class="MathClass-close" stretchy="false">&#x0029;</mo></math>
 is      the      motion      vector      that      indicates      where      the      block
 <!--l. 97--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mo 
-class="MathClass-open">&#x0028;</mo><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mi 
 >x</mi><mo 
 class="MathClass-punc">,</mo><mi 
 >y</mi><mo 
-class="MathClass-close">&#x0029;</mo></math>
+class="MathClass-close" stretchy="false">&#x0029;</mo></math>
 of <!--l. 97--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mstyle mathvariant="bold"><mi 
@@ -783,13 +783,13 @@ depicted below the plot of each basis.
 <!--l. 249--><p class="indent" >   The motion can be estimated also in a transformed domain. One of these
 estimators is the Farneb&#x00E4;ck&#x2019;s algorithm&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xfarneback2003two">2</a>&#x005D;</span>, which uses the transform de&#xFB01;ned by the
-basis functions </p><table class="equation"><tr><td> <a 
- id="x1-7003r3"></a>
+basis functions </p><table class="equation"><tr><td>
 <!--l. 252--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
-                         <mo 
-class="MathClass-open">&#x007B;</mo><mn>1</mn><mo 
+                         <mstyle 
+   id="x1-7003r3"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false">&#x007B;</mo><mn>1</mn><mo 
 class="MathClass-punc">,</mo><mi 
 >x</mi><mo 
 class="MathClass-punc">,</mo><mi 
@@ -807,7 +807,7 @@ class="MathClass-punc">,</mo><msup><mrow
 class="MathClass-punc">,</mo><mi 
 >x</mi><mi 
 >y</mi><mo 
-class="MathClass-close">&#x007D;</mo>
+class="MathClass-close" stretchy="false">&#x007D;</mo>
 </math></td><td class="eq-no">&#x0028;3&#x0029;</td></tr></table>
 <!--l. 255--><p class="indent" >   &#x0028;see the Figure&#x00A0;<a 
 href="#x1-7001r13">13<!--tex4ht:ref: fig:FarnebacK_basis --></a>&#x0029;. In this transform domain, which is applied by overlapped
@@ -940,38 +940,141 @@ class="content">Basic encoding problem.                                    </spa
                                                                   
    </div><hr class="endfigure" />
 <!--l. 361--><p class="indent" >   Using the encoding system described in the Figure&#x00A0;<a 
-href="#x1-9001r17">17<!--tex4ht:ref: fig:problem --></a>, &#xFB01;nd
+href="#x1-9001r17">17<!--tex4ht:ref: fig:problem --></a>, and de&#xFB01;ned by
+</p><table class="equation"><tr><td>
 <!--l. 362--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+<mstyle 
+   id="x1-9003r4"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false"> <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center">  <mover 
+accent="true"><mrow 
+><mstyle mathvariant="bold">R</mstyle></mrow><mo accent="true">&#x007E;</mo></mover> </mtd><mtd 
+class="array"  columnalign="center"> <mover 
+accent="true"><mrow 
+><mstyle mathvariant="bold">E</mstyle></mrow><mo accent="true">&#x007E;</mo></mover> </mtd></mtr> <mtr><mtd 
+class="array"  columnalign="center"> </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable></mo>                                                       </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
+class="MathClass-rel">=</mo>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center">           <mstyle 
+class="text"><mtext  >Q</mtext></mstyle><mo 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mo 
+class="MathClass-bin">&#x22C5;</mo><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo>           </mtd><mtd 
+class="array"  columnalign="center"> <mn>0</mn> </mtd></mtr> <mtr><mtd 
+class="array"  columnalign="center"> <mo 
+class="MathClass-bin">&#x2212;</mo><mover class="overset"><mrow 
+><mstyle 
+class="text"><mtext  >ME</mtext></mstyle> </mrow> <mrow 
+> <mstyle mathvariant="bold"> <mi 
+>R</mi></mstyle> <mo 
+class="MathClass-rel">&#x2192;</mo> <mstyle mathvariant="bold"> <mi 
+>P</mi></mstyle> </mrow> </mover> <mo 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle 
+class="text"><mtext  >Q</mtext></mstyle> <mo 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mo 
+class="MathClass-bin">&#x22C5;</mo><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo> </mtd> <mtd 
+class="array"  columnalign="center"> <mn>1</mn></mtd>
+</mtr>   <!--*\c@MaxMatrixCols c--></mtable>                                                                                                  </mrow><mo fence="true" form="postfix">]</mo></mrow> <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center"> <mstyle mathvariant="bold"><mi 
+>R</mi></mstyle> </mtd><mtd 
+class="array"  columnalign="center"> <mstyle mathvariant="bold"><mi 
+>P</mi></mstyle> </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                              </mrow><mo fence="true" form="postfix">]</mo></mrow>
+</math></td><td class="eq-no">&#x0028;4&#x0029;</td></tr></table>
+<!--l. 375--><p class="indent" >   and </p><table class="equation"><tr><td>
+<!--l. 376--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+<mstyle 
+   id="x1-9004r5"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false"> <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center">  <mover 
+accent="true"><mrow 
+><mstyle mathvariant="bold">R</mstyle></mrow><mo accent="true">&#x007E;</mo></mover> </mtd><mtd 
+class="array"  columnalign="center"> <mover 
+accent="true"><mrow 
+><mstyle mathvariant="bold">P</mstyle></mrow><mo accent="true">&#x007E;</mo></mover> </mtd></mtr> <mtr><mtd 
+class="array"  columnalign="center"> </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable></mo>                                                       </mrow><mo fence="true" form="postfix">]</mo></mrow> <mo 
+class="MathClass-rel">=</mo>  <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center"><msup><mrow 
+>          <mstyle 
+class="text"><mtext  >Q</mtext></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mo 
+class="MathClass-bin">&#x22C5;</mo><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo>          </mtd><mtd 
+class="array"  columnalign="center"> <mn>0</mn> </mtd>
+</mtr><mtr><mtd 
+class="array"  columnalign="center"> <mover class="overset"><mrow 
+><mstyle 
+class="text"><mtext  >ME</mtext></mstyle></mrow><mrow 
+><mstyle mathvariant="bold"><mi 
+>R</mi></mstyle> <mo 
+class="MathClass-rel">&#x2192;</mo><mstyle mathvariant="bold"><mi 
+>P</mi></mstyle></mrow></mover><mo 
+class="MathClass-open" stretchy="false">&#x0028;</mo><msup><mrow 
+><mstyle 
+class="text"><mtext  >Q</mtext></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mo 
+class="MathClass-bin">&#x22C5;</mo><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo> </mtd><mtd 
+class="array"  columnalign="center"> <mn>1</mn> </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                   </mrow><mo fence="true" form="postfix">]</mo></mrow> <mrow><mo fence="true" form="prefix"> [</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none none none none none none none none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center"> <mover 
+accent="true"><mrow 
+><mstyle mathvariant="bold"><mi 
+>R</mi></mstyle></mrow><mo accent="true">&#x007E;</mo></mover> </mtd><mtd 
+class="array"  columnalign="center"> <mover 
+accent="true"><mrow 
+><mstyle mathvariant="bold"><mi 
+>E</mi></mstyle></mrow><mo accent="true">&#x007E;</mo></mover> </mtd></mtr> <mtr><mtd 
+class="array"  columnalign="center"> </mtd></mtr> <!--*\c@MaxMatrixCols c--></mtable>                                                                         </mrow><mo fence="true" form="postfix">]</mo></mrow>
+</math></td><td class="eq-no">&#x0028;5&#x0029;</td></tr></table>
+<!--l. 388--><p class="indent" >   , &#xFB01;nd <!--l. 389--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mstyle 
 class="text"><mtext  >Q</mtext></mstyle></mrow><mrow 
 ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle></mrow></msub 
-></math> and
-<!--l. 362--><math 
+></math>
+and <!--l. 389--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><msub><mrow 
 ><mstyle 
 class="text"><mtext  >Q</mtext></mstyle></mrow><mrow 
 ><mstyle mathvariant="bold"><mi 
 >E</mi></mstyle></mrow></msub 
-></math> that
-minimize in the RD domain &#x0028;the RD curve of&#x0029; </p><table class="equation"><tr><td> <a 
- id="x1-9003r4"></a>
-<!--l. 363--><math 
+></math>
+that minimize in the RD domain &#x0028;the RD curve of&#x0029; </p><table class="equation"><tr><td>
+<!--l. 390--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
          <mstyle 
-class="text"><mtext  >MSE</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><mo 
-class="MathClass-open">&#x007B;</mo><mstyle mathvariant="bold"><mi 
+   id="x1-9005r6"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false"><mstyle 
+class="text"><mtext  >MSE</mtext></mstyle></mo><mo 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mo 
+class="MathClass-open" stretchy="false">&#x007B;</mo><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle><mo 
 class="MathClass-punc">,</mo><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle><mo 
-class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-close" stretchy="false">&#x007D;</mo><mo 
 class="MathClass-punc">,</mo><mo 
-class="MathClass-open">&#x007B;</mo><mover 
+class="MathClass-open" stretchy="false">&#x007B;</mo><mover 
 accent="true"><mrow 
 ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover><mo 
@@ -979,40 +1082,88 @@ class="MathClass-punc">,</mo><mover
 accent="true"><mrow 
 ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover><mo 
-class="MathClass-close">&#x007D;</mo><mo 
-class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-close" stretchy="false">&#x007D;</mo><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo> <mo 
 class="MathClass-rel">=</mo> <mfrac><mrow 
 ><mstyle 
 class="text"><mtext  >MSE</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><mstyle mathvariant="bold"><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle><mo 
 class="MathClass-punc">,</mo><mover 
 accent="true"><mrow 
 ><mstyle mathvariant="bold"><mi 
 >R</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover><mo 
-class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo> <mo 
 class="MathClass-bin">+</mo> <mstyle 
 class="text"><mtext  >MSE</mtext></mstyle><mo 
-class="MathClass-open">&#x0028;</mo><mstyle mathvariant="bold"><mi 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle><mo 
 class="MathClass-punc">,</mo><mover 
 accent="true"><mrow 
 ><mstyle mathvariant="bold"><mi 
 >P</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover><mo 
-class="MathClass-close">&#x0029;</mo></mrow> 
+class="MathClass-close" stretchy="false">&#x0029;</mo></mrow> 
                   <mrow 
 ><mn>2</mn></mrow></mfrac>                  <mo 
+class="MathClass-punc">,</mo>
+</math></td><td class="eq-no">&#x0028;6&#x0029;</td></tr></table>
+<!--l. 393--><p class="indent" >   set that </p><table class="equation"><tr><td>
+                                                                  
+
+                                                                  
+<!--l. 394--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                     <mstyle 
+   id="x1-9006r7"  class="label" ></mstyle><!--endlabel--><mo 
+class="MathClass-open" stretchy="false"><mstyle 
+class="text"><mtext  >MSE</mtext></mstyle></mo><mo 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle mathvariant="bold"><mi 
+>R</mi></mstyle><mo 
+class="MathClass-punc">,</mo><mover 
+accent="true"><mrow 
+><mstyle mathvariant="bold"><mi 
+>R</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo> <mo 
+class="MathClass-rel">=</mo> <mstyle 
+class="text"><mtext  >MSE</mtext></mstyle><mo 
+class="MathClass-open" stretchy="false">&#x0028;</mo><mstyle mathvariant="bold"><mi 
+>P</mi></mstyle><mo 
+class="MathClass-punc">,</mo><mover 
+accent="true"><mrow 
+><mstyle mathvariant="bold"><mi 
+>P</mi></mstyle></mrow><mo accent="true">&#x005E;</mo></mover><mo 
+class="MathClass-close" stretchy="false">&#x0029;</mo><mo 
 class="MathClass-punc">.</mo>
-</math></td><td class="eq-no">&#x0028;4&#x0029;</td></tr></table>
+</math></td><td class="eq-no">&#x0028;7&#x0029;</td></tr></table>
+<!--l. 398--><p class="indent" >   Equation&#x00A0;<a 
+href="#x1-9006r7">7<!--tex4ht:ref: eq:constant_quality --></a> indicates that all the decoded frames should have the same distortion. Notice
+that the transform de&#xFB01;ned by the Equations &#x00A0;<a 
+href="#x1-9003r4">4<!--tex4ht:ref: eq:forward --></a> and <a 
+href="#x1-9004r5">5<!--tex4ht:ref: eq:backward --></a> are not orthogonal and therefore, the
+&#x201C;subbands&#x201D; <!--l. 401--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover 
+accent="true"><mrow 
+><mstyle mathvariant="bold"><mi 
+>R</mi></mstyle></mrow><mo accent="true">&#x007E;</mo></mover></math>
+and <!--l. 402--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover 
+accent="true"><mrow 
+><mstyle mathvariant="bold"><mi 
+>P</mi></mstyle></mrow><mo accent="true">&#x007E;</mo></mover></math>
+are not independent.
+</p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-100003"></a>Timming</h3>
-<!--l. 380--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 382--><p class="noindent" >
+<!--l. 417--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
+</p><!--l. 419--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-110004"></a>Deliverables</h3>
-<!--l. 384--><p class="noindent" >None.
-</p><!--l. 386--><p class="noindent" >
+<!--l. 421--><p class="noindent" >None.
+</p><!--l. 423--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-120005"></a>Resources</h3>
@@ -1027,9 +1178,6 @@ class="ecti-1000">Proceedings of the IEEE international</span>
    <span 
 class="ecti-1000">conference on computer vision</span>, pages 2758&#x2013;2766, 2015.
    </p>
-                                                                  
-
-                                                                  
    <p class="bibitem" ><span class="biblabel">
  &#x005B;2&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
  id="Xfarneback2003two"></a>G.&#x00A0;Farneb&#x00E4;ck.  <a 
@@ -1037,6 +1185,9 @@ href="https://link.springer.com/content/pdf/10.1007/3-540-45103-X_50.pdf" >Two-F
    Pxpansion</a>.  In <span 
 class="ecti-1000">Scandinavian conference on Image analysis</span>, pages 363&#x2013;370.
    Springer, 2003.
+                                                                  
+
+                                                                  
    </p>
    <p class="bibitem" ><span class="biblabel">
  &#x005B;3&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
