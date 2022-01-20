@@ -23,15 +23,15 @@ side, in order to make this a reversible process.
 
 Specifically, a MCP (MC Predictor) inputs one (or more) reference
 frame(s) ${\mathbf R}=\{{\mathbf R}_i\}$, and a motion vectors field
-$\overset{{\mathbf R}\rightarrow{\mathbf P}}{\mathbf V}$ that
+$\overset{{\mathbf R}\rightarrow{\mathbf P}}{\mathbf M}$ that
 indicates how to project ${\mathbf R}$ onto the predicted frame ${\mathbf P}$, and outputs
 a prediction frame
 \begin{equation}
-  \hat{{\mathbf P}} =  \overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf V}({\mathbf R}).
+  \hat{{\mathbf P}} =  \overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf M}({\mathbf R}).
   \label{eq:MCP1}
 \end{equation}
 In this milestone we analyze different algorithms to determine
-$\overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf V}$ (in a futher
+$\overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf M}$ (in a futher
 milestone we will see how to remove the $\hat{{\mathbf P}}$'s
 information from ${\mathbf P}$). At this moment, for the sake of
 simplicity, in the rest of this discussion it will be supposed that the
@@ -42,11 +42,11 @@ number of reference frames in only 1.
 %Eq,~\ref{eq:MCP1} can be rewritten as
 %\begin{equation}
 %  \hat{\mathbf W}_k = \overset{{\mathbf W}_{k-1}\rightarrow {\mathbf
-%  W}_{k}}{\mathbf V}({\mathbf W}_{k-1}) = \overset{(k-1)\rightarrow
-%          k}{\mathbf V}({\mathbf W}_{k-1})
+%  W}_{k}}{\mathbf M}({\mathbf W}_{k-1}) = \overset{(k-1)\rightarrow
+%          k}{\mathbf M}({\mathbf W}_{k-1})
 %%  \hat{{\mathbf P}_k} = \overset{{\mathbf P}_k\rightarrow {\mathbf
-%%  P}_{k-1}}{\mathbf V}({\mathbf P}_{k-1}) = \overset{k\rightarrow
-%%          k-1}{\mathbf V},
+%%  P}_{k-1}}{\mathbf M}({\mathbf P}_{k-1}) = \overset{k\rightarrow
+%%          k-1}{\mathbf M},
 %  \label{eq:MCP2}
 %\end{equation}
 
@@ -60,9 +60,9 @@ prediction frame), i.e. minimizing
 \end{equation}
 in order to get that ${\mathbf E}$ will be more compressible than
 ${\mathbf P}$. To achieve this, we can compute $\overset{{\mathbf
-    R}\rightarrow {\mathbf P}}{\mathbf V}$ that simply minimizes the
+    R}\rightarrow {\mathbf P}}{\mathbf M}$ that simply minimizes the
 L$_2$ energy of ${\mathbf E}$, $||{\mathbf E}||^2$, or we can compute
-a $\overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf V}$ that also describes the Optical
+a $\overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf M}$ that also describes the Optical
 Flow~\cite{horn1981determining} (OF) between the pixels of ${\mathbf
   R}$ and ${\mathbf P}$, that although not necessarily has to
 minimize $||{\mathbf E}||^2$, tries to show the true movement of the
@@ -92,7 +92,7 @@ case will not be considered for now.
 \begin{figure}
   \centering
   \svg{graphics/simple}{400}
-  \caption{ME using disjoint blocks. $({\mathbf V}_x, {\mathbf V}_y)$
+  \caption{ME using disjoint blocks. $({\mathbf M}_x, {\mathbf M}_y)$
     is the motion vector that indicates where the block $(x,y)$ of
     ${\mathbf P}$ is found in ${\mathbf R}$.}
   \label{fig:simple}
@@ -106,7 +106,7 @@ block of ${\mathbf P}$ and its surrounding pixels in ${\mathbf R}$
 (the so called search area)~\cite{zhu2000new}. For each block, a
 motion vector that indicates the best match (smaller distance) is
 found. The set of motion vectors form the motion vectors field
-$\overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf V}$ that
+$\overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf M}$ that
 obviously, except for a block size of 1x1, will be less dense than
 ${\mathbf R}$ and ${\mathbf P}$. Notice, however, that, it is not a
 good idea to use such a small block size because, in general, the
@@ -363,7 +363,7 @@ Using the encoding system described in the Figure~\ref{fig:problem}, and defined
   \left\{\
     \begin{array}{l}
       \tilde{\mathbf R} = \text{Q}_{\mathbf R}({\mathbf R}) \\
-      \tilde{\mathbf E} = \text{Q}_{\mathbf E}\big({\mathbf P}-\overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf V}(\tilde{\mathbf R})\big)
+      \tilde{\mathbf E} = \text{Q}_{\mathbf E}\big({\mathbf P}-\overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf M}(\tilde{\mathbf R})\big)
     \end{array}
   \right.
   \label{eq:forward}
@@ -371,7 +371,7 @@ Using the encoding system described in the Figure~\ref{fig:problem}, and defined
 and
 \begin{equation}
   \begin{array}{l}
-    \tilde{\mathbf P} = \tilde{\mathbf E} + \overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf V}(\tilde{\mathbf R}),
+    \tilde{\mathbf P} = \tilde{\mathbf E} + \overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf M}(\tilde{\mathbf R}),
   \end{array}
   \label{eq:backward}
 \end{equation}
