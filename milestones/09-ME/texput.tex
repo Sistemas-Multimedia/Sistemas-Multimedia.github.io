@@ -360,6 +360,24 @@ the frames $P$ and $R$ supposing that:
 
 Using the encoding system described in the Figure~\ref{fig:problem}, and defined by
 \begin{equation}
+  \left\{\
+    \begin{array}{l}
+      \tilde{\mathbf R} = \text{Q}_{\mathbf R}({\mathbf R}) \\
+      \tilde{\mathbf E} = \text{Q}_{\mathbf E}\big({\mathbf P}-\overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf V}(\tilde{\mathbf R})\big)
+    \end{array}
+  \right.
+  \label{eq:forward}
+\end{equation}
+and
+\begin{equation}
+  \begin{array}{l}
+    \tilde{\mathbf P} = \tilde{\mathbf E} + \overset{{\mathbf R}\rightarrow {\mathbf P}}{\mathbf V}(\tilde{\mathbf R}),
+  \end{array}
+  \label{eq:backward}
+\end{equation}
+
+\begin{comment}
+\begin{equation}
   \begin{bmatrix}
     \tilde{\mathbf R} \\
     \tilde{\mathbf E}
@@ -390,6 +408,7 @@ and
   \end{bmatrix}
   \label{eq:backward}
 \end{equation}
+\end{comment}
 find $\text{Q}_{\mathbf{R}}$ and $\text{Q}_{\mathbf{E}}$ that minimize in the RD domain (the RD curve of)
 \begin{equation}
   \text{MSE}(\{\mathbf{R},\mathbf{P}\},\{\hat{\mathbf{R}},\hat{\mathbf{P}}\}) = \frac{\text{MSE}({\mathbf R},\hat{\mathbf R}) + \text{MSE}({\mathbf P},\hat{\mathbf P})}{2},
@@ -400,10 +419,14 @@ set that
   \label{eq:constant_quality}
 \end{equation}
 Equation~\ref{eq:constant_quality} indicates that all the decoded
-frames should have the same distortion. Notice that the transform
-defined by the Equations ~\ref{eq:forward} and \ref{eq:backward} is
-not orthogonal and therefore, the ``subbands'' $\tilde{\mathbf R}$ and
-$\tilde{\mathbf P}$ are not independent.
+frames should have the same distortion (from a human perception point
+of view). Notice that the transform defined by the Equations
+~\ref{eq:forward} and \ref{eq:backward} is not orthogonal and
+therefore, the ``subbands'' $\tilde{\mathbf R}$ and
+$\tilde{\mathbf P}$ are not independent. It can be seen that
+$\text{Q}_{\mathbf R}$ affects to the selection of
+$\text{Q}_{\mathbf E}$, because $\tilde{\mathbf R}$ is used as
+reference for finding ${\mathbf E}$.
 
 \begin{comment}
 In this
