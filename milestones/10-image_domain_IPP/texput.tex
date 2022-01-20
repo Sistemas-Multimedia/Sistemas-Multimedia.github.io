@@ -55,6 +55,17 @@ for three frames $V_0$, $V_1$ and $V_2$.
 
 \subsection{Motion compensation prediction (P) video coding}
 
+III... video coding is fast and good for video edition, but the
+compression ratios are poor because the temporal correlation is not
+removed. IPP... video coding uses MC (Motion Compensation) to exploit
+the temporal correlation in frame sequences. IPP... encoders split the
+sequence into
+\href{https://en.wikipedia.org/wiki/Group_of_pictures}{GOPs (Groups of
+  Frames)}, where the first frame of each GOP is a I-type frame, and
+the rest of frames of the GOP are P-type. P-frames are
+motion-compensated frames and usually the reference frame is the
+previous one, in the temporal order.
+
 It's time to test the performance of the ME/MC process previously
 described. We will encode a sequence of frames $\{W_k\}$ using the
 pattern IPP..., which means that the first frame will be intra-coded
