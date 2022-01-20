@@ -102,7 +102,13 @@ components have been translated to three different ``color'' subbands
 \end{figure}
 
 \subsection{Transform coding}
-Generally speaking, quantization is more effective (for the same
+\href{https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf}{Transform
+  coding} can exploit
+\href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlation}
+in \href{https://en.wikipedia.org/wiki/Signal}{signals} to concentrate
+the
+\href{https://en.wikipedia.org/wiki/Energy_(signal_processing)}{energy}
+in a subset of samples. Thus, quantization is more effective (for the same
 bit-rate, the lossy compression ratios are higher) when the energy of
 the signal is accumulated in an small number of coefficients because
 we can dedicate more bits to encode the more energetic
@@ -112,13 +118,7 @@ reconstruction of the image would be reasonable. The most part of
 entropy codecs (and of course, PNG's DEFLATE) works much better with
 sequences of zeros. Therefore, quantization will improve the
 compression ratios.}
-\href{https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf}{Transform
-  coding} can exploit
-\href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlation}
-in \href{https://en.wikipedia.org/wiki/Signal}{signals} to concentrate
-the
-\href{https://en.wikipedia.org/wiki/Energy_(signal_processing)}{energy}
-in a subset of samples.
+
 
 All linear\footnote{Non-linear transform are also possible, but their
 mathematical treatment is more complicated.}  transforms can be
@@ -151,7 +151,8 @@ computed by
   \mathbf{x} = {\mathbf{K}}^{-1}\mathbf{y},
   \label{eq:backward_transform_matrix_form}
 \end{equation}
-where ${\mathbf{K}}^{-1}$ denotes to the inverse matrix of $\mathbf{K}$. When $K$ is orthonormal, it holds that
+where ${\mathbf{K}}^{-1}$ denotes to the inverse matrix of
+$\mathbf{K}$. When ${\mathbf K}$ is orthonormal, it holds that
 \begin{equation}
   \mathbf{K}={\mathbf{K}}^{-1}={\mathbf{K}}^{\text T},
   \label{eq:orthogonal_matrix}

@@ -358,11 +358,52 @@ the frames $P$ and $R$ supposing that:
   \label{fig:problem}
 \end{figure}
 
-Using the encoding system described in the Figure~\ref{fig:problem},
+Using the encoding system described in the Figure~\ref{fig:problem}, and defined by
+\begin{equation}
+  \begin{bmatrix}
+    \tilde{\mathbf R} \\
+    \tilde{\mathbf E}
+  \end{bmatrix} =
+  \begin{bmatrix}
+    \text{Q}_{\mathbf R}(\cdot) & 0 \\
+    -\overset{{\mathbf R}\rightarrow {\mathbf P}}{\text{ME}}(\text{Q}_{\mathbf E}(\cdot)) & 1
+  \end{bmatrix}
+  \begin{bmatrix}
+    {\mathbf R } \\
+    {\mathbf P}
+  \end{bmatrix}
+  \label{eq:forward}
+\end{equation}
+and
+\begin{equation}
+  \begin{bmatrix}
+    \tilde{\mathbf R} \\
+    \tilde{\mathbf P}
+  \end{bmatrix} =
+  \begin{bmatrix}
+    \text{Q}^{-1}_{\mathbf R}(\cdot) & 0 \\
+    \overset{{\mathbf R}\rightarrow {\mathbf P}}{\text{ME}}(\text{Q}^{-1}_{\mathbf E}(\cdot)) & 1
+  \end{bmatrix}
+  \begin{bmatrix}
+    \tilde{\mathbf R} \\
+    \tilde{\mathbf E},
+  \end{bmatrix}
+  \label{eq:backward}
+\end{equation}
 find $\text{Q}_{\mathbf{R}}$ and $\text{Q}_{\mathbf{E}}$ that minimize in the RD domain (the RD curve of)
 \begin{equation}
-  \text{MSE}(\{\mathbf{R},\mathbf{P}\},\{\hat{\mathbf{R}},\hat{\mathbf{P}}\}) = \frac{\text{MSE}({\mathbf R},\hat{\mathbf R}) + \text{MSE}({\mathbf P},\hat{\mathbf P})}{2}.
+  \text{MSE}(\{\mathbf{R},\mathbf{P}\},\{\hat{\mathbf{R}},\hat{\mathbf{P}}\}) = \frac{\text{MSE}({\mathbf R},\hat{\mathbf R}) + \text{MSE}({\mathbf P},\hat{\mathbf P})}{2},
 \end{equation}
+set that
+\begin{equation}
+  \text{MSE}({\mathbf R},\hat{\mathbf R}) = \text{MSE}({\mathbf P},\hat{\mathbf P}).
+  \label{eq:constant_quality}
+\end{equation}
+Equation~\ref{eq:constant_quality} indicates that all the decoded
+frames should have the same distortion. Notice that the transform
+defined by the Equations ~\ref{eq:forward} and \ref{eq:backward} are
+not orthogonal and therefore, the ``subbands'' $\tilde{\mathbf R}$ and
+$\tilde{\mathbf P}$ are not independent.
   
 \begin{comment}
 In this
