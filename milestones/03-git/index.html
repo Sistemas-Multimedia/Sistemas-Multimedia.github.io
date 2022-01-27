@@ -39,26 +39,28 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">January 18, 2022</span></div>
+class="ecrm-1200">January 27, 2022</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
    <div class="tableofcontents">
    &#x00A0;<span class="sectionToc" >1 <a 
-href="#x1-20001" id="QQ2-1-2">Description</a></span>
+href="#x1-20001" id="QQ2-1-2">Basic steps</a></span>
 <br />   &#x00A0;<span class="sectionToc" >2 <a 
 href="#x1-30002" id="QQ2-1-3">What do I have to do?</a></span>
 <br />   &#x00A0;<span class="sectionToc" >3 <a 
-href="#x1-40003" id="QQ2-1-4">Timming</a></span>
+href="#x1-40003" id="QQ2-1-4">Some extra &#x0028;and optional&#x0029; con&#xFB01;guration</a></span>
 <br />   &#x00A0;<span class="sectionToc" >4 <a 
-href="#x1-50004" id="QQ2-1-5">Deliverables</a></span>
+href="#x1-50004" id="QQ2-1-5">Timming</a></span>
 <br />   &#x00A0;<span class="sectionToc" >5 <a 
-href="#x1-60005" id="QQ2-1-6">Resources</a></span>
+href="#x1-60005" id="QQ2-1-6">Deliverables</a></span>
+<br />   &#x00A0;<span class="sectionToc" >6 <a 
+href="#x1-70006" id="QQ2-1-7">Resources</a></span>
    </div>
 <!--l. 13--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
- id="x1-20001"></a>Description</h3>
+ id="x1-20001"></a>Basic steps</h3>
 <!--l. 15--><p class="noindent" >To work in <a 
 href="https://github.com/Sistemas-Multimedia/MRVC" >the MRMC project</a>&#x00A0;<span class="cite">&#x005B;<a 
 href="#XMRVC">3</a>&#x005D;</span> you must understand the basics of Git <span class="cite">&#x005B;<a 
@@ -707,17 +709,36 @@ class="ecti-1000">upstream</span>. Something similar
 <!--l. 309--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
- id="x1-40003"></a>Timming</h3>
-<!--l. 311--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class.
-</p><!--l. 313--><p class="noindent" >
+ id="x1-40003"></a>Some extra &#x0028;and optional&#x0029; con&#xFB01;guration</h3>
+                                                                  
+
+                                                                  
+   <pre class="verbatim" id="verbatim-6">
+cat&#x00A0;&#x003E;&#x003E;&#x00A0;~/.profile&#x00A0;&#x003C;&#x003C;&#x00A0;EOF
+
+#&#x00A0;Add&#x00A0;branch&#x00A0;name&#x00A0;to&#x00A0;the&#x00A0;Bash&#x00A0;prompt:
+parse_git_branch&#x0028;&#x0029;&#x00A0;&#x007B;
+&#x00A0;&#x00A0;&#x00A0;&#x00A0;git&#x00A0;branch&#x00A0;2&#x003E;&#x00A0;/dev/null&#x00A0;|&#x00A0;sed&#x00A0;-e&#x00A0;&#x2019;/^&#x005B;^*&#x005D;/d&#x2019;&#x00A0;-e&#x00A0;&#x2019;s/*&#x00A0;&#x005C;&#x0028;.*&#x005C;&#x0029;/&#x00A0;&#x0028;&#x005C;1&#x0029;/&#x2019;
+&#x007D;
+export&#x00A0;PS1=&#x0022;&#x005C;&#x005B;&#x005C;033&#x005B;01;32m&#x005C;&#x005D;&#x005B;&#x005C;u@&#x005C;h&#x005C;&#x005B;&#x005C;033&#x005B;01;37m&#x005C;&#x005D;&#x00A0;&#x005C;W&#x005C;&#x005B;&#x005C;033&#x005B;01;32m&#x005C;&#x005D;&#x005D;&#x005C;$&#x0028;parse_git_branch&#x0029;&#x005C;&#x005B;&#x005C;033&#x005B;00m&#x005C;&#x005D;&#x005C;$&#x00A0;&#x0022;
+
+EOF
+</pre>
+<!--l. 321--><p class="nopar" >
+</p><!--l. 323--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
- id="x1-50004"></a>Deliverables</h3>
-<!--l. 315--><p class="noindent" >None.
-</p><!--l. 317--><p class="noindent" >
+ id="x1-50004"></a>Timming</h3>
+<!--l. 325--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class.
+</p><!--l. 327--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
- id="x1-60005"></a>Resources</h3>
+ id="x1-60005"></a>Deliverables</h3>
+<!--l. 329--><p class="noindent" >None.
+</p><!--l. 331--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-70006"></a>Resources</h3>
    <div class="thebibliography">
    <p class="bibitem" ><span class="biblabel">
  &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
@@ -730,15 +751,15 @@ class="ecti-1000">Pro Git</span></a>. Apress, 2020.
  id="Xfork-and-branch-git-workflow"></a>Scott. <a 
 href="https://github.com/vicente-gonzalez-ruiz/fork_and_branch_git_workflow" >The Fork and Branch Git Work&#xFB02;ow</a>.
    </p>
+                                                                  
+
+                                                                  
    <p class="bibitem" ><span class="biblabel">
  &#x005B;3&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
  id="XMRVC"></a>The students of <a 
 href="http://cms.ual.es/UAL/estudios/masteres/plandeestudios/asignaturas/asignatura/MASTER7114?idAss=71142105&idTit=7114" >Sistemas Multimedia</a> at&#x00A0;the UAL.  The <a 
 href="https://github.com/Sistemas-multimedia/MRVC" >MRVC &#x0028;Multi
    Resolution Video Codec&#x0029; project</a>.
-                                                                  
-
-                                                                  
    </p>
    <p class="bibitem" ><span class="biblabel">
  &#x005B;4&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
