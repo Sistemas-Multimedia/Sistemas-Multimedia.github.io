@@ -1,3 +1,5 @@
+% Emacs, this is -*-latex-*-
+
 \input{../../definitions}
 \title{\SM{} - Study Guide - Milestone 4: Entropy coding with PNG (Portable Network Graphics)}
 
@@ -7,15 +9,17 @@
 
 \section{Description}
 
-This milestone shows the structure of the
-\href{https://en.wikipedia.org/wiki/Video}{videos} used in the rest of
-this course (and in the \theproject{} project). Basically, a
+This milestone introduces,
+\href{https://vicente-gonzalez-ruiz.github.io/PNG/}{PNG}, the
+\href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless
+  image compression format} used in this course for representing the
+\href{https://en.wikipedia.org/wiki/Video}{videos}. Basically, a
 (\href{https://en.wikipedia.org/wiki/Raster_graphics}{raster}) digital
 video is a \href{https://en.wikipedia.org/wiki/Sequence}{sequence} of
 (\href{https://en.wikipedia.org/wiki/Digital_data}{digital})
 \href{https://en.wikipedia.org/wiki/Image}{images} (or
-\href{https://en.wikipedia.org/wiki/Film_frame}{frames}). In the
-context, an image can be described as a
+\href{https://en.wikipedia.org/wiki/Film_frame}{frames}). In this
+context, a frame can be described as a
 \href{https://en.wikipedia.org/wiki/Matrix_(mathematics)}{matrix} of
 \href{https://en.wikipedia.org/wiki/Pixel}{pixels} (PIcture X-ray
 ELementS), arranged in a regular rectangular grid. Such sequences are
@@ -23,7 +27,7 @@ usully captured by a
 \href{https://en.wikipedia.org/wiki/Charge-coupled_device}{CCD (Charge
   Coupled Device)}.
 
-From a mathematical perspective, a video can be denoted by
+From a mathematical perspective, a frame sequence can be denoted by
 \begin{equation*}
   \{{\mathbf V}_{t,y,x}\in\mathbb{P}^{k}, (t,y,x)\in\mathbb{N}^3\}
 \end{equation*}
@@ -34,23 +38,23 @@ $k$~\cite{burger2016digital}.
 
 Depending on $k$, we can have grayscale pixels ($k=1$), color pixels
 ($k=3$), and multispectral pixels ($k>3$).\footnote{When $k>3$ we also
-use the term ``super/hyper-spectral'' pixels/images/videos, depending
+use the term ``super/hyper-spectral'' pixels/frames/sequences, depending
 on the value of $k$.} Finally, if we take into consideration the
 number of bits/component that usually is $8$ (although this value can be larger
-specially for grayscale images), the pixel-depth will be $8$
+specially for grayscale frames), the pixel-depth will be $8$
 bits/pixel for grayscale sequences or $3\times 8=24$ bits/pixel for
 color ones.
 
 We are going to store a video as a sequence of
 \href{https://en.wikipedia.org/wiki/Computer_file}{files} with names
 <prefix>000.png, <prefix>001.png, ..., where <prefix> specifies the
-video name and ``.png'' indicates that the frames are coded using the
-\href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless}
+sequence name and ``.png'' indicates that the frames are coded using
 \href{https://en.wikipedia.org/wiki/Portable_Network_Graphics}{PNG}
-(pronounced ``ping'') image
+(pronounced ``ping'') image compression
 format~\cite{roelofs1999png,world2003portable}. PNG uses
 \href{https://en.wikipedia.org/wiki/Differential_pulse-code_modulation}{DPCM}
-and the \href{https://en.wikipedia.org/wiki/DEFLATE}{DEFLATE} codec
+and the \href{https://en.wikipedia.org/wiki/DEFLATE}{DEFLATE}
+\href{https://en.wikipedia.org/wiki/Entropy_coding}{entropy codec}
 (\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman coding} +
 \href{https://en.wikipedia.org/wiki/Lempel-Ziv-Storer-Szymanski}{LZSS})~\cite{nelson96datacompression}
 to remove the
@@ -58,10 +62,7 @@ to remove the
 \href{https://en.wikipedia.org/wiki/Data_compression}{statistical
   redudancy}. Notice that no
 \href{https://en.wikipedia.org/wiki/YUV}{color transform} is
-used. Therefore, we will use
-\href{https://vicente-gonzalez-ruiz.github.io/PNG/}{PNG} basically as
-an \href{https://en.wikipedia.org/wiki/Entropy_encoding}{entropy
-  codec}.
+used.
 
 % We will use \href{https://vicente-gonzalez-ruiz.github.io/PNG/}{PNG}
 % basically as an
@@ -74,12 +75,12 @@ an \href{https://en.wikipedia.org/wiki/Entropy_encoding}{entropy
 % file format (such as \href{https://en.wikipedia.org/wiki/TIFF}{TIFF})
 % could be used.
 
-Finally, notice that all the frames of a video usually:
+Finally, notice that all the frames of a sequence usually:
 \begin{enumerate}
 \item Have the same
   \href{https://en.wikipedia.org/wiki/Image_resolution}{spatial
     resolution}.
-\item Are represented in the
+\item Are, at least originally, represented in the
   \href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB domain}.
 \item Depending on the frame, in PNG, each color component (channel) has a
   \href{https://en.wikipedia.org/wiki/Glossary_of_computer_graphics#bit_depth}{bit
