@@ -1,5 +1,7 @@
+% Emacs, this is -*-latex-*-
+
 \input{../../definitions}
-\title{\SM{} - Study Guide - Milestone 6: Compressing in a luminance/crominance domain}
+\title{\SM{} - Study Guide - Milestone 6: Compressing images after a color transformation}
 
 \maketitle
 
@@ -21,7 +23,7 @@ To estimate the
 \href{https://en.wikipedia.org/wiki/Redundancy_(information_theory)}{redundancy}
 we have basically two options:
 \begin{enumerate}
-\item To compute the
+\item Compute the
   \href{https://en.wikipedia.org/wiki/Entropy_(information_theory)}{0-order
     (memoryless source) entropy} of the signal: the higher the
   entropy, the lower the redudancy. In fact, if we suppose that the
@@ -29,8 +31,9 @@ we have basically two options:
   exact measure of the expected bit-rate achieved by an
   \href{https://en.wikipedia.org/wiki/Arithmetic_coding}{arithmetic
     encoder} (the most efficient entropy compressor). Unfortunately,
-  the 0-order entropy is usually only a lower bound of the redundancy
-  estimation, i.e., lower bit-rates can be achieved in practice.
+  the 0-order entropy is usually only a estimation of the redundancy,
+  i.e., lower bit-rates can be achieved in practice after using
+  decorrelation.
 \item A better way is to use an
   \href{https://en.wikipedia.org/wiki/Data_compression}{lossless
     compressor}: the higher the length of the compressed file compared
