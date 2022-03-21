@@ -37,6 +37,8 @@ compressing with PNG we will have a
 %  coding}.
 
 \subsection{Scalar and vector quantization of RGB images}
+%{{{
+
 SQ would be an optimal solution only if the image colors are uniformly
 distributed within
 \href{https://en.wikipedia.org/wiki/RGB_color_model}{the RGB
@@ -78,7 +80,11 @@ channel are decorrelated (using for example a color transform as we
 will see in a future milestone), requesting in general less
 computation than VQ.
 
+%}}}
+
 \subsection{Quantization in the RGB domain}
+%{{{
+
 Supposing that we are using a dead-zone quantizer, a color RGB image
 can be quantized, channel by channel, using quantization steps
 $\Delta_{\text{R}}$, $\Delta_{\text{G}}$, and $\Delta_{\text{B}}$. A
@@ -160,6 +166,11 @@ compression RGB images, satisfy two key properties:
 \item The constribution to the distortion of each channel is exactly
   the same.
 \end{enumerate}
+
+%}}}
+
+\subsection{Rate control}
+
 
 %}}}
 
