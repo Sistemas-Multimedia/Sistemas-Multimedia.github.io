@@ -61,17 +61,31 @@ example) and the Y-axis represents the distortion (the
 \href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{Root
   Mean Square Error (RMSE)}, for example).
 
-Normal RD curves are convex (see Fig.~\ref{fig:RD_slopes}), which
+Normaly, RD curves are convex (see Fig.~\ref{fig:RD_slopes}), which
 means that if $\lambda_i$ is the slope of the curve measured at the
 $i$-th point of the curve (starting at the lowest bit-rate), it
 usually hold that
 \begin{equation}
   \lambda_i > \lambda_{i+1}.
+  \label{eq:convexity}
 \end{equation}
 where $\lambda$ quantifies the trade-off between decreasing the
 distortion\footnote{For this reason, the slopes are negative.} while
 the bit-rate
-increases.~\cite{vetterli1995wavelets,sayood2017introduction}
+increases~\cite{vetterli1995wavelets,sayood2017introduction}. However,
+Eq.~\ref{eq:convexity} is not always true. This can be seen in the
+notebooks \href{}{midtread\_quantization},
+\href{midrise\_quantization}, \href{deadzone\_quantization} and
+\href{}{companded\_quantization}.
+
+As it can be also seen in the notebook
+\href{}{quantizers\_comparison}, the performance of the quantizers is
+not the same (usually midrise and midtread, performs better than
+deadzone at intermediate bit-rates, but deadzone is the best a low
+bit-rates. Deadzone has also another advantage over midread and
+midtread: when $\Delta$ is a power of 2 (which corresponds to a
+bit-plane encoding), the obtained RD point is near optimal in the RD
+space.
 
 %}}}
 
@@ -81,31 +95,10 @@ increases.~\cite{vetterli1995wavelets,sayood2017introduction}
 %{{{
 
 \begin{enumerate}
-\item Please, using this
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-RGB_compression/RGB_compression.ipynb}{notebook}
-  try to find a quantization steps combination where
-  Eq.~\ref{eq:simple_Q} is not optimal (or at least there is a
-  different configuration of QSs better that this equation).
-\item Do you think that our lifes would be easier, to compress a RGB
-  image, if we had an gray-image (lossy) compressor that allows to
-  select the quantization step by its slope?
+\item Create a notebook named ``bit-rate\_control.ipynb'' that, given
+  a maximum bit-rate, finds the quantization step $\Delta^*$ that
+  minimizes the distortion. Use the quantizer your prefer.
 \end{enumerate}
-%\begin{enumerate}
-%\item Please, modify this
-%  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-quantization/performance.ipynb}{notebook}
-%  in order to use the
-%  \href{https://docs.opencv.org/master/d4/da8/group__imgcodecs.html}{TIFF
-%    and JPEG 2000 image formats} instead of PNG. Compare the RD
-%  curves.
-%\item In the previous
-%  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-quantization/performance.ipynb}{notebook}
-%  the three color channels, R, G, and B has been quantized using the
-%  same QS ($\Delta_{\text{R}} = \Delta_{\text{G}} =
-%  \Delta_{\text{B}}$). Do you think that this strategy minimizes the
-%  quantization error?
-%\item Compare the estimation provided by the entropy with the
-%  DEFLATE's bit-rates.
-%\end{enumerate}
 
 %}}}
 
