@@ -172,7 +172,7 @@ Now, lets encode:
 \begin{verbatim}
 Input     Q0       Q1       Q2         Q3
 ------+-----------------------------------
-  0.2 |  0.3      1.3      1.7        0.7 <- |Quantization errors|, step 0
+  0.2 |  0.3      1.3      1.7        0.7 <- |Quantization errors|, first sample
       |  | \     /   \    /   \      /  |
       | 0|   1\ /      \/      \ /      |
       |  |     /  \   /  \   /  \       | 
@@ -182,7 +182,7 @@ Input     Q0       Q1       Q2         Q3
       |   +   +    +   +    +   +    +   +
       | 1.1 0.1  0.1 0.1  0.9 0.9  1.9 1.9
       |   =   =    =   =    =   =    =   =
-      | 1.4 1.4  1.8 0.8  1.2 2.2  3.6 2.6 <- |Accumulated quantization errors|, step 1 
+      | 1.4 1.4  1.8 0.8  1.2 2.2  3.6 2.6 <- |Accumulated quantization errors|, second sample
       |  | \     /   \    /   \      /  |
       |  |    \ /      \/      \ /      |
       |  |     /  \   /  \   /  \       | 
@@ -192,15 +192,73 @@ Input     Q0       Q1       Q2         Q3
       |   +   +    +   +    +   +    +   +
       | 1.8 1.8  0.8 0.8  0.2 0.2  1.2 1.2
       |   =   =    =   =    =   =    =   =
-      | 3.2 2.6  2.0 3.4  1.6 1.0  2.4 3.8 <- |Accumulated quantization errors|, step 2
+      | 3.2 2.6  2.0 3.4  1.6 1.0  2.4 3.8 <- |Accumulated quantization errors|, third sample
 \end{verbatim}
-%}}}
 
 Therefore, the best combination of quantizers is (in reverse order)
 Q2, Q1, Q3, generating the code-word <11><0><1> and a total distortion
-of 1.0.
+of $1.0$.
 
-Notice that if the FSM is fully connected (and therefore, the trellis too) the number of output bits will be higher but als
+\subsection*{Matrix-based implementation}
+
+\begin{verbatim}
+
+Encoding sample 0.2:
+
+             previous
+        Q0    Q1    Q2    Q3
+     +-----+-----+-----+-----+
+  Q0 | 0.3 |     |     |     |
+n    +-----+-----+-----+-----+
+e Q1 |     | 1.3 |     |     |
+x    +-----+-----+-----+-----+
+t Q2 |     |     | 1.7 |     |
+     +-----+-----+-----+-----+
+  Q3 |     |     |     | 0.7 |
+     +-----+-----+-----+-----+
+
+Encoding sample 1.6:
+
+             previous
+        Q0    Q1    Q2    Q3
+     +-----+-----+-----+-----+
+  Q0 | 1.4 | 1.4 |     |     |
+n    +-----+-----+-----+-----+
+e Q1 |     |     | 1.8 | 0.8 |
+x    +-----+-----+-----+-----+
+t Q2 | 1.2 | 2.2 |     |     |
+     +-----+-----+-----+-----+
+  Q3 |     |     | 3.6 | 2.6 |
+     +-----+-----+-----+-----+
+
+Encoding sample 2.3:
+
+             previous
+        Q0    Q1    Q2    Q3
+     +-----+-----+-----+-----+
+  Q0 | 3.2 | 2.6 |     |     |
+n    +-----+-----+-----+-----+
+e Q1 |     |     | 2.0 | 3.4 |
+x    +-----+-----+-----+-----+
+t Q2 | 1.6 | 1.0 |     |     |
+     +-----+-----+-----+-----+
+  Q3 |     |     | 2.9 | 3.8 |
+     +-----+-----+-----+-----+
+\end{verbatim}
+
+The minimum distortion is found at coordinate (Q2, Q1), which means
+that the last quantizer is Q2, the previous one is Q1, and if we go to
+row Q1 in the previous matrix, the minimum is found a column
+Q3. Therefore, the optimal sequence of quantizers is Q3, Q1, Q2.
+
+\subsection{Optimization of TCQ}
+Notice that if the FSM is fully connected (and therefore, the trellis
+too) the number of output bits will be higher and the distortion will
+be lower. This generates an optimization problem in which we must find
+the optimal FSM (number of quantizers and allowed transitions between
+them), that should minimize the RD curve.
+
+%}}}
 
 \section{What do I have to do?}
 %{{{
