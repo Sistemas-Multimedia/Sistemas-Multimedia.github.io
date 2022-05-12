@@ -1,7 +1,7 @@
 % Emacs, this is -*-latex-*-
 
 \input{../../definitions}
-\title{\SM{} - Study Guide - Milestone 5: Lossy Compression of RGB (Red, Green, and Blue) images}
+\title{\SM{} - Study Guide - Milestone 5: Lossy Compression of RGB images}
 
 \maketitle
 
@@ -13,12 +13,12 @@
 In this milestone we will
 \href{https://vicente-gonzalez-ruiz.github.io/quantization/}{quantize}
 an image\footnote{Or frame, in the context of a video.} in the
-\href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB\footnote{Red,
-  Green and Blue: the primary colors.} color domain}. RGB is an
-additive color system, which means that all colors \emph{start} with
-black and are created by adding some intensity of the primary colors
-red, green and blue~\cite{burger2016digital}. Quantizing and then
-compressing with PNG we will have a
+\href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB (Red, Green,
+  and Blue) color domain}. RGB is an additive color system, which
+means that all colors ``start'' with black and are created by adding
+some intensity of the primary colors red, green and
+blue~\cite{burger2016digital}. Quantizing and then compressing with
+PNG we will have a
 \href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy image
   compressor}.
 
@@ -39,46 +39,53 @@ compressing with PNG we will have a
 \subsection{Scalar and vector quantization of RGB images}
 %{{{
 
-SQ would be an optimal solution only if the image colors are uniformly
-distributed within
-\href{https://en.wikipedia.org/wiki/RGB_color_model}{the RGB
+SQ (Scalar Quantization)~\cite{vruiz__scalar_quantization} would be an
+optimal solution only if the image colors are uniformly distributed
+within \href{https://en.wikipedia.org/wiki/RGB_color_model}{the RGB
   cube}. However, the typical color distribution in natural images is
 anything but uniform, with some regions of the color space being
-densely populated and many colors entirely missing. In this case,
-scalar quantization is not optimal because the interesting colors may
-not be sampled with suﬃcient density while at the same time colors are
-represented that do not appear in the image at
+densely populated and many potentially used colors entirely
+missing. In this case, depending on the quantization step
+size~\cite{vruiz__signal_quantization}, SQ is not optimal because the
+used colors may not be sampled with suﬃcient density while at the same
+time colors are represented that do not appear in the image at
 all~\cite{burger2016digital}.
 
-On the other hand, VQ does not treat the individual RGB (sometimes
-also refered by
-\href{https://en.wikipedia.org/wiki/Color_image}{channel}s separately
-as does scalar quantization, but each color vector
-${\mathbf C}_i = ({\mathbf R}_i, {\mathbf G}_i, {\mathbf B}_i )$ (or
-pixel) in the image is treated as a single entity. Starting from a set
-of original color tuples ${\mathbf C} = \{c_1, c_2, \ldots ,c_m\}$,
-the task of vector quantization is:
+On the other hand, VQ (Vector
+Quantization)~\cite{vruiz__vector_quantization} applied to the color
+domain does not treat the individual RGB components (also refered by
+\href{https://en.wikipedia.org/wiki/Color_image}{channel}s) separately
+as does scalar quantization, but each used color vector ${\mathbf C}_i
+= ({\mathbf R}_i, {\mathbf G}_i, {\mathbf B}_i )$ in the image is
+treated as a minimum structure. Starting from a set of original color
+tuples ${\mathbf C} = \{c_1, c_2, \ldots ,c_m\}$, where $m$ is the
+number of different colors found in the image, the task of a vector
+quantizer is to:
 \begin{enumerate}
-\item to ﬁnd a set of $n$ representative color vectors
-  ${\mathbf C}' = \{c'_1, c'_2 ,\ldots , c'_n \}$, and
-\item to replace each original color ${\mathbf C}_i$ by one of the new
-  color vectors ${\mathbf C}'_j\in {\mathbf C}'$, where $n$ is usually
-  predetermined ($n < m$) and the resulting deviation from the
-  original image shall be minimal. This is a combinatorial
-  optimization problem in a rather large search space, which usually
-  makes it impossible to determine a global optimum in adequate
-  time. This is the reason why VQ methods only compute a ``local''
-  optimum at best~\cite{burger2016digital}. Anyway, VQ is used in
-  \href{https://en.wikipedia.org/wiki/Palette_(computing)}{``palletized''
-    images}.
+\item Find a set of $n$ representative color vectors (the so called
+  \emph{vector code-book}) ${\mathbf C}' = \{c'_1, c'_2 ,\ldots , c'_n
+  \}$, where $n < m$.
+\item Replace each original color ${\mathbf C}_i$ by one of the new
+  color vectors ${\mathbf C}'_j\in {\mathbf C}'$, where the resulting
+  deviation from the original image shall be minimal.
 \end{enumerate}
 
+This is a combinatorial optimization problem in a rather large search
+space, which usually makes it impossible to determine a global optimum
+in adequate time. This is the reason why VQ methods only compute a
+``local'' optimum at best~\cite{burger2016digital}. Anyway, VQ is used
+in
+\href{https://en.wikipedia.org/wiki/Palette_(computing)}{``palletized''
+  images}.
+  
 Another key aspect to take into consideration is that the problem
 previously mentioned about the under-optimality when quantizing
 directly in the RGB domain can be minimized when the values of each
 channel are decorrelated (using for example a color transform as we
 will see in a future milestone), requesting in general less
-computation than VQ.
+computation than VQ to achieve similar
+\href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{Rate/Distortion
+  (RD) performance}.
 
 %}}}
 
@@ -100,7 +107,7 @@ considerations, and obviously, any alternative different from
   \label{eq:simple_Q}
 \end{equation}
 will produce some alteration in the color (also called the
-``chroma'') of the reconstructed frame.
+``chroma'') of the reconstructed image.
 
 In the second perspective, only a pure
 \href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{Rate/Distortion
@@ -109,8 +116,7 @@ combination of quantization steps is those that optimizes (generally
 by minimizing, that is, making it closer to the origin of coordinates)
 the RD curve.\footnote{Notice that a RD curve represents the trade-off
 between the distortion (typically the
-\href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{Root
-  Mean Square Error (RMSE)}) and the bit-rate (therefore, RMSE versus
+\href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{Mean Square Error (MSE)}) and the bit-rate (therefore, MSE versus
 bit/pixel).}
 
 \begin{figure}
@@ -163,7 +169,7 @@ compression RGB images, satisfy two key properties:
 \item The contributions of the channels are independent (see
   Eq.~\ref{eq:additive}), and therefore, the total distortion is a
   linear combination of individual distortions.
-\item The constribution to the distortion of each channel is exactly
+\item The contribution to the distortion of each channel is exactly
   the same.
 \end{enumerate}
 

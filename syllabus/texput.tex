@@ -5,9 +5,9 @@
 
 \section{About this course}
 
-This course analyses the basic principles used to encode digital images
-and videos, and how to apply them in commercial and scientific
-environments.
+This course analyses the basic principles used to encode digital
+images and videos, and how to apply such techniques in commercial and
+scientific environments.
 
 Images and sequences of images (videos) are everywhere, and one of the
 main problems that arise when we use them is the huge amount of data
@@ -18,17 +18,129 @@ organized into a collection of milestones.
 \section{Timetable}
 
 \begin{description}
-\item [Day 1: {\normalfont Preparing the working
-    environment.}] \emph{We will use a Linux operating system with
-  Git and Python to develop our project.}
+\item [Milestone 1: {\normalfont Preparing the working
+    environment.}] {\emph{Usually, open source frameworks increase the portability and eases the deployment.}
   \begin{description}
-  \item [Milestone 1: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/01-provisioning/}{Operating system provisioning}.}]
-  \item [Milestone 2: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/02-python/}{Installation and basic programming with Python}.}]
-  \item [Milestone 3: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/03-git/}{Git, GitHub and the fork-and-branch Git workflow}.}]
+  \item [Step 1: {\normalfont
+      \href{https://sistemas-multimedia.github.io/content/provisioning/}{Operating
+        system provisioning}.}]
+  \item [Step 2: {\normalfont
+      \href{https://sistemas-multimedia.github.io/content/python/}{Installation
+        and basic programming with Python}.}]
+  \item [Step 3: {\normalfont
+      \href{https://sistemas-multimedia.github.io/content/git/}{Git,
+        GitHub and the fork-and-branch Git workflow}.}]
   %\item [Milestone 4: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/04-the_data/}{Understanding the video data}.}]
   \end{description}
   ~\newline
 
+\item [Milestone 2: {\normalfont Exploiting the color redundancy:}]
+  \emph{In color images, the RGB channels tend to be highly
+  correlated. We can take advantage of this channel correlation to
+  decrease the entropy and therefore, increase the compression ratio}.
+  \begin{description}
+  \item [Task 4: {\normalfont
+      \href{htpps://sistemas-multimedia.github.io/content/color_DCT/}{The
+        1D-DCT (1-Dimensional Discrete Cosine Transform) transform}.}]
+  \item [Task 5: {\normalfont
+      \href{htpps://sistemas-multimedia.github.io/content/YCrCb/}{The
+        YCrCb transform}.}]
+  \item [Task 6: {\normalfont
+      \href{htpps://sistemas-multimedia.github.io/content/YCoCg/}{The
+        YCoCg transform}.}]
+  \end{description}
+  ~\newline
+
+\item [Milestone 3: {\normalfont Removing the spatial redundancy:}]
+  \emph{Visual data is highly correlated in the spatial domain. Let's
+  see how we can decrease the entropy by exploiting the spatial
+  correlation in images}.
+  \item [Task 7: {\normalfont
+      \href{https://sistemas-multimedia.github.io/content/DPCM/}{2D-DPCM
+        (2-Dimensional Differential Pulse Code Modulation)}.}]
+  \item [Task 8: {\normalfont
+      \href{https://sistemas-multimedia.github.io/content/spatialDCT/}{The
+        2D-DCT (2-Dimensional Discrete Cosine Transform)}.}]
+  \item [Task 9: {\normalfont
+      \href{https://sistemas-multimedia.github.io/content/DWT/}{The
+        2D-DWT (2-Dimensional Discrete Wavelet Transform)}.}]
+  \end{description}
+  ~\newline
+
+\item [Milestone 4: {\normalfont Entropy coding:}] \emph{So far, the
+minimization of the entropy has been our main objective. Let's see how
+can we use an entropy codec to build a
+\href{https://github.com/Sistemas-Multimedia/RIC}{lossless (or near
+  lossless, depending on the implementation of the inter-channel and
+  intra-channels transforms) image codec}.
+  \item [Task 10: {\normalfont
+      \href{https://sistemas-multimedia.github.io/content/PNG/}{PNG (Portable Network Grachics)}.}]
+  \item [Task 11: {\normalfont
+      \href{https://sistemas-multimedia.github.io/content/J2K/}{JPEG (Joint Photographic Expert Group) 2000}.}]
+  \item [Task 12: {\normalfont
+      \href{https://sistemas-multimedia.github.io/content/CBAC/}{CBAC (Context-Based Arithmetic Coding)}.}]
+  \end{description}
+  ~\newline
+
+\item [Milestone 5: {\normalfont Rate-control through quantization:}]
+  \emph{In most images, a large percentage of the code-stream is
+  dedicated to encode inappreciable (by humans) visual
+  information. Quantization can be used to remove such information and
+  providing higher compression ratios}.
+  \item [Task 13: {\normalfont
+      \href{https://sistemas-multimedia.github.io/content/quantization/}{Quantization in the transform domain}.}]
+  \item [Task 14: {\normalfont
+      \href{https://sistemas-multimedia.github.io/content/RDO/}{RDO (Rate/Distortion Optimization).}]
+  \end{description}
+  ~\newline
+
+\item [Milestone 6: {\normalfont Chroma subsampling:}] \emph{Humans
+hardly perceive high frequency content in the chroma components and
+for this reason, distortion in the chroma information can be increased
+without being appreciable}.
+  \item [Task 13: {\normalfont
+      \href{https://sistemas-multimedia.github.io/content/quantization/}{Quantization in the transform domain}.}]
+  \item [Task 14: {\normalfont
+      \href{https://sistemas-multimedia.github.io/content/RDO/}{RDO (Rate/Distortion Optimization).}]
+  \end{description}
+  ~\newline
+
+
+
+Perceptual coding
+
+\item [Milestone 2: {\normalfont Reversible Image Compression (RIC):}]
+  \begin{description}
+  \item [Task 4: {\normalfont \href{htpps://sistemas-multimedia.github.io/content/YCrCb/}{The YCoCg color transform}.}]
+  \item [Task 5: {\normalfont \href{https://sistemas-multimedia.github.io/content/DWT/}{The Discrete Wavelet Transform (DWT)}.}]
+  \item [Task 6: {\normalfont \href{https://sistemas-multimedia.github.io/content/PNG/}{The Portable Network Graphics format (PNG)}.}]
+  \item [Task 7: {\normalfont \href{https://sistemas-multimedia.github.io/content/RIC_R_opt/}{Rate optimization}.}]
+  \end{description}
+  ~\newline
+
+\item [Milestone 3: {\normalfont Irreversible Image Compression (IIC):}]
+  \begin{description}
+  \item [Task 8: {\normalfont \href{htpps://sistemas-multimedia.github.io/content/IIC_quantization/}{Quantization in the DWT domain}.}]
+  \item [Task 9: {\normalfont \href{https://sistemas-multimedia.github.io/content/IIC_RD_opt/}{Rate/Distortion optimization in IIC}.}]
+  \end{description}
+  ~\newline
+
+\item [Milestone 4: {\normalfont Progressive Image Compression (PIC):}]
+  \begin{description}
+  \item [Task 10: {\normalfont \href{htpps://sistemas-multimedia.github.io/content/PIC_prog_enc/}{Progressive encoding in the DWT domain}.}]
+  \item [Task 11: {\normalfont \href{https://sistemas-multimedia.github.io/content/PIC_RD_opt/}{Rate/Distortion optimization in PIC}.}]
+  \end{description}
+  ~\newline
+
+\item [Milestone 5: {\normalfont Progressive Image Compression (PIC):}]
+  \begin{description}
+  \item [Task 10: {\normalfont \href{htpps://sistemas-multimedia.github.io/content/PIC_prog_enc/}{Progressive encoding in the DWT domain}.}]
+  \item [Task 11: {\normalfont \href{https://sistemas-multimedia.github.io/content/PIC_RD_opt/}{Rate/Distortion optimization in PIC}.}]
+  \end{description}
+  ~\newline
+
+
+  
 \item [Day 2: {\normalfont Compressing color images.}] \emph{Quantization and entropy coding, two key signal compression techniques.}
   \begin{description}
   \item [Milestone 4: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/04-PNG/}{Entropy coding of images with PNG}.}]
