@@ -55,6 +55,7 @@ organized into a collection of milestones.
   \emph{Visual data is highly correlated in the spatial domain. Let's
   see how we can decrease the entropy by exploiting the spatial
   correlation in images}.
+  \begin{description}
   \item [Task 7: {\normalfont
       \href{https://sistemas-multimedia.github.io/content/DPCM/}{2D-DPCM
         (2-Dimensional Differential Pulse Code Modulation)}.}]
@@ -73,6 +74,7 @@ can we use an entropy codec to build a
 \href{https://github.com/Sistemas-Multimedia/RIC}{lossless (or near
   lossless, depending on the implementation of the inter-channel and
   intra-channels transforms) image codec}.
+  \begin{description}
   \item [Task 10: {\normalfont
       \href{https://sistemas-multimedia.github.io/content/PNG/}{PNG (Portable Network Grachics)}.}]
   \item [Task 11: {\normalfont
@@ -87,6 +89,7 @@ can we use an entropy codec to build a
   dedicated to encode inappreciable (by humans) visual
   information. Quantization can be used to remove such information and
   providing higher compression ratios}.
+  \begin{description}
   \item [Task 13: {\normalfont
       \href{https://sistemas-multimedia.github.io/content/quantization/}{Quantization in the transform domain}.}]
   \item [Task 14: {\normalfont
@@ -94,21 +97,38 @@ can we use an entropy codec to build a
   \end{description}
   ~\newline
 
-\item [Milestone 6: {\normalfont Chroma subsampling:}] \emph{Humans
-hardly perceive high frequency content in the chroma components and
-for this reason, distortion in the chroma information can be increased
-without being appreciable}.
-  \item [Task 13: {\normalfont
-      \href{https://sistemas-multimedia.github.io/content/quantization/}{Quantization in the transform domain}.}]
-  \item [Task 14: {\normalfont
-      \href{https://sistemas-multimedia.github.io/content/RDO/}{RDO (Rate/Distortion Optimization).}]
+\item [Milestone 6: {\normalfont Perceptual coding through chroma
+    ``subsampling'':}] \emph{Humans hardly perceive high frequency
+content in the chroma components and for this reason,
+\href{https://github.com/Sistemas-Multimedia/IIC}{chroma information
+  can be low-pass filtered without a significative perceived
+  distortion}}.
+  \begin{description}
+  \item [Task 15: {\normalfont
+      \href{https://sistemas-multimedia.github.io/content/chroma_filtering/}{Chroma filtering}.}]
   \end{description}
   ~\newline
 
+\item [Milestone 7: {\normalfont Motion estimation:}] \emph{Most image
+sequences are highly correlated in the temporal domain and motion
+estimation can exploit it}.
+  \begin{description}
+  \item [Task 16: {\normalfont
+    \href{https://sistemas-multimedia.github.io/content/motion_estimation/}{Motion estimation}.}]
+  \end{description}
+  ~\newline
 
+\item [Milestone 8: {\normalfont Motion compensation:}] \emph{With the
+motion information it is possible to make predictions that help to
+decrease the entropy}.
+  \begin{description}
+  \item [Task 17: {\normalfont
+      \href{https://sistemas-multimedia.github.io/content/motion_compensation/}{Motion compensation}.}]
+  \end{description}
+  ~\newline
 
-Perceptual coding
-
+%%%%%%%
+  
 \item [Milestone 2: {\normalfont Reversible Image Compression (RIC):}]
   \begin{description}
   \item [Task 4: {\normalfont \href{htpps://sistemas-multimedia.github.io/content/YCrCb/}{The YCoCg color transform}.}]
