@@ -1,0 +1,162 @@
+\input{../definitions}
+\title{\SM{} - Study Guide - Milestone 10: Motion Compensation in the DWT Domain}
+
+\maketitle
+
+\section{Description}
+
+\subsection{Removing the temporal redundancy through Motion Compensation (MC)}
+The next natural step in the process of decorrelating the sequence of
+frames is to remove the temporal redundancy by means of Motion
+Compensation (MC). Basically, MC consists in substracting to the video
+data a prediction performed with the information that is avaliable to
+the decoder. If this prediction is accurate, the result of this
+operation is a residual video with a lower temporal redundancy, that
+can be compressed with a higher compression ratio.
+
+\subsection{The lack of shift-invariance in the DWT domain}
+In our case, the video data is represented in the DWT domain, and
+therefore, we need to perform the so called In-Band Motion Estimation
+and Compensation~\cite{andreopoulos2005complete}). Let's suppose that
+the number of levels of the DWT is 1, and therefore, each frame has
+been decomposed into two 2D subbands $L$ and $H$ (remember that using
+the notation introduces in the previous milestone, $H$ has inside the
+three high-frequency subbands: $LH$, $HL$ and $HH$, and that
+$L=LL$). So, after using the MDWT, MC must be performed using the DWT
+coefficients.
+
+Unfortunately, as a consequence of the downsamplers used during the
+DWT to achieve critical sampling and the aliasing between the
+subbands, DWT decompositions are shift-variant. This can be seen in
+the Fig.~\ref{fig:dwt_shift_variance} were some DWT coefficients of a
+test video with three frames (with a 1-pixel constant speed moving (to
+the left) cicle``empty'') has been shown. As it can be seen, when the
+circle has been moved only one pixel, the value of the coefficients
+that correspond to the circunference of the circle are different
+between the reference frame and the predicted frame. This makes quite
+difficult to estimate the motion, and therefore, compensate
+it. However, when the circle has traveled two pixels, a perfect match
+is performed.
+
+Notice also that shift-variance is also generated after the inverse
+transform when the coefficients are filtered or quantized, because the
+aliasing between the filters is not completely cancelled in this
+case~\cite{bradley2003shift}.
+
+\begin{figure}
+  \centering
+  \begin{tabular}{ccc}
+    \vbox{\pngfig{moving_circle_000}{4cm}{400}} &
+    \vbox{\myfig{movement}{4cm}{400}} &
+    \vbox{\pngfig{difference}{4cm}{400}} \\
+    \vbox{\myfig{haar_LL}{4cm}{400}} &
+    \vbox{\myfig{db5_LL}{4cm}{400}} &
+    \vbox{\myfig{bior35_LL}{4cm}{400}} \\
+    \vbox{\myfig{haar_LH}{4cm}{400}} &
+    \vbox{\myfig{db5_LH}{4cm}{400}} &
+    \vbox{\myfig{bior35_LH}{4cm}{400}} \\ 
+    \vbox{\myfig{haar_HL}{4cm}{400}} &
+    \vbox{\myfig{db5_HL}{4cm}{400}} &
+    \vbox{\myfig{bior35_HL}{4cm}{400}} \\
+    \vbox{\myfig{haar_HH}{4cm}{400}} &
+    \vbox{\myfig{db5_HH}{4cm}{400}} &
+    \vbox{\myfig{bior35_HH}{4cm}{400}} 
+  \end{tabular}
+  \caption{A demonstration of the shift-variance of the DWT.}
+\label{fig:dwt_shift_variance}
+\end{figure}
+
+The reason why the 1-pixel movement is generating different
+coefficients in the reference and the predicted frames is because a
+1-pixel motion cannot be represented using always the same phase
+(remember that with the downsampler we are basically selecting only
+one the two possible phases of the output of the analysis filters: the
+even samples or the odd samples). Lets suppose that the downsampler
+discards the odd coefficients (let's refer them as odd-phase
+coefficients). In this case, the even-phase cofficients of the
+reference frame are the same than the odd-phase coefficients of the
+predicted frame (this can be seen in this notebook). Therefore, in the
+1D case, when the motion is ``even''-type (that is, a displacement of
+a even number of samples) we should compensate the even-phase
+coefficients of the reference and the predicted frame, while when the
+motion is ``odd''-type we should compensate the odd-phase coefficients
+of the predicted frame with a prediction generated with the even-phase
+coefficients of the reference frame, or viceversa.
+
+There are different alternatives for recovering the ``lost'' phase
+during the DWT (in the 1D case):
+\begin{enumerate}
+\item MC-then-downsample: Perform first the MC stage directly over the
+  output of the analysis filters, and then, selectively downsample the
+  result. Notice that the downsampler should select the right phase,
+  depending on the type of motion detected (``odd'' or ``even''). This
+  information (the selected phase), should be available at the
+  decoder, along with the motion fields.
+\item Delay-then-DWT: Perform two identical DWTs, one to the original
+  signal, and the other to a one-sample delayed signal (remember than
+  a movement of one pixel will change the phase at the output of the
+  DWT). Thus, the the DWT applied to the original signal will generate
+  one of the phases and the DWT applied to the delayed signal will
+  generate the other one.
+\item CODWT: Use the current (single phase) L and H coefficients to
+  compute the missing phase, using the CODWT (Complete-to-Overcomplete
+  DWT)~\cite{andreopoulos2005complete} (a new type of DWT applied to
+  the DWT coefficients).
+\end{enumerate}
+Each alternative has pros and cons. If the DWT has been implemented
+using convolution, MC-then-downsample should be a fast
+alternative. However, if the DWT uses Lifting, Multiple-DWT-then-MC
+should be fast also, because only one phase is computed by the
+DWT. These two options can be used with any DWT filters. On the other
+hand, CODWT needs specific designs form each DWT filters. Notice that, in any case, the solution is reached after using the ODWT domain.
+
+In the 2D case, and always working with only one level of the DWT, we
+have up to four different phases: (even, even)-, (even, odd)-, (odd,
+even)-, and (odd, odd)-phase coefficients. Thus, depending on the type
+of motion detected, the corresponding phase should be selected.
+
+\subsection{Near shift-invariance in the IDWT (Interpolated DWT) domain}
+As it was commented before, the causant of the shift-variance in the
+critically sampled DWT domain is the use of the downsamplers. At this
+point we have basically two different alternatives:
+\begin{enumerate}
+\item Use the Algorithme \`a Trous (AaT)~\cite{mallat1999wavelet},
+  which removes the downsamplers from the DWT, generating the so
+  called Overcomplete DWT (ODWT). Notice that, because the
+  downsamplers are removed, the aliasing artifacts produced by the
+  downsamplers is also avoided.
+\item Approximate the AaT coefficients by interpolating the DWT
+  coefficients using the DWT synthesis filters. In this case, the
+  aliasing is not avoided, but the shift-variance problem is
+  reduced.
+\end{enumerate}
+
+\subsection{Subpixel accuracy}
+Objects in real scenes usually move a rational number of pixels, and
+therefore, even when the input frames seems to be the same,
+numerically they aren't. To deal with this drawback, interpolation can
+be used to increase the resolution of the frames (MC in the frame
+domain) or the subbands (MC in the subband domain), performing thus a
+MC with increased accuracy.
+
+Interpolation and DWT are both linear operators, and therefore, are
+interchangeable. This means that we can interpolate the input frames and work as if the motion where integer-pixel, or we can interpolate the DWT coefficients. In both options, the number of 
+
+\section{What you have to do?}
+  
+Please, using this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/DWT_shift_variance.ipynb}{notebook},
+research the posibilities for performing MC of other DWTs available at
+\href{https://pywavelets.readthedocs.io/en/latest/}{PyWavelets}.
+
+\section{Timming}
+
+Please, finish this notebook before the next class session.
+
+\section{Deliverables}
+
+None.
+
+\section{Resources}
+
+\bibliography{python}

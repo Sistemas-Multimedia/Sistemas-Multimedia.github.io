@@ -1,0 +1,2113 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" 
+"http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd" > 
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Sistemas Multimedia - Study Guide - Milestone 13: IPP... Coding in the Transform
+Domain</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathml,html --> 
+<meta name="src" content="index.tex" /> 
+<link rel="stylesheet" type="text/css" href="index.css" /> 
+</head><body 
+>
+   <div class="maketitle">
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+
+<h2 class="titleHead"><a 
+href="https://sistemas-multimedia.github.io/" >Sistemas Multimedia</a> - Study Guide - Milestone
+13: IPP... Coding in the Transform Domain</h2>
+ <div class="author" ><span 
+class="ecrm-1200">Vicente Gonz</span><span 
+class="ecrm-1200">&#x00E1;</span><span 
+class="ecrm-1200">lez Ruiz</span></div><br />
+<div class="date" ><span 
+class="ecrm-1200">December 2, 2021</span></div>
+   </div>
+   <h3 class="likesectionHead"><a 
+ id="x1-1000"></a>Contents</h3>
+   <div class="tableofcontents">
+   &#x00A0;<span class="sectionToc" >1 <a 
+href="#x1-20001" id="QQ2-1-2">Description</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.1 <a 
+href="#x1-30001.1" id="QQ2-1-3">The IPP... decorrelation pattern</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.2 <a 
+href="#x1-40001.2" id="QQ2-1-4">A block diagram of the step codec</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.3 <a 
+href="#x1-50001.3" id="QQ2-1-5">Spatial multiresolution</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >1.4 <a 
+href="#x1-60001.4" id="QQ2-1-6">SQ &#x0028;layers&#x0029; progression &#x0028;next milestone?&#x0029;</a></span>
+<br />   &#x00A0;<span class="sectionToc" >2 <a 
+href="#x1-70002" id="QQ2-1-7">What do I have to do?</a></span>
+<br />   &#x00A0;<span class="sectionToc" >3 <a 
+href="#x1-80003" id="QQ2-1-8">Timming</a></span>
+<br />   &#x00A0;<span class="sectionToc" >4 <a 
+href="#x1-90004" id="QQ2-1-9">Deliverables</a></span>
+<br />   &#x00A0;<span class="sectionToc" >5 <a 
+href="#x1-100005" id="QQ2-1-10">Resources</a></span>
+   </div>
+<!--l. 8--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-20001"></a>Description</h3>
+<!--l. 10--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
+ id="x1-30001.1"></a>The IPP... decorrelation pattern</h4>
+                                                                  
+
+                                                                  
+<!--l. 11--><p class="noindent" >It&#x2019;s time to put together all the &#x201C;tools&#x201D; that we have developed for encoding a sequence of
+frames <!--l. 12--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x007B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x007D;</mo></math>.
+First, the sequence will be splitted into GOFs &#x0028;<a 
+href="https://en.wikipedia.org/wiki/Group_of_pictures" >Group Of Frames</a>&#x0029;, and
+the structure of each GOF will be IPP...&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xle1991mpeg">1</a>&#x005D;</span>, which means that the &#xFB01;rst
+frame of each GOF will be intra-coded &#x0028;I-type&#x0029;, and the rest of frames
+of the GOF will be predicted-coded &#x0028;P-type&#x0029;, respect to the previous
+one<span class="footnote-mark"><a 
+href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-3001f1"></a> .
+Notice that in an I-type frame all the coe&#xFB03;cients &#x0028;<span 
+class="ecti-1000">coe&#xFB00;s </span>in short, remember that we
+are compensating the motion in the DWT domain&#x0029; will be I-type coe&#xFB00;s, and in a
+P-type frame, the di&#xFB00;erent coe&#xFB00;s will be I-type or P-type.
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.2   </span> <a 
+ id="x1-40001.2"></a>A block diagram of the step codec</h4>
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!--l. 29--><p class="noindent" ><div style="text-align:center;"> <img width=1000 src="graphics/codec3.svg" /> </div>  <a 
+ id="x1-4001r1"></a>
+<a 
+ id="x1-4002"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;1: </span><span  
+class="content">The IPP... MRVC step codec. Notice that the input to the &#x0028;step&#x0029;
+encoder is a DWT transformed sequence of frames.                       </span></div><!--tex4ht:label?: x1-4001r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+<!--l. 35--><p class="indent" >   The MRVC IPP... step &#x0028;one resolution level&#x0029; codec has been described in the
+Fig.&#x00A0;<a 
+href="#x1-4001r1">1<!--tex4ht:ref: fig:codec --></a>. The equations that describe this system are:
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-4003r1"></a>
+<!--l. 38--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                     <mo 
+class="MathClass-open">&#x0028;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">&#x2190;</mo><mstyle 
+class="text"><mtext  >DWT</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4004r0"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;a&#x0029;<a 
+ id="x1-4005r0"></a></td></tr></table>
+<!--l. 42--><p class="indent" >   where <!--l. 42--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" > <mo 
+class="MathClass-rel">&#x2190;</mo></math> denotes the
+<a 
+href="https://en.wikipedia.org/wiki/Assignment_(computer_science)" >assignment</a> operator, and <!--l. 44--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+></math>
+is the <!--l. 44--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>k</mi></math>-th
+frame of the sequence,
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-4006r1"></a>
+<!--l. 46--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                     <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-rel">&#x2190;</mo><msup><mrow 
+><mstyle 
+class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+>
+<mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-punc">,</mo><mn>0</mn><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4007r0"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;E.a&#x0029;<a 
+ id="x1-4008r0"></a></td></tr></table>
+   <table class="equation"><tr><td> <a 
+ id="x1-4009r1"></a>
+                                                                  
+
+                                                                  
+<!--l. 51--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                       <msup><mrow 
+><mi 
+>Z</mi></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+>
+<mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4010r0"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;E.b&#x0029;<a 
+ id="x1-4011r0"></a></td></tr></table>
+<!--l. 55--><p class="indent" >   and by de&#xFB01;nition, <!--l. 55--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>Z</mi></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn></math>,
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-4012r1"></a>
+<!--l. 57--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                  <mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi> <mo 
+class="MathClass-rel">&#x2192;</mo> <mi 
+>k</mi> <mo 
+class="MathClass-bin">&#x2212;</mo> <mn>1</mn></mrow></mover> <mo 
+class="MathClass-rel">&#x2190;</mo><mstyle 
+class="text"><mtext  >M</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4013r0"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;E.c&#x0029;<a 
+ id="x1-4014r0"></a></td></tr></table>
+<!--l. 61--><p class="indent" >   where M stands for Motion estimation, and by de&#xFB01;nition,
+<!--l. 62--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mn>0</mn> <mo 
+class="MathClass-rel">&#x2192;</mo> <mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn><mo 
+class="MathClass-close">&#x0029;</mo></mrow></mover> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn></math>,
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-4015r1"></a>
+<!--l. 64--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                 <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>V</mi> </mrow><mo accent="true">&#x005E;</mo></mover></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-rel">&#x2190;</mo><mstyle 
+class="text"><mtext  >P</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi> <mo 
+class="MathClass-rel">&#x2192;</mo> <mi 
+>k</mi> <mo 
+class="MathClass-bin">&#x2212;</mo> <mn>1</mn></mrow></mover><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4016r0"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;E.d&#x0029;<a 
+ id="x1-4017r0"></a></td></tr></table>
+<!--l. 68--><p class="indent" >   where P stands for motion compensated Prediction,
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-4018r1"></a>
+                                                                  
+
+                                                                  
+<!--l. 70--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                     <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-rel">&#x2190;</mo> <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-bin">&#x2212;</mo> <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>V</mi> </mrow><mo accent="true">&#x005E;</mo></mover></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4019r0"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;E.e&#x0029;<a 
+ id="x1-4020r0"></a></td></tr></table>
+   <table class="equation"><tr><td> <a 
+ id="x1-4021r1"></a>
+<!--l. 75--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                <mo 
+class="MathClass-open">&#x007B;</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>M</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>S</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-rel">&#x2190;</mo><mstyle 
+class="text"><mtext  >EW-min</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-close">&#x0029;</mo>
+                                                                  <mstyle 
+   id="x1-4022r0"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;E.f&#x0029;<a 
+ id="x1-4023r0"></a></td></tr></table>
+<!--l. 79--><p class="indent" >   where </p><table class="equation"><tr><td> <a 
+ id="x1-4024r1"></a>
+<!--l. 80--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                   <msub><mrow 
+><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>M</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>j</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mstyle 
+class="text"><mtext  >min</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><msub><mrow 
+><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>j</mi></mrow></msub 
+><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>j</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+</math></td><td class="eq-no">&#x0028;1&#x0029;</td></tr></table>
+<!--l. 83--><p class="indent" >   and <!--l. 83--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>S</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x005D;</mo></math>
+is a binary matrix de&#xFB01;ned by </p><table class="equation"><tr><td> <a 
+ id="x1-4025r2"></a>
+                                                                  
+
+                                                                  
+<!--l. 84--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation"><msub><mrow 
+>
+<mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>S</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>j</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mrow><mo fence="true" form="prefix"> {</mo><mrow> <mtable  align="axis" style=""  
+equalrows="false" columnlines="none none" equalcolumns="false" class="array"> <mtr><mtd 
+class="array"  columnalign="left">  <mn>0</mn> </mtd><mtd 
+class="array"  columnalign="left">  <mstyle 
+class="text"><mtext  >if</mtext></mstyle><mi 
+>&#x00A0;</mi><msub><mrow 
+><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>j</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">&#x003C;</mo> <msub><mrow 
+><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>j</mi></mrow></msub 
+>  </mtd><mtd 
+class="array"  columnalign="left">  <mstyle 
+class="text"><mtext  >&#x0028;I-type&#x00A0;coe&#xFB00;&#x0029;</mtext></mstyle>   </mtd>
+</mtr>  <mtr><mtd 
+class="array"  columnalign="left">  <mn>1</mn> </mtd><mtd 
+class="array"  columnalign="left">  <mstyle 
+class="text"><mtext  >otherwise</mtext></mstyle>                   </mtd><mtd 
+class="array"  columnalign="left">  <mstyle 
+class="text"><mtext  >&#x0028;P-type&#x00A0;coe&#xFB00;&#x0029;</mtext></mstyle><mo 
+class="MathClass-punc">,</mo> </mtd></mtr> <!--lll--></mtable>                                    </mrow><mo fence="true" form="postfix"></mo></mrow>
+</math></td><td class="eq-no">&#x0028;2&#x0029;</td></tr></table>
+<!--l. 93--><p class="indent" >   &#x0028;notice that <!--l. 93--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>M</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-close">&#x005D;</mo></math>,
+that contains the element-wise minimum of both matrices, is discarded&#x0029;
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-4026r3"></a>
+<!--l. 96--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                     <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-rel">&#x2190;</mo><msup><mrow 
+><mstyle 
+class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><mn>0</mn><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+>
+<mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4027r2"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;b&#x0029;<a 
+ id="x1-4028r2"></a></td></tr></table>
+   <table class="equation"><tr><td> <a 
+ id="x1-4029r3"></a>
+<!--l. 101--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                     <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-rel">&#x2190;</mo> <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-bin">&#x2212;</mo> <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>V</mi> </mrow><mo accent="true">&#x005E;</mo></mover></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4030r2"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;c&#x0029;<a 
+ id="x1-4031r2"></a></td></tr></table>
+<!--l. 105--><p class="indent" >   where, notice that </p><table class="equation"><tr><td> <a 
+ id="x1-4032r3"></a>
+                                                                  
+
+                                                                  
+<!--l. 106--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation"><msub><mrow 
+>
+<mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>j</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mrow><mo fence="true" form="prefix"> {</mo><mrow> <mtable  align="axis" style=""  
+equalrows="false" columnlines="none" equalcolumns="false" class="array"> <mtr><mtd 
+class="array"  columnalign="left">  <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><msub><mrow 
+><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>j</mi></mrow></msub 
+>                    </mtd><mtd 
+class="array"  columnalign="left">  <mstyle 
+class="text"><mtext  >if</mtext></mstyle><mi 
+>&#x00A0;</mi><mo 
+class="MathClass-open">&#x005B;</mo><msubsup><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>V</mi> </mrow><mo accent="true">&#x005E;</mo></mover></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msubsup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><msub><mrow 
+><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>j</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mi 
+>&#x00A0;</mi><mstyle 
+class="text"><mtext  >&#x0028;I-type&#x00A0;coe&#xFB00;&#x0029;</mtext></mstyle>  </mtd>
+</mtr>  <mtr><mtd 
+class="array"  columnalign="left">  <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><msub><mrow 
+><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>j</mi></mrow></msub 
+> <mo 
+class="MathClass-bin">&#x2212;</mo> <msub><mrow 
+><mo 
+class="MathClass-open">&#x005B;</mo><msubsup><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>V</mi> </mrow><mo accent="true">&#x005E;</mo></mover></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msubsup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>j</mi></mrow></msub 
+>  </mtd><mtd 
+class="array"  columnalign="left">  <mstyle 
+class="text"><mtext  >otherwise</mtext></mstyle><mi 
+>&#x00A0;</mi><mstyle 
+class="text"><mtext  >&#x0028;P-type&#x00A0;coe&#xFB00;&#x0029;</mtext></mstyle><mo 
+class="MathClass-punc">,</mo>         </mtd></mtr> <!--ll--></mtable>                    </mrow><mo fence="true" form="postfix"></mo></mrow>
+</math></td><td class="eq-no">&#x0028;3&#x0029;</td></tr></table>
+   <table class="equation"><tr><td> <a 
+ id="x1-4033r4"></a>
+<!--l. 115--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                       <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-rel">&#x2190;</mo><mstyle 
+class="text"><mtext  >Q</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>K</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4034r3"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;d&#x0029;<a 
+ id="x1-4035r3"></a></td></tr></table>
+   <table class="equation"><tr><td> <a 
+ id="x1-4036r4"></a>
+<!--l. 120--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                      <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-rel">&#x2190;</mo><msup><mrow 
+><mstyle 
+class="text"><mtext  >Q</mtext></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+>
+<mi 
+>K</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4037r3"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;E.g&#x0029;<a 
+ id="x1-4038r3"></a></td></tr></table>
+   <table class="equation"><tr><td> <a 
+ id="x1-4039r4"></a>
+                                                                  
+
+                                                                  
+<!--l. 125--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                    <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-rel">&#x2190;</mo> <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-bin">+</mo> <mo 
+class="MathClass-open">&#x005B;</mo><msubsup><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>V</mi> </mrow><mo accent="true">&#x005E;</mo></mover></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msubsup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4040r3"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;E.h&#x0029;<a 
+ id="x1-4041r3"></a></td></tr></table>
+<!--l. 129--><p class="indent" >   and notice that if <!--l. 129--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>V</mi> </mrow><mo accent="true">&#x005E;</mo></mover></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn></math>,
+then <!--l. 129--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo></math>,
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-4042r4"></a>
+<!--l. 132--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                      <msup><mrow 
+><mi 
+>Z</mi></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+>
+<mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4043r3"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;E.i&#x0029;<a 
+ id="x1-4044r3"></a></td></tr></table>
+<!--l. 136--><p class="indent" >   and by de&#xFB01;nition, <!--l. 136--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>Z</mi></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn></math>,
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-4045r4"></a>
+<!--l. 138--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>V</mi> </mrow><mo accent="true">&#x005E;</mo></mover></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-rel">&#x2190;</mo><mstyle 
+class="text"><mtext  >P</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi> <mo 
+class="MathClass-rel">&#x2192;</mo> <mi 
+>k</mi> <mo 
+class="MathClass-bin">&#x2212;</mo> <mn>1</mn></mrow></mover><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mover class="overset"><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+> <mo 
+class="MathClass-rel">&#x223C;</mo></mrow></mover></mrow><mrow 
+><mi 
+>k</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4046r3"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;E.j&#x0029;<a 
+ id="x1-4047r3"></a></td></tr></table>
+   <table class="equation"><tr><td> <a 
+ id="x1-4048r4"></a>
+                                                                  
+
+                                                                  
+<!--l. 143--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation"><msub><mrow 
+>
+<mo 
+class="MathClass-open">&#x005B;</mo><msubsup><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>V</mi> </mrow><mo accent="true">&#x005E;</mo></mover></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msubsup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mrow 
+>
+<mi 
+>i</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>j</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">&#x2190;</mo> <mrow><mo fence="true" form="prefix"> {</mo><mrow><mtable  align="axis" style=""  
+equalrows="false" columnlines="none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="left"> <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>V</mi> </mrow><mo accent="true">&#x005E;</mo></mover></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><msub><mrow 
+><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>j</mi></mrow></msub 
+>  </mtd><mtd 
+class="array"  columnalign="left">  <mstyle 
+class="text"><mtext  >if</mtext></mstyle><mi 
+>&#x00A0;</mi><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><msub><mrow 
+><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>j</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">&#x003C;</mo> <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><msub><mrow 
+><mo 
+class="MathClass-close">&#x005D;</mo></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc">,</mo><mi 
+>j</mi></mrow></msub 
+><mstyle 
+class="text"><mtext  >&#x0028;P-type&#x00A0;coe&#xFB00;&#x0029;</mtext></mstyle>  </mtd>
+</mtr>  <mtr><mtd 
+class="array"  columnalign="left">  <mn>0</mn>              </mtd><mtd 
+class="array"  columnalign="left">  <mstyle 
+class="text"><mtext  >otherwise&#x00A0;&#x0028;I-type&#x00A0;coe&#xFB00;&#x0029;</mtext></mstyle><mo 
+class="MathClass-punc">,</mo>               </mtd></mtr> <!--ll--></mtable>                             </mrow><mo fence="true" form="postfix"></mo></mrow><mstyle 
+   id="x1-4049r3"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;E.k&#x0029;<a 
+ id="x1-4050r3"></a></td></tr></table>
+   <table class="equation"><tr><td> <a 
+ id="x1-4051r4"></a>
+<!--l. 153--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                    <mo 
+class="MathClass-open">&#x0028;</mo><mn>0</mn><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">&#x2190;</mo><mstyle 
+class="text"><mtext  >DWT</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4052r3"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;f&#x0029;<a 
+ id="x1-4053r3"></a></td></tr></table>
+   <table class="equation"><tr><td> <a 
+ id="x1-4054r4"></a>
+<!--l. 158--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                  <mo 
+class="MathClass-open">&#x007B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-rel">&#x2190;</mo><mstyle 
+class="text"><mtext  >E</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4055r3"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;g&#x0029;<a 
+ id="x1-4056r3"></a></td></tr></table>
+<!--l. 162--><p class="indent" >   where E represents the entropy coding of both data sources, in two di&#xFB00;erent
+code-streams,
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-4057r4"></a>
+                                                                  
+
+                                                                  
+<!--l. 165--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                <mo 
+class="MathClass-open">&#x0028;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">&#x2190;</mo><msup><mrow 
+><mstyle 
+class="text"><mtext  >E</mtext></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x007B;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+>
+<mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4058r3"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;h&#x0029;<a 
+ id="x1-4059r3"></a></td></tr></table>
+   <table class="equation"><tr><td> <a 
+ id="x1-4060r4"></a>
+<!--l. 170--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                    <mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo> <mo 
+class="MathClass-rel">&#x2190;</mo><msup><mrow 
+><mstyle 
+class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><mn>0</mn><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+>
+<mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4061r3"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;i&#x0029;<a 
+ id="x1-4062r3"></a></td></tr></table>
+   <table class="equation"><tr><td> <a 
+ id="x1-4063r4"></a>
+<!--l. 175--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                    <mo 
+class="MathClass-open">&#x0028;</mo><mn>0</mn><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">&#x2190;</mo><mstyle 
+class="text"><mtext  >DWT</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mn>0</mn><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-open">&#x005B;</mo><msub><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">,</mo>
+                                                                  <mstyle 
+   id="x1-4064r3"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;j&#x0029;<a 
+ id="x1-4065r3"></a></td></tr></table>
+<!--l. 180--><p class="indent" >   and
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-4066r4"></a>
+<!--l. 182--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation"><msub><mrow 
+>
+                    <mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">&#x2190;</mo><msup><mrow 
+><mstyle 
+class="text"><mtext  >DWT</mtext></mstyle></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-open">&#x0028;</mo><msub><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+>
+<mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-punc">,</mo><msub><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x0029;</mo><mo 
+class="MathClass-punc">.</mo>
+                                                                  <mstyle 
+   id="x1-4067r3"  class="label" ></mstyle><!--endlabel-->
+</math></td><td class="eq-no">&#x0028;k&#x0029;<a 
+ id="x1-4068r3"></a></td></tr></table>
+                                                                  
+
+                                                                  
+<!--l. 187--><p class="indent" >   The IPP... codec is inspired in Di&#xFB00;erential Pulse Code Moldulation. This
+<a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/12-IPP_coding/DPCM.ipynb" >notebook</a> shows how to implement a simple DPCM codec.
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.3   </span> <a 
+ id="x1-50001.3"></a>Spatial multiresolution</h4>
+<!--l. 193--><p class="noindent" >As it can be seen in the previous section, in each IPP... iteration of the step encoder,
+only the high-frequency information of the sequence of frames is decorrelated
+&#x0028;<!--l. 195--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>H</mi></math>
+subbands&#x0029; considering the information provided by the low-frequences
+&#x0028;<!--l. 196--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>L</mi></math> subband&#x0029;,
+which are losslessly transmitted between the encoder and the decoder. Notice also that if
+the <!--l. 198--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>L</mi></math> data
+cannot be transmitted to the decoder, a drift error will occur because the matrix
+<!--l. 199--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msub><mrow 
+><mi 
+>S</mi></mrow><mrow 
+><mi 
+>k</mi></mrow></msub 
+></math>
+will be di&#xFB00;erent in the encoder and the decoder for the same frame
+<!--l. 200--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>k</mi></math>.
+</p><!--l. 202--><p class="indent" >   Obviously &#x0028;and unfortunately&#x0029;, the lossless transmission of the
+<!--l. 202--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>L</mi></math>&#x2019;s
+bounds the compression ratio that we will get. One solution is to perform more &#x0028;than
+1&#x0029; levels at the DWT stage &#x0028;see Eq.&#x00A0;&#x0028;a&#x0029;&#x0029; and to apply the IPP... MRVC step encoder
+by spatial resolutions, starting at the lowest, as the decoder will do at decompression
+time. If we represent the Spatial Resolution Level &#x0028;SRL&#x0029; with an superindex, being 0
+the original SRL, we can express the operation of the codec described in the Fig.&#x00A0;<a 
+href="#x1-4001r1">1<!--tex4ht:ref: fig:codec --></a>
+by </p><table class="equation"><tr><td> <a 
+ id="x1-5001r4"></a>
+<!--l. 210--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+<mrow><mo fence="true" form="prefix"> {</mo><mrow> <mtable  align="axis" style=""  
+equalrows="false" equalcolumns="false" class="array"> <mtr><mtd 
+class="array"  columnalign="left">  <mstyle 
+class="text"><mtext  >SE</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><msubsup><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mn>0</mn></mrow></msubsup 
+><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-open">&#x007B;</mo><msubsup><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mn>0</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>L</mi><mo 
+class="MathClass-punc">,</mo><msubsup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mn>0</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x007D;</mo> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-open">&#x007B;</mo><msubsup><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mn>1</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">,</mo><msubsup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mn>0</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x007D;</mo> </mtd>
+</mtr> <mtr><mtd 
+class="array"  columnalign="left"> <mstyle 
+class="text"><mtext  >SD</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x007B;</mo><msubsup><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mn>1</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">,</mo><msubsup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mn>0</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">=</mo><msubsup><mrow 
+> <mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mn>0</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">,</mo>                      </mtd></mtr><!--l--></mtable>                        </mrow><mo fence="true" form="postfix"></mo></mrow>
+</math></td><td class="eq-no">&#x0028;4&#x0029;</td></tr></table>
+<!--l. 219--><p class="indent" >   where <!--l. 219--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle 
+class="text"><mtext  >SE</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-bin">&#x22C5;</mo><mo 
+class="MathClass-close">&#x0029;</mo></math>
+represents to the operation of the IPP... step encoder and
+<!--l. 220--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mstyle 
+class="text"><mtext  >SD</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-bin">&#x22C5;</mo><mo 
+class="MathClass-close">&#x0029;</mo></math> to the
+operation of the IPP... step decoder. As it can be seen, Eq.&#x00A0;<a 
+href="#x1-5001r4">4<!--tex4ht:ref: eq:codec_1l --></a> is only valid when only
+one level of the DWT has been applied.
+</p><!--l. 224--><p class="indent" >   In general, for <!--l. 224--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>s</mi></math>
+levels of the DWT, we have that </p><table class="equation"><tr><td> <a 
+ id="x1-5002r5"></a>
+                                                                  
+
+                                                                  
+<!--l. 225--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+<mrow><mo fence="true" form="prefix"> {</mo><mrow> <mtable  align="axis" style=""  
+equalrows="false" equalcolumns="false" class="array"> <mtr><mtd 
+class="array"  columnalign="left">  <mstyle 
+class="text"><mtext  >SE</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><msubsup><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msubsup 
+><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-open">&#x007B;</mo><msubsup><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msubsup 
+><mo 
+class="MathClass-punc">,</mo><msubsup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x007D;</mo>  </mtd>
+</mtr> <mtr><mtd 
+class="array"  columnalign="left"> <mstyle 
+class="text"><mtext  >SD</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x007B;</mo><msubsup><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msubsup 
+><mo 
+class="MathClass-punc">,</mo><msubsup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">=</mo><msubsup><mrow 
+> <mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">,</mo> </mtd></mtr><!--l--></mtable>                                    </mrow><mo fence="true" form="postfix"></mo></mrow>
+</math></td><td class="eq-no">&#x0028;5&#x0029;</td></tr></table>
+<!--l. 234--><p class="indent" >   where <!--l. 234--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+></math> is the
+<!--l. 234--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x0028;</mo><mi 
+>s</mi> <mo 
+class="MathClass-bin">&#x2212;</mo> <mn>1</mn><mo 
+class="MathClass-close">&#x0029;</mo></math>-th SRL of the
+reconstructed sequence <!--l. 235--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x1E7C;</mi></math>.
+</p><!--l. 237--><p class="indent" >   The next SRL &#x0028;<!--l. 237--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>s</mi> <mo 
+class="MathClass-bin">&#x2212;</mo> <mn>2</mn></math>&#x0029;,
+<!--l. 237--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>2</mn></mrow></msup 
+></math>, is
+determined by </p><table class="equation"><tr><td> <a 
+ id="x1-5003r6"></a>
+<!--l. 238--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+<mrow><mo fence="true" form="prefix"> {</mo><mrow> <mtable  align="axis" style=""  
+equalrows="false" equalcolumns="false" class="array"> <mtr><mtd 
+class="array"  columnalign="left">  <mstyle 
+class="text"><mtext  >SE</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><msubsup><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>2</mn></mrow></msubsup 
+><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-open">&#x007B;</mo><msubsup><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">,</mo><msubsup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>2</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x007D;</mo> </mtd>
+</mtr> <mtr><mtd 
+class="array"  columnalign="left"> <mstyle 
+class="text"><mtext  >SD</mtext></mstyle><mo 
+class="MathClass-open">&#x0028;</mo><mo 
+class="MathClass-open">&#x007B;</mo><msubsup><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">,</mo><msubsup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>2</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-close">&#x0029;</mo> <mo 
+class="MathClass-rel">=</mo><msubsup><mrow 
+> <mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>k</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>2</mn></mrow></msubsup 
+><mo 
+class="MathClass-punc">,</mo> </mtd></mtr><!--l--></mtable>                                 </mrow><mo fence="true" form="postfix"></mo></mrow>
+</math></td><td class="eq-no">&#x0028;6&#x0029;</td></tr></table>
+<!--l. 247--><p class="indent" >   and &#xFB01;nally, for the highest SRL, we get
+<!--l. 247--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mn>0</mn></mrow></msup 
+></math>
+de&#xFB01;ned by Eq.&#x00A0;<a 
+href="#x1-5001r4">4<!--tex4ht:ref: eq:codec_1l --></a>.
+</p>
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!--l. 261--><p class="noindent" ><div style="text-align:center;"> <img width=600 src="graphics/encoder.svg" /> </div>  <a 
+ id="x1-5004r2"></a>
+<a 
+ id="x1-5005"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;2: </span><span  
+class="content">The IPP... MRVC encoder.                                   </span></div><!--tex4ht:label?: x1-5004r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+<!--l. 266--><p class="indent" >   So, only the lowest SRL of <!--l. 266--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x1E7C;</mi></math>,
+<!--l. 266--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><msup><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>s</mi></mrow></msup 
+></math> is an
+III... pure sequence of small frames, losslessly encoded. This multiresolution
+&#x0028;multistage&#x0029; scheme has been described in the Fig.&#x00A0;<a 
+href="#x1-5004r2">2<!--tex4ht:ref: fig:encoder --></a>. The output of an IPP...
+encoder will be refered as &#x201C;spatial-layers&#x201D;, or simply as &#x201C;S-layers&#x201D;.
+</p><!--l. 272--><p class="indent" >   The Fig.&#x00A0;<a 
+href="#x1-5006r3">3<!--tex4ht:ref: fig:decoder --></a> shows the decoder. It inputs the collection of subbands generated by
+the encoder and for each one, a video with a di&#xFB00;erent spatial resolution is
+obtained.
+</p>
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!--l. 278--><p class="noindent" ><div style="text-align:center;"> <img width=320 src="graphics/decoder.svg" /> </div>  <a 
+ id="x1-5006r3"></a>
+<a 
+ id="x1-5007"></a>
+<br />                                                                  </p><div class="caption" 
+><span class="id">
+Figure&#x00A0;3: </span><span  
+class="content">The IPP... MRVC decoder.                                   </span></div><!--tex4ht:label?: x1-5006r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+   <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
+ id="x1-60001.4"></a>SQ &#x0028;layers&#x0029; progression &#x0028;next milestone?&#x0029;</h4>
+<!--l. 284--><p class="noindent" >The logical order of the S-layers in the code-stream is the one that
+allows, when the code-stream is decoded sequentially, the progressive
+increase of the spatial resolution of the video. For example, if
+<!--l. 287--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>s</mi></math>
+is the number of levels of the DWT, the generated code-stream has
+<!--l. 288--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x0028;</mo><mi 
+>s</mi> <mo 
+class="MathClass-bin">+</mo> <mn>1</mn><mo 
+class="MathClass-close">&#x0029;</mo></math>
+S-layers </p><table class="equation-star"><tr><td>
+<!--l. 289--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                  <mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>s</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>2</mn></mrow></msup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-rel">&#x22EF;</mo><mspace width="0.17em" class="thinspace"/><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mn>0</mn></mrow></msup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-punc">,</mo>
+</math></td></tr></table>
+<!--l. 292--><p class="indent" >   which are able to generate <!--l. 292--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-open">&#x0028;</mo><mi 
+>s</mi> <mo 
+class="MathClass-bin">+</mo> <mn>1</mn><mo 
+class="MathClass-close">&#x0029;</mo></math>
+progressive reconstructions </p><table class="equation-star"><tr><td>
+<!--l. 294--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+                      <mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>s</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>2</mn></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-rel">&#x22EF;</mo><mspace width="0.17em" class="thinspace"/><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>&#x1E7C;</mi></mrow><mrow 
+><mn>0</mn></mrow></msup 
+><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-punc">.</mo>
+</math></td></tr></table>
+<!--l. 298--><p class="indent" >   Moreover, Quality &#x0028;Q-progression&#x0029; scalability in each SRL can be also
+achieved in the high-frequency textures if a quality-scalable image codec
+such as JPEG2000&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xtaubman2002jpeg2000">2</a>&#x005D;</span> replaces the PNG compressor, generating a number
+<!--l. 301--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>q</mi></math>
+of quality-layers &#x0028;&#x201C;Q-layers&#x201D;&#x0029; by each motion compensated high-frequency
+subband. A SQ-progression is de&#xFB01;ned considering both forms of scalability
+                                                                  
+
+                                                                  
+&#x0028;spatial and quality&#x0029;, with a higher number of layers. For example, if
+<!--l. 304--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>s</mi> <mo 
+class="MathClass-rel">=</mo> <mn>3</mn></math> &#x0028;2 IPP...-type
+iterations&#x0029; and <!--l. 305--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>q</mi> <mo 
+class="MathClass-rel">=</mo> <mn>2</mn></math>,
+the progression of layers would be </p><table class="equation-star"><tr><td>
+<!--l. 306--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="block" class="equation">
+<mo 
+class="MathClass-open">&#x007B;</mo><msup><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>s</mi></mrow></msup 
+><mo 
+class="MathClass-open">&#x005B;</mo><mn>1</mn><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>V</mi> </mrow><mrow 
+><mi 
+>s</mi></mrow></msup 
+><mo 
+class="MathClass-open">&#x005B;</mo><mn>0</mn><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-open">&#x005B;</mo><mn>1</mn><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-open">&#x005B;</mo><mn>0</mn><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>2</mn></mrow></msup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-open">&#x005B;</mo><mn>1</mn><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mi 
+>s</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>2</mn></mrow></msup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-open">&#x005B;</mo><mn>0</mn><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-punc">,</mo><mo 
+class="MathClass-rel">&#x22EF;</mo><mspace width="0.17em" class="thinspace"/><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mn>0</mn></mrow></msup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-open">&#x005B;</mo><mn>1</mn><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>&#x1EBC;</mi></mrow><mrow 
+><mn>0</mn></mrow></msup 
+><mo 
+class="MathClass-punc">.</mo><mi 
+>H</mi><mo 
+class="MathClass-open">&#x005B;</mo><mn>0</mn><mo 
+class="MathClass-close">&#x005D;</mo><mo 
+class="MathClass-close">&#x007D;</mo><mo 
+class="MathClass-punc">.</mo>
+</math></td></tr></table>
+<!--l. 330--><p class="indent" >   The use of quality scalability boosts the possibilities in real-time streaming scenarios
+where the transmission bit-rate can be variable &#x0028;sending more or less Q-layers of a given
+spatial resolution depending on the bit-rate&#x0029;. Notice that the SQ-progression is free of
+drift-error.<span class="footnote-mark"><a 
+href="index3.html#fn2x0"><sup class="textsuperscript">2</sup></a></span><a 
+ id="x1-6001f2"></a> 
+</p>
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-70002"></a>What do I have to do?</h3>
+<!--l. 350--><p class="noindent" >Implement the codec described in the Fig.&#x00A0;<a 
+href="#x1-4001r1">1<!--tex4ht:ref: fig:codec --></a>, preferiblemente in a &#x0028;or
+several&#x0029; Jupyter notebook&#x0028;s&#x0029;. Test it by tracing a RD curve for di&#xFB00;erent
+<!--l. 352--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>&#x0394;</mi></math> values
+for the quantizer &#x0028;see Eqs. &#x0028;d&#x0029; and &#x0028;g&#x0029;&#x0029;. Compare it with the curve generated without
+using MC &#x0028;use always I-type frames&#x0029;.
+</p><!--l. 356--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-80003"></a>Timming</h3>
+<!--l. 358--><p class="noindent" >In groups, you will present the results for this milestone during the exam
+time.
+                                                                  
+
+                                                                  
+</p><!--l. 361--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-90004"></a>Deliverables</h3>
+<!--l. 363--><p class="noindent" >The notebook&#x0028;s&#x0029; and the presentation.
+</p><!--l. 365--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-100005"></a>Resources</h3>
+<!--l. 1--><p class="noindent" >
+</p>
+   <h3 class="likesectionHead"><a 
+ id="x1-110005"></a>References</h3>
+<!--l. 1--><p class="noindent" >
+   </p><div class="thebibliography">
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xle1991mpeg"></a>D.&#x00A0;Le&#x00A0;Gall.   <a 
+href="https://dl.acm.org/doi/pdf/10.1145/103085.103090" >MPEG: A Video Compression Standard for Multimedia
+   Applications</a>. <span 
+class="ecti-1000">Communications of the ACM</span>, 34&#x0028;4&#x0029;:46&#x2013;58, 1991.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;2&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xtaubman2002jpeg2000"></a>D.S. Taubman and W.M. Marcellin.   <a 
+href="https://shorturl.at/rtvLZ" ><span 
+class="ecti-1000">JPEG2000. Image Compression</span>
+   <span 
+class="ecti-1000">Fundamentals, Standards and Practice</span></a>. Kluwer Academic Publishers, 2002.
+</p>
+   </div>
+    
+</body></html> 
+
+                                                                  
+
+

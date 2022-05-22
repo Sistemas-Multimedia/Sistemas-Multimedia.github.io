@@ -1,0 +1,432 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>Sistemas Multimedia - Study Guide - Milestone 6: Compression in uncorrelated
+color domains</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='index.css' rel='stylesheet' type='text/css' /> 
+<meta content='index.tex' name='src' /> 
+</head><body>
+   <div class='maketitle'>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+
+<h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - Study Guide - Milestone
+6: Compression in uncorrelated color domains</h2>
+ <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
+<div class='date'><span class='ecrm-1200'>March 21, 2022</span></div>
+   </div>
+   <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
+   <div class='tableofcontents'>
+    <span class='sectionToc'>1 <a href='#description' id='QQ2-1-2'>Description</a></span>
+<br />     <span class='subsectionToc'>1.1 <a href='#components-correlation' id='QQ2-1-3'>Components correlation</a></span>
+<br />     <span class='subsectionToc'>1.2 <a href='#color-spaces' id='QQ2-1-4'>Color spaces</a></span>
+<br />     <span class='subsectionToc'>1.3 <a href='#the-rgb-dct-transform' id='QQ2-1-6'>The RGB <span class='cmsy-10'>⇔</span> DCT transform</a></span>
+<br />     <span class='subsectionToc'>1.4 <a href='#quantization-in-the-colordct-domain' id='QQ2-1-7'>Quantization in the color-DCT domain</a></span>
+<br />     <span class='subsectionToc'>1.5 <a href='#the-rgb-ycrcb-transform' id='QQ2-1-8'>The RGB <span class='cmsy-10'>⇔</span> YCrCb transform</a></span>
+<br />     <span class='subsectionToc'>1.6 <a href='#the-rgb-ycocg-transform' id='QQ2-1-10'>The RGB <span class='cmsy-10'>⇔</span> YCoCg transform</a></span>
+<br />    <span class='sectionToc'>2 <a href='#what-do-i-have-to-do' id='QQ2-1-12'>What do I have to do?</a></span>
+<br />    <span class='sectionToc'>3 <a href='#timming' id='QQ2-1-13'>Timming</a></span>
+<br />    <span class='sectionToc'>4 <a href='#deliverables' id='QQ2-1-14'>Deliverables</a></span>
+<br />    <span class='sectionToc'>5 <a href='#resources' id='QQ2-1-15'>Resources</a></span>
+   </div>
+<!-- l. 10 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='description'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Description</h3>
+                                                                  
+
+                                                                  
+<!-- l. 12 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='components-correlation'><span class='titlemark'>1.1   </span> <a id='x1-30001.1'></a>Components correlation</h4>
+<!-- l. 15 --><p class='noindent'>Usually, some part of the data in an image is <a href='https://en.wikipedia.org/wiki/Data_redundancy'>redundant</a> (can be removed without loss
+of information). In the case of a color image in the RGB domain, the three
+components of each pixel (each one measuring the energy in a different band of the
+<a href='https://en.wikipedia.org/wiki/Visible_spectrum'>visible spectrum</a>) can be <a href='https://en.wikipedia.org/wiki/Correlation_and_dependence'>correlated</a>. <a href='https://vicente-gonzalez-ruiz.github.io/transform_coding/'>Transform coding</a> applied between the color
+compoents can concentrate the information (energy) of the image in a small set of
+coefficients, that after quantization and entropy coding, can be compressed more
+efficiently.<span class='footnote-mark'><a href='index2.html#fn1x0'><sup class='textsuperscript'>1</sup></a></span><a id='x1-3001f1'></a> 
+This <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/color_redundancy.ipynb'>notebook</a> quantifies the redundancy related to the color domain.
+</p>
+   <h4 class='subsectionHead' id='color-spaces'><span class='titlemark'>1.2   </span> <a id='x1-40001.2'></a>Color spaces</h4>
+<!-- l. 70 --><p class='noindent'>The color of a pixel depends on the <a href='https://en.wikipedia.org/wiki/Visible_spectrum'>frequency of the light that the pixel captures</a>.
+Such information can be represented in a number of different encoding systems
+known as <a href='https://en.wikipedia.org/wiki/Color_space'>color spaces</a>. Among all those systems, the RGB color space is the most
+used because it can be obtained directly from the light signal using color
+filters.<span class='footnote-mark'><a href='index3.html#fn2x0'><sup class='textsuperscript'>2</sup></a></span><a id='x1-4001f2'></a> 
+</p><!-- l. 80 --><p class='indent'>   The RGB color model has evident physical advantages, but in general is quite
+redundant. In this milestone we will analyze:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-4003x1'>the <a href='https://en.wikipedia.org/wiki/Discrete_cosine_transform'>DCT (Discrete Cosine Transform)</a> applied to the color domain, i.e.,
+     the color-DCT space,
+     </li>
+<li class='enumerate' id='x1-4005x2'>the <a href='https://en.wikipedia.org/wiki/YCbCr'>YCrCb</a> space, and
+     </li>
+<li class='enumerate' id='x1-4007x3'>the <a href='https://en.wikipedia.org/wiki/YCoCg'>YCoCg</a> space,</li></ol>
+                                                                  
+
+                                                                  
+<!-- l. 90 --><p class='noindent'>that are more efficient from a coding perspective. Besides,
+YCrCb and YCoCg color spaces, which are <span class='ecti-1000'>luma</span>-based
+(luminance-based<span class='footnote-mark'><a href='index4.html#fn3x0'><sup class='textsuperscript'>3</sup></a></span><a id='x1-4008f3'></a> 
+color domains, rely on the idea of separating the luminance coefficients (Y)
+from two <span class='ecti-1000'>chroma </span>coefficients (red and blue in the case of YCrCb, orange
+and green in the case of YCoCg). These transformations have two main
+advantages <span class='cite'>[<a href='#Xburger2016digital'>1</a>]</span>:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-4010x1'>Compatibility with legacy black and white systems is maintained while
+     at the same time the bandwidth of the signal can be optimized by using
+     different transmission bandwidths for the brightness and the chroma components.<span class='footnote-mark'><a href='index5.html#fn4x0'><sup class='textsuperscript'>4</sup></a></span><a id='x1-4011f4'></a> 
+     </li>
+<li class='enumerate' id='x1-4013x2'>Since  the  <a href='https://en.wikipedia.org/wiki/Visual_system'>HVS  (Human  Visual  System)</a>  is  not  able  to  perceive  detail
+     in the chrominance as well as it does in the luminance, the amount of
+     information, and consequently <a href='https://en.wikipedia.org/wiki/Sampling_(signal_processing)'>sampling rate</a>, used in the chrominance
+     can be generally reduced to 1/4 of the used for the luminance without
+     a noticeable distortion (see Fig. <a href='#x1-4014r1'>1<!-- tex4ht:ref: fig:san-diego_chroma_subsampled  --></a>). This <a href='https://en.wikipedia.org/wiki/Bandwidth_(computing)'>fact is used when compressing</a>
+     digital still images and is one of the reason why, for example, the <a href='https://en.wikipedia.org/wiki/JPEG'>JPEG</a>
+     image compressor converts RGB images to YCrCb.</li></ol>
+   <figure class='figure'> 
+
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!-- l. 121 --><p class='noindent' id='-visual-effect-of-chroma-subsamplig-in-the-ycrcb-domain-see-this-httpsgithubcomsistemasmultimediasistemasmultimediagithubioblobmastermilestonesyuvcompressionchromasubsamplingipynbnotebook-'><div style='text-align:center;'> <img src='san-diego_chroma_subsampled.png' /> </div>  <a id='x1-4014r1'></a>
+<a id='x1-4015'></a>
+</p>
+<figcaption class='caption'><span class='id'>Figure 1: </span><span class='content'>Visual effect of chroma subsamplig in the YCrCb domain. See this
+<a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/chroma_subsampling.ipynb'>notebook</a>.                                                          </span></figcaption><!-- tex4ht:label?: x1-4014r1  -->
+                                                                  
+
+                                                                  
+   </figure>
+   <h4 class='subsectionHead' id='the-rgb-dct-transform'><span class='titlemark'>1.3   </span> <a id='x1-50001.3'></a>The RGB <span class='cmsy-10'>⇔</span> DCT transform</h4>
+<!-- l. 132 --><p class='noindent'>The 3x3-<a href='https://en.wikipedia.org/wiki/Discrete_cosine_transform'>DCT</a> orthonormal forward <a href='https://vicente-gonzalez-ruiz.github.io/transform_coding/'>transform</a> is defined by
+</p>
+   <table class='equation'><tr><td>
+   <div class='math-display'>
+<img alt='⌊DCT0 ⌋   ⌊0.57735027   0.70710678   0.40824829 ⌋ ⌊R ⌋
+⌈DCT1 ⌉ = ⌈0.57735027      0.0      − 0.81649658⌉ ⌈G ⌉,
+ DCT2      0.57735027  − 0.70710678  0.40824829    B
+' class='math-display' src='index0x.png' /><a id='x1-5001r1'></a></div>
+   </td><td class='equation-label'>(1)</td></tr></table>
+<!-- l. 155 --><p class='nopar'>
+and the inverse transform by
+</p>
+   <table class='equation'><tr><td>
+   <div class='math-display'>
+<img alt='⌊ ⌋   ⌊                                   ⌋⌊      ⌋
+⌈R⌉   ⌈0.57735027  0.57735027    0.57735027 ⌉⌈DCT0  ⌉
+ G  =  0.70710678      0.0      − 0.70710678 DCT1   .
+ B     0.40824829 − 0.81649658   0.40824829   DCT2
+' class='math-display' src='index1x.png' /><a id='x1-5002r2'></a></div>
+   </td><td class='equation-label'>(2)</td></tr></table>
+<!-- l. 174 --><p class='nopar'>
+See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/color-DCT_matrix.ipynb'>notebook</a> to see how to compute the filter’s coefficients. Notice also that the
+DCT is <a href='https://vicente-gonzalez-ruiz.github.io/transform_coding/'>orthonormal</a>, and therefore, the matrix of forward transform is the transpose
+of the matrix of the backward transform <span class='cite'>[<a href='#Xsayood2017introduction'>3</a>]</span>.
+                                                                  
+
+                                                                  
+</p><!-- l. 214 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='quantization-in-the-colordct-domain'><span class='titlemark'>1.4   </span> <a id='x1-60001.4'></a>Quantization in the color-DCT domain</h4>
+<!-- l. 215 --><p class='noindent'>The synthesis filters of orthonormal transforms are orthogonal (their contributions
+to the reconstructed signal are independent) and have exactly the unity
+gain.<span class='footnote-mark'><a href='index6.html#fn5x0'><sup class='textsuperscript'>5</sup></a></span><a id='x1-6001f5'></a> 
+Therefore, without considering that the entropy coding stage can performs better for
+some subbands, the optimal quantization pattern should be
+</p>
+   <table class='equation'><tr><td>
+   <div class='math-display'>
+<img alt='ΔDCT0 = ΔDCT1  = ΔDCT2.
+' class='math-display' src='index2x.png' /><a id='x1-6002r3'></a></div>
+   </td><td class='equation-label'>(3)</td></tr></table>
+<!-- l. 224 --><p class='nopar'>
+See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/color-DCT_compression.ipynb'>notebook</a>.
+</p><!-- l. 229 --><p class='indent'>   Notice that to find the gains (of any 1D transform) we can compute the energy of
+the signal generated by the inverse transform of the impulse discrete 1D
+signal
+</p>
+   <table class='equation'><tr><td>
+   <div class='math-display'>
+<img alt='       { 1  if i = x
+δi(x) =   0  otherwise,
+' class='math-display' src='index3x.png' /><a id='x1-6003r4'></a></div>
+   </td><td class='equation-label'>(4)</td></tr></table>
+                                                                  
+
+                                                                  
+<!-- l. 240 --><p class='nopar'>
+where the <a href='https://en.wikipedia.org/wiki/Energy_(signal_processing)'>energy of a discrete signal</a> <span class='cmmi-10'>x </span>is defined as
+</p>
+   <table class='equation'><tr><td>
+   <div class='math-display'>
+<img alt='       ∑
+⟨x,x⟩ =   x2i.
+        i
+' class='math-display' src='index4x.png' /><a id='x1-6004r5'></a></div>
+   </td><td class='equation-label'>(5)</td></tr></table>
+<!-- l. 246 --><p class='nopar'>
+</p><!-- l. 248 --><p class='indent'>   If we consider that the RD curve can be affeced by the compresiblity of the
+subbands, a better solution to find the optimal RD curve is:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-6006x1'>Variying the <span class='cmr-10'>Δ</span>, compute the RD curve for each DCT subband.
+     </li>
+<li class='enumerate' id='x1-6008x2'>Sort the RD points (considering the three subbands at once), by their
+     slope.
+     </li>
+<li class='enumerate' id='x1-6010x3'>Apply progressively the combinations of quantization steps described by
+     the sorted RD points.</li></ol>
+<!-- l. 257 --><p class='noindent'>Notice that this algorithm is right because the DCT is orthogonal, i.e., the
+contributions of the subbands to the reconstructe signal are independent. See this
+<a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/color-DCT_compression.ipynb'>notebook</a>.
+                                                                  
+
+                                                                  
+</p>
+   <h4 class='subsectionHead' id='the-rgb-ycrcb-transform'><span class='titlemark'>1.5   </span> <a id='x1-70001.5'></a>The RGB <span class='cmsy-10'>⇔</span> YCrCb transform</h4>
+<!-- l. 267 --><p class='noindent'>To convert a (color) pixel from the RGB domain into the <a href='https://en.wikipedia.org/wiki/YCbCr'>YCrCb</a> color domain, we
+use the RGB/YCrCb (analysis) transform <span class='cite'>[<a href='#Xmalvar2008lifting'>2</a>]</span>
+</p>
+   <table class='equation'><tr><td>
+   <div class='math-display'>
+<img alt='Y   =   0.299R + 0.587G + 0.114B
+Cr  =   0.713(R− Y )+ δ
+Cb  =   0.564(B− Y )+ δ,
+' class='math-display' src='index5x.png' /><a id='x1-7001r6'></a></div>
+   </td><td class='equation-label'>(6)</td></tr></table>
+<!-- l. 281 --><p class='nopar'>
+where,
+</p>
+   <table class='equation'><tr><td>
+   <div class='math-display'>
+<img alt='   ({  128   for 8 bits (unsigned ) images,
+δ =   32768  for 16 bits (unsigned) images,
+   (  0.5    for floating point ([0,1]) images
+' class='math-display' src='index6x.png' /><a id='x1-7002r7'></a></div>
+   </td><td class='equation-label'>(7)</td></tr></table>
+<!-- l. 291 --><p class='nopar'>
+is used to avoid negative coefficients. As it can be seen, Cr and Cb are scaled versions
+of R <span class='cmsy-10'>−</span> Y and B <span class='cmsy-10'>−</span> Y, so Cr and Cb can be interpreted as measures of how much red
+and blue content in a pixel differs from luma, respectively. Notice also that for a gray
+pixel, R <span class='cmr-10'>=</span> G <span class='cmr-10'>=</span> B <span class='cmr-10'>=</span> Y, and so Cr <span class='cmr-10'>=</span> Cb <span class='cmr-10'>= 0</span> <span class='cite'>[<a href='#Xmalvar2008lifting'>2</a>]</span>.
+where Y is the luma and CrCb are the chromas. The main reason for such mapping is
+that the HVS is much less sensitive to the high-frequency information in the
+chromas <span class='cite'>[<a href='#Xburger2016digital'>1</a>]</span>. Thus, as we mentioned above, compression systems such as
+                                                                  
+
+                                                                  
+<a href='https://en.wikipedia.org/wiki/JPEG'>JPEG</a> can <a href='https://en.wikipedia.org/wiki/Downsampling_(signal_processing)'>downsample</a> the chromas (usually by 2:1 in the horizontal and
+vertical directions), as well as increase their quantization step sizes with
+respect to the luma, to achieve further <a href='https://en.wikipedia.org/wiki/Data_compression_ratio'>compression</a> without noticeable visual
+distortion <span class='cite'>[<a href='#Xmalvar2008lifting'>2</a>]</span>.
+</p><!-- l. 334 --><p class='indent'>   As it can be seen, considering that the RGB values ranges between <span class='cmr-10'>0 </span>and <span class='cmr-10'>255</span>
+(and rounding to the nearest integer), <span class='cmr-10'>0 </span><span class='cmsy-10'>≤</span> Y <span class='cmsy-10'>≤ </span><span class='cmr-10'>255</span>, <span class='cmr-10'>0 </span><span class='cmsy-10'>≤</span> Cr <span class='cmsy-10'>≤ </span><span class='cmr-10'>255 </span>and <span class='cmr-10'>0 </span><span class='cmsy-10'>≤</span> Cb <span class='cmsy-10'>≤ </span><span class='cmr-10'>255</span>,
+and therefore, the number of bits that are necessary to represent each YCrCb
+component is 8 (although we must use floating point arithmetic to perform the
+transform).
+</p><!-- l. 341 --><p class='indent'>   Finally, notice that the YCrCb transform is not orthogonal because the analysis
+filters are not independent. This can be seen in the Eq. <a href='#x1-7001r6'>6<!-- tex4ht:ref: eq:alternative_YCrCb  --></a>, where the Cr coefficients
+depend on the coefficients of Y, and therefore, there is a dependency between both
+<a href='https://en.wikipedia.org/wiki/Basis_(linear_algebra)'>basis</a>, and something similar happens for the Cb subband. This can be also easely
+checked:
+</p>
+   <div class='math-display'>
+<img alt='0.299∗ 0.5 +0.587∗ (− 0.4187)+ 0.114∗(− 0.0813) = − 0.1055451 ⁄= 0,
+' class='math-display' src='index7x.png' /></div>
+<!-- l. 349 --><p class='indent'>
+</p>
+   <div class='math-display'>
+<img alt='0.299∗ (− 0.1687)+ 0.587∗(− 0.3313)+ 0.114 ∗0.5 = − 0.1879144 ⁄= 0, and
+' class='math-display' src='index8x.png' /></div>
+<!-- l. 351 --><p class='indent'>
+                                                                  
+
+                                                                  
+</p>
+   <div class='math-display'>
+<img alt='0.5 ∗(− 0.1687)+ (− 0.4187)∗ (− 0.3313)+ (− 0.0813)∗0.5 = 0.01371531 ⁄= 0.
+' class='math-display' src='index9x.png' /></div>
+<!-- l. 354 --><p class='indent'>   The inverse (synthesis) transform is defined by
+</p>
+   <table class='equation'><tr><td>
+   <div class='math-display'>
+<img alt='R  =   Y+ 1.403(Cr − δ)
+G  =   Y− 0.714(Cr − δ)− 0.344(Cb − δ)
+B  =   Y+ 1.773(Cb − δ).
+' class='math-display' src='index10x.png' /><a id='x1-7003r8'></a></div>
+   </td><td class='equation-label'>(8)</td></tr></table>
+<!-- l. 384 --><p class='nopar'>
+that in matrix form is
+</p>
+   <table class='equation'><tr><td>
+   <div class='math-display'>
+<img alt='⌊  ⌋   ⌊                ⌋ ⌊      ⌋
+  R     1   1.403     0       Y
+⌈G ⌉ = ⌈1  − 0.714 − 0.344⌉ ⌈Cr − δ⌉ ,
+  B     1    0     1.773   Cb − δ
+' class='math-display' src='index11x.png' /><a id='x1-7004r9'></a></div>
+   </td><td class='equation-label'>(9)</td></tr></table>
+                                                                  
+
+                                                                  
+<!-- l. 404 --><p class='nopar'>
+</p><!-- l. 406 --><p class='noindent'>
+</p>
+   <h5 class='subsubsectionHead' id='quantization-in-the-ycrcb-domain'><span class='titlemark'>1.5.1   </span> <a id='x1-80001.5.1'></a>Quantization in the YCrCb domain</h5>
+<!-- l. 407 --><p class='noindent'>The YCrCb transform is not orthogonal and the relative synthesis filters gains
+depends on the energy of the inversely transformed components. In this case, we can
+estimate the distortion generated by the quantization of a color subband, always
+measured in the RGB domain, if the rest of subbands are unquantized. This can be
+the algorithm:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-8002x1'>Variying the <span class='cmr-10'>Δ</span>, estimate the RD curve for each YCrCb subband, keeping
+     the other subbands unquantized. The distortion must be measures in the
+     RGB domain.
+     </li>
+<li class='enumerate' id='x1-8004x2'>Sort the RD points by their slope.
+     </li>
+<li class='enumerate' id='x1-8006x3'>Apply progressively the combinations quantization steps. The distortion
+     can be measure in both, the color-DCT and the RGB domains.</li></ol>
+<!-- l. 422 --><p class='noindent'>See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/YCrCb_compression.ipynb'>notebook</a>.
+</p><!-- l. 424 --><p class='indent'>   Notice that the only alternative to this “fast” rate-control algorithm is to perform
+a brute-force search of quantization steps combinations.
+</p><!-- l. 593 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='the-rgb-ycocg-transform'><span class='titlemark'>1.6   </span> <a id='x1-90001.6'></a>The RGB <span class='cmsy-10'>⇔</span> YCoCg transform</h4>
+<!-- l. 595 --><p class='noindent'>Clearly, orthogonality is a desired property in lossy compression systems because it helps
+to isolate<span class='footnote-mark'><a href='index7.html#fn6x0'><sup class='textsuperscript'>6</sup></a></span><a id='x1-9001f6'></a> 
+the impact (in the case of a color transform) of each color subband on the quality of
+the reconstruction of the image, simplifying significantly the determination of the
+pattern of QSs that generate the optimal RD curve.
+                                                                  
+
+                                                                  
+</p><!-- l. 602 --><p class='indent'>   Moreover, Eqs. <span class='ecbx-1000'>??</span> and <a href='#x1-7003r8'>8<!-- tex4ht:ref: eq:iYCrCb  --></a> were derived by <a href='https://en.wikipedia.org/wiki/Principal_component_analysis'>Principal Component Analysis (PCA)</a> on
+old<span class='footnote-mark'><a href='index8.html#fn7x0'><sup class='textsuperscript'>7</sup></a></span><a id='x1-9002f7'></a> 
+video data. The same procedure has been carried out with
+newer<span class='footnote-mark'><a href='index9.html#fn8x0'><sup class='textsuperscript'>8</sup></a></span><a id='x1-9003f8'></a> 
+images, obtaining
+</p>
+   <table class='equation'><tr><td>
+   <div class='math-display'>
+<img alt='⌊ Y ⌋   ⌊ 1   1   1⌋ ⌊R ⌋   ⌊R ⌋   ⌊1  1   − 2⌋⌊ Y ⌋
+⌈ C ⌉ = ⌈ 31   30  −3 1⌉ ⌈G ⌉ ⇔ ⌈G ⌉ = ⌈1  0    43⌉⌈ C ⌉.
+  C1     −21  1  −2 1   B      B      1  − 1 −32   C1
+   2       4  2   4                          3    2
+' class='math-display' src='index12x.png' /><a id='x1-9004r10'></a></div>
+   </td><td class='equation-label'>(10)</td></tr></table>
+<!-- l. 645 --><p class='nopar'>
+</p><!-- l. 647 --><p class='indent'>   The <a href='https://en.wikipedia.org/wiki/YCoCg'>YCoCg</a> color transform is orthogonal and the synthesis filters
+gains<span class='footnote-mark'><a href='index10.html#fn9x0'><sup class='textsuperscript'>9</sup></a></span><a id='x1-9005f9'></a> 
+are 22/9 (for Y), 25/9 (for C<sub><span class='cmr-7'>1</span></sub>) and 22/9 (for C<sub><span class='cmr-7'>2</span></sub>).
+</p><!-- l. 653 --><p class='indent'>   Unfortunately, from a perceptual perspective we must impose (thinking of the
+subsampling of the chromas) some features in a color transform (such as the influence
+of the green channel on the luma channel should be high) that violates the
+orthogonality constrain <span class='cite'>[<a href='#Xmalvar2008lifting'>2</a>]</span>. For this reason the authors finally propose the
+transform
+</p>
+   <table class='equation'><tr><td>
+                                                                  
+
+                                                                  
+   <div class='math-display'>
+<img alt='⌊   ⌋   ⌊           ⌋⌊  ⌋   ⌊  ⌋   ⌊          ⌋⌊   ⌋
+  Y       14   12   14   R      R      1   1  − 1   Y
+⌈ Co⌉ = ⌈ 12   0  − 12⌉⌈G ⌉ ⇔ ⌈G ⌉ = ⌈1   0   1 ⌉⌈Co ⌉,
+  Cg     − 14  12  − 14  B      B      1  − 1 − 1  Cg
+' class='math-display' src='index13x.png' /><a id='x1-9006r11'></a></div>
+   </td><td class='equation-label'>(11)</td></tr></table>
+<!-- l. 695 --><p class='nopar'>
+that is near orthogonal<span class='footnote-mark'><a href='index11.html#fn10x0'><sup class='textsuperscript'>10</sup></a></span><a id='x1-9007f10'></a> ,
+and has channel gains 3 (Y), 2 (Co) and 3 (Cg).
+</p><!-- l. 701 --><p class='indent'>   Again, notice that if the RGB values ranges between <span class='cmr-10'>0 </span>and <span class='cmr-10'>255 </span>(and rounding to
+the nearest integer), <span class='cmr-10'>0 </span><span class='cmsy-10'>≤</span> Y <span class='cmsy-10'>≤ </span><span class='cmr-10'>255</span>, <span class='cmsy-10'>−</span><span class='cmr-10'>128 </span><span class='cmsy-10'>≤</span> Co <span class='cmsy-10'>≤ </span><span class='cmr-10'>127 </span>and <span class='cmsy-10'>−</span><span class='cmr-10'>128 </span><span class='cmsy-10'>≤</span> Cg <span class='cmsy-10'>≤ </span><span class='cmr-10'>127</span>, and
+therefore, the number of bits that are necessary to represent each component is
+<span class='cmr-10'>8</span>. Therefore, we can use the same QS range for each component. See this
+<a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/YCrCb_matrix.ipynb'>notebook</a>.
+</p>
+   <h5 class='subsubsectionHead' id='quantization-in-the-ycocg-domain'><span class='titlemark'>1.6.1   </span> <a id='x1-100001.6.1'></a>Quantization in the YCoCg domain</h5>
+<!-- l. 709 --><p class='noindent'>Again, like in the color-DCT, ignoring the possible effects of the entropy encoding
+stage (that could compress more some color subbands), the previous gains suggest to
+use
+</p>
+   <table class='equation'><tr><td>
+   <div class='math-display'>
+<img alt='3            3
+2ΔY = ΔCo =  2ΔCg.
+' class='math-display' src='index21x.png' /><a id='x1-10001r12'></a></div>
+   </td><td class='equation-label'>(12)</td></tr></table>
+<!-- l. 714 --><p class='nopar'>
+See this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/YCrCb_matrix.ipynb'>notebook</a>.
+</p><!-- l. 717 --><p class='indent'>   If the RD slope of each point depends also on the performance of DEFLATE
+(something that is normal), we can find the optimal RD curve with the
+algorithm:
+                                                                  
+
+                                                                  
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-10003x1'>Varilling the <span class='cmr-10'>Δ</span>, estimate (remember that YCoCg is only near-orthonal),
+     the RD curve of each YCoCg subband can de found (without considering
+     the rest of subbands).
+     </li>
+<li class='enumerate' id='x1-10005x2'>Sort the RD points by their slope.
+     </li>
+<li class='enumerate' id='x1-10007x3'>Apply progressively the combinations of quantization steps. Measure the
+     distortion in the RGB domain (in the transform domain could be only
+     estimated).</li></ol>
+<!-- l. 726 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>2   </span> <a id='x1-110002'></a>What do I have to do?</h3>
+<!-- l. 728 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-11002x1'>Please,  run  the  previous  <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb'>notebook</a>  to  learn  some  insights  about  the
+     problem of the optimal quantization in the color domain.
+     </li>
+<li class='enumerate' id='x1-11004x2'>Include  in  the  previous  <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb'>notebook</a>  an  implementation  of  the  <a href='https://en.wikipedia.org/wiki/JPEG_2000#Color_components_transformation'>RCT
+     (Reversible Color Transform)</a> and compare it’s RD performance with the
+     other transforms.
+     </li>
+<li class='enumerate' id='x1-11006x3'>Implement the transform described in Eq. <a href='#x1-9004r10'>10<!-- tex4ht:ref: eq:optimal  --></a>, and compare it with the
+     other transforms.</li></ol>
+                                                                  
+
+                                                                  
+<!-- l. 743 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='timming'><span class='titlemark'>3   </span> <a id='x1-120003'></a>Timming</h3>
+<!-- l. 745 --><p class='noindent'>Please, finish this milestone before the next class session.
+</p><!-- l. 747 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='deliverables'><span class='titlemark'>4   </span> <a id='x1-130004'></a>Deliverables</h3>
+<!-- l. 749 --><p class='noindent'>None.
+</p><!-- l. 751 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='resources'><span class='titlemark'>5   </span> <a id='x1-140005'></a>Resources</h3>
+   <div class='thebibliography'>
+   <p class='bibitem'><span class='biblabel'>
+ [1]<span class='bibsp'>   </span></span><a id='Xburger2016digital'></a>W. Burger and M.J. Burge.  <a href='https://educons.edu.rs/wp-content/uploads/2020/05/2016-Digital-Image-Processing.pdf'><span class='ecti-1000'>Digital Image Processing: An Algorithmic
+   </span><span class='ecti-1000'>Introduction Using Java</span></a>. Springer, 2016.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [2]<span class='bibsp'>   </span></span><a id='Xmalvar2008lifting'></a>H.S. Malvar, G.J. Sullivan, and S. Srinivasan.  <a href='https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/2008_ColorTransforms_MalvarSullivanSrinivasan.pdf'>Lifting-based reversible
+   color  transformations  for  image  compression</a>.   In  <span class='ecti-1000'>Applications of Digital
+   </span><span class='ecti-1000'>Image  Processing  XXXI</span>,  volume  7073,  pages  707307–1  –  707307–10.
+   International Society for Optics and Photonics, 2008.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [3]<span class='bibsp'>   </span></span><a id='Xsayood2017introduction'></a>K. Sayood.   <a href='http://rahilshaikh.weebly.com/uploads/1/1/6/3/11635894/data_compression.pdf'><span class='ecti-1000'>Introduction to Data Compression</span></a>.   Morgan  Kaufmann,
+   2017.
+</p>
+   </div>
+    
+</body> 
+</html>

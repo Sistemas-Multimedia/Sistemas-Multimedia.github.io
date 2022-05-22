@@ -1,0 +1,120 @@
+\input{../../definitions}
+\title{\SM{} - Study Guide - Milestone 11: IPP... Coding in the Image Domain}
+
+\maketitle
+
+\tableofcontents
+
+\section{Description}
+
+It's time to test the performance of the ME/MC process previously
+described, in the image domain. We encode a sequence of
+frames $\{W_k\}$ using the pattern IPP... which means that the first
+frame will be intra-coded (I-type frame) and the rest of frames of the
+GOF (Group Of
+(\href{https://en.wikipedia.org/wiki/Group_of_pictures}{Frames}) will
+be predicted-coded (P-type frame), respect to the previous one.
+
+\subsection{A block diagram of the step codec}
+
+\begin{figure}
+  \centering
+    \svg{graphics/codec}{1100}
+  \caption{A simple IPP... image codec.}
+\label{fig:IPP_codec}
+\end{figure}
+
+The IPP... coding can be done by the codec shown in the
+Fig.~\ref{fig:IPP_codec}, where:
+
+\begin{equation}
+  V_k \leftarrow \text{C}(W_k) =
+  \begin{bmatrix}
+    \frac{1}{4} &  \frac{1}{2}  &  \frac{1}{4} \\ 
+    \frac{1}{2} &            0  & -\frac{1}{2} \\
+    -\frac{1}{4} &  \frac{1}{2}  & -\frac{1}{4}
+  \end{bmatrix}
+  \begin{bmatrix}
+    W_k.\text{R} \\
+    W_k.\text{G} \\
+    W_k.\text{B}
+  \end{bmatrix}
+  , \tag{a}
+\end{equation}
+
+\begin{equation}
+  Z^{-1}(V_k) = V_{k-1},
+  \tag{b}
+\end{equation}
+and by definition, $Z^{-1}(V_{-1}) = 0$,
+
+\begin{equation}
+  \overset{k\rightarrow k-1}{V} \leftarrow \text{M}(V_k, V_{k-1}),
+  \tag{c}
+\end{equation}
+where M stands for Motion Estimation, and by definition,
+$\overset{0\rightarrow (-1)}{V}=0$,
+
+\begin{equation}
+  \overset{\sim}{\overset{k\rightarrow k-1}{V}} \leftarrow \text{E}_{\overset{\rightarrow}{V}}(\overset{k\rightarrow k-1}{V}),
+  \tag{d}
+\end{equation}
+where E$_{\overset{\rightarrow}{V}}(\cdot)$ represents the lossy
+  compression of the motion data,
+
+\begin{equation}
+  \overset{\sim}{\overset{k\rightarrow k-1}{V}} \leftarrow \text{D}_{\overset{\rightarrow}{V}}(\overset{\sim}{\overset{k\rightarrow k-1}{V}}),
+  \tag{e}
+\end{equation}
+where D$_{\overset{\rightarrow}{V}}(\cdot)$ represents the 
+decompression of the motion data,
+
+\begin{equation}
+  E_k \leftarrow V_k - \overset{\wedge}{{V}}_k,
+  \tag{f}
+\end{equation}
+where the symbol $-$ represents to the pixel-wise substraction,
+
+\begin{equation}
+  \overset{\sim}{E_k} \leftarrow \text{E}_{E}(E_k),
+  \tag{g}
+\end{equation}
+where E$_{E}(\cdot)$ represents the lossy compression of the
+prediction error texture data,
+
+\begin{equation}
+  \overset{\sim}{E}_k \leftarrow \text{D}_{E}(\overset{\sim}{E}_k),
+  \tag{h}
+\end{equation}
+where D$_{E}(\cdot)$ represents the decompression of the prediction
+error texture data,
+
+\begin{equation}
+  \overset{\sim}{V}_k \leftarrow \overset{\sim}{E}_k + \overset{\wedge}{V}_k,
+  \tag{i}
+\end{equation}
+and notice that if $\overset{\wedge}{V}_k=0$, then
+$\overset{\sim}{E}_k = \overset{\sim}{V}_k$,
+
+\begin{equation}
+  \overset{\wedge}{V}_k \leftarrow \text{P}(\overset{\sim}{\overset{k\rightarrow k-1}{V}}, \overset{\sim}{V}_{k-1}),
+  \tag{j}
+\end{equation}
+where P$(\cdot,\cdot)$ is a motion compensated predictor.
+
+Notice that if $\overset{\wedge}{{V}}_k$ is similar to $V_k$, then
+$E_k$ will be approximately zero, and therefore, easely
+compressed. Another interesting aspect to highlight is that the
+encoder replicates de decoder in order to use the reconstructed images
+as reference and avoid the drift error.
+
+\section{What you have to do?}
+
+\section{Timming}
+
+\section{Deliverables}
+
+\section{Resources}
+
+\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
+\bibliography{image-pyramids,DWT,motion-estimation,HEVC}

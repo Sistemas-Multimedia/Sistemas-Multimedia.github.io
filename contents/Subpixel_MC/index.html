@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" 
+"http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd" > 
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Sistemas Multimedia - Study Guide - Milestone 8: Motion Compensation in the
+DWT Domain?</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathml,html --> 
+<meta name="src" content="index.tex" /> 
+<link rel="stylesheet" type="text/css" href="index.css" /> 
+</head><body 
+>
+   <div class="maketitle">
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+
+<h2 class="titleHead"><a 
+href="http://cms.ual.es/UAL/estudios/masteres/plandeestudios/asignaturas/asignatura/MASTER7114?idAss=71142105&idTit=7114" >Sistemas Multimedia</a> - Study Guide - Milestone
+8: Motion Compensation in the DWT Domain?</h2>
+ <div class="author" ><a 
+href="https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875" ><span 
+class="ecrm-1200">Vicente Gonz</span><span 
+class="ecrm-1200">&#x00E1;</span><span 
+class="ecrm-1200">lez Ruiz</span></a> <span 
+class="ecrm-1200">- </span><a 
+href="https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm" ><span 
+class="ecrm-1200">Depto Inform</span><span 
+class="ecrm-1200">&#x00E1;</span><span 
+class="ecrm-1200">tica</span></a> <span 
+class="ecrm-1200">- </span><a 
+href="https://www.ual.es" ><span 
+class="ecrm-1200">UAL</span></a></div><br />
+<div class="date" ><span 
+class="ecrm-1200">January 16, 2021</span></div>
+   </div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Description</h3>
+<!--l. 8--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
+ id="x1-20001.1"></a>Removing the temporal redundancy through Motion Compensation
+&#x0028;MC&#x0029;</h4>
+<!--l. 9--><p class="noindent" >The next level in the process of decorrelating the sequence of frames is to remove the
+temporal redundancy by means of Motion Compensation &#x0028;MC&#x0029;. Basically, MC
+consist in substracting to the video data a prediction performed with the information
+that is avaliable to the decoder. If this prediction is accurate, the result of this
+operation is a residual video with a lower temporal redundancy, that can be
+compressed with a higher compression ratio.
+</p><!--l. 17--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">1.2   </span> <a 
+ id="x1-30001.2"></a>The lack of shift-invariance in the DWT domain</h4>
+<!--l. 18--><p class="noindent" >In our case, the video data is represented in the MDWT domain. Let&#x2019;s suppose that the
+number of levels of the DWT is 1, and therefore, each frame has been decomposed into two
+2D subbands <!--l. 20--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>L</mi></math>
+and <!--l. 20--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>H</mi></math>
+&#x0028;remember that using the notation introduces in the previous milestone,
+<!--l. 21--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>H</mi></math> has inside the three
+                                                                  
+
+                                                                  
+high-frequency subbands: <!--l. 22--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>L</mi><mi 
+>H</mi></math>,
+<!--l. 22--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>H</mi><mi 
+>L</mi></math> and
+<!--l. 22--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>H</mi><mi 
+>H</mi></math>, and
+that <!--l. 23--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>L</mi> <mo 
+class="MathClass-rel">=</mo> <mi 
+>L</mi><mi 
+>L</mi></math>&#x0029;.
+So, after using the MDET, MC must be performed using the DWT coe&#xFB03;cients.
+</p><!--l. 26--><p class="indent" >   Unfortunately, as a consequence of the downsamplers used during the DWT to
+achieve critical sampling and the aliasing between the subbands, all DWT
+decompositions are shift variant. This can be seen in the Fig.&#x00A0;<a 
+href="#x1-3001r1">1<!--tex4ht:ref: fig:dwt_shift_variance --></a> were some DWT
+coe&#xFB03;cients of a test video with two frames &#x0028;that are &#x201C;empty&#x201D; images where a circle
+has been moved one pixel to the left&#x0029; has been shown. As it can be seen, the
+value of the coe&#xFB03;cients that correspond to the circunference of the circle are
+di&#xFB00;erent between di&#xFB00;erent subbands, and di&#xFB00;erent to the original pixels. This
+makes quite di&#xFB03;cult to estimate the motion, and therefore, compensate
+it.
+</p>
+   <hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1" /><col 
+id="TBL-2-2" /><col 
+id="TBL-2-3" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="text-align:center; white-space:nowrap;" id="TBL-2-1-1"  
+class="td11"> <!--l. 40--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="moving_circle_000.png" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-1-2"  
+class="td11"> <!--l. 41--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="movement.svg" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-1-3"  
+class="td11"> <!--l. 42--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="difference.png" /> </div>                                                                    </p></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="text-align:center; white-space:nowrap;" id="TBL-2-2-1"  
+class="td11"> <!--l. 43--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="haar_LL.svg" /> </div>  </p> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-2-2"  
+class="td11"> <!--l. 44--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="db5_LL.svg" /> </div>  </p> </td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-2-3"  
+class="td11"> <!--l. 45--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="bior35_LL.svg" /> </div> </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="text-align:center; white-space:nowrap;" id="TBL-2-3-1"  
+class="td11"> <!--l. 46--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="haar_LH.svg" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-3-2"  
+class="td11"> <!--l. 47--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="db5_LH.svg" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-3-3"  
+class="td11"> <!--l. 48--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="bior35_LH.svg" /> </div>                                                                    </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="text-align:center; white-space:nowrap;" id="TBL-2-4-1"  
+class="td11"> <!--l. 49--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="haar_HL.svg" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-4-2"  
+class="td11"> <!--l. 50--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="db5_HL.svg" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-4-3"  
+class="td11"> <!--l. 51--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="bior35_HL.svg" /> </div>                                                                    </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="text-align:center; white-space:nowrap;" id="TBL-2-5-1"  
+class="td11"> <!--l. 52--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="haar_HH.svg" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-5-2"  
+class="td11"> <!--l. 53--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="db5_HH.svg" /> </div>                                                                    </p></td><td  style="text-align:center; white-space:nowrap;" id="TBL-2-5-3"  
+class="td11"> <!--l. 54--><p class="noindent" ><div style="text-align:center;"> <img width=400 src="bior35_HH.svg" /> </div>                                                                    </p></td></tr></table>
+</div> <a 
+ id="x1-3001r1"></a>
+<a 
+ id="x1-3002"></a>
+<br />                                                                  <div class="caption" 
+><span class="id">
+Figure&#x00A0;1: </span><span  
+class="content">A demonstration of the shift variance of the DWT.
+</span></div><!--tex4ht:label?: x1-3001r1 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfigure" />
+<!--l. 60--><p class="indent" >   Shift variance is also generated after the inverse transform when the coe&#xFB03;cients
+are &#xFB01;ltered or quantized, because the aliasing between the &#xFB01;lters is not completely
+cancelled in this case&#x00A0;<span class="cite">&#x005B;<span 
+class="ecbx-1000">?</span>&#x005D;</span>.
+</p>
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-40002"></a>What you have to do?</h3>
+<!--l. 67--><p class="noindent" >Please, using this <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/10-MC_in_DWT_domain/DWT_shift_variance.ipynb" >notebook</a>, research the posibilities for performing MC of other
+DWTs available at <a 
+href="https://pywavelets.readthedocs.io/en/latest/" >PyWavelets</a>.
+</p><!--l. 72--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-50003"></a>Timming</h3>
+<!--l. 74--><p class="noindent" >Please, &#xFB01;nish this notebook before the next class session.
+</p><!--l. 76--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-60004"></a>Deliverables</h3>
+<!--l. 78--><p class="noindent" >None.
+</p><!--l. 80--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-70005"></a>Resources</h3>
+<a 
+ id="Q1-1-8"></a>
+    
+</body></html> 
+
+                                                                  
+
+
