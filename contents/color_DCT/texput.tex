@@ -94,15 +94,13 @@ DCT$_0$, DCT$_1$ and DCT$_2$. If the decorrelation is effective, most
 of the energy is concentrated in DCT$_0$, which represents the
 average energy of the image.
 
-\subsection{The $\text{RGB}\Leftrightarrow\text{DCT}$ transform}
-%{{{ 
-The forward 3x3-DCT is defined by
-
+The forward $3$-DCT (the DCT applied to a vector of $3$ elements) is
+defined by
 \begin{equation}
   \begin{bmatrix}
-    \text{DCT$_0$} \\
-    \text{DCT$_1$} \\
-    \text{DCT$_2$}
+    \text{DCT}_0 \\
+    \text{DCT}_1 \\
+    \text{DCT}_2
   \end{bmatrix}
   =
   \begin{bmatrix}
@@ -130,9 +128,9 @@ and the inverse transform by
     0.40824829 & -0.81649658 & 0.40824829
   \end{bmatrix}
   \begin{bmatrix}
-    \text{DCT0} \\
-    \text{DCT1} \\
-    \text{DCT2}
+    \text{DCT}_0 \\
+    \text{DCT}_1 \\
+    \text{DCT}_2
   \end{bmatrix}.
 \end{equation}
 See this
