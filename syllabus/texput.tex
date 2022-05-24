@@ -23,21 +23,139 @@ features in MRVC.
 \begin{description}
 \item [Milestone 1: {\normalfont Preparing the working environment.}]
   \emph{In most cases, open source frameworks increase the portability
-    of the software and eases the deployment!}
-    \begin{description}
-    \item [Step 1: {\normalfont
-        \href{https://sistemas-multimedia.github.io/contents/provisioning/}{Operating
-          system provisioning}.}]
-    \item [Step 2: {\normalfont
-        \href{https://sistemas-multimedia.github.io/contents/python/}{Installation
-          and basic programming with Python}.}]
-    \item [Step 3: {\normalfont
-        \href{https://sistemas-multimedia.github.io/contents/git/}{Git,
-          GitHub and the fork-and-branch Git workflow}.}]
-      %\item [Milestone 4: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/04-the_data/}{Understanding the video data}.}]
-    \end{description}
-    ~\newline
-    
+  of the software and eases the deployment!}
+  \begin{description}
+  \item [Step 1: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/provisioning/}{Operating
+        system provisioning}.}]
+  \item [Step 2: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/python/}{Installation
+        and basic programming with Python}.}]
+  \item [Step 3: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/git/}{Git,
+        GitHub and the fork-and-branch Git workflow}.}]
+    %\item [Milestone 4: {\normalfont \href{https://sistemas-multimedia.github.io/milestones/04-the_data/}{Understanding the video data}.}]
+  \end{description}
+  ~\newline
+
+\item [Milestone 2: {\normalfont Entropy coding:}] \emph{Entropy is a
+measure of the amount of information represented by a piece of
+data. This milestone analyzes some of the most used lossless image
+compressors.}
+  \begin{description}
+  \item [Task 4: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/PNG/}{PNG
+        (Portable Network Grachics)}.}]
+  \item [Task 5: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/JPEG2000/}{JPEG
+        (Joint Photographic Expert Group) 2000}.}]
+  \item [Task 6: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/JPEG_XL/}{JPEG
+        XL}.}]
+  \item [Task 7: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/BGP/}{BPG
+        (Better Portable Graphics).}]
+  \end{description}
+  ~\newline
+
+\item [Milestone 3: {\normalfont Quantization in the RGB domain:}]
+  \emph{Raw images and videos contain significant amounts of information
+  that can be removed without generating a high visual distortion. The
+  basic technique to delete information in signals is called
+  quantization}.
+  \begin{description}
+  \item [Task 8: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/scalar_quantization/}{Scalar quantization
+        in the image domain}.}]
+  \item [Task 9: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/vector_quantization/}{Vector
+        quantization in the image domain.}]
+  \end{description}
+  ~\newline
+
+ \item [Milestone 4: {\normalfont Removing color redundancy:}]
+   \emph{In color images, the RGB channels tend to be highly
+   correlated. We can take advantage of this channel correlation, for
+   example, to increase the compression ratio in image and video
+   coding}.
+  \begin{description}
+  \item [Task 10: {\normalfont
+      \href{htpps://sistemas-multimedia.github.io/contents/color_DCT/}{Quantization in the
+        Color-DCT (Discrete Cosine Transform) domain}
+      applied over the color domain.}]
+  \item [Task 11: {\normalfont
+      \href{htpps://sistemas-multimedia.github.io/contents/YCrCb/}{Quantization in the
+        YCrCb (luminance, red chroma, blue chroma) domain.}]
+  \item [Task 12: {\normalfont
+      \href{htpps://sistemas-multimedia.github.io/contents/YCoCg/}{Quantization in the 
+        YCoCg (luminance, orange chroma, green chroma) domain}.}]
+  \end{description}
+  ~\newline
+
+\item [Milestone 5: {\normalfont Removing spatial redundancy:}]
+  \emph{Visual data is highly correlated in the spatial domain and
+  such correlation can be exploited to achieve higher compression
+  ratios}.
+  \begin{description}
+  %\item [Task 13: {\normalfont
+  %    \href{https://sistemas-multimedia.github.io/contents/DPCM/}{2D-DPCM
+  %      (2-Dimensional Differential Pulse Code Modulation)}.}]
+  \item [Task 13: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/spatialDCT/}{The
+        2D-DCT (2-Dimensional Discrete Cosine Transform)}.}]
+  \item [Task 14: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/DWT/}{The
+        2D-DWT (2-Dimensional Discrete Wavelet Transform)}.}]
+  \end{description}
+  ~\newline
+
+\item [Milestone 6: {\normalfont Motion estimation and compensation in
+    the image domain:}] \emph{Most image sequences (videos) are highly
+correlated in the temporal domain and motion estimation can exploit
+this redundancy}.
+  \begin{description}
+  \item [Task 16: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/motion_estimation/}{Motion
+        estimation in the image domain}.}]
+  \item [Task 17: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/motion_compensation/}{Motion
+        compensation in the image domain}.}]
+  \end{description}
+  ~\newline
+
+\item [Milestone 6: {\normalfont Motion estimation and compensation in
+    the image domain:}] \emph{Most image sequences (videos) are highly
+correlated in the temporal domain and motion estimation can exploit
+this redundancy}.
+  \begin{description}
+  \item [Task 16: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/motion_estimation/}{Motion
+        estimation in the image domain}.}]
+  \item [Task 17: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/motion_compensation/}{Motion
+        compensation in the image domain}.}]
+  \end{description}
+  ~\newline
+
+\item [Milestone 7: {\normalfont Motion estimation and compensation in
+    the transform domain:}] \emph{When the transform of an image
+generates a multiresolution representation it is possible to perform
+motion estimation and compensation in the transform domain}.
+  \begin{description}
+  \item [Task 18: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/ME_MC_in_DWT_domain/}{Motion
+        compensation in the DWT domain}.}]
+  \item [Task 19: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/ME_MC_in_DCT_domain/}{Motion
+        compensation in the DCT domain}.}]
+  \item [Task 20: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/ME_MC_in_LP_domain/}{Motion
+        estimation and compensation in the LP (Laplacian Pyramid) image domain}.}]
+  \end{description}
+  ~\newline
+
+  %%%%%%%%%%%%
+
  \item [Milestone 2: {\normalfont Removing the color redundancy:}]
    \emph{In color images, the RGB channels tend to be highly
    correlated. We can take advantage of this channel correlation, for

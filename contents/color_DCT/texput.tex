@@ -1,13 +1,51 @@
 % Emacs, this is -*-latex-*-
 
 \input{../../definitions}
-\title{\SM{} - Study Guide - The 1D-DCT (1-Dimensional Discrete Cosine Transform) transform applied over the color domain}
+\title{\SM{} - Study Guide - The 3-DCT (3-tap Discrete Cosine Transform) applied over the color domain}
 
 \maketitle
 
 \tableofcontents
 
 \section{Description}
+
+This milestone shows one of the basic advantages of color decorrelation: 
+
+\subsection{The RGB color space}
+%{{{ 
+
+The color of a pixel depends on the
+\href{https://en.wikipedia.org/wiki/Visible_spectrum}{frequency of the
+  light that the pixel captures}. Such information can be represented
+in a number of different encoding systems known as
+\href{https://en.wikipedia.org/wiki/Color_space}{color spaces}. Among
+all those systems, the RGB color space is the most used because it can
+be obtained directly from the light signal using color
+filters.\footnote{Specifically, a red filter, a green filter and a
+blue filter.}
+
+%}}}
+
+\section{Color redundancy}
+%{{{
+
+The RGB color model has evident physical advantages, but in general is
+quite
+\href{https://en.wikipedia.org/wiki/Data_redundancy}{redundant}. This
+means that usually some part of the data in an image can be removed
+without loss of information. In the case of a color image in the RGB
+domain, the three components of each pixel (each one measuring the
+energy in a different band of the
+\href{https://en.wikipedia.org/wiki/Visible_spectrum}{visible
+  spectrum}) can be
+\href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlated}. Therefore,
+\href{https://vicente-gonzalez-ruiz.github.io/transform_coding/}{transform
+  coding} applied between the color components can concentrate the
+information (energy) of the image in a small set of coefficients. This
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/color_DCT/coding_gain.ipynb}{notebook}
+shows the near-lossless coding gain of an image after using the
+color-DCT.
+%}}}
 
 \subsection{Components correlation}
 %{{{
