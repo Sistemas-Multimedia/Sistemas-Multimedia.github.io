@@ -1,7 +1,10 @@
 % Emacs, this is -*-latex-*-
 
 \input{../../definitions}
-\title{\SM{} - Study Guide - Milestone 4: Entropy coding with PNG (Portable Network Graphics)}
+
+\title{\SM{} - Study Guide - Milestone 4: Entropy coding with
+  \href{https://vicente-gonzalez-ruiz.github.io/PNG/}{PNG} (Portable
+  Network Graphics)}
 
 \maketitle
 
@@ -12,43 +15,51 @@
 This milestone introduces,
 \href{https://vicente-gonzalez-ruiz.github.io/PNG/}{PNG}, the
 \href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless
-  image compression format} used in this course for representing the
+  image compression format} used in this course for representing
+\href{https://en.wikipedia.org/wiki/Digital_data}{digital}
+\href{https://en.wikipedia.org/wiki/Digital_image}{images} and
 \href{https://en.wikipedia.org/wiki/Video}{videos}. Basically, a
-(\href{https://en.wikipedia.org/wiki/Raster_graphics}{raster}) digital
-video is a \href{https://en.wikipedia.org/wiki/Sequence}{sequence} of
-(\href{https://en.wikipedia.org/wiki/Digital_data}{digital})
-\href{https://en.wikipedia.org/wiki/Image}{images} (or
-\href{https://en.wikipedia.org/wiki/Film_frame}{frames}). In this
-context, a frame can be described as a
+(\href{https://en.wikipedia.org/wiki/Raster_graphics}{raster}) video
+is a \href{https://en.wikipedia.org/wiki/Sequence}{sequence} of images
+(or \href{https://en.wikipedia.org/wiki/Film_frame}{frames}, in the
+context of video).
+
+An image can be described as a
 \href{https://en.wikipedia.org/wiki/Matrix_(mathematics)}{matrix} of
 \href{https://en.wikipedia.org/wiki/Pixel}{pixels} (PIcture X-ray
 ELementS), arranged in a regular rectangular grid. Such sequences are
 usully captured by a
 \href{https://en.wikipedia.org/wiki/Charge-coupled_device}{CCD (Charge
-  Coupled Device)}.
+  Coupled Device)}. In maths, an image (or a frame) is
+\begin{equation}
+  {\mathbf I} = \{{\mathbf I}_{y,x}\}\in\mathbb{P}^{k}, (y,x)\in\mathbb{N}^2\}
+    \label{eq:image}
+\end{equation}
+where $(y,x)$ is a spatial coordinate, and $\mathbb{P}^{k}$ represents
+the (pixels) \emph{values domain}, with dimension (number of pixel
+components) $k$~\cite{burger2016digital}.
 
-From a mathematical perspective, a frame sequence can be denoted by
-\begin{equation*}
-  \{{\mathbf V}_{t,y,x}\in\mathbb{P}^{k}, (t,y,x)\in\mathbb{N}^3\}
-\end{equation*}
-where $t$ is a temporal coordinate, $(y,x)$ is a spatial coordinate,
-and $\mathbb{P}^{k}$ represents the (pixels) \emph{values domain}, with
-dimension (number of pixel components)
-$k$~\cite{burger2016digital}.
+In a similar way, a sequence frames can be denoted by
+\begin{equation}
+  {\mathbf V} = \{{\mathbf V}_{t,y,x}\in\mathbb{P}^{k}, (t,y,x)\in\mathbb{N}^3\} = \{{\mathbf I}_t\}
+  \label{eq:video}
+\end{equation}
+where $t$ is a temporal coordinate, and ${\mathbf I}$ is an image such
+as the described in Eq.~\ref{eq:image}.
 
 Depending on $k$, we can have grayscale pixels ($k=1$), color pixels
 ($k=3$), and multispectral pixels ($k>3$).\footnote{When $k>3$ we also
-use the term ``super/hyper-spectral'' pixels/frames/sequences, depending
+use the term ``(super/hyper)-spectral'' pixels/frames/sequences, depending
 on the value of $k$.} Finally, if we take into consideration the
 number of bits/component that usually is $8$ (although this value can be larger
 specially for grayscale frames), the pixel-depth will be $8$
 bits/pixel for grayscale sequences or $3\times 8=24$ bits/pixel for
 color ones.
 
-We are going to store a video as a sequence of
+In our labs, we are going to store a video as a sequence of
 \href{https://en.wikipedia.org/wiki/Computer_file}{files} with names
-<prefix>000.png, <prefix>001.png, ..., where <prefix> specifies the
-sequence name and ``.png'' indicates that the frames are coded using
+{\tt <prefix>000.png}, {\tt <prefix>001.png}, ..., where {\tt <prefix>} specifies the
+sequence name and ``{\tt .png}'' indicates that the frames are coded using
 \href{https://en.wikipedia.org/wiki/Portable_Network_Graphics}{PNG}
 (pronounced ``ping'') image compression
 format~\cite{roelofs1999png,world2003portable}. PNG uses
@@ -98,10 +109,10 @@ Finally, notice that all the frames of a sequence usually:
 \section{What do I have to do?}
 
 \begin{enumerate}
-\item Download \theproject{}, preferably cloning your own fork.
+%\item Download \theproject{}, preferably cloning your own fork.
 \item Run this \href{https://jupyter.org/}{jupyter}
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/04-PNG/display_video.ipynb}{notebook}
-  that shows how to read and write frames.
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/PNG/display_video.ipynb}{notebook}
+  that shows how to read and write PNG frames.
 %\item Please, try to dig a little bit into the insights of the notebook.
 %\item Understand the insights of the notebook.
 \end{enumerate}

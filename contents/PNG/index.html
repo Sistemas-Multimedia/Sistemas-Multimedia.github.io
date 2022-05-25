@@ -1,0 +1,201 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head><title>Sistemas Multimedia - Study Guide - Milestone 4: Entropy coding with PNG
+(Portable Network Graphics)</title> 
+<meta  charset="utf-8" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="index.css" /> 
+<meta name="src" content="index.tex" /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+</head><body 
+>
+   <div class="maketitle">
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+
+<h2 class="titleHead"><a 
+href="https://sistemas-multimedia.github.io/" >Sistemas Multimedia</a> - Study Guide - Milestone
+4: Entropy coding with <a 
+href="https://vicente-gonzalez-ruiz.github.io/PNG/" >PNG</a> (Portable Network
+Graphics)</h2>
+ <div class="author" ><a 
+href="https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875" ><span 
+class="ecrm-1200">Vicente Gonz</span><span 
+class="ecrm-1200">á</span><span 
+class="ecrm-1200">lez Ruiz</span></a> <span 
+class="ecrm-1200">- </span><a 
+href="https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm" ><span 
+class="ecrm-1200">Depto Inform</span><span 
+class="ecrm-1200">á</span><span 
+class="ecrm-1200">tica</span></a> <span 
+class="ecrm-1200">- </span><a 
+href="https://www.ual.es" ><span 
+class="ecrm-1200">UAL</span></a></div><br />
+<div class="date" ><span 
+class="ecrm-1200">May 25, 2022</span></div>
+   </div>
+   <h3 class="likesectionHead"><a 
+ id="x1-1000"></a>Contents</h3>
+   <div class="tableofcontents">
+    <span class="sectionToc" >1 <a 
+href="#x1-20001" id="QQ2-1-2">Description</a></span>
+<br />    <span class="sectionToc" >2 <a 
+href="#x1-30002" id="QQ2-1-3">What do I have to do?</a></span>
+<br />    <span class="sectionToc" >3 <a 
+href="#x1-40003" id="QQ2-1-4">Timming</a></span>
+<br />    <span class="sectionToc" >4 <a 
+href="#x1-50004" id="QQ2-1-5">Deliverables</a></span>
+<br />    <span class="sectionToc" >5 <a 
+href="#x1-60005" id="QQ2-1-6">Resources</a></span>
+   </div>
+<!--l. 13--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-20001"></a>Description</h3>
+<!--l. 15--><p class="noindent" >This milestone introduces, <a 
+href="https://vicente-gonzalez-ruiz.github.io/PNG/" >PNG</a>, the <a 
+href="https://en.wikipedia.org/wiki/Lossless_compression" >lossless image compression format</a> used in this
+course for representing <a 
+href="https://en.wikipedia.org/wiki/Digital_data" >digital</a> <a 
+href="https://en.wikipedia.org/wiki/Digital_image" >images</a> and <a 
+href="https://en.wikipedia.org/wiki/Video" >videos</a>. Basically, a (<a 
+href="https://en.wikipedia.org/wiki/Raster_graphics" >raster</a>) video is a
+<a 
+href="https://en.wikipedia.org/wiki/Sequence" >sequence</a> of images (or <a 
+href="https://en.wikipedia.org/wiki/Film_frame" >frames</a>, in the context of video).
+</p><!--l. 27--><p class="indent" >   An image can be described as a <a 
+href="https://en.wikipedia.org/wiki/Matrix_(mathematics)" >matrix</a> of <a 
+href="https://en.wikipedia.org/wiki/Pixel" >pixels</a> (PIcture X-ray ELementS),
+arranged in a regular rectangular grid. Such sequences are usully captured
+by a <a 
+href="https://en.wikipedia.org/wiki/Charge-coupled_device" >CCD (Charge Coupled Device)</a>. In maths, an image (or a frame) is
+\begin {equation}  {\mathbf I} = \{{\mathbf I}_{y,x}\}\in \mathbb {P}^{k}, (y,x)\in \mathbb {N}^2\} \label {eq:image}  \end {equation}
+where \((y,x)\) is a spatial coordinate, and \(\mathbb {P}^{k}\) represents the (pixels) <span 
+class="ecti-1000">values domain</span>, with
+dimension (number of pixel components) \(k\) <span class="cite">[<a 
+href="#Xburger2016digital">1</a>]</span>.
+                                                                  
+
+                                                                  
+</p><!--l. 42--><p class="indent" >   In a similar way, a sequence frames can be denoted by \begin {equation}  {\mathbf V} = \{{\mathbf V}_{t,y,x}\in \mathbb {P}^{k}, (t,y,x)\in \mathbb {N}^3\} = \{{\mathbf I}_t\} \label {eq:video}  \end {equation}
+where \(t\) is a temporal coordinate, and \(\mathbf I\) is an image such as the described in
+Eq. <span 
+class="ecbx-1000">??</span>.
+</p><!--l. 50--><p class="indent" >   Depending on \(k\), we can have grayscale pixels (\(k=1\)), color pixels (\(k=3\)), and multispectral pixels
+(\(k&gt;3\)).<span class="footnote-mark"><a 
+href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-2001f1"></a> 
+Finally, if we take into consideration the number of bits/component that usually
+is \(8\) (although this value can be larger specially for grayscale frames), the
+pixel-depth will be \(8\) bits/pixel for grayscale sequences or \(3\times 8=24\) bits/pixel for color
+ones.
+</p><!--l. 59--><p class="indent" >   In our labs, we are going to store a video as a sequence of <a 
+href="https://en.wikipedia.org/wiki/Computer_file" >ﬁles</a> with names
+<span 
+class="ectt-1000">&#x003C;prefix&#x003E;000.png</span>, <span 
+class="ectt-1000">&#x003C;prefix&#x003E;001.png</span>, ..., where <span 
+class="ectt-1000">&#x003C;prefix&#x003E; </span>speciﬁes the sequence
+name and “<span 
+class="ectt-1000">.png</span>” indicates that the frames are coded using <a 
+href="https://en.wikipedia.org/wiki/Portable_Network_Graphics" >PNG</a> (pronounced “ping”)
+image compression format <span class="cite">[<a 
+href="#Xroelofs1999png">4</a>, <a 
+href="#Xworld2003portable">2</a>]</span>. PNG uses <a 
+href="https://en.wikipedia.org/wiki/Differential_pulse-code_modulation" >DPCM</a> and the <a 
+href="https://en.wikipedia.org/wiki/DEFLATE" >DEFLATE</a> <a 
+href="https://en.wikipedia.org/wiki/Entropy_coding" >entropy
+codec</a> (<a 
+href="https://en.wikipedia.org/wiki/Huffman_coding" >Huﬀman coding</a> + <a 
+href="https://en.wikipedia.org/wiki/Lempel-Ziv-Storer-Szymanski" >LZSS</a>) <span class="cite">[<a 
+href="#Xnelson96datacompression">3</a>]</span> to remove the <a 
+href="https://en.wikipedia.org/wiki/Image_compression" >spatial</a> and <a 
+href="https://en.wikipedia.org/wiki/Data_compression" >statistical redudancy</a>.
+Notice that no <a 
+href="https://en.wikipedia.org/wiki/YUV" >color transform</a> is used.
+</p><!--l. 89--><p class="indent" >   Finally, notice that all the frames of a sequence usually:
+     </p><ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-2003x1">
+     <!--l. 91--><p class="noindent" >Have the same <a 
+href="https://en.wikipedia.org/wiki/Image_resolution" >spatial resolution</a>.
+     </p></li>
+<li 
+  class="enumerate" id="x1-2005x2">
+     <!--l. 94--><p class="noindent" >Are, at least originally, represented in the <a 
+href="https://en.wikipedia.org/wiki/RGB_color_model" >RGB domain</a>.
+     </p></li>
+<li 
+  class="enumerate" id="x1-2007x3">
+     <!--l. 96--><p class="noindent" >Depending on the frame, in PNG, each color component (channel) has a
+     <a 
+href="https://en.wikipedia.org/wiki/Glossary_of_computer_graphics#bit_depth" >bit depth</a> of \(8\) or \(16\) bits, representing an unsigned <a 
+href="https://en.wikipedia.org/wiki/Integer_(computer_science)" >integer</a>.</p></li></ol>
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-30002"></a>What do I have to do?</h3>
+<!--l. 111--><p class="noindent" >
+     </p><ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-3002x1">
+     <!--l. 113--><p class="noindent" >Run this <a 
+href="https://jupyter.org/" >jupyter</a> <a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/PNG/display_video.ipynb" >notebook</a> that shows how to read and write PNG frames.</p></li></ol>
+                                                                  
+
+                                                                  
+<!--l. 120--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-40003"></a>Timming</h3>
+<!--l. 122--><p class="noindent" >Please, ﬁnish this milestone before the next class session.
+</p><!--l. 124--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-50004"></a>Deliverables</h3>
+<!--l. 126--><p class="noindent" >None.
+</p><!--l. 128--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-60005"></a>Resources</h3>
+   <div class="thebibliography">
+   <p class="bibitem" ><span class="biblabel">
+ [1]<span class="bibsp">   </span></span><a 
+ id="Xburger2016digital"></a>W. Burger and M.J. Burge.  <a 
+href="https://educons.edu.rs/wp-content/uploads/2020/05/2016-Digital-Image-Processing.pdf" ><span 
+class="ecti-1000">Digital Image Processing: An Algorithmic</span>
+   <span 
+class="ecti-1000">Introduction Using Java</span></a>. Springer, 2016.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ [2]<span class="bibsp">   </span></span><a 
+ id="Xworld2003portable"></a>World Wide Web Consortium et al. <a 
+href="https://www.w3.org/TR/PNG/" >Portable Network Graphics (PNG)
+   Speciﬁcation</a>. <span 
+class="ecti-1000">https://www.w3.org/TR/PNG/</span>, 2003.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ [3]<span class="bibsp">   </span></span><a 
+ id="Xnelson96datacompression"></a>Nelson M. and Gailly J.  <a 
+href="http://index-of.co.uk/Information-Theory/The%20Data%20Compression%20Book%202nd%20Ed%20-%20Mark%20Nelson.pdf" ><span 
+class="ecti-1000">The Data Compression Book</span></a>.  M&#x0026;T Books,
+   1996.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ [4]<span class="bibsp">   </span></span><a 
+ id="Xroelofs1999png"></a>Greg Roelofs and Richard Koman.  <a 
+href="http://www.libpng.org/pub/png/book/" ><span 
+class="ecti-1000">PNG: the deﬁnitive guide</span></a>.  O’Reilly
+   &#x0026; Associates, Inc., 1999.
+</p>
+   </div>
+    
+</body> 
+</html>
+                                                                  
+
+
