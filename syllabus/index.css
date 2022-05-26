@@ -12,12 +12,11 @@
 .ecti-1000{ font-style: italic;}
 .ecti-1000{ font-style: italic;}
 .ecti-1000{ font-style: italic;}
-p.noindent { text-indent: 0em }
-td p.noindent { text-indent: 0em; margin-top:0em; }
-p.nopar { text-indent: 0em; }
-p.indent{ text-indent: 1.5em }
 p{margin-top:0;margin-bottom:0}
-p.noindent + p.noindent{margin-top:1em;}
+p.indent{text-indent:0;}
+p + p{margin-top:1em;}
+p + div, p + pre {margin-top:1em;}
+div + p, pre + p {margin-top:1em;}
 a { overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; hyphens: auto; }
 @media print {div.crosslinks {visibility:hidden;}}
 table.tabular{border-collapse: collapse; border-spacing: 0;}
@@ -175,8 +174,5 @@ table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
 table.longtable{border-collapse: collapse; border-spacing: 0;}
 div.longtable{text-align:center;}
 table.longtable{margin-left:auto; margin-right: auto;}
-p.indent {text-indent:1.5em;}
-.columns-3 p.indent {text-indent:0em;}
-p.bibitem-p { text-indent: 1.5em; margin-left: 2em; margin-top:0em; margin-bottom:0em; background:#F0F0F0; color:#000000;}
 /* end css.sty */
 
