@@ -1,7 +1,7 @@
 % Emacs, this is -*-latex-*-
 
 \input{../../definitions}
-\title{Lossy Compression of Gray-scale Images}
+\title{\SM{} - Study Guide - Milestone 3 - Task 1: Scalar Quantization of Gray-scale Images}
 
 \maketitle
 \tableofcontents
@@ -9,12 +9,16 @@
 \section{Description}
 %{{{
 
-Gray-Scale (GS) images only have one (color) channel, at it is usually
-represented in color displays using gray color tones (the same amount
-if red, green and blue components). In most of the cases, the number
-of bits per pixel (the depth of the image) is 8, but it is not rare to
-use up to 16 bits/pixel~\cite{burger2016digital}. However, it is quite
-difficult to find a color display with more than 256 gray colors.
+Gray-Scale (GS) images have only one (gray or luminance) channel, an
+they are usually represented in color displays using gray tones
+(colors where the same amount of red, green and blue components have
+been mixed). In most of the cases, the number of bits per pixel (the
+so called ``depth'' of the image) is $8$, but it is not rare to use up
+to $16$ bits/pixel in specific contexts such as in
+\href{https://en.wikipedia.org/wiki/Medical_imaging}{Medical Imaging}
+and \href{https://en.wikipedia.org/wiki/Remote_sensing}{Remote
+  Sensing}~\cite{burger2016digital}. However, it is quite difficult to
+find a color display with more than 256 gray colors.
 
 In this milestone we will see how to
 \href{https://vicente-gonzalez-ruiz.github.io/quantization/}{quantize}
