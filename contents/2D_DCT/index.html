@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html lang="en-US" xml:lang="en-US" > 
-<head> <title>Sistemas Multimedia - Study Guide - Milestone 7: Removing Spatial Redundancy
-with the 2D-Discrete Cosine Transform</title> 
+<head> <title>Sistemas Multimedia - Study Guide - Milestone 5 - Task 1 - Removing Spatial
+Redundancy with the 2D-Discrete Cosine Transform</title> 
 <meta  charset="utf-8" /> 
 <meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
 <meta name="viewport" content="width=device-width,initial-scale=1" /> 
@@ -21,14 +21,14 @@ with the 2D-Discrete Cosine Transform</title>
 
 <h2 class="titleHead"><a 
 href="https://sistemas-multimedia.github.io/" >Sistemas Multimedia</a> - Study Guide - Milestone
-7: Removing Spatial Redundancy with the
-2D-Discrete Cosine Transform</h2>
+5 - Task 1 - Removing Spatial Redundancy with
+the 2D-Discrete Cosine Transform</h2>
  <div class="author" ><span 
 class="ecrm-1200">Vicente Gonz</span><span 
 class="ecrm-1200">á</span><span 
 class="ecrm-1200">lez Ruiz</span></div><br />
 <div class="date" ><span 
-class="ecrm-1200">May 27, 2022</span></div>
+class="ecrm-1200">May 28, 2022</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -36,180 +36,97 @@ class="ecrm-1200">May 27, 2022</span></div>
     <span class="sectionToc" >1 <a 
 href="#x1-20001" id="QQ2-1-2">Description</a></span>
 <br />     <span class="subsectionToc" >1.1 <a 
-href="#x1-30001.1" id="QQ2-1-3">Decorrelating with the DCT (Discrete Cosine Transform)</a></span>
-<br />     <span class="subsectionToc" >1.2 <a 
-href="#x1-40001.2" id="QQ2-1-4">The 2D-DCT</a></span>
-<br />     <span class="subsectionToc" >1.3 <a 
-href="#x1-50001.3" id="QQ2-1-6">Block-based transform coding</a></span>
-<br />     <span class="subsectionToc" >1.4 <a 
-href="#x1-60001.4" id="QQ2-1-7">Quantization in the (spatial) DCT domain</a></span>
+href="#x1-30001.1" id="QQ2-1-3">Spatial decorrelation with the DCT</a></span>
 <br />    <span class="sectionToc" >2 <a 
-href="#x1-70002" id="QQ2-1-8">What do I have to do?</a></span>
+href="#x1-40002" id="QQ2-1-4">What do I have to do?</a></span>
 <br />    <span class="sectionToc" >3 <a 
-href="#x1-80003" id="QQ2-1-9">Timming</a></span>
+href="#x1-50003" id="QQ2-1-5">Timming</a></span>
 <br />    <span class="sectionToc" >4 <a 
-href="#x1-90004" id="QQ2-1-10">Deliverables</a></span>
+href="#x1-60004" id="QQ2-1-6">Deliverables</a></span>
 <br />    <span class="sectionToc" >5 <a 
-href="#x1-100005" id="QQ2-1-11">Resources</a></span>
+href="#x1-70005" id="QQ2-1-7">Resources</a></span>
    </div>
-<!--l. 8--><p class="noindent" >
+<!--l. 10--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
  id="x1-20001"></a>Description</h3>
-                                                                  
-
-                                                                  
-<!--l. 11--><p class="noindent" >
-</p>
-   <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
- id="x1-30001.1"></a>Decorrelating with the <a 
-href="https://en.wikipedia.org/wiki/Discrete_cosine_transform" >DCT (Discrete Cosine Transform)</a></h4>
-<!--l. 13--><p class="noindent" >Transforms concentrate (compact) information (that can be estimated through the
-<a 
-href="https://en.wikipedia.org/wiki/Variance" >variance</a> or the <a 
-href="https://en.wikipedia.org/wiki/Entropy" >entropy</a>) in a few output coeﬃcients by decorrelating the input
-samples <span class="cite">[<a 
-href="#Xsayood2017introduction">2</a>]</span>. Such energy concentration can be used to ﬁnd good compression
-schemes. In this milestone, we will use DCT to remove the spatial redundancy in the
-components of an image. Notice that the DCT is used in some of the most
-succesful image and video compressors, such as <a 
+<!--l. 12--><p class="noindent" >This task shows the eﬀect in the RD curve of using the <a 
+href="https://en.wikipedia.org/wiki/Discrete_cosine_transform" >DCT</a> <span class="cite">[<span 
+class="ecbx-1000">?</span>]</span> when it is applied
+by 2D blocks over the space domain of an image. The DCT is the key of the
+spatial decorrelation (information concentration) used in some of the most
+important image and video compressors, such as <a 
 href="https://en.wikipedia.org/wiki/JPEG" >JPEG</a> and <a 
 href="https://en.wikipedia.org/wiki/Advanced_Video_Coding" >H.264</a>, <a 
 href="https://en.wikipedia.org/wiki/Advanced_Video_Coding" >HEVC</a> and
 <a 
 href="https://en.wikipedia.org/wiki/Versatile_Video_Coding" >VVC</a>.
-</p><!--l. 27--><p class="indent" >   In the 1D case, the forward DCT for a signal \(\mathbf {g}[n]\) of length \(N\) is deﬁned as <span class="cite">[<a 
-href="#Xburger2016digital">1</a>]</span>
-\begin {equation}  {\mathbf h}[u] = \sqrt {\frac {2}{N}}\sum _{n=0}^{N-1}{\mathbf g}[n]{\mathbf c}[u]\cos \Big (\pi \frac {u(2x+1)}{2N}\Big ),  \end {equation}
-for \(0&lt;u&lt;N\), and the inverse transform is \begin {equation}  {\mathbf g}[n] = \sqrt {\frac {2}{N}}\sum _{u=0}^{N-1}{\mathbf h}[u]{\mathbf c}[u]\cos \Big (\pi \frac {u(2x+1)}{2N}\Big ),  \end {equation}
-for \(0&lt;n&lt;N\), with \begin {equation}  {\mathbf c}[u] = \left \{ \begin {array}{ll} \frac {1}{\sqrt {2}} &amp; \quad \text {for}~u=0, \\ 1 &amp; \quad \text {otherwise}. \end {array} \right .  \end {equation}
-</p><!--l. 48--><p class="indent" >   The transformed signal is a sequence of coeﬃcients \({\mathbf h}[u]\) with the same length than
-the original signal \({\mathbf g}[n]\), and the position of the coeﬃcients in the transform domain
-indicate the contribution of such coeﬃcient to the corresponding (in this case,
-spatial) frequency. For example, the coeﬃcient at the position 0 (that is
-commonly refered as DC (Direct Current)) is equal to the average of the signal.
-The rest of high-frequency coeﬃcients are called AC (Alternating Current)
-coeﬃcients.
-</p><!--l. 57--><p class="indent" >   The DCT can be also expressed in matrix <span class="cite">[<a 
-href="#Xsayood2017introduction">2</a>]</span> form as \begin {equation}  {\mathbf h} = {\mathbf K}{\mathbf g},  \end {equation}
-where \(\mathbf K\) is the forward transform matrix. The rows of the transform matrix are often
-referred to as the basis vectors for the transform because they form an orthonormal
-basis set (see these <a 
-href="https://cseweb.ucsd.edu/classes/fa17/cse166-a/lec13.pdf" >slides</a>), and the elements of the transformed sequence are often
-called the transform coeﬃcients. Obviously, the inverse transform is computed by
-\begin {equation}  {\mathbf g} = {\mathbf K}^{-1}{\mathbf h},  \end {equation}
-where \({\mathbf K}^{-1}\) denotes the inverse matrix of \(\mathbf K\). In the case of the DCT, \(\mathbf K\) is <a 
-href="https://en.wikipedia.org/wiki/Orthogonal_matrix" >orthogonal</a> and
-therefore, \({\mathbf K}^{-1}={\mathbf K}^{\text T}\), where \(\cdot ^{\text T}\) denotes the transpose of \(\mathbf K\).
-</p><!--l. 78--><p class="noindent" >
-</p>
-   <h4 class="subsectionHead"><span class="titlemark">1.2   </span> <a 
- id="x1-40001.2"></a>The 2D-DCT</h4>
-<!--l. 80--><p class="noindent" >The 2D-DCT is separable, which means that it can be computed by appliying the
-1D-DCT to the two dimensions of the signal. For the inverse 2D-DCT, the procedure
-is similar, but appliying the inverse 1D-DWT in reverse order. The Fig. <a 
-href="#x1-4001r1">1<!--tex4ht:ref: fig:2D-DCT_basis --></a> show the
-ﬁrst 64 2D-DCT basis (see this <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/DCT_basis.ipynb" >notebook</a>).
-</p>
-   <figure class="figure"> 
-
                                                                   
 
                                                                   
-                                                                  
-
-                                                                  
-<!--l. 89--><p class="noindent" ><div style="text-align:center;"> <img width=600 src="2D-DCT_basis.png" /> </div>  <a 
- id="x1-4001r1"></a>
-<a 
- id="x1-4002"></a>
+</p><!--l. 22--><p class="noindent" >
 </p>
-<figcaption class="caption" ><span class="id">Figure 1: </span><span  
-class="content">First 64 2D-DCT basis functions.                             </span></figcaption><!--tex4ht:label?: x1-4001r1 -->
-                                                                  
-
-                                                                  
-   </figure>
-   <h4 class="subsectionHead"><span class="titlemark">1.3   </span> <a 
- id="x1-50001.3"></a>Block-based transform coding</h4>
-<!--l. 96--><p class="noindent" >The DCT is usually applied by 2D blocks which, in most of the previous image and
-video compression standards are of \(8\times 8\) pixels. This a direct consequence of that, usually
-the DCT losses compaction eﬃciency when the block size is increased (although this
-depends on the signal characteristics). When the coeﬃcients of several blocks are
-considered together, they form a <a 
-href="https://en.wikipedia.org/wiki/Sub-band_coding" >subband</a>, and the collection of subbands, a
-<a 
-href="https://en.wikipedia.org/wiki/Discrete_wavelet_transform" >decomposition</a> <span class="cite">[<a 
-href="#Xvetterli2014foundations">3</a>]</span>, and the <a 
-href="https://en.wikipedia.org/wiki/Array_data_structure#Element_identifier_and_addressing_formulas" >index</a> of the subband is related to the <a 
-href="https://en.wikipedia.org/wiki/Frequency" >frequency</a> of the
-signal. For example, in the case of the <a 
-href="https://en.wikipedia.org/wiki/Digital_image" >images</a>, the position of the <a 
-href="https://en.wikipedia.org/wiki/Coefficient" >coeﬃcients</a> in the
-subbands is related to <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/block_DCT_compression.ipynb" >the spatial area where the corresponding pixels are
-found</a>.
-</p><!--l. 117--><p class="indent" >   The DCT is <a 
-href="https://en.wikipedia.org/wiki/Orthonormality" >orthonormal</a> (orthogonal + unitary). Unitary transforms are energy
-preserving; that is, the sum of the squares of the transformed sequence is the same as
-the sum of the squares of the original sequence.
-</p><!--l. 123--><p class="noindent" >
-</p>
-   <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
- id="x1-60001.4"></a>Quantization in the (spatial) DCT domain</h4>
-<!--l. 125--><p class="noindent" >Since the DCT is orthonormal, the gain of each block-based 2D-DWT subband is
-equal to 1, and also that the quantization error is <span 
-class="ecti-1000">ampliﬁcated </span>with the same gain in
-all the subbands. However, this does not mean that all the subbands should be
-quantized using the same \(\Delta \), because some subbands can be compressed more eﬃcienly
-than others and their SNR (after quantization) can be diﬀerent. This <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/block_DCT_compression.ipynb" >notebook</a> shows
-how to use RD optimization to determine, given a target bit-rate, the best
-combination of quantization steps per subbands.
-</p><!--l. 135--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
+ id="x1-30001.1"></a>Spatial decorrelation with the DCT</h4>
+<!--l. 24--><p class="noindent" >The visual information of an image can be concentrated in a small number of DCT
+coeﬃcients using the following algorithrm:
+     </p><ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-3002x1">
+     <!--l. 27--><p class="noindent" >Divide the image into blocks. Usually, the blocks are not overlapping,
+     but this is not mandatory because overlapped blocks could minimize the
+     visually-perceptible blocking artifacts generated at low bit-rates. Notice
+     that the block sizes can be adapted to the local characteristics of the image
+     with the aim of minimizing the RD curve (for example, in those regions
+     where the RD performance of the DCT is small, the block size should be
+     also small).
+     </p></li>
+<li 
+  class="enumerate" id="x1-3004x2">
+     <!--l. 34--><p class="noindent" >Transform  each  block  using  the  2D-DCT  to  each  block-component,
+     generating a subband-component per block-component.
+     </p></li>
+<li 
+  class="enumerate" id="x1-3006x3">
+     <!--l. 36--><p class="noindent" >Quantize  and  compress  each  \(i\)-th  block  with  a  quantization  step  size  \({\mathbf \Delta }_i\)
+     such that the overall RD is minimized. To achieve this, the selected RD
+     slope used in each subband-component should be the same <span class="cite">[<a 
+href="#Xvetterli2014foundations">1</a>]</span>. Notice
+     that, because the DCT is orthonormal, the distortion (generated by the
+     quantization) is not aﬀected by the DCT and therefore, the distortion in
+     the reconstructed image can be computed directly in the DCT-domain.
+     </p></li>
+<li 
+  class="enumerate" id="x1-3008x4">
+     <!--l. 44--><p class="noindent" >Compress the quantization indexes of all the subband-components. For
+     the sake of simplicity, we can consider the indexes as “pixels” and use a
+     lossless image compressor, such as PNG.</p></li></ol>
+<!--l. 50--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
- id="x1-70002"></a>What do I have to do?</h3>
-<!--l. 136--><p class="noindent" >With the aim of checking that distortion can be measured in both, the transform and
-the image (RGB) domain, extend the previous <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/07-DCT/block_DCT_compression.ipynb" >notebook</a> to compute the distortion in
-the RGB domain. Check that the result is the same.
-</p><!--l. 142--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
- id="x1-80003"></a>Timming</h3>
-<!--l. 144--><p class="noindent" >Please, ﬁnish this milestone before the next class session.
+ id="x1-40002"></a>What do I have to do?</h3>
+<!--l. 51--><p class="noindent" >Run the <a 
+href="https://github.com/Sistemas-s-Multimedia.github.io/blob/master/contents/2D_DCT/RD_performance.ipynb" >notebook</a>.
                                                                   
 
                                                                   
-</p><!--l. 146--><p class="noindent" >
+</p><!--l. 58--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-50003"></a>Timming</h3>
+<!--l. 60--><p class="noindent" >Please, ﬁnish this milestone before the next class session.
+</p><!--l. 62--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
- id="x1-90004"></a>Deliverables</h3>
-<!--l. 148--><p class="noindent" >None.
-</p><!--l. 150--><p class="noindent" >
+ id="x1-60004"></a>Deliverables</h3>
+<!--l. 64--><p class="noindent" >None.
+</p><!--l. 66--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
- id="x1-100005"></a>Resources</h3>
+ id="x1-70005"></a>Resources</h3>
    <div class="thebibliography">
    <p class="bibitem" ><span class="biblabel">
  [1]<span class="bibsp">   </span></span><a 
- id="Xburger2016digital"></a>W. Burger and M.J. Burge.  <a 
-href="https://educons.edu.rs/wp-content/uploads/2020/05/2016-Digital-Image-Processing.pdf" ><span 
-class="ecti-1000">Digital Image Processing: An Algorithmic</span>
-   <span 
-class="ecti-1000">Introduction Using Java</span></a>. Springer, 2016.
-   </p>
-   <p class="bibitem" ><span class="biblabel">
- [2]<span class="bibsp">   </span></span><a 
- id="Xsayood2017introduction"></a>K. Sayood.   <a 
-href="http://rahilshaikh.weebly.com/uploads/1/1/6/3/11635894/data_compression.pdf" ><span 
-class="ecti-1000">Introduction to Data Compression</span></a>.   Morgan  Kaufmann,
-   2017.
-   </p>
-   <p class="bibitem" ><span class="biblabel">
- [3]<span class="bibsp">   </span></span><a 
  id="Xvetterli2014foundations"></a>M. Vetterli, J. Kovačević, and V.K. Goyal.  <a 
 href="http://www.fourierandwavelets.org/FSP_v1.1_2014.pdf" ><span 
 class="ecti-1000">Foundations of Signal</span>
