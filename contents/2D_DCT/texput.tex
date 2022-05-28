@@ -19,20 +19,31 @@ and \href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{H.264},
 \href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{HEVC} and
 \href{https://en.wikipedia.org/wiki/Versatile_Video_Coding}{VVC}.
 
+\subsection{Spatial redundancy}
+
+All images, except the noise\footnote{If the noise is also white, then
+even no statistical redundancy should be present}, exhibit some degree
+of spatial redudancy that can be exploited by a transform to
+concentrate in a small number of (in this case: DCT)
+coefficients~\cite{vruiz__DCT}. The spatial redundancy makes that
+color of neighbour pixels tend to be similar or some kind of pattern
+is repeated in the image.
+
 \subsection{Spatial decorrelation with the DCT}
 
 The visual information of an image can be concentrated in a small
-number of DCT coefficients using the following algorithrm:
+number of DCT coefficients using the following algorithm:
 \begin{enumerate}
 \item Divide the image into blocks. Usually, the blocks are not
   overlapping, but this is not mandatory because overlapped blocks
   could minimize the visually-perceptible blocking artifacts generated
-  at low bit-rates. Notice that the block sizes can be adapted to the
-  local characteristics of the image with the aim of minimizing the RD
-  curve (for example, in those regions where the RD performance of the
-  DCT is small, the block size should be also small).
+  at low bit-rates. Notice also that the block size can be adapted to
+  the local characteristics of the image with the aim of minimizing
+  the RD curve (for example, in those regions where the RD performance
+  of the DCT is small, the block size should be also small).
 \item Transform each block using the 2D-DCT to each block-component,
-  generating a subband-component per block-component.
+  generating a subband-component~\cite{vruiz__transform_coding} per
+  block-component.
 \item Quantize and compress each $i$-th block with a quantization step
   size ${\mathbf\Delta}_i$ such that the overall RD is minimized. To
   achieve this, the selected RD slope used in each subband-component
@@ -44,7 +55,9 @@ number of DCT coefficients using the following algorithrm:
 \item Compress the quantization indexes of all the
   subband-components. For the sake of simplicity, we can consider the
   indexes as ``pixels'' and use a lossless image compressor, such as
-  PNG.
+  PNG. In addition, all the information necessary to reconstruct the image
+  (such as the block partitioning pattern or the selected
+  ${\mathbf\Delta}$) should be encoded in the code-stream.
 \end{enumerate}
 
 \section{What do I have to do?}
