@@ -19,20 +19,24 @@ and \href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{H.264},
 \href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{HEVC} and
 \href{https://en.wikipedia.org/wiki/Versatile_Video_Coding}{VVC}.
 
-\subsection{Spatial redundancy}
+\subsection{Spatial redundancy and 2D-DCT decorrelation}
 
 All images, except the noise\footnote{If the noise is also white, then
 even no statistical redundancy should be present}, exhibit some degree
-of spatial redudancy that can be exploited by a transform to
-concentrate in a small number of (in this case: DCT)
-coefficients~\cite{vruiz__DCT}. The spatial redundancy makes that
-color of neighbour pixels tend to be similar or some kind of pattern
-is repeated in the image.
+of spatial redudancy, that can be recognized because the color of
+neighbour pixels tends to be similar or some kind of pattern is
+repeated in the image. Such correlation can be exploited by the 2D-DCT to
+concentrate information in a small number of (DCT)
+coefficients~\cite{vruiz__DCT}.
 
-\subsection{Spatial decorrelation with the DCT}
+\subsection{RD gain provided by the 2D-DCT}
 
-The visual information of an image can be concentrated in a small
-number of DCT coefficients using the following algorithm:
+The improvement resulting of the use of the 2D-DCT can be
+quantified if we compare the RD curves considering or not the
+transform.\footnote{This kind of comparison is commonly called
+``\emph{Ablation Study}''.} The RD The visual information of an image can be
+concentrated in a small number of DCT coefficients using the following
+algorithm:
 \begin{enumerate}
 \item Divide the image into blocks. Usually, the blocks are not
   overlapping, but this is not mandatory because overlapped blocks

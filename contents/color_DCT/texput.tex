@@ -9,45 +9,59 @@
 
 \section{Description}
 
-This task explains how the RD tradeoff can be improved (closer to the point (0,0)) when the color redundancy is 
+This task explains how the RD tradeoff (expressed usually as a curve
+that represents the
+\href{https://en.wikipedia.org/wiki/Mean_squared_error}{MSE} vs the
+bit-rate) can be improved (closer to the point $(0,0)$) when the color
+redundancy is exploited to concentrate information in one of the color
+channels, in this case, the luminance channel.
 
-\subsection{The $\text{RGB}$ color space}
+\subsection{Redundancy in the $\text{RGB}$ (Red, Green, and Blue) color space}
 %{{{ 
 
-The color of a pixel depends on the
-\href{https://en.wikipedia.org/wiki/Visible_spectrum}{frequency of the
-  light that the pixel captures}. Such information can be represented
-in a number of different encoding systems known as
+In original (untransformed) images, the color of a pixel depends on
+the \href{https://en.wikipedia.org/wiki/Visible_spectrum}{frequency of
+  the light that the pixel captures}. Such information can be
+represented in a number of different encoding systems known as
 \href{https://en.wikipedia.org/wiki/Color_space}{color spaces}. Among
-all those systems, the RGB color space is the most used because it can
-be obtained directly from the light signal using color
+all those systems, the $\text{RGB}$ color space is the most used
+because it can be obtained directly from the light signal using color
 filters.\footnote{Specifically, a red filter, a green filter and a
 blue filter.}
 
-%}}}
+The $\text{RGB}$ color model is easy to implement (physically), but in
+general is quite
+\href{https://en.wikipedia.org/wiki/Data_redundancy}{redundant}.  In
+the case of a color image expressed in the $\text{RGB}$ domain (a
+$\text{RGB}$ image), the three components of each pixel can be
+\href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlated}
+in the sense that if, for example, the R component is high, the other
+components probably will be also high. This means that if we use an
+encoding system that takes into consideration this redundancy, we can
+express the same (or almos the same amount of) information using a
+small number of bits (reducing the length of the code-stream).
 
-\subsection{$\text{RGB}$ color redundancy}
-%{{{
+\subsection{Color-DCT decorrelation}
 
-The RGB color model is easy to implement, but in general is
-quite
-\href{https://en.wikipedia.org/wiki/Data_redundancy}{redundant}. This
-means that usually some part of the data in an image can be removed
-without loss of information. In the case of a color image in the RGB
-domain, the three components of each pixel (each one measuring the
-energy in a different band of the
-\href{https://en.wikipedia.org/wiki/Visible_spectrum}{visible
-  spectrum}) can be highly
-\href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlated}. Therefore,
-\href{https://vicente-gonzalez-ruiz.github.io/transform_coding/}{transform
-  coding} applied between the color components can concentrate the
-information (energy) of the image in a small set of coefficients, that
-after quantization and/or entropy coding, can be compressed more
-efficiently.\footnote{For example, if the energy of a color subband is
-low, quantization could completely makes zero such subband, but the
-reconstruction of the image would be reasonable. The most part of
-entropy codecs reach higher compression ratios with sequences of
-zeros.}
+One way of achieving this goal (the decorrelation in the color domain)
+is to use
+\href{https://vicente-gonzalez-ruiz.github.io/transform_coding/}{Transform
+  Coding}~\cite{vruiz__transform_coding} applied between the color
+components to ``concentrate'' information\footnote{That is usually
+estimated through the measurement of the
+\href{https://en.wikipedia.org/wiki/Variance}{variance} or the
+\href{https://en.wikipedia.org/wiki/Entropy}{entropy}.} of the image
+in a small set of coefficients, that after quantization can be
+compressed more efficiently with
+\href{https://en.wikipedia.org/wiki/Entropy_coding}{Entropy
+  Coding}. For this task we will use the
+Color-DCT~\cite{vruiz__color_DCT}.
+
+%\footnote{For example,
+%if the energy of a color subband is low, quantization could completely
+%makes zero such subband, but the reconstruction of the image would be
+%reasonable. The most part of entropy codecs reach higher compression
+%ratios with sequences of zeros.}
 
 %This
 %\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/color_DCT/coding_gain.ipynb}{notebook}
@@ -60,12 +74,19 @@ zeros.}
 
 %}}}
 
-\subsection{Rate/Distortion gain provided by the Color-DCT}
+\subsection{RD gain provided by the Color-DCT}
 
 All transforms change the representation of the transformed signal,
 and decorrelating transforms try to accumulate as much as possible
 energy (information) in one of the channels\footnote{Or subbands,
-... the name depends on the context.}. One way of measuring the amount
+... the name depends on the context.}.
+
+The improvement resulting of the use of the Color-DCT can be
+quantified if we compare the RD curves considering or not the
+transform.\footnote{This kind of comparison is commonly called
+``\emph{Ablation Study}''.}
+
+One way of measuring the amount
 of energy compaction is to quantize the coefficients (the output of
 the forward transform) and to entropy encode the result. This RD
 (Rate/Distortion) tradeoff has been computed in this
