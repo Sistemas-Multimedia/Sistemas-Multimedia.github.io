@@ -1,60 +1,61 @@
 % Emacs, this is -*-latex-*-
 
 \input{../../definitions}
-\title{\SM{} - Study Guide - Milestone 4 - Task 1 - The Color-DCT Applied to the $\text{RGB}$ Domain}
+\title{\SM{} - Study Guide - Milestone 4 - Task 1 - Removing $\text{RGB}$ Redundancy with the Color-DCT}
 
 \maketitle
 
 \tableofcontents
 
-\section{Description}
+\section{Description of the task}
 
 This task explains how the RD tradeoff (expressed usually as a curve
 that represents the
 \href{https://en.wikipedia.org/wiki/Mean_squared_error}{MSE} vs the
-bit-rate) can be improved (closer to the point $(0,0)$) when the color
-redundancy is exploited to concentrate information in one of the color
-channels, in this case, the luminance channel.
+bit-rate)~\cite{vruiz__information_theory} can be improved when the
+color redundancy is exploited to concentrate information in one of the
+color channels, in this case, the luminance channel.
 
 \subsection{Redundancy in the $\text{RGB}$ (Red, Green, and Blue) color space}
 %{{{ 
 
-In original (untransformed) images, the color of a pixel depends on
-the \href{https://en.wikipedia.org/wiki/Visible_spectrum}{frequency of
-  the light that the pixel captures}. Such information can be
+In $\text{RGB}$ images, the color of a pixel depends on the
+\href{https://en.wikipedia.org/wiki/Visible_spectrum}{frequency of the
+  light that the pixel represents}. Such information can be
 represented in a number of different encoding systems known as
 \href{https://en.wikipedia.org/wiki/Color_space}{color spaces}. Among
 all those systems, the $\text{RGB}$ color space is the most used
-because it can be obtained directly from the light signal using color
-filters.\footnote{Specifically, a red filter, a green filter and a
-blue filter.}
+because $\text{RGB}$ images can be obtained directly from the light
+signal using color filters.\footnote{Specifically, a red (R) filter, a
+green (G) filter and a blue (B) filter.}
 
-The $\text{RGB}$ color model is easy to implement (physically), but in
-general is quite
+The $\text{RGB}$ color model is straightforward and easy to manage,
+but in general is quite
 \href{https://en.wikipedia.org/wiki/Data_redundancy}{redundant}.  In
-the case of a color image expressed in the $\text{RGB}$ domain (a
-$\text{RGB}$ image), the three components of each pixel can be
+the case of a $\text{RGB}$ image, the three components of each pixel
+are usually
 \href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlated}
-in the sense that if, for example, the R component is high, the other
-components probably will be also high. This means that if we use an
+in the sense that, for example, if the R component is high, the other
+components will be also high, probably. This means that if we use an
 encoding system that takes into consideration this redundancy, we can
-express the same (or almos the same amount of) information using a
-small number of bits (reducing the length of the code-stream).
+express the same information\footnote{Or almost the same amount of
+information, depending on the accuracy of the computations.} using a
+smaller number of bits (reducing the length of the code-stream).
 
 \subsection{Color-DCT decorrelation}
 
-One way of achieving this goal (the decorrelation in the color domain)
-is to use
+One way of achieving the decorrelation in the $\text{RGB}$ domain is
+to use
 \href{https://vicente-gonzalez-ruiz.github.io/transform_coding/}{Transform
   Coding}~\cite{vruiz__transform_coding} applied between the color
-components to ``concentrate'' information\footnote{That is usually
-estimated through the measurement of the
+components to ``concentrate'' information\footnote{Information is
+usually estimated through the measurement of the
 \href{https://en.wikipedia.org/wiki/Variance}{variance} or the
 \href{https://en.wikipedia.org/wiki/Entropy}{entropy}.} of the image
 in a small set of coefficients, that after quantization can be
-compressed more efficiently with
-\href{https://en.wikipedia.org/wiki/Entropy_coding}{Entropy
-  Coding}. For this task we will use the
+compressed more efficiently with an
+\href{https://en.wikipedia.org/wiki/Entropy_coding}{entropy
+  codec}. For this task we will use the
 Color-DCT~\cite{vruiz__color_DCT}.
 
 %\footnote{For example,
@@ -76,21 +77,35 @@ Color-DCT~\cite{vruiz__color_DCT}.
 
 \subsection{RD gain provided by the Color-DCT}
 
-All transforms change the representation of the transformed signal,
-and decorrelating transforms try to accumulate as much as possible
-energy (information) in one of the channels\footnote{Or subbands,
-... the name depends on the context.}.
-
-The improvement resulting of the use of the Color-DCT can be
+The improvement resulting from the use of the Color-DCT can be
 quantified if we compare the RD curves considering or not the
 transform.\footnote{This kind of comparison is commonly called
-``\emph{Ablation Study}''.}
-
-One way of measuring the amount
-of energy compaction is to quantize the coefficients (the output of
-the forward transform) and to entropy encode the result. This RD
-(Rate/Distortion) tradeoff has been computed in this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/color_DCT/RD_performance.ipynb}{notebook}.
+``\emph{Ablation Study}'' because we are ''removing'' some
+functionality of the system to see how its ausence impacts on the
+performance.} One way of measuring the amount of energy compaction is
+to quantize the coefficients (the output of the forward transform) and
+to entropy encode the result. In steps (see the
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/color_DCT/RD_performance.ipynb}{notebook}):
+\begin{enumerate}
+\item Apply the Color-DCT to each pixel of the image. This outputs a
+  new image in which the components are
+  subbands~\cite{vruiz__transform_coding} where there is a coefficient
+  by pixel.
+\item Quantize and compress each component with a quantization step
+  size ${\mathbf\Delta}_i$ such that the overall RD is minimized. To
+  optimize the steps sizes, the selected RD slope used in each
+  component should be the same~\cite{vetterli2014foundations}. Notice that,
+  because the DCT is orthonormal, the distortion (generated by the
+  quantization) is not affected by the Color-DCT and therefore, the
+  distortion in the reconstructed image can be computed directly in
+  the Color-DCT domain.
+\item Compress (again and definitively) the quantization indexes
+  resulting of the quantization. For the sake of simplicity, we can
+  consider the indexes as ``pixels'', and use a lossless image
+  compressor, such as PNG (that does not removes the intercomponent
+  redundancy)~\cite{vruiz__PNG}. In addition, the selected
+  ${\mathbf\Delta}$ must be encoded in the code-stream.
+\end{enumerate}
 
 \section{What do I have to do?}
 
