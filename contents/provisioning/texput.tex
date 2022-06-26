@@ -1,5 +1,5 @@
 \input{../../definitions}
-\title{\SM - Study Guide - Milestone 1 - Task 1: OS (Operating System) provisioning}
+\title{\SM{} - Study Guide - Milestone 1 - Task 1: OS (Operating System) provisioning}
 
 \maketitle
 
@@ -7,17 +7,12 @@
 
 \section{Description}
 
-The \href{https://github.com/Sistemas-Multimedia/MRVC/}{MRVC (Multi
-  Resolution Video Codec) project}~\cite{MRVC} is basically a video
-compressor. In this task we are going to install the working
-environment for using (and extending) it.
-
+MRCV~\cite{MRVC} works better in Linux.
 This task (the installation of a dedicated Linux distribution for
 running MRVC) is optional, but it is highly recommend to do it because
 you'll give technical support in a reasonable time in the case you are
 in trouble. Futhermore, it is recommend to run MRVC in a Xubuntu
-21.10, (Impish Indri) \cite{xubuntu}, running natively (no
-\href{https://en.wikipedia.org/wiki/Virtualization}{virtualization}),
+21.10, (Impish Indri) \cite{xubuntu}, running natively,
 if possible. Xubuntu is fully functional (at least for developing our
 project) and demand a low amount of hardware resources.
 
@@ -30,27 +25,32 @@ disk with at least 4GB to boot from it the installation Xubuntu image
 \href{https://en.wikipedia.org/wiki/Optical_disc}{optical disk}).
 
 Finally, if you have a computer with enough resources (at least 8 GB
-of RAM), you can also install Xubuntu in a virtual machine
-(VirtualBox, for example). In this case, dedicate at least 4 GB of RAM
-and 16 GB of disk space to Xubuntu.
+of RAM), you can also install Xubuntu in
+a \href{https://en.wikipedia.org/wiki/Virtualization}{virtual machine}
+(\href{https://www.virtualbox.org/}{VirtualBox}, for example). In this
+case, dedicate at least 4 GB of RAM and 16 GB of disk space to
+Xubuntu.
 
 \section{What do I have to do?}
 
-Supposing that you have decided to use Xubuntu in an USB disk,
-these are the steps you should perform (to install Xubuntu in a ``hard'' disk
-partition of your computer the instructions are almost the same):
+Supposing that you have decided to use Xubuntu in an USB disk (an
+standalone Xubuntu that you can run in any computer with an USB port),
+these are the steps that should be performed (to install Xubuntu in a
+``hard'' disk partition of a computer the instructions are almost
+the same):
 
 \begin{enumerate}
   \item Download the
     installation \href{https://en.wikipedia.org/wiki/Disk_image}{image}
     from \href{https://xubuntu.org/download/}{here}.
     
-  \item ``Burn'' the 4GB USB drive with the image. Depending on your
-    current OS, use the following instructions
+  \item ``Burn'' the (with at least) 5GB USB drive with the
+    image. Depending on your current OS, use the following
+    instructions
     for \href{https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview}{Windows}, \href{https://ubuntu.com/tutorials/create-a-usb-stick-on-macos#1-overview}{OSX}, \href{https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview}{Ubuntu
     (and derivatives)},
-    or \href{https://askubuntu.com/questions/372607/how-to-create-a-bootable-ubuntu-usb-flash-drive-from-terminal}{the Linux
-    console}. Using the console (example):
+    or \href{https://askubuntu.com/questions/372607/how-to-create-a-bootable-ubuntu-usb-flash-drive-from-terminal}{the
+    Linux console}. Using the console (example):
 
 \begin{verbatim}
 [vruiz@pluton Descargas]$ ls -lh *.iso
@@ -134,13 +134,13 @@ nvme0n1     259:0    0 238.5G  0 disk
 +-nvme0n1p4 259:4    0  31.5G  0 part 
 \end{verbatim}
 
-  Don't worry if the >16GB USB disk is mounted by
-  \href{https://gitlab.xfce.org/xfce/thunar}{Thunar} (the default file
-  manager in Xubuntu). The installer will ask to unmount the devices
-  when this is necessary (notice that the destination device >16GB USB
-  drive must be unmounted in order to modify the
-  \href{https://en.wikipedia.org/wiki/Disk_partitioning}{partition
-    table}).
+  Don't worry if the 16GB USB disk is mounted
+  by \href{https://gitlab.xfce.org/xfce/thunar}{Thunar} (the default
+  file manager in Xubuntu). The installer will ask to unmount the
+  devices when this is necessary (notice that the destination device
+  >16GB USB drive must be unmounted in order to modify
+  the \href{https://en.wikipedia.org/wiki/Disk_partitioning}{partition
+  table}).
   
 \item Select \texttt{Install Xubuntu 21.10}.
   
@@ -182,16 +182,16 @@ nvme0n1     259:0    0 238.5G  0 disk
 \item Choose \texttt{Erase disk and install Xubuntu}. Ignore the
   \verb|Advanced Features|. Then, wait for a couple of minutes :-/
 
-\item Select the drive corresponding to the >= 16GB USB drive
+\item Select the drive corresponding to the 16GB USB drive
   (\texttt{/dev/sdb} in the previous example). Don't choose
   \texttt{/dev/nvme01n1} (the main disk of the computer in the
   previous example)! Again, Select \texttt{/dev/sdb} (in the previous
-  example)!! Use also the size and the label of the disks to confirm
+  example)!! Use also the sizes and the labels of the disks to confirm
   that you are selecting the right one.
 
 \item At this point of the installation you should consider (depending
   on the amount of RAM memory installed in your computer and the size
-  of the USB drive) to create an specific partition for doing
+  of the USB drive) to create an specific partition for
   \href{https://en.wikipedia.org/wiki/Swapping}{swapping}. The rule of
   the thumb is to create a partition with the same size that the
   RAM. However, probably you cannot do that in a 16GB USB drive because
@@ -211,7 +211,8 @@ nvme0n1     259:0    0 238.5G  0 disk
 
 \item Very important: \textbf{double check that the boot loader
   (\href{https://www.gnu.org/software/grub/}{GRUB}) will be installed
-  in \texttt{/dev/sdb1} (following our example)!!}.
+  in \texttt{/dev/sdb1} (following our example)!!}. If you miss this
+  step, you will not be able to boot Xubuntu from the USB stick.
 
 \item Click on \verb|Install Now|. You'll read something similar to:
 

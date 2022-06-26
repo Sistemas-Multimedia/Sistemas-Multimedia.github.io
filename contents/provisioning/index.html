@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html lang="en-US" xml:lang="en-US" > 
-<head> <title>Sistemas Multimedia- Study Guide - Milestone 1 - Task 1: OS (Operating System)
-provisioning</title> 
+<head> <title>Sistemas Multimedia - Study Guide - Milestone 1 - Task 1: OS (Operating
+System) provisioning</title> 
 <meta  charset="utf-8" /> 
 <meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
 <meta name="viewport" content="width=device-width,initial-scale=1" /> 
@@ -20,7 +20,7 @@ provisioning</title>
                                                                   
 
 <h2 class="titleHead"><a 
-href="https://sistemas-multimedia.github.io/" >Sistemas Multimedia</a>- Study Guide - Milestone
+href="https://sistemas-multimedia.github.io/" >Sistemas Multimedia</a> - Study Guide - Milestone
 1 - Task 1: OS (Operating System) provisioning</h2>
  <div class="author" ><a 
 href="https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875" ><span 
@@ -36,7 +36,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">May 26, 2022</span></div>
+class="ecrm-1200">June 26, 2022</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -56,56 +56,55 @@ href="#x1-60005" id="QQ2-1-6">Resources</a></span>
 </p>
    <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
  id="x1-20001"></a>Description</h3>
-<!--l. 10--><p class="noindent" >The <a 
-href="https://github.com/Sistemas-Multimedia/MRVC/" >MRVC (Multi Resolution Video Codec) project</a> <span class="cite">[<a 
-href="#XMRVC">2</a>]</span> is basically a video
-compressor. In this task we are going to install the working environment for using
-(and extending) it.
-</p><!--l. 15--><p class="indent" >   This task (the installation of a dedicated Linux distribution for running MRVC) is
-optional, but it is highly recommend to do it because you’ll give technical support in
-a reasonable time in the case you are in trouble. Futhermore, it is recommend to run
-MRVC in a Xubuntu 21.10, (Impish Indri) <span class="cite">[<a 
-href="#Xxubuntu">1</a>]</span>, running natively (no <a 
-href="https://en.wikipedia.org/wiki/Virtualization" >virtualization</a>), if
-possible. Xubuntu is fully functional (at least for developing our project) and demand
-a low amount of hardware resources.
-                                                                  
-
-                                                                  
-</p><!--l. 24--><p class="indent" >   The following “guide” helps you to install Xubuntu in an external <a 
+<!--l. 10--><p class="noindent" >MRCV <span class="cite">[<a 
+href="#XMRVC">2</a>]</span> works better in Linux. This task (the installation of a dedicated Linux
+distribution for running MRVC) is optional, but it is highly recommend to do it
+because you’ll give technical support in a reasonable time in the case you are in
+trouble. Futhermore, it is recommend to run MRVC in a Xubuntu 21.10,
+(Impish Indri) <span class="cite">[<a 
+href="#Xxubuntu">1</a>]</span>, running natively, if possible. Xubuntu is fully functional (at
+least for developing our project) and demand a low amount of hardware
+resources.
+</p><!--l. 19--><p class="indent" >   The following “guide” helps you to install Xubuntu in an external <a 
 href="https://en.wikipedia.org/wiki/USB_flash_drive" >USB drive</a>,
 which must have at least 16GB of capacity (the minimal installation of Xubuntu
 needs about 5GB). You will need also a temporal external USB disk with at least
+                                                                  
+
+                                                                  
 4GB to boot from it the installation Xubuntu image (or to burn an <a 
 href="https://en.wikipedia.org/wiki/Optical_disc" >optical
 disk</a>).
-</p><!--l. 32--><p class="indent" >   Finally, if you have a computer with enough resources (at least 8 GB of RAM),
-you can also install Xubuntu in a virtual machine (VirtualBox, for example).
+</p><!--l. 27--><p class="indent" >   Finally, if you have a computer with enough resources (at least 8 GB of RAM),
+you can also install Xubuntu in a <a 
+href="https://en.wikipedia.org/wiki/Virtualization" >virtual machine</a> (<a 
+href="https://www.virtualbox.org/" >VirtualBox</a>, for example).
 In this case, dedicate at least 4 GB of RAM and 16 GB of disk space to
 Xubuntu.
-</p><!--l. 37--><p class="noindent" >
+</p><!--l. 34--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-30002"></a>What do I have to do?</h3>
-<!--l. 39--><p class="noindent" >Supposing that you have decided to use Xubuntu in an USB disk, these are the steps
-you should perform (to install Xubuntu in a “hard” disk partition of your computer
-the instructions are almost the same):
-</p><!--l. 43--><p class="indent" >
+<!--l. 36--><p class="noindent" >Supposing that you have decided to use Xubuntu in an USB disk (an standalone
+Xubuntu that you can run in any computer with an USB port), these are the steps
+that should be performed (to install Xubuntu in a “hard” disk partition of a
+computer the instructions are almost the same):
+</p><!--l. 42--><p class="indent" >
      </p><ol  class="enumerate1" >
 <li 
   class="enumerate" id="x1-3002x1">
-     <!--l. 44--><p class="noindent" >Download the installation <a 
+     <!--l. 43--><p class="noindent" >Download the installation <a 
 href="https://en.wikipedia.org/wiki/Disk_image" >image</a> from <a 
 href="https://xubuntu.org/download/" >here</a>.
      </p></li>
 <li 
   class="enumerate" id="x1-3004x2">
-     <!--l. 48--><p class="noindent" >“Burn” the 4GB USB drive with the image. Depending on your current
-     OS,  use  the  following  instructions  for  <a 
-href="https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview" >Windows</a>,  <a 
-href="https://ubuntu.com/tutorials/create-a-usb-stick-on-macos#1-overview" >OSX</a>,  <a 
-href="https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview" >Ubuntu  (and
-     derivatives)</a>, or <a 
+     <!--l. 47--><p class="noindent" >“Burn” the (with at least) 5GB USB drive with the image. Depending on
+     your current OS, use the following instructions for <a 
+href="https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview" >Windows</a>, <a 
+href="https://ubuntu.com/tutorials/create-a-usb-stick-on-macos#1-overview" >OSX</a>, <a 
+href="https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview" >Ubuntu
+     (and derivatives)</a>, or <a 
 href="https://askubuntu.com/questions/372607/how-to-create-a-bootable-ubuntu-usb-flash-drive-from-terminal" >the Linux console</a>. Using the console (example):
                                                                   
 
@@ -213,7 +212,7 @@ class="ectt-1000">Try Xubuntu </span>(without installing).
      +-nvme0n1p4 259:4    0  31.5G  0 part
 </pre>
      <!--l. 135--><p class="nopar" >
-     </p><!--l. 137--><p class="noindent" >Don’t worry if the &#x003E;16GB USB disk is mounted by <a 
+     </p><!--l. 137--><p class="noindent" >Don’t worry if the 16GB USB disk is mounted by <a 
 href="https://gitlab.xfce.org/xfce/thunar" >Thunar</a> (the default ﬁle
      manager in Xubuntu). The installer will ask to unmount the devices when this
      is necessary (notice that the destination device &#x003E;16GB USB drive must be
@@ -269,22 +268,22 @@ class="ectt-1000"> Features</span></span></span>.
      </p></li>
 <li 
   class="enumerate" id="x1-3028x14">
-     <!--l. 185--><p class="noindent" >Select the drive corresponding to the &#x003E;= 16GB USB drive (<span 
+     <!--l. 185--><p class="noindent" >Select the drive corresponding to the 16GB USB drive (<span 
 class="ectt-1000">/dev/sdb </span>in the
      previous example). Don’t choose <span 
 class="ectt-1000">/dev/nvme01n1 </span>(the main disk of the
      computer in the previous example)! Again, Select <span 
 class="ectt-1000">/dev/sdb </span>(in the previous
-     example)!! Use also the size and the label of the disks to conﬁrm that you are
+     example)!! Use also the sizes and the labels of the disks to conﬁrm that you are
      selecting the right one.
      </p></li>
 <li 
   class="enumerate" id="x1-3030x15">
      <!--l. 192--><p class="noindent" >At this point of the installation you should consider (depending on the amount
      of RAM memory installed in your computer and the size of the USB drive) to
-     create an speciﬁc partition for doing <a 
-href="https://en.wikipedia.org/wiki/Swapping" >swapping</a>. The rule of the thumb is to
-     create a partition with the same size that the RAM. However, probably you
+     create an speciﬁc partition for <a 
+href="https://en.wikipedia.org/wiki/Swapping" >swapping</a>. The rule of the thumb is to create a
+     partition with the same size that the RAM. However, probably you
      cannot do that in a 16GB USB drive because at least 5GB are needed
      for a Xubuntu installation. Anyway, keep in mind that this step is
      optional because you can always perform swapping on a ﬁle (a process
@@ -311,15 +310,17 @@ class="ectt-1000"> tool</span></span></span> and do the modiﬁcations you want
 class="ecbx-1000">double check that the boot loader (</span><a 
 href="https://www.gnu.org/software/grub/" ><span 
 class="ecbx-1000">GRUB</span></a><span 
-class="ecbx-1000">) will be</span>
+class="ecbx-1000">)</span>
      <span 
-class="ecbx-1000">installed in </span><span 
+class="ecbx-1000">will be installed in </span><span 
 class="ectt-1000">/dev/sdb1 </span><span 
-class="ecbx-1000">(following our example)!!</span>.
+class="ecbx-1000">(following our example)!!</span>. If you
+     miss this step, you will not be able to boot Xubuntu from the USB
+     stick.
      </p></li>
 <li 
   class="enumerate" id="x1-3034x17">
-     <!--l. 216--><p class="noindent" >Click on <span class="obeylines-h"><span class="verb"><span 
+     <!--l. 217--><p class="noindent" >Click on <span class="obeylines-h"><span class="verb"><span 
 class="ectt-1000">Install</span><span 
 class="ectt-1000"> Now</span></span></span>. You’ll read something similar to:
                                                                   
@@ -338,39 +339,39 @@ class="ectt-1000"> Now</span></span></span>. You’ll read something similar to
       partition #1 of SCSI8 (0,0,0) (sdb) as ESP
       partition #2 of SCSI8 (0,0,0) (sdb) as ext4
 </pre>
-     <!--l. 229--><p class="nopar" >
+     <!--l. 230--><p class="nopar" >
      </p></li>
 <li 
   class="enumerate" id="x1-3036x18">
-     <!--l. 231--><p class="noindent" >Choose your time zone.
+     <!--l. 232--><p class="noindent" >Choose your time zone.
      </p></li>
 <li 
   class="enumerate" id="x1-3038x19">
-     <!--l. 233--><p class="noindent" >Conﬁgure you personal account (user and password), <a 
+     <!--l. 234--><p class="noindent" >Conﬁgure you personal account (user and password), <a 
 href="https://en.wikipedia.org/wiki/Hostname" >hostname</a> and <a 
 href="https://en.wikipedia.org/wiki/Login" >login</a>
      process.
      </p></li>
 <li 
   class="enumerate" id="x1-3040x20">
-     <!--l. 237--><p class="noindent" >Wait for the end of the installation and boot your new Xubuntu. Don’t worry if
+     <!--l. 238--><p class="noindent" >Wait for the end of the installation and boot your new Xubuntu. Don’t worry if
      GRUB labels Xubuntu as Ubuntu. This is normal.
 </p>
      </li></ol>
-<!--l. 243--><p class="noindent" >
+<!--l. 244--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-40003"></a>Timming</h3>
-<!--l. 245--><p class="noindent" >You should ﬁnish this task before the next class.
+<!--l. 246--><p class="noindent" >You should ﬁnish this task before the next class.
                                                                   
 
                                                                   
-</p><!--l. 247--><p class="noindent" >
+</p><!--l. 248--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-50004"></a>Deliverables</h3>
-<!--l. 249--><p class="noindent" >None.
-</p><!--l. 251--><p class="noindent" >
+<!--l. 250--><p class="noindent" >None.
+</p><!--l. 252--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-60005"></a>Resources</h3>
