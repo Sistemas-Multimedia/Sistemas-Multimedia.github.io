@@ -13,7 +13,7 @@
 \section{Description}
 
 This task introduces,
-\href{https://vicente-gonzalez-ruiz.github.io/PNG/}{PNG}, the
+\href{https://vicente-gonzalez-ruiz.github.io/PNG/}{PNG}, a
 \href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless
   image compression format} used in this course for representing
 \href{https://en.wikipedia.org/wiki/Digital_data}{digital}
@@ -21,31 +21,35 @@ This task introduces,
 \href{https://en.wikipedia.org/wiki/Video}{videos}. Basically, a
 (\href{https://en.wikipedia.org/wiki/Raster_graphics}{raster}) video
 is a \href{https://en.wikipedia.org/wiki/Sequence}{sequence} of images
-(or \href{https://en.wikipedia.org/wiki/Film_frame}{frames}, in the
+(usually called
+\href{https://en.wikipedia.org/wiki/Film_frame}{frames}, in the
 context of video).
 
 An image can be described as a
 \href{https://en.wikipedia.org/wiki/Matrix_(mathematics)}{matrix} of
 \href{https://en.wikipedia.org/wiki/Pixel}{pixels} (PIcture X-ray
-ELementS), arranged in a regular rectangular grid. Such sequences are
+ELementS), arranged in a regular 2D grid. Such sequences are
 usully captured by a
 \href{https://en.wikipedia.org/wiki/Charge-coupled_device}{CCD (Charge
-  Coupled Device)}. In maths, an image (or a frame) is
+  Coupled Device)}. In maths, an image is denoted by
 \begin{equation}
-  {\mathbf I} = \{{\mathbf I}_{y,x}\}\in\mathbb{P}^{k}, (y,x)\in\mathbb{N}^2\}
-    \label{eq:image}
+  {\mathbf I} = \{{\mathbf I}_{y,x}\}\in\mathbb{P}^{k}, (y,x)\in\mathbb{N}^2\},
+  \label{eq:image}
 \end{equation}
-where $(y,x)$ is a spatial coordinate, and $\mathbb{P}^{k}$ represents
-the (pixels) \emph{values domain}, with dimension (number of pixel
-components) $k$~\cite{burger2016digital}.
+where $(y,x)$ is a spatial coordinate\footnote{Notice that we follow
+the ``first row, then column'' notation to express the
+coordinates. This is also used in NumPy~\cite{harris2020array}, for
+example.}, and $\mathbb{P}^{k}$ represents the (pixels) \emph{values
+domain}, with dimension (number of pixel components)
+$k$~\cite{burger2016digital}.
 
-In a similar way, a sequence frames can be denoted by
+In a similar way, a sequence of frames can be denoted by
 \begin{equation}
-  {\mathbf V} = \{{\mathbf V}_{t,y,x}\in\mathbb{P}^{k}, (t,y,x)\in\mathbb{N}^3\} = \{{\mathbf I}_t\}
+  {\mathbf V} = \{{\mathbf V}_{t,y,x}\in\mathbb{P}^{k}, (t,y,x)\in\mathbb{N}^3\} = \{{\mathbf I}_t\},
   \label{eq:video}
 \end{equation}
 where $t$ is a temporal coordinate, and ${\mathbf I}$ is an image such
-as the described in Eq.~\ref{eq:image}.
+as the described in Eq.~\eqref{eq:image}.
 
 Depending on $k$, we can have grayscale pixels ($k=1$), color pixels
 ($k=3$), and multispectral pixels ($k>3$).\footnote{When $k>3$ we also
@@ -128,4 +132,4 @@ None.
 \section{Resources}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{image-processing,image-compression,text-compression}
+\bibliography{python,image-processing,image-compression,text-compression}
