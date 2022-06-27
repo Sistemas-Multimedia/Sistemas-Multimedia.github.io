@@ -70,24 +70,33 @@ example) and the $y$-axis represents the distortion (the
 \href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{Root
   Mean Square Error (RMSE)}, for example).
 
-Normaly, RD curves~\cite{vruiz__information_theory} are convex. This
+Normaly, RD curves are convex~\cite{vruiz__information_theory} (this
 can be seen in the notebooks
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/scalar_quantization/midtread.ipynb}{Midtread Quantization},
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/scalar_quantization/midrise.ipynb}{Midrise Quantization},
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/scalar_quantization/deadzone.ipynb}{Deadzone Quantization},
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/scalar_quantization/companded.ipynb}{Companded Quantization},
 and
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/scalar_quantization/LloydMax.ipynb}{LloydMax Quantization}.
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/scalar_quantization/LloydMax.ipynb}{LloydMax Quantization}). This means that:
+\begin{enumerate}
+\item At low bit-rates the distortion decreases faster than at high
+  bit-rates.
+\item If we have a \emph{scalable} code-stream (we can decide how the
+  code-stream will be decompressed), we should be aware that some
+  parts of the code-stream can minimize faster the RD curve than
+  others.
+\end{enumerate}
 
 As it can be also seen in the notebook
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/scalar_quantization/compare_quantizers.ipynb}{quantizers\_comparison},
 that the performance of the quantizers is not the same: usually
 midrise and midtread, performs better than deadzone at intermediate
-bit-rates, but deadzone is the best a low bit-rates. Deadzone has also
-another advantage over midread and midtread: when $\Delta$ is a power
-of 2 (which corresponds to a bit-plane encoding), the obtained RD
-point is near optimal in the RD space. Finally, the Lloyd-Max
-Quantizer reaches the highest performance because it is adaptive.
+bit-rates, but deadzone is the best a low bit-rates (excluding
+Lloyd-Max). Deadzone has also another advantage over midread and
+midtread: when $\Delta$ is a power of 2 (which corresponds to a
+bit-plane encoding), the obtained RD point is near optimal in the RD
+space. Finally, the Lloyd-Max Quantizer reaches the highest
+performance because it is adaptive.
 
 %}}}
 
@@ -100,6 +109,12 @@ Quantizer reaches the highest performance because it is adaptive.
 \item Create a notebook named ``bit-rate\_control.ipynb'' that, given
   a maximum bit-rate, finds the quantization step $\Delta^*$ that
   minimizes the distortion. Use the quantizer that your prefer.
+\item Modify the notebook
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/scalar_quantization/LloydMax.ipynb}{LloydMax
+    Quantization} to include in the rate the amount of bits necessary
+  to encode the
+  \href{https://en.wikipedia.org/wiki/Probability_density_function}{PDF}
+  of the input image.
 \end{enumerate}
 
 %}}}
