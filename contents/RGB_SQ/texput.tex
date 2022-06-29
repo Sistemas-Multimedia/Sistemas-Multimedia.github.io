@@ -1,7 +1,7 @@
 % Emacs, this is -*-latex-*-
 
 \input{../../definitions}
-\title{\SM{} - Study Guide - Milestone 4 - Task 1 - Quantization in the $\text{RGB}$ Color Domain}
+\title{\SM{} - Study Guide - Milestone 4 - Task 1 - Scalar Quantization in the $\text{RGB}$ Color Domain}
 
 \maketitle
 
@@ -23,11 +23,13 @@ green (G) filter and a blue (B) filter.}
 
 %}}}
 
-\section{Quantization in the $\text{RGB}$ domain}
+\section{Scalar quantization in the $\text{RGB}$ domain}
 %{{{ 
 
 The $\text{RGB}$ color domain is additive, which implies that the
-quantization error is the same in the three color components,
+quantization error is the same in the three color
+components,\footnote{At least, if the quantization error is
+insignificant compared to the amplitude of the components.}
 $\text{R}$, $\text{G}$, and $\text{B}$. Therefore, in order to select
 the same RD slope~\cite{vruiz__information_theory} in the three
 components, the quantization pattern should be
