@@ -35,7 +35,16 @@ the same RD slope~\cite{vruiz__information_theory} in the three
 components, the quantization pattern should be
 \begin{equation}
   \Delta_\text{R} = \Delta_\text{G} = \Delta_\text{B}.
+  \label{eq:same_delta}
 \end{equation}
+
+Unfortunately, Eq.~\eqref{eq:same_delta} not always will provide
+optimality in a RD sense. The reason is that the quantization step
+size does not defines accurately the neither the rate (R) nor the
+distortion (D). This means that, if we want to be sure that the
+quantization pattern is optimal, the RD slopes of each channel must be
+taken intro consideration (see this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_quantization/RD_performance.ipynb}{notebook}).
 
 %}}}
 

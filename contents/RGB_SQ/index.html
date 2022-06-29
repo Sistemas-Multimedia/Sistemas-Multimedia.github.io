@@ -51,30 +51,35 @@ filters.<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='t
 <!-- l. 29 --><p class='noindent'>The \(\text {RGB}\) color domain is additive, which implies that the quantization error is the same in the three
 color components,<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-3001f2'></a>
 \(\text {R}\), \(\text {G}\), and \(\text {B}\). Therefore, in order to select the same RD slope <span class='cite'>[<a href='#Xvruiz__information_theory'>1</a>]</span> in the three components,
-the quantization pattern should be \begin {equation}  \Delta _\text {R} = \Delta _\text {G} = \Delta _\text {B}.  \end {equation}
-</p><!-- l. 42 --><p class='noindent'>
+the quantization pattern should be \begin {equation}  \Delta _\text {R} = \Delta _\text {G} = \Delta _\text {B}. \label {eq:same_delta}  \end {equation}
+</p><!-- l. 41 --><p class='indent'>   Unfortunately, Eq. \eqref{eq:same_delta} not always will provide optimality in a
+RD sense. The reason is that the quantization step size does not defines accurately
+the neither the rate (R) nor the distortion (D). This means that, if we want to be
+sure that the quantization pattern is optimal, the RD slopes of each channel must be
+taken intro consideration (see this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_quantization/RD_performance.ipynb'>notebook</a>).
+</p><!-- l. 51 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>3   </span> <a id='x1-40003'></a>What do I have to do?</h3>
-<!-- l. 44 --><p class='noindent'>
+<!-- l. 53 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-4002x1'>Please, run the <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_quantization/RD_performance.ipynb'>notebook</a> to learn some insights about the compression of
      RGB images.
      </li>
 <li class='enumerate' id='x1-4004x2'>Try to compress different images.</li></ol>
-<!-- l. 51 --><p class='noindent'>
+<!-- l. 60 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='timming'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Timming</h3>
-<!-- l. 53 --><p class='noindent'>Please, finish this milestone before the next class session.
-</p><!-- l. 55 --><p class='noindent'>
+<!-- l. 62 --><p class='noindent'>Please, finish this milestone before the next class session.
+</p><!-- l. 64 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='deliverables'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Deliverables</h3>
-<!-- l. 57 --><p class='noindent'>None.
-</p><!-- l. 59 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='resources'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Resources</h3>
+<!-- l. 66 --><p class='noindent'>None.
                                                                   
 
                                                                   
+</p><!-- l. 68 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='resources'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Resources</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/information_theory/'>Information Theory</a>.
