@@ -40,7 +40,7 @@ Python and Git.}
   \end{description}
   ~\newline
 
-\item [Milestone 2: {\normalfont Entropy coding:}] \emph{Entropy is a
+\item [Milestone 2: {\normalfont Entropy coding of images:}] \emph{Entropy is a
 measure of the amount of information represented by a piece of
 data. Most of image and video compressors (and MRVC is not an
 exception) achieve a reduction in the amount of output data via
@@ -62,7 +62,7 @@ image compressors.}
   \end{description}
   ~\newline
 
-\item [Milestone 3: {\normalfont Quantizing:}] \emph{Raw images
+\item [Milestone 3: {\normalfont Scalar quantization:}] \emph{Raw images
 and videos contain large amounts of information that can be removed
 without generating a meaningful visual distortion. Quantization is the
 basic technique that allows to delete information in images and videos
@@ -72,21 +72,20 @@ basic technique that allows to delete information in images and videos
       \href{https://sistemas-multimedia.github.io/contents/gray_SQ/}{Scalar
         quantization of gray-scale images}.}]
   \item [Task 2: {\normalfont
-      \href{https://sistemas-multimedia.github.io/contents/gray_VQ/}{Vector
-        quantization of gray-scale images}.}]
+      \href{https://sistemas-multimedia.github.io/contents/RGB_SQ/}{Scalar
+        quantization in the $\text{RGB}$ color domain}.}]
   \item [Task 3: {\normalfont
-      \href{https://sistemas-multimedia.github.io/contents/RGB_SQ/}{Scalar quantization in the $\text{RGB}$ color domain}.}]
-  \item [Task 4: {\normalfont
       \href{https://sistemas-multimedia.github.io/contents/gray_TCQ/}{Trellis
         Coded Quantization (TCQ) of gray-scale images}. TO-DO.}]
   \end{description}
   ~\newline
   
- \item [Milestone 4: {\normalfont Exploiting RGB color redundancy:}]
-   \emph{In color images, the RGB (Red, Green, and Blue) channels tend
-   to be highly correlated. We can take advantage of this channel
-   correlation, for example, to increase the compression ratio in
-   image and video coding}.
+ \item [Milestone 4: {\normalfont Exploiting the RGB color (mainly
+     visual) redundancy:}] \emph{In color images, the RGB (Red, Green,
+ and Blue) channels tend to be highly correlated. We can take
+ advantage of this channel correlation to increase the compression
+ ratio in image and video coding, without generating noticeable visual
+ artifacts}.
   \begin{description}
   \item [Task 1: {\normalfont
       \href{https://sistemas-multimedia.github.io/contents/RGB_VQ/}{Vector
@@ -111,19 +110,22 @@ basic technique that allows to delete information in images and videos
 %\end{description}
 %\end{document}
 
-\item [Milestone 5: {\normalfont Exploiting spatial redundancy in images
-    with 2D transforms:}] \emph{Visual data is highly correlated in
-the spatial domain and such correlation can be exploited to achieve
-higher compression ratios}.
+\item [Milestone 5: {\normalfont Exploiting spatial redundancy in
+    images:}] \emph{Visual data is highly correlated in the spatial
+domain and such correlation can be considered to achieve higher
+compression ratios}.
   \begin{description}
   %\item [Task 13: {\normalfont
   %    \href{https://sistemas-multimedia.github.io/contents/DPCM/}{2D-DPCM
   %      (2-Dimensional Differential Pulse Code Modulation)}.}]
   \item [Task 1: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/gray_VQ/}{Vector
+        quantization of gray-scale images}. -> Block-based spatial vector quantization.}] % Podemos aplicar spatial-VQ a la imagen color-VQ-ed 
+  \item [Task 2: {\normalfont
       \href{https://sistemas-multimedia.github.io/contents/2D_DCT/}{Using
         the Block-based 2D-DCT (2-Dimensional Discrete Cosine
         Transform)}.}]
-  \item [Task 2: {\normalfont
+  \item [Task 3: {\normalfont
       \href{https://sistemas-multimedia.github.io/contents/DWT/}{Using
         the (Dyadic) 2D-DWT (2-Dimensional Discrete Wavelet
         Transform)}.}]
