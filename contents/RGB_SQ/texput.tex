@@ -7,11 +7,19 @@
 
 \tableofcontents
 
+\section{Objective}
+In this task we are going to develop a rudimentery \href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy
+($\text{RGB}$) image compressor} based on
+SQ~\cite{vruiz__scalar_quantization} and PNG~\cite{vruiz__PNG}. 
+
 \section{Some info about the $\text{RGB}$ color domain}
 %{{{
 
-In $\text{RGB}$ (Red, Green, and Blue) images, the color of a pixel
-depends on the
+$\text{RGB}$ (Red, Green, and Blue) is an additive color system, which
+means that all colors ``start'' with black and are created by adding
+some intensity of the primary colors red, green and
+blue~\cite{burger2016digital}. In $\text{RGB}$ images, the color of a
+pixel depends on the
 \href{https://en.wikipedia.org/wiki/Visible_spectrum}{frequency of the
   light that the pixel represents}. Such information can be
 represented in a number of different encoding systems known as
@@ -68,4 +76,4 @@ None.
 \section{Resources}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{information_theory}
+\bibliography{information_theory,image-formats}

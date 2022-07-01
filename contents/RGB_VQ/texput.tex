@@ -1,26 +1,18 @@
 % Emacs, this is -*-latex-*-
 
 \input{../../definitions}
-\title{\SM{} - Study Guide - Milestone 4 - Task 4 - Vector Quantization of the Color Domain}
+\title{\SM{} - Study Guide - Milestone 3 - Task 5 - Vector Quantization in the $\text{RGB}$ Color Domain}
 
 \maketitle
 
 \tableofcontents
 
-\section{Description}
+\section{Objective}
 %{{{
 
-In this milestone we will
-\href{https://vicente-gonzalez-ruiz.github.io/quantization/}{quantize}
-an image\footnote{Or frame, in the context of a video.} in the
-\href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB (Red, Green,
-  and Blue) color domain}. RGB is an additive color system, which
-means that all colors ``start'' with black and are created by adding
-some intensity of the primary colors red, green and
-blue~\cite{burger2016digital}. Quantizing and then compressing with
-PNG we will have a
-\href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy image
-  compressor}.
+In this task we are going to implement a lossy image compressor based
+on VQ~\cite{vruiz__vector_quantization} and PNG~\cite{vruiz__PNG}.
+
 
 %\href{https://en.wikipedia.org/wiki/Visual_system}{Humans} are quite
 %efficient recognizing the information stored in images (and videos),
@@ -48,8 +40,8 @@ densely populated and many potentially used colors entirely
 missing. In this case, depending on the quantization step
 size~\cite{vruiz__signal_quantization}, SQ is not optimal because the
 used colors may not be sampled with suﬃcient density while at the same
-time colors are represented that do not appear in the image at
-all~\cite{burger2016digital}.
+time the encoding system is considering colors that do not appear in
+the image at all~\cite{burger2016digital}.
 
 On the other hand, VQ (Vector
 Quantization)~\cite{vruiz__vector_quantization} applied to the color
@@ -60,39 +52,22 @@ as does scalar quantization, but each used color vector ${\mathbf C}_i
 treated as a minimum structure. Starting from a set of original color
 tuples ${\mathbf C} = \{c_1, c_2, \ldots ,c_m\}$, where $m$ is the
 number of different colors found in the image, the task of a vector
-quantizer is to:
+quantizer in this context is to:
 \begin{enumerate}
 \item Find a set of $n$ representative color vectors (the so called
-  \emph{vector code-book}) ${\mathbf C}' = \{c'_1, c'_2 ,\ldots , c'_n
+  \emph{code-book}) ${\mathbf C}' = \{c'_1, c'_2 ,\ldots , c'_n
   \}$, where $n < m$.
 \item Replace each original color ${\mathbf C}_i$ by one of the new
   color vectors ${\mathbf C}'_j\in {\mathbf C}'$, where the resulting
   deviation from the original image shall be minimal.
 \end{enumerate}
 
-This is a combinatorial optimization problem in a rather large search
-space, which usually makes it impossible to determine a global optimum
-in adequate time. This is the reason why VQ methods only compute a
-``local'' optimum at best~\cite{burger2016digital}. Anyway, VQ is used
-in
-\href{https://en.wikipedia.org/wiki/Palette_(computing)}{``palletized''
-  images}.
-  
-Another key aspect to take into consideration is that the problem
-previously mentioned about the under-optimality when quantizing
-directly in the RGB domain can be minimized when the values of each
-channel are decorrelated (using for example a color transform as we
-will see in a future milestone), requesting in general less
-computation than VQ to achieve similar
-\href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{Rate/Distortion
-  (RD) performance}.
-
 %}}}
 
 \subsection{Quantization in the RGB domain}
 %{{{
 
-Supposing that we are using a dead-zone quantizer, a color RGB image
+Supposing that we are using a dead-zone quantizer, a RGB image
 can be quantized, channel by channel, using quantization steps
 $\Delta_{\text{R}}$, $\Delta_{\text{G}}$, and $\Delta_{\text{B}}$. A
 reasonable question that arises here is: given a target bit-rate $R$
