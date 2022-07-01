@@ -15,7 +15,7 @@ on VQ~\cite{vruiz__vector_quantization} and PNG~\cite{vruiz__PNG}.
 
 %}}}
 
-\subsection{Scalar and vector quantization of RGB images}
+\section{Scalar versus vector quantization of RGB images}
 %{{{
 
 SQ (Scalar
@@ -40,108 +40,17 @@ components (also refered by
 as does scalar quantization, but each used color vector ${\mathbf C}_i
 = ({\mathbf R}_i, {\mathbf G}_i, {\mathbf B}_i )$ in the image is
 treated as a minimum structure. Starting from a set of original color
-tuples ${\mathbf C} = \{c_1, c_2, \ldots ,c_m\}$, where $m$ is the
-number of different colors found in the image, the task of a vector
-quantizer in this context is to:
+tuples ${\mathbf C} = \{{\mathbf C}_1, {\mathbf C}_2, \ldots ,{\mathbf
+  C}_m\}$, where $m$ is the number of different colors found in the
+image, the task of a vector quantizer in this context is to:
 \begin{enumerate}
 \item Find a set of $n$ representative color vectors (the so called
-  \emph{code-book}) ${\mathbf C}' = \{c'_1, c'_2 ,\ldots , c'_n
-  \}$, where $n < m$.
+  \emph{code-book}) ${\mathbf C}' = \{{\mathbf C}'_1, {\mathbf C}'_2
+  ,\ldots , {\mathbf C}'_n \}$, where $n < m$.
 \item Replace each original color ${\mathbf C}_i$ by one of the new
   color vectors ${\mathbf C}'_j\in {\mathbf C}'$, where the resulting
   deviation from the original image shall be minimal.
 \end{enumerate}
-
-%}}}
-
-\subsection{Quantization in the RGB domain}
-%{{{
-
-Supposing that we are using a dead-zone quantizer, a RGB image
-can be quantized, channel by channel, using quantization steps
-$\Delta_{\text{R}}$, $\Delta_{\text{G}}$, and $\Delta_{\text{B}}$. A
-reasonable question that arises here is: given a target bit-rate $R$
-for the compressed frame, how the quantization steps should be chosen
-to minimize the distortion?
-
-At this point we can consider two different optimization
-perspectives. In the first one, we consider strictly visual
-considerations, and obviously, any alternative different from
-\begin{equation}
-  \Delta_{\text{R}} = \Delta_{\text{G}} = \Delta_{\text{B}}
-  \label{eq:simple_Q}
-\end{equation}
-will produce some alteration in the color (also called the
-``chroma'') of the reconstructed image.
-
-In the second perspective, only a pure
-\href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{Rate/Distortion
-  (RD) performance} is considered. From a RD point of view, the best
-combination of quantization steps is those that optimizes (generally
-by minimizing, that is, making it closer to the origin of coordinates)
-the RD curve.\footnote{Notice that a RD curve represents the trade-off
-between the distortion (typically the
-\href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{Mean Square Error (MSE)}) and the bit-rate (therefore, MSE versus
-bit/pixel).}
-
-\begin{figure}
-  \centering
-  \myfig{graphics/RD_slopes}{3cm}{300}
-  \caption{Two RD curves with different shape.}
-  \label{fig:RD_slopes}
-\end{figure}
-
-Normal RD curves are convex (see Fig.~\ref{fig:RD_slopes}), which
-means that if $\lambda_i$ is the slope of the curve measured at the
-$i$-th point of the curve (starting at the lowest bit-rate), it
-usually hold that
-\begin{equation}
-  \lambda_i > \lambda_{i+1}.
-\end{equation}
-where $\lambda$ quantifies the trade-off between decreasing the
-distortion\footnote{For this reason, the slopes are negative.} while
-the bit-rate increases. Notice that, the higher the slope, the higher
-the benefit in terms of RD. If we suppose now that the contribution to
-the quality of each channel is additive, that is
-\begin{equation}
-  D = D_{\text{R}} + D_{\text{G}} + D_{\text{B}},
-  \label{eq:additive}
-\end{equation}
-where $D$ denotes distortion, then the optimal quantization steps must
-satisfy that~\cite{vetterli1995wavelets,sayood2017introduction}
-\begin{equation}
-  \lambda_{\text{R}} = \lambda_{\text{G}} = \lambda_{\text{B}}.
-  \label{eq:optimal_quantization}
-\end{equation}
-
-To see this, lets suppose that we have used, for example, a set of QSs
-so that $\lambda_{\text{R}}/2 = \lambda_{\text{G}} =
-\lambda_{\text{B}},$ and that we still have room for more bits to
-encode the frame. In this situation, the maximum benefit would be
-obtained if and only if we decrease $\Delta_{\text{R}}$, because the
-slope for the red channel doubles the slope of the other
-curves. Therefore, the optimal quantization steps are obtained when
-Eq.~\ref{eq:optimal_quantization} is true. This can be seen in this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/05-RGB_compression/RGB_compression.ipynb}{notebook}.
-
-As it has been indicated, the previous quantization steps pattern (see
-Equation~\ref{eq:simple_Q}) can be used to find the optimal RD curve
-that relates distortion versus bit-rate. However, it is important to
-realize that such relation between the quantization steps can be
-determined because the contribution to the distortion, in the case of
-compression RGB images, satisfy two key properties:
-\begin{enumerate}
-\item The contributions of the channels are independent (see
-  Eq.~\ref{eq:additive}), and therefore, the total distortion is a
-  linear combination of individual distortions.
-\item The contribution to the distortion of each channel is exactly
-  the same.
-\end{enumerate}
-
-%}}}
-
-\subsection{Rate control}
-
 
 %}}}
 
