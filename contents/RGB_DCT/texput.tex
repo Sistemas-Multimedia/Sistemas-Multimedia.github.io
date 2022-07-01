@@ -14,43 +14,19 @@ This task explains how the RD
 tradeoff~\cite{vruiz__information_theory} can be
 improved\footnote{Compared to the coding algorithm in which only Q+PNG
 is applied to each color component, directly.} when the color
-redundancy is exploited. The idea is to concentrate, as much as
-possible, the visual information in a small number of color
-channels\footnote{Also refered by color components.}, in this case, it
-is only one and basically represents the
+redundancy~\cite{vruiz__visual_redundancy} is exploited. The idea is
+to concentrate, as much as possible, the visual information in a small
+number of color channels\footnote{Also refered by color components.},
+in this case, it is only one and basically represents the
 \href{https://en.wikipedia.org/wiki/Luminance}{luminance} of the
 image.
 
 %}}}
 
-\subsection{Redundancy in the $\text{RGB}$ (Red, Green, and Blue) color space}
+
+
+\section{Color-DCT decorrelation}
 %{{{ 
-
-In $\text{RGB}$ images, the color of a pixel depends on the
-\href{https://en.wikipedia.org/wiki/Visible_spectrum}{frequency of the
-  light that the pixel represents}. Such information can be
-represented in a number of different encoding systems known as
-\href{https://en.wikipedia.org/wiki/Color_space}{color spaces}. Among
-all those systems, the $\text{RGB}$ color space is the most used
-because $\text{RGB}$ images can be obtained directly from the light
-signal using color filters.\footnote{Specifically, a red (R) filter, a
-green (G) filter and a blue (B) filter.}
-
-The $\text{RGB}$ color model is straightforward and easy to manage,
-but also, in general, is quite
-\href{https://en.wikipedia.org/wiki/Data_redundancy}{redundant}. In
-the case of a $\text{RGB}$ image, the three components of each pixel
-are usually highly
-\href{https://en.wikipedia.org/wiki/Correlation_and_dependence}{correlated}
-in the sense that, for example, if the $\text{R}$ component of a pixel
-has a high value, the other components will be also high. This means
-that if we use an encoding system that takes into consideration this
-redundancy, we can express the same information\footnote{Or almost the
-same amount of information, depending on the accuracy of the
-computations.} using a smaller number of bits (reducing thus the
-length of the code-stream).
-
-\subsection{Color-DCT decorrelation}
 
 One way of achieving the decorrelation in the $\text{RGB}$ domain is
 to use
@@ -85,7 +61,8 @@ than in the original signal.
 
 %}}}
 
-\subsection{RD gain provided by the Color-DCT}
+\section{RD gain provided by the Color-DCT}
+%{{{
 
 The improvement resulting from the use of the Color-DCT can be
 quantified if we compare the RD curves considering or not the
@@ -121,6 +98,8 @@ of this procedure are (see the
   representing the quantization step size: there are 3 different
   quantization steps because we have 3 subbands.}
 \end{enumerate}
+
+%}}}
 
 \section{What do I have to do?}
 
