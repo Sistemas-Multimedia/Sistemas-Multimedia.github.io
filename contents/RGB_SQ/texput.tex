@@ -34,6 +34,33 @@ green (G) filter and a blue (B) filter.}
 \section{Scalar quantization in the $\text{RGB}$ domain}
 %{{{ 
 
+Supposing that we are using a dead-zone quantizer, a $\text{RGB}$
+image can be quantized, channel by channel, using quantization steps
+$\Delta_{\text{R}}$, $\Delta_{\text{G}}$, and $\Delta_{\text{B}}$. A
+reasonable question that arises here is: given a target bit-rate $R$
+for the compressed frame, how the quantization steps should be chosen
+to minimize the distortion?
+
+At this point we can consider two different optimization
+perspectives. In the first one, we consider strictly visual
+considerations, and obviously, any alternative different from
+\begin{equation}
+  \Delta_{\text{R}} = \Delta_{\text{G}} = \Delta_{\text{B}}
+  \label{eq:simple_Q}
+\end{equation}
+will produce some alteration in the color (also called the
+``chroma'') of the reconstructed image.
+
+In the second perspective, only a pure
+\href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{Rate/Distortion
+  (RD) performance} is considered. From a RD point of view, the best
+combination of quantization steps is those that optimizes (generally
+by minimizing, that is, making it closer to the origin of coordinates)
+the RD curve.\footnote{Notice that a RD curve represents the trade-off
+between the distortion (typically the
+\href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{Mean Square Error (MSE)}) and the bit-rate (therefore, MSE versus
+bit/pixel).}
+
 The $\text{RGB}$ color domain is additive, which implies that the
 quantization error is the same in the three color
 components,\footnote{At least, if the quantization error is
@@ -54,6 +81,22 @@ quantization pattern is optimal, the RD slopes of each channel must be
 taken intro consideration (see this
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_quantization/RD_performance.ipynb}{notebook}).
 
+Considering that the contribution to the quality of each channel is
+additive, that is
+\begin{equation}
+  D = D_{\text{R}} + D_{\text{G}} + D_{\text{B}},
+  \label{eq:additive}
+\end{equation}
+where $D$ denotes distortion, then the optimal quantization steps must
+satisfy
+that~\cite{vruiz__information_theory,vetterli1995wavelets,sayood2017introduction}
+\begin{equation}
+  \lambda_{\text{R}} = \lambda_{\text{G}} = \lambda_{\text{B}}.
+  \label{eq:optimal_quantization}
+\end{equation}
+ This can be seen in this
+ \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/RGB_SQ/RD_performance.ipynb}{notebook}.
+
 %}}}
 
 \section{What do I have to do?}
@@ -61,7 +104,7 @@ taken intro consideration (see this
 \begin{enumerate}
 \item Please, run the
   \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_quantization/RD_performance.ipynb}{notebook}
-  to learn some insights about the compression of RGB images.
+  to learn some insights about the compression of $\text{RGB}$ images.
 \item Try to compress different images.
 \end{enumerate}
 

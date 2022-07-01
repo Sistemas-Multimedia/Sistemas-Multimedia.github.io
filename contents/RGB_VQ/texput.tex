@@ -13,27 +13,16 @@
 In this task we are going to implement a lossy image compressor based
 on VQ~\cite{vruiz__vector_quantization} and PNG~\cite{vruiz__PNG}.
 
-
-%\href{https://en.wikipedia.org/wiki/Visual_system}{Humans} are quite
-%efficient recognizing the information stored in images (and videos),
-%even when this information has been degraded or partially
-%lost. \href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}
-%{Quantization}~\cite{sayood2017introduction,vetterli2014foundations}
-%is a technique that can remove the visual information that is less
-%relevant for us, and implies a
-%\href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy coding},
-%which provides
-%\href{https://en.wikipedia.org/wiki/Data_compression_ratio}{compression
-%  ratios} usually at least one order of magnitude higher than using
-%\href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless
-%  coding}.
+%}}}
 
 \subsection{Scalar and vector quantization of RGB images}
 %{{{
 
-SQ (Scalar Quantization)~\cite{vruiz__scalar_quantization} would be an
-optimal solution only if the image colors are uniformly distributed
-within \href{https://en.wikipedia.org/wiki/RGB_color_model}{the RGB
+SQ (Scalar
+Quantization)~\cite{vruiz__scalar_quantization,sayood2017introduction}
+would be an optimal solution only if the image colors are uniformly
+distributed within
+\href{https://en.wikipedia.org/wiki/RGB_color_model}{the RGB
   cube}. However, the typical color distribution in natural images is
 anything but uniform, with some regions of the color space being
 densely populated and many potentially used colors entirely
@@ -44,8 +33,9 @@ time the encoding system is considering colors that do not appear in
 the image at all~\cite{burger2016digital}.
 
 On the other hand, VQ (Vector
-Quantization)~\cite{vruiz__vector_quantization} applied to the color
-domain does not treat the individual RGB components (also refered by
+Quantization)~\cite{vruiz__vector_quantization,sayood2017introduction}
+applied to the color domain does not treat the individual RGB
+components (also refered by
 \href{https://en.wikipedia.org/wiki/Color_image}{channel}s) separately
 as does scalar quantization, but each used color vector ${\mathbf C}_i
 = ({\mathbf R}_i, {\mathbf G}_i, {\mathbf B}_i )$ in the image is
