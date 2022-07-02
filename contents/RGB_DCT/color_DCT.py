@@ -1,1 +1,1 @@
-/home/vruiz/repos/color_DCT/color_DCT.py
+/home/vruiz/repos/DCT/color_DCT.py
