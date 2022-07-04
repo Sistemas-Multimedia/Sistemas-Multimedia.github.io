@@ -33,60 +33,107 @@ One way of achieving the decorrelation in the $\text{RGB}$ domain is
 to use
 \href{https://vicente-gonzalez-ruiz.github.io/transform_coding/}{Transform
   Coding}~\cite{vruiz__transform_coding} applied between the color
-components to concentrate information\footnote{Information is usually
-estimated through the measurement of the
-\href{https://en.wikipedia.org/wiki/Variance}{variance} or the
-\href{https://en.wikipedia.org/wiki/Entropy}{entropy}~\cite{vruiz__information_theory}.}
-of the image in a small set of coefficients, that after a quantization
-can be compressed with a better RD
-performance~\cite{vruiz__information_theory}. For this task we will
-use the Color-DCT~\cite{vruiz__DCT}. Notice also that, in general,
-transform domains require larger
-\href{https://en.wikipedia.org/wiki/Dynamic_range}{dynamic ranges}
-than the original ones.
+components to concentrate information of the image in a small set of
+coefficients, that after a quantization can be compressed with a
+better RD performance~\cite{vruiz__information_theory}. For this task
+we will use the DCT~\cite{vruiz__DCT}. To measure the amount of energy
+compaction we can quantize the coefficients (the output of the forward
+transform) and to entropy encode~\cite{vruiz__information_theory} the
+result.
 
-%\footnote{For example,
-%if the energy of a color subband is low, quantization could completely
-%makes zero such subband, but the reconstruction of the image would be
-%reasonable. The most part of entropy codecs reach higher compression
-%ratios with sequences of zeros.}
+After using the DCT we will obtain a new ``image'' in which the
+channels are called subbands~\cite{vruiz__transform_coding} and
+where there are three coefficients $\text{DCT}^0_{i,j}$,
+$\text{DCT}^1_{i,j}$, and $\text{DCT}^2_{i,j}$, per ``pixel''
+$\mathbf{I}_{i,j}$. Notice that the number of coefficients in a
+subband $\text{DCT}^s$ is the same that the number of pixels in
+$\mathbf{I}$ (or the number of components in a channel
+$\mathbf{I}^c$).
 
-%This
-%\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/color_DCT/coding_gain.ipynb}{notebook}
-%shows the near-lossless coding gain of an image after using the
-%color-DCT.
+Notice that the DCT is orthogonal and therefore, the contributions of
+the subbands (to the quality of the reconstructed image) are
+independent and therefore, additive. Because the DCT is also
+orthonormal, we can measure the distortion in both, the image and the
+transform domain.
 
-%This
-%\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/color_redundancy.ipynb}{notebook}
-%quantifies the redundancy related to the color domain.
-
-%}}}
-
-\section{RD gain provided by the DCT}
+\section{Scalar quantization in the ($\text{DCT}_0,\text{DCT}_1,\text{DCT}_2$) domain}
 %{{{
 
+The DCT is orthonormal, and thereore, the distortion can be measured
+directly in the transform domain. This means that we can treat the DCT
+coefficients as if would be pixels. Therefore, an optimal algorithm
+for RDO~\cite{vruiz__information_theory} is:
+
+\begin{enumerate}
+\item Find the RD curve for each subband. We will use the same
+  quantization steps for all the subbands. This action generates three
+  curves.
+\item Join all the RD points in a single list and sort it by the slope
+  of the
+  points~\cite{vruiz__information_theory}. Track\footnote{Storing with
+  the point the combination subband index and quantization step used
+  for each point.} the quantization steps used for each point.
+\item Use the quantization patters described by the points of the
+  sorted list to obtain the definitive RD curve. Notice that, since
+  the DCT is orthonormal, we could estimate accurately the distortion
+  in the definitive curve using directly the distortions of the
+  subbands.
+\end{enumerate}
+
+Notice that the points that satisfy that
+\begin{equation}
+  \mathbf{\Delta}_0 = \mathbf{\Delta}_1 = \mathbf{\Delta}_2
+  \label{eq:deltas}
+\end{equation}
+should belong to the definitive RD curve and should describe also the
+convex hull of the curve. There is not guarantee that the rest of
+points in which the Eq.~\eqref{eq:deltas} is not true will belong to
+the convex hull (although they could be used to perform a finer
+rate-control).
+
+This algorithm has been implemented in this \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT/RGB_DCT.ipynb}{notebook}.
+
+\section{Ablation study}
 The improvement resulting from the use of the DCT applied over the RGB
 domain can be quantified if we compare the RD curves considering or
 not its use.\footnote{This kind of comparison is commonly called
 ``\emph{Ablation Study}'' because we are ''removing'' some
 functionality of the system to see how its ausence impacts on the
-performance.} To measure the amount of energy compaction we can
-quantize the coefficients (the output of the forward transform) and to
-entropy encode~\cite{vruiz__information_theory} the result. The steps
+performance.} 
+
+\section{What do I have to do?}
+
+\begin{enumerate}
+\item Please, run the
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT/RGB_DCT.ipynb}{notebook}
+  to learn some insights about the compression of images using the
+  DCT.
+\item Try to compress different images. Is the Color-DCT always
+  effective (are RD curves better than compressing the image in
+  the RGB domain)?
+\end{enumerate}
+
+\section{Timming}
+
+Please, finish this milestone before the next class session.
+
+\section{Deliverables}
+
+None.
+
+\section{Resources}
+
+\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
+\bibliography{maths,data-compression,signal-processing,DWT,image-compression,image-processing}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{comment}
+   The steps
 of this procedure are (see the
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/color_DCT/RGB_DCT.ipynb}{notebook}):
 \begin{enumerate}
-\item Apply the DCT to each RGB pixel of the image. This outputs a new
-  image in which the components are called
-  subbands~\cite{vruiz__transform_coding} and where there are three
-  coefficients $\text{DCT}^0_{i,j}$, $\text{DCT}^1_{i,j}$, and
-  $\text{DCT}^2_{i,j}$, per pixel $\mathbf{I}_{i,j}$. Notice that the
-  number of coefficients in a subband $\text{DCT}^s$ is the same that
-  the number of pixels in $\mathbf{I}$ (or the number of components in
-  a channel $\mathbf{I}^c$).
-\item The DCT is orthogonal and therefore, the contributions of the
-  subbands (to the quality of the reconstructed image) are independent
-  and therefore, additive. This fact allows us to use a ``fast'' (with
+\item  This fact allows us to use a ``fast'' (with
   linear
   \href{https://en.wikipedia.org/wiki/Computational_complexity}{complexity})
   RDO (Rate/Distortion Optimization) algorithm to find which
@@ -167,29 +214,4 @@ Notice that one way to check if this quantization algorithm is optimal
 outputs such quantization patterns. If this is true, the ``faster''
 rate-control algorithm is optimal, at least for the encoded image.
 
-%}}}
-
-\section{What do I have to do?}
-
-\begin{enumerate}
-\item Please, run the
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/color_DCT/RGB_DCT.ipynb}{notebook}
-  to learn some insights about the compression of images using the
-  DCT.
-\item Try to compress different images. Is the Color-DCT always
-  effective (are RD curves better than compressing the image in
-  the RGB domain)?
-\end{enumerate}
-
-\section{Timming}
-
-Please, finish this milestone before the next class session.
-
-\section{Deliverables}
-
-None.
-
-\section{Resources}
-
-\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{maths,data-compression,signal-processing,DWT,image-compression,image-processing}
+\end{comment}

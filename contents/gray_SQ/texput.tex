@@ -7,13 +7,7 @@
 \tableofcontents
 
 \section{Objective}
-
-This task shows how to implement a
-\href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy
-  (gray-scale) image compressor} based on Scalar
-Quantization~\cite{vruiz__scalar_quantization} and
-PNG~\cite{vruiz__PNG}.
-
+%{{{ 
 \href{https://en.wikipedia.org/wiki/Visual_system}{Humans} are quite
 efficient recognizing the information stored in images (and videos),
 even when this information has been degraded or partially
@@ -28,7 +22,14 @@ of magnitude higher than using
 \href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless
   coding}.
 
-\section{Description}
+This task shows how to implement a
+\href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy
+  (gray-scale) image compressor} based on Scalar
+Quantization~\cite{vruiz__scalar_quantization} and
+PNG~\cite{vruiz__PNG}.
+%}}}
+
+\section{Gray-scale images}
 %{{{
 
 Gray-Scale (GS) images have only one (usually
@@ -43,14 +44,9 @@ $16$ bits/pixel in specific contexts such as in
 \href{https://en.wikipedia.org/wiki/Medical_imaging}{Medical Imaging}
 and \href{https://en.wikipedia.org/wiki/Remote_sensing}{Remote
   Sensing}~\cite{burger2016digital}.
+%}}}
 
-In this milestone we are going to see how to
-\href{https://vicente-gonzalez-ruiz.github.io/quantization/}{quantize}
-a GS image, and then compressing the image with PNG, to create a
-\href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy image
-  compressor}.
-
-\subsection{Scalar and vector quantization of GS images}
+\section{Scalar and vector quantization of gray-scale images}
 %{{{
 
 The compression ratio of our lossy image compressor can be controled
@@ -71,7 +67,7 @@ obviously, any image codec).
 
 %}}}
 
-\subsection{Bit-rate control in SQ + PNG}
+\section{Bit-rate control in SQ + PNG}
 %{{{
 
 The bit-rate (the number of bits/pixel) obtained after using

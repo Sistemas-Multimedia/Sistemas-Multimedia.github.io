@@ -1,16 +1,22 @@
 % Emacs, this is -*-latex-*-
 
 \input{../../definitions}
-\title{\SM{} - Study Guide - Milestone 3 - Task 3 - Scalar Quantization in the $\text{RGB}$ Color Domain}
+\title{\SM{} - Study Guide - Scalar Quantization in the $\text{RGB}$ Color Domain}
 
 \maketitle
 
 \tableofcontents
 
 \section{Objective}
-In this task we are going to develop a rudimentery \href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy
-($\text{RGB}$) image compressor} based on
-SQ~\cite{vruiz__scalar_quantization} and PNG~\cite{vruiz__PNG}. 
+In this task we are going to develop a rudimentery
+\href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy
+  ($\text{RGB}$) image compressor} based on
+SQ~\cite{vruiz__scalar_quantization} and PNG~\cite{vruiz__PNG}. We
+will decide what quantization step will be applied to each
+channel\footnote{Or component, both terms are
+interchangeable. However, we will use channel to refer to the matrix
+form by the same component of all the pixels of the image.}  of the
+image, using the same step for all the pixel-components.
 
 \section{Some info about the $\text{RGB}$ color domain}
 %{{{
@@ -36,66 +42,61 @@ green (G) filter and a blue (B) filter.}
 
 Supposing that we are using a dead-zone quantizer, a $\text{RGB}$
 image can be quantized, channel by channel, using quantization steps
-$\Delta_{\text{R}}$, $\Delta_{\text{G}}$, and $\Delta_{\text{B}}$. A
-reasonable question that arises here is: given a target bit-rate $R$
-for the compressed frame, how the quantization steps should be chosen
-to minimize the distortion?
+$\mathbf{\Delta}_{\text{R}}$, $\mathbf{\Delta}_{\text{G}}$, and
+$\mathbf{\Delta}_{\text{B}}$ (being $\mathbf{\Delta}$ the
+``quantization pattern''). A reasonable question that arises here is:
+given a target bit-rate $R$ for the compressed frame, how the
+quantization steps should be chosen to minimize the distortion?
 
-At this point we can consider two different optimization
-perspectives. In the first one, we consider strictly visual
-considerations, and obviously, any alternative different from
+At this point we can consider two different quantization
+perspectives. In the first one, if we consider a strictly visual
+effect, any alternative different from
 \begin{equation}
-  \Delta_{\text{R}} = \Delta_{\text{G}} = \Delta_{\text{B}}
+  \mathbf{\Delta}_{\text{R}} = \mathbf{\Delta}_{\text{G}} = \mathbf{\Delta}_{\text{B}}
   \label{eq:simple_Q}
 \end{equation}
 will produce some alteration in the color (also called the
-``chroma'') of the reconstructed image.
+\href{https://en.wikipedia.org/wiki/Chrominance}{``chroma''}) of the
+reconstructed image.
 
-In the second perspective, only a pure
+A second perspective considers only a pure
 \href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{Rate/Distortion
-  (RD) performance} is considered. From a RD point of view, the best
-combination of quantization steps is those that optimizes (generally
-by minimizing, that is, making it closer to the origin of coordinates)
-the RD curve.\footnote{Notice that a RD curve represents the trade-off
-between the distortion (typically the
-\href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{Mean Square Error (MSE)}) and the bit-rate (therefore, MSE versus
-bit/pixel).}
+  (RD) performance}~\cite{vruiz__information_theory}. The $\text{RGB}$
+color domain is additive, which means that the distortion generated in
+the quantized image is the sum of the distortions generated in each of
+the channels, when they are quantized independently. Therefore, the
+optimal RD curve for the reconstructed image (using the $3$ channels)
+can be obtained through the steps:
+\begin{enumerate}
+\item Compute the RD curve for each channel. Notice that here we must
+  define a set of quantization steps for each channel. For simplicity,
+  use the same set for the three channels.
+\item Put all the RD points in a list and sort the list by the slopes
+  of the points. Since the points have been ordered by their slope,
+  the sequence of quantization patterns should generate the optimal
+  curve.
+\item Use the corresponding quantization patterns (defined by the points
+  of the list) to compute the RD curve of the reconstructed image.
+\end{enumerate}
 
-The $\text{RGB}$ color domain is additive, which implies that the
-quantization error is the same in the three color
-components,\footnote{At least, if the quantization error is
-insignificant compared to the amplitude of the components.}
-$\text{R}$, $\text{G}$, and $\text{B}$. Therefore, in order to select
-the same RD slope~\cite{vruiz__information_theory} in the three
-components, the quantization pattern should be
-\begin{equation}
-  \Delta_\text{R} = \Delta_\text{G} = \Delta_\text{B}.
-  \label{eq:same_delta}
-\end{equation}
+This algorithm is independent of how the set of quantization steps
+used in each channel has been selected. If the quantization steps used
+to describe the RD curves of each channel are different, the points of
+the definitive curve will be different, but not its shape or its
+localization in the RD space.
 
-Unfortunately, Eq.~\eqref{eq:same_delta} not always will provide
-optimality in a RD sense. The reason is that the quantization step
-size does not defines accurately the neither the rate (R) nor the
-distortion (D). This means that, if we want to be sure that the
-quantization pattern is optimal, the RD slopes of each channel must be
-taken intro consideration (see this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_quantization/RD_performance.ipynb}{notebook}).
+If we are used the same quantization steps for each channel, the
+points generated when
+\begin{equation}
+  \mathbf{\Delta}_{\text{R}} = \mathbf{\Delta}_{\text{G}} = \mathbf{\Delta}_{\text{B}}
+\end{equation}
+must occur in the definitive RD curve. Notice that the rest of points
+of the curve should appear between these points, but do not
+necessarily belong to the convex hull of the curve (altough they could
+be used to perform a finer rate-control).
 
-Considering that the contribution to the quality of each channel is
-additive, that is
-\begin{equation}
-  D = D_{\text{R}} + D_{\text{G}} + D_{\text{B}},
-  \label{eq:additive}
-\end{equation}
-where $D$ denotes distortion, then the optimal quantization steps must
-satisfy
-that~\cite{vruiz__information_theory,vetterli1995wavelets,sayood2017introduction}
-\begin{equation}
-  \lambda_{\text{R}} = \lambda_{\text{G}} = \lambda_{\text{B}}.
-  \label{eq:optimal_quantization}
-\end{equation}
- This can be seen in this
- \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/RGB_SQ/RD_performance.ipynb}{notebook}.
+This algorithm has been implemented in this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb}{notebook}.
 
 %}}}
 
@@ -103,8 +104,8 @@ that~\cite{vruiz__information_theory,vetterli1995wavelets,sayood2017introduction
 
 \begin{enumerate}
 \item Please, run the
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_quantization/RD_performance.ipynb}{notebook}
-  to learn some insights about the compression of $\text{RGB}$ images.
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_quantization/RGB_SQ.ipynb}{notebook}
+  to check if the previous theory really works.
 \item Try to compress different images.
 \end{enumerate}
 
