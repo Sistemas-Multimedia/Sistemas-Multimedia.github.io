@@ -9,14 +9,17 @@
 \section{Objective}
 Let's use the
 \href{https://en.wikipedia.org/wiki/YCbCr}{$\text{YCrCb}$} color (from
-the \text{RGB} domain) transform to compress $\text{RGB}$ images.
+the \text{RGB} domain) transform to exploit the color redundancy of
+$\text{RGB}$ images~\cite{vruiz__visual_redundancy}. 
 
 \section{The $\text{YCrCb}$ color domain}
 $\text{YCrCb}$ is a \emph{luma}-based
 (luminance-based\footnote{Luminance can be considered as the intensity
 part of a viual stimuli.} color domain. This domain rely on the idea
 of separating the luminance coefficients (Y) from two \emph{chroma}
-coefficients (red and blue in the case of $\text{YCrCb}$).
+coefficients (red and blue in the case of $\text{YCrCb}$). After using
+the transform, most of the energy will be concentrated in the luma
+($\text{Y}$) subband.
 
 The $\text{YCrCb}$ color model can be considered the digital version
 of the \href{https://en.wikipedia.org/wiki/YUV}{$\text{YUV}$ (analog)
@@ -41,7 +44,9 @@ Fig.~\ref{fig:san-diego_chroma_subsampled}). This
 \href{https://en.wikipedia.org/wiki/Bandwidth_(computing)}{fact is
   used when compressing} digital still images and is one of the reason
 why, for example, the \href{https://en.wikipedia.org/wiki/JPEG}{JPEG}
-image compressor converts $\text{RGB}$ images to $\text{YCrCb}$.
+image compressor converts $\text{RGB}$ images to
+$\text{YCrCb}$. However, notice that we will explore this posibility
+in a different task.
 
 \section{Quantization in the $\text{YCrCb}$ domain}
 %{{{ 
