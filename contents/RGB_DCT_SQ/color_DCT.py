@@ -1,1 +1,0 @@
-/home/vruiz/repos/DCT/color_DCT.py
