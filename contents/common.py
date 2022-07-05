@@ -42,7 +42,7 @@ def entropy_in_bits_per_symbol(sequence_of_symbols):
 
 # Number of bytes that an image "img" requires in disk.
 def bytes_per_color_img(img, fn="img"):
-    color_img.write(img, "/tmp/" + fn)
+    color_img.write(img, "/tmp/" + fn, 0)
     length_in_bytes = os.path.getsize("/tmp/" + fn + "000.png")
     return length_in_bytes
 

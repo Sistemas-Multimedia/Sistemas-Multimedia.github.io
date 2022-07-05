@@ -1,7 +1,7 @@
 % Emacs, this is -*-latex-*-
 
 \input{../../definitions}
-\title{\SM{} - Study Guide - Milestone 3 - Task 2: Vector Quantization of Gray-scale Images}
+\title{\SM{} - Vector Quantization of Gray-scale Images}
 
 \maketitle
 \tableofcontents
@@ -9,7 +9,24 @@
 \section{Description}
 %{{{
 
-If we can found 2D redundancy in an image, Vector Quantization
+The compression ratio (and distortion) of our lossy image compressor
+can be controled by means of quantization. At this point we have
+basically two alternatives:
+\begin{enumerate}
+\item \textbf{Scalar Quantization (SQ)}: where each pixel is quantized
+  without considering the rest of pixels in the
+  image~\cite{vruiz__scalar_quantization}.
+\item \textbf{Vector Quantization (VQ)}: when the pixels are quantized
+  block-by-block (2D vectors)~\cite{vruiz__vector_quantization}.
+\end{enumerate}
+Notice that VQ exploits the spatial correlation, but SQ doesn't. For
+this reason, by default, we will use PNG after SQ, because PNG can
+remove the spatial redundancy. In the case of VQ, only the statistical
+redundancy remains, that can be exploited by any entropy codec (and
+obviously, any image codec).
+
+If we can found 2D redundancy in an gray-scale
+image~\cite{vruiz__image_IO}, Vector Quantization
 (VQ)~\cite{vruiz__vector_quantization} applied to the spatial domain
 of images can provide better RD curves than Scalar Quantization
 (SQ)~\cite{vruiz__scalar_quantization}. After using VQ on the image we
