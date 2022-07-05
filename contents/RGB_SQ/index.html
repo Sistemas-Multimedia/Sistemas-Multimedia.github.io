@@ -1,7 +1,6 @@
 <!DOCTYPE html> 
 <html lang='en-US' xml:lang='en-US'> 
-<head> <title>Sistemas Multimedia - Study Guide - Milestone 3 - Task 3 - Scalar Quantization
-in the RGB Color Domain</title> 
+<head> <title>Sistemas Multimedia - Scalar Quantization in the RGB Color Domain</title> 
 <meta charset='utf-8' /> 
 <meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
 <meta content='width=device-width,initial-scale=1' name='viewport' /> 
@@ -18,94 +17,86 @@ in the RGB Color Domain</title>
 
                                                                   
 
-<h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - Study Guide - Milestone
-3 - Task 3 - Scalar Quantization in the \(\text {RGB}\) Color
-Domain</h2>
+<h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - Scalar Quantization in
+the \(\text {RGB}\) Color Domain</h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>July 1, 2022</span></div>
+<div class='date'><span class='ecrm-1200'>July 5, 2022</span></div>
    </div>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
     <span class='sectionToc'>1 <a href='#objective' id='QQ2-1-2'>Objective</a></span>
-<br />    <span class='sectionToc'>2 <a href='#some-info-about-the-rgb-color-domain' id='QQ2-1-3'>Some info about the \(\text {RGB}\) color domain</a></span>
-<br />    <span class='sectionToc'>3 <a href='#scalar-quantization-in-the-rgb-domain' id='QQ2-1-4'>Scalar quantization in the \(\text {RGB}\) domain</a></span>
-<br />    <span class='sectionToc'>4 <a href='#what-do-i-have-to-do' id='QQ2-1-5'>What do I have to do?</a></span>
-<br />    <span class='sectionToc'>5 <a href='#timming' id='QQ2-1-6'>Timming</a></span>
-<br />    <span class='sectionToc'>6 <a href='#deliverables' id='QQ2-1-7'>Deliverables</a></span>
-<br />    <span class='sectionToc'>7 <a href='#resources' id='QQ2-1-8'>Resources</a></span>
+<br />    <span class='sectionToc'>2 <a href='#distortion-control' id='QQ2-1-3'>Distortion control</a></span>
+<br />    <span class='sectionToc'>3 <a href='#rate-control' id='QQ2-1-4'>Rate control</a></span>
+<br />    <span class='sectionToc'>4 <a href='#increasing-the-number-of-rd-points-todo' id='QQ2-1-5'>Increasing the number of RD points (TO-DO)</a></span>
+<br />    <span class='sectionToc'>5 <a href='#implementation' id='QQ2-1-6'>Implementation</a></span>
+<br />    <span class='sectionToc'>6 <a href='#what-do-i-have-to-do' id='QQ2-1-7'>What do I have to do?</a></span>
+<br />    <span class='sectionToc'>7 <a href='#timming' id='QQ2-1-8'>Timming</a></span>
+<br />    <span class='sectionToc'>8 <a href='#deliverables' id='QQ2-1-9'>Deliverables</a></span>
+<br />    <span class='sectionToc'>9 <a href='#resources' id='QQ2-1-10'>Resources</a></span>
    </div>
 <!-- l. 10 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='objective'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Objective</h3>
-<!-- l. 11 --><p class='noindent'>In this task we are going to develop a rudimentery <a href='https://en.wikipedia.org/wiki/Lossy_compression'>lossy (\(\text {RGB}\)) image compressor</a> based
-on SQ <span class='cite'>[<span class='ecbx-1000'>?</span>]</span> and PNG <span class='cite'>[<a href='#Xvruiz__PNG'>2</a>]</span>.
+<!-- l. 11 --><p class='noindent'>In this task we are going to develop a rudimentery <a href='https://en.wikipedia.org/wiki/Lossy_compression'>lossy (\(\text {RGB}\)) image <span class='cite'>[<span class='ecbx-1000'>?</span>]</span> compressor</a>
+based on scalar quantization <span class='cite'>[<span class='ecbx-1000'>?</span>]</span> and PNG <span class='cite'>[<a href='#Xvruiz__PNG'>2</a>]</span>. This compressor removes the number
+of different colors in the image (<a href='https://en.wikipedia.org/wiki/Visual_system'>humans</a> hardly distinguish more than 64 different
+colors). We will compare its RD performance <span class='cite'>[<a href='#Xvruiz__information_theory'>1</a>]</span> with JPEG.
                                                                   
 
                                                                   
-</p><!-- l. 15 --><p class='noindent'>
+</p><!-- l. 21 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='some-info-about-the-rgb-color-domain'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Some info about the \(\text {RGB}\) color domain</h3>
-<!-- l. 18 --><p class='noindent'>\(\text {RGB}\) (Red, Green, and Blue) is an additive color system, which means that all
-colors “start” with black and are created by adding some intensity of the
-primary colors red, green and blue <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>. In \(\text {RGB}\) images, the color of a pixel depends
-on the <a href='https://en.wikipedia.org/wiki/Visible_spectrum'>frequency of the light that the pixel represents</a>. Such information
-can be represented in a number of different encoding systems known as
-<a href='https://en.wikipedia.org/wiki/Color_space'>color spaces</a>. Among all those systems, the \(\text {RGB}\) color space is the most used
-because \(\text {RGB}\) images can be obtained directly from the light signal using color
-filters.<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-3001f1'></a>
-</p><!-- l. 34 --><p class='noindent'>
+   <h3 class='sectionHead' id='distortion-control'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Distortion control</h3>
+<!-- l. 22 --><p class='noindent'>Using a deadzone quantizer applied to each channel of the image we are able to
+control the number of colors (see the Section <span class='ecti-1000'>Distortion control </span>in the task <span class='ecti-1000'>Scalar
+</span><span class='ecti-1000'>Quantization of Gray-scale Images</span>). The quantization steps are powers of \(2\) to
+simulate a progressive bit-plane encoding. Notice that we cannot control the
+distortion in terms of the RMSE, for example.
+</p><!-- l. 30 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='scalar-quantization-in-the-rgb-domain'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Scalar quantization in the \(\text {RGB}\) domain</h3>
-<!-- l. 37 --><p class='noindent'>Supposing that we are using a dead-zone quantizer, a \(\text {RGB}\) image can be quantized,
-channel by channel, using quantization steps \(\Delta _{\text {R}}\), \(\Delta _{\text {G}}\), and \(\Delta _{\text {B}}\). A reasonable question that
-arises here is: given a target bit-rate \(R\) for the compressed frame, how the quantization
-steps should be chosen to minimize the distortion?
-</p><!-- l. 44 --><p class='indent'>   At this point we can consider two different optimization perspectives. In the first
-one, we consider strictly visual considerations, and obviously, any alternative different
-from \begin {equation}  \Delta _{\text {R}} = \Delta _{\text {G}} = \Delta _{\text {B}} \label {eq:simple_Q}  \end {equation}
-will produce some alteration in the color (also called the “chroma”) of the
-reconstructed image.
-</p><!-- l. 54 --><p class='indent'>   In the second perspective, only a pure <a href='https://en.wikipedia.org/wiki/Rate-distortion_theory'>Rate/Distortion (RD) performance</a> is considered.
-From a RD point of view, the best combination of quantization steps is those that optimizes
-(generally by minimizing, that is, making it closer to the origin of coordinates) the RD
-curve.<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-4001f2'></a>
-</p><!-- l. 64 --><p class='indent'>   The \(\text {RGB}\) color domain is additive, which implies that the quantization error is the same in the three
-color components,<span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a id='x1-4002f3'></a>
-\(\text {R}\), \(\text {G}\), and \(\text {B}\). Therefore, in order to select the same RD slope <span class='cite'>[<a href='#Xvruiz__information_theory'>1</a>]</span> in the three components,
-the quantization pattern should be \begin {equation}  \Delta _\text {R} = \Delta _\text {G} = \Delta _\text {B}. \label {eq:same_delta}  \end {equation}
-</p><!-- l. 76 --><p class='indent'>   Unfortunately, Eq. \eqref{eq:same_delta} not always will provide optimality in a
-RD sense. The reason is that the quantization step size does not defines accurately
-the neither the rate (R) nor the distortion (D). This means that, if we want to be
-sure that the quantization pattern is optimal, the RD slopes of each channel must be
-taken intro consideration (see this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_quantization/RD_performance.ipynb'>notebook</a>).
-</p><!-- l. 84 --><p class='indent'>   Considering that the contribution to the quality of each channel is additive, that
-is \begin {equation}  D = D_{\text {R}} + D_{\text {G}} + D_{\text {B}}, \label {eq:additive}  \end {equation}
-where \(D\) denotes distortion, then the optimal quantization steps must satisfy
-that <span class='cite'>[<a href='#Xvruiz__information_theory'>1</a>, <span class='ecbx-1000'>?</span>, <span class='ecbx-1000'>?</span>]</span> \begin {equation}  \lambda _{\text {R}} = \lambda _{\text {G}} = \lambda _{\text {B}}. \label {eq:optimal_quantization}  \end {equation}
-This can be seen in this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/RGB_SQ/RD_performance.ipynb'>notebook</a>.
+   <h3 class='sectionHead' id='rate-control'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Rate control</h3>
+<!-- l. 31 --><p class='noindent'>Using PNG we cannot control the rate with accuracy (see the Section <span class='ecti-1000'>Rate control </span>in
+the task <span class='ecti-1000'>Scalar Quantization of Gray-scale Images</span>). Only \(7\) bit-rates are available if
+we use the \begin {equation}  \mathbf {\Delta }_{\text {R}} = \mathbf {\Delta }_{\text {G}} = \mathbf {\Delta }_{\text {B}} \label {eq:simple_Q}  \end {equation}
+quantization pattern, which from a visual perspective is the only choice if we want to
+quantize each channel equally (without penalizing one channel against the
+others).
+</p><!-- l. 40 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='increasing-the-number-of-rd-points-todo'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Increasing the number of RD points (TO-DO)</h3>
+<!-- l. 42 --><p class='noindent'>If the Eq. \eqref{eq:simple_Q} does not need to be satisfied, we can increase the
+accuracy of the rate/distortion control using also the “intermediate” points of the
+bit-plane progressive RD curve. Therefore, starting for example by the left points of
+the RD curve, after each Eq. \eqref{eq:simple_Q}-point, we must decide
+which option is more advantageous: (1) encode the next bit-plane of the \(\text {R}\)
+channel, (2) encode the next bit-plane of the \(\text {G}\) channel, or (3) encode the next
+bit-plane of the \(\text {B}\) channel. We will select the option that provides the highest RD
+slope <span class='cite'>[<a href='#Xvruiz__information_theory'>1</a>]</span>.
+</p><!-- l. 53 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='implementation'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Implementation</h3>
+<!-- l. 54 --><p class='noindent'>The described algorithm has been implemented in this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb'>notebook</a>.
+</p><!-- l. 59 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>6   </span> <a id='x1-70006'></a>What do I have to do?</h3>
                                                                   
 
                                                                   
-</p><!-- l. 102 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>4   </span> <a id='x1-50004'></a>What do I have to do?</h3>
-<!-- l. 104 --><p class='noindent'>
+<!-- l. 61 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-5002x1'>Please, run the <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_quantization/RD_performance.ipynb'>notebook</a> to learn some insights about the compression of
-     \(\text {RGB}\) images.
-     </li>
-<li class='enumerate' id='x1-5004x2'>Try to compress different images.</li></ol>
-<!-- l. 111 --><p class='noindent'>
+<li class='enumerate' id='x1-7002x1'>Please, modify the <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb'>notebook</a> to increse the number of RD points following
+     the procedure described in Section <a href='#increasing-the-number-of-rd-points-todo'>4<!-- tex4ht:ref: sec:increasing  --></a>.</li></ol>
+<!-- l. 68 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='timming'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Timming</h3>
-<!-- l. 113 --><p class='noindent'>Please, finish this milestone before the next class session.
-</p><!-- l. 115 --><p class='noindent'>
+   <h3 class='sectionHead' id='timming'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Timming</h3>
+<!-- l. 70 --><p class='noindent'>Please, finish this milestone before the next class session.
+</p><!-- l. 72 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='deliverables'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Deliverables</h3>
-<!-- l. 117 --><p class='noindent'>None.
-</p><!-- l. 119 --><p class='noindent'>
+   <h3 class='sectionHead' id='deliverables'><span class='titlemark'>8   </span> <a id='x1-90008'></a>Deliverables</h3>
+<!-- l. 74 --><p class='noindent'>None.
+</p><!-- l. 76 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='resources'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Resources</h3>
+   <h3 class='sectionHead' id='resources'><span class='titlemark'>9   </span> <a id='x1-100009'></a>Resources</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/information_theory/'>Information Theory</a>.
@@ -114,14 +105,6 @@ This can be seen in this <a href='https://github.com/Sistemas-Multimedia/Sistema
  [2]<span class='bibsp'>   </span></span><a id='Xvruiz__PNG'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/PNG/'>Portable Network Graphics</a>.
 </p>
    </div>
-                                                                  
-
-                                                                  
-   <div class='footnotes'><!-- l. 30 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>Specifically, a red (R) filter, a green (G) filter and a blue (B) filter.</span></p>
-<!-- l. 62 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>Notice that a RD curve represents the trade-off between the distortion (typically the </span><a href='https://en.wikipedia.org/wiki/Root-mean-square_deviation'><span class='ecrm-0800'>Mean
-</span><span class='ecrm-0800'>Square Error (MSE)</span></a><span class='ecrm-0800'>) and the bit-rate (therefore, MSE versus bit/pixel).</span></p>
-<!-- l. 67 --><p class='indent'>     <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>At least, if the quantization error is insignificant compared to the amplitude of the
-</span><span class='ecrm-0800'>components.</span></p>                                                                                                         </div>
- 
+    
 </body> 
 </html>

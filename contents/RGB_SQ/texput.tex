@@ -37,7 +37,8 @@ Gray-scale Images}). Only $7$ bit-rates are available if we use the
 \end{equation}
 quantization pattern, which from a visual perspective is the only choice if we want to quantize each channel equally (without penalizing one channel against the others).
 
-\section{Increasing the number of RD points}
+\section{Increasing the number of RD points (TO-DO)}
+\label{sec:increasing}
 If the Eq.~\eqref{eq:simple_Q} does not need to be satisfied, we can
 increase the accuracy of the rate/distortion control using also the
 ``intermediate'' points of the bit-plane progressive RD
@@ -58,10 +59,10 @@ The described algorithm has been implemented in this
 \section{What do I have to do?}
 
 \begin{enumerate}
-\item Please, run the
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_quantization/RGB_SQ.ipynb}{notebook}
-  to check if the previous theory really works.
-\item Try to compress different images.
+\item Please, modify the
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb}{notebook}
+  to increse the number of RD points following the procedure described
+  in Section~\ref{sec:increasing}.
 \end{enumerate}
 
 \section{Timming}
