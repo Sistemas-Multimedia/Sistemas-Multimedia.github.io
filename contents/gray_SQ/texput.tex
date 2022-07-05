@@ -29,7 +29,9 @@ reconstructed image, using a deadzone scalar quantizer. The
 quantization steps are selected simulating a
 \href{https://en.wikipedia.org/wiki/Bit_plane}{bit-plane}
 encoding. Therefore, for 8-bit images, the quantization steps are
-$\Delta\in\{128, 64, 32, 16, 8, 4, 2, 1\}$.
+$\Delta\in\{128, 64, 32, 16, 8, 4, 2, 1\}$ (powers of $2$). Notice
+that we cannot control the distortion in terms of the RMSE, for
+example.
 
 \section{Rate control}
 %{{{
