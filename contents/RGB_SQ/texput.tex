@@ -4,7 +4,6 @@
 \title{\SM{} - Scalar Quantization in the $\text{RGB}$ Color Domain}
 
 \maketitle
-
 \tableofcontents
 
 \section{Objective}
@@ -19,18 +18,19 @@ distinguish more than 64 different colors). We will compare its
 RD performance~\cite{vruiz__information_theory} with JPEG.
 
 \section{Distortion control}
-Using a deadzone quantizer applied to each channel of the image we are
-able to control the number of colors (see the Section
-\emph{Distortion control} in the task \emph{Scalar Quantization of
-Gray-scale Images}). The quantization steps are
-powers of $2$ to simulate a progressive bit-plane encoding.  Notice
-that we cannot control the distortion in terms of the RMSE, for
-example.
+We do not provide any accurate distortion control algorithm. Using a
+deadzone quantizer applied to each channel of the image we are able to
+control the number of colors (see the Section \emph{Distortion
+control} in the task \emph{Scalar Quantization of Gray-scale
+Images}). The quantization steps are powers of $2$ to simulate a
+progressive bit-plane encoding.  Notice that we cannot control the
+distortion in terms of the RMSE, for example.
 
 \section{Rate control}
-Using PNG we cannot control the rate with accuracy (see the Section
-\emph{Rate control} in the task \emph{Scalar Quantization of
-Gray-scale Images}). Only $7$ bit-rates are available if we use the
+We do not provide accurate rate control (using PNG we cannot control
+the rate with accuracy, see the Section \emph{Rate control} in the
+task \emph{Scalar Quantization of Gray-scale Images}). Only seven
+bit-rates are available if we use the
 \begin{equation}
   \mathbf{\Delta}_{\text{R}} = \mathbf{\Delta}_{\text{G}} = \mathbf{\Delta}_{\text{B}}
   \label{eq:simple_Q}
@@ -53,8 +53,6 @@ slope~\cite{vruiz__information_theory}.
 \section{Implementation}
 The described algorithm has been implemented in this
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb}{notebook}.
-
-%}}}
 
 \section{What do I have to do?}
 

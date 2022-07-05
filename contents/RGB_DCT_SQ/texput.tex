@@ -4,57 +4,88 @@
 \title{\SM{} - Removing $\text{RGB}$ Redundancy with the DCT (Discrete Cosine Transform)}
 
 \maketitle
-
 \tableofcontents
 
-\section{Description of the task}
-%{{{
-
-This task explains how the RD
-tradeoff~\cite{vruiz__information_theory} can be
-improved\footnote{Compared to the coding algorithm in which only Q+PNG
-is applied to each color component, directly.} when the color
-redundancy~\cite{vruiz__visual_redundancy} is exploited. The idea is
-to concentrate, as much as possible, the visual information in a
-smaller number of color channels\footnote{Also refered by color
-components.}. In the case of the DCT applied to the color domain, most
-of the energy is ``concentrated'' in the first subband($\text{DCT}_0$)
-which basically represents the
+\section{Objective}
+Implement a lossy image compressor that exploits the inter-channel
+redundancy~\cite{vruiz__information_theory} in $\text{RGB}$ images. To
+achive this, we use the DCT~\cite{vruiz__DCT} applied over the color
+dimension~\cite{vruiz__image_IO}, resulting in an concentration of the
+energy of the image in the first
+subband~\cite{vruiz__transform_coding} ($\text{DCT}^0$) which
+basically represents the
 \href{https://en.wikipedia.org/wiki/Luminance}{luminance} of the
-image.
-
-%}}}
-
+image. Notice that the visual
+redundancy~\cite{vruiz__visual_redundancy} is not considered.
 
 \section{Color decorrelation with the DCT}
-%{{{ 
+The DCT is a orthonormal transform that convolves cosine functions
+with the input sinal (in this case, the pixels of the compressed
+image). The output of the transform is a set of three subbands
+$\{\text{DCT}^0, \text{DCT}^1, \text{DCT}^2$. Notice that the number
+of coefficients in a subband $\text{DCT}^s$ is the same that the
+number of pixels in the original image $\mathbf{I}$ (or the number of
+components in a channel $\mathbf{I}^c$).
 
-One way of achieving the decorrelation in the $\text{RGB}$ domain is
-to use
-\href{https://vicente-gonzalez-ruiz.github.io/transform_coding/}{Transform
-  Coding}~\cite{vruiz__transform_coding} applied between the color
-components to concentrate information of the image in a small set of
-coefficients, that after a quantization can be compressed with a
-better RD performance~\cite{vruiz__information_theory}. For this task
-we will use the DCT~\cite{vruiz__DCT}. To measure the amount of energy
-compaction we can quantize the coefficients (the output of the forward
-transform) and to entropy encode~\cite{vruiz__information_theory} the
-result.
-
-After using the DCT we will obtain a new ``image'' in which the
-channels are called subbands~\cite{vruiz__transform_coding} and
-where there are three coefficients $\text{DCT}^0_{i,j}$,
-$\text{DCT}^1_{i,j}$, and $\text{DCT}^2_{i,j}$, per ``pixel''
-$\mathbf{I}_{i,j}$. Notice that the number of coefficients in a
-subband $\text{DCT}^s$ is the same that the number of pixels in
-$\mathbf{I}$ (or the number of components in a channel
-$\mathbf{I}^c$).
+\section{Distortion control}
+We do not provide any accurate distortion control algorithm.  After
+using the DCT, the coefficients are quantized with a deadzone
+quantizer, simulating a bit-plane encoding. However, the dynamic range
+of the $\text{DCT}^0$ coefficients doubles the dynamic range of the
+pixels, and therefore, the highest quantization step will be
+$\Delta=256$. Therefore, we will have eight points in our RD curve
+that satisfy that
+\begin{equation}
+  \mathbf{\Delta}_{\text{DCT}^0} = \mathbf{\Delta}_{\text{DCT}^1} = \mathbf{\Delta}_{\text{DCT}^2}.
+  \label{eq:simple_Q}
+\end{equation}
 
 Notice that the DCT is orthogonal and therefore, the contributions of
 the subbands (to the quality of the reconstructed image) are
 independent and therefore, additive. Because the DCT is also
 orthonormal, we can measure the distortion in both, the image and the
 transform domain.
+
+\section{Rate control}
+Since PNG does not provide accurate rate control, we can only select
+between eight bit-rates that safisfy the Eq.~\eqred{eq:simple_Q}.
+
+\section{A better rate control (TO-DO)}
+\label{sec:increasing}
+We can also use the intermediate RD points between each
+Eq.~\eqref{eq:simple_Q}-point to increase the resolution of the
+decompressed image.
+
+\section{Implementation}
+The described algorithm has been implemented in this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb}{notebook}.
+
+\section{What do I have to do?}
+
+\begin{enumerate}
+\item Please, modify the
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb}{notebook}
+  to increse the number of RD points following the procedure described
+  in Section~\ref{sec:increasing}.
+\item Which redundancies are we exploiting in our image compressor?
+\end{enumerate}
+
+\section{Timming}
+
+Please, finish this milestone before the next class session.
+
+\section{Deliverables}
+
+None.
+
+\section{Resources}
+
+\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
+\bibliography{maths,data-compression,signal-processing,DWT,image-compression,image-processing}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{comment}
 
 \section{Scalar quantization in the ($\text{DCT}_0,\text{DCT}_1,\text{DCT}_2$) domain}
 %{{{
@@ -101,33 +132,7 @@ not its use.\footnote{This kind of comparison is commonly called
 functionality of the system to see how its ausence impacts on the
 performance.} 
 
-\section{What do I have to do?}
-
-\begin{enumerate}
-\item Which redundancies are we exploiting in our image compressor?
-\item Please, run the
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT/RGB_DCT.ipynb}{notebook}
-  to learn some insights about the compression of images using the
-  DCT.
-\item Try to compress different images. Is the Color-DCT always
-  effective (are RD curves better than compressing the image in
-  the RGB domain)?
-\end{enumerate}
-
-\section{Timming}
-
-Please, finish this milestone before the next class session.
-
-\section{Deliverables}
-
-None.
-
-\section{Resources}
-
-\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{maths,data-compression,signal-processing,DWT,image-compression,image-processing}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{comment}
 
 \begin{comment}
    The steps

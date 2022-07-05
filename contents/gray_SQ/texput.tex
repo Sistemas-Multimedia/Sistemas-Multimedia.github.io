@@ -7,8 +7,6 @@
 \tableofcontents
 
 \section{Objective}
-%{{{ 
-
 This task shows how to implement a simple
 \href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy
   (gray-scale)~\cite{vruiz__image_IO} image compressor} based on
@@ -20,11 +18,9 @@ number of different gray tones in the image
 distinguish more than 64 different gray colors). We will compare its
 RD performance~\cite{vruiz__information_theory} with JPEG.
 
-%}}}
-
 \section{Distortion control}
-
-Our compressor is able to control the number of gray tones in the
+We do not provide any accurate distortion control algorithm. Our
+compressor is able to control the number of gray tones in the
 reconstructed image, using a deadzone scalar quantizer. The
 quantization steps are selected simulating a
 \href{https://en.wikipedia.org/wiki/Bit_plane}{bit-plane}
@@ -34,8 +30,6 @@ that we cannot control the distortion in terms of the RMSE, for
 example.
 
 \section{Rate control}
-%{{{
-
 The bit-rate (the number of bits/pixel) obtained after using
 scalar quantization quantization and PNG depends on:
 \begin{enumerate}
@@ -55,11 +49,7 @@ example) and the $y$-axis represents the distortion (the
 \href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{Root
   Mean Square Error (RMSE)}, for example). However, notice that only seven RD points will be available\footnote{This is a direct consequence of using bit-plane encoding.}, and the rate of each point is not controllable.\footnote{Because we cannot control the bit-rate with PNG.}
 
-%}}}
-
 \section{What do I have to do?}
-%{{{
-
 \begin{enumerate}
 \item Which redundancies are we exploiting with our image compressor? 
 \item Create a notebook named ``bit-rate\_control.ipynb'' that, given
@@ -73,17 +63,12 @@ example) and the $y$-axis represents the distortion (the
   of the input image.
 \end{enumerate}
 
-%}}}
-
 \section{Timming}
-
 Please, finish this milestone before the next class session.
 
 \section{Deliverables}
-
 None.
 
 \section{Resources}
-
 \renewcommand{\addcontentsline}[3]{} % Remove functionality of \addcontentsline
 \bibliography{data-compression,signal-processing,DWT,image-processing,quantization,information_theory}
