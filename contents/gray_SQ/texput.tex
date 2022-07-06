@@ -19,7 +19,7 @@ distinguish more than 64 different gray colors).
 
 \section{Scalar quantization applied to the ``intensity'' domain}
 The compressor implemented in
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb}{gray\_SQ\_midtread.ipynb}
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb}{gray\_SQ\_deadzone.ipynb}
 uses a deadzone quantizer, and the quantization steps are
 $\Delta\in\{128, 64, 32, 16, 8, 4, 2, 1\}$ (powers of $2$), simulating
 a \href{https://en.wikipedia.org/wiki/Bit_plane}{bit-plane}
@@ -29,7 +29,6 @@ incorporated to the compressor.
 
 \section{What do I have to do?}
 \begin{enumerate}
-\item Which redundancies are we exploiting with our image compressor? 
 \item Create a new notebook named ``bit-rate\_control.ipynb'' that,
   given a maximum bit-rate, finds the quantization step $\Delta^*$
   that minimizes the distortion. Use the

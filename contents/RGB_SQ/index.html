@@ -20,13 +20,13 @@
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - Scalar Quantization in
 the \(\text {RGB}\) Color Domain</h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>July 5, 2022</span></div>
+<div class='date'><span class='ecrm-1200'>July 6, 2022</span></div>
    </div>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
     <span class='sectionToc'>1 <a href='#objective' id='QQ2-1-2'>Objective</a></span>
-<br />    <span class='sectionToc'>2 <a href='#distortion-control' id='QQ2-1-3'>Distortion control</a></span>
-<br />    <span class='sectionToc'>3 <a href='#rate-control' id='QQ2-1-4'>Rate control</a></span>
+<br />    <span class='sectionToc'>2 <a href='#exploted-redundancy' id='QQ2-1-3'>Exploted redundancy</a></span>
+<br />    <span class='sectionToc'>3 <a href='#scalar-quantization-applied-to-the-rgb-domain' id='QQ2-1-4'>Scalar quantization applied to the \(\text {RGB}\) domain</a></span>
 <br />    <span class='sectionToc'>4 <a href='#increasing-the-number-of-rd-points-todo' id='QQ2-1-5'>Increasing the number of RD points (TO-DO)</a></span>
 <br />    <span class='sectionToc'>5 <a href='#implementation' id='QQ2-1-6'>Implementation</a></span>
 <br />    <span class='sectionToc'>6 <a href='#what-do-i-have-to-do' id='QQ2-1-7'>What do I have to do?</a></span>
@@ -34,69 +34,67 @@ the \(\text {RGB}\) Color Domain</h2>
 <br />    <span class='sectionToc'>8 <a href='#deliverables' id='QQ2-1-9'>Deliverables</a></span>
 <br />    <span class='sectionToc'>9 <a href='#resources' id='QQ2-1-10'>Resources</a></span>
    </div>
-<!-- l. 10 --><p class='noindent'>
+<!-- l. 9 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='objective'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Objective</h3>
-<!-- l. 11 --><p class='noindent'>In this task we are going to develop a rudimentery <a href='https://en.wikipedia.org/wiki/Lossy_compression'>lossy (\(\text {RGB}\)) image <span class='cite'>[<span class='ecbx-1000'>?</span>]</span> compressor</a>
-based on scalar quantization <span class='cite'>[<span class='ecbx-1000'>?</span>]</span> and PNG <span class='cite'>[<a href='#Xvruiz__PNG'>2</a>]</span>. This compressor removes the number
-of different colors in the image (<a href='https://en.wikipedia.org/wiki/Visual_system'>humans</a> hardly distinguish more than 64 different
-colors). We will compare its RD performance <span class='cite'>[<a href='#Xvruiz__information_theory'>1</a>]</span> with JPEG.
+<!-- l. 10 --><p class='noindent'>The image compressor developed in the task <a href='https://sistemas-multimedia.github.io/contents/gray_SQ/'>Scalar Quantization of Gray-scale
+Images</a> can be extended to encode color \(\text {RGB}\) images if each color channel is quantized <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>
+and the quantization indexes are entropy encoded with a color image compressor
+such as PNG <span class='cite'>[<a href='#Xvruiz__PNG'>2</a>]</span>.
                                                                   
 
                                                                   
-</p><!-- l. 21 --><p class='noindent'>
+</p><!-- l. 18 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='distortion-control'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Distortion control</h3>
-<!-- l. 22 --><p class='noindent'>Using a deadzone quantizer applied to each channel of the image we are able to
-control the number of colors (see the Section <span class='ecti-1000'>Distortion control </span>in the task <span class='ecti-1000'>Scalar
-</span><span class='ecti-1000'>Quantization of Gray-scale Images</span>). The quantization steps are powers of \(2\) to
-simulate a progressive bit-plane encoding. Notice that we cannot control the
-distortion in terms of the RMSE, for example.
-</p><!-- l. 30 --><p class='noindent'>
+   <h3 class='sectionHead' id='exploted-redundancy'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Exploted redundancy</h3>
+<!-- l. 19 --><p class='noindent'>The lossy compressor exploits the fact that <a href='https://en.wikipedia.org/wiki/Visual_system'>humans</a> hardly distinguish more than 64
+different colors. Therefore, the only source of “redundancy” removed is the visual
+redundancy.
+</p><!-- l. 23 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='rate-control'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Rate control</h3>
-<!-- l. 31 --><p class='noindent'>Using PNG we cannot control the rate with accuracy (see the Section <span class='ecti-1000'>Rate control </span>in
-the task <span class='ecti-1000'>Scalar Quantization of Gray-scale Images</span>). Only \(7\) bit-rates are available if
-we use the \begin {equation}  \mathbf {\Delta }_{\text {R}} = \mathbf {\Delta }_{\text {G}} = \mathbf {\Delta }_{\text {B}} \label {eq:simple_Q}  \end {equation}
-quantization pattern, which from a visual perspective is the only choice if we want to
-quantize each channel equally (without penalizing one channel against the
-others).
-</p><!-- l. 40 --><p class='noindent'>
+   <h3 class='sectionHead' id='scalar-quantization-applied-to-the-rgb-domain'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Scalar quantization applied to the \(\text {RGB}\) domain</h3>
+<!-- l. 24 --><p class='noindent'>The \(\text {RGB}\) domain is additive, which means that the distortion generated in one of the
+channels is identical to the distortion generated in the reconstructed image.
+Therefore, we quantization patter used in the compressor is \begin {equation}  \mathbf {\Delta }_{\text {R}} = \mathbf {\Delta }_{\text {G}} = \mathbf {\Delta }_{\text {B}}. \label {eq:simple_Q}  \end {equation}
+Notice also that any other combination of quantization steps should generate some
+bias of the chroma to one of the basic colors (red, green and blue).
+</p><!-- l. 36 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='increasing-the-number-of-rd-points-todo'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Increasing the number of RD points (TO-DO)</h3>
-<!-- l. 42 --><p class='noindent'>If the Eq. \eqref{eq:simple_Q} does not need to be satisfied, we can increase the
-accuracy of the rate/distortion control using also the “intermediate” points of the
-bit-plane progressive RD curve. Therefore, starting for example by the left points of
-the RD curve, after each Eq. \eqref{eq:simple_Q}-point, we must decide
-which option is more advantageous: (1) encode the next bit-plane of the \(\text {R}\)
+<!-- l. 38 --><p class='noindent'>If the Eq. \eqref{eq:simple_Q} does not need to be satisfied, we can increase the
+resolution of the rate/distortion control using also the “intermediate” points of the
+bit-plane progressive RD curve. Therefore, starting for example by the (usually top)
+left point of the RD curve, after each Eq. \eqref{eq:simple_Q}-point, we must
+decide which option is more advantageous: (1) encode the next bit-plane of the \(\text {R}\)
 channel, (2) encode the next bit-plane of the \(\text {G}\) channel, or (3) encode the next
-bit-plane of the \(\text {B}\) channel. We will select the option that provides the highest RD
+bit-plane of the \(\text {B}\) channel. We should select the option that provides the highest RD
 slope <span class='cite'>[<a href='#Xvruiz__information_theory'>1</a>]</span>.
-</p><!-- l. 53 --><p class='noindent'>
+</p><!-- l. 49 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='implementation'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Implementation</h3>
-<!-- l. 54 --><p class='noindent'>The described algorithm has been implemented in this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb'>notebook</a>.
-</p><!-- l. 59 --><p class='noindent'>
+<!-- l. 50 --><p class='noindent'>The described algorithm has been implemented in this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb'>notebook</a>.
+</p><!-- l. 53 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>6   </span> <a id='x1-70006'></a>What do I have to do?</h3>
+<!-- l. 55 --><p class='noindent'>
                                                                   
 
                                                                   
-<!-- l. 61 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-7002x1'>Please, modify the <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb'>notebook</a> to increse the number of RD points following
      the procedure described in Section <a href='#increasing-the-number-of-rd-points-todo'>4<!-- tex4ht:ref: sec:increasing  --></a>.
      </li>
-<li class='enumerate' id='x1-7004x2'>Which redundancies are we exploiting in our image compressor?</li></ol>
-<!-- l. 69 --><p class='noindent'>
+<li class='enumerate' id='x1-7004x2'>Which   redundancies   are   we   exploiting   in   this   improved   image
+     “compressor”?</li></ol>
+<!-- l. 64 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='timming'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Timming</h3>
-<!-- l. 71 --><p class='noindent'>Please, finish this milestone before the next class session.
-</p><!-- l. 73 --><p class='noindent'>
+<!-- l. 66 --><p class='noindent'>Please, finish this milestone before the next class session.
+</p><!-- l. 68 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='deliverables'><span class='titlemark'>8   </span> <a id='x1-90008'></a>Deliverables</h3>
-<!-- l. 75 --><p class='noindent'>None.
-</p><!-- l. 77 --><p class='noindent'>
+<!-- l. 70 --><p class='noindent'>None.
+</p><!-- l. 72 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='resources'><span class='titlemark'>9   </span> <a id='x1-100009'></a>Resources</h3>
    <div class='thebibliography'>
