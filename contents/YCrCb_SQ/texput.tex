@@ -1,52 +1,29 @@
 % Emacs, this is -*-latex-*-
 
-\input{../../definitions} \title{\SM{} - Study Guide - Image
-  Compression using the $\text{YCrCb}$ Color Transform}
+\input{../../definitions} \title{\SM{} - Removing $\text{RGB}$ Redundancy with the $\text{YCrCb}$ Color Transform}
 
 \maketitle
 \tableofcontents
 
 \section{Objective}
-Let's use the
-\href{https://en.wikipedia.org/wiki/YCbCr}{$\text{YCrCb}$} color (from
-the \text{RGB} domain) transform to exploit the color redundancy of
-$\text{RGB}$ images~\cite{vruiz__visual_redundancy}. 
+Similarly to
+\href{https://sistemas-multimedia.github.io/contents/RGB_DCT_SQ/}{the
+  use of the DCT over the color domain} to remove the interchannel
+redundanc~\cite{vruiz__visual_redundancy}, we can use the
+\href{https://en.wikipedia.org/wiki/YCbCr}{$\text{YCrCb}$} color
+transform~\cite{vruiz__transform_coding,vruiz__YCrCb} to exploit the color redundancy of $\text{RGB}$ images.
 
-\section{The $\text{YCrCb}$ color domain}
-$\text{YCrCb}$ is a \emph{luma}-based
-(luminance-based\footnote{Luminance can be considered as the intensity
-part of a viual stimuli.} color domain. This domain rely on the idea
-of separating the luminance coefficients (Y) from two \emph{chroma}
-coefficients (red and blue in the case of $\text{YCrCb}$). After using
-the transform, most of the energy will be concentrated in the luma
-($\text{Y}$) subband.
+\section{Decorrelation with the $\text{YCrCb}$}
+The $\text{YCrCb}$ transform uses three non-orthogonal
+(interdependent) filters to generate three
+subbands~\cite{vruiz__transform_coding} that we will denote by
+$\text{Y}$, $\text{Cr}$, and $\text{Cb}$~\cite{vruiz__YCrCb}. Since in
+most of the images, most of the energy is concentrated in the subband
+$\text{Y}$, the transformed image improves its RD curve. This can be
+checked in the
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/YCrCb_SQ/YCrCb_SQ.ipynb}{notebook}.
 
-The $\text{YCrCb}$ color model can be considered the digital version
-of the \href{https://en.wikipedia.org/wiki/YUV}{$\text{YUV}$ (analog)
-  color model}, and in some way can be used to maintain the
-compatibility with legacy black and white systems is maintained while
-at the same time the bandwidth of the signal can be optimized by using
-diﬀerent transmission bandwidths for the brightness and the chroma
-components.\footnote{Notice, however, that in the digital world
-bandwidth savings are equivalent to reduce the sampling
-rate.}~\cite{burger2016digital}
-
-\section{Chroma redundancy}
-
-Humans do not perceive detail in the chrominance as well as in they
-does in the
-luminance.~\cite{vruiz__visual_redundancy,burger2016digital}. Consecuently,
-the
-\href{https://en.wikipedia.org/wiki/Sampling_(signal_processing)}{sampling
-  rate} used in the chrominance can be generally reduced to 1/4 of the
-used for the luminance without a noticeable distortion (see
-Fig.~\ref{fig:san-diego_chroma_subsampled}). This
-\href{https://en.wikipedia.org/wiki/Bandwidth_(computing)}{fact is
-  used when compressing} digital still images and is one of the reason
-why, for example, the \href{https://en.wikipedia.org/wiki/JPEG}{JPEG}
-image compressor converts $\text{RGB}$ images to
-$\text{YCrCb}$. However, notice that we will explore this posibility
-in a different task.
+As it can be also seen in this notebook, the  $\text{YCrCb}$ transform the gains of the synthesis filters depends on the amplitude of the coefficients. This basically means that we cannot optimze the quantization steps to minimize the distortion.
 
 \section{Quantization in the $\text{YCrCb}$ domain}
 %{{{ 

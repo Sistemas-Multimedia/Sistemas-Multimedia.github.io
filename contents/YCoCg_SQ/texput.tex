@@ -1,0 +1,97 @@
+% Emacs, this is -*-latex-*-
+
+\input{../../definitions} \title{\SM{} - Study Guide - Image
+  Compression using the $\text{YCoCg}$ Color Transform}
+
+\maketitle
+\tableofcontents
+
+\section{Objective}
+Let's use the
+\href{https://en.wikipedia.org/wiki/YCbCr}{$\text{YCoCg}$} color (from
+the \text{RGB} domain) transform to compress $\text{RGB}$ images.
+
+\section{The $\text{YCoCg}$ color domain}
+$\text{YCoCg}$ is a \emph{luma}-based
+(luminance-based\footnote{Luminance can be considered as the intensity
+part of a viual stimuli.} color domain. This domain rely on the idea
+of separating the luminance coefficients (Y) from two \emph{chroma}
+coefficients (orange and green in the case of $\text{YCoCg}$).
+
+The $\text{YCoCg}$ color model is a succesor of th $\text{YCrCb}$ one,
+where the transform filters has been redefined to be more efficient
+(considering more and new images). Moreover, it can be also considered
+a the digital version of the
+\href{https://en.wikipedia.org/wiki/YUV}{$\text{YUV}$ (analog) color
+  model}.
+
+\section{Chroma redundancy}
+
+Humans do not perceive detail in the chrominance as well as in they
+does in the
+luminance.~\cite{vruiz__visual_redundancy,burger2016digital}. As in
+$\text{YCrCb}$, the
+\href{https://en.wikipedia.org/wiki/Sampling_(signal_processing)}{sampling
+  rate} of the chroma is usually reduces to 1/4 without any noticeable
+distortion. This feature is used in some of the last image and video
+compression systems such as
+\href{https://en.wikipedia.org/wiki/JPEG_XR#Description}{JPEG XR} and
+\href{https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Video_coding_layer}{HEVC}.
+
+\section{Quantization in the YCoCg domain}
+
+%{{{ 
+
+Again, like in the color-DCT, ignoring the possible effects of the
+entropy encoding stage (that could compress more some color subbands),
+the previous gains suggest to use
+\begin{equation}
+  \frac{3}{2}\Delta_{\text{Y}} = \Delta_{\text{Co}} = \frac{3}{2}\Delta_{\text{Cg}}.
+\end{equation}
+See this \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/YCrCb_matrix.ipynb}{notebook}.
+
+If the RD slope of each point depends also on the performance of DEFLATE (something that is normal), we can find the optimal RD curve with the algorithm:
+\begin{enumerate}
+\item Varilling the $\Delta$, estimate (remember that YCoCg is only  near-orthonal), the RD curve of each YCoCg subband can de found (without considering the rest of subbands).
+\item Sort the RD points by their slope.
+\item Apply progressively the combinations of quantization
+  steps. Measure the distortion in the RGB domain (in the transform
+  domain could be only estimated).
+\end{enumerate}
+
+%}}}
+
+\section{What do I have to do?}
+
+\begin{enumerate}
+\item Please, run the previous
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook}
+  to learn some insights about the problem of the optimal
+  quantization in the color domain.
+\item Include in the previous
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook}
+  an implementation of the
+  \href{https://en.wikipedia.org/wiki/JPEG_2000#Color_components_transformation}{RCT
+    (Reversible Color Transform)} and compare it's RD performance with
+  the other transforms.
+\item Implement the transform described in Eq.~\ref{eq:optimal}, and
+  compare it with the other transforms.
+\end{enumerate}
+
+\subsection{Rate-control}
+%{{{
+When the transform is orthogonal, the quantization step of a subband should be inversely proportional to the subband gain.  
+%}}}
+
+\section{Timming}
+
+Please, finish this milestone before the next class session.
+
+\section{Deliverables}
+
+None.
+
+\section{Resources}
+
+\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
+\bibliography{maths,data-compression,signal-processing,DWT,image-compression,image-processing}
