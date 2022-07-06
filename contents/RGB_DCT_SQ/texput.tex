@@ -7,6 +7,90 @@
 \tableofcontents
 
 \section{Objective}
+This task shows how to exploit the inter-channel
+redundancy~\cite{vruiz__visual_redundancy,vruiz__information_theory}
+in $\text{RGB}$ images with the DCT~\cite{vruiz__DCT} applied over the
+color dimension~\cite{vruiz__image_IO}.
+
+\section{Color decorrelation with the DCT}
+The DCT is a orthonormal transform that convolves cosine functions
+with the input sinal (in this case, the components of the pixels of
+the input image). The output of the transform is a set of three
+subbands $\{\text{DCT}^0, \text{DCT}^1, \text{DCT}^2$. Notice that the
+number of coefficients in a subband $\text{DCT}^s$ is the same that
+the number of pixels in the original image $\mathbf{I}$ (or the number
+of components in a channel $\mathbf{I}^c$).
+
+As a result of the use of the DCT, in most of the images there is a
+concentration of the energy of the image in the first
+subband~\cite{vruiz__transform_coding} ($\text{DCT}^0$) which
+basically represents the
+\href{https://en.wikipedia.org/wiki/Luminance}{luminance} of the
+image.
+
+\section{Exploted redundancy}
+The concentration of the energy in the subband $\text{DCT}^0$
+increases the dynamic range of the DCT-color domain compared to the
+dynamic range of the original $\text{RGB}$ image. This has two
+interesting consequences:
+\begin{enumerate}
+\item The entropy of the progressive encoding (by bit-planes) of the
+  DCT coefficients is reduced (compared to the entropy of the
+  bit-planes of the original $\text{RGB}$ pixels). Therefore, the RD
+  performance is improved.
+\item The number of quantization steps can be higher (in the case of
+  the ``color''-DCT, is one more). This increases the number of points
+  in the RD curve generated when the DCT coefficients are encoded by
+  bit-planes.
+\end{enumerate}
+
+\section{Scalar quantization applied to the DCT domain}
+Since the DCT is orthonormal (orthogonal and unitary), we can use the
+simple quantization pattern
+\begin{equation}
+  \mathbf{\Delta}_{\text{DCT}^0} = \mathbf{\Delta}_{\text{DCT}^1} = \mathbf{\Delta}_{\text{DCT}^2}.
+  \label{eq:simple_Q}
+\end{equation}
+Therefore, there is not differente between quantizing in the $\text{RGB}$ or the ($\text{DCT}^0,\text{DCT}^1,\text{DCT}^2$) color domain, except that in the last case, we have one extra bit-plane to encode.
+
+\section{A better rate control (TO-DO)}
+\label{sec:increasing}
+As we did in the case of the \href{https://sistemas-multimedia.github.io/contents/RGB_SQ/}{Scalar Quantization in the $\text{RGB}$ Color Domain}, we can also use the intermediate RD points between each
+Eq.~\eqref{eq:simple_Q}-point to increase the resolution of the
+decompressed image.
+
+\section{Implementation}
+The described algorithm has been implemented in this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb}{notebook}.
+
+\section{What do I have to do?}
+
+\begin{enumerate}
+\item Please, modify the
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb}{notebook}
+  to increse the number of RD points following the procedure described
+  in Section~\ref{sec:increasing}.
+\item Which redundancies are exploited in the new improved image
+  compressor?
+\end{enumerate}
+
+\section{Timming}
+
+Please, finish this milestone before the next class session.
+
+\section{Deliverables}
+
+None.
+
+\section{Resources}
+
+\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
+\bibliography{maths,data-compression,signal-processing,DWT,image-compression,image-processing}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{comment}
+
 Implement a lossy image compressor that exploits the inter-channel
 redundancy~\cite{vruiz__information_theory} in $\text{RGB}$ images. To
 achive this, we use the DCT~\cite{vruiz__DCT} applied over the color
@@ -18,14 +102,7 @@ basically represents the
 image. Notice that the visual
 redundancy~\cite{vruiz__visual_redundancy} is not considered.
 
-\section{Color decorrelation with the DCT}
-The DCT is a orthonormal transform that convolves cosine functions
-with the input sinal (in this case, the pixels of the compressed
-image). The output of the transform is a set of three subbands
-$\{\text{DCT}^0, \text{DCT}^1, \text{DCT}^2$. Notice that the number
-of coefficients in a subband $\text{DCT}^s$ is the same that the
-number of pixels in the original image $\mathbf{I}$ (or the number of
-components in a channel $\mathbf{I}^c$).
+
 
 \section{Distortion control}
 We do not provide any accurate distortion control algorithm.  After
@@ -49,43 +126,6 @@ transform domain.
 \section{Rate control}
 Since PNG does not provide accurate rate control, we can only select
 between eight bit-rates that safisfy the Eq.~\eqred{eq:simple_Q}.
-
-\section{A better rate control (TO-DO)}
-\label{sec:increasing}
-We can also use the intermediate RD points between each
-Eq.~\eqref{eq:simple_Q}-point to increase the resolution of the
-decompressed image.
-
-\section{Implementation}
-The described algorithm has been implemented in this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb}{notebook}.
-
-\section{What do I have to do?}
-
-\begin{enumerate}
-\item Please, modify the
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb}{notebook}
-  to increse the number of RD points following the procedure described
-  in Section~\ref{sec:increasing}.
-\item Which redundancies are we exploiting in our image compressor?
-\end{enumerate}
-
-\section{Timming}
-
-Please, finish this milestone before the next class session.
-
-\section{Deliverables}
-
-None.
-
-\section{Resources}
-
-\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{maths,data-compression,signal-processing,DWT,image-compression,image-processing}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{comment}
 
 \section{Scalar quantization in the ($\text{DCT}_0,\text{DCT}_1,\text{DCT}_2$) domain}
 %{{{
