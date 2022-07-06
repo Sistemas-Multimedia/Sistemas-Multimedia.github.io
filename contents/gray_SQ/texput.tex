@@ -7,7 +7,7 @@
 \tableofcontents
 
 \section{Objective}
-This task shows how to implement a simple
+This task shows how to implement a very simple
 \href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy
   (gray-scale)~\cite{vruiz__image_IO} image compressor} based on
 Scalar
@@ -15,13 +15,38 @@ Quantization~\cite{vruiz__scalar_quantization,sayood2017introduction,vetterli201
 and PNG~\cite{vruiz__PNG}. This compressor basically removes the
 number of different gray tones in the image
 (\href{https://en.wikipedia.org/wiki/Visual_system}{humans} hardly
-distinguish more than 64 different gray colors). We will compare its
-RD performance~\cite{vruiz__information_theory} with JPEG.
+distinguish more than 64 different gray colors).
 
-\section{Scalar quantization}
-A deadzone quantizer has been used, and the quantization steps are
-$\Delta\in\{128, 64, 32, 16, 8, 4, 2, 1\}$ (powers of $2$). When $\Delta=128$ 
+\section{Scalar quantization applied to the ``intensity'' domain}
+The compressor uses a deadzone quantizer, and the quantization steps
+are $\Delta\in\{128, 64, 32, 16, 8, 4, 2, 1\}$ (powers of $2$),
+simulating a \href{https://en.wikipedia.org/wiki/Bit_plane}{bit-plane}
+encoding. Since the quantization step sizes are predetermined, no rate
+or distortion~\cite{vruiz__information_theory} control has been
+incorporated to the compressor.
 
+\section{What do I have to do?}
+\begin{enumerate}
+\item Which redundancies are we exploiting with our image compressor? 
+\item Create a new notebook named ``bit-rate\_control.ipynb'' that,
+  given a maximum bit-rate, finds the quantization step $\Delta^*$
+  that minimizes the distortion. Use the
+  quantizer~\cite{vruiz__scalar_quantization} that your prefer.
+\end{enumerate}
+
+\section{Timming}
+Please, finish this milestone before the next class session.
+
+\section{Deliverables}
+None.
+
+\section{Resources}
+\renewcommand{\addcontentsline}[3]{} % Remove functionality of \addcontentsline
+\bibliography{data-compression,signal-processing,DWT,image-processing,quantization,information_theory}
+
+%%%%%%%%%%%
+
+\begin{comment}
 \section{Distortion control}
 We do not provide any accurate distortion control algorithm. Our
 compressor is able to control the number of gray tones in the
@@ -52,27 +77,4 @@ curve~\cite{vruiz__information_theory}, where the $x$-axis represents the bit-ra
 example) and the $y$-axis represents the distortion (the
 \href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{Root
   Mean Square Error (RMSE)}, for example). However, notice that only seven RD points will be available\footnote{This is a direct consequence of using bit-plane encoding.}, and the rate of each point is not controllable.\footnote{Because we cannot control the bit-rate with PNG.}
-
-\section{What do I have to do?}
-\begin{enumerate}
-\item Which redundancies are we exploiting with our image compressor? 
-\item Create a notebook named ``bit-rate\_control.ipynb'' that, given
-  a maximum bit-rate, finds the quantization step $\Delta^*$ that
-  minimizes the distortion. Use the quantizer that your prefer.
-\item Modify the notebook
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/scalar_quantization/LloydMax.ipynb}{LloydMax
-    Quantization} to include in the rate the amount of bits necessary
-  to encode the
-  \href{https://en.wikipedia.org/wiki/Probability_density_function}{PDF}
-  of the input image.
-\end{enumerate}
-
-\section{Timming}
-Please, finish this milestone before the next class session.
-
-\section{Deliverables}
-None.
-
-\section{Resources}
-\renewcommand{\addcontentsline}[3]{} % Remove functionality of \addcontentsline
-\bibliography{data-compression,signal-processing,DWT,image-processing,quantization,information_theory}
+\end{comment}
