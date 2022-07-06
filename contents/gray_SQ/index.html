@@ -44,7 +44,7 @@ distinguish more than 64 different gray colors).
 
                                                                   
    <h3 class='sectionHead' id='scalar-quantization-applied-to-the-intensity-domain'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Scalar quantization applied to the “intensity” domain</h3>
-<!-- l. 21 --><p class='noindent'>The compressor implemented in <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb'>gray_SQ_midtread.ipynb</a> uses a deadzone
+<!-- l. 21 --><p class='noindent'>The compressor implemented in <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb'>gray_SQ_deadzone.ipynb</a> uses a deadzone
 quantizer, and the quantization steps are \(\Delta \in \{128, 64, 32, 16, 8, 4, 2, 1\}\) (powers of \(2\)), simulating a <a href='https://en.wikipedia.org/wiki/Bit_plane'>bit-plane</a>
 encoding. Since the quantization step sizes are predetermined, no rate or
 distortion <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span> control has been incorporated to the compressor.
@@ -53,31 +53,29 @@ distortion <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</sp
    <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>3   </span> <a id='x1-40003'></a>What do I have to do?</h3>
 <!-- l. 31 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-4002x1'>Which redundancies are we exploiting with our image compressor?
-     </li>
-<li class='enumerate' id='x1-4004x2'>Create  a  new  notebook  named  “bit-rate_control.ipynb”  that,  given  a
+<li class='enumerate' id='x1-4002x1'>Create  a  new  notebook  named  “bit-rate_control.ipynb”  that,  given  a
      maximum       bit-rate,       finds       the       quantization       step       \(\Delta ^*\)
      that minimizes the distortion. Use the quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>]</span> that your prefer (see
      the notebooks <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb'>gray_SQ_LloydMax.ipynb</a>, <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_companded.ipynb'>gray_SQ_companded.ipynb</a>,
      <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb'>gray_SQ_midrise.ipynb</a>,            <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb'>gray_SQ_midtread.ipynb</a>,            and
      <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb'>compare_quantizers.ipynb</a>).</li></ol>
-<!-- l. 46 --><p class='noindent'>
+<!-- l. 45 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='timming'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Timming</h3>
-<!-- l. 47 --><p class='noindent'>Please, finish this milestone before the next class session.
-</p><!-- l. 49 --><p class='noindent'>
+<!-- l. 46 --><p class='noindent'>Please, finish this milestone before the next class session.
+</p><!-- l. 48 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='deliverables'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Deliverables</h3>
-<!-- l. 50 --><p class='noindent'>None.
-                                                                  
-
-                                                                  
-</p><!-- l. 52 --><p class='noindent'>
+<!-- l. 49 --><p class='noindent'>None.
+</p><!-- l. 51 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='resources'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Resources</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xvruiz__image_IO'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/image_IO/'>Image IO</a>.
+                                                                  
+
+                                                                  
    </p>
    <p class='bibitem'><span class='biblabel'>
  [2]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/information_theory/'>Information Theory</a>.
