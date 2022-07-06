@@ -18,9 +18,11 @@ number of different gray tones in the image
 distinguish more than 64 different gray colors).
 
 \section{Scalar quantization applied to the ``intensity'' domain}
-The \href{}{compressor} uses a deadzone quantizer, and the quantization steps
-are $\Delta\in\{128, 64, 32, 16, 8, 4, 2, 1\}$ (powers of $2$),
-simulating a \href{https://en.wikipedia.org/wiki/Bit_plane}{bit-plane}
+The compressor implemented in
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb}{gray\_SQ\_midtread.ipynb}
+uses a deadzone quantizer, and the quantization steps are
+$\Delta\in\{128, 64, 32, 16, 8, 4, 2, 1\}$ (powers of $2$), simulating
+a \href{https://en.wikipedia.org/wiki/Bit_plane}{bit-plane}
 encoding. Since the quantization step sizes are predetermined, no rate
 or distortion~\cite{vruiz__information_theory} control has been
 incorporated to the compressor.
@@ -36,8 +38,9 @@ incorporated to the compressor.
   \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb}{gray\_SQ\_LloydMax.ipynb},
   \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_companded.ipynb}{gray\_SQ\_companded.ipynb},
   \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb}{gray\_SQ\_midrise.ipynb},
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb}{gray\_SQ\_midtread.ipynb},
   and
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb}{gray\_SQ\_midtread.ipynb}).
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb}{compare\_quantizers.ipynb}).
 \end{enumerate}
 
 \section{Timming}
