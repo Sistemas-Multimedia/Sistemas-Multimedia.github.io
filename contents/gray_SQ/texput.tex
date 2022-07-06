@@ -18,6 +18,10 @@ number of different gray tones in the image
 distinguish more than 64 different gray colors). We will compare its
 RD performance~\cite{vruiz__information_theory} with JPEG.
 
+\section{Scalar quantization}
+A deadzone quantizer has been used, and the quantization steps are
+$\Delta\in\{128, 64, 32, 16, 8, 4, 2, 1\}$ (powers of $2$). When $\Delta=128$ 
+
 \section{Distortion control}
 We do not provide any accurate distortion control algorithm. Our
 compressor is able to control the number of gray tones in the

@@ -6,12 +6,10 @@
 \tableofcontents
 
 \section{Objective}
-Similarly to
-\href{https://sistemas-multimedia.github.io/contents/RGB_DCT_SQ/}{the
-  use of the DCT over the color domain} to remove the interchannel
-redundanc~\cite{vruiz__visual_redundancy}, we can use the
+We can use the
 \href{https://en.wikipedia.org/wiki/YCbCr}{$\text{YCrCb}$} color
-transform~\cite{vruiz__transform_coding,vruiz__YCrCb} to exploit the color redundancy of $\text{RGB}$ images.
+transform~\cite{vruiz__transform_coding,vruiz__YCrCb} to exploit the
+color redundancy of $\text{RGB}$ images.
 
 \section{Decorrelation with the $\text{YCrCb}$}
 The $\text{YCrCb}$ transform uses three non-orthogonal
@@ -23,8 +21,52 @@ $\text{Y}$, the transformed image improves its RD curve. This can be
 checked in the
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/YCrCb_SQ/YCrCb_SQ.ipynb}{notebook}.
 
-As it can be also seen in this notebook, the  $\text{YCrCb}$ transform the gains of the synthesis filters depends on the amplitude of the coefficients. This basically means that we cannot optimze the quantization steps to minimize the distortion.
+As it can be also seen in this notebook, the $\text{YCrCb}$ transform
+the gains of the synthesis filters depends on the amplitude of the
+coefficients. This basically means that we cannot optimze the
+quantization steps to minimize the distortion.
 
+The $\text{YCrCb}$ color domain has been used in JPEG to remove both,
+statistical and visual redundancy.
+
+\section{What do I have to do?}
+
+\begin{enumerate}
+\item Please, run the previous
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook}
+  to learn some insights about the problem of the optimal
+  quantization in the color domain.
+\item Include in the previous
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook}
+  an implementation of the
+  \href{https://en.wikipedia.org/wiki/JPEG_2000#Color_components_transformation}{RCT
+    (Reversible Color Transform)} and compare it's RD performance with
+  the other transforms.
+\item Implement the transform described in Eq.~\ref{eq:optimal}, and
+  compare it with the other transforms.
+\end{enumerate}
+
+\subsection{Rate-control}
+%{{{
+When the transform is orthogonal, the quantization step of a subband should be inversely proportional to the subband gain.  
+%}}}
+
+\section{Timming}
+
+Please, finish this milestone before the next class session.
+
+\section{Deliverables}
+
+None.
+
+\section{Resources}
+
+\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
+\bibliography{maths,data-compression,signal-processing,DWT,image-compression,image-processing}
+
+%%%%%%%%%%%%%%%%%
+
+\begin{comment}
 \section{Quantization in the $\text{YCrCb}$ domain}
 %{{{ 
 The YCrCb transform is not orthogonal and the relative synthesis
@@ -74,39 +116,4 @@ reconstructed image $\tilde{X}$ are not additive (this can be seen in
 this
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook}).
 
-%}}}
-
-\section{What do I have to do?}
-
-\begin{enumerate}
-\item Please, run the previous
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook}
-  to learn some insights about the problem of the optimal
-  quantization in the color domain.
-\item Include in the previous
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/06-color_transform/performance.ipynb}{notebook}
-  an implementation of the
-  \href{https://en.wikipedia.org/wiki/JPEG_2000#Color_components_transformation}{RCT
-    (Reversible Color Transform)} and compare it's RD performance with
-  the other transforms.
-\item Implement the transform described in Eq.~\ref{eq:optimal}, and
-  compare it with the other transforms.
-\end{enumerate}
-
-\subsection{Rate-control}
-%{{{
-When the transform is orthogonal, the quantization step of a subband should be inversely proportional to the subband gain.  
-%}}}
-
-\section{Timming}
-
-Please, finish this milestone before the next class session.
-
-\section{Deliverables}
-
-None.
-
-\section{Resources}
-
-\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{maths,data-compression,signal-processing,DWT,image-compression,image-processing}
+\end{comment}
