@@ -18,62 +18,68 @@ PNG~\cite{vruiz__PNG}.
 \section{Exploted redundancy}
 The lossy compressor exploits the fact that
 \href{https://en.wikipedia.org/wiki/Visual_system}{humans} hardly
-distinguish more than 64 different colors. Therefore, the only source of ``redundancy'' removed is the visual redundancy.
+distinguish more than 64 different colors. Therefore, the only source
+of ``redundancy'' removed is the visual redundancy.
 
 \section{Scalar quantization applied to the $\text{RGB}$ domain}
 The $\text{RGB}$ domain is additive, which means that the distortion
 generated in one of the channels is identical to the distortion
-generated in the reconstructed image. Therefore, we quantization patter used in the compressor is
+generated in the reconstructed image. Therefore, the set of quantization patterns used in the compressor is
 \begin{equation}
-  \mathbf{\Delta}_{\text{R}} = \mathbf{\Delta}_{\text{G}} =
-  \mathbf{\Delta}_{\text{B}}.
+  \mathbf{\Delta}^{\text{R}}_i = \mathbf{\Delta}^{\text{G}}_i =
+  \mathbf{\Delta}^{\text{B}}_i, \forall i.
   \label{eq:simple_Q}
 \end{equation}
 Notice also that any other combination of quantization steps should
-generate some bias of the chroma to one of the basic colors (red,
+generate some bias of the chroma towards one of the basic colors (red,
 green and blue).
-
-\section{Increasing the number of RD points (TO-DO)}
-\label{sec:increasing}
-If the Eq.~\eqref{eq:simple_Q} does not need to be satisfied, we can
-increase the resolution of the rate/distortion control using also the
-``intermediate'' points of the bit-plane progressive RD
-curve. Therefore, starting for example by the (usually top) left point
-of the RD curve, after each Eq.~\eqref{eq:simple_Q}-point, we must
-decide which option is more advantageous: (1) encode the next
-bit-plane of the $\text{R}$ channel, (2) encode the next bit-plane of
-the $\text{G}$ channel, or (3) encode the next bit-plane of the
-$\text{B}$ channel. We should select the option that provides the
-highest RD slope~\cite{vruiz__information_theory}.
 
 \section{Implementation}
 The described algorithm has been implemented in this
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb}{notebook}.
+
+\section{Optimal quantization pattern}
+\label{sec:optimal_RD}
+The quantization pattern defined in the Eq.~\eqref{eq:simple_Q} will
+be optimal only if for all the quantization steps, the condition
+\begin{equation}
+  \mathbf{\lambda}^{\text{R}}_i = \mathbf{\lambda}^{\text{G}}_i =
+  \mathbf{\lambda}^{\text{B}}_i, \forall i
+  \label{eq:optimal_lambda}
+\end{equation}
+is satisfied. In the
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb}{notebook}
+we can explore (at least, visually) the grade of compilance of
+Eq.~\eqref{eq:optimal_lambda}.
 
 \section{What do I have to do?}
 
 \begin{enumerate}
 \item Please, modify the
   \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb}{notebook}
-  to increse the number of RD points following the procedure described
-  in Section~\ref{sec:increasing}.
+  to improve the RD curve. The idea is to find a set of quantization
+  patterns $\mathbf\Delta$ that matches Eq.~\eqref{eq:optimal_lambda}.
+
+  the number of RD points following the procedure described
+  in Section~\ref{sec:optimal_RD}.
 \item Which redundancies are we exploiting in this improved image
-  ``compressor''?
+  compressor?
 \end{enumerate}
 
 \section{Timming}
 
-Please, finish this milestone before the next class session.
+You should present your solutions the day of the ``exam''.
 
 \section{Deliverables}
 
-None.
+The modified notebook.
 
 \section{Resources}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
 \bibliography{information_theory,image-formats}
 
+%%%%%%%%%%%%%%%%%%%%
 
 \begin{comment}
 
@@ -164,4 +170,18 @@ must occur in the definitive RD curve. Notice that the rest of points
 of the curve should appear between these points, but do not
 necessarily belong to the convex hull of the curve (altough they could
 be used to perform a finer rate-control).
+
+\section{Increasing the number of RD points (TO-DO)}
+\label{sec:increasing}
+If the Eq.~\eqref{eq:simple_Q} does not need to be satisfied, we can
+increase the resolution of the rate/distortion control using also the
+``intermediate'' points of the bit-plane progressive RD
+curve. Therefore, starting for example by the (usually top) left point
+of the RD curve, after each Eq.~\eqref{eq:simple_Q}-point, we must
+decide which option is more advantageous: (1) encode the next
+bit-plane of the $\text{R}$ channel, (2) encode the next bit-plane of
+the $\text{G}$ channel, or (3) encode the next bit-plane of the
+$\text{B}$ channel. We should select the option that provides the
+highest RD slope~\cite{vruiz__information_theory}.
+
 \end{comment}

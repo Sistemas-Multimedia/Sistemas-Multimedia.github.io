@@ -9,13 +9,35 @@
 \section{Objective}
 This task is almost identical to
 \href{https://sistemas-multimedia.github.io/contents/YCoCg_SQ/}{Removing
-  $\text{RGB}$ Redundancy with the DCT (Discrete Cosine Transform}, in
-which instead of using the DCT, we are going to use the $\text{YCoCg}$
-transform.
+  $\text{RGB}$ Redundancy with the DCT}, except that we use the
+$\text{YCoCg}$ transform~\cite{vruiz__YCoCg}.
 
-\section{Quantization in the YCoCg domain}
+\section{Color decorrelation with the $\text{YCoCg}$ transform}
+The $\text{YCoCg}$ is a near-orthogonal~\cite{vruiz__YCoCg}
+transform~\cite{vruiz__transform_coding} that has been specifically
+designed to accumulate energy in the $\text{Y}$ luma
+subband~\cite{vruiz__image_IO}. The subbands $\text{Co}$ and
+$\text{Cg}$ represents the croma (orange and green, respectively). The
+size of the subbands is the same than the number of pixels in the
+original image.
 
-%{{{ 
+\section{Effects of the transform}
+Basically the same than in the case of the DCT:
+\begin{enumerate}
+\item Smaller entropy (better RD curves).
+\item High dynamic range (more points in the RD curves).
+\end{enumerate}
+
+\section{Quantization in the $\text{YCoCg}$ domain}
+Unlike the DCT, the gains of the synthesis filters of the inverse
+$\text{YCoCg}$ transform are not the same. As it can be seen in
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/YCoCg_SQ/YCoCG_SQ.ipynb}{YCoCG_SQ.ipynb},
+the $\text{Y}$ and the $\text{Cg}$ subbands are $3/2$ times more
+energetic than the $\text{Co}$ subband. This basically means that the
+quantization error~\cite{vruiz__signal_quantization} generated in the
+$\text{Y}$ and $\text{Cg}$ subbands is more relevant that the
+quantization error generated in the $\text{Co}$ subband (exactly,
+$1.5$ times more important). Therefore, the 
 
 Again, like in the color-DCT, ignoring the possible effects of the
 entropy encoding stage (that could compress more some color subbands),

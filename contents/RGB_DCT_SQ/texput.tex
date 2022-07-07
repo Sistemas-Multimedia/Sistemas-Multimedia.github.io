@@ -10,7 +10,8 @@
 This task shows how to exploit the inter-channel
 redundancy~\cite{vruiz__visual_redundancy,vruiz__information_theory}
 in $\text{RGB}$ images with the DCT~\cite{vruiz__DCT} applied over the
-color dimension~\cite{vruiz__image_IO}.
+color dimension~\cite{vruiz__image_IO}. The DCT is one of the most
+used transforms in audio, image and video coding.
 
 \section{Color decorrelation with the DCT}
 The DCT is a orthonormal transform that convolves cosine functions
@@ -22,26 +23,25 @@ the number of pixels in the original image $\mathbf{I}$ (or the number
 of components in a channel $\mathbf{I}^c$).
 
 As a result of the use of the DCT, in most of the images there is a
-concentration of the energy of the image in the first
+concentration of the energy of the image in the low frequency
 subband~\cite{vruiz__transform_coding} ($\text{DCT}^0$) which
 basically represents the
 \href{https://en.wikipedia.org/wiki/Luminance}{luminance} of the
 image.
 
-\section{Exploted redundancy}
+\section{Effects of the transform}
 The concentration of the energy in the subband $\text{DCT}^0$
 increases the dynamic range of the DCT-color domain compared to the
 dynamic range of the original $\text{RGB}$ image. This has two
 interesting consequences:
 \begin{enumerate}
 \item The entropy of the progressive encoding (by bit-planes) of the
-  DCT coefficients is reduced (compared to the entropy of the
-  bit-planes of the original $\text{RGB}$ pixels). Therefore, the RD
-  performance is improved.
-\item The number of quantization steps can be higher (in the case of
-  the ``color''-DCT, is one more). This increases the number of points
-  in the RD curve generated when the DCT coefficients are encoded by
-  bit-planes.
+  integer representation of the DCT coefficients is reduced (compared
+  to the entropy of the bit-planes of the original $\text{RGB}$
+  pixels). Therefore, the RD performance is improved.
+\item The number of different quantization steps can be higher, and
+  therefore it is possible to increases the number of points in the RD
+  curve.
 \end{enumerate}
 
 \section{Scalar quantization applied to the DCT domain}
@@ -51,13 +51,18 @@ simple quantization pattern
   \mathbf{\Delta}_{\text{DCT}^0} = \mathbf{\Delta}_{\text{DCT}^1} = \mathbf{\Delta}_{\text{DCT}^2}.
   \label{eq:simple_Q}
 \end{equation}
-Therefore, there is not differente between quantizing in the $\text{RGB}$ or the ($\text{DCT}^0,\text{DCT}^1,\text{DCT}^2$) color domain, except that in the last case, we have one extra bit-plane to encode.
+Therefore, there is not differente between quantizing in the
+$\text{RGB}$ or the ($\text{DCT}^0,\text{DCT}^1,\text{DCT}^2$) color
+domain, except that in the last case, we must consider one extra
+bit-plane to encode.
 
 \section{A better rate control (TO-DO)}
 \label{sec:increasing}
-As we did in the case of the \href{https://sistemas-multimedia.github.io/contents/RGB_SQ/}{Scalar Quantization in the $\text{RGB}$ Color Domain}, we can also use the intermediate RD points between each
-Eq.~\eqref{eq:simple_Q}-point to increase the resolution of the
-decompressed image.
+As we did in the case of the
+\href{https://sistemas-multimedia.github.io/contents/RGB_SQ/}{Scalar
+  Quantization in the $\text{RGB}$ Color Domain}, we can also use the
+intermediate RD points between each Eq.~\eqref{eq:simple_Q}-point to
+increase the resolution of the decompressed image.
 
 \section{Implementation}
 The described algorithm has been implemented in this

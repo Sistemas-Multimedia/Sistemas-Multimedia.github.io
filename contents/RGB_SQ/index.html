@@ -20,15 +20,15 @@
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - Scalar Quantization in
 the \(\text {RGB}\) Color Domain</h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>July 6, 2022</span></div>
+<div class='date'><span class='ecrm-1200'>July 7, 2022</span></div>
    </div>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
     <span class='sectionToc'>1 <a href='#objective' id='QQ2-1-2'>Objective</a></span>
 <br />    <span class='sectionToc'>2 <a href='#exploted-redundancy' id='QQ2-1-3'>Exploted redundancy</a></span>
 <br />    <span class='sectionToc'>3 <a href='#scalar-quantization-applied-to-the-rgb-domain' id='QQ2-1-4'>Scalar quantization applied to the \(\text {RGB}\) domain</a></span>
-<br />    <span class='sectionToc'>4 <a href='#increasing-the-number-of-rd-points-todo' id='QQ2-1-5'>Increasing the number of RD points (TO-DO)</a></span>
-<br />    <span class='sectionToc'>5 <a href='#implementation' id='QQ2-1-6'>Implementation</a></span>
+<br />    <span class='sectionToc'>4 <a href='#implementation' id='QQ2-1-5'>Implementation</a></span>
+<br />    <span class='sectionToc'>5 <a href='#optimal-quantization-pattern' id='QQ2-1-6'>Optimal quantization pattern</a></span>
 <br />    <span class='sectionToc'>6 <a href='#what-do-i-have-to-do' id='QQ2-1-7'>What do I have to do?</a></span>
 <br />    <span class='sectionToc'>7 <a href='#timming' id='QQ2-1-8'>Timming</a></span>
 <br />    <span class='sectionToc'>8 <a href='#deliverables' id='QQ2-1-9'>Deliverables</a></span>
@@ -40,7 +40,7 @@ the \(\text {RGB}\) Color Domain</h2>
 <!-- l. 10 --><p class='noindent'>The image compressor developed in the task <a href='https://sistemas-multimedia.github.io/contents/gray_SQ/'>Scalar Quantization of Gray-scale
 Images</a> can be extended to encode color \(\text {RGB}\) images if each color channel is quantized <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>
 and the quantization indexes are entropy encoded with a color image compressor
-such as PNG <span class='cite'>[<a href='#Xvruiz__PNG'>2</a>]</span>.
+such as PNG <span class='cite'>[<a href='#Xvruiz__PNG'>1</a>]</span>.
                                                                   
 
                                                                   
@@ -50,59 +50,56 @@ such as PNG <span class='cite'>[<a href='#Xvruiz__PNG'>2</a>]</span>.
 <!-- l. 19 --><p class='noindent'>The lossy compressor exploits the fact that <a href='https://en.wikipedia.org/wiki/Visual_system'>humans</a> hardly distinguish more than 64
 different colors. Therefore, the only source of “redundancy” removed is the visual
 redundancy.
-</p><!-- l. 23 --><p class='noindent'>
+</p><!-- l. 24 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='scalar-quantization-applied-to-the-rgb-domain'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Scalar quantization applied to the \(\text {RGB}\) domain</h3>
-<!-- l. 24 --><p class='noindent'>The \(\text {RGB}\) domain is additive, which means that the distortion generated in one of the
-channels is identical to the distortion generated in the reconstructed image.
-Therefore, we quantization patter used in the compressor is \begin {equation}  \mathbf {\Delta }_{\text {R}} = \mathbf {\Delta }_{\text {G}} = \mathbf {\Delta }_{\text {B}}. \label {eq:simple_Q}  \end {equation}
-Notice also that any other combination of quantization steps should generate some
-bias of the chroma to one of the basic colors (red, green and blue).
-</p><!-- l. 36 --><p class='noindent'>
+<!-- l. 25 --><p class='noindent'>The \(\text {RGB}\) domain is additive, which means that the distortion generated in one of
+the channels is identical to the distortion generated in the reconstructed
+image. Therefore, the set of quantization patterns used in the compressor is
+\begin {equation}  \mathbf {\Delta }^{\text {R}}_i = \mathbf {\Delta }^{\text {G}}_i = \mathbf {\Delta }^{\text {B}}_i, \forall i. \label {eq:simple_Q}  \end {equation}
+Notice also that any other combination of quantization steps should generate
+some bias of the chroma towards one of the basic colors (red, green and
+blue).
+</p><!-- l. 37 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='increasing-the-number-of-rd-points-todo'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Increasing the number of RD points (TO-DO)</h3>
-<!-- l. 38 --><p class='noindent'>If the Eq. \eqref{eq:simple_Q} does not need to be satisfied, we can increase the
-resolution of the rate/distortion control using also the “intermediate” points of the
-bit-plane progressive RD curve. Therefore, starting for example by the (usually top)
-left point of the RD curve, after each Eq. \eqref{eq:simple_Q}-point, we must
-decide which option is more advantageous: (1) encode the next bit-plane of the \(\text {R}\)
-channel, (2) encode the next bit-plane of the \(\text {G}\) channel, or (3) encode the next
-bit-plane of the \(\text {B}\) channel. We should select the option that provides the highest RD
-slope <span class='cite'>[<a href='#Xvruiz__information_theory'>1</a>]</span>.
-</p><!-- l. 49 --><p class='noindent'>
+   <h3 class='sectionHead' id='implementation'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Implementation</h3>
+<!-- l. 38 --><p class='noindent'>The described algorithm has been implemented in this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb'>notebook</a>.
+</p><!-- l. 41 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='implementation'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Implementation</h3>
-<!-- l. 50 --><p class='noindent'>The described algorithm has been implemented in this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb'>notebook</a>.
-</p><!-- l. 53 --><p class='noindent'>
+   <h3 class='sectionHead' id='optimal-quantization-pattern'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Optimal quantization pattern</h3>
+<!-- l. 43 --><p class='noindent'>The quantization pattern defined in the Eq. \eqref{eq:simple_Q} will be optimal
+only if for all the quantization steps, the condition \begin {equation}  \mathbf {\lambda }^{\text {R}}_i = \mathbf {\lambda }^{\text {G}}_i = \mathbf {\lambda }^{\text {B}}_i, \forall i \label {eq:optimal_lambda}  \end {equation}
+is satisfied. In the <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb'>notebook</a> we can explore (at least, visually) the grade of
+compilance of Eq. \eqref{eq:optimal_lambda}.
+</p><!-- l. 55 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>6   </span> <a id='x1-70006'></a>What do I have to do?</h3>
-<!-- l. 55 --><p class='noindent'>
+<!-- l. 57 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-7002x1'>
                                                                   
 
                                                                   
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-7002x1'>Please, modify the <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb'>notebook</a> to increse the number of RD points following
-     the procedure described in Section <a href='#increasing-the-number-of-rd-points-todo'>4<!-- tex4ht:ref: sec:increasing  --></a>.
-     </li>
-<li class='enumerate' id='x1-7004x2'>Which   redundancies   are   we   exploiting   in   this   improved   image
-     “compressor”?</li></ol>
-<!-- l. 64 --><p class='noindent'>
+     <!-- l. 58 --><p class='noindent'>Please,   modify   the   <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb'>notebook</a>   to   improve   the   RD   curve.   The
+     idea   is   to   find   a   set   of   quantization   patterns   \(\mathbf \Delta \)   that   matches
+     Eq. \eqref{eq:optimal_lambda}.
+     </p><!-- l. 63 --><p class='noindent'>the number of RD points following the procedure described in Section <a href='#optimal-quantization-pattern'>5<!-- tex4ht:ref: sec:optimal_RD  --></a>.
+     </p></li>
+<li class='enumerate' id='x1-7004x2'>Which redundancies are we exploiting in this improved image compressor?</li></ol>
+<!-- l. 69 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='timming'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Timming</h3>
-<!-- l. 66 --><p class='noindent'>Please, finish this milestone before the next class session.
-</p><!-- l. 68 --><p class='noindent'>
+<!-- l. 71 --><p class='noindent'>You should present your solutions the day of the “exam”.
+</p><!-- l. 73 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='deliverables'><span class='titlemark'>8   </span> <a id='x1-90008'></a>Deliverables</h3>
-<!-- l. 70 --><p class='noindent'>None.
-</p><!-- l. 72 --><p class='noindent'>
+<!-- l. 75 --><p class='noindent'>The modified notebook.
+</p><!-- l. 77 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='resources'><span class='titlemark'>9   </span> <a id='x1-100009'></a>Resources</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
- [1]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/information_theory/'>Information Theory</a>.
-   </p>
-   <p class='bibitem'><span class='biblabel'>
- [2]<span class='bibsp'>   </span></span><a id='Xvruiz__PNG'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/PNG/'>Portable Network Graphics</a>.
+ [1]<span class='bibsp'>   </span></span><a id='Xvruiz__PNG'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/PNG/'>Portable Network Graphics</a>.
 </p>
    </div>
     
