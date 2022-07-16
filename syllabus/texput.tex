@@ -49,7 +49,7 @@ image compressors.}
   \begin{description}
   \item [Task 1: {\normalfont
       \href{https://sistemas-multimedia.github.io/contents/PNG/}{PNG
-        (Portable Network Grachics)}.}]
+        (Portable Network Graphics)}.}]
   \item [Task 2: {\normalfont
       \href{https://sistemas-multimedia.github.io/contents/JPEG2000/}{JPEG
         (Joint Photographic Expert Group) 2000}. TO-DO.}]
@@ -102,7 +102,7 @@ basic technique that allows to delete information in images and videos
        \href{https://sistemas-multimedia.github.io/contents/RCT_SQ/}{$\text{RGB}$
          Decorrelation with the
          \href{https://en.wikipedia.org/wiki/JPEG_2000\#Color_components_transformation}{RCT
-           (Reversible Color Transform) domain}}. TO-DO.}]
+           (Reversible Color Transform)}}. TO-DO.}]
    \item [Task 4: {\normalfont
        \href{https://sistemas-multimedia.github.io/contents/LMS_SQ/}{$\text{RGB}$
          Decorrelation with the \href{https://en.wikipedia.org/wiki/LMS}{LMS
@@ -113,7 +113,7 @@ basic technique that allows to delete information in images and videos
    \end{description}
    ~\newline
    
-\item [Milestone 5: {\normalfont Exploiting spatial redundancy in
+\item [Milestone 5: {\normalfont Exploiting the spatial redundancy in
     images:}] \emph{Visual data is highly correlated in the spatial
 domain and such correlation can be considered to achieve higher
 compression ratios}.
@@ -138,15 +138,27 @@ compression ratios}.
   \end{description}
   ~\newline
 
-\item [Milestone 6: {\normalfont Exploiting the temporal redundancy:}] \emph{Most image sequences (videos) are highly
-correlated in the temporal domain and motion estimation can exploit
-this redundancy}.
+\item [Milestone 6: {\normalfont Exploiting the temporal redundancy:}]
+  \emph{In most of the videos, adjacent images are quite similar, and
+  this source of redundancy can be removed to find more compact
+  representations}.
   \begin{description}
   \item [Task 1: {\normalfont
-      \href{https://sistemas-multimedia.github.io/contents/IPP_coding/}{Using IPP Coding}.}]
+      \href{https://sistemas-multimedia.github.io/contents/IPP_coding/}{``Only-Intra'' (III) Coding: the baseline}.}]
+  \item [Task 2: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/CR_coding/}{Conditional Replenishment}.}]
+  \item [Task 3: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/IPP_coding_no_MC/}{``Inter'' (IPP) Coding without Motion Compensation}.}]
+  \item [Task 4: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/IPP_coding/}{``Inter'' (IPP) Coding (with Motion Compensation)}.}]
+  \item [Task 5: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/IBP_coding_MC/}{``Inter'' (IBP) Coding}.}]
+  \item [Task 6: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/MCTF/}{Motion Compensated Temporal Filtering}.}]
   \end{description}
   ~\newline
-  
+
+% A técnicas básicas!
 \item [Milestone 6: {\normalfont Exploiting temporal redundancy in
     the visual domain:}] \emph{Most image sequences (videos) are highly
 correlated in the temporal domain and motion estimation can exploit
@@ -161,6 +173,21 @@ this redundancy}.
   \end{description}
   ~\newline
 
+\item [Milestone 7: {\normalfont Data scalability and
+    multiresolution:}] \emph{Images and videos may want to be
+decompressed of many ways, depending on the requirements of the
+users}.
+  \begin{description}
+  \item [Task 1: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/spatial_scalability/}{Spatial scalability}.}]
+  \item [Task 2: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/temporal_scalability/}{Temporal scalability}.}]
+  \item [Task 3: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/quality_scalability/}{Quality scalability}.}]
+  \end{description}
+  ~\newline
+
+  % A técnicas básicas
 \item [Milestone 7: {\normalfont Removing temporal redundancy in the
     transform domain:}] \emph{Some transforms facilitate the
 multiresolution representation of images and this can be interesting to
