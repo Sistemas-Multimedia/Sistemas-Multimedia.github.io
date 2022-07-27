@@ -21,7 +21,7 @@ Graphics)</title>
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - Entropy coding with
 <a href='https://vicente-gonzalez-ruiz.github.io/PNG/'>PNG</a> (Portable Network Graphics)</h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>July 26, 2022</span></div>
+<div class='date'><span class='ecrm-1200'>July 27, 2022</span></div>
    </div>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -34,59 +34,60 @@ Graphics)</title>
 <!-- l. 13 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='description'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Description</h3>
-<!-- l. 15 --><p class='noindent'>This task introduces, <a href='https://vicente-gonzalez-ruiz.github.io/PNG/'>PNG</a>, a <a href='https://en.wikipedia.org/wiki/Lossless_compression'>lossless image compression format</a> used in this course
-for representing <a href='https://en.wikipedia.org/wiki/Digital_data'>digital</a> <a href='https://en.wikipedia.org/wiki/Digital_image'>images</a> and <a href='https://en.wikipedia.org/wiki/Video'>videos</a>. Basically, a (<a href='https://en.wikipedia.org/wiki/Raster_graphics'>raster</a>) video is a <a href='https://en.wikipedia.org/wiki/Sequence'>sequence</a> of
-images (usually called <a href='https://en.wikipedia.org/wiki/Film_frame'>frames</a>, in the context of video).
-</p><!-- l. 28 --><p class='indent'>   An image can be described as a <a href='https://en.wikipedia.org/wiki/Matrix_(mathematics)'>matrix</a> of <a href='https://en.wikipedia.org/wiki/Pixel'>pixels</a> (PIcture X-ray ELementS),
+<!-- l. 15 --><p class='noindent'>This task introduces <a href='https://vicente-gonzalez-ruiz.github.io/PNG/'>PNG</a>, a <a href='https://en.wikipedia.org/wiki/Lossless_compression'>lossless image compression format</a> used in this
+course for representing <a href='https://en.wikipedia.org/wiki/Digital_data'>digital</a> <a href='https://en.wikipedia.org/wiki/Digital_image'>images</a> and <a href='https://en.wikipedia.org/wiki/Video'>videos</a>. Basically, a (<a href='https://en.wikipedia.org/wiki/Raster_graphics'>raster</a>) video is
+a <a href='https://en.wikipedia.org/wiki/Sequence'>sequence</a> of <a href='https://en.wikipedia.org/wiki/Image'>images</a> (usually called <a href='https://en.wikipedia.org/wiki/Film_frame'>frames</a>, or <a href='https://en.wikipedia.org/wiki/Group_of_pictures'>pictures</a> in the context of
+video).
+</p><!-- l. 29 --><p class='indent'>   An image can be described as a <a href='https://en.wikipedia.org/wiki/Matrix_(mathematics)'>matrix</a> of <a href='https://en.wikipedia.org/wiki/Pixel'>pixels</a> (PIcture X-ray ELementS),
 arranged in a regular 2D grid. Such sequences are usully captured by a <a href='https://en.wikipedia.org/wiki/Charge-coupled_device'>CCD (Charge
-Coupled Device)</a>. In maths, an image is denoted by \begin {equation}  {\mathbf I} = \{{\mathbf I}_{y,x}\}\in \mathbb {P}^{k}, (y,x)\in \mathbb {N}^2\}, \label {eq:image}  \end {equation}
+Coupled Device)</a>. In maths, an image can be denoted by \begin {equation}  {\mathbf I} = \{\{{\mathbf I}_{y,x}\}\in \mathbb {P}^{k}, (y,x)\in \mathbb {N}^2\}, \label {eq:image}  \end {equation}
 where \((y,x)\) is a spatial coordinate<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-2001f1'></a>,
 and \(\mathbb {P}^{k}\) represents the (pixels) <span class='ecti-1000'>values domain</span>, with dimension (number of pixel
 components) \(k\) <span class='cite'>[<a href='#Xburger2016digital'>1</a>]</span>.
                                                                   
 
                                                                   
-</p><!-- l. 46 --><p class='indent'>   In a similar way, a sequence of frames can be denoted by \begin {equation}  {\mathbf V} = \{{\mathbf V}_{t,y,x}\in \mathbb {P}^{k}, (t,y,x)\in \mathbb {N}^3\} = \{{\mathbf I}_t\}, \label {eq:video}  \end {equation}
-where \(t\) is a temporal coordinate, and \(\mathbf I\) is an image such as the described in
-Eq. \eqref{eq:image}.
-</p><!-- l. 54 --><p class='indent'>   Depending on \(k\), we can have grayscale pixels (\(k=1\)), color pixels (\(k=3\)), and multispectral pixels
+</p><!-- l. 47 --><p class='indent'>   In a similar way, a sequence of frames can be denoted by \begin {equation}  {\mathbf V} = \{{\mathbf V}_{t,y,x}\in \mathbb {P}^{k}, (t,y,x)\in \mathbb {N}^3\} = \{{\mathbf I}_t\}, \label {eq:video}  \end {equation}
+where \(t\) represents time, and \(\mathbf I\) is an image such as the described in Eq. \eqref{eq:image}.
+</p><!-- l. 55 --><p class='indent'>   Depending on \(k\), we can have grayscale pixels (\(k=1\)), color pixels (\(k=3\)), and multispectral pixels
 (\(k&gt;3\)).<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-2002f2'></a>
 Finally, if we take into consideration the number of bits/component that usually
 is \(8\) (although this value can be larger specially for grayscale frames), the
-pixel-depth will be \(8\) bits/pixel for grayscale sequences or \(3\times 8=24\) bits/pixel for color
+pixel-depth will be \(8\) bits/pixel for grayscale sequences and \(3\times 8=24\) bits/pixel for color
 ones.
-</p><!-- l. 63 --><p class='indent'>   In our labs, we are going to store a video as a sequence of <a href='https://en.wikipedia.org/wiki/Computer_file'>files</a> with names
-<span class='ectt-1000'>&lt;prefix&gt;000.png</span>, <span class='ectt-1000'>&lt;prefix&gt;001.png</span>, ..., where <span class='ectt-1000'>&lt;prefix&gt; </span>specifies the sequence
-name and “<span class='ectt-1000'>.png</span>” indicates that the frames are coded using <a href='https://en.wikipedia.org/wiki/Portable_Network_Graphics'>PNG</a> (pronounced “ping”)
-image compression format <span class='cite'>[<a href='#Xroelofs1999png'>5</a>, <a href='#Xworld2003portable'>2</a>]</span>. PNG uses <a href='https://en.wikipedia.org/wiki/Differential_pulse-code_modulation'>DPCM</a> and the <a href='https://en.wikipedia.org/wiki/DEFLATE'>DEFLATE</a> <a href='https://en.wikipedia.org/wiki/Entropy_coding'>entropy
-codec</a> (<a href='https://en.wikipedia.org/wiki/Huffman_coding'>Huffman coding</a> + <a href='https://en.wikipedia.org/wiki/Lempel-Ziv-Storer-Szymanski'>LZSS</a>) <span class='cite'>[<a href='#Xnelson96datacompression'>4</a>]</span> to remove the <a href='https://en.wikipedia.org/wiki/Image_compression'>spatial</a> and <a href='https://en.wikipedia.org/wiki/Data_compression'>statistical redudancy</a>.
-Notice that no <a href='https://en.wikipedia.org/wiki/YUV'>color transform</a> is used.
-</p><!-- l. 93 --><p class='indent'>   Finally, notice that all the frames of a sequence usually:
+</p><!-- l. 64 --><p class='indent'>   In our experiments, we are going to store a video as a sequence of <a href='https://en.wikipedia.org/wiki/Computer_file'>files</a> with
+names <span class='ectt-1000'>&lt;prefix&gt;000.png</span>, <span class='ectt-1000'>&lt;prefix&gt;001.png</span>, ..., where <span class='ectt-1000'>&lt;prefix&gt; </span>specifies
+the sequence name and “<span class='ectt-1000'>.png</span>” indicates that the frames are coded using
+<a href='https://en.wikipedia.org/wiki/Portable_Network_Graphics'>PNG</a> (pronounced “ping”) image compression format <span class='cite'>[<a href='#Xroelofs1999png'>5</a>, <a href='#Xworld2003portable'>2</a>]</span>. PNG uses
+<a href='https://en.wikipedia.org/wiki/Differential_pulse-code_modulation'>DPCM</a> and the <a href='https://en.wikipedia.org/wiki/DEFLATE'>DEFLATE</a> <a href='https://en.wikipedia.org/wiki/Entropy_coding'>entropy codec</a> (<a href='https://en.wikipedia.org/wiki/Huffman_coding'>Huffman coding</a> + <a href='https://en.wikipedia.org/wiki/Lempel-Ziv-Storer-Szymanski'>LZSS</a>) <span class='cite'>[<a href='#Xnelson96datacompression'>4</a>]</span> to
+remove<span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a id='x1-2003f3'></a>
+the <a href='https://en.wikipedia.org/wiki/Image_compression'>spatial</a> and <a href='https://en.wikipedia.org/wiki/Data_compression'>statistical redudancy</a>. Notice that no <a href='https://en.wikipedia.org/wiki/YUV'>color transform</a> is used.
+</p><!-- l. 94 --><p class='indent'>   Finally, notice that all the frames of a sequence usually:
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-2004x1'>Have the same <a href='https://en.wikipedia.org/wiki/Image_resolution'>spatial resolution</a>.
+<li class='enumerate' id='x1-2005x1'>Have the same <a href='https://en.wikipedia.org/wiki/Image_resolution'>spatial resolution</a>.
      </li>
-<li class='enumerate' id='x1-2006x2'>Are, at least originally, represented in the <a href='https://en.wikipedia.org/wiki/RGB_color_model'>RGB domain</a>.
+<li class='enumerate' id='x1-2007x2'>Are, at least originally, represented in the <a href='https://en.wikipedia.org/wiki/RGB_color_model'>RGB domain</a>.
      </li>
-<li class='enumerate' id='x1-2008x3'>Depending on the frame, in PNG, each color component (channel) has a
+<li class='enumerate' id='x1-2009x3'>Depending on the frame, in PNG, each color component (channel) has a
      <a href='https://en.wikipedia.org/wiki/Glossary_of_computer_graphics#bit_depth'>bit depth</a> of \(8\) or \(16\) bits, representing an unsigned <a href='https://en.wikipedia.org/wiki/Integer_(computer_science)'>integer</a>.</li></ol>
-<!-- l. 113 --><p class='noindent'>
+<!-- l. 114 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>2   </span> <a id='x1-30002'></a>What do I have to do?</h3>
-<!-- l. 115 --><p class='noindent'>
+<!-- l. 116 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-3002x1'>Run this <a href='https://jupyter.org/'>jupyter</a> <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/PNG/display_video.ipynb'>notebook</a> that shows how to read and write PNG frames.</li></ol>
                                                                   
 
                                                                   
-<!-- l. 124 --><p class='noindent'>
+<!-- l. 125 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='timming'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Timming</h3>
-<!-- l. 126 --><p class='noindent'>Please, finish this task before the next class session.
-</p><!-- l. 128 --><p class='noindent'>
+<!-- l. 127 --><p class='noindent'>Please, finish this task before the next class session.
+</p><!-- l. 129 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='deliverables'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Deliverables</h3>
-<!-- l. 130 --><p class='noindent'>None.
-</p><!-- l. 132 --><p class='noindent'>
+<!-- l. 131 --><p class='noindent'>None.
+</p><!-- l. 133 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='resources'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Resources</h3>
    <div class='thebibliography'>
@@ -115,10 +116,13 @@ Notice that no <a href='https://en.wikipedia.org/wiki/YUV'>color transform</a> i
                                                                   
 
                                                                   
-   <div class='footnotes'><!-- l. 42 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>Notice that we follow the “first row, then column” notation to express the coordinates. This
+   <div class='footnotes'><!-- l. 43 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>Notice that we follow the “first row, then column” notation to express the coordinates. This
 </span><span class='ecrm-0800'>is also used in NumPy </span><span class='cite'><span class='ecrm-0800'>[</span><a href='#Xharris2020array'><span class='ecrm-0800'>3</span></a><span class='ecrm-0800'>]</span></span><span class='ecrm-0800'>, for example.</span></p>
-<!-- l. 57 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>When</span> \(k&gt;3\) <span class='ecrm-0800'>we also use the term “(super/hyper)-spectral” pixels/frames/sequences, depending on
-</span><span class='ecrm-0800'>the value of</span> \(k\)<span class='ecrm-0800'>.</span></p>                                                                                                         </div>
+<!-- l. 58 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>When</span> \(k&gt;3\) <span class='ecrm-0800'>we also use the term “(super/hyper)-spectral” pixels/frames/sequences, depending on
+</span><span class='ecrm-0800'>the value of</span> \(k\)<span class='ecrm-0800'>.</span></p>
+<!-- l. 76 --><p class='indent'>     <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>The amount of redundancy removed depends on several factors (such as the configuration of
+</span><span class='ecrm-0800'>the DEFLATE parameters and the information stored in the image) resulting in an unpredictable
+</span><span class='ecrm-0800'>output bit-rate.</span></p>                                                                                                     </div>
  
 </body> 
 </html>
