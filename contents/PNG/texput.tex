@@ -26,45 +26,10 @@ is a \href{https://en.wikipedia.org/wiki/Sequence}{sequence} of
 \href{https://en.wikipedia.org/wiki/Group_of_pictures}{pictures} in
 the context of video).
 
-An image can be described as a
-\href{https://en.wikipedia.org/wiki/Matrix_(mathematics)}{matrix} of
-\href{https://en.wikipedia.org/wiki/Pixel}{pixels} (PIcture X-ray
-ELementS), arranged in a regular 2D grid. Such sequences are
-usully captured by a
-\href{https://en.wikipedia.org/wiki/Charge-coupled_device}{CCD (Charge
-  Coupled Device)}. In maths, an image can be denoted by
-\begin{equation}
-  {\mathbf I} = \{\{{\mathbf I}_{y,x}\}\in\mathbb{P}^{k}, (y,x)\in\mathbb{N}^2\},
-  \label{eq:image}
-\end{equation}
-where $(y,x)$ is a spatial coordinate\footnote{Notice that we follow
-the ``first row, then column'' notation to express the
-coordinates. This is also used in NumPy~\cite{harris2020array}, for
-example.}, and $\mathbb{P}^{k}$ represents the (pixels) \emph{values
-domain}, with dimension (number of pixel components)
-$k$~\cite{burger2016digital}.
-
-In a similar way, a sequence of frames can be denoted by
-\begin{equation}
-  {\mathbf V} = \{{\mathbf V}_{t,y,x}\in\mathbb{P}^{k}, (t,y,x)\in\mathbb{N}^3\} = \{{\mathbf I}_t\},
-  \label{eq:video}
-\end{equation}
-where $t$ represents time, and ${\mathbf I}$ is an image such
-as the described in Eq.~\eqref{eq:image}.
-
-Depending on $k$, we can have grayscale pixels ($k=1$), color pixels
-($k=3$), and multispectral pixels ($k>3$).\footnote{When $k>3$ we also
-use the term ``(super/hyper)-spectral'' pixels/frames/sequences, depending
-on the value of $k$.} Finally, if we take into consideration the
-number of bits/component that usually is $8$ (although this value can be larger
-specially for grayscale frames), the pixel-depth will be $8$
-bits/pixel for grayscale sequences and $3\times 8=24$ bits/pixel for
-color ones.
-
 In our experiments, we are going to store a video as a sequence of
 \href{https://en.wikipedia.org/wiki/Computer_file}{files} with names
 {\tt <prefix>000.png}, {\tt <prefix>001.png}, ..., where {\tt <prefix>} specifies the
-sequence name and ``{\tt .png}'' indicates that the frames are coded using
+sequence name and ``{\tt .png}'' indicates that the images~\cite{vruiz__image_video} are coded using
 \href{https://en.wikipedia.org/wiki/Portable_Network_Graphics}{PNG}
 (pronounced ``ping'') image compression
 format~\cite{roelofs1999png,world2003portable}. PNG uses
@@ -133,4 +98,4 @@ None.
 \section{Resources}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{python,image-processing,image-compression,text-compression}
+\bibliography{python,image-processing,image-compression,text-compression,image-video-theory}
