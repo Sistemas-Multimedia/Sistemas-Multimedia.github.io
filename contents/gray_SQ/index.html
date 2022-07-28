@@ -20,7 +20,7 @@
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - Scalar Quantization of
 Gray-scale Images</h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>July 6, 2022</span></div>
+<div class='date'><span class='ecrm-1200'>July 28, 2022</span></div>
    </div>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -34,10 +34,10 @@ Gray-scale Images</h2>
 <!-- l. 9 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='objective'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Objective</h3>
-<!-- l. 10 --><p class='noindent'>This task shows how to implement a very simple <a href='https://en.wikipedia.org/wiki/Lossy_compression'>lossy (gray-scale) <span class='cite'>[<a href='#Xvruiz__image_IO'>1</a>]</span> image
-compressor</a> based on Scalar Quantization <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>, <a href='#Xsayood2017introduction'>4</a>, <a href='#Xvetterli2014foundations'>5</a>]</span> and PNG <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>. This compressor
-basically removes the number of different gray tones in the image (<a href='https://en.wikipedia.org/wiki/Visual_system'>humans</a> hardly
-distinguish more than 64 different gray colors).
+<!-- l. 10 --><p class='noindent'>This task shows how to implement a very simple <a href='https://en.wikipedia.org/wiki/Lossy_compression'>lossy (gray-scale) image
+compressor</a> <span class='cite'>[<a href='#Xvruiz__image_IO'>1</a>]</span> based on Scalar Quantization <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>, <a href='#Xsayood2017introduction'>5</a>, <a href='#Xvetterli2014foundations'>6</a>]</span> and PNG <span class='cite'>[<a href='#Xvruiz__PNG'>3</a>]</span>. This
+compressor basically removes the number of different gray tones in the image
+(<a href='https://en.wikipedia.org/wiki/Visual_system'>humans</a> hardly distinguish more than 64 different colors).
 </p><!-- l. 20 --><p class='noindent'>
 </p>
                                                                   
@@ -55,7 +55,7 @@ distortion <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</sp
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-4002x1'>Create  a  new  notebook  named  “bit-rate_control.ipynb”  that,  given  a
      maximum       bit-rate,       finds       the       quantization       step       \(\Delta ^*\)
-     that minimizes the distortion. Use the quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>]</span> that your prefer (see
+     that minimizes the distortion. Use the quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>]</span> that your prefer (see
      the notebooks <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb'>gray_SQ_LloydMax.ipynb</a>, <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_companded.ipynb'>gray_SQ_companded.ipynb</a>,
      <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb'>gray_SQ_midrise.ipynb</a>,            <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb'>gray_SQ_midtread.ipynb</a>,            and
      <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb'>compare_quantizers.ipynb</a>).</li></ol>
@@ -81,14 +81,17 @@ distortion <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</sp
  [2]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/information_theory/'>Information Theory</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [3]<span class='bibsp'>   </span></span><a id='Xvruiz__scalar_quantization'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/scalar_quantization/'>Scalar Quantization</a>.
+ [3]<span class='bibsp'>   </span></span><a id='Xvruiz__PNG'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/PNG/'>Portable Network Graphics</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [4]<span class='bibsp'>   </span></span><a id='Xsayood2017introduction'></a>K. Sayood.   <a href='http://rahilshaikh.weebly.com/uploads/1/1/6/3/11635894/data_compression.pdf'><span class='ecti-1000'>Introduction to Data Compression</span></a>.   Morgan  Kaufmann,
+ [4]<span class='bibsp'>   </span></span><a id='Xvruiz__scalar_quantization'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/scalar_quantization/'>Scalar Quantization</a>.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [5]<span class='bibsp'>   </span></span><a id='Xsayood2017introduction'></a>K. Sayood.   <a href='http://rahilshaikh.weebly.com/uploads/1/1/6/3/11635894/data_compression.pdf'><span class='ecti-1000'>Introduction to Data Compression</span></a>.   Morgan  Kaufmann,
    2017.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [5]<span class='bibsp'>   </span></span><a id='Xvetterli2014foundations'></a>M. Vetterli, J. Kovačević, and V.K. Goyal.  <a href='http://www.fourierandwavelets.org/FSP_v1.1_2014.pdf'><span class='ecti-1000'>Foundations of Signal
+ [6]<span class='bibsp'>   </span></span><a id='Xvetterli2014foundations'></a>M. Vetterli, J. Kovačević, and V.K. Goyal.  <a href='http://www.fourierandwavelets.org/FSP_v1.1_2014.pdf'><span class='ecti-1000'>Foundations of Signal
    </span><span class='ecti-1000'>Processing</span></a>. Cambridge University Press, 2014.
 </p>
    </div>
