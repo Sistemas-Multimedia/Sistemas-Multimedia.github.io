@@ -10,7 +10,7 @@
 The image compressor developed in the task
 \href{https://sistemas-multimedia.github.io/contents/gray_SQ/}{Scalar
   Quantization of Gray-scale Images} can be extended to encode color
-$\text{RGB}$ images if each color channel is
+$\text{RGB}$ (Red, Green and Blue) images if each color channel is
 quantized~\cite{vruiz__scalar_quantization} and the quantization
 indexes are entropy encoded with a color image compressor such as
 PNG~\cite{vruiz__PNG}.
@@ -19,7 +19,7 @@ PNG~\cite{vruiz__PNG}.
 The lossy compressor exploits the fact that
 \href{https://en.wikipedia.org/wiki/Visual_system}{humans} hardly
 distinguish more than 64 different colors. Therefore, the only source
-of ``redundancy'' removed is the visual redundancy.
+of ``redundancy'' exploited is the visual redundancy.
 
 \section{Scalar quantization applied to the $\text{RGB}$ domain}
 The $\text{RGB}$ domain is additive, which means that the distortion
@@ -27,12 +27,13 @@ generated in one of the channels is identical to the distortion
 generated in the reconstructed image. Therefore, the set of quantization patterns used in the compressor is
 \begin{equation}
   \mathbf{\Delta}^{\text{R}}_i = \mathbf{\Delta}^{\text{G}}_i =
-  \mathbf{\Delta}^{\text{B}}_i, \forall i.
+  \mathbf{\Delta}^{\text{B}}_i,
   \label{eq:simple_Q}
 \end{equation}
-Notice also that any other combination of quantization steps should
-generate some bias of the chroma towards one of the basic colors (red,
-green and blue).
+where $i$ represents the $i$-th quantization step size.  Notice also
+that any other combination of quantization steps should generate some
+bias of the chroma towards one of the basic colors (red, green and
+blue).
 
 \section{Implementation}
 The described algorithm has been implemented in this
@@ -44,10 +45,10 @@ The quantization pattern defined in the Eq.~\eqref{eq:simple_Q} will
 be optimal only if for all the quantization steps, the condition
 \begin{equation}
   \mathbf{\lambda}^{\text{R}}_i = \mathbf{\lambda}^{\text{G}}_i =
-  \mathbf{\lambda}^{\text{B}}_i, \forall i
+  \mathbf{\lambda}^{\text{B}}_i
   \label{eq:optimal_lambda}
 \end{equation}
-is satisfied. In the
+is satisfied. In the previous
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb}{notebook}
 we can explore (at least, visually) the grade of compilance of
 Eq.~\eqref{eq:optimal_lambda}.
@@ -77,7 +78,7 @@ The modified notebook.
 \section{Resources}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{information_theory,image-formats}
+\bibliography{information_theory,image-formats,quantization}
 
 %%%%%%%%%%%%%%%%%%%%
 
