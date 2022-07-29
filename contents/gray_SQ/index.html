@@ -44,38 +44,40 @@ compressor basically removes the number of different gray tones in the image
 
                                                                   
    <h3 class='sectionHead' id='scalar-quantization-applied-to-the-intensity-domain'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Scalar quantization applied to the “intensity” domain</h3>
-<!-- l. 21 --><p class='noindent'>The compressor implemented in <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb'>gray_SQ_deadzone.ipynb</a> uses a deadzone
-quantizer, and the quantization steps are \(\Delta \in \{128, 64, 32, 16, 8, 4, 2, 1\}\) (powers of \(2\)), simulating a <a href='https://en.wikipedia.org/wiki/Bit_plane'>bit-plane</a>
-encoding. Since the quantization step sizes are predetermined, no rate or
-distortion <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span> control has been incorporated to the compressor.
-</p><!-- l. 30 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>3   </span> <a id='x1-40003'></a>What do I have to do?</h3>
-<!-- l. 31 --><p class='noindent'>
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-4002x1'>Create  a  new  notebook  named  “bit-rate_control.ipynb”  that,  given  a
-     maximum       bit-rate,       finds       the       quantization       step       \(\Delta ^*\)
-     that minimizes the distortion. Use the quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>]</span> that your prefer (see
-     the notebooks <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb'>gray_SQ_LloydMax.ipynb</a>, <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_companded.ipynb'>gray_SQ_companded.ipynb</a>,
-     <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb'>gray_SQ_midrise.ipynb</a>,            <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb'>gray_SQ_midtread.ipynb</a>,            and
-     <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb'>compare_quantizers.ipynb</a>).</li></ol>
-<!-- l. 45 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='timming'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Timming</h3>
-<!-- l. 46 --><p class='noindent'>Please, finish this milestone before the next class session.
+<!-- l. 21 --><p class='noindent'>The notetooks <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_deadzone.ipynb'>gray_SQ_deadzone.ipynb</a>, <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb'>gray_SQ_LloydMax.ipynb</a>,
+<a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_companded.ipynb'>gray_SQ_companded.ipynb</a>, <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb'>gray_SQ_midrise.ipynb</a>, <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb'>gray_SQ_midtread.ipynb</a>
+and <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb'>compare_quantizers.ipynb</a>) shows the performance of
+different scalar quantizers using the quantization step sizes <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>]</span>
+\(\Delta \in \{128, 64, 32, 16, 8, 4, 2, 1\}\)<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-3001f1'></a>
+Notice that, since the quantization step sizes are predetermined,
+no rate or distortion control <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span> has been incorporated into the
+compressor.<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-3002f2'></a>
 </p><!-- l. 48 --><p class='noindent'>
 </p>
+   <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>3   </span> <a id='x1-40003'></a>What do I have to do?</h3>
+<!-- l. 49 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-4002x1'><span class='ecbx-1000'>Implement   a   RD   control:   </span>Create   a   new   notebook   named
+     “bit-rate_control.ipynb”  that,  given  a  maximum  bit-rate  \(R^\text {max}\),  finds  the
+     quantization step \(\Delta ^*\) that minimizes the distortion. Use the quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>]</span>
+     that your prefer.</li></ol>
+<!-- l. 57 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='timming'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Timming</h3>
+<!-- l. 58 --><p class='noindent'>Please, finish this milestone before the next class session.
+</p><!-- l. 60 --><p class='noindent'>
+</p>
    <h3 class='sectionHead' id='deliverables'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Deliverables</h3>
-<!-- l. 49 --><p class='noindent'>None.
-</p><!-- l. 51 --><p class='noindent'>
+<!-- l. 61 --><p class='noindent'>None.
+</p><!-- l. 63 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='resources'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Resources</h3>
-   <div class='thebibliography'>
-   <p class='bibitem'><span class='biblabel'>
- [1]<span class='bibsp'>   </span></span><a id='Xvruiz__image_IO'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/image_IO/'>Image IO</a>.
                                                                   
 
                                                                   
+   <div class='thebibliography'>
+   <p class='bibitem'><span class='biblabel'>
+ [1]<span class='bibsp'>   </span></span><a id='Xvruiz__image_IO'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/image_IO/'>Image IO</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
  [2]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/information_theory/'>Information Theory</a>.
@@ -95,6 +97,13 @@ distortion <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</sp
    </span><span class='ecti-1000'>Processing</span></a>. Cambridge University Press, 2014.
 </p>
    </div>
-    
+   <div class='footnotes'><!-- l. 41 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>There are two reasons for having selected such steps: (1) all of them are powers of</span> \(2\)<span class='ecrm-0800'>,
+</span><span class='ecrm-0800'>simulating a </span><a href='https://en.wikipedia.org/wiki/Bit_plane'><span class='ecrm-0800'>bit-plane</span></a> <span class='ecrm-0800'>encoding (this can be interesting to compare with codecs that compresses the
+</span><span class='ecrm-0800'>data by bit-planes), and (2) when the number of bit-planes is small, and we use steps that are not
+</span><span class='ecrm-0800'>powers of two, the RD curves can have points for bit-rates</span> \(i\) <span class='ecrm-0800'>and</span> \(i+1\) <span class='ecrm-0800'>where the condition</span> \(\lambda _i\ge \lambda _{i+1}\) <span class='ecrm-0800'>(being</span> \(\lambda _i\)
+<span class='ecrm-0800'>the slope of the RD curve at the bit-rate</span> \(i\)<span class='ecrm-0800'>) is not satisfied, which difficults the bit-rate
+</span><span class='ecrm-0800'>control.</span></p><!-- l. 46 --><p class='indent'> <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>When a codec provides RD control, in general this implies that we are able to select the
+</span><span class='ecrm-0800'>output bit-rate and/or the output quality.</span></p>                                                                  </div>
+ 
 </body> 
 </html>
