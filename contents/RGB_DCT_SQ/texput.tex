@@ -11,23 +11,27 @@ This task shows how to exploit the inter-channel
 redundancy~\cite{vruiz__visual_redundancy,vruiz__information_theory}
 in $\text{RGB}$ images with the DCT~\cite{vruiz__DCT} applied over the
 color dimension~\cite{vruiz__image_IO}. The DCT is one of the most
-used transforms in audio, image and video coding.
+used transforms in audio, image and video coding, because it is
+orthonormal (decorrelates, preserves the energy and all the DCT
+subbands has $1$-gain)~\cite{vruiz__transform_coding} and, in general,
+performs (decorrelates) quite well.
 
-\section{Color decorrelation with the DCT}
-The DCT is a orthonormal transform that convolves cosine functions
-with the input sinal (in this case, the components of the pixels of
-the input image). The output of the transform is a set of three
-subbands $\{\text{DCT}^0, \text{DCT}^1, \text{DCT}^2$. Notice that the
-number of coefficients in a subband $\text{DCT}^s$ is the same that
-the number of pixels in the original image $\mathbf{I}$ (or the number
-of components in a channel $\mathbf{I}^c$).
+\section{Decorrelation with the DCT}
+The DCT convolves cosine functions with the input sinal (in this case,
+the components of the pixels of the input image). The output of the
+transform is a set of three subbands $\{\text{DCT}^0, \text{DCT}^1,
+\text{DCT}^2\}$. The number of coefficients in a subband
+$\text{DCT}^s$ is the same that the number of $\text{RGB}$-pixels in
+the original image $\mathbf{I}$, or the number of monochrome-pixels in
+a channel $\mathbf{I}^c$ (see this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb}{notebook}).
 
-As a result of the use of the DCT, in most of the images there is a
-concentration of the energy of the image in the low frequency
-subband~\cite{vruiz__transform_coding} ($\text{DCT}^0$) which
+As a result of the use of the DCT, in most of the images the energy is
+concentrated in the low frequency
+subband~\cite{vruiz__transform_coding} ($\text{DCT}^0$), which
 basically represents the
 \href{https://en.wikipedia.org/wiki/Luminance}{luminance} of the
-image.
+image (see the \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb}{notebook}).
 
 \section{Effects of the transform}
 The concentration of the energy in the subband $\text{DCT}^0$
@@ -38,17 +42,19 @@ interesting consequences:
 \item The entropy of the progressive encoding (by bit-planes) of the
   integer representation of the DCT coefficients is reduced (compared
   to the entropy of the bit-planes of the original $\text{RGB}$
-  pixels). Therefore, the RD performance is improved.
+  pixels). Therefore, the RD performance is improved because in terms
+  of RMSE/bit-rate we are closer to the origin of coordinates.
 \item The number of different quantization steps can be higher, and
   therefore it is possible to increases the number of points in the RD
-  curve.
+  curve. This potentially increases the granularity of the RD control,
+  when applied.
 \end{enumerate}
 
 \section{Scalar quantization applied to the DCT domain}
 Since the DCT is orthonormal (orthogonal and unitary), we can use the
 simple quantization pattern
 \begin{equation}
-  \mathbf{\Delta}_{\text{DCT}^0} = \mathbf{\Delta}_{\text{DCT}^1} = \mathbf{\Delta}_{\text{DCT}^2}.
+  \mathbf{\Delta}^{\text{DCT}^0} = \mathbf{\Delta}^{\text{DCT}^1} = \mathbf{\Delta}^{\text{DCT}^2}.
   \label{eq:simple_Q}
 \end{equation}
 Therefore, there is not differente between quantizing in the
@@ -90,7 +96,7 @@ None.
 \section{Resources}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{maths,data-compression,signal-processing,DWT,image-compression,image-processing}
+\bibliography{maths,data-compression,signal-processing,DWT,image-compression,image-processing,information_theory}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

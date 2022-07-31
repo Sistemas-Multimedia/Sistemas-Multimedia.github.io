@@ -21,13 +21,13 @@ Cosine Transform)</title>
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - Removing \(\text {RGB}\) Redundancy
 with the DCT (Discrete Cosine Transform)</h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>July 6, 2022</span></div>
+<div class='date'><span class='ecrm-1200'>July 30, 2022</span></div>
    </div>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
     <span class='sectionToc'>1 <a href='#objective' id='QQ2-1-2'>Objective</a></span>
-<br />    <span class='sectionToc'>2 <a href='#color-decorrelation-with-the-dct' id='QQ2-1-3'>Color decorrelation with the DCT</a></span>
-<br />    <span class='sectionToc'>3 <a href='#exploted-redundancy' id='QQ2-1-4'>Exploted redundancy</a></span>
+<br />    <span class='sectionToc'>2 <a href='#decorrelation-with-the-dct' id='QQ2-1-3'>Decorrelation with the DCT</a></span>
+<br />    <span class='sectionToc'>3 <a href='#effects-of-the-transform' id='QQ2-1-4'>Effects of the transform</a></span>
 <br />    <span class='sectionToc'>4 <a href='#scalar-quantization-applied-to-the-dct-domain' id='QQ2-1-5'>Scalar quantization applied to the DCT domain</a></span>
 <br />    <span class='sectionToc'>5 <a href='#a-better-rate-control-todo' id='QQ2-1-6'>A better rate control (TO-DO)</a></span>
 <br />    <span class='sectionToc'>6 <a href='#implementation' id='QQ2-1-7'>Implementation</a></span>
@@ -39,77 +39,81 @@ with the DCT (Discrete Cosine Transform)</h2>
 <!-- l. 9 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='objective'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Objective</h3>
-<!-- l. 10 --><p class='noindent'>This task shows how to exploit the inter-channel redundancy <span class='cite'>[<a href='#Xvruiz__visual_redundancy'>4</a>, <span class='ecbx-1000'>?</span>]</span> in \(\text {RGB}\) images with
-the DCT <span class='cite'>[<a href='#Xvruiz__DCT'>1</a>]</span> applied over the color dimension <span class='cite'>[<a href='#Xvruiz__image_IO'>2</a>]</span>.
+<!-- l. 10 --><p class='noindent'>This task shows how to exploit the inter-channel redundancy <span class='cite'>[<a href='#Xvruiz__visual_redundancy'>5</a>, <a href='#Xvruiz__information_theory'>3</a>]</span> in \(\text {RGB}\) images with
+the DCT <span class='cite'>[<a href='#Xvruiz__DCT'>1</a>]</span> applied over the color dimension <span class='cite'>[<a href='#Xvruiz__image_IO'>2</a>]</span>. The DCT is one of the most used
+transforms in audio, image and video coding, because it is orthonormal (decorrelates,
+preserves the energy and all the DCT subbands has \(1\)-gain) <span class='cite'>[<a href='#Xvruiz__transform_coding'>4</a>]</span> and, in general,
+performs (decorrelates) quite well.
                                                                   
 
                                                                   
-</p><!-- l. 15 --><p class='noindent'>
+</p><!-- l. 19 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='color-decorrelation-with-the-dct'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Color decorrelation with the DCT</h3>
-<!-- l. 16 --><p class='noindent'>The DCT is a orthonormal transform that convolves cosine functions with the input
-sinal (in this case, the components of the pixels of the input image). The output of
-the transform is a set of three subbands \(\{\text {DCT}^0, \text {DCT}^1, \text {DCT}^2\). Notice that the number of coefficients in a
-subband \(\text {DCT}^s\) is the same that the number of pixels in the original image \(\mathbf {I}\) (or the number
-of components in a channel \(\mathbf {I}^c\)).
-</p><!-- l. 24 --><p class='indent'>   As a result of the use of the DCT, in most of the images there is a concentration
-of the energy of the image in the first subband <span class='cite'>[<a href='#Xvruiz__transform_coding'>3</a>]</span> (\(\text {DCT}^0\)) which basically represents the
-<a href='https://en.wikipedia.org/wiki/Luminance'>luminance</a> of the image.
-</p><!-- l. 31 --><p class='noindent'>
+   <h3 class='sectionHead' id='decorrelation-with-the-dct'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Decorrelation with the DCT</h3>
+<!-- l. 20 --><p class='noindent'>The DCT convolves cosine functions with the input sinal (in this case, the
+components of the pixels of the input image). The output of the transform is a set of
+three subbands \(\{\text {DCT}^0, \text {DCT}^1, \text {DCT}^2\}\). The number of coefficients in a subband \(\text {DCT}^s\) is the same that the
+number of \(\text {RGB}\)-pixels in the original image \(\mathbf {I}\), or the number of monochrome-pixels in a
+channel \(\mathbf {I}^c\) (see this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb'>notebook</a>).
+</p><!-- l. 29 --><p class='indent'>   As a result of the use of the DCT, in most of the images the energy is
+concentrated in the low frequency subband <span class='cite'>[<a href='#Xvruiz__transform_coding'>4</a>]</span> (\(\text {DCT}^0\)), which basically represents the
+<a href='https://en.wikipedia.org/wiki/Luminance'>luminance</a> of the image (see the <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb'>notebook</a>).
+</p><!-- l. 36 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='exploted-redundancy'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Exploted redundancy</h3>
-<!-- l. 32 --><p class='noindent'>The concentration of the energy in the subband \(\text {DCT}^0\) increases the dynamic range of the
+   <h3 class='sectionHead' id='effects-of-the-transform'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Effects of the transform</h3>
+<!-- l. 37 --><p class='noindent'>The concentration of the energy in the subband \(\text {DCT}^0\) increases the dynamic range of the
 DCT-color domain compared to the dynamic range of the original \(\text {RGB}\) image. This has
 two interesting consequences:
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-4002x1'>The  entropy  of  the  progressive  encoding  (by  bit-planes)  of  the  DCT
-     coefficients is reduced (compared to the entropy of the bit-planes of the
-     original \(\text {RGB}\) pixels). Therefore, the RD performance is improved.
+<li class='enumerate' id='x1-4002x1'>The entropy of the progressive encoding (by bit-planes) of the integer
+     representation of the DCT coefficients is reduced (compared to the entropy
+     of the bit-planes of the original \(\text {RGB}\) pixels). Therefore, the RD performance
+     is improved.
      </li>
-<li class='enumerate' id='x1-4004x2'>The  number  of  quantization  steps  can  be  higher  (in  the  case  of  the
-     “color”-DCT, is one more). This increases the number of points in the RD
-     curve generated when the DCT coefficients are encoded by bit-planes.</li></ol>
-<!-- l. 47 --><p class='noindent'>
+<li class='enumerate' id='x1-4004x2'>The number of different quantization steps can be higher, and therefore it
+     is possible to increases the number of points in the RD curve.</li></ol>
+<!-- l. 51 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='scalar-quantization-applied-to-the-dct-domain'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Scalar quantization applied to the DCT domain</h3>
-<!-- l. 48 --><p class='noindent'>Since the DCT is orthonormal (orthogonal and unitary), we can use the simple
+<!-- l. 52 --><p class='noindent'>Since the DCT is orthonormal (orthogonal and unitary), we can use the simple
 quantization pattern \begin {equation}  \mathbf {\Delta }_{\text {DCT}^0} = \mathbf {\Delta }_{\text {DCT}^1} = \mathbf {\Delta }_{\text {DCT}^2}. \label {eq:simple_Q}  \end {equation}
-Therefore, there is not differente between quantizing in the \(\text {RGB}\) or the (\(\text {DCT}^0,\text {DCT}^1,\text {DCT}^2\)) color domain,
-except that in the last case, we have one extra bit-plane to encode.
+Therefore, there is not differente between quantizing in the \(\text {RGB}\) or the (\(\text {DCT}^0,\text {DCT}^1,\text {DCT}^2\)) color
+domain, except that in the last case, we must consider one extra bit-plane to
+encode.
                                                                   
 
                                                                   
-</p><!-- l. 56 --><p class='noindent'>
+</p><!-- l. 63 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='a-better-rate-control-todo'><span class='titlemark'>5   </span> <a id='x1-60005'></a>A better rate control (TO-DO)</h3>
-<!-- l. 58 --><p class='noindent'>As we did in the case of the <a href='https://sistemas-multimedia.github.io/contents/RGB_SQ/'>Scalar Quantization in the \(\text {RGB}\) Color Domain</a>, we can also
+<!-- l. 65 --><p class='noindent'>As we did in the case of the <a href='https://sistemas-multimedia.github.io/contents/RGB_SQ/'>Scalar Quantization in the \(\text {RGB}\) Color Domain</a>, we can also
 use the intermediate RD points between each Eq. \eqref{eq:simple_Q}-point to
 increase the resolution of the decompressed image.
-</p><!-- l. 62 --><p class='noindent'>
+</p><!-- l. 71 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='implementation'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Implementation</h3>
-<!-- l. 63 --><p class='noindent'>The described algorithm has been implemented in this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb'>notebook</a>.
-</p><!-- l. 66 --><p class='noindent'>
+<!-- l. 72 --><p class='noindent'>The described algorithm has been implemented in this <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb'>notebook</a>.
+</p><!-- l. 75 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>7   </span> <a id='x1-80007'></a>What do I have to do?</h3>
-<!-- l. 68 --><p class='noindent'>
+<!-- l. 77 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-8002x1'>Please, modify the <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb'>notebook</a> to increse the number of RD points following
      the procedure described in Section <a href='#a-better-rate-control-todo'>5<!-- tex4ht:ref: sec:increasing  --></a>.
      </li>
 <li class='enumerate' id='x1-8004x2'>Which redundancies are exploited in the new improved image compressor?</li></ol>
-<!-- l. 77 --><p class='noindent'>
+<!-- l. 86 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='timming'><span class='titlemark'>8   </span> <a id='x1-90008'></a>Timming</h3>
-<!-- l. 79 --><p class='noindent'>Please, finish this milestone before the next class session.
-</p><!-- l. 81 --><p class='noindent'>
+<!-- l. 88 --><p class='noindent'>Please, finish this milestone before the next class session.
+</p><!-- l. 90 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='deliverables'><span class='titlemark'>9   </span> <a id='x1-100009'></a>Deliverables</h3>
-<!-- l. 83 --><p class='noindent'>None.
+<!-- l. 92 --><p class='noindent'>None.
                                                                   
 
                                                                   
-</p><!-- l. 85 --><p class='noindent'>
+</p><!-- l. 94 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='resources'><span class='titlemark'>10   </span> <a id='x1-1100010'></a>Resources</h3>
    <div class='thebibliography'>
@@ -120,10 +124,13 @@ increase the resolution of the decompressed image.
  [2]<span class='bibsp'>   </span></span><a id='Xvruiz__image_IO'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/image_IO/'>Image IO</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [3]<span class='bibsp'>   </span></span><a id='Xvruiz__transform_coding'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/transform_coding/'>Transform Coding</a>.
+ [3]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/information_theory/'>Information Theory</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [4]<span class='bibsp'>   </span></span><a id='Xvruiz__visual_redundancy'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/visual_redundancy/'>Visual Redundancy</a>.
+ [4]<span class='bibsp'>   </span></span><a id='Xvruiz__transform_coding'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/transform_coding/'>Transform Coding</a>.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [5]<span class='bibsp'>   </span></span><a id='Xvruiz__visual_redundancy'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/visual_redundancy/'>Visual Redundancy</a>.
 </p>
    </div>
     

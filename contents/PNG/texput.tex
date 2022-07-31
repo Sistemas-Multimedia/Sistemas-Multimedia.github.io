@@ -13,37 +13,20 @@
 \section{Description}
 
 This task introduces
-\href{https://vicente-gonzalez-ruiz.github.io/PNG/}{PNG}, a
-\href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless
+\href{https://vicente-gonzalez-ruiz.github.io/PNG/}{PNG}~\cite{vruiz__PNG},
+a \href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless
   image compression format} used in this course for representing
 \href{https://en.wikipedia.org/wiki/Digital_data}{digital}
 \href{https://en.wikipedia.org/wiki/Digital_image}{images} and
-\href{https://en.wikipedia.org/wiki/Video}{videos}. Basically, a
-(\href{https://en.wikipedia.org/wiki/Raster_graphics}{raster}) video
-is a \href{https://en.wikipedia.org/wiki/Sequence}{sequence} of
-\href{https://en.wikipedia.org/wiki/Image}{images} (usually called
-\href{https://en.wikipedia.org/wiki/Film_frame}{frames}, or
-\href{https://en.wikipedia.org/wiki/Group_of_pictures}{pictures} in
-the context of video).
+\href{https://en.wikipedia.org/wiki/Video}{videos}~\cite{vruiz__image_video}.
 
 In our experiments, we are going to store a video as a sequence of
 \href{https://en.wikipedia.org/wiki/Computer_file}{files} with names
 {\tt <prefix>000.png}, {\tt <prefix>001.png}, ..., where {\tt <prefix>} specifies the
-sequence name and ``{\tt .png}'' indicates that the images~\cite{vruiz__image_video} are coded using
+sequence name and ``{\tt .png}'' indicates that the images~\cite{vruiz__image_IO} are coded using
 \href{https://en.wikipedia.org/wiki/Portable_Network_Graphics}{PNG}
 (pronounced ``ping'') image compression
-format~\cite{roelofs1999png,world2003portable}. PNG uses
-\href{https://en.wikipedia.org/wiki/Differential_pulse-code_modulation}{DPCM}
-and the \href{https://en.wikipedia.org/wiki/DEFLATE}{DEFLATE}
-\href{https://en.wikipedia.org/wiki/Entropy_coding}{entropy codec}
-(\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman coding} +
-\href{https://en.wikipedia.org/wiki/Lempel-Ziv-Storer-Szymanski}{LZSS})~\cite{nelson96datacompression}
-to remove\footnote{The amount of redundancy removed depends on several factors (such as the configuration of the DEFLATE parameters and the information stored in the image) resulting in an unpredictable output bit-rate.} the
-\href{https://en.wikipedia.org/wiki/Image_compression}{spatial} and
-\href{https://en.wikipedia.org/wiki/Data_compression}{statistical
-  redudancy}. Notice that no
-\href{https://en.wikipedia.org/wiki/YUV}{color transform} is
-used.
+format~\cite{roelofs1999png,world2003portable}.
 
 % We will use \href{https://vicente-gonzalez-ruiz.github.io/PNG/}{PNG}
 % basically as an
@@ -56,17 +39,6 @@ used.
 % file format (such as \href{https://en.wikipedia.org/wiki/TIFF}{TIFF})
 % could be used.
 
-Finally, notice that all the frames of a sequence usually:
-\begin{enumerate}
-\item Have the same
-  \href{https://en.wikipedia.org/wiki/Image_resolution}{spatial
-    resolution}.
-\item Are, at least originally, represented in the
-  \href{https://en.wikipedia.org/wiki/RGB_color_model}{RGB domain}.
-\item Depending on the frame, in PNG, each color component (channel) has a
-  \href{https://en.wikipedia.org/wiki/Glossary_of_computer_graphics#bit_depth}{bit
-    depth} of $8$ or $16$ bits, representing an unsigned
-  \href{https://en.wikipedia.org/wiki/Integer_(computer_science)}{integer}.
 %\item The pixel
 %  \href{https://en.wikipedia.org/wiki/Luminous_intensity}{intensities}
 %  are displaced to the center of the
@@ -74,7 +46,6 @@ Finally, notice that all the frames of a sequence usually:
 %    of values} ([0, 65535]) that the components can take (for example,
 %  in \href{https://en.wikipedia.org/wiki/Disk_storage}{disk}, the
 %  component intensity 0 is represented by 32768).
-\end{enumerate}
   
 \section{What do I have to do?}
 
@@ -98,4 +69,4 @@ None.
 \section{Resources}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{python,image-processing,image-compression,text-compression,image-video-theory}
+\bibliography{python,image-processing,image-compression,text-compression,image-video-theory,image-formats}
