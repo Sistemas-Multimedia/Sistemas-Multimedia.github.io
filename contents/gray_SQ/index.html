@@ -25,7 +25,7 @@ Gray-scale Images</h2>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
     <span class='sectionToc'>1 <a href='#objective' id='QQ2-1-2'>Objective</a></span>
-<br />    <span class='sectionToc'>2 <a href='#scalar-quantization-applied-to-the-intensity-domain' id='QQ2-1-3'>Scalar quantization applied to the “intensity” domain</a></span>
+<br />    <span class='sectionToc'>2 <a href='#scalar-quantization-applied-to-the-intensity-domain-of-a-grayscale-image' id='QQ2-1-3'>Scalar quantization applied to the “intensity” domain of a gray-scale image</a></span>
 <br />    <span class='sectionToc'>3 <a href='#what-do-i-have-to-do' id='QQ2-1-4'>What do I have to do?</a></span>
 <br />    <span class='sectionToc'>4 <a href='#timming' id='QQ2-1-5'>Timming</a></span>
 <br />    <span class='sectionToc'>5 <a href='#deliverables' id='QQ2-1-6'>Deliverables</a></span>
@@ -39,45 +39,58 @@ Gray-scale Images</h2>
 compressor basically removes the number of different gray <a href='https://en.wikipedia.org/w/index.php?title=Tone_(color)&amp;redirect=no'>tones</a> in a single-channel
 image (normally, <a href='https://en.wikipedia.org/wiki/Visual_system'>humans</a> hardly distinguish more than 64 different <a href='https://en.wikipedia.org/wiki/Color'>colors</a>).
 Therefore, the main objective of this task is to analyze the impact in the encoding
-performance (in terms of a RD curve <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span>) when the visual redundancy is
-exploited.
+performance (in terms of a RD (Rate/Distortion) curve <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span>) when the visual
+redundancy is exploited.
                                                                   
 
                                                                   
-</p><!-- l. 27 --><p class='noindent'>
+</p><!-- l. 28 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='scalar-quantization-applied-to-the-intensity-domain'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Scalar quantization applied to the “intensity” domain</h3>
-<!-- l. 28 --><p class='noindent'>The notetooks <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_deadzone.ipynb'>gray_SQ_deadzone.ipynb</a>, <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb'>gray_SQ_LloydMax.ipynb</a>,
+   <h3 class='sectionHead' id='scalar-quantization-applied-to-the-intensity-domain-of-a-grayscale-image'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Scalar quantization applied to the “intensity” domain of a gray-scale
+image</h3>
+<!-- l. 29 --><p class='noindent'>The notetooks <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_deadzone.ipynb'>gray_SQ_deadzone.ipynb</a>, <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb'>gray_SQ_LloydMax.ipynb</a>,
 <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_companded.ipynb'>gray_SQ_companded.ipynb</a>, <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb'>gray_SQ_midrise.ipynb</a>, <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb'>gray_SQ_midtread.ipynb</a>
-and <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb'>compare_quantizers.ipynb</a>) shows the performance of
-different scalar quantizers using the quantization step sizes <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>]</span>
-\(\Delta \in \{128, 64, 32, 16, 8, 4, 2, 1\}\)<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-3001f1'></a>
-Notice that, since the quantization step sizes are predetermined,
-no rate or distortion control <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span> has been incorporated into the
-compressor.<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-3002f2'></a>
-</p><!-- l. 55 --><p class='noindent'>
+and <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb'>compare_quantizers.ipynb</a>) shows the RD performance of different scalar
+quantizers. As you can see, the way in which the visual information is quantized has
+an influence in the RD performance. Also, as it can be checked in the notebooks, in
+general, the better quantizer is the Lloyd-Max quantizer because it adapts the QSSs
+(Quantization Step Sizes) to the <a href='https://en.wikipedia.org/wiki/Probability_density_function'>PDF (Probability Density Function)</a> of the
+image. However, notice also that, since the QSS depends on the image, they
+must be “transmitted” to the decoder, which decreases the definitive RD
+performance.
+</p><!-- l. 47 --><p class='indent'>   Notice also the remarkable perormance of the DeadZone Quantizer (DZQ) at low
+bit-rates. This is one of the reasons why the DZQ is used in several image and video
+codec. Another reason is that, when the QSSs are powers of two, we can use an
+<a href='https://en.wikipedia.org/wiki/Bit_plane'>bit-plane</a>-based entropy encoder.
+</p><!-- l. 54 --><p class='indent'>   Finally, notice that (you must see the notebooks) when the QSSs are powers of 2,
+the points of the RD curve tend to belong to the convex hull. On the contrary, if the
+QSSs can be any, the RD curves can have points for bit-rates \(i\) and \(i+1\) where the
+condition \(\lambda _i\ge \lambda _{i+1}\) (being \(\lambda _i\) the slope of the RD curve at the bit-rate \(i\)) is not satisfied, which
+can difficult the (bit-)rate control.
+</p><!-- l. 62 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>3   </span> <a id='x1-40003'></a>What do I have to do?</h3>
-<!-- l. 56 --><p class='noindent'>
+<!-- l. 63 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-4002x1'><span class='ecbx-1000'>Implement   a   RD   control:   </span>Create   a   new   notebook   named
-     “bit-rate_control.ipynb”  that,  given  a  maximum  bit-rate  \(R^\text {max}\),  finds  the
-     quantization step \(\Delta ^*\) that minimizes the distortion. Use the quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>]</span>
-     that your prefer.</li></ol>
-<!-- l. 64 --><p class='noindent'>
+<li class='enumerate' id='x1-4002x1'><span class='ecbx-1000'>Implement  a  rate  control:  </span>Extend  (modify)  one  of  the  previous
+     notebooks to incorporate a rate control procedure. Such algorithm should
+     be able to find, given a maximum bit-rate \(R^\text {max}\), the quantization step (size) \(\Delta ^*\)
+     that minimizes the distortion (in terms of the <a href='https://en.wikipedia.org/wiki/Root-mean-square_deviation'>RMSE (Root Mean Square
+     Error)</a>, see the notebooks).</li></ol>
+<!-- l. 73 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='timming'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Timming</h3>
-<!-- l. 65 --><p class='noindent'>Please, finish this milestone before the next class session.
-</p><!-- l. 67 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='deliverables'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Deliverables</h3>
-<!-- l. 68 --><p class='noindent'>None.
-</p><!-- l. 70 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='resources'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Resources</h3>
+<!-- l. 74 --><p class='noindent'>Please, finish this milestone before the day of the “exam”.
                                                                   
 
                                                                   
+</p><!-- l. 76 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='deliverables'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Deliverables</h3>
+<!-- l. 77 --><p class='noindent'>The modified notebook.
+</p><!-- l. 79 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='resources'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Resources</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xvruiz__image_IO'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/image_IO/'>Image IO</a>.
@@ -100,13 +113,6 @@ compressor.<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class
    </span><span class='ecti-1000'>Processing</span></a>. Cambridge University Press, 2014.
 </p>
    </div>
-   <div class='footnotes'><!-- l. 48 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>There are two reasons for having selected such steps: (1) all of them are powers of</span> \(2\)<span class='ecrm-0800'>,
-</span><span class='ecrm-0800'>simulating a </span><a href='https://en.wikipedia.org/wiki/Bit_plane'><span class='ecrm-0800'>bit-plane</span></a> <span class='ecrm-0800'>encoding (this can be interesting to compare with codecs that compresses the
-</span><span class='ecrm-0800'>data by bit-planes), and (2) when the number of bit-planes is small, and we use steps that are not
-</span><span class='ecrm-0800'>powers of two, the RD curves can have points for bit-rates</span> \(i\) <span class='ecrm-0800'>and</span> \(i+1\) <span class='ecrm-0800'>where the condition</span> \(\lambda _i\ge \lambda _{i+1}\) <span class='ecrm-0800'>(being</span> \(\lambda _i\)
-<span class='ecrm-0800'>the slope of the RD curve at the bit-rate</span> \(i\)<span class='ecrm-0800'>) is not satisfied, which difficults the bit-rate
-</span><span class='ecrm-0800'>control.</span></p><!-- l. 53 --><p class='indent'> <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>When a codec provides RD control, in general this implies that we are able to select the
-</span><span class='ecrm-0800'>output bit-rate and/or the output quality.</span></p>                                                                  </div>
- 
+    
 </body> 
 </html>

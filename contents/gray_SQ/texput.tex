@@ -45,38 +45,27 @@ that, since the QSS depends on the image, they must be ``transmitted''
 to the decoder, which decreases the definitive RD performance.
 
 Notice also the remarkable perormance of the DeadZone Quantizer (DZQ)
-at low bit-rates. The DZQ is the prefered scalar quantizer used in
-image and video coding because of this, and also, because when the
+at low bit-rates. This is one of the reasons why the DZQ is used in
+several image and video codec. Another reason is that, when the
 QSSs are powers of two, we can use an
 \href{https://en.wikipedia.org/wiki/Bit_plane}{bit-plane}-based
 entropy encoder.
 
-using the
-quantization step sizes~\cite{vruiz__scalar_quantization}
-$\Delta\in\{128, 64, 32, 16, 8, 4, 2, 1\}$\footnote{There are two
-reasons for having selected such steps: (1) all of them are powers of
-$2$, simulating a
-\href{https://en.wikipedia.org/wiki/Bit_plane}{bit-plane} encoding
-(this can be interesting to compare with codecs that compresses the
-data by bit-planes), and (2) when the number of bit-planes is small,
-and we use steps that are not powers of two, the RD curves can have
+Finally, notice that (you must see the notebooks) when the QSSs are
+powers of 2, the points of the RD curve tend to belong to the convex
+hull. On the contrary, if the QSSs can be any, the RD curves can have
 points for bit-rates $i$ and $i+1$ where the condition
 $\lambda_i\ge\lambda_{i+1}$ (being $\lambda_i$ the slope of the RD
-curve at the bit-rate $i$) is not satisfied, which difficults the
-bit-rate control.} Notice that, since the quantization step sizes are
-predetermined, no rate or distortion
-control~\cite{vruiz__information_theory} has been incorporated into
-the compressor.\footnote{When a codec provides RD control, in general
-this implies that we are able to select the output bit-rate and/or the
-output quality.}
+curve at the bit-rate $i$) is not satisfied, which can difficult the
+(bit-)rate control.
 
 \section{What do I have to do?}
 \begin{enumerate}
 \item \textbf{Implement a rate control:} Extend (modify) one of the
-  previous notebooks to incorporate a (bit-)rate control
-  procedure. Such algorithm should be able to find, given a maximum
-  bit-rate $R^\text{max}$, the quantization step (size) $\Delta^*$
-  that minimizes the distortion (in terms of the
+  previous notebooks to incorporate a rate control procedure. Such
+  algorithm should be able to find, given a maximum bit-rate
+  $R^\text{max}$, the quantization step (size) $\Delta^*$ that
+  minimizes the distortion (in terms of the
   \href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{RMSE
     (Root Mean Square Error)}, see the notebooks).
 \end{enumerate}
