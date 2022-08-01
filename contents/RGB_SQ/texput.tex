@@ -1,7 +1,7 @@
 % Emacs, this is -*-latex-*-
 
 \input{../../definitions}
-\title{\SM{} - Scalar Quantization in the $\text{RGB}$ Color Domain}
+\title{\SM{} - Scalar Quantization in the Color $\text{RGB}$ Domain}
 
 \maketitle
 \tableofcontents
@@ -9,22 +9,22 @@
 \section{Objective}
 The image compressor developed in the task
 \href{https://sistemas-multimedia.github.io/contents/gray_SQ/}{Scalar
-  Quantization of Gray-scale Images} can be extended to encode color
+  Quantization of Gray-scale Images} can be extended to encode
 $\text{RGB}$ (Red, Green and Blue) images if each color channel is
 quantized~\cite{vruiz__scalar_quantization} and the quantization
-indexes are entropy encoded with a color image compressor such as
-PNG~\cite{vruiz__PNG}.
-
-\section{Exploted redundancy}
-The lossy compressor exploits the fact that
-\href{https://en.wikipedia.org/wiki/Visual_system}{humans} hardly
-distinguish more than 64 different colors. Therefore, the only source
-of ``redundancy'' exploited is the visual redundancy.
+indexes are entropy encoded (for example, with
+PNG~\cite{vruiz__PNG}). As in the task
+\href{https://sistemas-multimedia.github.io/contents/gray_SQ/}{Scalar
+  Quantization of Gray-scale Images}, we are removing visual
+redundancy.\footnote{We are not very proficient recognizing a large
+number of simultaneous colors.}
 
 \section{Scalar quantization applied to the $\text{RGB}$ domain}
-The $\text{RGB}$ domain is additive, which means that the distortion
-generated in one of the channels is identical to the distortion
-generated in the reconstructed image. Therefore, the set of quantization patterns used in the compressor is
+The $\text{RGB}$ domain is additive~\cite{burger2016digital}, which
+means that the distortion generated in one of the channels is
+identical to the distortion (for example, in terms of the RMSE)
+generated in the reconstructed image. Therefore, the set of
+quantization patterns used in the compressor is
 \begin{equation}
   \mathbf{\Delta}^{\text{R}}_i = \mathbf{\Delta}^{\text{G}}_i =
   \mathbf{\Delta}^{\text{B}}_i,
