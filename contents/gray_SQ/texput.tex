@@ -8,17 +8,24 @@
 
 \section{Objective}
 This task shows how to implement a very simple
-\href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy
-  (gray-scale) image compressor}~\cite{vruiz__image_IO} based on
-Scalar
+\href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy}
+\href{https://en.wikipedia.org/wiki/Grayscale}{(gray-scale) image}
+\href{https://en.wikipedia.org/wiki/Image_compression}{compressor}~\cite{vruiz__image_IO}
+based on Scalar
 Quantization~\cite{vruiz__scalar_quantization,sayood2017introduction,vetterli2014foundations}
 and PNG~\cite{vruiz__PNG}. This compressor basically removes the
-number of different gray tones in the image (normally,
+number of different gray
+\href{https://en.wikipedia.org/w/index.php?title=Tone_(color)&redirect=no}{tones}
+in a single-channel image (normally,
 \href{https://en.wikipedia.org/wiki/Visual_system}{humans} hardly
-distinguish more than 64 different colors). Therefore, the only source
-of ``redundancy'' exploited is the visual redundancy.
+distinguish more than 64 different
+\href{https://en.wikipedia.org/wiki/Color}{colors}). Therefore, the
+main objective of this task is to analyze the impact in the encoding
+performance (in terms of a RD (Rate/Distortion)
+curve~\cite{vruiz__information_theory}) when the visual redundancy is
+exploited.
 
-\section{Scalar quantization applied to the ``intensity'' domain}
+\section{Scalar quantization applied to the ``intensity'' domain of a gray-scale image}
 The notetooks
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_deadzone.ipynb}{gray\_SQ\_deadzone.ipynb},
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb}{gray\_SQ\_LloydMax.ipynb},
@@ -27,7 +34,24 @@ The notetooks
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb}{gray\_SQ\_midtread.ipynb}
 and
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb}{compare\_quantizers.ipynb})
-shows the performance of different scalar quantizers using the
+shows the RD performance of different scalar quantizers. As you can
+see, the way in which the visual information is quantized has an
+influence in the RD performance. Also, as it can be checked in the
+notebooks, in general, the better quantizer is the Lloyd-Max quantizer
+because it adapts the QSSs (Quantization Step Sizes) to the
+\href{https://en.wikipedia.org/wiki/Probability_density_function}{PDF
+  (Probability Density Function)} of the image. However, notice also
+that, since the QSS depends on the image, they must be ``transmitted''
+to the decoder, which decreases the definitive RD performance.
+
+Notice also the remarkable perormance of the DeadZone Quantizer (DZQ)
+at low bit-rates. The DZQ is the prefered scalar quantizer used in
+image and video coding because of this, and also, because when the
+QSSs are powers of two, we can use an
+\href{https://en.wikipedia.org/wiki/Bit_plane}{bit-plane}-based
+entropy encoder.
+
+using the
 quantization step sizes~\cite{vruiz__scalar_quantization}
 $\Delta\in\{128, 64, 32, 16, 8, 4, 2, 1\}$\footnote{There are two
 reasons for having selected such steps: (1) all of them are powers of
@@ -48,18 +72,20 @@ output quality.}
 
 \section{What do I have to do?}
 \begin{enumerate}
-\item \textbf{Implement a RD control:} Create a new notebook named
-  ``bit-rate\_control.ipynb'' that, given a maximum bit-rate
-  $R^\text{max}$, finds the quantization step $\Delta^*$ that
-  minimizes the distortion. Use the
-  quantizer~\cite{vruiz__scalar_quantization} that your prefer.
+\item \textbf{Implement a rate control:} Extend (modify) one of the
+  previous notebooks to incorporate a (bit-)rate control
+  procedure. Such algorithm should be able to find, given a maximum
+  bit-rate $R^\text{max}$, the quantization step (size) $\Delta^*$
+  that minimizes the distortion (in terms of the
+  \href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{RMSE
+    (Root Mean Square Error)}, see the notebooks).
 \end{enumerate}
 
 \section{Timming}
-Please, finish this milestone before the next class session.
+Please, finish this milestone before the day of the ``exam''.
 
 \section{Deliverables}
-None.
+The modified notebook.
 
 \section{Resources}
 \renewcommand{\addcontentsline}[3]{} % Remove functionality of \addcontentsline
