@@ -1,7 +1,7 @@
 % Emacs, this is -*-latex-*-
 
 \input{../../definitions}
-\title{\SM{} - Scalar Quantization in the Color $\text{RGB}$ Domain}
+\title{\SM{} - Scalar Quantization in the $\text{RGB}$ Domain}
 
 \maketitle
 \tableofcontents
@@ -10,14 +10,15 @@
 The image compressor developed in the task
 \href{https://sistemas-multimedia.github.io/contents/gray_SQ/}{Scalar
   Quantization of Gray-scale Images} can be extended to encode
-$\text{RGB}$ (Red, Green and Blue) images if each color channel is
-quantized~\cite{vruiz__scalar_quantization} and the quantization
+$\text{RGB}$ (Red, Green and Blue) color images if each color channel
+is quantized~\cite{vruiz__scalar_quantization} and the quantization
 indexes are entropy encoded (for example, with
-PNG~\cite{vruiz__PNG}). As in the task
+PNG~\cite{vruiz__PNG}). Notice that, as in the task
 \href{https://sistemas-multimedia.github.io/contents/gray_SQ/}{Scalar
-  Quantization of Gray-scale Images}, we are removing visual
-redundancy.\footnote{We are not very proficient recognizing a large
-number of simultaneous colors.}
+  Quantization of Gray-scale Images}, we are again exploiting the fact
+that, in general, humans are not very proficient recognizing a large
+number of simultaneous colors.\footnote{This can be classified as a
+type of visual redundancy.}
 
 \section{Scalar quantization applied to the $\text{RGB}$ domain}
 The $\text{RGB}$ domain is additive~\cite{burger2016digital}, which
@@ -32,7 +33,7 @@ quantization patterns used in the compressor is
 \end{equation}
 where $i$ represents the $i$-th quantization step size.  Notice also
 that any other combination of quantization steps should generate some
-bias of the chroma towards one of the basic colors (red, green and
+bias of the chroma towards one of the primary colors (red, green and
 blue).
 
 \section{Implementation}
@@ -82,7 +83,7 @@ The modified notebook.
 \section{Resources}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{information_theory,image-formats,quantization}
+\bibliography{information_theory,image-formats,quantization,image-processing}
 
 %%%%%%%%%%%%%%%%%%%%
 

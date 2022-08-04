@@ -7,7 +7,7 @@
 \tableofcontents
 
 \section{Objective}
-This task shows how to implement a very simple
+This task shows how to implement a simple
 \href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy}
 \href{https://en.wikipedia.org/wiki/Grayscale}{(gray-scale) image}
 \href{https://en.wikipedia.org/wiki/Image_compression}{compressor}~\cite{vruiz__image_IO}
@@ -16,24 +16,29 @@ Quantization~\cite{vruiz__scalar_quantization,sayood2017introduction,vetterli201
 and PNG~\cite{vruiz__PNG}. This compressor basically removes the
 number of different gray
 \href{https://en.wikipedia.org/w/index.php?title=Tone_(color)&redirect=no}{tones}
-in a single-channel image (normally,
+in a gray-scale image (normally,
 \href{https://en.wikipedia.org/wiki/Visual_system}{humans} hardly
 distinguish more than 64 different
 \href{https://en.wikipedia.org/wiki/Color}{colors}). Therefore, the
 main objective of this task is to analyze the impact in the encoding
 performance (in terms of a RD (Rate/Distortion)
-curve~\cite{vruiz__information_theory}) when the visual redundancy is
+curve~\cite{vruiz__information_theory}) when this kind of visual
+redundancy (the limited number of recognizeable gray tone levels) is
 exploited.
 
-\section{Scalar quantization applied to the ``intensity'' domain of a gray-scale image}
-The notetooks
+%\section{Scalar quantization applied to the ``intensity'' domain of a gray-scale image}
+%\section{Minimizing the rate/visual-distortion tradeoff}
+%\section{Rate/(visual-distortion) optimized scalar quantization in gray-scale images}
+\section{Uniform quantization of gray-scale pixel intensities}
+Uniform Quantization (UQ) transform each input signal value
+$\mathbf{s}_i$ in a quantization index $\mathbf{k}_i$, without
+considering the rest of samples, and in general, without any other
+information about $\mathbf{s}$~\cite{vruiz__scalar_quantization}.
+
+There are different mapping procedures to convert $\mathbf{s}$ to $\mathbf{k}$, using UQ. The notetooks
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_deadzone.ipynb}{gray\_SQ\_deadzone.ipynb},
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb}{gray\_SQ\_LloydMax.ipynb},
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_companded.ipynb}{gray\_SQ\_companded.ipynb},
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb}{gray\_SQ\_midrise.ipynb},
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb}{gray\_SQ\_midtread.ipynb}
-and
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb}{compare\_quantizers.ipynb})
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb}{gray\_SQ\_midtread.ipynb})
 shows the RD performance of different scalar quantizers. As you can
 see, the way in which the visual information is quantized has an
 influence in the RD performance. Also, as it can be checked in the
@@ -44,10 +49,23 @@ because it adapts the QSSs (Quantization Step Sizes) to the
 that, since the QSS depends on the image, they must be ``transmitted''
 to the decoder, which decreases the definitive RD performance.
 
+\section{Non UQ of gray-scale pixel intensities}
+,
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_companded.ipynb}{gray\_SQ\_companded.ipynb},
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb}{gray\_SQ\_LloydMax.ipynb}
+
+
+\section{Comparison}
+
+and
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb}{compare\_quantizers.ipynb}
+
+
 Notice also the remarkable perormance of the DeadZone Quantizer (DZQ)
 at low bit-rates. This is one of the reasons why the DZQ is used in
-several image and video codec. Another reason is that, when the
-QSSs are powers of two, we can use an
+several standard image and video codecs (such as JPEG 2000 and
+H.264). Another reason is that, when the QSSs are powers of two, we
+can use an
 \href{https://en.wikipedia.org/wiki/Bit_plane}{bit-plane}-based
 entropy encoder.
 
@@ -58,6 +76,15 @@ points for bit-rates $i$ and $i+1$ where the condition
 $\lambda_i\ge\lambda_{i+1}$ (being $\lambda_i$ the slope of the RD
 curve at the bit-rate $i$) is not satisfied, which can difficult the
 (bit-)rate control.
+
+\section{Rate/distortion optimized scalar quantization in gray-scale images}
+The RD performance of the previous encoding algorithm (first quantize
+the pixels, then entropy encode the quantization indexes) depends on
+how many bits\footnote{That can be a fractional number of bits.} each
+quantized pixel (throughout a quantization index) contributes to the
+code-stream.
+
+The objective of 
 
 \section{What do I have to do?}
 \begin{enumerate}
