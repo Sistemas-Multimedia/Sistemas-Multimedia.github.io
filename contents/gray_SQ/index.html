@@ -20,77 +20,112 @@
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - Scalar Quantization of
 Gray-scale Images</h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>August 1, 2022</span></div>
+<div class='date'><span class='ecrm-1200'>August 6, 2022</span></div>
    </div>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
     <span class='sectionToc'>1 <a href='#objective' id='QQ2-1-2'>Objective</a></span>
-<br />    <span class='sectionToc'>2 <a href='#scalar-quantization-applied-to-the-intensity-domain-of-a-grayscale-image' id='QQ2-1-3'>Scalar quantization applied to the “intensity” domain of a gray-scale image</a></span>
-<br />    <span class='sectionToc'>3 <a href='#what-do-i-have-to-do' id='QQ2-1-4'>What do I have to do?</a></span>
-<br />    <span class='sectionToc'>4 <a href='#timming' id='QQ2-1-5'>Timming</a></span>
-<br />    <span class='sectionToc'>5 <a href='#deliverables' id='QQ2-1-6'>Deliverables</a></span>
-<br />    <span class='sectionToc'>6 <a href='#resources' id='QQ2-1-7'>Resources</a></span>
+<br />    <span class='sectionToc'>2 <a href='#uniform-scalar-quantization-of-grayscale-pixel-intensities' id='QQ2-1-3'>Uniform scalar quantization of gray-scale pixel intensities</a></span>
+<br />    <span class='sectionToc'>3 <a href='#nonuniform-sq-of-grayscale-pixel-intensities' id='QQ2-1-4'>Non-Uniform SQ of gray-scale pixel intensities</a></span>
+<br />    <span class='sectionToc'>4 <a href='#comparison' id='QQ2-1-5'>Comparison</a></span>
+<br />    <span class='sectionToc'>5 <a href='#ratedistortion-optimized-scalar-quantization-in-grayscale-images' id='QQ2-1-6'>Rate/distortion optimized scalar quantization in gray-scale images</a></span>
+<br />    <span class='sectionToc'>6 <a href='#what-do-i-have-to-do' id='QQ2-1-7'>What do I have to do?</a></span>
+<br />    <span class='sectionToc'>7 <a href='#timming' id='QQ2-1-8'>Timming</a></span>
+<br />    <span class='sectionToc'>8 <a href='#deliverables' id='QQ2-1-9'>Deliverables</a></span>
+<br />    <span class='sectionToc'>9 <a href='#resources' id='QQ2-1-10'>Resources</a></span>
    </div>
 <!-- l. 9 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='objective'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Objective</h3>
-<!-- l. 10 --><p class='noindent'>This task shows how to implement a very simple <a href='https://en.wikipedia.org/wiki/Lossy_compression'>lossy</a> <a href='https://en.wikipedia.org/wiki/Grayscale'>(gray-scale) image</a>
-<a href='https://en.wikipedia.org/wiki/Image_compression'>compressor</a> <span class='cite'>[<a href='#Xvruiz__image_IO'>1</a>]</span> based on Scalar Quantization <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>, <a href='#Xsayood2017introduction'>5</a>, <a href='#Xvetterli2014foundations'>6</a>]</span> and PNG <span class='cite'>[<a href='#Xvruiz__PNG'>3</a>]</span>. This
-compressor basically removes the number of different gray <a href='https://en.wikipedia.org/w/index.php?title=Tone_(color)&amp;redirect=no'>tones</a> in a single-channel
-image (normally, <a href='https://en.wikipedia.org/wiki/Visual_system'>humans</a> hardly distinguish more than 64 different <a href='https://en.wikipedia.org/wiki/Color'>colors</a>).
-Therefore, the main objective of this task is to analyze the impact in the encoding
-performance (in terms of a RD (Rate/Distortion) curve <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span>) when the visual
-redundancy is exploited.
+<!-- l. 10 --><p class='noindent'>This task shows how to implement a simple <a href='https://en.wikipedia.org/wiki/Lossy_compression'>lossy</a> <a href='https://en.wikipedia.org/wiki/Grayscale'>(gray-scale) image</a> <a href='https://en.wikipedia.org/wiki/Image_compression'>compressor</a> <span class='cite'>[<a href='#Xvruiz__image_IO'>1</a>]</span>
+based on Scalar Quantization <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>, <a href='#Xsayood2017introduction'>5</a>, <a href='#Xvetterli2014foundations'>6</a>]</span> and PNG <span class='cite'>[<a href='#Xvruiz__PNG'>3</a>]</span>. This compressor basically
+removes the number of different gray <a href='https://en.wikipedia.org/w/index.php?title=Tone_(color)&amp;redirect=no'>tones</a> in a gray-scale image (normally, <a href='https://en.wikipedia.org/wiki/Visual_system'>humans</a>
+hardly distinguish more than 64 different <a href='https://en.wikipedia.org/wiki/Color'>colors</a>). Therefore, the main objective of
+this task is to analyze the impact in the encoding performance (in terms of a RD
+(Rate/Distortion) curve <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span>) when this kind of visual redundancy (the limited
                                                                   
 
                                                                   
-</p><!-- l. 28 --><p class='noindent'>
+number of recognizeable gray tone levels) is exploited.
+</p><!-- l. 32 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='scalar-quantization-applied-to-the-intensity-domain-of-a-grayscale-image'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Scalar quantization applied to the “intensity” domain of a gray-scale
-image</h3>
-<!-- l. 29 --><p class='noindent'>The notetooks <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_deadzone.ipynb'>gray_SQ_deadzone.ipynb</a>, <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb'>gray_SQ_LloydMax.ipynb</a>,
-<a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_companded.ipynb'>gray_SQ_companded.ipynb</a>, <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb'>gray_SQ_midrise.ipynb</a>, <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb'>gray_SQ_midtread.ipynb</a>
-and <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb'>compare_quantizers.ipynb</a>) shows the RD performance of different scalar
-quantizers. As you can see, the way in which the visual information is quantized has
-an influence in the RD performance. Also, as it can be checked in the notebooks, in
-general, the better quantizer is the Lloyd-Max quantizer because it adapts the QSSs
-(Quantization Step Sizes) to the <a href='https://en.wikipedia.org/wiki/Probability_density_function'>PDF (Probability Density Function)</a> of the
-image. However, notice also that, since the QSS depends on the image, they
-must be “transmitted” to the decoder, which decreases the definitive RD
+   <h3 class='sectionHead' id='uniform-scalar-quantization-of-grayscale-pixel-intensities'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Uniform scalar quantization of gray-scale pixel intensities</h3>
+<!-- l. 33 --><p class='noindent'>Uniform Scalar Quantization (USQ) transform each input signal value \(\mathbf {s}_i\) in a
+quantization index \(\mathbf {k}_i\), without considering the rest of samples, and in general, without
+any other information about \(\mathbf {s}\) <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>]</span>.
+</p><!-- l. 38 --><p class='indent'>   There are different mapping procedures to convert \(\mathbf {s}\) to \(\mathbf {k}\), using USQ. /the notetooks
+<a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_deadzone.ipynb'>gray_SQ_deadzone.ipynb</a>, <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb'>gray_SQ_midrise.ipynb</a>, <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb'>gray_SQ_midtread.ipynb</a>)
+shows the RD performance of different USQs). As you can see, the way
+in which the visual information is quantized has an influence in the RD
 performance.
-</p><!-- l. 47 --><p class='indent'>   Notice also the remarkable perormance of the DeadZone Quantizer (DZQ) at low
-bit-rates. This is one of the reasons why the DZQ is used in several image and video
-codec. Another reason is that, when the QSSs are powers of two, we can use an
-<a href='https://en.wikipedia.org/wiki/Bit_plane'>bit-plane</a>-based entropy encoder.
-</p><!-- l. 54 --><p class='indent'>   Finally, notice that (you must see the notebooks) when the QSSs are powers of 2,
+</p><!-- l. 47 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='nonuniform-sq-of-grayscale-pixel-intensities'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Non-Uniform SQ of gray-scale pixel intensities</h3>
+<!-- l. 48 --><p class='noindent'>Uniform quantizers are efficient (minimize the distortion) only if the input samples
+(gray-scale values of the pixels) are uniformly distributed. However, when the
+probability of the samples is not “flat”, we can use better quantizers. For example, if
+we know that most of the samples are small integer values (positive and negative), a
+quantizer such as <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_companded.ipynb'>gray_SQ_companded.ipynb</a> can be more suitable than an uniform
+one. If the samples follow a probability distribution that only can be modeles using
+the <a href='https://en.wikipedia.org/wiki/Probability_density_function'>PDF (Probability Density Function)</a> of the image, then an efficient USQ is
+<a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb'>gray_SQ_LloydMax.ipynb</a>.
+</p><!-- l. 62 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='comparison'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Comparison</h3>
+<!-- l. 64 --><p class='noindent'>Also, as it can be checked in the notebooks, in general, the better quantizer is the
+Lloyd-Max quantizer because it adapts the QSSs (Quantization Step Sizes)
+to the <a href='https://en.wikipedia.org/wiki/Probability_density_function'>PDF (Probability Density Function)</a> of the image. However, notice
+also that, since the QSSs depend on the PDF of the image, the PDF or the
+correspondence between the quantization indexes and the corresponding
+representation levels must be “transmitted” to the decoder, which decreases the final
+RD performance.
+</p><!-- l. 74 --><p class='indent'>   and <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb'>compare_quantizers.ipynb</a>
+</p><!-- l. 78 --><p class='indent'>   Notice also the remarkable perormance of the DeadZone Quantizer (DZQ) at low
+bit-rates. This is one of the reasons why the DZQ is used in several standard image
+and video codecs (such as JPEG 2000 and H.264). Another reason is that,
+                                                                  
+
+                                                                  
+when the QSSs are powers of two, we can use an <a href='https://en.wikipedia.org/wiki/Bit_plane'>bit-plane</a>-based entropy
+encoder.
+</p><!-- l. 86 --><p class='indent'>   Finally, notice that (you must see the notebooks) when the QSSs are powers of 2,
 the points of the RD curve tend to belong to the convex hull. On the contrary, if the
 QSSs can be any, the RD curves can have points for bit-rates \(i\) and \(i+1\) where the
 condition \(\lambda _i\ge \lambda _{i+1}\) (being \(\lambda _i\) the slope of the RD curve at the bit-rate \(i\)) is not satisfied, which
 can difficult the (bit-)rate control.
-</p><!-- l. 62 --><p class='noindent'>
+</p><!-- l. 94 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>3   </span> <a id='x1-40003'></a>What do I have to do?</h3>
-<!-- l. 63 --><p class='noindent'>
+   <h3 class='sectionHead' id='ratedistortion-optimized-scalar-quantization-in-grayscale-images'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Rate/distortion optimized scalar quantization in gray-scale images</h3>
+<!-- l. 95 --><p class='noindent'>The RD performance of the previous encoding algorithm (first quantize the
+pixels, then entropy encode the quantization indexes) depends on how many
+bits<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-6001f1'></a>
+each quantized pixel (throughout a quantization index) contributes to the
+code-stream.
+</p><!-- l. 101 --><p class='indent'>   The objective of
+</p><!-- l. 103 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>6   </span> <a id='x1-70006'></a>What do I have to do?</h3>
+<!-- l. 104 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-4002x1'><span class='ecbx-1000'>Implement  a  rate  control:  </span>Extend  (modify)  one  of  the  previous
+<li class='enumerate' id='x1-7002x1'><span class='ecbx-1000'>Implement  a  rate  control:  </span>Extend  (modify)  one  of  the  previous
      notebooks to incorporate a rate control procedure. Such algorithm should
      be able to find, given a maximum bit-rate \(R^\text {max}\), the quantization step (size) \(\Delta ^*\)
      that minimizes the distortion (in terms of the <a href='https://en.wikipedia.org/wiki/Root-mean-square_deviation'>RMSE (Root Mean Square
      Error)</a>, see the notebooks).</li></ol>
-<!-- l. 73 --><p class='noindent'>
+<!-- l. 114 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='timming'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Timming</h3>
-<!-- l. 74 --><p class='noindent'>Please, finish this milestone before the day of the “exam”.
+   <h3 class='sectionHead' id='timming'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Timming</h3>
+<!-- l. 115 --><p class='noindent'>Please, finish this milestone before the day of the “exam”.
                                                                   
 
                                                                   
-</p><!-- l. 76 --><p class='noindent'>
+</p><!-- l. 117 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='deliverables'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Deliverables</h3>
-<!-- l. 77 --><p class='noindent'>The modified notebook.
-</p><!-- l. 79 --><p class='noindent'>
+   <h3 class='sectionHead' id='deliverables'><span class='titlemark'>8   </span> <a id='x1-90008'></a>Deliverables</h3>
+<!-- l. 118 --><p class='noindent'>The modified notebook.
+</p><!-- l. 120 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='resources'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Resources</h3>
+   <h3 class='sectionHead' id='resources'><span class='titlemark'>9   </span> <a id='x1-100009'></a>Resources</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xvruiz__image_IO'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/image_IO/'>Image IO</a>.
@@ -113,6 +148,7 @@ can difficult the (bit-)rate control.
    </span><span class='ecti-1000'>Processing</span></a>. Cambridge University Press, 2014.
 </p>
    </div>
-    
+   <div class='footnotes'><!-- l. 97 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>That can be a fractional number of bits.</span></p>                                                          </div>
+ 
 </body> 
 </html>
