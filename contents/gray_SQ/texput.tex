@@ -90,6 +90,20 @@ $\lambda_i\ge\lambda_{i+1}$ (being $\lambda_i$ the slope of the RD
 curve at the bit-rate $i$) is not satisfied, which can difficult the
 (bit-)rate control.
 
+\section{RD optimized quantizer design}
+So far, we have designed the image compressor in two steps: (1)
+quantize the pixels trying to minimize the distortion, and (2) entropy
+code (compress) the quantization indexes. However, if we assume that
+the entropy encoding performance is proportional to some
+rate-prediction metric, such as the entropy, it is possible to design
+the quantizer minizing the two RD variables (rate and distortion) at
+the same time~\cite{sayood2017introduction}. However, there is not
+(yet) any known reason to think that is approach will be generate
+better RD curves that the one in both parameters (R and D) are
+minimized independently. Besides, the joint optimization of R and D
+makes the quantizer dependent of the entropy codec, that reduces the
+flexility of the encoding system.
+
 \section{What do I have to do?}
 \begin{enumerate}
 \item \textbf{Implement a rate control:} Extend (modify) one of the
