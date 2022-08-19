@@ -13,8 +13,9 @@ This task shows how to implement a simple
 \href{https://en.wikipedia.org/wiki/Image_compression}{compressor}~\cite{vruiz__image_IO}
 based on Scalar
 Quantization~\cite{vruiz__scalar_quantization,sayood2017introduction,vetterli2014foundations}
-and PNG~\cite{vruiz__PNG}. This compressor basically removes the
-number of different gray
+and PNG~\cite{vruiz__PNG}. The proposed compressor (the PNG-encoding
+of the scalar quantization of an gray image) basically removes the number
+of different gray
 \href{https://en.wikipedia.org/w/index.php?title=Tone_(color)&redirect=no}{tones}
 in a gray-scale image (normally,
 \href{https://en.wikipedia.org/wiki/Visual_system}{humans} hardly
@@ -35,8 +36,8 @@ $\mathbf{s}_i$ in a quantization index $\mathbf{k}_i$, without
 considering the rest of samples, and in general, without any other
 information about $\mathbf{s}$~\cite{vruiz__scalar_quantization}.
 
-There are different mapping procedures to convert $\mathbf{s}$ to
-$\mathbf{k}$, using USQ. /the notetooks
+There are different mapping procedures to convert $\mathbf{s}$ into
+$\mathbf{k}$, using USQ (the notetooks
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_deadzone.ipynb}{gray\_SQ\_deadzone.ipynb},
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb}{gray\_SQ\_midrise.ipynb},
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb}{gray\_SQ\_midtread.ipynb})
@@ -47,23 +48,25 @@ RD performance.
 \section{Non-Uniform SQ of gray-scale pixel intensities}
 Uniform quantizers are efficient (minimize the distortion) only if the
 input samples (gray-scale values of the pixels) are uniformly
-distributed. However, when the probability of the samples is not
-``flat'', we can use better quantizers. For example, if we know that
-most of the samples are small integer values (positive and negative),
-a quantizer such as
+distributed among the quantization
+bins~\cite{vruiz__scalar_quantization}. However, when the probability
+of the samples is not ``flat'' (or the number of bins is very small
+compared to the possible number of input values), we can use better
+quantizers. For example, if we know that most of the samples are small
+integer values (positive and negative), a quantizer such as
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_companded.ipynb}{gray\_SQ\_companded.ipynb}
-can be more suitable than an uniform one. If the samples follow a
-probability distribution that only can be modeled using the
+can be more suitable than an uniform one. In general, when the samples
+follow a probability distribution that only can be modeled using the
 \href{https://en.wikipedia.org/wiki/Probability_density_function}{PDF
   (Probability Density Function)} of the image, then an efficient USQ
 is
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb}{gray\_SQ\_LloydMax.ipynb}. 
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb}{gray\_SQ\_LloydMax.ipynb}.
 
 \section{Comparison}
 
- Also, as it can be checked in the notebooks, in
-general, the better quantizer is the Lloyd-Max quantizer because it
-adapts the QSSs (Quantization Step Sizes) to the
+As it can be checked in the notebooks, in general, the better
+quantizer is the Lloyd-Max quantizer because it adapts the QSSs
+(Quantization Step Sizes) to the
 \href{https://en.wikipedia.org/wiki/Probability_density_function}{PDF
   (Probability Density Function)} of the image. However, notice also
 that, since the QSSs depend on the PDF of the image, the PDF or the
