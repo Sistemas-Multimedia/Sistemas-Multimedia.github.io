@@ -28,11 +28,10 @@ Gray-scale Images</h2>
 <br />    <span class='sectionToc'>2 <a href='#uniform-scalar-quantization-of-grayscale-pixel-intensities' id='QQ2-1-3'>Uniform scalar quantization of gray-scale pixel intensities</a></span>
 <br />    <span class='sectionToc'>3 <a href='#nonuniform-sq-of-grayscale-pixel-intensities' id='QQ2-1-4'>Non-Uniform SQ of gray-scale pixel intensities</a></span>
 <br />    <span class='sectionToc'>4 <a href='#comparison' id='QQ2-1-5'>Comparison</a></span>
-<br />    <span class='sectionToc'>5 <a href='#ratedistortion-optimized-scalar-quantization-in-grayscale-images' id='QQ2-1-6'>Rate/distortion optimized scalar quantization in gray-scale images</a></span>
-<br />    <span class='sectionToc'>6 <a href='#what-do-i-have-to-do' id='QQ2-1-7'>What do I have to do?</a></span>
-<br />    <span class='sectionToc'>7 <a href='#timming' id='QQ2-1-8'>Timming</a></span>
-<br />    <span class='sectionToc'>8 <a href='#deliverables' id='QQ2-1-9'>Deliverables</a></span>
-<br />    <span class='sectionToc'>9 <a href='#resources' id='QQ2-1-10'>Resources</a></span>
+<br />    <span class='sectionToc'>5 <a href='#what-do-i-have-to-do' id='QQ2-1-6'>What do I have to do?</a></span>
+<br />    <span class='sectionToc'>6 <a href='#timming' id='QQ2-1-7'>Timming</a></span>
+<br />    <span class='sectionToc'>7 <a href='#deliverables' id='QQ2-1-8'>Deliverables</a></span>
+<br />    <span class='sectionToc'>8 <a href='#resources' id='QQ2-1-9'>Resources</a></span>
    </div>
 <!-- l. 9 --><p class='noindent'>
 </p>
@@ -43,10 +42,10 @@ PNG-encoding of the scalar quantization of an gray image) basically removes the
 number of different gray <a href='https://en.wikipedia.org/w/index.php?title=Tone_(color)&amp;redirect=no'>tones</a> in a gray-scale image (normally, <a href='https://en.wikipedia.org/wiki/Visual_system'>humans</a> hardly
 distinguish more than 64 different <a href='https://en.wikipedia.org/wiki/Color'>colors</a>). Therefore, the main objective of this task
 is to analyze the impact in the encoding performance (in terms of a RD
+(Rate/Distortion) curve <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span>) when this kind of visual redundancy (the limited
                                                                   
 
                                                                   
-(Rate/Distortion) curve <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span>) when this kind of visual redundancy (the limited
 number of recognizeable gray tone levels) is exploited.
 </p><!-- l. 33 --><p class='noindent'>
 </p>
@@ -82,11 +81,11 @@ the QSSs depend on the PDF of the image, the PDF or the correspondence between
 the quantization indexes and the corresponding representation levels (the “pallete”)
 must be also “transmitted” to the decoder, which decreases the final RD
 performance.
+</p><!-- l. 77 --><p class='indent'>   Notice also the remarkable perormance of the DeadZone Quantizer (DZQ) at low
+bit-rates. This is one of the reasons why the DZQ is used in several standard image
                                                                   
 
                                                                   
-</p><!-- l. 77 --><p class='indent'>   Notice also the remarkable perormance of the DeadZone Quantizer (DZQ) at low
-bit-rates. This is one of the reasons why the DZQ is used in several standard image
 and video codecs (such as JPEG 2000 and H.264). Another reason is that,
 when the QSSs are powers of two, we can use an <a href='https://en.wikipedia.org/wiki/Bit_plane'>bit-plane</a>-based entropy
 encoder.
@@ -98,37 +97,28 @@ RD curve at the bit-rate \(i\)) is not satisfied, which can difficult the (bit-)
 control.
 </p><!-- l. 93 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='ratedistortion-optimized-scalar-quantization-in-grayscale-images'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Rate/distortion optimized scalar quantization in gray-scale images</h3>
-<!-- l. 94 --><p class='noindent'>The RD performance of the previous encoding algorithm (first quantize the
-pixels, then entropy encode the quantization indexes) depends on how many
-bits<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-6001f1'></a>
-each quantized pixel (throughout a quantization index) contributes to the
-code-stream.
-</p><!-- l. 100 --><p class='indent'>   The objective of
-</p><!-- l. 102 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>6   </span> <a id='x1-70006'></a>What do I have to do?</h3>
-<!-- l. 103 --><p class='noindent'>
+   <h3 class='sectionHead' id='what-do-i-have-to-do'><span class='titlemark'>5   </span> <a id='x1-60005'></a>What do I have to do?</h3>
+<!-- l. 94 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-7002x1'><span class='ecbx-1000'>Implement  a  rate  control:  </span>Extend  (modify)  one  of  the  previous
+<li class='enumerate' id='x1-6002x1'><span class='ecbx-1000'>Implement  a  rate  control:  </span>Extend  (modify)  one  of  the  previous
      notebooks to incorporate a rate control procedure. Such algorithm should
      be able to find, given a maximum bit-rate \(R^\text {max}\), the QSS \(\Delta ^*\) that minimizes
      the distortion (in terms of the <a href='https://en.wikipedia.org/wiki/Root-mean-square_deviation'>RMSE (Root Mean Square Error)</a>, see the
      notebooks).</li></ol>
-<!-- l. 113 --><p class='noindent'>
+<!-- l. 104 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='timming'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Timming</h3>
-<!-- l. 114 --><p class='noindent'>Please, finish this milestone before the day of the “exam”.
+   <h3 class='sectionHead' id='timming'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Timming</h3>
+<!-- l. 105 --><p class='noindent'>Please, finish this milestone before the day of the “exam”.
+</p><!-- l. 107 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='deliverables'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Deliverables</h3>
+<!-- l. 108 --><p class='noindent'>The modified notebook.
+</p><!-- l. 110 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='resources'><span class='titlemark'>8   </span> <a id='x1-90008'></a>Resources</h3>
                                                                   
 
                                                                   
-</p><!-- l. 116 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='deliverables'><span class='titlemark'>8   </span> <a id='x1-90008'></a>Deliverables</h3>
-<!-- l. 117 --><p class='noindent'>The modified notebook.
-</p><!-- l. 119 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='resources'><span class='titlemark'>9   </span> <a id='x1-100009'></a>Resources</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xvruiz__image_IO'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/image_IO/'>Image IO</a>.
@@ -151,7 +141,6 @@ code-stream.
    </span><span class='ecti-1000'>Processing</span></a>. Cambridge University Press, 2014.
 </p>
    </div>
-   <div class='footnotes'><!-- l. 96 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>That can be a fractional number of bits.</span></p>                                                          </div>
- 
+    
 </body> 
 </html>

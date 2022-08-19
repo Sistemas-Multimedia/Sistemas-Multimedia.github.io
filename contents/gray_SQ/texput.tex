@@ -90,15 +90,6 @@ $\lambda_i\ge\lambda_{i+1}$ (being $\lambda_i$ the slope of the RD
 curve at the bit-rate $i$) is not satisfied, which can difficult the
 (bit-)rate control.
 
-\section{Rate/distortion optimized scalar quantization in gray-scale images}
-The RD performance of the previous encoding algorithm (first quantize
-the pixels, then entropy encode the quantization indexes) depends on
-how many bits\footnote{That can be a fractional number of bits.} each
-quantized pixel (throughout a quantization index) contributes to the
-code-stream.
-
-The objective of 
-
 \section{What do I have to do?}
 \begin{enumerate}
 \item \textbf{Implement a rate control:} Extend (modify) one of the
