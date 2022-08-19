@@ -64,19 +64,15 @@ is
 
 \section{Comparison}
 
-As it can be checked in the notebooks, in general, the better
+As it can be checked in \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb}{compare\_quantizers.ipynb}, in general, the better
 quantizer is the Lloyd-Max quantizer because it adapts the QSSs
 (Quantization Step Sizes) to the
 \href{https://en.wikipedia.org/wiki/Probability_density_function}{PDF
   (Probability Density Function)} of the image. However, notice also
 that, since the QSSs depend on the PDF of the image, the PDF or the
 correspondence between the quantization indexes and the corresponding
-representation levels must be ``transmitted'' to the decoder, which
-decreases the final RD performance.
-
-and
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb}{compare\_quantizers.ipynb}
-
+representation levels (the ``pallete'') must be also ``transmitted''
+to the decoder, which decreases the final RD performance.
 
 Notice also the remarkable perormance of the DeadZone Quantizer (DZQ)
 at low bit-rates. This is one of the reasons why the DZQ is used in
@@ -88,8 +84,8 @@ entropy encoder.
 
 Finally, notice that (you must see the notebooks) when the QSSs are
 powers of 2, the points of the RD curve tend to belong to the convex
-hull. On the contrary, if the QSSs can be any, the RD curves can have
-points for bit-rates $i$ and $i+1$ where the condition
+hull of the RD curve. On the contrary, if the QSSs can be any, the RD
+curves can have points for bit-rates $i$ and $i+1$ where the condition
 $\lambda_i\ge\lambda_{i+1}$ (being $\lambda_i$ the slope of the RD
 curve at the bit-rate $i$) is not satisfied, which can difficult the
 (bit-)rate control.
@@ -108,8 +104,8 @@ The objective of
 \item \textbf{Implement a rate control:} Extend (modify) one of the
   previous notebooks to incorporate a rate control procedure. Such
   algorithm should be able to find, given a maximum bit-rate
-  $R^\text{max}$, the quantization step (size) $\Delta^*$ that
-  minimizes the distortion (in terms of the
+  $R^\text{max}$, the QSS $\Delta^*$ that minimizes the distortion (in
+  terms of the
   \href{https://en.wikipedia.org/wiki/Root-mean-square_deviation}{RMSE
     (Root Mean Square Error)}, see the notebooks).
 \end{enumerate}
