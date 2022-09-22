@@ -19,12 +19,12 @@ compressor: \href{https://github.com/Sistemas-Multimedia/MRVC}{MVRC
 The development of the MRVC project is organized in a collection of
 milestones. Some of them has been previously developed and our goal is
 to understand how the implemented techniques work and how to use
-them. The rest of milestones propose the implementation of new
+them. The rest of milestones are focused on the implementation of new
 features in MRVC.
 
 \begin{description}
-\item [Milestone 1: {\normalfont Preparing the framework.}]  \emph{The
-working environment used in Sistemas Multimedia is based on Linux,
+\item [Milestone 0: {\normalfont Preparing the framework.}]  \emph{The
+working environment used in Sistemas Multimedia relies on Linux,
 Python and Git.}
   \begin{description}
   \item [Task 1: {\normalfont
@@ -40,12 +40,13 @@ Python and Git.}
   \end{description}
   ~\newline
 
-\item [Milestone 2: {\normalfont Entropy coding of images:}] \emph{Entropy is a
-measure of the amount of information represented by a piece of
-data. Most of image and video compressors (and MRVC is not an
-exception) achieve a reduction in the amount of output data via
-entropy coding. This milestone analyzes some of the most used lossless
-image compressors.}
+\item [Milestone 1: {\normalfont Entropy coding of images:}] \emph{The
+entropy (in the context of the Information Theory) is a measure of the
+amount of information represented by a piece of data. Most of image
+and video compressors achieve a reduction in the amount of output data
+though entropy coding. In this milestone we analyze some of the most
+used lossless image compressors, and the correlation of their rate
+performance with the entropy.}
   \begin{description}
   \item [Task 1: {\normalfont
       \href{https://sistemas-multimedia.github.io/contents/PNG/}{PNG
@@ -62,12 +63,13 @@ image compressors.}
   \end{description}
   ~\newline
 
-\item [Milestone 3: {\normalfont Scalar quantization:}] \emph{Raw
+\item [Milestone 2: {\normalfont Scalar quantization:}] \emph{Raw
 images and videos contain large amounts of information that can be
-removed without generating a meaningful visual distortion. For this
-task, we will use Scalar Quantization, a basic basic technique that
-allows to remove information in images and videos (and in signals in
-general)}.
+removed without generating a meaningful visual distortion (because
+humans can distinguish only a finite number of ``visual levels''). For
+this task, we will use Scalar Quantization, a basic basic technique
+that allows to remove information (by decreasing such number of levels)
+in images and videos (and in signals in general), in the signal domain}.
   \begin{description}
   \item [Task 1: {\normalfont
       \href{https://sistemas-multimedia.github.io/contents/gray_SQ/}{Scalar
@@ -81,7 +83,7 @@ general)}.
   \end{description}
   ~\newline
   
- \item [Milestone 4: {\normalfont Exploiting the inter-component
+ \item [Milestone 3: {\normalfont Exploiting the inter-component
      statistical redundancy in images:}] \emph{In color images, the
  RGB (Red, Green, and Blue) channels tend to be highly correlated. We
  can take advantage of this channel correlation to increase the
@@ -114,7 +116,7 @@ general)}.
    \end{description}
    ~\newline
    
-\item [Milestone 5: {\normalfont Exploiting the spatial redundancy in
+\item [Milestone 4: {\normalfont Exploiting the spatial redundancy in
     images:}] \emph{Visual data is highly correlated in the spatial
 domain and such correlation can be considered to achieve higher
 compression ratios}.
@@ -147,7 +149,7 @@ compression ratios}.
   \end{description}
   ~\newline
 
-\item [Milestone 6: {\normalfont Exploiting the temporal redundancy:}]
+\item [Milestone 5: {\normalfont Exploiting the temporal redundancy:}]
   \emph{In most of the videos, adjacent images are quite similar, and
   this source of redundancy can be removed to find more compact
   representations}.
@@ -168,7 +170,7 @@ compression ratios}.
   ~\newline
 
 % A técnicas básicas!
-\item [Milestone 6: {\normalfont Exploiting temporal redundancy in
+\item [Milestone ??: {\normalfont Exploiting temporal redundancy in
     the visual domain:}] \emph{Most image sequences (videos) are highly
 correlated in the temporal domain and motion estimation can exploit
 this redundancy}.
@@ -182,7 +184,7 @@ this redundancy}.
   \end{description}
   ~\newline
 
-\item [Milestone 7: {\normalfont Data scalability and
+\item [Milestone 6: {\normalfont Data scalability and
     multiresolution:}] \emph{Images and videos may want to be
 decompressed of many ways, depending on the requirements of the
 users}.
@@ -197,7 +199,7 @@ users}.
   ~\newline
 
   % A técnicas básicas
-\item [Milestone 7: {\normalfont Removing temporal redundancy in the
+\item [Milestone ??: {\normalfont Removing temporal redundancy in the
     transform domain:}] \emph{Some transforms facilitate the
 multiresolution representation of images and this can be interesting to
 estimate and compensate the motion in this domain}.
