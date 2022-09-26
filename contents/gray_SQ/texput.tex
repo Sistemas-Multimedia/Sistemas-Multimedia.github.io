@@ -11,39 +11,46 @@ This task shows how to implement a simple
 \href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy}
 \href{https://en.wikipedia.org/wiki/Grayscale}{(gray-scale) image}
 \href{https://en.wikipedia.org/wiki/Image_compression}{compressor}~\cite{vruiz__image_IO}
-based on Scalar
-Quantization~\cite{vruiz__scalar_quantization,sayood2017introduction,vetterli2014foundations}
+based on SQ (Scalar
+Quantization)~\cite{vruiz__scalar_quantization,sayood2017introduction,vetterli2014foundations}
 and PNG~\cite{vruiz__PNG}. The proposed compressor (the PNG-encoding
-of the scalar quantization of an gray image) basically removes the number
-of different gray
+of the scalar quantization of an gray image) basically removes the
+number of different gray
 \href{https://en.wikipedia.org/w/index.php?title=Tone_(color)&redirect=no}{tones}
-in a gray-scale image (normally,
+in a gray-scale image\footnote{Normally,
 \href{https://en.wikipedia.org/wiki/Visual_system}{humans} hardly
 distinguish more than 64 different
-\href{https://en.wikipedia.org/wiki/Color}{colors}). Therefore, the
+\href{https://en.wikipedia.org/wiki/Color}{colors}}. Therefore, the
 main objective of this task is to analyze the impact in the encoding
 performance (in terms of a RD (Rate/Distortion)
-curve~\cite{vruiz__information_theory}) when this kind of visual
-redundancy (the limited number of recognizeable gray tone levels) is
-exploited.
+curve~\cite{vruiz__information_theory}) when the number of gray levels
+in an image is controlled.
 
 %\section{Scalar quantization applied to the ``intensity'' domain of a gray-scale image}
 %\section{Minimizing the rate/visual-distortion tradeoff}
 %\section{Rate/(visual-distortion) optimized scalar quantization in gray-scale images}
-\section{Uniform scalar quantization of gray-scale pixel intensities}
+\section{Uniform SQ of gray-scale images}
 Uniform Scalar Quantization (USQ) transform each input signal value
-$\mathbf{s}_i$ in a quantization index $\mathbf{k}_i$, without
-considering the rest of samples, and in general, without any other
-information about $\mathbf{s}$~\cite{vruiz__scalar_quantization}.
+$\mathbf{s}_i$ (each pixel in our case) in a quantization index
+$\mathbf{k}_i$, without considering the rest of samples, and in
+general, without any other information about
+$\mathbf{s}$~\cite{vruiz__scalar_quantization}. USQ is the simpler
+quantization scheme.
 
-There are different mapping procedures to convert $\mathbf{s}$ into
-$\mathbf{k}$, using USQ (the notetooks
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_deadzone.ipynb}{gray\_SQ\_deadzone.ipynb},
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb}{gray\_SQ\_midrise.ipynb},
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb}{gray\_SQ\_midtread.ipynb})
-shows the RD performance of different USQs). As you can see, the way
-in which the visual information is quantized has an influence in the
-RD performance.
+There are several USQ mapping algorithms to convert $\mathbf{s}$ into
+$\mathbf{k}$, but all of them can be classified into midrise and
+mitread and midtread quantizers. In a midrise quantizer, the
+reconstructed signal never is 0, even if the original signal is 0 (see
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb}{gray\_SQ\_midrise.ipynb}). On
+the contrary, midtread quantizers can generate the output 0 (see
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb}{gray\_SQ\_midtread.ipynb}),
+which in general is advantagous for lossy compression, specially the
+midtread quantizers with deadzone (see
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_deadzone.ipynb}{gray\_SQ\_deadzone.ipynb} and ). As
+you can check (see
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb}{compare\_quantizers.ipynb}),
+the way in which the signal is quantized affects the RD performance,
+and this fact holds for all the quantizers.
 
 \section{Non-Uniform SQ of gray-scale pixel intensities}
 Uniform quantizers are efficient (minimize the distortion) only if the
