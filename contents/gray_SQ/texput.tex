@@ -41,16 +41,15 @@ There are several USQ mapping algorithms to convert $\mathbf{s}$ into
 $\mathbf{k}$, but all of them can be classified into midrise and
 mitread and midtread quantizers. In a midrise quantizer, the
 reconstructed signal never is 0, even if the original signal is 0 (see
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb}{gray\_SQ\_midrise.ipynb}). On
-the contrary, midtread quantizers can generate the output 0 (see
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb}{gray\_SQ\_midrise.ipynb})\footnote{In
+a midrise quantizer, if $\mathbf{s}_i=0$, then $\mathbf{y}_i=\Delta$
+or $\mathbf{y}_i=-\Delta$.}. On the contrary, midtread quantizers can
+generate the output 0 (see
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb}{gray\_SQ\_midtread.ipynb}),
-which in general is advantagous for lossy compression, specially the
-midtread quantizers with deadzone (see
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_deadzone.ipynb}{gray\_SQ\_deadzone.ipynb} and ). As
-you can check (see
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb}{compare\_quantizers.ipynb}),
-the way in which the signal is quantized affects the RD performance,
-and this fact holds for all the quantizers.
+which in general is advantagous for lossy compression, specially if we
+use a midtread quantizers with deadzone centered where the SNR (Signal
+to Noise Ratio) is smaller (see
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_deadzone.ipynb}{gray\_SQ\_deadzone.ipynb}). 
 
 \section{Non-Uniform SQ of gray-scale pixel intensities}
 Uniform quantizers are efficient (minimize the distortion) only if the
@@ -70,24 +69,28 @@ is
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb}{gray\_SQ\_LloydMax.ipynb}.
 
 \section{Comparison}
-
-As it can be checked in \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb}{compare\_quantizers.ipynb}, in general, the better
+As you can see (run
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb}{compare\_quantizers.ipynb}),
+the way in which the signal is quantized affects the RD performance,
+and this fact holds for all the quantizers, and in general, the better
 quantizer is the Lloyd-Max quantizer because it adapts the QSSs
 (Quantization Step Sizes) to the
+\href{https://en.wikipedia.org/wiki/Histogram}{histogram}\footnote{Or
 \href{https://en.wikipedia.org/wiki/Probability_density_function}{PDF
-  (Probability Density Function)} of the image. However, notice also
-that, since the QSSs depend on the PDF of the image, the PDF or the
-correspondence between the quantization indexes and the corresponding
-representation levels (the ``pallete'') must be also ``transmitted''
-to the decoder, which decreases the final RD performance.
+  (Probability Density Function)} in the case of a continuous signal.}
+of the image. However, notice also that, since the QSSs depend on the
+pixel intensities distribution of the image, such distribution or the correspondence between the
+quantization indexes and the corresponding representation levels (the
+``pallete'') must be also ``transmitted'' to the decoder, which
+decreases the final RD performance.
 
-Notice also the remarkable perormance of the DeadZone Quantizer (DZQ)
+-------- Notice also the remarkable perormance of the DeadZone Quantizer (DZQ)
 at low bit-rates. This is one of the reasons why the DZQ is used in
 several standard image and video codecs (such as JPEG 2000 and
 H.264). Another reason is that, when the QSSs are powers of two, we
 can use an
 \href{https://en.wikipedia.org/wiki/Bit_plane}{bit-plane}-based
-entropy encoder.
+entropy encoder. -----------
 
 Finally, notice that (you must see the notebooks) when the QSSs are
 powers of 2, the points of the RD curve tend to belong to the convex
@@ -126,7 +129,7 @@ flexility of the encoding system.
 Please, finish this milestone before the day of the ``exam''.
 
 \section{Deliverables}
-The modified notebook.
+A notebook.
 
 \section{Resources}
 \renewcommand{\addcontentsline}[3]{} % Remove functionality of \addcontentsline
