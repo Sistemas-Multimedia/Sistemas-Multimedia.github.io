@@ -9,37 +9,36 @@
 \section{Objective}
 This task shows how to implement a simple
 \href{https://en.wikipedia.org/wiki/Lossy_compression}{lossy}
-\href{https://en.wikipedia.org/wiki/Grayscale}{(gray-scale) image}
+\href{https://en.wikipedia.org/wiki/Grayscale}{gray(-scale) image}
 \href{https://en.wikipedia.org/wiki/Image_compression}{compressor}~\cite{vruiz__image_IO}
 based on SQ (Scalar
 Quantization)~\cite{vruiz__scalar_quantization,sayood2017introduction,vetterli2014foundations}
-and PNG~\cite{vruiz__PNG}. The proposed compressor (the PNG-encoding
-of the scalar quantization of an gray image) basically removes the
-number of different gray
+and PNG~\cite{vruiz__PNG}. The proposed compressor basically removes
+the number of different gray
 \href{https://en.wikipedia.org/w/index.php?title=Tone_(color)&redirect=no}{tones}
-in a gray-scale image\footnote{Normally,
+in an image\footnote{Normally,
 \href{https://en.wikipedia.org/wiki/Visual_system}{humans} hardly
 distinguish more than 64 different
 \href{https://en.wikipedia.org/wiki/Color}{colors}}. Therefore, the
 main objective of this task is to analyze the impact in the encoding
-performance (in terms of a RD (Rate/Distortion)
-curve~\cite{vruiz__information_theory}) when the number of gray levels
-in an image is controlled.
+performance (in terms of the RD (Rate/Distortion)
+tradeoff~\cite{vruiz__information_theory}) when the number of gray
+levels in an image is controlled.
 
 %\section{Scalar quantization applied to the ``intensity'' domain of a gray-scale image}
 %\section{Minimizing the rate/visual-distortion tradeoff}
 %\section{Rate/(visual-distortion) optimized scalar quantization in gray-scale images}
 \section{Uniform SQ of gray-scale images}
 Uniform Scalar Quantization (USQ) transform each input signal value
-$\mathbf{s}_i$ (each pixel in our case) in a quantization index
-$\mathbf{k}_i$, without considering the rest of samples, and in
-general, without any other information about
-$\mathbf{s}$~\cite{vruiz__scalar_quantization}. USQ is the simpler
+$\mathbf{s}_i$ (pixels) in a quantization index $\mathbf{k}_i$,
+without considering the rest of samples, and in general, without any
+other information about
+$\mathbf{s}$~\cite{vruiz__scalar_quantization}. USQ is the simplest
 quantization scheme.
 
 There are several USQ mapping algorithms to convert $\mathbf{s}$ into
-$\mathbf{k}$, but all of them can be classified into midrise and
-mitread and midtread quantizers. In a midrise quantizer, the
+$\mathbf{k}$, but all of them can be classified into \emph{midrise}
+and \emph{mitread} quantizers. In a midrise quantizer, the
 reconstructed signal never is 0, even if the original signal is 0 (see
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb}{gray\_SQ\_midrise.ipynb})\footnote{In
 a midrise quantizer, if $\mathbf{s}_i=0$, then $\mathbf{y}_i=\Delta$
@@ -47,25 +46,31 @@ or $\mathbf{y}_i=-\Delta$.}. On the contrary, midtread quantizers can
 generate the output 0 (see
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb}{gray\_SQ\_midtread.ipynb}),
 which in general is advantagous for lossy compression, specially if we
-use a midtread quantizers with deadzone centered where the SNR (Signal
-to Noise Ratio) is smaller (see
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_deadzone.ipynb}{gray\_SQ\_deadzone.ipynb}). 
+use a midtread quantizers with deadzone (see
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_deadzone.ipynb}{gray\_SQ\_deadzone.ipynb}),
+centered where the
+\href{https://en.wikipedia.org/wiki/Signal-to-noise_ratio}{SNR (Signal
+  to Noise Ratio)} is smaller.
 
 \section{Non-Uniform SQ of gray-scale pixel intensities}
 Uniform quantizers are efficient (minimize the distortion) only if the
 input samples (gray-scale values of the pixels) are uniformly
 distributed among the quantization
-bins~\cite{vruiz__scalar_quantization}. However, when the probability
-of the samples is not ``flat'' (or the number of bins is very small
-compared to the possible number of input values), we can use better
-quantizers. For example, if we know that most of the samples are small
-integer values (positive and negative), a quantizer such as
+\href{https://en.wikipedia.org/wiki/Data_binning}{bins}~\cite{vruiz__scalar_quantization}. However,
+when the probability of the samples is not ``flat'' (or the number of
+bins is small compared to the number of possible input values), we can
+use better quantizers. For example, if we know that most of the
+samples are small integer values (positive and negative\footnote{Such
+as it happens with audio CD data.}), a quantizer such as
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_companded.ipynb}{gray\_SQ\_companded.ipynb}
-can be more suitable than an uniform one. In general, when the samples
-follow a probability distribution that only can be modeled using the
+can be more suitable than an uniform one.
+
+In general, when the samples follow a probability distribution that
+only can be modeled using the
+\href{https://en.wikipedia.org/wiki/Histogram}{histogram}\footnote{The
 \href{https://en.wikipedia.org/wiki/Probability_density_function}{PDF
-  (Probability Density Function)} of the image, then an efficient USQ
-is
+  (Probability Density Function) in the case of a continuous signal.}
+of the image, then an efficient USQ is
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb}{gray\_SQ\_LloydMax.ipynb}.
 
 \section{Comparison}
