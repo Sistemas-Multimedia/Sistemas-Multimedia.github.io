@@ -16,34 +16,34 @@ Quantization)~\cite{vruiz__scalar_quantization,sayood2017introduction,vetterli20
 and PNG~\cite{vruiz__PNG}. The proposed compressor basically removes
 the number of different gray
 \href{https://en.wikipedia.org/w/index.php?title=Tone_(color)&redirect=no}{tones}
-in an image\footnote{Normally,
+in an image.\footnote{Normally,
 \href{https://en.wikipedia.org/wiki/Visual_system}{humans} hardly
 distinguish more than 64 different
-\href{https://en.wikipedia.org/wiki/Color}{colors}}. Therefore, the
+\href{https://en.wikipedia.org/wiki/Color}{colors}} Therefore, the
 main objective of this task is to analyze the impact in the encoding
 performance (in terms of the RD (Rate/Distortion)
 tradeoff~\cite{vruiz__information_theory}) when the number of gray
-levels in an image is controlled.
+levels in an image is controlled through quantization.
 
 %\section{Scalar quantization applied to the ``intensity'' domain of a gray-scale image}
 %\section{Minimizing the rate/visual-distortion tradeoff}
 %\section{Rate/(visual-distortion) optimized scalar quantization in gray-scale images}
 \section{Uniform SQ of gray-scale images}
-Uniform Scalar Quantization (USQ) transform each input signal value
-$\mathbf{s}_i$ (pixels) in a quantization index $\mathbf{k}_i$,
-without considering the rest of samples, and in general, without any
-other information about
+(Digital) Uniform Scalar Quantization (USQ) transform each input signal value
+$\mathbf{s}_i$ (a pixel) in a quantization index $\mathbf{k}_i$. This
+is done without considering the rest of samples, and in general,
+without any other information about
 $\mathbf{s}$~\cite{vruiz__scalar_quantization}. USQ is the simplest
 quantization scheme.
 
 There are several USQ mapping algorithms to convert $\mathbf{s}$ into
 $\mathbf{k}$, but all of them can be classified into \emph{midrise}
-and \emph{mitread} quantizers. In a midrise quantizer, the
-reconstructed signal never is 0, even if the original signal is 0 (see
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb}{gray\_SQ\_midrise.ipynb})\footnote{In
-a midrise quantizer, if $\mathbf{s}_i=0$, then $\mathbf{y}_i=\Delta$
-or $\mathbf{y}_i=-\Delta$.}. On the contrary, midtread quantizers can
-generate the output 0 (see
+and \emph{mitread} schemes. In a midrise quantizer, the reconstructed
+signal never is 0, even if the original signal is 0\footnote{In a
+midrise quantizer, if $\mathbf{s}_i=0$, then $\mathbf{y}_i=\Delta$ or
+$\mathbf{y}_i=-\Delta$.} (see
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midrise.ipynb}{gray\_SQ\_midrise.ipynb}). On
+the contrary, midtread quantizers can generate the output 0 (see
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_midtread.ipynb}{gray\_SQ\_midtread.ipynb}),
 which in general is advantagous for lossy compression, specially if we
 use a midtread quantizers with deadzone (see
@@ -63,16 +63,18 @@ use better quantizers. For example, if we know that most of the
 samples are small integer values (positive and negative\footnote{Such
 as it happens with audio CD data.}), a quantizer such as
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_companded.ipynb}{gray\_SQ\_companded.ipynb}
-can be more suitable than an uniform one.
+can be more suitable than an uniform one\footnote{At least, from a
+pure-distortion point of view.}.
 
 In general, when the samples follow a probability distribution that
 only can be modeled using the
 \href{https://en.wikipedia.org/wiki/Histogram}{histogram}\footnote{The
 \href{https://en.wikipedia.org/wiki/Probability_density_function}{PDF
-  (Probability Density Function) in the case of a continuous signal.}
-of the image, then an efficient USQ is
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb}{gray\_SQ\_LloydMax.ipynb}.
+  (Probability Density Function) in the case of a continuous signal.}}
+of the image, then an Lloyd-Max-based quantizer (see
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/gray_SQ_LloydMax.ipynb}{gray\_SQ\_LloydMax.ipynb}) should be used.
 
+\begin{comment}
 \section{Comparison}
 As you can see (run
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb}{compare\_quantizers.ipynb}),
@@ -104,20 +106,32 @@ curves can have points for bit-rates $i$ and $i+1$ where the condition
 $\lambda_i\ge\lambda_{i+1}$ (being $\lambda_i$ the slope of the RD
 curve at the bit-rate $i$) is not satisfied, which can difficult the
 (bit-)rate control.
+\end{comment}
 
 \section{RD optimized quantizer design}
 So far, we have designed the image compressor in two steps: (1)
-quantize the pixels trying to minimize the distortion, and (2) entropy
-code (compress) the quantization indexes. However, if we assume that
+quantize the pixels ... trying to minimize the distortion, and (2) entropy
+encode (compress) the quantization indexes. However, if we assume that
 the entropy encoding performance is proportional to some
 rate-prediction metric, such as the entropy, it is possible to design
 the quantizer minizing the two RD variables (rate and distortion) at
-the same time~\cite{sayood2017introduction}. However, there is not
-(yet) any known reason to think that is approach will be generate
-better RD curves that the one in both parameters (R and D) are
+the same time~\cite{sayood2017introduction}.
+
+-----------
+
+However, there is not
+(yet) any known reason to think that this approach will be generate
+better RD curves that the one in which only the distortion is both parameters (R and D) are
 minimized independently. Besides, the joint optimization of R and D
 makes the quantizer dependent of the entropy codec, that reduces the
 flexility of the encoding system.
+
+-----------
+
+In this
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_SQ/compare_quantizers.ipynb}{compare\_quantizers.ipynb}
+notebook the RD curves of all these quantizers have been plotted.
+
 
 \section{What do I have to do?}
 \begin{enumerate}
