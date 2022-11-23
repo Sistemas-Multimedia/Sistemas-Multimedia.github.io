@@ -54,7 +54,7 @@ the same):
 
 \begin{verbatim}
 [vruiz@pluton Descargas]$ ls -lh *.iso
--rw-r--r-- 1 vruiz vruiz 1,9G sep  9 16:00 xubuntu-21.04-desktop-amd64.iso
+-rw-r--r-- 1 vruiz vruiz 2,4G nov 23 21:35 xubuntu-22.04.1-desktop-amd64.iso
 vruiz@pluton Descargas]$ lsblk   # Before connecting the USB drive
 NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
 nvme0n1     259:0    0 238,5G  0 disk 
@@ -72,11 +72,11 @@ nvme0n1     259:0    0 238,5G  0 disk
 +-nvme0n1p2 259:2    0     8G  0 part [SWAP]
 +-nvme0n1p3 259:3    0   513M  0 part /boot/efi
 +-nvme0n1p4 259:4    0  31,5G  0 part /
-[vruiz@pluton Descargas]$ sudo dd bs=4M if=xubuntu-21.10-desktop-amd64.iso of=/dev/sda conv=fsync oflag=direct status=progress
-1929379840 bytes (1,9 GB, 1,8 GiB) copied, 151 s, 12,8 MB/s
-466+1 registros leídos
-466+1 registros escritos
-1958051840 bytes (2,0 GB, 1,8 GiB) copied, 152,555 s, 12,8 MB/s
+[vruiz@pluton Descargas]$ sudo dd bs=4M if=xubuntu-22.04.1-desktop-amd64.iso of=/dev/sda conv=fsync oflag=direct status=progress
+2474639360 bytes (2,5 GB, 2,3 GiB) copied, 18 s, 137 MB/s2475399168 bytes (2,5 GB, 2,3 GiB) copied, 18,0162 s, 137 MB/s
+590+1 records in
+590+1 records out
+2475399168 bytes (2,5 GB, 2,3 GiB) copied, 18,0204 s, 137 MB/s
 \end{verbatim}
 
 \item Boot the image. Most of PCs can choose the boot device by pressing the
