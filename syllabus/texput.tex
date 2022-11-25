@@ -9,18 +9,22 @@
 
 This course introduces and develops some of the most used techniques
 used in multimedia systems. The teaching methodology is based in the
-project based learning and such techniques are applied to develop an
-open-source video
-compressor: \href{https://github.com/Sistemas-Multimedia/MRVC}{MVRC
-(Multi-Resolution Video Codec)}.
+project based learning and such techniques are applied to develop a
+collection of projects, most of them devoted to implement image and
+video compressors.
+
+%an
+%open-source video
+%compressor: \href{https://github.com/Sistemas-Multimedia/MRVC}{MVRC
+%(Multi-Resolution Video Codec)}.
+
 
 \section{Milestones}
 
-The development of the MRVC project is organized in a collection of
-milestones. Some of them has been previously developed and our goal is
-to understand how the implemented techniques work and how to use
-them. The rest of milestones are focused on the implementation of new
-features in MRVC.
+Such projects are organized in a collection of milestones. Some of
+them has been previously developed and our goal is to understand how
+the implemented techniques work and how to use them. Others are
+focused on the implementation of new features.
 
 \begin{description}
 \item [Milestone 0: {\normalfont Preparing the framework.}]  \emph{The
@@ -63,13 +67,14 @@ performance with the entropy of the encoded images.}
   \end{description}
   ~\newline
 
-\item [Milestone 2: {\normalfont Scalar quantization:}] \emph{Raw
-images and videos contain large amounts of information that can be
-removed without generating a meaningful visual distortion (because
-humans can distinguish only a finite number of ``visual levels''). For
-this task, we will use Scalar Quantization, a basic basic technique
-that allows to remove information (by decreasing such number of levels)
-in images and videos (and in signals in general), in the signal domain}.
+\item [Milestone 2: {\normalfont Exploiting the pixel-color
+    redundancy:}] \emph{Raw images and videos contain large amounts of
+information that can be removed without generating a meaningful visual
+distortion (because humans can distinguish only a finite number of
+``visual levels''). For this task, we will use Scalar Quantization, a
+basic basic technique that allows to remove information (by decreasing
+such number of levels) in images and videos (and in signals in
+general), in the signal domain}.
   \begin{description}
   \item [Task 1: {\normalfont
       \href{https://sistemas-multimedia.github.io/contents/gray_SQ/}{Scalar
@@ -84,10 +89,10 @@ in images and videos (and in signals in general), in the signal domain}.
   ~\newline
   
  \item [Milestone 3: {\normalfont Exploiting the inter-component
-     statistical redundancy in images:}] \emph{In color images, the
- RGB (Red, Green, and Blue) channels tend to be highly correlated. We
- can take advantage of this channel correlation to increase the
- compression ratio in image and video coding, without generating
+     redundancy in images:}] \emph{In color images, the RGB (Red,
+ Green, and Blue) channels tend to be highly correlated. We can take
+ advantage of this channel correlation to increase the compression
+ ratio in image (and of course, in video) coding, without generating
  noticeable visual artifacts}.
    \begin{description}
    \item [Task 1: {\normalfont
@@ -121,6 +126,9 @@ in images and videos (and in signals in general), in the signal domain}.
 domain and such correlation can be considered to achieve higher
 compression ratios}.
   \begin{description}
+  \item [Task 15: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/chroma_filtering/}{Chroma
+        filtering and subsampling}.}]
   %\item [Task 13: {\normalfont
   %    \href{https://sistemas-multimedia.github.io/contents/DPCM/}{2D-DPCM
   %      (2-Dimensional Differential Pulse Code Modulation)}.}]
@@ -155,6 +163,12 @@ compression ratios}.
   representations}.
   \begin{description}
   \item [Task 1: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/motion_estimation/}{Motion
+        estimation in the image domain}.}]
+  \item [Task 2: {\normalfont
+      \href{https://sistemas-multimedia.github.io/contents/motion_compensation/}{Motion
+        compensation in the image domain}.}]
+  \item [Task 1: {\normalfont
       \href{https://sistemas-multimedia.github.io/contents/IPP_coding/}{``Only-Intra'' (III) Video Coding}.}]
   \item [Task 2: {\normalfont
       \href{https://sistemas-multimedia.github.io/contents/CR_coding/}{Conditional Replenishment Video Coding}.}]
@@ -169,23 +183,8 @@ compression ratios}.
   \end{description}
   ~\newline
 
-% A técnicas básicas!
-\item [Milestone ??: {\normalfont Exploiting temporal redundancy in
-    the visual domain:}] \emph{Most image sequences (videos) are highly
-correlated in the temporal domain and motion estimation can exploit
-this redundancy}.
-  \begin{description}
-  \item [Task 1: {\normalfont
-      \href{https://sistemas-multimedia.github.io/contents/motion_estimation/}{Motion
-        estimation in the image domain}.}]
-  \item [Task 2: {\normalfont
-      \href{https://sistemas-multimedia.github.io/contents/motion_compensation/}{Motion
-        compensation in the image domain}.}]
-  \end{description}
-  ~\newline
-
 \item [Milestone 6: {\normalfont Data scalability and
-    multiresolution:}] \emph{Images and videos may want to be
+    multiresolution:}] \emph{Images and videos can be
 decompressed of many ways, depending on the requirements of the
 users}.
   \begin{description}
@@ -195,15 +194,6 @@ users}.
       \href{https://sistemas-multimedia.github.io/contents/temporal_scalability/}{Temporal scalability}.}]
   \item [Task 3: {\normalfont
       \href{https://sistemas-multimedia.github.io/contents/quality_scalability/}{Quality scalability}.}]
-  \end{description}
-  ~\newline
-
-  % A técnicas básicas
-\item [Milestone ??: {\normalfont Removing temporal redundancy in the
-    transform domain:}] \emph{Some transforms facilitate the
-multiresolution representation of images and this can be interesting to
-estimate and compensate the motion in this domain}.
-  \begin{description}
   \item [Task 1: {\normalfont
       \href{https://sistemas-multimedia.github.io/contents/ME_MC_in_DWT_domain/}{Motion
         compensation in the DWT domain}.}]
@@ -213,17 +203,30 @@ estimate and compensate the motion in this domain}.
   \item [Task 3: {\normalfont
       \href{https://sistemas-multimedia.github.io/contents/ME_MC_in_LP_domain/}{Motion
         estimation and compensation in the LP (Laplacian Pyramid) image domain}.}]
-  \end{description}
-  ~\newline
-
-\item [Milestone 8: {\normalfont MRVC (Muti-Resolution Video
-    Coding):}] \emph{Cooking all the ingredients together in a video compressor}.
-  \begin{description}
   \item [Task 1: {\normalfont
       \href{https://github.com/Sistemas-Multimedia/MRVC}{MRVC
         (Multi-Resolution Video Codec}.TO-DO}]
   \end{description}
+  ~\newline
 
+  % A técnicas básicas
+\begin{comment}
+\item [Milestone ??: {\normalfont Removing temporal redundancy in the
+    transform domain:}] \emph{Some transforms facilitate the
+multiresolution representation of images and this can be interesting to
+estimate and compensate the motion in this domain}.
+  \begin{description}
+  \end{description}
+  ~\newline
+\end{comment}
+
+\begin{comment}
+\item [Milestone 8: {\normalfont MRVC (Muti-Resolution Video
+    Coding):}] \emph{Cooking all the ingredients together in a video compressor}.
+  \begin{description}
+  \end{description}
+\end{comment}
+  
   %%%%%%%%%%%%
   
   \begin{comment}
