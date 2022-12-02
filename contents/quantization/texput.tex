@@ -27,9 +27,46 @@ quantized to be converted from the analog world to the digital one, we
 are appliying a re-quantization of the signal. Again, such digital
 quantization implies a loss of information in the re-quantized signal.
 
-\section{Scalar Quantization}
+\section{Basic terminology}
 
-When the quantization mapping process are refered to single samples
+Several types of quantizers divide the range of possible values that
+the samples can take into a collection of intervals. The values that
+define such intervals are called decision levels and the value that in
+the quantized domain represents to all the input posible values that
+fall in a interval is called the representation level of the interval.
+
+The size of each interval is called the quantization step size.
+
+\section{Classification of Quantizers}
+
+\subsection{Scalar VS Vector Quantizers}
+
+When quantization maps single elments of $A$ to single elements of
+$B$, the quantizer is said scalar. When we map tuples of elements, we
+are using Vector Quantization.
+
+\subsection{Uniform VS Non-Uniform Quantizers}
+
+In a uniform quantizer, all the intervals have the same size. In a
+non-uniform quantizer, at least one of the intervals is different to
+the rest. For example, a deadzone quantizer has a interval size for
+the representation level 0 that doubles the size of the rest of
+intervals. For this reason, a deadzone quantizer is a non-uniform
+quantizer.
+
+\subsection{Static VS Adaptive Quantizers}
+
+Static quantizers are defined without considering the specific
+characteristics of the sequence of samples to quantize. Adaptive
+quantizers adapt to the sequence of samples that are quantized. For
+example, a Lloyd-Max quantizer divides the range of input values in a
+set of intervals whose size is inversely proportional to the
+probability of using such interval. On the contrary, a static
+quantizer keeps fixed the size of the intervals.
+
+\section{Deazone quantization}
+
+
 
 There are basically two types of entropy encoders depending on how the
 sequence of symbols that make up the data to be encoded are processed:
