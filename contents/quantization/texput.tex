@@ -1,0 +1,114 @@
+% Emacs, this is -*-latex-*-
+
+\input{../../definitions}
+
+\title{\SM{} - Digital (Re-)Quantization}
+
+\maketitle
+
+\tableofcontents
+
+\section{What is Quantization?}
+
+In Information Theory, Quantization is any mapping process between two
+sets of elements $A$ and $B$, where all the elements of $A$ are
+associated to one element of $B$, and happens that $|A|>|B|$, where
+$|\cdot|$ represents the orde (the number of elements) of a group.
+
+Notice that because $|A|>|B|$, quantization is an irreversible process
+because two o more elements of $A$ will be mapped to the same element
+of $B$.
+
+\section{What is Digital Quantization?}
+
+In Digital Quantization, the elements of $A$ and $B$ are digital
+samples of a signal. Since, by definition, a digital sample has been
+quantized to be converted from the analog world to the digital one, we
+are appliying a re-quantization of the signal. Again, such digital
+quantization implies a loss of information in the re-quantized signal.
+
+\section{Scalar Quantization}
+
+When the quantization mapping process are refered to single samples
+
+There are basically two types of entropy encoders depending on how the
+sequence of symbols that make up the data to be encoded are processed:
+
+\begin{enumerate}
+\item Those that process the sequence symbol by symbol. Examples of
+  this type of algorithms are Huffman
+  Coding~\cite{vruiz__huffman_coding} and Arithmetic
+  Coding~\cite{vruiz__arithmetic_coding}. These encoders are also
+  called ``probabilistic encoders'' because the number of bits of code
+  assigned to a symbol $s$ depends on the probability of the symbol
+  $p(s)$.
+\item Those that process the sequence by blocks of symbols
+  (strings). Examples are Run-Length Encoding (RLE)~\cite{vruiz__rle}
+  and all the dictionary-based text compressors, such as
+  LZW~\cite{vruiz__LZW}.
+\end{enumerate}
+  
+Those of the first type generally achieve more compact
+representations, but are more computationally expensive. The
+algorithms of the second class are usually faster, but slighlt worse
+in compression ratio.
+
+\section{\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman Coding}}
+
+A Huffman code is a
+\href{https://en.wikipedia.org/wiki/Prefix_code}{prefix code} that
+allows to ``navigate'' through the so called Huffman (inverted) tree
+from the trunk to one of its leaves without
+uncertainty~\cite{vruiz__huffman_coding}. The Huffman tree satisfies that
+\begin{equation}
+  l(c(s)) = \lceil I(s)\rceil,
+  \label{eq:huffman_performance}
+\end{equation}
+where $l(c(s))$ is the length of the (Huffman) code assigned to the
+symbol $s$ and $I(s)$ is the amount of information represented by $s$,
+measured bits of information.
+
+Notice that the minimum number of bits that can be used for
+representing a symbol (using Huffman) is 1, which can be a problem
+when the length of the alphabet is small. Notice also that, if the
+probabilistic model remains constant, the code-words assigned to the
+symbols will be also remain unchanged.
+
+\section{\href{https://en.wikipedia.org/wiki/Arithmetic_coding}{Arithmetic Coding}}
+
+In an arithmetic code~\cite{vruiz__arithmetic_coding}, the number of
+bits of data that can be used for representing a symbol can match
+exactly the number of bits of information, i.e,
+\begin{equation}
+  l(c(s)) = I(s).
+\end{equation}
+
+This also means that even if the size of the alphabet is small, the
+coding performance of an arithmetic code is optimal, although this
+optimality is only satisfied if the number of symbols to encode is
+infinite. Notice also that, if the size of the alphabet is high, the
+encoding performance difference between a Huffman code (or any other
+prefix code) and an arithmetic code, vanishes.
+
+\section{Portable Network Graphics (PNG)}
+
+\href{https://en.wikipedia.org/wiki/Portable_Network_Graphics}{PNG}~\cite{vruiz__PNG}
+(pronounced ``ping'') a dictionary-based
+\href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless
+  image compression format} used for representing
+\href{https://en.wikipedia.org/wiki/Digital_data}{digital}
+\href{https://en.wikipedia.org/wiki/Digital_image}{images} and
+\href{https://en.wikipedia.org/wiki/Video}{videos}~\cite{vruiz__image_video}
+in III... format.
+
+We must bear in mind that as such an image compressor, we can only
+interact with PNG at the image level, that is, it only accepts images
+(in shades of gray or in color, with the possibility of alpha channel)
+and returns images.
+
+% PNG is the default EC in the \href{https://github.com/Sistemas-Multimedia/VCF}{VCF project} because: (1) is lossless, (2) is fast, and (3) the compression performance is reasonable.
+
+\section{Resources}
+
+\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
+\bibliography{text-compression,image-formats,image-video-theory}
