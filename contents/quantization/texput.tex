@@ -66,7 +66,13 @@ quantizer keeps fixed the size of the intervals.
 
 \section{Deazone quantization}
 
-
+Deadzone quantizers are static quasi-uniform scalar quantizers. These
+are used frequently in lossy compression sistems because: (1) when the
+quantization step size is a power of two, and (2) the input sample
+values are integers (and negative integers are represented using two's
+complement), then the representation levels can be found by simply
+discarding low-significant bits of the input samples (in other words,
+we only need to perform a bit-shift operation). Moreover, if the signal to be quantized has a average close to 0 (where the deadzone is centered), SNR.
 
 There are basically two types of entropy encoders depending on how the
 sequence of symbols that make up the data to be encoded are processed:
