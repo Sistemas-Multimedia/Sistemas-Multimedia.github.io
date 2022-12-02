@@ -19,7 +19,7 @@ quantifies the volume of information represented by a data set, so
 that the higher the entropy, the better the efficiency of such
 representation (data) would be.
 
-\section{A minimal classification}
+\section{A classification}
 
 There are basically two types of entropy encoders depending on how the
 sequence of symbols that make up the data to be encoded are processed:
@@ -28,7 +28,10 @@ sequence of symbols that make up the data to be encoded are processed:
 \item Those that process the sequence symbol by symbol. Examples of
   this type of algorithms are Huffman
   Coding~\cite{vruiz__huffman_coding} and Arithmetic
-  Coding~\cite{vruiz__arithmetic_coding}.
+  Coding~\cite{vruiz__arithmetic_coding}. These encoders are also
+  called ``probabilistic encoders'' because the number of bits of code
+  assigned to a symbol $s$ depends on the probability of the symbol
+  $p(s)$.
 \item Those that process the sequence by blocks of symbols
   (strings). Examples are Run-Length Encoding (RLE)~\cite{vruiz__rle}
   and all the dictionary-based text compressors, such as
@@ -40,6 +43,43 @@ representations, but are more computationally expensive. The
 algorithms of the second class are usually faster, but slighlt worse
 in compression ratio.
 
+\section{\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman Coding}}
+
+A Huffman code is a
+\href{https://en.wikipedia.org/wiki/Prefix_code}{prefix code} that
+allows to ``navigate'' through the so called Huffman (inverted) tree
+from the trunk to one of its leaves without
+uncertainty~\cite{vruiz__huffman_coding}. The Huffman tree satisfies that
+\begin{equation}
+  l(c(s)) = \lceil I(s)\rceil,
+  \label{eq:huffman_performance}
+\end{equation}
+where $l(c(s))$ is the length of the (Huffman) code assigned to the
+symbol $s$ and $I(s)$ is the amount of information represented by $s$,
+measured bits of information.
+
+Notice that the minimum number of bits that can be used for
+representing a symbol (using Huffman) is 1, which can be a problem
+when the length of the alphabet is small. Notice also that, if the
+probabilistic model remains constant, the code-words assigned to the
+symbols will be also remain unchanged.
+
+\section{\href{https://en.wikipedia.org/wiki/Arithmetic_coding}{Arithmetic Coding}}
+
+In an arithmetic code~\cite{vruiz__arithmetic_coding}, the number of
+bits of data that can be used for representing a symbol can match
+exactly the number of bits of information, i.e,
+\begin{equation}
+  l(c(s)) = I(s).
+\end{equation}
+
+This also means that even if the size of the alphabet is small, the
+coding performance of an arithmetic code is optimal, although this
+optimality is only satisfied if the number of symbols to encode is
+infinite. Notice also that, if the size of the alphabet is high, the
+encoding performance difference between a Huffman code (or any other
+prefix code) and an arithmetic code, vanishes.
+
 \section{Portable Network Graphics (PNG)}
 
 \href{https://en.wikipedia.org/wiki/Portable_Network_Graphics}{PNG}~\cite{vruiz__PNG}
@@ -48,14 +88,15 @@ in compression ratio.
   image compression format} used for representing
 \href{https://en.wikipedia.org/wiki/Digital_data}{digital}
 \href{https://en.wikipedia.org/wiki/Digital_image}{images} and
-\href{https://en.wikipedia.org/wiki/Video}{videos}~\cite{vruiz__image_video}.
+\href{https://en.wikipedia.org/wiki/Video}{videos}~\cite{vruiz__image_video}
+in III... format.
 
-PNG is the default EC in the
-\href{https://github.com/Sistemas-Multimedia/VCF}{VCF project}
-because: (1) is lossless, (2) is fast, and (3) the compression
-performance is reasonable.
+We must bear in mind that as such an image compressor, we can only
+interact with PNG at the image level, that is, it only accepts images
+(in shades of gray or in color, with the possibility of alpha channel)
+and returns images.
 
-\section{}
+% PNG is the default EC in the \href{https://github.com/Sistemas-Multimedia/VCF}{VCF project} because: (1) is lossless, (2) is fast, and (3) the compression performance is reasonable.
 
 \section{Resources}
 
