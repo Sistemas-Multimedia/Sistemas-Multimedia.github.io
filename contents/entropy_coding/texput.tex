@@ -103,11 +103,14 @@ prefix code) and an arithmetic code, vanishes.
 \texttt{zlib} is based on DEFLATE, which in turn is based on LZ77 and
 Huffman Coding. Therefore, \texttt{zlib} exloits the repetition of
 symbols and also, the the 0-order statistical redundancy\footnote{In
-  other words, that some symbols are more frequenty than others.}.
+  other words, that some symbols are more frequenty than others.}. One
+of the main advantages of \texttt{zlib} is that is quite fast.
 
 \subsection*{Resources}
 \begin{enumerate}
-\item 
+\item \href{https://docs.python.org/3/library/zlib.html}{\texttt{zlib}
+    — Compression compatible with gzip}.
+\end{enumerate}
 
 \section{Portable Network Graphics (PNG)}
 
@@ -131,10 +134,12 @@ and returns images.
 
 \section{To-Do}
 \begin{enumerate}
-\item Modify VCF to allow the use of Huffman Coding in the compression
-pipeline.
-\item Modify VCF to allow the use of Arithmetic Coding in the
-  compression pipeline.
+\item Modify VCF to allow the use of Huffman Coding as a entropy codec
+  in the compression pipeline.
+\item Modify VCF to allow the use of Arithmetic Coding as a entropy
+  codec in the compression pipeline.
+\item Modify VCF to allow the use of \texttt{zlib} as a entropy codec
+  in the compression pipeline.
 \end{enumerate}
 
 
