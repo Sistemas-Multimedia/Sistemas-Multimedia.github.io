@@ -64,94 +64,61 @@ set of intervals whose size is inversely proportional to the
 probability of using such interval. On the contrary, a static
 quantizer keeps fixed the size of the intervals.
 
-\section{Deazone quantization}
+\section{Deazone Quantization}
 
 Deadzone quantizers are static quasi-uniform scalar quantizers. These
-are used frequently in lossy compression sistems because: (1) when the
+are used frequently in lossy compression systems because: (1) when the
 quantization step size is a power of two, and (2) the input sample
 values are integers (and negative integers are represented using two's
 complement), then the representation levels can be found by simply
 discarding low-significant bits of the input samples (in other words,
-we only need to perform a bit-shift operation). Moreover, if the signal to be quantized has a average close to 0 (where the deadzone is centered), SNR.
+we only need to perform a bit-shift operation to find the corresponding quantization index).
 
-There are basically two types of entropy encoders depending on how the
-sequence of symbols that make up the data to be encoded are processed:
+Another reason that make deadzone quantization popular in lossy
+encoding systems is that tends to remove electronic noise more than
+other quantizers. If we supose that the signal has 0 average (the
+electronic noise has 0 average and a flat spectrum) the deadzone is
+places where the SNR is smaller, and therefore, we are replacing
+electronic noise by quantization noise. Obviously, this does not
+improve the RD performance of the encoder, but the perceived
+(subjective) quality is increased for the same bit-rate (if the
+electronic noise is perceived as a source of distortion).
 
-\begin{enumerate}
-\item Those that process the sequence symbol by symbol. Examples of
-  this type of algorithms are Huffman
-  Coding~\cite{vruiz__huffman_coding} and Arithmetic
-  Coding~\cite{vruiz__arithmetic_coding}. These encoders are also
-  called ``probabilistic encoders'' because the number of bits of code
-  assigned to a symbol $s$ depends on the probability of the symbol
-  $p(s)$.
-\item Those that process the sequence by blocks of symbols
-  (strings). Examples are Run-Length Encoding (RLE)~\cite{vruiz__rle}
-  and all the dictionary-based text compressors, such as
-  LZW~\cite{vruiz__LZW}.
-\end{enumerate}
-  
-Those of the first type generally achieve more compact
-representations, but are more computationally expensive. The
-algorithms of the second class are usually faster, but slighlt worse
-in compression ratio.
+\subsection*{\href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/deadzone.py}{A implementation}}
 
-\section{\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman Coding}}
+\section{Lloyd-Max Quantization}
 
-A Huffman code is a
-\href{https://en.wikipedia.org/wiki/Prefix_code}{prefix code} that
-allows to ``navigate'' through the so called Huffman (inverted) tree
-from the trunk to one of its leaves without
-uncertainty~\cite{vruiz__huffman_coding}. The Huffman tree satisfies that
-\begin{equation}
-  l(c(s)) = \lceil I(s)\rceil,
-  \label{eq:huffman_performance}
-\end{equation}
-where $l(c(s))$ is the length of the (Huffman) code assigned to the
-symbol $s$ and $I(s)$ is the amount of information represented by $s$,
-measured bits of information.
+A Lloyd-Max quantizer minimizes the quantization noise given a number
+of quantization intervals. To do this, the quantizer must know the
+histogram (the probabilities) of the input samples. As a result, the
+density of quantization intervals is higher where the probability of
+the samples is higher and viceversa.
 
-Notice that the minimum number of bits that can be used for
-representing a symbol (using Huffman) is 1, which can be a problem
-when the length of the alphabet is small. Notice also that, if the
-probabilistic model remains constant, the code-words assigned to the
-symbols will be also remain unchanged.
+Notice that the histogram must be known by the decoder to ``restore''
+the information.
 
-\section{\href{https://en.wikipedia.org/wiki/Arithmetic_coding}{Arithmetic Coding}}
+\subsection*{\href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/LloydMax.py}{A partial implementation}}
 
-In an arithmetic code~\cite{vruiz__arithmetic_coding}, the number of
-bits of data that can be used for representing a symbol can match
-exactly the number of bits of information, i.e,
-\begin{equation}
-  l(c(s)) = I(s).
-\end{equation}
+\section{Vector Quantization}
 
-This also means that even if the size of the alphabet is small, the
-coding performance of an arithmetic code is optimal, although this
-optimality is only satisfied if the number of symbols to encode is
-infinite. Notice also that, if the size of the alphabet is high, the
-encoding performance difference between a Huffman code (or any other
-prefix code) and an arithmetic code, vanishes.
+Vector Quantizers input (usually squared) blocks of samples and output
+a quantization index per block. In most of natural images, the spatial
+correlation generates that some blocks of the image are similar to
+other blocks. If this is true, we can compute a set of centroids
+(blocks) and use them to represent the original blocks. The encoding
+performance of a Vector Quantizer is superior compared to a Scalar
+Quantizer because the number of quantization indexes (centroid
+indexes) is smaller.
 
-\section{Portable Network Graphics (PNG)}
+\subsection*{Resources}
 
-\href{https://en.wikipedia.org/wiki/Portable_Network_Graphics}{PNG}~\cite{vruiz__PNG}
-(pronounced ``ping'') a dictionary-based
-\href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless
-  image compression format} used for representing
-\href{https://en.wikipedia.org/wiki/Digital_data}{digital}
-\href{https://en.wikipedia.org/wiki/Digital_image}{images} and
-\href{https://en.wikipedia.org/wiki/Video}{videos}~\cite{vruiz__image_video}
-in III... format.
+https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_VQ/gray_VQ.ipynb
 
-We must bear in mind that as such an image compressor, we can only
-interact with PNG at the image level, that is, it only accepts images
-(in shades of gray or in color, with the possibility of alpha channel)
-and returns images.
+\section{Proposals}
+\subsection{Modify VCF to allow the use of Lloyd-Max Quantization in the compression pipeline}
+\subsection{Modify CVF to allow the use of Vector Quantization in the compression pipeline}
 
-% PNG is the default EC in the \href{https://github.com/Sistemas-Multimedia/VCF}{VCF project} because: (1) is lossless, (2) is fast, and (3) the compression performance is reasonable.
-
-\section{Resources}
+\section{References}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
 \bibliography{text-compression,image-formats,image-video-theory}
