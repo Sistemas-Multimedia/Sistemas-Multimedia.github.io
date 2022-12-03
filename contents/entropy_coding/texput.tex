@@ -45,11 +45,11 @@ in compression ratio.
 
 \section{\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman Coding}}
 
-A Huffman code is a
+A Huffman code~\cite{vruiz__huffman_coding} is a
 \href{https://en.wikipedia.org/wiki/Prefix_code}{prefix code} that
 allows to ``navigate'' through the so called Huffman (inverted) tree
 from the trunk to one of its leaves without
-uncertainty~\cite{vruiz__huffman_coding}. The Huffman tree satisfies that
+uncertainty. The Huffman tree satisfies that
 \begin{equation}
   l(c(s)) = \lceil I(s)\rceil,
   \label{eq:huffman_performance}
@@ -65,15 +65,18 @@ probabilistic model remains constant, the code-words assigned to the
 symbols will be also remain unchanged.
 
 \subsection*{Resources}
+\begin{enumerate}
+\item \href{https://www.inference.org.uk/mackay/python/compress/#Huff}{Compression algorithms in python}.
+\item \href{https://favtutor.com/blogs/huffman-coding}{Huffman Coding Implementation in Python with Example}.
+\item \href{https://www.programiz.com/dsa/huffman-coding}{Huffman Coding}.
+\end{enumerate}
 
+\section{\href{https://en.wikipedia.org/wiki/Arithmetic_coding}{Arithmetic
+    Coding}~\cite{vruiz__arithmetic_coding}}
 
-
-\section{Arithmetic Coding~\cite{vruiz__arithmetic_coding}}
-
-In an
-\href{https://en.wikipedia.org/wiki/Arithmetic_coding}{arithmetic
-  code}, the number of bits of data that can be used for representing
-a symbol can match exactly the number of bits of information, i.e,
+In an arithmetic codec, the number of bits of data that can be used for
+representing a symbol can match exactly the number of bits of
+information, i.e,
 \begin{equation}
   l(c(s)) = I(s).
 \end{equation}
@@ -114,6 +117,15 @@ interact with PNG at the image level, that is, it only accepts images
 and returns images.
 
 % PNG is the default EC in the \href{https://github.com/Sistemas-Multimedia/VCF}{VCF project} because: (1) is lossless, (2) is fast, and (3) the compression performance is reasonable.
+
+\section{To-Do}
+\begin{enumerate}
+\item Modify VCF to allow the use of Huffman Coding in the compression
+pipeline.
+\item Modify VCF to allow the use of Arithmetic Coding in the
+  compression pipeline.
+\end{enumerate}
+
 
 \section{References}
 
