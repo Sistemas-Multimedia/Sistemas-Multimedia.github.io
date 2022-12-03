@@ -97,9 +97,15 @@ the samples is higher and viceversa.
 Notice that the histogram must be known by the decoder to ``restore''
 the information.
 
-\subsection*{\href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/LloydMax.py}{A partial implementation}}
+\subsection*{Resources}
 
-\section{Vector Quantization}
+\begin{enumerate}
+\item
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/LloydMax.py}{A
+    partial implementation in VCF}.
+\end{enumerate}
+
+\section{Vector Quantization~\cite{vruiz__vector_quantization}}
 
 Vector Quantizers input (usually squared) blocks of samples and output
 a quantization index per block. In most of natural images, the spatial
@@ -112,13 +118,19 @@ indexes) is smaller.
 
 \subsection*{Resources}
 
-https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_VQ/gray_VQ.ipynb
+\begin{enumerate}
+\item \href{https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py}{Vector Quantization Example}.
+\item
+  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_VQ/gray_VQ.ipynb}{Vector
+    Quantization (in the 2D domain) of a gray-scale image}.
+\item \href{https://github.com/vicente-gonzalez-ruiz/image_vector_quantization_LBG}{Image compression using LBG}.
+\end{enumerate}
 
 \section{Proposals}
 \subsection{Modify VCF to allow the use of Lloyd-Max Quantization in the compression pipeline}
-\subsection{Modify CVF to allow the use of Vector Quantization in the compression pipeline}
+\subsection{Modify VCF to allow the use of Vector Quantization in the compression pipeline}
 
 \section{References}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{text-compression,image-formats,image-video-theory}
+\bibliography{text-compression,image-formats,image-video-theory,quantization}
