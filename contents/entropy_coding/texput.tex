@@ -19,7 +19,7 @@ quantifies the volume of information represented by a data set, so
 that the higher the entropy, the better the efficiency of such
 representation (data) would be.
 
-\section{A classification}
+\section{A classification of Entropy Encoders}
 
 There are basically two types of entropy encoders depending on how the
 sequence of symbols that make up the data to be encoded are processed:
@@ -64,11 +64,16 @@ when the length of the alphabet is small. Notice also that, if the
 probabilistic model remains constant, the code-words assigned to the
 symbols will be also remain unchanged.
 
-\section{\href{https://en.wikipedia.org/wiki/Arithmetic_coding}{Arithmetic Coding}}
+\subsection*{Resources}
 
-In an arithmetic code~\cite{vruiz__arithmetic_coding}, the number of
-bits of data that can be used for representing a symbol can match
-exactly the number of bits of information, i.e,
+
+
+\section{Arithmetic Coding~\cite{vruiz__arithmetic_coding}}
+
+In an
+\href{https://en.wikipedia.org/wiki/Arithmetic_coding}{arithmetic
+  code}, the number of bits of data that can be used for representing
+a symbol can match exactly the number of bits of information, i.e,
 \begin{equation}
   l(c(s)) = I(s).
 \end{equation}
@@ -80,6 +85,13 @@ infinite. Notice also that, if the size of the alphabet is high, the
 encoding performance difference between a Huffman code (or any other
 prefix code) and an arithmetic code, vanishes.
 
+\subsection*{Resources}
+\begin{enumerate}
+\item
+  \href{https://www.folkstalk.com/tech/arithmetic-encoding-python-with-code-examples/}{Arithmetic
+    Encoding Python With Code Examples}.
+\item 
+
 \section{Portable Network Graphics (PNG)}
 
 \href{https://en.wikipedia.org/wiki/Portable_Network_Graphics}{PNG}~\cite{vruiz__PNG}
@@ -89,7 +101,9 @@ prefix code) and an arithmetic code, vanishes.
 \href{https://en.wikipedia.org/wiki/Digital_data}{digital}
 \href{https://en.wikipedia.org/wiki/Digital_image}{images} and
 \href{https://en.wikipedia.org/wiki/Video}{videos}~\cite{vruiz__image_video}
-in III... format.
+in III... format. The entropy encoder of PNG is based on Huffman
+Coding and LZSS, but PNG also incorporates a pixel predictor that
+removes the spatial redundancy.
 
 We must bear in mind that as such an image compressor, we can only
 interact with PNG at the image level, that is, it only accepts images
@@ -98,7 +112,7 @@ and returns images.
 
 % PNG is the default EC in the \href{https://github.com/Sistemas-Multimedia/VCF}{VCF project} because: (1) is lossless, (2) is fast, and (3) the compression performance is reasonable.
 
-\section{Resources}
+\section{References}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
 \bibliography{text-compression,image-formats,image-video-theory}
