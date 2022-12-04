@@ -35,6 +35,10 @@ images in the sequence $V$.
   V_i = \text{2D-DWT}(V_i)
 \end{pseudocode}
 
+\section{Autoencoder Latent Representation}
+% Johannes Ballé, Valero Laparra, and Eero P. Simoncelli. 2017. End-to-end Optimized Image Compression. In 5th International Conference on Learning Representations, ICLR 2017, Toulon, France, April 24-26, 2017
+
+In ANN-based image compression, an autoencoder can be used to find the latent representation of an (input) image. The compressor is the first part of the autoencoder and the decompressor is the second part. During the compression, the latent representation is quantized and entropy compressed.
 
 \section{References}
 
