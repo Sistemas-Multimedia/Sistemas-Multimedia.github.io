@@ -1,13 +1,15 @@
-\input{../definitions}
-\title{\SM{} - Study Guide - Milestone 11: Critially Sampled LPT (CS-LPT)}
+\input{../../definitions}
+\title{\SM{} - Spatial Transforms}
 
 \maketitle
+
+\tableofcontents
+
+\section{Critially Sampled LPT (CS-LPT)}
 
 Technically, the LPT is a frame expansion, that generates an expanded
 octave-band decomposition. The ratio of redundancy in the
 decomposition $R\rightarrow 2$ with the number of DWT levels.
-
-\section{Description}
 
 The 2D-DWT can a used on sequences of images, by simply iterating as
 it is described in the Algorithm~\ref{alg:MDWT}. $I$ is the number of
@@ -19,19 +21,8 @@ images in the sequence $V$.
   V_i = \text{2D-DWT}(V_i)
 \end{pseudocode}
 
-\section{What you have to do?}
-  
-Please, complete this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/study_guide/MDWT/MDWT.ipynb}{notebook}.
 
-\section{Timming}
+\section{References}
 
-Please, finish this notebook before the next class session.
-
-\section{Deliverables}
-
-None.
-
-\section{Resources}
-
-\bibliography{python}
+\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
+\bibliography{projects}
