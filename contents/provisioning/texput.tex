@@ -8,13 +8,12 @@
 \section{About the Operating System}
 
 \subsection{Running/Developing CVF ``Natively''}
-The \href{https://github.com/Sistemas-Multimedia/VCF}{VCF project} has
-been designed to work
-in \href{https://en.wikipedia.org/wiki/Linux}{Linux}. Said that, it is
+The VCF project~\cite{vruiz__VCF} has been designed to work in
+\href{https://en.wikipedia.org/wiki/Linux}{Linux}. Said that, it is
 also possible to run CVF in other operating systems (OS) such as OSX
-and Windows. Python and Git, the two main tools that we will use are
-available in all these OSs. In the case of Linux, you can use your
-prefered distribution.
+and Windows. Python~\cite{vruiz__YAPT} and Git~\cite{vruiz__GitHub},
+the two main tools that we will use are available in all these OSs. In
+the case of Linux, you can use your prefered distribution.
 
 This is the prefered option from a pure computational point of view.
 
@@ -36,15 +35,18 @@ environment such as \href{https://www.virtualbox.org/}{Virtual Box},
 The only drawback of this way of running CVF is that you will require
 some extra memory and CPU power.
 
+Obviously, any remote host (virtualized or not) running Linux is
+completely adecuate.
+
 \subsection{Running CVF in a ``Notebook''}
-Finally, it is possible to run CVF in any service able to run
-``notebooks'', such
-as \href{https://colab.research.google.com/}{Google Colaboratory}
-or \href{https://mybinder.org/}{Binder}. Notice, however, that in this
+Finally, it is possible to run CVF services that able to run
+``notebooks'', such as
+\href{https://colab.research.google.com/}{Google Colaboratory} or
+\href{https://mybinder.org/}{Binder}. Notice, however, that in this
 case, you will probably need to configure your notebooks for
 installing all the necessary stuff from the scratch if you use these
-cloud services. If you opt for using Jupyter Notebook, this last
-action is not necessary.
+cloud services. On the contrary, if you opt for using Jupyter
+Notebook, this last action is not necessary.
 
 \section{About the Programing Language(s)}
 
@@ -56,3 +58,8 @@ line terminal}.
 \section{About the Project Hosting Platform}
 
 VCF is hosted at \href{https://github.com/}{GigHub}.
+
+\section{References}
+
+\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
+\bibliography{projects}
