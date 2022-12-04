@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" 
+"http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd" > 
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Sistemas Multimedia - Digital &#x0028;Re-&#x0029;Quantization</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<!-- xhtml,mathml,html --> 
+<meta name="src" content="index.tex" /> 
+<link rel="stylesheet" type="text/css" href="index.css" /> 
+</head><body 
+>
+   <div class="maketitle">
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+
+<h2 class="titleHead"><a 
+href="https://sistemas-multimedia.github.io/" >Sistemas Multimedia</a> - Digital
+&#x0028;Re-&#x0029;Quantization</h2>
+ <div class="author" ><a 
+href="https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875" ><span 
+class="ecrm-1200">Vicente Gonz</span><span 
+class="ecrm-1200">&#x00E1;</span><span 
+class="ecrm-1200">lez Ruiz</span></a> <span 
+class="ecrm-1200">- </span><a 
+href="https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm" ><span 
+class="ecrm-1200">Depto Inform</span><span 
+class="ecrm-1200">&#x00E1;</span><span 
+class="ecrm-1200">tica</span></a> <span 
+class="ecrm-1200">- </span><a 
+href="https://www.ual.es" ><span 
+class="ecrm-1200">UAL</span></a></div><br />
+<div class="date" ><span 
+class="ecrm-1200">December 4, 2022</span></div>
+   </div>
+   <h3 class="likesectionHead"><a 
+ id="x1-1000"></a>Contents</h3>
+   <div class="tableofcontents">
+   &#x00A0;<span class="sectionToc" >1 <a 
+href="#x1-20001" id="QQ2-1-2">What is Quantization?</a></span>
+<br />   &#x00A0;<span class="sectionToc" >2 <a 
+href="#x1-30002" id="QQ2-1-3">What is Digital Quantization?</a></span>
+<br />   &#x00A0;<span class="sectionToc" >3 <a 
+href="#x1-40003" id="QQ2-1-4">Basic terminology</a></span>
+<br />   &#x00A0;<span class="sectionToc" >4 <a 
+href="#x1-50004" id="QQ2-1-5">Classi&#xFB01;cation of Quantizers</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >4.1 <a 
+href="#x1-60004.1" id="QQ2-1-6">Scalar VS Vector Quantizers</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >4.2 <a 
+href="#x1-70004.2" id="QQ2-1-7">Uniform VS Non-Uniform Quantizers</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >4.3 <a 
+href="#x1-80004.3" id="QQ2-1-8">Static VS Adaptive Quantizers</a></span>
+<br />   &#x00A0;<span class="sectionToc" >5 <a 
+href="#x1-90005" id="QQ2-1-9">Deazone Quantization&#x00A0;&#x005B;1&#x005D;</a></span>
+<br />   &#x00A0;<span class="sectionToc" >6 <a 
+href="#x1-110006" id="QQ2-1-11">Lloyd-Max Quantization&#x00A0;&#x005B;1&#x005D;</a></span>
+<br />   &#x00A0;<span class="sectionToc" >7 <a 
+href="#x1-130007" id="QQ2-1-13">Vector Quantization&#x00A0;&#x005B;2&#x005D;</a></span>
+<br />   &#x00A0;<span class="sectionToc" >8 <a 
+href="#x1-150008" id="QQ2-1-15">To-Do</a></span>
+<br />   &#x00A0;<span class="sectionToc" >9 <a 
+href="#x1-160009" id="QQ2-1-16">References</a></span>
+   </div>
+<!--l. 11--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-20001"></a>What is Quantization?</h3>
+<!--l. 13--><p class="noindent" >In Information Theory, Quantization is any mapping process between two sets of elements
+<!--l. 14--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>A</mi></math> and
+<!--l. 14--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>B</mi></math>, where all the elements
+                                                                  
+
+                                                                  
+of <!--l. 14--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>A</mi></math> are associated
+to one element of <!--l. 15--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>B</mi></math>,
+and happens that <!--l. 15--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">&#x007C;</mo><mi 
+>A</mi><mo 
+class="MathClass-rel">&#x007C;</mo> <mo 
+class="MathClass-rel">&#x003E;</mo> <mo 
+class="MathClass-rel">&#x007C;</mo><mi 
+>B</mi><mo 
+class="MathClass-rel">&#x007C;</mo></math>,
+where <!--l. 16--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">&#x007C;</mo><mo 
+class="MathClass-bin">&#x22C5;</mo><mo 
+class="MathClass-rel">&#x007C;</mo></math>
+represents the orde &#x0028;the number of elements&#x0029; of a group.
+</p><!--l. 18--><p class="indent" >   Notice that because <!--l. 18--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-rel">&#x007C;</mo><mi 
+>A</mi><mo 
+class="MathClass-rel">&#x007C;</mo> <mo 
+class="MathClass-rel">&#x003E;</mo> <mo 
+class="MathClass-rel">&#x007C;</mo><mi 
+>B</mi><mo 
+class="MathClass-rel">&#x007C;</mo></math>,
+quantization is an irreversible process because two o more elements of
+<!--l. 19--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>A</mi></math> will be mapped to
+the same element of <!--l. 20--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>B</mi></math>.
+</p><!--l. 22--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-30002"></a>What is Digital Quantization?</h3>
+<!--l. 24--><p class="noindent" >In Digital Quantization, the elements of
+<!--l. 24--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>A</mi></math> and
+<!--l. 24--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>B</mi></math> are
+digital samples of a signal. Since, by de&#xFB01;nition, a digital sample has been quantized
+to be converted from the analog world to the digital one, we are appliying a
+re-quantization of the signal. Again, such digital quantization implies a loss of
+information in the re-quantized signal.
+</p><!--l. 30--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-40003"></a>Basic terminology</h3>
+<!--l. 32--><p class="noindent" >Several types of quantizers divide the range of possible values that the samples can
+take into a collection of intervals. The values that de&#xFB01;ne such intervals are called
+decision levels and the value that in the quantized domain represents to all the input
+posible values that fall in a interval is called the representation level of the
+interval.
+</p><!--l. 38--><p class="indent" >   The size of each interval is called the quantization step size.
+</p><!--l. 40--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-50004"></a>Classi&#xFB01;cation of Quantizers</h3>
+<!--l. 42--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">4.1   </span> <a 
+ id="x1-60004.1"></a>Scalar VS Vector Quantizers</h4>
+                                                                  
+
+                                                                  
+<!--l. 44--><p class="noindent" >When quantization maps single elments of
+<!--l. 44--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>A</mi></math> to single
+elements of <!--l. 45--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mi 
+>B</mi></math>,
+the quantizer is said scalar. When we map tuples of elements, we are using Vector
+Quantization.
+</p><!--l. 48--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">4.2   </span> <a 
+ id="x1-70004.2"></a>Uniform VS Non-Uniform Quantizers</h4>
+<!--l. 50--><p class="noindent" >In a uniform quantizer, all the intervals have the same size. In a non-uniform
+quantizer, at least one of the intervals is di&#xFB00;erent to the rest. For example, a
+deadzone quantizer has a interval size for the representation level 0 that doubles the
+size of the rest of intervals. For this reason, a deadzone quantizer is a non-uniform
+quantizer.
+</p><!--l. 57--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">4.3   </span> <a 
+ id="x1-80004.3"></a>Static VS Adaptive Quantizers</h4>
+<!--l. 59--><p class="noindent" >Static quantizers are de&#xFB01;ned without considering the speci&#xFB01;c characteristics of the
+sequence of samples to quantize. Adaptive quantizers adapt to the sequence of
+samples that are quantized. For example, a Lloyd-Max quantizer divides the range of
+input values in a set of intervals whose size is inversely proportional to the
+probability of using such interval. On the contrary, a static quantizer keeps &#xFB01;xed the
+size of the intervals.
+</p><!--l. 67--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-90005"></a>Deazone Quantization&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xvruiz__scalar_quantization">1</a>&#x005D;</span></h3>
+<!--l. 69--><p class="noindent" >Deadzone quantizers are static quasi-uniform scalar quantizers. These are used
+frequently in lossy compression systems because: &#x0028;1&#x0029; when the quantization step size
+is a power of two, and &#x0028;2&#x0029; the input sample values are integers &#x0028;and negative integers
+are represented using two&#x2019;s complement&#x0029;, then the representation levels can be found
+by simply discarding low-signi&#xFB01;cant bits of the input samples &#x0028;in other words, we
+only need to perform a bit-shift operation to &#xFB01;nd the corresponding quantization
+index&#x0029;.
+</p><!--l. 77--><p class="indent" >   Another reason that make deadzone quantization popular in lossy encoding
+systems is that tends to remove electronic noise more than other quantizers. If we
+supose that the signal has 0 average &#x0028;the electronic noise has 0 average and a &#xFB02;at
+spectrum&#x0029; the deadzone is places where the SNR is smaller, and therefore, we are
+replacing electronic noise by quantization noise. Obviously, this does not improve the
+RD performance of the encoder, but the perceived &#x0028;subjective&#x0029; quality is
+                                                                  
+
+                                                                  
+increased for the same bit-rate &#x0028;if the electronic noise is perceived as a source of
+distortion&#x0029;.
+</p><!--l. 87--><p class="noindent" >
+</p>
+   <h4 class="likesubsectionHead"><a 
+ id="x1-100005"></a>Resources</h4>
+<!--l. 88--><p class="noindent" >
+     </p><ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-10002x1">
+     <!--l. 90--><p class="noindent" ><a 
+href="https://github.com/Sistemas-Multimedia/VCF/blob/main/src/deadzone.py" >Deadzone Quantization in VCF</a>.</p></li></ol>
+<!--l. 94--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-110006"></a>Lloyd-Max Quantization&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xvruiz__scalar_quantization">1</a>&#x005D;</span></h3>
+<!--l. 96--><p class="noindent" >A Lloyd-Max quantizer minimizes the quantization noise given a number of
+quantization intervals. To do this, the quantizer must know the histogram &#x0028;the
+probabilities&#x0029; of the input samples. As a result, the density of quantization intervals
+is higher where the probability of the samples is higher and viceversa.
+</p><!--l. 102--><p class="indent" >   Notice that the histogram must be known by the decoder to &#x201C;restore&#x201D; the
+information.
+</p><!--l. 105--><p class="noindent" >
+</p>
+   <h4 class="likesubsectionHead"><a 
+ id="x1-120006"></a>Resources</h4>
+<!--l. 107--><p class="noindent" >
+     </p><ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-12002x1">
+     <!--l. 109--><p class="noindent" ><a 
+href="https://github.com/Sistemas-Multimedia/VCF/blob/main/src/LloydMax.py" >A partial implementation in VCF</a>.</p></li></ol>
+<!--l. 113--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
+ id="x1-130007"></a>Vector Quantization&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xvruiz__vector_quantization">2</a>&#x005D;</span></h3>
+                                                                  
+
+                                                                  
+<!--l. 115--><p class="noindent" >Vector Quantizers input &#x0028;usually squared&#x0029; blocks of samples and output a
+quantization index per block. In most of natural images, the spatial correlation
+generates that some blocks of the image are similar to other blocks. If this is true, we
+can compute a set of centroids &#x0028;blocks&#x0029; and use them to represent the original blocks.
+The encoding performance of a Vector Quantizer is superior compared to a Scalar
+Quantizer because the number of quantization indexes &#x0028;centroid indexes&#x0029; is
+smaller.
+</p><!--l. 124--><p class="noindent" >
+</p>
+   <h4 class="likesubsectionHead"><a 
+ id="x1-140007"></a>Resources</h4>
+<!--l. 126--><p class="noindent" >
+     </p><ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-14002x1">
+     <!--l. 127--><p class="noindent" ><a 
+href="https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py" >Vector Quantization Example</a>.
+     </p></li>
+<li 
+  class="enumerate" id="x1-14004x2">
+     <!--l. 129--><p class="noindent" ><a 
+href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_VQ/gray_VQ.ipynb" >Vector Quantization &#x0028;in the 2D domain&#x0029; of a gray-scale image</a>.
+     </p></li>
+<li 
+  class="enumerate" id="x1-14006x3">
+     <!--l. 131--><p class="noindent" ><a 
+href="https://github.com/vicente-gonzalez-ruiz/image_vector_quantization_LBG" >Image compression using LBG</a>.</p></li></ol>
+<!--l. 134--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">8   </span> <a 
+ id="x1-150008"></a>To-Do</h3>
+<!--l. 135--><p class="noindent" >
+     </p><ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-15002x1">
+     <!--l. 136--><p class="noindent" >Modify  VCF  to  allow  the  use  of  Lloyd-Max  Quantization  in  the
+     compression pipeline. Up to 2 people in the group.
+     </p></li>
+<li 
+  class="enumerate" id="x1-15004x2">
+                                                                  
+
+                                                                  
+     <!--l. 138--><p class="noindent" >Modify VCF to allow the use of Vector Quantization in the compression
+     pipeline. Up to 3 people in the group.</p></li></ol>
+<!--l. 142--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">9   </span> <a 
+ id="x1-160009"></a>References</h3>
+   <div class="thebibliography">
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xvruiz__scalar_quantization"></a>V.&#x00A0;Gonz&#x00E1;lez-Ruiz. <a 
+href="https://vicente-gonzalez-ruiz.github.io/scalar_quantization/" >Scalar Quantization</a>.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;2&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xvruiz__vector_quantization"></a>V.&#x00A0;Gonz&#x00E1;lez-Ruiz. <a 
+href="https://vicente-gonzalez-ruiz.github.io/vector_quantization/" >Vector Quantization</a>.
+</p>
+   </div>
+    
+</body></html> 
+
+                                                                  
+
+
