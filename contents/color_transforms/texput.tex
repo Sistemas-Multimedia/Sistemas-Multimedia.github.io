@@ -191,6 +191,47 @@ As we did in the case of the
 intermediate RD points between each Eq.~\eqref{eq:simple_Q}-point to
 increase the resolution of the decompressed image.
 
+%%%%%%%%%%%%%%%%%
+
+\section{Scalar versus vector quantization of RGB images}
+%{{{
+
+SQ (Scalar
+Quantization)~\cite{vruiz__scalar_quantization,sayood2017introduction}
+would be an optimal solution only if the image colors are uniformly
+distributed within
+\href{https://en.wikipedia.org/wiki/RGB_color_model}{the RGB
+  cube}. However, the typical color distribution in natural images is
+anything but uniform, with some regions of the color space being
+densely populated and many potentially used colors entirely
+missing. In this case, depending on the quantization step
+size~\cite{vruiz__signal_quantization}, SQ is not optimal because the
+used colors may not be sampled with suﬃcient density while at the same
+time the encoding system is considering colors that do not appear in
+the image at all~\cite{burger2016digital}.
+
+On the other hand, VQ (Vector
+Quantization)~\cite{vruiz__vector_quantization,sayood2017introduction}
+applied to the color domain does not treat the individual RGB
+components (also refered by
+\href{https://en.wikipedia.org/wiki/Color_image}{channel}s) separately
+as does scalar quantization, but each used color vector ${\mathbf C}_i
+= ({\mathbf R}_i, {\mathbf G}_i, {\mathbf B}_i )$ in the image is
+treated as a minimum structure. Starting from a set of original color
+tuples ${\mathbf C} = \{{\mathbf C}_1, {\mathbf C}_2, \ldots ,{\mathbf
+  C}_m\}$, where $m$ is the number of different colors found in the
+image, the task of a vector quantizer in this context is to:
+\begin{enumerate}
+\item Find a set of $n$ representative color vectors (the so called
+  \emph{code-book}) ${\mathbf C}' = \{{\mathbf C}'_1, {\mathbf C}'_2
+  ,\ldots , {\mathbf C}'_n \}$, where $n < m$.
+\item Replace each original color ${\mathbf C}_i$ by one of the new
+  color vectors ${\mathbf C}'_j\in {\mathbf C}'$, where the resulting
+  deviation from the original image shall be minimal.
+\end{enumerate}
+
+%}}}
+
 
 \section{Resources}
 
