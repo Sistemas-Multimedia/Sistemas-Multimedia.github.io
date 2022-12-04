@@ -6,7 +6,128 @@
 \maketitle
 \tableofcontents
 
-\section{Objective}
+\section{The RGB Domain}
+
+\subsection{Objective}
+The image compressor developed in the task
+\href{https://sistemas-multimedia.github.io/contents/gray_SQ/}{Scalar
+  Quantization of Gray-scale Images} can be extended to encode
+$\text{RGB}$ (Red, Green and Blue) color images if each color channel
+is quantized~\cite{vruiz__scalar_quantization} and the quantization
+indexes are entropy encoded (for example, with
+PNG~\cite{vruiz__PNG}). Notice that, as in the task
+\href{https://sistemas-multimedia.github.io/contents/gray_SQ/}{Scalar
+  Quantization of Gray-scale Images}, we are again exploiting the fact
+that, in general, humans are not very proficient recognizing a large
+number of simultaneous colors.\footnote{This can be classified as a
+type of visual redundancy.}
+
+\subsection{Scalar quantization applied to the $\text{RGB}$ domain}
+The $\text{RGB}$ domain is additive~\cite{burger2016digital}, which
+means that the distortion generated in one of the channels is
+identical to the distortion (for example, in terms of the RMSE)
+generated in the reconstructed image. Therefore, the set of
+quantization patterns used in the compressor is
+\begin{equation}
+  \mathbf{\Delta}^{\text{R}}_i = \mathbf{\Delta}^{\text{G}}_i =
+  \mathbf{\Delta}^{\text{B}}_i,
+  \label{eq:simple_Q}
+\end{equation}
+where $i$ represents the $i$-th quantization step size.  Notice also
+that any other combination of quantization steps should generate some
+bias of the chroma towards one of the primary colors (red, green and
+blue).
+
+\subsection{Optimal quantization pattern}
+\label{sec:optimal_RD}
+The quantization pattern defined in the Eq.~\eqref{eq:simple_Q} will
+be optimal only if for all the quantization steps, the condition
+\begin{equation}
+  \mathbf{\lambda}^{\text{R}}_i = \mathbf{\lambda}^{\text{G}}_i =
+  \mathbf{\lambda}^{\text{B}}_i
+  \label{eq:optimal_lambda}
+\end{equation}
+is satisfied. In the previous
+\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb}{notebook}
+we can explore (at least, visually) the grade of compilance of
+Eq.~\eqref{eq:optimal_lambda}.
+
+\subsection{Scalar quantization in the $\text{RGB}$ domain}
+
+Supposing that we are using a dead-zone quantizer, a $\text{RGB}$
+image can be quantized, channel by channel, using quantization steps
+$\mathbf{\Delta}_{\text{R}}$, $\mathbf{\Delta}_{\text{G}}$, and
+$\mathbf{\Delta}_{\text{B}}$ (being $\mathbf{\Delta}$ the
+``quantization pattern''). A reasonable question that arises here is:
+given a target bit-rate $R$ for the compressed frame, how the
+quantization steps should be chosen to minimize the distortion?
+
+At this point we can consider two different quantization
+perspectives. In the first one, if we consider a strictly visual
+effect, any alternative different from
+\begin{equation}
+  \mathbf{\Delta}_{\text{R}} = \mathbf{\Delta}_{\text{G}} = \mathbf{\Delta}_{\text{B}}
+  \label{eq:simple_Q}
+\end{equation}
+will produce some alteration in the color (also called the
+\href{https://en.wikipedia.org/wiki/Chrominance}{``chroma''}) of the
+reconstructed image.
+
+A second perspective considers only a pure
+\href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{Rate/Distortion
+  (RD) performance}~\cite{vruiz__information_theory}. The $\text{RGB}$
+color domain is additive, which means that the distortion generated in
+the quantized image is the sum of the distortions generated in each of
+the channels, when they are quantized independently. Therefore, the
+optimal RD curve for the reconstructed image (using the $3$ channels)
+can be obtained through the steps:
+\begin{enumerate}
+\item Compute the RD curve for each channel. Notice that here we must
+  define a set of quantization steps for each channel. For simplicity,
+  use the same set for the three channels.
+\item Put all the RD points in a list and sort the list by the slopes
+  of the points. Since the points have been ordered by their slope,
+  the sequence of quantization patterns should generate the optimal
+  curve.
+\item Use the corresponding quantization patterns (defined by the points
+  of the list) to compute the RD curve of the reconstructed image.
+\end{enumerate}
+
+This algorithm is independent of how the set of quantization steps
+used in each channel has been selected. If the quantization steps used
+to describe the RD curves of each channel are different, the points of
+the definitive curve will be different, but not its shape or its
+localization in the RD space.
+
+If we are used the same quantization steps for each channel, the
+points generated when
+\begin{equation}
+  \mathbf{\Delta}_{\text{R}} = \mathbf{\Delta}_{\text{G}} = \mathbf{\Delta}_{\text{B}}
+\end{equation}
+must occur in the definitive RD curve. Notice that the rest of points
+of the curve should appear between these points, but do not
+necessarily belong to the convex hull of the curve (altough they could
+be used to perform a finer rate-control).
+
+\subsection{Increasing the number of RD points (TO-DO)}
+\label{sec:increasing}
+If the Eq.~\eqref{eq:simple_Q} does not need to be satisfied, we can
+increase the resolution of the rate/distortion control using also the
+``intermediate'' points of the bit-plane progressive RD
+curve. Therefore, starting for example by the (usually top) left point
+of the RD curve, after each Eq.~\eqref{eq:simple_Q}-point, we must
+decide which option is more advantageous: (1) encode the next
+bit-plane of the $\text{R}$ channel, (2) encode the next bit-plane of
+the $\text{G}$ channel, or (3) encode the next bit-plane of the
+$\text{B}$ channel. We should select the option that provides the
+highest RD slope~\cite{vruiz__information_theory}.
+
+
+%%%%%%
+
+\section{The Color DCT Domain}
+
+\subsection{Objective}
 This task shows how to exploit the inter-channel
 redundancy~\cite{vruiz__visual_redundancy,vruiz__information_theory}
 in $\text{RGB}$ images with the DCT~\cite{vruiz__DCT} applied over the
@@ -16,7 +137,7 @@ orthonormal (decorrelates, preserves the energy and all the DCT
 subbands has $1$-gain)~\cite{vruiz__transform_coding} and, in general,
 performs (decorrelates) quite well.
 
-\section{Decorrelation with the DCT}
+\subsection{Decorrelation with the DCT}
 The DCT convolves cosine functions with the input sinal (in this case,
 the components of the pixels of the input image). The output of the
 transform is a set of three subbands $\{\text{DCT}^0, \text{DCT}^1,
@@ -33,7 +154,7 @@ basically represents the
 \href{https://en.wikipedia.org/wiki/Luminance}{luminance} of the
 image (see the \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb}{notebook}).
 
-\section{Effects of the transform}
+\subsection{Effects of the transform}
 The concentration of the energy in the subband $\text{DCT}^0$
 increases the dynamic range of the DCT-color domain compared to the
 dynamic range of the original $\text{RGB}$ image. This has two
@@ -50,7 +171,7 @@ interesting consequences:
   when applied.
 \end{enumerate}
 
-\section{Scalar quantization applied to the DCT domain}
+\subsection{Scalar quantization applied to the DCT domain}
 Since the DCT is orthonormal (orthogonal and unitary), we can use the
 simple quantization pattern
 \begin{equation}
@@ -62,7 +183,7 @@ $\text{RGB}$ or the ($\text{DCT}^0,\text{DCT}^1,\text{DCT}^2$) color
 domain, except that in the last case, we must consider one extra
 bit-plane to encode.
 
-\section{A better rate control (TO-DO)}
+\subsection{A better rate control (TO-DO)}
 \label{sec:increasing}
 As we did in the case of the
 \href{https://sistemas-multimedia.github.io/contents/RGB_SQ/}{Scalar
@@ -70,28 +191,6 @@ As we did in the case of the
 intermediate RD points between each Eq.~\eqref{eq:simple_Q}-point to
 increase the resolution of the decompressed image.
 
-\section{Implementation}
-The described algorithm has been implemented in this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb}{notebook}.
-
-\section{What do I have to do?}
-
-\begin{enumerate}
-\item Please, modify the
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb}{notebook}
-  to increse the number of RD points following the procedure described
-  in Section~\ref{sec:increasing}.
-\item Which redundancies are exploited in the new improved image
-  compressor?
-\end{enumerate}
-
-\section{Timming}
-
-Please, finish this milestone before the next class session.
-
-\section{Deliverables}
-
-None.
 
 \section{Resources}
 
