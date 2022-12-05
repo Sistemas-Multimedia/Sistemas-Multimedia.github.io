@@ -37,7 +37,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">December 4, 2022</span></div>
+class="ecrm-1200">December 5, 2022</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -72,68 +72,72 @@ href="#x1-90004" id="QQ2-1-9">References</a></span>
                                                                   
 <!--l. 11--><p class="noindent" >The VCF project&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xvruiz__VCF">1</a>&#x005D;</span> has been designed to work in <a 
-href="https://en.wikipedia.org/wiki/Linux" >Linux</a>. Said that, it is
-also possible to run CVF in other operating systems &#x0028;OS&#x0029; such as OSX and
-Windows. Python&#x00A0;<span class="cite">&#x005B;<a 
+href="https://en.wikipedia.org/wiki/Linux" >Linux</a>. Said that, it is also
+possible to run VCF in other operating systems &#x0028;OS&#x0029; such as OSX and Windows
+because Python&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xvruiz__YAPT">3</a>&#x005D;</span> and Git&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvruiz__GitHub">2</a>&#x005D;</span>, the two main tools that we will use are
-available in all these OSs. In the case of Linux, you can use your prefered
+href="#Xvruiz__GitHub">2</a>&#x005D;</span>, the two main tools that we will use, are also
+available in all these OSs. In the case of Linux, you can use your favourite
 distribution.
-</p><!--l. 18--><p class="indent" >   This is the prefered option from a pure computational point of view.
-</p><!--l. 20--><p class="noindent" >
+</p><!--l. 19--><p class="indent" >   This is the prefered option because is the most e&#xFB03;cient one from a pure
+computational point of view.
+</p><!--l. 22--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.2   </span> <a 
  id="x1-40001.2"></a>Running/Developing CVF in a Linux Container</h4>
-<!--l. 21--><p class="noindent" >The second most e&#xFB03;cient option in terms of computational requirements and
+<!--l. 23--><p class="noindent" >The second most e&#xFB03;cient option in terms of computational requirements and
 speed is to run Linux in a linux container, such as the provided by <a 
-href="https://linuxcontainers.org/" >Docker</a>
-&#x0028;example for Ubuntu&#x0029; or <a 
+href="https://hub.docker.com/" >Docker</a>
+&#x0028;<a 
+href="https://hub.docker.com/_/ubuntu" >example for Ubuntu</a>&#x0029; or <a 
 href="https://linuxcontainers.org/" >LXD</a>. Notice however, that you should be able
-to run graphicsl applications &#x0028;such as <a 
+to run graphical applications &#x0028;such as <a 
 href="https://linuxcontainers.org/" >ImageMagick</a> and <a 
 href="https://www.mozilla.org/firefox" >Firefox</a>&#x0029; in your
 container.
-</p><!--l. 31--><p class="noindent" >
+</p><!--l. 33--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.3   </span> <a 
  id="x1-50001.3"></a>Running/Developing CVF in a Linux Virtual Machine</h4>
-<!--l. 32--><p class="noindent" >VCF works also in any Linux OS installed in a virtual machine &#x0028;VM&#x0029; environment
+<!--l. 34--><p class="noindent" >VCF works also in any Linux OS installed in a virtual machine &#x0028;VM&#x0029; environment
 such as <a 
 href="https://www.virtualbox.org/" >Virtual Box</a>, <a 
 href="https://www.vmware.com/" >VMware</a> and <a 
 href="https://www.vmware.com/" >Parallels</a>. The only drawback of this way of
-running CVF is that you will require some extra memory and CPU power.
-</p><!--l. 38--><p class="indent" >   Obviously, any remote host &#x0028;virtualized or not&#x0029; running Linux is completely
+running CVF is that you will require some extra memory and CPU power, compared
+to the containers.
+</p><!--l. 40--><p class="indent" >   Obviously, any remote host &#x0028;virtualized or not&#x0029; running Linux is completely
 adecuate.
-</p><!--l. 41--><p class="noindent" >
+</p><!--l. 43--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.4   </span> <a 
  id="x1-60001.4"></a>Running CVF in a &#x201C;Notebook&#x201D;</h4>
-<!--l. 42--><p class="noindent" >Finally, it is possible to run CVF services that able to run &#x201C;notebooks&#x201D;, such as
+<!--l. 44--><p class="noindent" >Finally, it is possible to run CVF services that able to run &#x201C;notebooks&#x201D;, such as
 <a 
 href="https://colab.research.google.com/" >Google Colaboratory</a> or <a 
 href="https://mybinder.org/" >Binder</a>. Notice, however, that in this case, you will probably
 need to con&#xFB01;gure your notebooks for installing all the necessary stu&#xFB00; from the scratch
-if you use these cloud services. On the contrary, if you opt for using Jupyter
-Notebook, this last action is not necessary.
-</p><!--l. 51--><p class="noindent" >
+if you use these cloud services. On the contrary, if you opt for using <a 
+href="https://jupyter.org/" >Jupyter</a>, this last
+action is not necessary.
+</p><!--l. 54--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-70002"></a>About the Programing Language&#x0028;s&#x0029;</h3>
-<!--l. 53--><p class="noindent" >VCF is written in <a 
-href="https://mybinder.org/" >Python</a>. You will need also to interact with a <a 
-href="https://en.wikipedia.org/wiki/Command-line_interface" >commands line
-terminal</a>.
                                                                   
 
                                                                   
-</p><!--l. 58--><p class="noindent" >
+<!--l. 56--><p class="noindent" >VCF is written in <a 
+href="https://mybinder.org/" >Python</a>. You will need also to interact with a <a 
+href="https://en.wikipedia.org/wiki/Command-line_interface" >commands line
+terminal</a>.
+</p><!--l. 61--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-80003"></a>About the Project Hosting Platform</h3>
-<!--l. 60--><p class="noindent" >VCF is hosted at <a 
+<!--l. 63--><p class="noindent" >VCF is hosted at <a 
 href="https://github.com/" >GigHub</a>.
-</p><!--l. 62--><p class="noindent" >
+</p><!--l. 65--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-90004"></a>References</h3>
