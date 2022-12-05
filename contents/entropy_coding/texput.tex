@@ -10,14 +10,14 @@
 
 \section{What is Entropy Coding?}
 
-Entropy Coding (EC) encompasses a whole series of coding techniques
-that exploit the statistical redundancy of data with the ultimate goal
-of finding a more compact representation. EC is related to the
-definition of entropy in the context of the Information
-Theory~\cite{vruiz__information_theory}. In this area, the entropy
-quantifies the volume of information represented by a data set, so
-that the higher the entropy, the better the efficiency of such
-representation (data) would be.
+Entropy Coding (EC)~\cite{vruiz__entropy_coding} encompasses a whole
+series of coding techniques that exploit the statistical redundancy of
+data with the ultimate goal of finding a more compact
+representation. EC is related to the definition of entropy in the
+context of the Information Theory~\cite{vruiz__information_theory}. In
+this area, the entropy quantifies the volume of information
+represented by a data set, so that the higher the entropy, the better
+the efficiency of such representation (data) would be.
 
 \section{A classification of Entropy Encoders}
 
@@ -39,7 +39,7 @@ sequence of symbols that make up the data to be encoded are processed:
 \end{enumerate}
   
 Those of the first type generally achieve more compact
-representations, but are more computationally expensive. The
+representations, but computationally are more expensive. The
 algorithms of the second class are usually faster, but slighlt worse
 in compression ratio.
 
@@ -47,22 +47,23 @@ in compression ratio.
 
 A Huffman code~\cite{vruiz__huffman_coding} is a
 \href{https://en.wikipedia.org/wiki/Prefix_code}{prefix code} that
-allows to ``navigate'' through the so called Huffman (inverted) tree
-from the trunk to one of its leaves without
-uncertainty. The Huffman tree satisfies that
+allows to ``navigate'' through the so called Huffman (inverted) Tree
+from the trunk to one of its leaves, without
+uncertainty. The Huffman Tree satisfies that
 \begin{equation}
   l(c(s)) = \lceil I(s)\rceil,
   \label{eq:huffman_performance}
 \end{equation}
 where $l(c(s))$ is the length of the (Huffman) code assigned to the
 symbol $s$ and $I(s)$ is the amount of information represented by $s$,
-measured bits of information.
+measured bits of information~\cite{vruiz__information_theory}.
 
 Notice that the minimum number of bits that can be used for
 representing a symbol (using Huffman) is 1, which can be a problem
-when the length of the alphabet is small. Notice also that, if the
-probabilistic model remains constant, the code-words assigned to the
-symbols will be also remain unchanged.
+when the length of the alphabet is small.\footnote{In this case,
+  Huffman is inefective.} Notice also that, if the probabilistic model
+remains constant, the code-words assigned to the symbols will be also
+remain unchanged.
 
 \subsection*{Resources}
 \begin{enumerate}
@@ -84,7 +85,7 @@ information, i.e,
 This also means that even if the size of the alphabet is small, the
 coding performance of an arithmetic code is optimal, although this
 optimality is only satisfied if the number of symbols to encode is
-infinite. Notice also that, if the size of the alphabet is high, the
+infinite. Notice also that, if the alphabet is large, the
 encoding performance difference between a Huffman code (or any other
 prefix code) and an arithmetic code, vanishes.
 
@@ -100,11 +101,13 @@ prefix code) and an arithmetic code, vanishes.
 
 \section{\href{https://zlib.net/}{\texttt{zlib}}}
 
-\texttt{zlib} is based on DEFLATE, which in turn is based on LZ77 and
-Huffman Coding. Therefore, \texttt{zlib} exloits the repetition of
-symbols and also, the the 0-order statistical redundancy\footnote{In
-  other words, that some symbols are more frequenty than others.}. One
-of the main advantages of \texttt{zlib} is that is quite fast.
+\texttt{zlib} is based on
+\href{https://en.wikipedia.org/wiki/Deflate}{DEFLATE}, which in turn
+is based on LZ77~\cite{vruiz__LZW} and Huffman Coding. Therefore,
+\texttt{zlib} exloits the repetition of symbols and also, the the
+0-order statistical redundancy\footnote{In other words, that some
+  symbols are more frequenty than others.}. One of the main advantages
+of \texttt{zlib} is that is quite fast.
 
 \subsection*{Resources}
 \begin{enumerate}
@@ -121,13 +124,14 @@ of the main advantages of \texttt{zlib} is that is quite fast.
 \href{https://en.wikipedia.org/wiki/Digital_data}{digital}
 \href{https://en.wikipedia.org/wiki/Digital_image}{images} and
 \href{https://en.wikipedia.org/wiki/Video}{videos}~\cite{vruiz__image_video}
-in III... format. The entropy encoder of PNG is based on Huffman
-Coding and LZSS, but PNG also incorporates a pixel predictor that
+in III... format~\cite{vruiz__video_compression}. The entropy encoder
+of PNG is based on Huffman Coding and LZSS, and a pixel predictor that
 removes the spatial redundancy.
 
 We must bear in mind that as such an image compressor, we can only
 interact with PNG at the image level, that is, it only accepts images
-(in shades of gray or in color, with the possibility of alpha channel)
+(in shades of gray or in color, with the possibility of an
+\href{https://en.wikipedia.org/wiki/Alpha_compositing}{alpha channel})
 and returns images.
 
 % PNG is the default EC in the \href{https://github.com/Sistemas-Multimedia/VCF}{VCF project} because: (1) is lossless, (2) is fast, and (3) the compression performance is reasonable.
@@ -135,9 +139,11 @@ and returns images.
 % \section{Entropy Image Coding with \href{https://en.wikipedia.org/wiki/Better_Portable_Graphics}{BPG (Better Portable Graphics)}}
 
 \section{To-Do}
+Please, select one of the following tasks to develop:
 \begin{enumerate}
-\item Modify VCF to allow the use of Huffman Coding as a entropy codec
-  in the compression pipeline. Up to 3 people in the group.
+\item Modify \href{https://github.com/Sistemas-Multimedia/VCF}{VCF} to
+  allow the use of Huffman Coding as a entropy codec in the
+  compression pipeline. Up to 3 people in the group.
 \item Modify VCF to allow the use of Arithmetic Coding as a entropy
   codec in the compression pipeline. Up to 3 people in the group.
 \item Modify VCF to allow the use of \texttt{zlib} as a entropy codec
@@ -147,4 +153,4 @@ and returns images.
 \section{References}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{text-compression,image-formats,image-video-theory}
+\bibliography{text_compression,image-formats,image-video-theory}

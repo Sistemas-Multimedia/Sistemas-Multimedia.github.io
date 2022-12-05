@@ -36,7 +36,7 @@ class="ecrm-1200">- </span><a
 href="https://www.ual.es" ><span 
 class="ecrm-1200">UAL</span></a></div><br />
 <div class="date" ><span 
-class="ecrm-1200">December 2, 2022</span></div>
+class="ecrm-1200">December 5, 2022</span></div>
    </div>
    <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -44,22 +44,28 @@ class="ecrm-1200">December 2, 2022</span></div>
    &#x00A0;<span class="sectionToc" >1 <a 
 href="#x1-20001" id="QQ2-1-2">What is Entropy Coding?</a></span>
 <br />   &#x00A0;<span class="sectionToc" >2 <a 
-href="#x1-30002" id="QQ2-1-3">A classi&#xFB01;cation</a></span>
+href="#x1-30002" id="QQ2-1-3">A classi&#xFB01;cation of Entropy Encoders</a></span>
 <br />   &#x00A0;<span class="sectionToc" >3 <a 
 href="#x1-40003" id="QQ2-1-4">Hu&#xFB00;man Coding</a></span>
 <br />   &#x00A0;<span class="sectionToc" >4 <a 
-href="#x1-50004" id="QQ2-1-5">Arithmetic Coding</a></span>
+href="#x1-60004" id="QQ2-1-6">Arithmetic Coding&#x00A0;&#x005B;1&#x005D;</a></span>
 <br />   &#x00A0;<span class="sectionToc" >5 <a 
-href="#x1-60005" id="QQ2-1-6">Portable Network Graphics &#x0028;PNG&#x0029;</a></span>
+href="#x1-80005" id="QQ2-1-8"><span 
+class="ectt-1000">zlib</span></a></span>
 <br />   &#x00A0;<span class="sectionToc" >6 <a 
-href="#x1-70006" id="QQ2-1-7">Resources</a></span>
+href="#x1-100006" id="QQ2-1-10">Portable Network Graphics &#x0028;PNG&#x0029;</a></span>
+<br />   &#x00A0;<span class="sectionToc" >7 <a 
+href="#x1-110007" id="QQ2-1-11">To-Do</a></span>
+<br />   &#x00A0;<span class="sectionToc" >8 <a 
+href="#x1-120008" id="QQ2-1-12">References</a></span>
    </div>
 <!--l. 11--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
  id="x1-20001"></a>What is Entropy Coding?</h3>
-<!--l. 13--><p class="noindent" >Entropy Coding &#x0028;EC&#x0029; encompasses a whole series of coding techniques that exploit
-the statistical redundancy of data with the ultimate goal of &#xFB01;nding a more
+<!--l. 13--><p class="noindent" >Entropy Coding &#x0028;EC&#x0029;&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xvruiz__entropy_coding">3</a>&#x005D;</span> encompasses a whole series of coding techniques that
+exploit the statistical redundancy of data with the ultimate goal of &#xFB01;nding a more
 compact representation. EC is related to the de&#xFB01;nition of entropy in the
 context of the Information Theory&#x00A0;<span class="cite">&#x005B;<span 
 class="ecbx-1000">?</span>&#x005D;</span>. In this area, the entropy quanti&#xFB01;es
@@ -72,7 +78,7 @@ be.
 </p><!--l. 22--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
- id="x1-30002"></a>A classi&#xFB01;cation</h3>
+ id="x1-30002"></a>A classi&#xFB01;cation of Entropy Encoders</h3>
 <!--l. 24--><p class="noindent" >There are basically two types of entropy encoders depending on how the sequence of
 symbols that make up the data to be encoded are processed:
 </p><!--l. 27--><p class="indent" >
@@ -81,7 +87,7 @@ symbols that make up the data to be encoded are processed:
   class="enumerate" id="x1-3002x1">
      <!--l. 28--><p class="noindent" >Those that process the sequence symbol by symbol. Examples of this type
      of algorithms are Hu&#xFB00;man Coding&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvruiz__huffman_coding">3</a>&#x005D;</span> and Arithmetic Coding&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xvruiz__huffman_coding">4</a>&#x005D;</span> and Arithmetic Coding&#x00A0;<span class="cite">&#x005B;<a 
 href="#Xvruiz__arithmetic_coding">1</a>&#x005D;</span>. These
      encoders are also called &#x201C;probabilistic encoders&#x201D; because the number of bits
      of code assigned to a symbol <!--l. 33--><math 
@@ -100,22 +106,22 @@ class="MathClass-close" stretchy="false">&#x0029;</mo></math>.
   class="enumerate" id="x1-3004x2">
      <!--l. 35--><p class="noindent" >Those that process the sequence by blocks of symbols &#x0028;strings&#x0029;. Examples
      are Run-Length Encoding &#x0028;RLE&#x0029;&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvruiz__rle">6</a>&#x005D;</span> and all the dictionary-based text
+href="#Xvruiz__rle">7</a>&#x005D;</span> and all the dictionary-based text
      compressors, such as LZW&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvruiz__LZW">4</a>&#x005D;</span>.</p></li></ol>
-<!--l. 41--><p class="indent" >   Those of the &#xFB01;rst type generally achieve more compact representations, but are
-more computationally expensive. The algorithms of the second class are usually
+href="#Xvruiz__LZW">5</a>&#x005D;</span>.</p></li></ol>
+<!--l. 41--><p class="indent" >   Those of the &#xFB01;rst type generally achieve more compact representations, but
+computationally are more expensive. The algorithms of the second class are usually
 faster, but slighlt worse in compression ratio.
 </p><!--l. 46--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-40003"></a><a 
 href="https://en.wikipedia.org/wiki/Huffman_coding" >Hu&#xFB00;man Coding</a></h3>
-<!--l. 48--><p class="noindent" >A Hu&#xFB00;man code is a <a 
+<!--l. 48--><p class="noindent" >A Hu&#xFB00;man code&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xvruiz__huffman_coding">4</a>&#x005D;</span> is a <a 
 href="https://en.wikipedia.org/wiki/Prefix_code" >pre&#xFB01;x code</a> that allows to &#x201C;navigate&#x201D; through the so called
-Hu&#xFB00;man &#x0028;inverted&#x0029; tree from the trunk to one of its leaves without uncertainty&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvruiz__huffman_coding">3</a>&#x005D;</span>.
-The Hu&#xFB00;man tree satis&#xFB01;es that </p><table class="equation"><tr><td>
+Hu&#xFB00;man &#x0028;inverted&#x0029; Tree from the trunk to one of its leaves, without uncertainty. The
+Hu&#xFB00;man Tree satis&#xFB01;es that </p><table class="equation"><tr><td>
 <!--l. 53--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
@@ -166,25 +172,51 @@ information represented by <!--l. 58--><math
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mi 
 >s</mi></math>,
-measured bits of information.
-</p><!--l. 61--><p class="indent" >   Notice that the minimum number of bits that can be used for representing a
-symbol &#x0028;using Hu&#xFB00;man&#x0029; is 1, which can be a problem when the length of the
-alphabet is small. Notice also that, if the probabilistic model remains constant, the
-code-words assigned to the symbols will be also remain unchanged.
-</p><!--l. 67--><p class="noindent" >
+measured bits of information&#x00A0;<span class="cite">&#x005B;<span 
+class="ecbx-1000">?</span>&#x005D;</span>.
+</p><!--l. 61--><p class="indent" >   Notice that the minimum number of bits that can be used for representing a symbol
+&#x0028;using Hu&#xFB00;man&#x0029; is 1, which can be a problem when the length of the alphabet is
+small.<span class="footnote-mark"><a 
+href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-4002f1"></a> 
+Notice also that, if the probabilistic model remains constant, the code-words assigned
+to the symbols will be also remain unchanged.
+</p>
+   <h4 class="likesubsectionHead"><a 
+ id="x1-50003"></a>Resources</h4>
+<!--l. 69--><p class="noindent" >
+     </p><ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-5002x1">
+     <!--l. 70--><p class="noindent" ><a 
+href="https://www.inference.org.uk/mackay/python/compress/#Huff" >Compression algorithms in python</a>.
+     </p></li>
+<li 
+  class="enumerate" id="x1-5004x2">
+     <!--l. 71--><p class="noindent" ><a 
+href="https://favtutor.com/blogs/huffman-coding" >Hu&#xFB00;man Coding Implementation in Python with Example</a>.
+     </p></li>
+<li 
+  class="enumerate" id="x1-5006x3">
+     <!--l. 72--><p class="noindent" ><a 
+href="https://www.programiz.com/dsa/huffman-coding" >Hu&#xFB00;man Coding</a>.</p></li></ol>
+<!--l. 76--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
- id="x1-50004"></a><a 
-href="https://en.wikipedia.org/wiki/Arithmetic_coding" >Arithmetic Coding</a></h3>
-<!--l. 69--><p class="noindent" >In an arithmetic code&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvruiz__arithmetic_coding">1</a>&#x005D;</span>, the number of bits of data that can be used for
+ id="x1-60004"></a><a 
+href="https://en.wikipedia.org/wiki/Arithmetic_coding" >Arithmetic Coding</a>&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xvruiz__arithmetic_coding">1</a>&#x005D;</span></h3>
+<!--l. 78--><p class="noindent" >In an arithmetic codec, the number of bits of data that can be used for
 representing a symbol can match exactly the number of bits of information, i.e,
 </p><table class="equation"><tr><td>
-<!--l. 72--><math 
+                                                                  
+
+                                                                  
+<!--l. 81--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                            <mstyle 
-   id="x1-5001r2"  class="label" ></mstyle><!--endlabel--><mo 
+   id="x1-6001r2"  class="label" ></mstyle><!--endlabel--><mo 
 class="MathClass-open" stretchy="false">l</mo><mo 
 class="MathClass-open" stretchy="false">&#x0028;</mo><mi 
 >c</mi><mo 
@@ -199,36 +231,117 @@ class="MathClass-open" stretchy="false">&#x0028;</mo><mi
 class="MathClass-close" stretchy="false">&#x0029;</mo><mo 
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">&#x0028;2&#x0029;</td></tr></table>
-<!--l. 76--><p class="indent" >   This also means that even if the size of the alphabet is small, the coding
-performance of an arithmetic code is optimal, although this optimality is
-only satis&#xFB01;ed if the number of symbols to encode is in&#xFB01;nite. Notice also
-that, if the size of the alphabet is high, the encoding performance di&#xFB00;erence
-between a Hu&#xFB00;man code &#x0028;or any other pre&#xFB01;x code&#x0029; and an arithmetic code,
-vanishes.
-</p><!--l. 83--><p class="noindent" >
+<!--l. 85--><p class="indent" >   This also means that even if the size of the alphabet is small, the coding
+performance of an arithmetic code is optimal, although this optimality is only
+satis&#xFB01;ed if the number of symbols to encode is in&#xFB01;nite. Notice also that, if the
+alphabet is large, the encoding performance di&#xFB00;erence between a Hu&#xFB00;man code &#x0028;or
+any other pre&#xFB01;x code&#x0029; and an arithmetic code, vanishes.
+</p><!--l. 92--><p class="noindent" >
+</p>
+   <h4 class="likesubsectionHead"><a 
+ id="x1-70004"></a>Resources</h4>
+<!--l. 93--><p class="noindent" >
+     </p><ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-7002x1">
+     <!--l. 95--><p class="noindent" ><a 
+href="https://www.folkstalk.com/tech/arithmetic-encoding-python-with-code-examples/" >Arithmetic Encoding Python With Code Examples</a>.
+     </p></li>
+<li 
+  class="enumerate" id="x1-7004x2">
+     <!--l. 97--><p class="noindent" ><a 
+href="https://www.nayuki.io/page/reference-arithmetic-coding" >Reference arithmetic coding</a>/<a 
+href="https://github.com/nayuki/Reference-arithmetic-coding" >Reference arithmetic coding</a>.
+     </p></li>
+<li 
+  class="enumerate" id="x1-7006x3">
+     <!--l. 98--><p class="noindent" ><a 
+href="https://www.inference.org.uk/mackay/python/compress/#AC" >Compression algorithms in python</a>.
+     </p></li>
+<li 
+  class="enumerate" id="x1-7008x4">
+     <!--l. 99--><p class="noindent" ><a 
+href="https://github.com/vicente-gonzalez-ruiz/arithmetic_coding" >Arithmetic coding</a>.</p></li></ol>
+                                                                  
+
+                                                                  
+<!--l. 102--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
- id="x1-60005"></a>Portable Network Graphics &#x0028;PNG&#x0029;</h3>
-<!--l. 85--><p class="noindent" ><a 
+ id="x1-80005"></a><a 
+href="https://zlib.net/" ><span 
+class="ectt-1000">zlib</span></a></h3>
+<!--l. 104--><p class="noindent" ><span 
+class="ectt-1000">zlib </span>is based on <a 
+href="https://en.wikipedia.org/wiki/Deflate" >DEFLATE</a>, which in turn is based on LZ77&#x00A0;<span class="cite">&#x005B;<a 
+href="#Xvruiz__LZW">5</a>&#x005D;</span> and Hu&#xFB00;man Coding.
+Therefore, <span 
+class="ectt-1000">zlib </span>exloits the repetition of symbols and also, the the 0-order statistical
+redundancy<span class="footnote-mark"><a 
+href="index3.html#fn2x0"><sup class="textsuperscript">2</sup></a></span><a 
+ id="x1-8001f2"></a> .
+One of the main advantages of <span 
+class="ectt-1000">zlib </span>is that is quite fast.
+</p>
+   <h4 class="likesubsectionHead"><a 
+ id="x1-90005"></a>Resources</h4>
+<!--l. 113--><p class="noindent" >
+     </p><ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-9002x1">
+     <!--l. 114--><p class="noindent" ><a 
+href="https://docs.python.org/3/library/zlib.html" ><span 
+class="ectt-1000">zlib </span>&#x2014; Compression compatible with gzip</a>.</p></li></ol>
+<!--l. 118--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-100006"></a>Portable Network Graphics &#x0028;PNG&#x0029;</h3>
+<!--l. 120--><p class="noindent" ><a 
 href="https://en.wikipedia.org/wiki/Portable_Network_Graphics" >PNG</a>&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvruiz__PNG">5</a>&#x005D;</span> &#x0028;pronounced &#x201C;ping&#x201D;&#x0029; a dictionary-based <a 
+href="#Xvruiz__PNG">6</a>&#x005D;</span> &#x0028;pronounced &#x201C;ping&#x201D;&#x0029; a dictionary-based <a 
 href="https://en.wikipedia.org/wiki/Lossless_compression" >lossless image compression format</a>
 used for representing <a 
 href="https://en.wikipedia.org/wiki/Digital_data" >digital</a> <a 
 href="https://en.wikipedia.org/wiki/Digital_image" >images</a> and <a 
 href="https://en.wikipedia.org/wiki/Video" >videos</a>&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvruiz__image_video">2</a>&#x005D;</span> in III... format.
+href="#Xvruiz__image_video">2</a>&#x005D;</span> in III... format&#x00A0;<span class="cite">&#x005B;<span 
+class="ecbx-1000">?</span>&#x005D;</span>. The entropy
+encoder of PNG is based on Hu&#xFB00;man Coding and LZSS, and a pixel predictor that
+removes the spatial redundancy.
+</p><!--l. 131--><p class="indent" >   We must bear in mind that as such an image compressor, we can only
+interact with PNG at the image level, that is, it only accepts images &#x0028;in shades
+of gray or in color, with the possibility of an <a 
+href="https://en.wikipedia.org/wiki/Alpha_compositing" >alpha channel</a>&#x0029; and returns
+images.
+</p><!--l. 141--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
+ id="x1-110007"></a>To-Do</h3>
+<!--l. 142--><p class="noindent" >Please, select one of the following tasks to develop:
+     </p><ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-11002x1">
+     <!--l. 144--><p class="noindent" >Modify <a 
+href="https://github.com/Sistemas-Multimedia/VCF" >VCF</a> to allow the use of Hu&#xFB00;man Coding as a entropy codec in
+     the compression pipeline. Up to 3 people in the group.
                                                                   
 
                                                                   
-</p><!--l. 94--><p class="indent" >   We must bear in mind that as such an image compressor, we can only
-interact with PNG at the image level, that is, it only accepts images &#x0028;in
-shades of gray or in color, with the possibility of alpha channel&#x0029; and returns
-images.
-</p><!--l. 101--><p class="noindent" >
+     </p></li>
+<li 
+  class="enumerate" id="x1-11004x2">
+     <!--l. 147--><p class="noindent" >Modify VCF to allow the use of Arithmetic Coding as a entropy codec in
+     the compression pipeline. Up to 3 people in the group.
+     </p></li>
+<li 
+  class="enumerate" id="x1-11006x3">
+     <!--l. 149--><p class="noindent" >Modify VCF to allow the use of <span 
+class="ectt-1000">zlib </span>as a entropy codec in the compression
+     pipeline. Up to 2 people in the group.</p></li></ol>
+<!--l. 153--><p class="noindent" >
 </p>
-   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
- id="x1-70006"></a>Resources</h3>
+   <h3 class="sectionHead"><span class="titlemark">8   </span> <a 
+ id="x1-120008"></a>References</h3>
    <div class="thebibliography">
    <p class="bibitem" ><span class="biblabel">
  &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
@@ -242,21 +355,29 @@ href="https://vicente-gonzalez-ruiz.github.io/digital_image_and_video/" >Digital
    </p>
    <p class="bibitem" ><span class="biblabel">
  &#x005B;3&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xvruiz__entropy_coding"></a>V.&#x00A0;Gonz&#x00E1;lez-Ruiz. <a 
+href="https://vicente-gonzalez-ruiz.github.io/entropy_coding/" >Entropy Coding</a>.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ &#x005B;4&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
  id="Xvruiz__huffman_coding"></a>V.&#x00A0;Gonz&#x00E1;lez-Ruiz. <a 
 href="https://vicente-gonzalez-ruiz.github.io/Huffman_coding/" >Hu&#xFB00;man Coding</a>.
    </p>
    <p class="bibitem" ><span class="biblabel">
- &#x005B;4&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ &#x005B;5&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
  id="Xvruiz__LZW"></a>V.&#x00A0;Gonz&#x00E1;lez-Ruiz. <a 
 href="https://vicente-gonzalez-ruiz.github.io/LZW/" >Lempel-Ziv-Welch</a>.
    </p>
    <p class="bibitem" ><span class="biblabel">
- &#x005B;5&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ &#x005B;6&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
  id="Xvruiz__PNG"></a>V.&#x00A0;Gonz&#x00E1;lez-Ruiz. <a 
 href="https://vicente-gonzalez-ruiz.github.io/PNG/" >PNG &#x0028;Portable Network Graphics&#x0029;</a>.
+                                                                  
+
+                                                                  
    </p>
    <p class="bibitem" ><span class="biblabel">
- &#x005B;6&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ &#x005B;7&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
  id="Xvruiz__rle"></a>V.&#x00A0;Gonz&#x00E1;lez-Ruiz. <a 
 href="https://vicente-gonzalez-ruiz.github.io/run-length_encoding/" >Run-Length Encoding</a>.
 </p>
