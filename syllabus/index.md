@@ -7,7 +7,7 @@
 Multimedia Systems (SM) introduces and develops some of the most used techniques used in image and video coding systems.
 
 ## Goals
-1. Understand and known the basic theory of Image/Video Processing and Coding.
+1. Understand and known the basic theory of Image/Video Processing and Coding, in general.
 2. Know how to contribute to a software project, developing new functionality.
 
 ## [Methodology and Contents](https://sistemas-multimedia.github.io/contents/)
@@ -16,7 +16,7 @@ project based learning and such techniques are applied to develop a
 [project](https://github.com/Sistemas-Multimedia/VCF) strongly related to SM.
 
 ## Attendance
-Currently, [the course is organized in 8 sessions of 2 hours/session, during 5 weeks](https://www.ual.es/estudios/masteres/presentacion/plandeestudios/asignatura/7114/71142105), and it has been developed to be both, virtual and blended-training. This means that all the contents are available online, but students are expected to regularly attend lectures (at least, remotely).
+Currently, [the course is organized in 8 sessions of 2 hours/session, during 5 weeks](https://www.ual.es/estudios/masteres/presentacion/plandeestudios/asignatura/7114/71142105), and it has been developed to be both, virtual and blended-training. This means that all the contents are available online, but students are expected to regularly attend lectures (at least, remotely), that are mainly practical.
 
 ## Grading Policy
 Grades are determined as it has been depicted in the [Teaching Guide](https://www.ual.es/estudios/masteres/presentacion/plandeestudios/asignatura/7114/71142105).
