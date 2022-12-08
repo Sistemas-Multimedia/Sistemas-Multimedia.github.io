@@ -10,7 +10,7 @@ Multimedia Systems (SM) introduces and develops some of the most used techniques
 1. Understand and known the basic theory of Image/Video Processing and Coding, in general.
 2. Know how to contribute to a software project, developing new functionality.
 
-## [Methodology and Contents](https://sistemas-multimedia.github.io/contents/)
+## Methodology and [Contents](https://sistemas-multimedia.github.io/contents/)
 The teaching methodology is based in the
 project based learning and such techniques are applied to develop a
 [project](https://github.com/Sistemas-Multimedia/VCF) strongly related to SM.
