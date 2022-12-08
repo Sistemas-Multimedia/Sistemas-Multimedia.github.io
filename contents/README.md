@@ -1,4 +1,4 @@
-# Multimedia Systems: Contents
+# Contents
 
 * [Framework](https://sistemas-multimedia.github.io/contents/provisioning).
 1. [Entropy Coding](https://sistemas-multimedia.github.io/contents/entropy_coding).
