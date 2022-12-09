@@ -8,53 +8,63 @@
 
 \tableofcontents
 
-\section{What is Quantization?}
+\section{What is quantization?}
 
-In Information Theory, Quantization is any mapping process between two
-sets of elements $A$ and $B$, where all the elements of $A$ are
-associated to one element of $B$, and happens that $|A|>|B|$, where
-$|\cdot|$ represents the orde (the number of elements) of a group.
+In information theory~\cite{vruiz__information_theory}, quantization
+is any mapping process between two sets of elements $A$ and $B$, where
+all the elements of $A$ are associated to one element of $B$, and
+happens that $|A|>|B|$, where $|\cdot|$ represents the order (the
+number of elements) of a group.
 
 Notice that because $|A|>|B|$, quantization is an irreversible process
 because two o more elements of $A$ will be mapped to the same element
-of $B$.
+of $B$, and there is not way to find the inverse mapping.
 
-\section{What is Digital Quantization?}
+\section{What is digital quantization?}
 
-In Digital Quantization, the elements of $A$ and $B$ are digital
-samples of a signal. Since, by definition, a digital sample has been
-quantized to be converted from the analog world to the digital one, we
-are appliying a re-quantization of the signal. Again, such digital
-quantization implies a loss of information in the re-quantized signal.
+In digital
+quantization~\cite{vruiz__scalar_quantization,vruiz__vector_quantization},
+the elements of $A$ and $B$ are digital samples of a
+signal~\cite{vruiz__signal_quantization}. Since, by definition, a
+digital sample has been quantized to be converted from the analog
+world to the digital one, we are actually appliying a re-Quantization
+to the signal. Again, such Digital Quantization implies a loss of
+information in the re-quantized signal.
 
 \section{Basic terminology}
 
 Several types of quantizers divide the range of possible values that
-the samples can take into a collection of intervals. The values that
-define such intervals are called decision levels and the value that in
-the quantized domain represents to all the input posible values that
-fall in a interval is called the representation level of the interval.
+the samples can take into a collection of non-overlapped
+intervals. The values that define such intervals are called \emph{decision
+levels} and the value that in the quantized domain represents to all
+the input posible values that fall in a interval is called the
+\emph{representation level} of the interval.
 
-The size of each interval is called the quantization step size.
+The size of each interval is called the quantization step size,
+usually represented by $\Delta$.
 
-\section{Classification of Quantizers}
+\section{A classification of quantizers}
 
-\subsection{Scalar VS Vector Quantizers}
+\subsection{Scalar VS vector quantizers}
 
 When quantization maps single elments of $A$ to single elements of
-$B$, the quantizer is said scalar. When we map tuples of elements, we
-are using Vector Quantization.
+$B$, the quantizer is said
+scalar~\cite{vruiz__scalar_quantization}. When tuples of elements are
+mapped, vector quantization is being
+used~\cite{vruiz__vector_quantization}.
 
-\subsection{Uniform VS Non-Uniform Quantizers}
+\subsection{Uniform VS non-uniform quantizers}
 
-In a uniform quantizer, all the intervals have the same size. In a
-non-uniform quantizer, at least one of the intervals is different to
-the rest. For example, a deadzone quantizer has a interval size for
+In an uniform quantizer~\cite{vruiz__scalar_quantization}, all the
+intervals have the same size. In a non-uniform
+quantizer~\cite{vruiz__scalar_quantization}, at least one of the
+intervals is different to the rest. For example, a deadzone
+quantizer~\cite{vruiz__scalar_quantization} has a interval size for
 the representation level 0 that doubles the size of the rest of
 intervals. For this reason, a deadzone quantizer is a non-uniform
 quantizer.
 
-\subsection{Static VS Adaptive Quantizers}
+\subsection{Static VS adaptive quantizers}
 
 Static quantizers are defined without considering the specific
 characteristics of the sequence of samples to quantize. Adaptive
@@ -64,25 +74,28 @@ set of intervals whose size is inversely proportional to the
 probability of using such interval. On the contrary, a static
 quantizer keeps fixed the size of the intervals.
 
-\section{Deazone Quantization~\cite{vruiz__scalar_quantization}}
+\section{Deazone quantization}
 
-Deadzone quantizers are static quasi-uniform scalar quantizers. These
-are used frequently in lossy compression systems because: (1) when the
-quantization step size is a power of two, and (2) the input sample
-values are integers (and negative integers are represented using two's
-complement), then the representation levels can be found by simply
-discarding low-significant bits of the input samples (in other words,
-we only need to perform a bit-shift operation to find the corresponding quantization index).
+Deadzone quantizers~\cite{vruiz__scalar_quantization} are static
+quasi-uniform scalar quantizers. These are used frequently in lossy
+compression systems because: (1) when the quantization step size is a
+power of two, and (2) the input sample values are integers (and
+negative integers are represented using two's complement), then the
+representation levels can be found by simply discarding
+low-significant bits of the input samples (in other words, we only
+need to perform a bit-shift operation to find the corresponding
+quantization index).
 
-Another reason that make deadzone quantization popular in lossy
+Another reason that makes deadzone quantization popular in lossy
 encoding systems is that tends to remove electronic noise more than
-other quantizers. If we supose that the signal has 0 average (the
-electronic noise has 0 average and a flat spectrum) the deadzone is
-places where the SNR is smaller, and therefore, we are replacing
-electronic noise by quantization noise. Obviously, this does not
-improve the RD performance of the encoder, but the perceived
-(subjective) quality is increased for the same bit-rate (if the
-electronic noise is perceived as a source of distortion).
+other quantizers where the signal is weaker. If we supose that the
+signal has 0 average (the electronic noise has 0 average and a flat
+spectrum) and that the deadzone is placed where the SNR is smaller, we
+are basically replacing electronic noise by quantization
+noise. Obviously, this does not improve the RD performance of the
+encoder, but the perceived (subjective) quality is increased for the
+same bit-rate (if the electronic noise is perceived as a source of
+distortion).
 
 \subsection*{Resources}
 \begin{enumerate}
@@ -91,16 +104,19 @@ electronic noise is perceived as a source of distortion).
     Quantization in VCF}.
 \end{enumerate}
 
-\section{Lloyd-Max Quantization~\cite{vruiz__scalar_quantization}}
+\section{Lloyd-Max quantization}
 
-A Lloyd-Max quantizer minimizes the quantization noise given a number
-of quantization intervals. To do this, the quantizer must know the
-histogram (the probabilities) of the input samples. As a result, the
-density of quantization intervals is higher where the probability of
-the samples is higher and viceversa.
+A Lloyd-Max quantizer~\cite{vruiz__scalar_quantization} minimizes the
+quantization noise given a signal with a known probabilistic
+distribution (histogram) of the input samples and a number of
+quantization intervals. As a result, the density of quantization
+intervals is higher where the probability of the samples is higher and
+viceversa.
 
-Notice that the histogram must be known by the decoder to ``restore''
-the information.
+Notice that the histogram must be also known by the decoder to
+``restore''\footnote{Remember that quantization is a irreversible
+process and therefore, never is restores the original signal (except
+if the signal is digital and $\Delta=1$).} the information.
 
 \subsection*{Resources}
 
@@ -110,16 +126,17 @@ the information.
     partial implementation in VCF}.
 \end{enumerate}
 
-\section{Vector Quantization~\cite{vruiz__vector_quantization}}
+\section{Vector quantization}
 
-Vector Quantizers input (usually squared) blocks of samples and output
-a quantization index per block. In most of natural images, the spatial
-correlation generates that some blocks of the image are similar to
-other blocks. If this is true, we can compute a set of centroids
-(blocks) and use them to represent the original blocks. The encoding
-performance of a Vector Quantizer is superior compared to a Scalar
-Quantizer because the number of quantization indexes (centroid
-indexes) is smaller.
+Vector quantizers~\cite{vruiz__vector_quantization} input (usually
+squared, in the case of images) blocks of samples and output a
+quantization index per block. In most of natural images, the spatial
+correlation~\cite{vruiz__visual_redundancy} generates that some blocks
+of the image are similar to other blocks. If this is true, we can
+compute a set of (block) centroids and use them to represent the
+original blocks. In general, the encoding performance of a vector
+quantizer is superior compared to a scalar quantizer because the
+number of quantization indexes (indexes of the centroids) is smaller.
 
 \subsection*{Resources}
 
@@ -142,4 +159,4 @@ indexes) is smaller.
 \section{References}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{text-compression,image-formats,image-video-theory,quantization}
+\bibliography{quantization,perception}
