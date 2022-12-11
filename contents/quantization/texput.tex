@@ -148,19 +148,22 @@ number of quantization indexes (indexes of the centroids) is smaller.
 \item \href{https://github.com/vicente-gonzalez-ruiz/image_vector_quantization_LBG}{Image compression using LBG}.
 \end{enumerate}
 
-\section{Visual redundancy}
-Notice that using quantization directly to visual information in the
-image domain, as proposed in the previous sections, we again
-exploiting the fact that, in general, humans are not very proficient
-recognizing a large number of simultaneous
-colors~\cite{vruiz__visual_redundancy}.
+\section{Rate/distortion curve}
+
+The gray-scale values or the $\text{RGB}$ components of an image (and
+therefore, of a sequence of images) can be quantized and compressed
+using some entropy encoder, generating a set of points in the
+Rate/Distortion (RD) space. Such set usually form the so called RD
+curve in terms of RMSE (between the original image and its
+reconstruction) and the bit-rate achieved by the entropy codec.
 
 \section{To-Do}
 \begin{enumerate}
 \item Modify VCF to allow the use of Lloyd-Max Quantization in the
   compression pipeline. Up to 2 people in the group.
-\item Modify VCF to allow the use of Vector Quantization in the
-  compression pipeline. Up to 3 people in the group.
+\item Modify VCF to allow the use of Vector Quantization (applied to
+  the spatial domain) in the compression pipeline. Up to 3 people in
+  the group.
 \end{enumerate}
 
 \section{References}

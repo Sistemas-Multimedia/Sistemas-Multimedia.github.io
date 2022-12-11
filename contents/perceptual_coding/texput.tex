@@ -12,6 +12,21 @@
 
 Deadzone quantization (example)
 
+\section{Quantization in the $\texttt{RGB}$ domain}
+
+The color-recognition accuracy of the HVS is
+finite~\cite{vruiz__visual_redundancy}. For this reason, quantization
+in the $\texttt{RGB}$ color space can be imperceptible.
+
+any alternative different from
+\begin{equation}
+  \mathbf{\Delta}^{\text{R}}_i = \mathbf{\Delta}^{\text{G}}_i =
+  \mathbf{\Delta}^{\text{B}}_i,
+  \label{eq:simple_Q}
+\end{equation}
+where $i$ represents the $i$-th quantization step size, will produce
+some alteration in the color
+
 \section{Chroma redundancy}
 
 Humans do not perceive detail in the chrominance as well as in they
