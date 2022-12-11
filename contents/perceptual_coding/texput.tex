@@ -12,6 +12,50 @@
 
 Deadzone quantization (example)
 
+\section{Chroma redundancy}
+
+Humans do not perceive detail in the chrominance as well as in they
+does in the
+luminance.~\cite{burger2016digital}. As in
+$\text{YCrCb}$, the
+\href{https://en.wikipedia.org/wiki/Sampling_(signal_processing)}{sampling
+  rate} of the chroma is usually reduces to 1/4 without any noticeable
+distortion. This feature is used in some of the last image and video
+compression systems such as
+\href{https://en.wikipedia.org/wiki/JPEG_XR#Description}{JPEG XR} and
+\href{https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Video_coding_layer}{HEVC}.
+
+\section{Redundancy in the RGB domain}
+
+The Human Visual System (HVS) is more sensitive to luminance than to
+chrominance~\cite{vruiz__visual_redundancy}. This basically means that
+we can an encoding process we modify the color information of an image
+or a video without noticing a high distortion.
+
+Since the \href{https://en.wikipedia.org/wiki/Visual_system}{HVS
+  (Human Visual System)} is not able to perceive detail in the
+chrominance as well as it does in the luminance, the amount of
+information, and consequently
+\href{https://en.wikipedia.org/wiki/Sampling_(signal_processing)}{sampling
+  rate}, used in the chrominance can be generally reduced to 1/4 of
+the used for the luminance without a noticeable distortion (see
+Fig.~\ref{fig:san-diego_chroma_subsampled})~\cite{burger2016digital}. This
+\href{https://en.wikipedia.org/wiki/Bandwidth_(computing)}{fact is
+  used when compressing} digital still images and is one of the reason
+why, for example, the $\text{YCrCb}$ transform is used in the
+\href{https://en.wikipedia.org/wiki/JPEG}{JPEG} image compressor.
+
+#  V E R   R E P O   V I S U A L   R E D U N D A N C Y
+
+\begin{figure}
+  \centering
+  \png{san-diego_chroma_subsampled}{1000}
+  \caption{Visual effect of chroma subsamplig in the YCrCb domain. See
+    this
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/chroma_subsampling.ipynb}{notebook}.}
+  \label{fig:san-diego_chroma_subsampled}
+\end{figure}
+
 
 \section{To-Do}
 Please, select one of the following tasks to develop:
