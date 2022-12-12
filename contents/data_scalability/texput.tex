@@ -2,162 +2,23 @@
 
 \input{../../definitions}
 
-\title{\SM{} - Entropy Coding}
+\title{\SM{} - Data Scalabilty}
 
 \maketitle
 
 \tableofcontents
 
-\section{What is entropy coding?}
+\section{What means data scalability?}
 
-\href{https://en.wikipedia.org/wiki/Entropy_coding}{Entropy coding}
-(EC)~\cite{vruiz__entropy_coding} encompasses a whole series of coding
-techniques that exploit the
-\href{https://en.wikipedia.org/wiki/Redundancy_(information_theory)}{statistical
-  redundancy} of data with the ultimate goal of finding a more compact
-representation. EC is related to the definition of
-\href{https://en.wikipedia.org/wiki/Entropy_(information_theory)}{entropy}
-in the context of the information
-theory~\cite{vruiz__information_theory}. In this area, the entropy
-quantifies the volume of
-\href{https://en.wikipedia.org/wiki/Information}{information}
-represented by a data set, so that the higher the entropy, the better
-the efficiency of such representation
-(\href{https://en.wikipedia.org/wiki/Data}{data}) would be.
+\section{Quality scalability}
 
-\section{A classification of entropy encoders}
-
-There are basically two types of entropy encoders depending on how the
-sequence of \href{https://en.wikipedia.org/wiki/Symbol}{symbols} that
-make up the data to be encoded are processed:
-
-\begin{enumerate}
-\item Those that process the sequence symbol by symbol. Examples of
-  this type of algorithms are Huffman
-  coding~\cite{vruiz__huffman_coding} and arithmetic
-  coding~\cite{vruiz__arithmetic_coding}. These encoders are also
-  called ``probabilistic encoders'' because the number of bits of code
-  assigned to a symbol $s$ depends on the probability of the symbol
-  $p(s)$.
-\item Those that process the sequence by blocks of symbols
-  (strings). Examples are Run-Length Encoding (RLE)~\cite{vruiz__rle}
-  and all the dictionary-based text compressors, such as
-  LZW~\cite{vruiz__LZW}.
-\end{enumerate}
-  
-Those of the first type generally achieve more compact
-representations, but computationally are more expensive. The
-algorithms of the second class are usually faster, but slighlt worse
-in compression ratio.
-
-\section{\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman coding}}
-
-A Huffman code~\cite{vruiz__huffman_coding} is a
-\href{https://en.wikipedia.org/wiki/Prefix_code}{prefix code} that
-allows to ``navigate'' through the so called Huffman (inverted) Tree
-from the trunk to one of its leaves, without
-uncertainty. The Huffman Tree satisfies that
-\begin{equation}
-  l(c(s)) = \lceil I(s)\rceil,
-  \label{eq:huffman_performance}
-\end{equation}
-where $l(c(s))$ is the length of the (Huffman) code assigned to the
-symbol $s$ and $I(s)$ is the amount of information represented by $s$,
-measured bits of information~\cite{vruiz__information_theory}.
-
-Notice that the minimum number of bits that can be used for
-representing a symbol (using Huffman) is 1, which can be a problem
-when the length of the alphabet is small.\footnote{In this case,
-  Huffman is inefective.} Notice also that, if the probabilistic model
-remains constant, the code-words assigned to the symbols will be also
-remain unchanged.
-
-\subsection*{Resources}
-\begin{enumerate}
-\item \href{https://www.inference.org.uk/mackay/python/compress/#Huff}{Compression algorithms in python}.
-\item \href{https://favtutor.com/blogs/huffman-coding}{Huffman Coding Implementation in Python with Example}.
-\item \href{https://www.programiz.com/dsa/huffman-coding}{Huffman Coding}.
-\end{enumerate}
-
-\section{\href{https://en.wikipedia.org/wiki/Arithmetic_coding}{Arithmetic
-    coding}~\cite{vruiz__arithmetic_coding}}
-
-In an arithmetic codec, the number of bits of data that can be used for
-representing a symbol can match exactly the number of bits of
-information, i.e,
-\begin{equation}
-  l(c(s)) = I(s).
-\end{equation}
-
-This also means that even if the size of the alphabet is small, the
-coding performance of an arithmetic code is optimal, although this
-optimality is only fully satisfied if the number of symbols to encode
-is infinite. Notice also that, if the alphabet is large, the encoding
-performance difference between a Huffman code (or any other prefix
-code) and an arithmetic code, vanishes.
-
-\subsection*{Resources}
-\begin{enumerate}
-\item
-  \href{https://www.folkstalk.com/tech/arithmetic-encoding-python-with-code-examples/}{Arithmetic
-    Encoding Python With Code Examples}.
-\item \href{https://www.nayuki.io/page/reference-arithmetic-coding}{Reference arithmetic coding}/\href{https://github.com/nayuki/Reference-arithmetic-coding}{Reference arithmetic coding}.
-\item \href{https://www.inference.org.uk/mackay/python/compress/#AC}{Compression algorithms in python}.
-\item \href{https://github.com/vicente-gonzalez-ruiz/arithmetic_coding}{Arithmetic coding}.
-\end{enumerate}
-
-\section{\href{https://zlib.net/}{\texttt{zlib}}}
-
-\texttt{zlib} is based on
-\href{https://en.wikipedia.org/wiki/Deflate}{DEFLATE}, which in turn
-is based on LZ77~\cite{vruiz__LZW} and Huffman Coding. Therefore,
-\texttt{zlib} exloits the repetition of symbols and also, the the
-0-order statistical redundancy\footnote{In other words, that some
-  symbols are more frequenty than others.}. One of the main advantages
-of \texttt{zlib} is that is quite fast.
-
-\subsection*{Resources}
-\begin{enumerate}
-\item \href{https://docs.python.org/3/library/zlib.html}{\texttt{zlib}
-    — Compression compatible with gzip}.
-\end{enumerate}
-
-\section{Portable Network Graphics (PNG)}
-
-\href{https://en.wikipedia.org/wiki/Portable_Network_Graphics}{PNG}~\cite{vruiz__PNG}
-(pronounced ``ping'') a dictionary-based
-\href{https://en.wikipedia.org/wiki/Lossless_compression}{lossless
-  image compression format} used for representing
-\href{https://en.wikipedia.org/wiki/Digital_data}{digital}
-\href{https://en.wikipedia.org/wiki/Digital_image}{images} and
-\href{https://en.wikipedia.org/wiki/Video}{videos}~\cite{vruiz__image_video}
-in III... format~\cite{vruiz__video_compression}. The entropy encoder
-of PNG is based on Huffman coding and LZSS, and a pixel predictor that
-removes the spatial redundancy.
-
-We must bear in mind that as such an image compressor, we can only
-interact with PNG at the image level, that is, it only accepts images
-(in shades of gray or in color, with the possibility of an
-\href{https://en.wikipedia.org/wiki/Alpha_compositing}{alpha channel})
-and returns images.
-
-% PNG is the default EC in the \href{https://github.com/Sistemas-Multimedia/VCF}{VCF project} because: (1) is lossless, (2) is fast, and (3) the compression performance is reasonable.
-
-% \section{Entropy Image Coding with \href{https://en.wikipedia.org/wiki/Better_Portable_Graphics}{BPG (Better Portable Graphics)}}
-
-\section{To-Do}
-Please, select one of the following tasks to develop:
-\begin{enumerate}
-\item Modify \href{https://github.com/Sistemas-Multimedia/VCF}{VCF} to
-  allow the use of Huffman coding as a entropy codec in the
-  compression pipeline. Up to 3 people in the group.
-\item Modify VCF to allow the use of arithmetic coding as a entropy
-  codec in the compression pipeline. Up to 3 people in the group.
-\item Modify VCF to allow the use of \texttt{zlib} as a entropy codec
-  in the compression pipeline. Up to 2 people in the group.
-\end{enumerate}
+If we have used a layered-based encoding system and we know the RD
+points generated by each layer of each subband, we can sort the points
+by their slope and use the progression of layers to easely select hown
+many quality layers should be used satisfiying some maximum distorion
+of bit-rate. This is done, for example, in JPEG2000.
 
 \section{References}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{text_compression,image-formats,image-video-theory}
+\bibliography{text_compression}
