@@ -81,23 +81,48 @@ provide two main profits:
   this effect in a posterior session.}
 \end{enumerate}
 
-\section{Rate/distortion optimization considering the color space}}
+\section{Rate/distortion optimization considering the color space}
 
-Quantization can be applied to the $\text{RGB}$ components and also to
-the transform (luma/chroma) coefficients. In all the cases, some loss
-of information is generated, and therefore, it is possible to compute
-some distortion value (for example, the RMSE between the original
-signal and the reconstruction) versus the corresponding bit-rate generated after using some entropy coding scheme.
+When we use scalar quantization.
 
-Variying the quantizer parameters, different points in the Rate/Distortion (RD) space can be 
-  
-aditive, contribute equally to the RMSE
-  
-\section{Rate/distortion optimization in other color spaces}
+\subsection{In the $\text{RGB}$ domain}
 
-Not all of them are aditive, neither contribute equaly to the R
+The $\text{RGB}$ components are additive~\cite{burger2016digital} in
+both, the distortion and the rate domains. Therefore, ideally, given a
+target bit-rate or distortion, we should select the quantization step
+size in each component that generates the same slope in the RD curve
+of the component.
 
-\section{}
+\subsection{In the luma/croma domain}
+
+In this case, the optimal quantization pattern should satisfy the same
+conditions as quantizing in the $\text{RGB}$ domain. However, we have
+to consider also that the transform must be orthogonal, or at least,
+bi-orthogonal (the luma/chroma subbands must be
+independent). Otherwise, we cannot say that if we ``improve'' the
+quality of one subband in a given amount, such improvement will be
+also achieved in the $\text{RGB}$ domain.
+
+\subsection{A easier (and faster) solution}
+
+In general, the RD optimization considering the color domain implies
+to know the RD curves of the subbands. If the transform is orthogonal,
+this is equivalent to know the RD curves in the $\text{RGB}$ domain
+beecause the subbands are additive. If the transform is not
+orthogonal, the this last property is false.
+
+Even if the curves are known, in general a good approximation to the
+optimal solution (using scalar quantization) is to use the same
+quantization step size for all the subbands. For example, in the
+$\text{RGB}$ domain, this implies to use
+\begin{equation}
+  \mathbf{\Delta}^{\text{R}}_i = \mathbf{\Delta}^{\text{G}}_i =
+  \mathbf{\Delta}^{\text{B}}_i,
+  \label{eq:simple_Q}
+\end{equation}
+where $i$ represents the $i$-th quantization step size.
+
+%%%%%%%%%%%%%%
 
 \subsection{Scalar quantization applied to the $\text{RGB}$ domain}
 The $\text{RGB}$ domain is additive~\cite{burger2016digital}, which
