@@ -120,96 +120,19 @@ $\text{RGB}$ domain, this implies to use
   \mathbf{\Delta}^{\text{B}}_i,
   \label{eq:simple_Q}
 \end{equation}
-where $i$ represents the $i$-th quantization step size.
-
-%%%%%%%%%%%%%%
-
-\subsection{Scalar quantization applied to the $\text{RGB}$ domain}
-The $\text{RGB}$ domain is additive~\cite{burger2016digital}, which
-means that the distortion generated in one of the channels is
-identical to the distortion (for example, in terms of the RMSE)
-generated in the reconstructed image. Therefore, the set of
-quantization patterns used in the compressor is
-\begin{equation}
-  \mathbf{\Delta}^{\text{R}}_i = \mathbf{\Delta}^{\text{G}}_i =
-  \mathbf{\Delta}^{\text{B}}_i,
-  \label{eq:simple_Q}
-\end{equation}
-where $i$ represents the $i$-th quantization step size.  Notice also
-that any other combination of quantization steps should generate some
-bias of the chroma towards one of the primary colors (red, green and
-blue).
-
-\subsection{Optimal quantization pattern}
-\label{sec:optimal_RD}
-The quantization pattern defined in the Eq.~\eqref{eq:simple_Q} will
+where $i$ represents the $i$-th quantization step size. Notice that
+the quantization pattern defined in the Eq.~\eqref{eq:simple_Q} will
 be optimal only if for all the quantization steps, the condition
 \begin{equation}
   \mathbf{\lambda}^{\text{R}}_i = \mathbf{\lambda}^{\text{G}}_i =
   \mathbf{\lambda}^{\text{B}}_i
   \label{eq:optimal_lambda}
 \end{equation}
-is satisfied. In the previous
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb}{notebook}
-we can explore (at least, visually) the grade of compilance of
+is satisfied. In the notebook \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb}{} we can explore (at least, visually) the grade of compilance of
 Eq.~\eqref{eq:optimal_lambda}.
 
-\subsection{Scalar quantization in the $\text{RGB}$ domain}
+%%%%%%%%%%%%%%
 
-Supposing that we are using a dead-zone quantizer, a $\text{RGB}$
-image can be quantized, channel by channel, using quantization steps
-$\mathbf{\Delta}_{\text{R}}$, $\mathbf{\Delta}_{\text{G}}$, and
-$\mathbf{\Delta}_{\text{B}}$ (being $\mathbf{\Delta}$ the
-``quantization pattern''). A reasonable question that arises here is:
-given a target bit-rate $R$ for the compressed frame, how the
-quantization steps should be chosen to minimize the distortion?
-
-At this point we can consider two different quantization
-perspectives. In the first one, if we consider a strictly visual
-effect, any alternative different from
-\begin{equation}
-  \mathbf{\Delta}_{\text{R}} = \mathbf{\Delta}_{\text{G}} = \mathbf{\Delta}_{\text{B}}
-  \label{eq:simple_Q}
-\end{equation}
-will produce some alteration in the color (also called the
-\href{https://en.wikipedia.org/wiki/Chrominance}{``chroma''}) of the
-reconstructed image.
-
-A second perspective considers only a pure
-\href{https://en.wikipedia.org/wiki/Rate-distortion_theory}{Rate/Distortion
-  (RD) performance}~\cite{vruiz__information_theory}. The $\text{RGB}$
-color domain is additive, which means that the distortion generated in
-the quantized image is the sum of the distortions generated in each of
-the channels, when they are quantized independently. Therefore, the
-optimal RD curve for the reconstructed image (using the $3$ channels)
-can be obtained through the steps:
-\begin{enumerate}
-\item Compute the RD curve for each channel. Notice that here we must
-  define a set of quantization steps for each channel. For simplicity,
-  use the same set for the three channels.
-\item Put all the RD points in a list and sort the list by the slopes
-  of the points. Since the points have been ordered by their slope,
-  the sequence of quantization patterns should generate the optimal
-  curve.
-\item Use the corresponding quantization patterns (defined by the points
-  of the list) to compute the RD curve of the reconstructed image.
-\end{enumerate}
-
-This algorithm is independent of how the set of quantization steps
-used in each channel has been selected. If the quantization steps used
-to describe the RD curves of each channel are different, the points of
-the definitive curve will be different, but not its shape or its
-localization in the RD space.
-
-If we are used the same quantization steps for each channel, the
-points generated when
-\begin{equation}
-  \mathbf{\Delta}_{\text{R}} = \mathbf{\Delta}_{\text{G}} = \mathbf{\Delta}_{\text{B}}
-\end{equation}
-must occur in the definitive RD curve. Notice that the rest of points
-of the curve should appear between these points, but do not
-necessarily belong to the convex hull of the curve (altough they could
-be used to perform a finer rate-control).
 
 \subsection{Increasing the number of RD points (TO-DO)}
 \label{sec:increasing}
