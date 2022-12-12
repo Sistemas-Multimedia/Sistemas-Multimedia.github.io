@@ -135,35 +135,7 @@ be optimal only if for all the quantization steps, the condition
 is satisfied. In the notebook \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb}{} we can explore (at least, visually) the grade of compilance of
 Eq.~\eqref{eq:optimal_lambda}.
 
-%%%%%%%%%%%%%%
-
-
-\section{The Color DCT Domain}
-
-\subsection{Scalar quantization applied to the DCT domain}
-Since the DCT is orthonormal (orthogonal and unitary), we can use the
-simple quantization pattern
-\begin{equation}
-  \mathbf{\Delta}^{\text{DCT}^0} = \mathbf{\Delta}^{\text{DCT}^1} = \mathbf{\Delta}^{\text{DCT}^2}.
-  \label{eq:simple_Q}
-\end{equation}
-Therefore, there is not differente between quantizing in the
-$\text{RGB}$ or the ($\text{DCT}^0,\text{DCT}^1,\text{DCT}^2$) color
-domain, except that in the last case, we must consider one extra
-bit-plane to encode.
-
-\subsection{A better rate control (TO-DO)}
-\label{sec:increasing}
-As we did in the case of the
-\href{https://sistemas-multimedia.github.io/contents/RGB_SQ/}{Scalar
-  Quantization in the $\text{RGB}$ Color Domain}, we can also use the
-intermediate RD points between each Eq.~\eqref{eq:simple_Q}-point to
-increase the resolution of the decompressed image.
-
-%%%%%%%%%%%%%%%%%
-
-\section{Scalar versus vector quantization of RGB images}
-%{{{
+\section{Vector quantization of $\text{RGB}$ images}
 
 SQ (Scalar
 Quantization)~\cite{vruiz__scalar_quantization,sayood2017introduction}
@@ -181,203 +153,23 @@ the image at all~\cite{burger2016digital}.
 
 On the other hand, VQ (Vector
 Quantization)~\cite{vruiz__vector_quantization,sayood2017introduction}
-applied to the color domain does not treat the individual RGB
-components (also refered by
-\href{https://en.wikipedia.org/wiki/Color_image}{channel}s) separately
+applied to the color domain does not treat the individual $\text{RGB}$
+components separately
 as does scalar quantization, but each used color vector ${\mathbf C}_i
 = ({\mathbf R}_i, {\mathbf G}_i, {\mathbf B}_i )$ in the image is
-treated as a minimum structure. Starting from a set of original color
-tuples ${\mathbf C} = \{{\mathbf C}_1, {\mathbf C}_2, \ldots ,{\mathbf
-  C}_m\}$, where $m$ is the number of different colors found in the
-image, the task of a vector quantizer in this context is to:
+treated as a minimum structure. VQ determines a code-book of $K$ code-vectors (centroids) that minimizes the distortion between the original image and the reconstructed one. Notice that the code-book must be known by the decoder to make the reconstruction.
+
+\section{To-Do}
 \begin{enumerate}
-\item Find a set of $n$ representative color vectors (the so called
-  \emph{code-book}) ${\mathbf C}' = \{{\mathbf C}'_1, {\mathbf C}'_2
-  ,\ldots , {\mathbf C}'_n \}$, where $n < m$.
-\item Replace each original color ${\mathbf C}_i$ by one of the new
-  color vectors ${\mathbf C}'_j\in {\mathbf C}'$, where the resulting
-  deviation from the original image shall be minimal.
+\item Modify VCF to allow the use of the 3-channels DCT in the
+  compression pipeline. Complexity 1.
+\item Modify VCF to allow the use of the $\text{YCrCb}$ transform in
+  the compression pipeline. Complexity 1.
+\item Modify VCF to allow the use of Vector Quantization (applied to
+  the color domain) in the compression pipeline. Complexity 4.
 \end{enumerate}
 
-%}}}
-
-
-\section{Resources}
+\section{References}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{maths,data-compression,signal-processing,DWT,image-compression,image-processing,information_theory}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{comment}
-
-Implement a lossy image compressor that exploits the inter-channel
-redundancy~\cite{vruiz__information_theory} in $\text{RGB}$ images. To
-achive this, we use the DCT~\cite{vruiz__DCT} applied over the color
-dimension~\cite{vruiz__image_IO}, resulting in an concentration of the
-energy of the image in the first
-subband~\cite{vruiz__transform_coding} ($\text{DCT}^0$) which
-basically represents the
-\href{https://en.wikipedia.org/wiki/Luminance}{luminance} of the
-image. Notice that the visual
-redundancy~\cite{vruiz__visual_redundancy} is not considered.
-
-
-
-\section{Distortion control}
-We do not provide any accurate distortion control algorithm.  After
-using the DCT, the coefficients are quantized with a deadzone
-quantizer, simulating a bit-plane encoding. However, the dynamic range
-of the $\text{DCT}^0$ coefficients doubles the dynamic range of the
-pixels, and therefore, the highest quantization step will be
-$\Delta=256$. Therefore, we will have eight points in our RD curve
-that satisfy that
-\begin{equation}
-  \mathbf{\Delta}_{\text{DCT}^0} = \mathbf{\Delta}_{\text{DCT}^1} = \mathbf{\Delta}_{\text{DCT}^2}.
-  \label{eq:simple_Q}
-\end{equation}
-
-Notice that the DCT is orthogonal and therefore, the contributions of
-the subbands (to the quality of the reconstructed image) are
-independent and therefore, additive. Because the DCT is also
-orthonormal, we can measure the distortion in both, the image and the
-transform domain.
-
-\section{Rate control}
-Since PNG does not provide accurate rate control, we can only select
-between eight bit-rates that safisfy the Eq.~\eqred{eq:simple_Q}.
-
-\section{Scalar quantization in the ($\text{DCT}_0,\text{DCT}_1,\text{DCT}_2$) domain}
-%{{{
-
-The DCT is orthonormal, and thereore, the distortion can be measured
-directly in the transform domain. This means that we can treat the DCT
-coefficients as if would be pixels. Therefore, an optimal algorithm
-for RDO~\cite{vruiz__information_theory} is:
-
-\begin{enumerate}
-\item Find the RD curve for each subband. We will use the same
-  quantization steps for all the subbands. This action generates three
-  curves.
-\item Join all the RD points in a single list and sort it by the slope
-  of the
-  points~\cite{vruiz__information_theory}. Track\footnote{Storing with
-  the point the combination subband index and quantization step used
-  for each point.} the quantization steps used for each point.
-\item Use the quantization patters described by the points of the
-  sorted list to obtain the definitive RD curve. Notice that, since
-  the DCT is orthonormal, we could estimate accurately the distortion
-  in the definitive curve using directly the distortions of the
-  subbands.
-\end{enumerate}
-
-Notice that the points that satisfy that
-\begin{equation}
-  \mathbf{\Delta}_0 = \mathbf{\Delta}_1 = \mathbf{\Delta}_2
-  \label{eq:deltas}
-\end{equation}
-should belong to the definitive RD curve and should describe also the
-convex hull of the curve. There is not guarantee that the rest of
-points in which the Eq.~\eqref{eq:deltas} is not true will belong to
-the convex hull (although they could be used to perform a finer
-rate-control).
-
-This algorithm has been implemented in this \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT/RGB_DCT.ipynb}{notebook}.
-
-\section{Ablation study}
-The improvement resulting from the use of the DCT applied over the RGB
-domain can be quantified if we compare the RD curves considering or
-not its use.\footnote{This kind of comparison is commonly called
-``\emph{Ablation Study}'' because we are ''removing'' some
-functionality of the system to see how its ausence impacts on the
-performance.} 
-
-\end{comment}
-
-\begin{comment}
-   The steps
-of this procedure are (see the
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/color_DCT/RGB_DCT.ipynb}{notebook}):
-\begin{enumerate}
-\item  This fact allows us to use a ``fast'' (with
-  linear
-  \href{https://en.wikipedia.org/wiki/Computational_complexity}{complexity})
-  RDO (Rate/Distortion Optimization) algorithm to find which
-  combination of quantization steps $\mathbf{\Delta}$ that
-  ``minimizes'' the RD curve of the reconstructed image, which can be
-  computed as the sum\footnote{Remember, the constribution of the
-  subbands are independent and additive.} of the RD curves generated
-  by the $3$ subbands ($\text{DCT}^0$, $\text{DCT}^1$, and
-  $\text{DCT}^2$). Therefore, we can:
-  \begin{enumerate}
-  \item Quantize and compress\footnote{We can consider that the
-  coefficients are gray-scale pixels and use a image compressor.} each
-    subband with a quantization step $\mathbf{\Delta}_s$. This results
-    in $3$ RD curves, one per subband. We define the slope of the
-    $n$-th point in a RD curve as the slope of the straight line
-    passing through the points $n$ and $n+1$ (see the
-    Fig.~\ref{fig:slope_computation}). The slope of the point for the
-    highest rate is defined to $0$.  The results generated by this
-    step are $3$ RD curves (one per subband).
-  \item Put all the RD points in a list, tracking\footnote{Remembering
-  the combination subband index and quantization step used for each
-  point.} the quantization pattern used for each RD point. Compute the
-    list of points of the RD curve of the reconstructed image as the
-    (in descending order) sorted list, by slope, of RD points.
-  \item (Optional) If the image compressor used in the first step
-    generates less data overhead when a color image is compressed
-    considering the three channels at the same time, recompute the
-    rate of each RD point of the definitive curve. For example, in the
-    case of PNG~\cite{vruiz__PNG}, even when the intercomponent
-    redundancy is not exploited, the number of headers is decreased if
-    we perform only one compression per image.
-  \end{enumerate}
-
-  The orthonormality of the DCT also allows us to compute the
-  definitive distortion directly in the DCT domain.
-
-  Notice also that this algorithm has been designed considering the
-  fact that, ideally (where the RD curve is continuous), the rate
-  selected for each subband should be the
-  same~\cite{vruiz__information_theory,vetterli2014foundations}, and
-  therefore, should generate a RD curve such that the sum of the
-  distances of the points of the RD curve to the point $(0,0)$ is
-  minimized.
-  
-\end{enumerate}
-
-As a final remark, take into consideration that the quantization steps
-used in each subband should be selected considering aspects such as
-the ganularity of the rate-control\footnote{How many points has the RD
-curve.} and the features of the decoding process\footnote{For example, if we
-want to provide progressive bit-plane decoding, the quantization steps
-should be powers of $2$.}
-
-\section{An even faster (but coarser) rate-control algorithm}
-
-The running time of the previous algorithm depends on the number of
-subbands, that in our case is only $3$. However, we can develop a
-faster rate-control procedure (avoiding to compute the RD curves of
-the subbands that is the heaviest part) if we suppose that the RD
-slopes are basically determined by the distortion (i.e., without
-considering the rate)\footnote{Notice that this basically means that
-all the subband's curves have the
-same \footnote{https://en.wikipedia.org/wiki/Domain_of_a_function}{domain}
-and that the RD points occurs at the same rates}.
-
-Obviously, in the practice it is very unlikely to happen, but if the
-shapes of the curves are close enough, we can suppose that the slopes
-are the same for the same points in the different curves. In the case
-of the DCT that is orthonormal (the gains of the forward and the
-backward filters is $1$), this is the same that define the
-quantization pattern
-\begin{equation}
-  \mathbf{\Delta}_0 = \mathbf{\Delta}_1 = \mathbf{\Delta}_2.
-\end{equation}
-
-Notice that one way to check if this quantization algorithm is optimal
-(for the obtained RD points) is to check if the ``slower'' algorithm
-outputs such quantization patterns. If this is true, the ``faster''
-rate-control algorithm is optimal, at least for the encoded image.
-
-\end{comment}
+\bibliography{maths,data_compression,signal_processing,DWT,image_compression,image_processing,information_theory}

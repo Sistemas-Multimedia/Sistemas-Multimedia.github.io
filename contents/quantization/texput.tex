@@ -134,9 +134,13 @@ quantization index per block. In most of natural images, the spatial
 correlation~\cite{vruiz__visual_redundancy} generates that some blocks
 of the image are similar to other blocks. If this is true, we can
 compute a set of (block) centroids and use them to represent the
-original blocks. In general, the encoding performance of a vector
-quantizer is superior compared to a scalar quantizer because the
-number of quantization indexes (indexes of the centroids) is smaller.
+original blocks. As a result, we will obtain an matrix of quantization
+indexes that can be entropy coded.
+
+Notice that VQ exploits the spatial correlation. For this reason, the
+encoding performance of a vector quantizer is superior compared to a
+scalar quantizer because the number of quantization indexes (indexes
+of the centroids) is smaller.
 
 \subsection*{Resources}
 
@@ -160,10 +164,9 @@ reconstruction) and the bit-rate achieved by the entropy codec.
 \section{To-Do}
 \begin{enumerate}
 \item Modify VCF to allow the use of Lloyd-Max Quantization in the
-  compression pipeline. Up to 2 people in the group.
+  compression pipeline. Complexity 2.
 \item Modify VCF to allow the use of Vector Quantization (applied to
-  the spatial domain) in the compression pipeline. Up to 3 people in
-  the group.
+  the spatial domain) in the compression pipeline. Complexity 3.
 \end{enumerate}
 
 \section{References}
