@@ -1,5 +1,5 @@
 <!-- See https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/pages/syllabus/ -->
-# [Máster en Tecnologías y Aplicaciones en Ingeniería Informática](https://www.ual.es/estudios/masteres/presentacion/7114) - [Sistemas Multimedia](https://www.ual.es/estudios/masteres/presentacion/plandeestudios/asignatura/7114/71142105) - Syllabus
+# [Máster en Tecnologías y Aplicaciones en Ingeniería Informática](https://www.ual.es/estudios/masteres/presentacion/7114) - [Sistemas Multimedia](https://www.ual.es/estudios/masteres/presentacion/plandeestudios/asignatura/7114/71142105) - [Syllabus](https://sistemas-multimedia.github.io/syllabus)
 
 ## [Course Meeting Times](https://www.ual.es/estudios/masteres/presentacion/plandeestudios/asignatura/7114/71142105)
 
