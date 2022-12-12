@@ -1,5 +1,6 @@
 #theme: jekyll-theme-minimal
-theme: minima
+theme: jekyll-theme-minima
+#theme: minima
 title: Sistemas Multimedia
 description: Sistemas Multimedia / Máster Máster en Tecnologías y Aplicaciones en Ingeniería Informática / UAL
 
