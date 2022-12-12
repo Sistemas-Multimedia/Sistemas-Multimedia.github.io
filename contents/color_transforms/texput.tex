@@ -73,7 +73,11 @@ provide two main profits:
   related to the so called coding gain of the transform). In our case,
   where the transformations are between color spaces, in the transform
   domain most of the energy is concentrated in the $\text{Y}$
-  subband.
+  subband. As a consequence of this, usually, \textbf{the entropy is
+    decreased} and the \textbf{the dynamic range is increased}. The
+  first means that will compress more, and the second that we will be
+  able to use a higher range of quenaization step sizes, increasing
+  also the number of feasible points in the RD curve.
 \item \textbf{A different luma/croma sensitivity:} Our visual system
   is more sensitive in terms of spatial resolution to the luma
   (``black-and-white'') information than to the chroma
@@ -134,67 +138,7 @@ Eq.~\eqref{eq:optimal_lambda}.
 %%%%%%%%%%%%%%
 
 
-\subsection{Increasing the number of RD points (TO-DO)}
-\label{sec:increasing}
-If the Eq.~\eqref{eq:simple_Q} does not need to be satisfied, we can
-increase the resolution of the rate/distortion control using also the
-``intermediate'' points of the bit-plane progressive RD
-curve. Therefore, starting for example by the (usually top) left point
-of the RD curve, after each Eq.~\eqref{eq:simple_Q}-point, we must
-decide which option is more advantageous: (1) encode the next
-bit-plane of the $\text{R}$ channel, (2) encode the next bit-plane of
-the $\text{G}$ channel, or (3) encode the next bit-plane of the
-$\text{B}$ channel. We should select the option that provides the
-highest RD slope~\cite{vruiz__information_theory}.
-
-
-%%%%%%
-
 \section{The Color DCT Domain}
-
-\subsection{Objective}
-This task shows how to exploit the inter-channel
-redundancy~\cite{vruiz__visual_redundancy,vruiz__information_theory}
-in $\text{RGB}$ images with the DCT~\cite{vruiz__DCT} applied over the
-color dimension~\cite{vruiz__image_IO}. The DCT is one of the most
-used transforms in audio, image and video coding, because it is
-orthonormal (decorrelates, preserves the energy and all the DCT
-subbands has $1$-gain)~\cite{vruiz__transform_coding} and, in general,
-performs (decorrelates) quite well.
-
-\subsection{Decorrelation with the DCT}
-The DCT convolves cosine functions with the input sinal (in this case,
-the components of the pixels of the input image). The output of the
-transform is a set of three subbands $\{\text{DCT}^0, \text{DCT}^1,
-\text{DCT}^2\}$. The number of coefficients in a subband
-$\text{DCT}^s$ is the same that the number of $\text{RGB}$-pixels in
-the original image $\mathbf{I}$, or the number of monochrome-pixels in
-a channel $\mathbf{I}^c$ (see this
-\href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb}{notebook}).
-
-As a result of the use of the DCT, in most of the images the energy is
-concentrated in the low frequency
-subband~\cite{vruiz__transform_coding} ($\text{DCT}^0$), which
-basically represents the
-\href{https://en.wikipedia.org/wiki/Luminance}{luminance} of the
-image (see the \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb}{notebook}).
-
-\subsection{Effects of the transform}
-The concentration of the energy in the subband $\text{DCT}^0$
-increases the dynamic range of the DCT-color domain compared to the
-dynamic range of the original $\text{RGB}$ image. This has two
-interesting consequences:
-\begin{enumerate}
-\item The entropy of the progressive encoding (by bit-planes) of the
-  integer representation of the DCT coefficients is reduced (compared
-  to the entropy of the bit-planes of the original $\text{RGB}$
-  pixels). Therefore, the RD performance is improved because in terms
-  of RMSE/bit-rate we are closer to the origin of coordinates.
-\item The number of different quantization steps can be higher, and
-  therefore it is possible to increases the number of points in the RD
-  curve. This potentially increases the granularity of the RD control,
-  when applied.
-\end{enumerate}
 
 \subsection{Scalar quantization applied to the DCT domain}
 Since the DCT is orthonormal (orthogonal and unitary), we can use the
