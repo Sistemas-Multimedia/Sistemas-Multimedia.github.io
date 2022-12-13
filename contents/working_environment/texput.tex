@@ -1,3 +1,5 @@
+% Emacs, this is -*-latex-*-
+
 \input{../../definitions}
 \title{\SM{} - \href{https://sistemas-multimedia.github.io/working_environment}{Working Environment}}
 
@@ -7,21 +9,22 @@
 
 \section{About the Operating System}
 
-\subsection{Running/Developing CVF ``Natively''}
+\subsection{Running/Developing VCF ``Natively''}
 The VCF project~\cite{vruiz__VCF} has been designed to work in
 \href{https://en.wikipedia.org/wiki/Linux}{Linux}. Said that, it is
-also possible to run VCF in other operating systems (OS) such as OSX
-and Windows because Python~\cite{vruiz__YAPT} and
+also possible to run VCF in other operating systems such as OSX and
+Windows because Python~\cite{vruiz__YAPT} and
 Git~\cite{vruiz__GitHub}, the two main tools that we will use, are
-also available in all these OSs. In the case of Linux, you can use
-your favourite distribution.
+also available. In the case of Linux, you can use your favorite
+distribution.
 
-This is the prefered option because is the most efficient one from a
-pure computational point of view.
+The developing of VCF in a native environment is the preferred option
+because is the most efficient one from a pure computational point of
+view.
 
 \subsection{Running/Developing CVF in a Linux Container}
 The second most efficient option in terms of computational
-requirements and speed is to run Linux in a linux container, such
+requirements and speed is to run Linux in a Linux container, such
 as the provided by \href{https://hub.docker.com/}{Docker}
 (\href{https://hub.docker.com/_/ubuntu}{example for Ubuntu})
 or \href{https://linuxcontainers.org/}{LXD}. Notice however, that you
@@ -31,14 +34,14 @@ and \href{https://www.mozilla.org/firefox}{Firefox}) in your
 container.
 
 \subsection{Running/Developing CVF in a Linux Virtual Machine}
-VCF works also in any Linux OS installed in a virtual machine (VM)
+VCF works also in any Linux installed in a virtual machine (VM)
 environment such as \href{https://www.virtualbox.org/}{Virtual Box},
 \href{https://www.vmware.com/}{VMware} and \href{https://www.vmware.com/}{Parallels}.
 The only drawback of this way of running CVF is that you will require
 some extra memory and CPU power, compared to the containers.
 
 Obviously, any remote host (virtualized or not) running Linux is
-completely adecuate.
+completely adequate.
 
 \subsection{Running CVF in a ``Notebook''}
 Finally, it is possible to run CVF services that able to run
@@ -51,7 +54,7 @@ cloud services. On the contrary, if you opt for using
 \href{https://jupyter.org/}{Jupyter}, this last action is not
 necessary.
 
-\section{About the Programing Language(s)}
+\section{About the Programming Language(s)}
 
 VCF is written in \href{https://mybinder.org/}{Python}. You will need
 also to interact with
