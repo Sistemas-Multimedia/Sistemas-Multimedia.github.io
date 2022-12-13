@@ -1,19 +1,15 @@
-<?xml version="1.0" encoding="iso-8859-1" ?> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" 
-"http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd" > 
-<html xmlns="http://www.w3.org/1999/xhtml"  
-> 
-<head><title>Sistemas Multimedia - Removing RGB Redundancy with the DCT &#x0028;Discrete
-Cosine Transform&#x0029;</title> 
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
-<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
-<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
-<!-- xhtml,mathml,html --> 
-<meta name="src" content="index.tex" /> 
-<link rel="stylesheet" type="text/css" href="index.css" /> 
-</head><body 
->
-   <div class="maketitle">
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head> <title>Sistemas Multimedia - Color Transforms</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='index.css' rel='stylesheet' type='text/css' /> 
+<meta content='index.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+</head><body>
+   <div class='maketitle'>
                                                                   
 
                                                                   
@@ -21,330 +17,184 @@ Cosine Transform&#x0029;</title>
 
                                                                   
 
-<h2 class="titleHead"><a 
-href="https://sistemas-multimedia.github.io/" >Sistemas Multimedia</a> - Removing
-<!--l. 6--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mstyle 
-class="text"><mtext  >RGB</mtext></mstyle></math>
-Redundancy with the DCT &#x0028;Discrete Cosine
-Transform&#x0029;</h2>
- <div class="author" ><a 
-href="https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875" ><span 
-class="ecrm-1200">Vicente Gonz</span><span 
-class="ecrm-1200">&#x00E1;</span><span 
-class="ecrm-1200">lez Ruiz</span></a> <span 
-class="ecrm-1200">- </span><a 
-href="https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm" ><span 
-class="ecrm-1200">Depto Inform</span><span 
-class="ecrm-1200">&#x00E1;</span><span 
-class="ecrm-1200">tica</span></a> <span 
-class="ecrm-1200">- </span><a 
-href="https://www.ual.es" ><span 
-class="ecrm-1200">UAL</span></a></div><br />
-<div class="date" ><span 
-class="ecrm-1200">December 4, 2022</span></div>
+<h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - Color Transforms</h2>
+ <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
+<div class='date'><span class='ecrm-1200'>December 13, 2022</span></div>
    </div>
-   <h3 class="likesectionHead"><a 
- id="x1-1000"></a>Contents</h3>
-   <div class="tableofcontents">
-   &#x00A0;<span class="sectionToc" >1 <a 
-href="#x1-20001" id="QQ2-1-2">Objective</a></span>
-<br />   &#x00A0;<span class="sectionToc" >2 <a 
-href="#x1-30002" id="QQ2-1-3">Decorrelation with the DCT</a></span>
-<br />   &#x00A0;<span class="sectionToc" >3 <a 
-href="#x1-40003" id="QQ2-1-4">E&#xFB00;ects of the transform</a></span>
-<br />   &#x00A0;<span class="sectionToc" >4 <a 
-href="#x1-50004" id="QQ2-1-5">Scalar quantization applied to the DCT domain</a></span>
-<br />   &#x00A0;<span class="sectionToc" >5 <a 
-href="#x1-60005" id="QQ2-1-6">A better rate control &#x0028;TO-DO&#x0029;</a></span>
-<br />   &#x00A0;<span class="sectionToc" >6 <a 
-href="#x1-70006" id="QQ2-1-7">Implementation</a></span>
-<br />   &#x00A0;<span class="sectionToc" >7 <a 
-href="#x1-80007" id="QQ2-1-8">What do I have to do?</a></span>
-<br />   &#x00A0;<span class="sectionToc" >8 <a 
-href="#x1-90008" id="QQ2-1-9">Timming</a></span>
-<br />   &#x00A0;<span class="sectionToc" >9 <a 
-href="#x1-100009" id="QQ2-1-10">Deliverables</a></span>
-<br />   &#x00A0;<span class="sectionToc" >10 <a 
-href="#x1-1100010" id="QQ2-1-11">Resources</a></span>
+   <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
+   <div class='tableofcontents'>
+    <span class='sectionToc'>1 <a href='#what-is-spectral-decorrelation' id='QQ2-1-2'>What is spectral decorrelation?</a></span>
+<br />    <span class='sectionToc'>2 <a href='#lumas-and-chromas' id='QQ2-1-3'>Lumas and chromas</a></span>
+<br />    <span class='sectionToc'>3 <a href='#benefits-of-the-color-transforms' id='QQ2-1-5'>Benefits of the color transforms</a></span>
+<br />    <span class='sectionToc'>4 <a href='#ratedistortion-optimization-considering-the-color-space' id='QQ2-1-6'>Rate/distortion optimization considering the color space</a></span>
+<br />     <span class='subsectionToc'>4.1 <a href='#in-the-rgb-domain' id='QQ2-1-7'>In the \(\text {RGB}\) domain</a></span>
+<br />     <span class='subsectionToc'>4.2 <a href='#in-the-lumacroma-domain' id='QQ2-1-8'>In the luma/croma domain</a></span>
+<br />     <span class='subsectionToc'>4.3 <a href='#a-easier-and-faster-solution' id='QQ2-1-9'>A easier (and faster) solution</a></span>
+<br />    <span class='sectionToc'>5 <a href='#vector-quantization-of-rgb-images' id='QQ2-1-10'>Vector quantization of \(\text {RGB}\) images</a></span>
+<br />    <span class='sectionToc'>6 <a href='#todo' id='QQ2-1-11'>To-Do</a></span>
+<br />    <span class='sectionToc'>7 <a href='#references' id='QQ2-1-12'>References</a></span>
    </div>
-<!--l. 9--><p class="noindent" >
+<!-- l. 9 --><p class='noindent'>
 </p>
-   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
- id="x1-20001"></a>Objective</h3>
+   <h3 class='sectionHead' id='what-is-spectral-decorrelation'><span class='titlemark'>1   </span> <a id='x1-20001'></a>What is spectral decorrelation?</h3>
+<!-- l. 11 --><p class='noindent'>Most image and video compressors exploit the statistical (and also
+perceptual<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-2001f1'></a>) correlation
+between the \(\text {RGB}\) color <span class='ecti-1000'>components</span><span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-2002f2'></a>
+of the pixels, using a color transform. Notice that color transforms are pixel-wise
+operators. As a resul, each pixel is represented in a different domain where three new
+<span class='ecti-1000'>coefficients</span><span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a id='x1-2003f3'></a>
+express the same<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-2004f4'></a>
                                                                   
 
                                                                   
-<!--l. 10--><p class="noindent" >This task shows how to exploit the inter-channel redundancy&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvruiz__visual_redundancy">5</a>,&#x00A0;<a 
-href="#Xvruiz__information_theory">3</a>&#x005D;</span> in
-<!--l. 12--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mstyle 
-class="text"><mtext  >RGB</mtext></mstyle></math>
-images with the DCT&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvruiz__DCT">1</a>&#x005D;</span> applied over the color dimension&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvruiz__image_IO">2</a>&#x005D;</span>. The DCT is one of
-the most used transforms in audio, image and video coding, because it is
-orthonormal &#x0028;decorrelates, preserves the energy and all the DCT subbands has
-<!--l. 16--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mn>1</mn></math>-gain&#x0029;&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvruiz__transform_coding">4</a>&#x005D;</span>
-and, in general, performs &#x0028;decorrelates&#x0029; quite well.
-</p><!--l. 19--><p class="noindent" >
+information but in a different color domain.
+</p><!-- l. 28 --><p class='noindent'>
 </p>
-   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
- id="x1-30002"></a>Decorrelation with the DCT</h3>
-<!--l. 20--><p class="noindent" >The DCT convolves cosine functions with the input sinal &#x0028;in this case, the components
-of the pixels of the input image&#x0029;. The output of the transform is a set of three subbands
-<!--l. 22--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mo 
-class="MathClass-open" stretchy="false">&#x007B;</mo><msup><mrow 
-><mstyle 
-class="text"><mtext  >DCT</mtext></mstyle></mrow><mrow 
-><mn>0</mn></mrow></msup 
-><mo 
-class="MathClass-punc">,</mo><msup><mrow 
-><mstyle 
-class="text"><mtext  >DCT</mtext></mstyle></mrow><mrow 
-><mn>1</mn></mrow></msup 
-><mo 
-class="MathClass-punc">,</mo><msup><mrow 
-><mstyle 
-class="text"><mtext  >DCT</mtext></mstyle></mrow><mrow 
-><mn>2</mn></mrow></msup 
-><mo 
-class="MathClass-close" stretchy="false">&#x007D;</mo></math>. The number of coe&#xFB03;cients
-in a subband <!--l. 24--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><msup><mrow 
-><mstyle 
-class="text"><mtext  >DCT</mtext></mstyle></mrow><mrow 
-><mi 
->s</mi></mrow></msup 
-></math> is the same
-that the number of <!--l. 24--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mstyle 
-class="text"><mtext  >RGB</mtext></mstyle></math>-pixels
-in the original image <!--l. 25--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mstyle mathvariant="bold"><mi 
->I</mi></mstyle></math>,
-or the number of monochrome-pixels in a channel
-<!--l. 26--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><msup><mrow 
-><mstyle mathvariant="bold"><mi 
->I</mi></mstyle></mrow><mrow 
-><mi 
->c</mi></mrow></msup 
-></math> &#x0028;see
-this <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb" >notebook</a>&#x0029;.
-</p><!--l. 29--><p class="indent" >   As a result of the use of the DCT, in most of the images
-the energy is concentrated in the low frequency subband&#x00A0;<span class="cite">&#x005B;<a 
-href="#Xvruiz__transform_coding">4</a>&#x005D;</span>
-&#x0028;<!--l. 31--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><msup><mrow 
-><mstyle 
-class="text"><mtext  >DCT</mtext></mstyle></mrow><mrow 
-><mn>0</mn></mrow></msup 
-></math>&#x0029;,
-which basically represents the <a 
-href="https://en.wikipedia.org/wiki/Luminance" >luminance</a> of the image &#x0028;see the <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb" >notebook</a>&#x0029;.
-</p><!--l. 36--><p class="noindent" >
+   <h3 class='sectionHead' id='lumas-and-chromas'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Lumas and chromas</h3>
+<!-- l. 30 --><p class='noindent'>Most color transforms are designed to split the color information of a pixel in
+<span class='ecti-1000'>luminance </span>(luma) and <span class='ecti-1000'>chrominance </span>(chroma). The luma is basically the low
+frequency<span class='footnote-mark'><a href='#fn5x0' id='fn5x0-bk'><sup class='textsuperscript'>5</sup></a></span><a id='x1-3001f5'></a>
+information of the pixel, and the chroma (logically) the high frequency information.
+</p><!-- l. 43 --><p class='indent'>   For example, in JPEG and H.264/AVC the color information of each pixel is
+transformed from the \(\text {RGB}\) color space to the \(\text {YCrCb}\) color space, and in JPEG XR and in
+H.264/AVC, the \(\text {YCoCg}\) color space is used. In these luma-based color spaces, \(\text {Y}\) represents
+the luma coefficient. The other two, are is the chroma.
+</p><!-- l. 49 --><p class='noindent'>
 </p>
-   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
- id="x1-40003"></a>E&#xFB00;ects of the transform</h3>
-<!--l. 37--><p class="noindent" >The concentration of the energy in the subband
-<!--l. 37--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><msup><mrow 
-><mstyle 
-class="text"><mtext  >DCT</mtext></mstyle></mrow><mrow 
-><mn>0</mn></mrow></msup 
-></math> increases
-the dynamic range of the DCT-color domain compared to the dynamic range of the
-original <!--l. 39--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mstyle 
-class="text"><mtext  >RGB</mtext></mstyle></math>
-image. This has two interesting consequences:
-     </p><ol  class="enumerate1" >
-<li 
-  class="enumerate" id="x1-4002x1">
-     <!--l. 42--><p class="noindent" >The entropy of the progressive encoding &#x0028;by bit-planes&#x0029; of the integer
-     representation of the DCT coe&#xFB03;cients is reduced &#x0028;compared to the entropy
-     of the bit-planes of the original <!--l. 44--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mstyle 
-class="text"><mtext  >RGB</mtext></mstyle></math>
-     pixels&#x0029;. Therefore, the RD performance is improved because in terms of
-     RMSE/bit-rate we are closer to the origin of coordinates.
+   <h4 class='likesubsectionHead' id='channels-and-subbands-a-word-about-notation'><a id='x1-40002'></a>Channels and subbands (a word about notation)</h4>
+<!-- l. 51 --><p class='noindent'>Apart from using the terms of component and coefficient, we will use the term
+<span class='ecti-1000'>channel </span>to refeer to the same index component of all the pixels of an image (or
+video), and <span class='ecti-1000'>subband </span>to denote the same index coefficient of all the pixels of an image
+(or video). For example, the \(\text {R}\) channel of a color image corresponds to the image
+generated by the \(\text {R}\) component of all the pixels of the image (that can be considered as
+a <span class='ecti-1000'>single-channel</span>/<span class='ecti-1000'>mono-component</span>/<span class='ecti-1000'>monochromatic </span>image), and for example, the \(\text {Y}\)
+subband of a transformed (\(\text {RGB}\)) image corresponds to the \(\text {Y}\) coefficients of all the pixels
+(again a “<span class='ecti-1000'>scalar</span>” image).
+</p><!-- l. 63 --><p class='indent'>   Most color transforms map 3 channels (\(\text {RGB}\)) into 2 subbands.
+</p><!-- l. 65 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='benefits-of-the-color-transforms'><span class='titlemark'>3   </span> <a id='x1-50003'></a>Benefits of the color transforms</h3>
+<!-- l. 67 --><p class='noindent'>Color transforms applied to natural visual information generally provide two main
+profits:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-5002x1'><span class='ecbx-1000'>Energy  concentration:  </span>In  general,  transforms  “move”  the  energy
+     (information provided by the signals) between subbands, accumulating
+     most  of  the  energy  in  a  reduced  number  of  them  (aspect  related  to
+     the  so  called  coding  gain  of  the  transform).  In  our  case,  where  the
+     transformations are between color spaces, in the transform domain most
                                                                   
 
                                                                   
-     </p></li>
-<li 
-  class="enumerate" id="x1-4004x2">
-     <!--l. 47--><p class="noindent" >The number of di&#xFB00;erent quantization steps can be higher, and therefore
-     it is possible to increases the number of points in the RD curve. This
-     potentially increases the granularity of the RD control, when applied.</p></li></ol>
-<!--l. 53--><p class="noindent" >
+     of the energy is concentrated in the \(\text {Y}\) subband. As a consequence of this,
+     usually, <span class='ecbx-1000'>the entropy is decreased </span>and the <span class='ecbx-1000'>the dynamic range is
+     </span><span class='ecbx-1000'>increased</span>. The first means that will compress more, and the second that
+     we will be able to use a higher range of quenaization step sizes, increasing
+     also the number of feasible points in the RD curve.
+     </li>
+<li class='enumerate' id='x1-5004x2'><span class='ecbx-1000'>A different luma/croma sensitivity: </span>Our visual system is more sensitive
+     in terms of spatial resolution to the luma (“black-and-white”) information
+     than to the chroma (“color”) information.<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-5005f6'></a></li></ol>
+<!-- l. 88 --><p class='noindent'>
 </p>
-   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
- id="x1-50004"></a>Scalar quantization applied to the DCT domain</h3>
-<!--l. 54--><p class="noindent" >Since the DCT is orthonormal &#x0028;orthogonal and unitary&#x0029;, we can use the simple
-quantization pattern </p><table class="equation"><tr><td>
-<!--l. 56--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="block" class="equation">
-                     <mstyle 
-   id="x1-5001r1"  class="label" ></mstyle><!--endlabel--><msup><mrow 
-><mo 
-class="MathClass-open" stretchy="false"><mstyle mathvariant="bold"><mi mathvariant="normal">&#x0394;</mi></mstyle></mo></mrow><mrow 
-><msup><mrow 
-><mstyle 
-class="text"><mtext  >DCT</mtext></mstyle></mrow><mrow 
-><mn>0</mn></mrow></msup 
->
-     </mrow></msup 
-> <mo 
-class="MathClass-rel">=</mo><msup><mrow 
-> <mstyle mathvariant="bold"><mi mathvariant="normal">&#x0394;</mi></mstyle></mrow><mrow 
-><msup><mrow 
-><mstyle 
-class="text"><mtext  >DCT</mtext></mstyle></mrow><mrow 
-><mn>1</mn></mrow></msup 
->
-           </mrow></msup 
-> <mo 
-class="MathClass-rel">=</mo><msup><mrow 
-> <mstyle mathvariant="bold"><mi mathvariant="normal">&#x0394;</mi></mstyle></mrow><mrow 
-><msup><mrow 
-><mstyle 
-class="text"><mtext  >DCT</mtext></mstyle></mrow><mrow 
-><mn>2</mn></mrow></msup 
->
-           </mrow></msup 
-><mo 
-class="MathClass-punc">.</mo>
-</math></td><td class="eq-no">&#x0028;1&#x0029;</td></tr></table>
-<!--l. 60--><p class="indent" >   Therefore, there is not di&#xFB00;erente between quantizing in the
-<!--l. 61--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mstyle 
-class="text"><mtext  >RGB</mtext></mstyle></math> or the
-&#x0028;<!--l. 61--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><msup><mrow 
-><mstyle 
-class="text"><mtext  >DCT</mtext></mstyle></mrow><mrow 
-><mn>0</mn></mrow></msup 
-><mo 
-class="MathClass-punc">,</mo><msup><mrow 
-><mstyle 
-class="text"><mtext  >DCT</mtext></mstyle></mrow><mrow 
-><mn>1</mn></mrow></msup 
-><mo 
-class="MathClass-punc">,</mo><msup><mrow 
-><mstyle 
-class="text"><mtext  >DCT</mtext></mstyle></mrow><mrow 
-><mn>2</mn></mrow></msup 
-></math>&#x0029;
-color domain, except that in the last case, we must consider one extra bit-plane to
-encode.
-</p><!--l. 65--><p class="noindent" >
+   <h3 class='sectionHead' id='ratedistortion-optimization-considering-the-color-space'><span class='titlemark'>4   </span> <a id='x1-60004'></a>Rate/distortion optimization considering the color space</h3>
+<!-- l. 90 --><p class='noindent'>When we use scalar quantization.
+</p><!-- l. 92 --><p class='noindent'>
 </p>
-   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
- id="x1-60005"></a>A better rate control &#x0028;TO-DO&#x0029;</h3>
-<!--l. 67--><p class="noindent" >As we did in the case of the <a 
-href="https://sistemas-multimedia.github.io/contents/RGB_SQ/" >Scalar Quantization in the
-<!--l. 69--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mstyle 
-class="text"><mtext  >RGB</mtext></mstyle></math> Color
-Domain</a>, we can also use the intermediate RD points between each Eq.&#x00A0;&#x0028;<a 
-href="#x1-5001r1">1<!--tex4ht:ref: eq:simple_Q --></a>&#x0029;-point to
-increase the resolution of the decompressed image.
+   <h4 class='subsectionHead' id='in-the-rgb-domain'><span class='titlemark'>4.1   </span> <a id='x1-70004.1'></a>In the \(\text {RGB}\) domain</h4>
+<!-- l. 94 --><p class='noindent'>The \(\text {RGB}\) components are additive <span class='cite'>[<a href='#Xburger2016digital'>1</a>]</span> in both, the distortion and the rate domains.
+Therefore, ideally, given a target bit-rate or distortion, we should select the
+quantization step size in each component that generates the same slope in the RD
+curve of the component.
+</p><!-- l. 100 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='in-the-lumacroma-domain'><span class='titlemark'>4.2   </span> <a id='x1-80004.2'></a>In the luma/croma domain</h4>
+<!-- l. 102 --><p class='noindent'>In this case, the optimal quantization pattern should satisfy the same conditions as
+quantizing in the \(\text {RGB}\) domain. However, we have to consider also that the transform
+must be orthogonal, or at least, bi-orthogonal (the luma/chroma subbands must be
+independent). Otherwise, we cannot say that if we “improve” the quality of one
+subband in a given amount, such improvement will be also achieved in the \(\text {RGB}\)
+domain.
+</p><!-- l. 110 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='a-easier-and-faster-solution'><span class='titlemark'>4.3   </span> <a id='x1-90004.3'></a>A easier (and faster) solution</h4>
                                                                   
 
                                                                   
-</p><!--l. 73--><p class="noindent" >
+<!-- l. 112 --><p class='noindent'>In general, the RD optimization considering the color domain implies to
+know the RD curves of the subbands. If the transform is orthogonal, this is
+equivalent to know the RD curves in the \(\text {RGB}\) domain beecause the subbands
+are additive. If the transform is not orthogonal, the this last property is
+false.
+</p><!-- l. 118 --><p class='indent'>   Even if the curves are known, in general a good approximation to the optimal
+solution (using scalar quantization) is to use the same quantization step
+size for all the subbands. For example, in the \(\text {RGB}\) domain, this implies to use
+\begin {equation}  \mathbf {\Delta }^{\text {R}}_i = \mathbf {\Delta }^{\text {G}}_i = \mathbf {\Delta }^{\text {B}}_i, \label {eq:simple_Q}  \end {equation}
+where \(i\) represents the \(i\)-th quantization step size. Notice that the quantization pattern
+defined in the Eq. \eqref{eq:simple_Q} will be optimal only if for all the
+quantization steps, the condition \begin {equation}  \mathbf {\lambda }^{\text {R}}_i = \mathbf {\lambda }^{\text {G}}_i = \mathbf {\lambda }^{\text {B}}_i \label {eq:optimal_lambda}  \end {equation}
+is satisfied. In the notebook  we can explore (at least, visually) the grade of
+compilance of Eq. \eqref{eq:optimal_lambda}.
+</p><!-- l. 138 --><p class='noindent'>
 </p>
-   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
- id="x1-70006"></a>Implementation</h3>
-<!--l. 74--><p class="noindent" >The described algorithm has been implemented in this <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb" >notebook</a>.
-</p><!--l. 77--><p class="noindent" >
+   <h3 class='sectionHead' id='vector-quantization-of-rgb-images'><span class='titlemark'>5   </span> <a id='x1-100005'></a>Vector quantization of \(\text {RGB}\) images</h3>
+<!-- l. 140 --><p class='noindent'>SQ (Scalar Quantization) <span class='cite'>[<span class='ecbx-1000'>?</span>, <a href='#Xsayood2017introduction'>2</a>]</span> would be an optimal solution only if the image
+colors are uniformly distributed within <a href='https://en.wikipedia.org/wiki/RGB_color_model'>the RGB cube</a>. However, the typical color
+distribution in natural images is anything but uniform, with some regions of the color
+space being densely populated and many potentially used colors entirely missing. In
+this case, depending on the quantization step size <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>, SQ is not optimal because the
+used colors may not be sampled with sufficient density while at the same time the
+encoding system is considering colors that do not appear in the image at
+all <span class='cite'>[<a href='#Xburger2016digital'>1</a>]</span>.
+</p><!-- l. 154 --><p class='indent'>   On the other hand, VQ (Vector Quantization) <span class='cite'>[<span class='ecbx-1000'>?</span>, <a href='#Xsayood2017introduction'>2</a>]</span> applied to the color domain
+does not treat the individual \(\text {RGB}\) components separately as does scalar quantization, but
+each used color vector \({\mathbf C}_i = ({\mathbf R}_i, {\mathbf G}_i, {\mathbf B}_i )\) in the image is treated as a minimum structure. VQ
+determines a code-book of \(K\) code-vectors (centroids) that minimizes the distortion
+between the original image and the reconstructed one. Notice that the code-book
+must be known by the decoder to make the reconstruction.
+</p><!-- l. 162 --><p class='noindent'>
 </p>
-   <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
- id="x1-80007"></a>What do I have to do?</h3>
-<!--l. 79--><p class="noindent" >
-     </p><ol  class="enumerate1" >
-<li 
-  class="enumerate" id="x1-8002x1">
-     <!--l. 80--><p class="noindent" >Please, modify the <a 
-href="https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_DCT_SQ/RGB_DCT_SQ.ipynb" >notebook</a> to increse the number of RD points following
-     the procedure described in Section&#x00A0;<a 
-href="#x1-60005">5<!--tex4ht:ref: sec:increasing --></a>.
-     </p></li>
-<li 
-  class="enumerate" id="x1-8004x2">
-     <!--l. 84--><p class="noindent" >Which redundancies are exploited in the new improved image compressor?</p></li></ol>
-<!--l. 88--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">8   </span> <a 
- id="x1-90008"></a>Timming</h3>
-<!--l. 90--><p class="noindent" >Please, &#xFB01;nish this milestone before the next class session.
-</p><!--l. 92--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">9   </span> <a 
- id="x1-100009"></a>Deliverables</h3>
-<!--l. 94--><p class="noindent" >None.
-</p><!--l. 96--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">10   </span> <a 
- id="x1-1100010"></a>Resources</h3>
-   <div class="thebibliography">
-   <p class="bibitem" ><span class="biblabel">
- &#x005B;1&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
- id="Xvruiz__DCT"></a>V.&#x00A0;Gonz&#x00E1;lez-Ruiz. <a 
-href="https://vicente-gonzalez-ruiz.github.io/DCT/" >The DCT &#x0028;Discrete Cosine Transform&#x0029;</a>.
+   <h3 class='sectionHead' id='todo'><span class='titlemark'>6   </span> <a id='x1-110006'></a>To-Do</h3>
+<!-- l. 163 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-11002x1'>Modify VCF to allow the use of the 3-channels DCT in the compression
+     pipeline. Complexity 1.
                                                                   
 
                                                                   
+     </li>
+<li class='enumerate' id='x1-11004x2'>Modify VCF to allow the use of the \(\text {YCrCb}\) transform in the compression pipeline.
+     Complexity 1.
+     </li>
+<li class='enumerate' id='x1-11006x3'>Modify VCF to allow the use of Vector Quantization (applied to the color
+     domain) in the compression pipeline. Complexity 4.</li></ol>
+<!-- l. 172 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='references'><span class='titlemark'>7   </span> <a id='x1-120007'></a>References</h3>
+   <div class='thebibliography'>
+   <p class='bibitem'><span class='biblabel'>
+ [1]<span class='bibsp'>   </span></span><a id='Xburger2016digital'></a>W. Burger and M.J. Burge.  <a href='https://educons.edu.rs/wp-content/uploads/2020/05/2016-Digital-Image-Processing.pdf'><span class='ecti-1000'>Digital Image Processing: An Algorithmic
+   </span><span class='ecti-1000'>Introduction Using Java</span></a>. Springer, 2016.
    </p>
-   <p class="bibitem" ><span class="biblabel">
- &#x005B;2&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
- id="Xvruiz__image_IO"></a>V.&#x00A0;Gonz&#x00E1;lez-Ruiz. <a 
-href="https://vicente-gonzalez-ruiz.github.io/image_IO/" >Image IO</a>.
-   </p>
-   <p class="bibitem" ><span class="biblabel">
- &#x005B;3&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
- id="Xvruiz__information_theory"></a>V.&#x00A0;Gonz&#x00E1;lez-Ruiz. <a 
-href="https://vicente-gonzalez-ruiz.github.io/information_theory/" >Information Theory</a>.
-   </p>
-   <p class="bibitem" ><span class="biblabel">
- &#x005B;4&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
- id="Xvruiz__transform_coding"></a>V.&#x00A0;Gonz&#x00E1;lez-Ruiz. <a 
-href="https://vicente-gonzalez-ruiz.github.io/transform_coding/" >Transform Coding</a>.
-   </p>
-   <p class="bibitem" ><span class="biblabel">
- &#x005B;5&#x005D;<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
- id="Xvruiz__visual_redundancy"></a>V.&#x00A0;Gonz&#x00E1;lez-Ruiz. <a 
-href="https://vicente-gonzalez-ruiz.github.io/visual_redundancy/" >Visual Redundancy</a>.
+   <p class='bibitem'><span class='biblabel'>
+ [2]<span class='bibsp'>   </span></span><a id='Xsayood2017introduction'></a>K. Sayood.    <a href='http://rahilshaikh.weebly.com/uploads/1/1/6/3/11635894/data_compression.pdf'><span class='ecti-1000'>Introduction  to  Data  Compression</span></a>  <a href='https://people.cs.nctu.edu.tw/~cmliu/Courses/Compression/'><span class='ecti-1000'>(Slides)</span></a>.    Morgan
+   Kaufmann, 2017.
 </p>
    </div>
-    
-</body></html> 
-
-                                                                  
-
-
+   <div class='footnotes'><!-- l. 12 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>This will be addresed latter in this course.</span></p>
+<!-- l. 16 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>A component of a pixel in the</span> \(\text {RGB}\) <span class='ecrm-0800'>domain refer to one of the values</span> \(\text {R}\) <span class='ecrm-0800'>(red),</span> \(\text {G}\) <span class='ecrm-0800'>(green) and</span> \(\text {B}\) <span class='ecrm-0800'>(blue)
+</span><span class='ecrm-0800'>coordinates in the</span> \(\text {RGB}\) <span class='ecrm-0800'>color 3D space.</span></p>
+<!-- l. 23 --><p class='indent'>     <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>Most part of the transforms, including the color ones, analyze the signal information from a
+</span><span class='ecrm-0800'>frequency perspective, generating the so called coefficients whose index in the transform domain is
+</span><span class='ecrm-0800'>related to the frequency.</span></p>
+<!-- l. 25 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>In general, the color transforms can be considered lossless, although this is only true when
+</span><span class='ecrm-0800'>fixed-point arithmetic is used.</span></p>
+<!-- l. 40 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>It is worth to understand that the frequency concept in the transform domain is not related
+</span><span class='ecrm-0800'>to the frequency concept in the original pixel domain. For example, the</span> \(\text {R}\) <span class='ecrm-0800'>component or a pixel
+</span><span class='ecrm-0800'>represents the amount of red in the pixel, and in visible spectrum we are refering to frequencies that
+</span><span class='ecrm-0800'>are smaller than</span> \(\text {G}\) <span class='ecrm-0800'>and</span> \(\text {B}\) <span class='ecrm-0800'>components. However, in a color transformed domain, the luma measures
+</span><span class='ecrm-0800'>brightness level of the pixel, and we cannot found a subband in the visible spectrum that can
+</span><span class='ecrm-0800'>represent such information.</span></p>
+<!-- l. 85 --><p class='noindent'><span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>Notice again, that we will study this effect in a posterior session.</span></p>                               </div>
+ 
+</body> 
+</html>
