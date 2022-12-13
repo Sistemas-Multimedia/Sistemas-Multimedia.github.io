@@ -1,5 +1,5 @@
-#include $(HOME)/LaTeX_templates/Makefile
-#default:	index.html
+include $(HOME)/LaTeX_templates/Makefile
+default:	index.html
 
 #default:	index.html
 
