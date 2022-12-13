@@ -20,7 +20,7 @@
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - Digital
 (Re-)Quantization</h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 9, 2022</span></div>
+<div class='date'><span class='ecrm-1200'>December 13, 2022</span></div>
    </div>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -34,18 +34,19 @@
 <br />    <span class='sectionToc'>5 <a href='#deazone-quantization' id='QQ2-1-9'>Deazone quantization</a></span>
 <br />    <span class='sectionToc'>6 <a href='#lloydmax-quantization' id='QQ2-1-11'>Lloyd-Max quantization</a></span>
 <br />    <span class='sectionToc'>7 <a href='#vector-quantization' id='QQ2-1-13'>Vector quantization</a></span>
-<br />    <span class='sectionToc'>8 <a href='#todo' id='QQ2-1-15'>To-Do</a></span>
-<br />    <span class='sectionToc'>9 <a href='#references' id='QQ2-1-16'>References</a></span>
+<br />    <span class='sectionToc'>8 <a href='#the-ratedistortion-curve' id='QQ2-1-15'>The rate/distortion curve</a></span>
+<br />    <span class='sectionToc'>9 <a href='#todo' id='QQ2-1-16'>To-Do</a></span>
+<br />    <span class='sectionToc'>10 <a href='#references' id='QQ2-1-17'>References</a></span>
    </div>
 <!-- l. 11 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='what-is-quantization'><span class='titlemark'>1   </span> <a id='x1-20001'></a>What is quantization?</h3>
 <!-- l. 13 --><p class='noindent'>In information theory <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>, quantization is any mapping process between two sets of
 elements \(A\) and \(B\), where all the elements of \(A\) are associated to one element of \(B\), and
-happens that \(|A|&gt;|B|\), where \(|\cdot |\) represents the order (the number of elements) of a
                                                                   
 
                                                                   
+happens that \(|A|&gt;|B|\), where \(|\cdot |\) represents the order (the number of elements) of a
 group.
 </p><!-- l. 19 --><p class='indent'>   Notice that because \(|A|&gt;|B|\), quantization is an irreversible process because two o more
 elements of \(A\) will be mapped to the same element of \(B\), and there is not way to find the
@@ -143,43 +144,54 @@ the information.
 <!-- l. 129 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='vector-quantization'><span class='titlemark'>7   </span> <a id='x1-130007'></a>Vector quantization</h3>
-<!-- l. 131 --><p class='noindent'>Vector quantizers <span class='cite'>[<a href='#Xvruiz__vector_quantization'>3</a>]</span> input (usually squared, in the case of images) blocks
-of samples and output a quantization index per block. In most of natural
-images, the spatial correlation <span class='cite'>[<a href='#Xvruiz__visual_redundancy'>4</a>]</span> generates that some blocks of the image
-are similar to other blocks. If this is true, we can compute a set of (block)
-centroids and use them to represent the original blocks. In general, the encoding
+<!-- l. 131 --><p class='noindent'>Vector quantizers <span class='cite'>[<a href='#Xvruiz__vector_quantization'>3</a>]</span> input (usually squared, in the case of images) blocks of samples
+and output a quantization index per block. In most of natural images, the spatial
+correlation <span class='cite'>[<a href='#Xvruiz__visual_redundancy'>4</a>]</span> generates that some blocks of the image are similar to other blocks. If
+this is true, we can compute a set of (block) centroids and use them to represent the
+original blocks. As a result, we will obtain an matrix of quantization indexes that can
+be entropy coded.
+</p><!-- l. 140 --><p class='indent'>   Notice that VQ exploits the spatial correlation. For this reason, the encoding
 performance of a vector quantizer is superior compared to a scalar quantizer
 because the number of quantization indexes (indexes of the centroids) is
 smaller.
                                                                   
 
                                                                   
-</p><!-- l. 141 --><p class='noindent'>
+</p><!-- l. 145 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead' id='resources2'><a id='x1-140007'></a>Resources</h4>
-<!-- l. 143 --><p class='noindent'>
+<!-- l. 147 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-14002x1'><a href='https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py'>Vector Quantization Example</a>.
      </li>
 <li class='enumerate' id='x1-14004x2'><a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_VQ/gray_VQ.ipynb'>Vector Quantization (in the 2D domain) of a gray-scale image</a>.
      </li>
 <li class='enumerate' id='x1-14006x3'><a href='https://github.com/vicente-gonzalez-ruiz/image_vector_quantization_LBG'>Image compression using LBG</a>.</li></ol>
-<!-- l. 151 --><p class='noindent'>
+<!-- l. 155 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='todo'><span class='titlemark'>8   </span> <a id='x1-150008'></a>To-Do</h3>
-<!-- l. 152 --><p class='noindent'>
+   <h3 class='sectionHead' id='the-ratedistortion-curve'><span class='titlemark'>8   </span> <a id='x1-150008'></a>The rate/distortion curve</h3>
+<!-- l. 157 --><p class='noindent'>The gray-scale values or the \(\text {RGB}\) components of an image (and therefore, of a
+sequence of images) can be quantized and compressed using some entropy
+encoder, generating a set of points in the Rate/Distortion (RD) space. Such
+set usually form the so called RD curve in terms of RMSE (between the
+original image and its reconstruction) and the bit-rate achieved by the entropy
+codec.
+</p><!-- l. 164 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='todo'><span class='titlemark'>9   </span> <a id='x1-160009'></a>To-Do</h3>
+<!-- l. 165 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-15002x1'>Modify  VCF  to  allow  the  use  of  Lloyd-Max  Quantization  in  the
-     compression pipeline. Up to 2 people in the group.
-     </li>
-<li class='enumerate' id='x1-15004x2'>Modify VCF to allow the use of Vector Quantization in the compression
-     pipeline. Up to 3 people in the group.</li></ol>
-<!-- l. 159 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='references'><span class='titlemark'>9   </span> <a id='x1-160009'></a>References</h3>
+<li class='enumerate' id='x1-16002x1'>Modify  VCF  to  allow  the  use  of  Lloyd-Max  Quantization  in  the
+     compression pipeline. Complexity 2.
                                                                   
 
                                                                   
+     </li>
+<li class='enumerate' id='x1-16004x2'>Modify VCF to allow the use of Vector Quantization (applied to the spatial
+     domain) in the compression pipeline. Complexity 3.</li></ol>
+<!-- l. 172 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='references'><span class='titlemark'>10   </span> <a id='x1-1700010'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xvruiz__scalar_quantization'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/scalar_quantization/'>Scalar Quantization</a>.
