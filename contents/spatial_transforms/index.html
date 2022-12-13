@@ -1,0 +1,92 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head> <title>Sistemas Multimedia - Spatial Transforms</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='index.css' rel='stylesheet' type='text/css' /> 
+<meta content='index.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+</head><body>
+   <div class='maketitle'>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+
+<h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - Spatial Transforms</h2>
+ <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
+<div class='date'><span class='ecrm-1200'>December 13, 2022</span></div>
+   </div>
+   <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
+   <div class='tableofcontents'>
+    <span class='sectionToc'>1 <a href='#spatial-decorrelation' id='QQ2-1-2'>Spatial decorrelation</a></span>
+<br />    <span class='sectionToc'>2 <a href='#benefits-of-spatial-transforms' id='QQ2-1-3'>Benefits of spatial transforms</a></span>
+<br />    <span class='sectionToc'>3 <a href='#scalar-quantization-and-ratedistortion-optimization' id='QQ2-1-4'>Scalar quantization and rate/distortion optimization</a></span>
+<br />    <span class='sectionToc'>4 <a href='#todo' id='QQ2-1-5'>To-Do</a></span>
+<br />    <span class='sectionToc'>5 <a href='#references' id='QQ2-1-6'>References</a></span>
+   </div>
+<!-- l. 8 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='spatial-decorrelation'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Spatial decorrelation</h3>
+<!-- l. 10 --><p class='noindent'>Spatial transforms used in image and video compression exploit the statistical (and also
+perceptual<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-2001f1'></a>)
+correlation that the pixels show as a consequence of the spatial correlation. For
+example, some areas of an image can occur more than once, and usually, neighbor
+pixels tend to have similar values.
+</p><!-- l. 17 --><p class='indent'>   Spatial transforms are image-wise operators. This means that the transform
+inputs an image of pixels and output a matrix of coefficients, which generally
+express the resemblance between the image and a set of basis function. For
+example, after using the DCT, each (index) coefficient represents a different
+frequency and its value, the amount of the corresponding basis found in the
+image.
+                                                                  
+
+                                                                  
+</p><!-- l. 24 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='benefits-of-spatial-transforms'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Benefits of spatial transforms</h3>
+<!-- l. 26 --><p class='noindent'>Spatial transforms provide:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-3002x1'><span class='ecbx-1000'>Energy   concentration:  </span>A   small   set   of   (usually   low-frequency)
+     coefficients  (usually)  represents  most  of  the  information  (energy)  of
+     the  image.  This  decreases  the  entropy  and  increases  the  range  of  the
+     quantization step sizes, because the dynamic range of the coefficients is
+     higher than the dynamic range of the pixels.
+     </li>
+<li class='enumerate' id='x1-3004x2'><span class='ecbx-1000'>Low/High frequency analysis: </span>Our visual system is more sensitive to
+     the low frequencies (for this reason, the <a href='https://en.wikipedia.org/wiki/Contrast_(vision)#Contrast_sensitivity'>contrast sensitiviy function</a> is not
+     flat.
+     </li>
+<li class='enumerate' id='x1-3006x3'><span class='ecbx-1000'>Multiresolution:  </span>Depending  on  the  transform,  it  is  possible  to
+     reconstruct the original image by resolution levels.</li></ol>
+<!-- l. 33 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='scalar-quantization-and-ratedistortion-optimization'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Scalar quantization and rate/distortion optimization</h3>
+<!-- l. 35 --><p class='noindent'>Scalar quantization is efficient in the transform domain because the coefficients are
+decorrelated. The next logical step (after quantization) is the entropy coding of the
+quantization indexes. Here, depending on how the coefficients are quantized we can
+trace different RD curves (all of them starting (and finising) in the same distortion).
+For example, if we compress each subband independently, we must find the
+quantization step sizes that select the same slope in the RD curve of each
+subband.
+</p><!-- l. 44 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='todo'><span class='titlemark'>4   </span> <a id='x1-50004'></a>To-Do</h3>
+<!-- l. 45 --><p class='noindent'>
+                                                                  
+
+                                                                  
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-5002x1'>Modify VCF to use the block-based DCT in the compression pipeline.
+     Complexity 3.</li></ol>
+<!-- l. 89 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='references'><span class='titlemark'>5   </span> <a id='x1-60005'></a>References</h3>
+   <div class='footnotes'><!-- l. 12 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>We will see this later in this course.</span></p>                                                                </div>
+ 
+</body> 
+</html>

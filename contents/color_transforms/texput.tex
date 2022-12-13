@@ -6,7 +6,7 @@
 \maketitle
 \tableofcontents
 
-\section{What is spectral decorrelation?}
+\section{Spectral decorrelation}
 
 Most image and video compressors exploit the statistical (and also
 perceptual\footnote{This will be addresed latter in this course.})
@@ -14,16 +14,17 @@ correlation between the $\text{RGB}$ color
 \emph{components}\footnote{A component of a pixel in the $\text{RGB}$
 domain refer to one of the values $\text{R}$ (red), $\text{G}$ (green)
 and $\text{B}$ (blue) coordinates in the $\text{RGB}$ color 3D space.}
-of the pixels, using a color transform. Notice that color transforms
-are pixel-wise operators. As a resul, each pixel is represented in a
-different domain where three new \emph{coefficients}\footnote{Most
-part of the transforms, including the color ones, analyze the signal
-information from a frequency perspective, generating the so called
-coefficients whose index in the transform domain is related to the
-frequency.} express the same\footnote{In general, the color transforms
-can be considered lossless, although this is only true when
-fixed-point arithmetic is used.} information but in a different color
-domain.
+of the pixels, using a color transform.
+
+Color transforms are pixel-wise operators. As a resul, each pixel is
+represented in a different domain where three new
+\emph{coefficients}\footnote{Most part of the transforms, including
+the color ones, analyze the signal information from a frequency
+perspective, generating the so called coefficients whose index in the
+transform domain is related to the frequency.} express the
+same\footnote{In general, the color transforms can be considered
+lossless, although this is only true when fixed-point arithmetic is
+used.} information but in a different color domain.
 
 \section{Lumas and chromas}
 
@@ -76,18 +77,16 @@ provide two main profits:
   subband. As a consequence of this, usually, \textbf{the entropy is
     decreased} and the \textbf{the dynamic range is increased}. The
   first means that will compress more, and the second that we will be
-  able to use a higher range of quenaization step sizes, increasing
+  able to use a higher range of quantization step sizes, increasing
   also the number of feasible points in the RD curve.
-\item \textbf{A different luma/croma sensitivity:} Our visual system
+\item \textbf{Luma/croma analysis:} Our visual system
   is more sensitive in terms of spatial resolution to the luma
   (``black-and-white'') information than to the chroma
   (``color'') information.\footnote{Notice again, that we will study
   this effect in a posterior session.}
 \end{enumerate}
 
-\section{Rate/distortion optimization considering the color space}
-
-When we use scalar quantization.
+\section{Scalar quantization and ate/distortion optimization}
 
 \subsection{In the $\text{RGB}$ domain}
 
