@@ -52,7 +52,7 @@ in compression ratio.
 
 \section{\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman coding}}
 
-A Huffman code~\cite{vruiz__huffman_coding} is a
+A Huffman code~\cite{vruiz__huffman_coding,ruiz2000compresion} is a
 \href{https://en.wikipedia.org/wiki/Prefix_code}{prefix code} that
 allows to ``navigate'' through the so called Huffman (inverted) Tree
 from the trunk to one of its leaves, without
@@ -85,7 +85,7 @@ remain unchanged.
 \section{\href{https://en.wikipedia.org/wiki/Arithmetic_coding}{Arithmetic
     coding}}
 
-In an arithmetic codec~\cite{vruiz__arithmetic_coding}, the number of
+In an arithmetic codec~\cite{vruiz__arithmetic_coding,ruiz2000compresion}, the number of
 bits of data that can be used for representing a symbol can match
 exactly the number of bits of information, i.e,
 \begin{equation}
@@ -113,11 +113,11 @@ code) and an arithmetic code, vanishes.
 
 \texttt{zlib} is based on
 \href{https://en.wikipedia.org/wiki/Deflate}{DEFLATE}, which in turn
-is based on LZ77~\cite{vruiz__LZW} and Huffman coding. Therefore,
-\texttt{zlib} exploits the repetition of symbols and also, the the
-0-order statistical redundancy\footnote{In other words, that some
-  symbols are more frequently than others.}. One of the main advantages
-of \texttt{zlib} is that is quite fast.
+is based on LZ77~\cite{vruiz__LZW,ruiz2000compresion} and Huffman
+coding. Therefore, \texttt{zlib} exploits the repetition of symbols
+and also, the the 0-order statistical redundancy\footnote{In other
+words, that some symbols are more frequently than others.}. One of the
+main advantages of \texttt{zlib} is that is quite fast.
 
 \subsection*{Resources}
 \begin{enumerate}

@@ -38,7 +38,7 @@
 <!-- l. 13 --><p class='noindent'><a href='https://en.wikipedia.org/wiki/Entropy_coding'>Entropy coding</a> (EC) <span class='cite'>[<a href='#Xvruiz__entropy_coding'>3</a>]</span> encompasses a whole series of coding techniques that exploit
 the <a href='https://en.wikipedia.org/wiki/Redundancy_(information_theory)'>statistical redundancy</a> of data with the ultimate goal of finding a more compact
 representation. EC is related to the definition of <a href='https://en.wikipedia.org/wiki/Entropy_(information_theory)'>entropy</a> in the context of the
-information theory <span class='cite'>[<a href='#Xvruiz__information_theory'>5</a>]</span>. In this area, the entropy quantifies the volume of <a href='https://en.wikipedia.org/wiki/Information'>information</a>
+information theory <span class='cite'>[<a href='#Xvruiz__information_theory'>8</a>]</span>. In this area, the entropy quantifies the volume of <a href='https://en.wikipedia.org/wiki/Information'>information</a>
 represented by a data set, so that the higher the entropy, the better the efficiency of
 such representation (<a href='https://en.wikipedia.org/wiki/Data'>data</a>).
                                                                   
@@ -52,25 +52,25 @@ such representation (<a href='https://en.wikipedia.org/wiki/Data'>data</a>).
 </p><!-- l. 34 --><p class='indent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-3002x1'>Those that process the sequence symbol by symbol. Examples of this type
-     of algorithms are Huffman coding <span class='cite'>[<a href='#Xvruiz__huffman_coding'>4</a>]</span> and arithmetic coding <span class='cite'>[<a href='#Xvruiz__arithmetic_coding'>1</a>]</span>. These
+     of algorithms are Huffman coding <span class='cite'>[<a href='#Xvruiz__huffman_coding'>4</a>]</span> and arithmetic coding <span class='cite'>[<a href='#Xvruiz__arithmetic_coding'>2</a>]</span>. These
      encoders are also called “probabilistic encoders”  because the number of
      bits of code assigned to a symbol \(s\) depends on the probability of the symbol
      \(p(s)\).
      </li>
 <li class='enumerate' id='x1-3004x2'>Those that process the sequence by blocks of symbols (strings). Examples
-     are Run-Length Encoding (RLE) <span class='cite'>[<a href='#Xvruiz__rle'>8</a>]</span> and all the dictionary-based text
-     compressors, such as LZW <span class='cite'>[<a href='#Xvruiz__LZW'>6</a>]</span>.</li></ol>
+     are Run-Length Encoding (RLE) <span class='cite'>[<a href='#Xvruiz__rle'>6</a>]</span> and all the dictionary-based text
+     compressors, such as LZW <span class='cite'>[<a href='#Xvruiz__LZW'>5</a>]</span>.</li></ol>
 <!-- l. 48 --><p class='indent'>   Those of the first type generally achieve more compact representations, but
 computationally are more expensive. The algorithms of the second class are usually
 faster, but slightly worse in compression ratio.
 </p><!-- l. 53 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='-httpsenwikipediaorgwikihuffmancodinghuffman-coding'><span class='titlemark'>3   </span> <a id='x1-40003'></a><a href='https://en.wikipedia.org/wiki/Huffman_coding'>Huffman coding</a></h3>
-<!-- l. 55 --><p class='noindent'>A Huffman code <span class='cite'>[<a href='#Xvruiz__huffman_coding'>4</a>]</span> is a <a href='https://en.wikipedia.org/wiki/Prefix_code'>prefix code</a> that allows to “navigate” through the so called
+<!-- l. 55 --><p class='noindent'>A Huffman code <span class='cite'>[<a href='#Xvruiz__huffman_coding'>4</a>, <a href='#Xruiz2000compresion'>1</a>]</span> is a <a href='https://en.wikipedia.org/wiki/Prefix_code'>prefix code</a> that allows to “navigate” through the so called
 Huffman (inverted) Tree from the trunk to one of its leaves, without uncertainty. The
 Huffman Tree satisfies that \begin {equation}  l(c(s)) = \lceil I(s)\rceil , \label {eq:huffman_performance}  \end {equation}
 where \(l(c(s))\) is the length of the (Huffman) code assigned to the symbol \(s\) and \(I(s)\) is the
-amount of information represented by \(s\), measured bits of information <span class='cite'>[<a href='#Xvruiz__information_theory'>5</a>]</span>.
+amount of information represented by \(s\), measured bits of information <span class='cite'>[<a href='#Xvruiz__information_theory'>8</a>]</span>.
 </p><!-- l. 68 --><p class='indent'>   Notice that the minimum number of bits that can be used for representing a symbol
 (using Huffman) is 1, which can be a problem when the length of the alphabet is
 small.<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-4001f1'></a>
@@ -98,7 +98,7 @@ to the symbols will be also remain unchanged.
 <!-- l. 86 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='-httpsenwikipediaorgwikiarithmeticcodingarithmetic-coding'><span class='titlemark'>4   </span> <a id='x1-60004'></a><a href='https://en.wikipedia.org/wiki/Arithmetic_coding'>Arithmetic coding</a></h3>
-<!-- l. 88 --><p class='noindent'>In an arithmetic codec <span class='cite'>[<a href='#Xvruiz__arithmetic_coding'>1</a>]</span>, the number of bits of data that can be used for
+<!-- l. 88 --><p class='noindent'>In an arithmetic codec <span class='cite'>[<a href='#Xvruiz__arithmetic_coding'>2</a>, <a href='#Xruiz2000compresion'>1</a>]</span>, the number of bits of data that can be used for
 representing a symbol can match exactly the number of bits of information, i.e, \begin {equation}  l(c(s)) = I(s).  \end {equation}
 </p><!-- l. 95 --><p class='indent'>   This also means that even if the size of the alphabet is small, the coding
 performance of an arithmetic code is optimal, although this optimality is only fully
@@ -127,7 +127,7 @@ any other prefix code) and an arithmetic code, vanishes.
 <!-- l. 112 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='-httpszlibnet-zlib'><span class='titlemark'>5   </span> <a id='x1-80005'></a><a href='https://zlib.net/'><span class='ectt-1000'>zlib</span></a></h3>
-<!-- l. 114 --><p class='noindent'><span class='ectt-1000'>zlib </span>is based on <a href='https://en.wikipedia.org/wiki/Deflate'>DEFLATE</a>, which in turn is based on LZ77 <span class='cite'>[<a href='#Xvruiz__LZW'>6</a>]</span> and Huffman coding.
+<!-- l. 114 --><p class='noindent'><span class='ectt-1000'>zlib </span>is based on <a href='https://en.wikipedia.org/wiki/Deflate'>DEFLATE</a>, which in turn is based on LZ77 <span class='cite'>[<a href='#Xvruiz__LZW'>5</a>, <a href='#Xruiz2000compresion'>1</a>]</span> and Huffman coding.
 Therefore, <span class='ectt-1000'>zlib </span>exploits the repetition of symbols and also, the the 0-order statistical
 redundancy<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-8001f2'></a>.
 One of the main advantages of <span class='ectt-1000'>zlib </span>is that is quite fast.
@@ -145,8 +145,8 @@ One of the main advantages of <span class='ectt-1000'>zlib </span>is that is qui
 <!-- l. 129 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='portable-network-graphics-png'><span class='titlemark'>6   </span> <a id='x1-100006'></a>Portable Network Graphics (PNG)</h3>
-<!-- l. 131 --><p class='noindent'><a href='https://en.wikipedia.org/wiki/Portable_Network_Graphics'>PNG</a> <span class='cite'>[<a href='#Xvruiz__PNG'>7</a>]</span> (pronounced “ping”) a dictionary-based <a href='https://en.wikipedia.org/wiki/Lossless_compression'>lossless image compression format</a>
-used for representing <a href='https://en.wikipedia.org/wiki/Digital_data'>digital</a> <a href='https://en.wikipedia.org/wiki/Digital_image'>images</a> and <a href='https://en.wikipedia.org/wiki/Video'>videos</a> <span class='cite'>[<a href='#Xvruiz__image_video'>2</a>]</span> in III... format <span class='cite'>[<a href='#Xvruiz__video_compression'>9</a>]</span>. The entropy
+<!-- l. 131 --><p class='noindent'><a href='https://en.wikipedia.org/wiki/Portable_Network_Graphics'>PNG</a> <span class='cite'>[<a href='#Xvruiz__PNG'>9</a>]</span> (pronounced “ping”) a dictionary-based <a href='https://en.wikipedia.org/wiki/Lossless_compression'>lossless image compression format</a>
+used for representing <a href='https://en.wikipedia.org/wiki/Digital_data'>digital</a> <a href='https://en.wikipedia.org/wiki/Digital_image'>images</a> and <a href='https://en.wikipedia.org/wiki/Video'>videos</a> <span class='cite'>[<a href='#Xvruiz__image_video'>7</a>]</span> in III... format <span class='cite'>[<a href='#Xvruiz__video_compression'>10</a>]</span>. The entropy
 encoder of PNG is based on Huffman coding and LZSS, and a pixel predictor that
 removes the spatial redundancy.
 </p><!-- l. 142 --><p class='indent'>   We must bear in mind that as such an image compressor, we can only
@@ -172,38 +172,42 @@ images.
 <!-- l. 164 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='references'><span class='titlemark'>8   </span> <a id='x1-120008'></a>References</h3>
-   <div class='thebibliography'>
-   <p class='bibitem'><span class='biblabel'>
- [1]<span class='bibsp'>   </span></span><a id='Xvruiz__arithmetic_coding'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/arithmetic_coding/docs'>Arithmetic Coding</a>.
-   </p>
-   <p class='bibitem'><span class='biblabel'>
- [2]<span class='bibsp'>   </span></span><a id='Xvruiz__image_video'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/digital_image_and_video/'>Digital Images and Videos</a>.
-   </p>
-   <p class='bibitem'><span class='biblabel'>
- [3]<span class='bibsp'>   </span></span><a id='Xvruiz__entropy_coding'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/entropy_coding/'>Entropy Coding</a>.
-   </p>
-   <p class='bibitem'><span class='biblabel'>
- [4]<span class='bibsp'>   </span></span><a id='Xvruiz__huffman_coding'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/Huffman_coding/'>Huffman Coding</a>.
-   </p>
-   <p class='bibitem'><span class='biblabel'>
- [5]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/information_theory/'>Information Theory</a>.
-   </p>
-   <p class='bibitem'><span class='biblabel'>
- [6]<span class='bibsp'>   </span></span><a id='Xvruiz__LZW'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/LZW/'>Lempel-Ziv-Welch</a>.
-   </p>
-   <p class='bibitem'><span class='biblabel'>
- [7]<span class='bibsp'>   </span></span><a id='Xvruiz__PNG'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/PNG/'>PNG (Portable Network Graphics)</a>.
-   </p>
-   <p class='bibitem'><span class='biblabel'>
- [8]<span class='bibsp'>   </span></span><a id='Xvruiz__rle'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/run-length_encoding/'>Run-Length Encoding</a>.
+    <div class='thebibliography'>
+    <p class='bibitem'><span class='biblabel'>
+  [1]<span class='bibsp'>   </span></span><a id='Xruiz2000compresion'></a>Vicente González-Ruiz.   <a href='http://www.hpca.ual.es/~vruiz/papers/tesis.pdf'><span class='ecti-1000'>Compresión Reversible y Transmisión de
+    </span><span class='ecti-1000'>Imágenes</span></a>. PhD thesis, University of Almería (UAL), 2000.
+    </p>
+    <p class='bibitem'><span class='biblabel'>
+  [2]<span class='bibsp'>   </span></span><a id='Xvruiz__arithmetic_coding'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/arithmetic_coding'>Arithmetic Coding</a>.
+    </p>
+    <p class='bibitem'><span class='biblabel'>
+  [3]<span class='bibsp'>   </span></span><a id='Xvruiz__entropy_coding'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/entropy_coding'>Entropy Coding</a>.
+    </p>
+    <p class='bibitem'><span class='biblabel'>
+  [4]<span class='bibsp'>   </span></span><a id='Xvruiz__huffman_coding'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/Huffman_coding'>Huffman Coding</a>.
+    </p>
+    <p class='bibitem'><span class='biblabel'>
+  [5]<span class='bibsp'>   </span></span><a id='Xvruiz__LZW'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/LZW'>Lempel-Ziv-Welch</a>.
+    </p>
+    <p class='bibitem'><span class='biblabel'>
+  [6]<span class='bibsp'>   </span></span><a id='Xvruiz__rle'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/run-length_encoding'>Run-Length Encoding</a>.
+    </p>
+    <p class='bibitem'><span class='biblabel'>
+  [7]<span class='bibsp'>   </span></span><a id='Xvruiz__image_video'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/digital_image_and_video/'>Digital Images and Videos</a>.
+    </p>
+    <p class='bibitem'><span class='biblabel'>
+  [8]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/information_theory/'>Information Theory</a>.
                                                                   
 
                                                                   
-   </p>
-   <p class='bibitem'><span class='biblabel'>
- [9]<span class='bibsp'>   </span></span><a id='Xvruiz__video_compression'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/video_compression/'>Video Compression</a>.
+    </p>
+    <p class='bibitem'><span class='biblabel'>
+  [9]<span class='bibsp'>   </span></span><a id='Xvruiz__PNG'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/PNG/'>PNG (Portable Network Graphics)</a>.
+    </p>
+    <p class='bibitem'><span class='biblabel'>
+ [10]<span class='bibsp'>   </span></span><a id='Xvruiz__video_compression'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/video_compression/'>Video Compression</a>.
 </p>
-   </div>
+    </div>
    <div class='footnotes'><!-- l. 71 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>In this case, Huffman is ineffective.</span></p>
 <!-- l. 119 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>In other words, that some symbols are more frequently than others.</span></p>                      </div>
  
