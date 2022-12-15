@@ -68,9 +68,9 @@ measured bits of information~\cite{vruiz__information_theory}.
 Notice that the minimum number of bits that can be used for
 representing a symbol (using Huffman) is 1, which can be a problem
 when the length of the alphabet is small.\footnote{In this case,
-  Huffman is ineffective.} Notice also that, if the probabilistic model
-remains constant, the code-words assigned to the symbols will be also
-remain unchanged.
+Huffman is ineffective.} Another drawback of Huffman coding is that
+the Huffman tree must be updated each time the probabilistic model is
+updated, action very frequent in adaptive models.
 
 \subsection*{Resources}
 \begin{enumerate}
@@ -154,11 +154,17 @@ Please, select one of the following tasks to develop:
 \begin{enumerate}
 \item Modify \href{https://github.com/Sistemas-Multimedia/VCF}{VCF} to
   allow the use of Huffman coding as a entropy codec in the
-  compression pipeline. Complexity 3.
+  compression pipeline. A context-based probabilistic model should be
+  used to minimize the probabilities of the symbols. Complexity 3.
 \item Modify VCF to allow the use of arithmetic coding as a entropy
-  codec in the compression pipeline. Complexity 3.
+  codec in the compression pipeline. Again, a context-based
+  probabilistic model should be used and in this case, to speed up the
+  decoding of the symbols and to increase the compression ratio, it is
+  convenient that they follow a Laplace statistical distribution that
+  can be easily obtained using a spatial predictor. Complexity 3.
 \item Modify VCF to allow the use of \texttt{zlib} as a entropy codec
-  in the compression pipeline. Complexity 2.
+  in the compression pipeline. Again, use spatial predictor to
+  increase the compression ratio. Complexity 2.
 \end{enumerate}
 
 \section{References}

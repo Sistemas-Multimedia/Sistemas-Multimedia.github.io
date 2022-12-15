@@ -33,24 +33,24 @@ pixel in \emph{luminance} (luma) and \emph{chrominance} (chroma). The
 luma is basically the low frequency\footnote{It is worth to understand
 that the frequency concept in the transform domain is not related to
 the frequency concept in the original pixel domain. For example, the
-$\text{R}$ component or a pixel represents the amount of red in the pixel, and in
-visible spectrum we are refering to frequencies that are smaller than
-$\text{G}$ and $\text{B}$ components. However, in a color transformed
-domain, the luma measures brightness level of the pixel, and we cannot
-found a subband in the visible spectrum that can represent such
-information.} information of the pixel, and the chroma (logically)
-the high frequency information.
+$\text{R}$ component or a pixel represents the amount of red in the
+pixel, and in the visible spectrum we are refering to frequencies that
+are smaller than $\text{G}$ and $\text{B}$ components. However, in a
+color transformed domain, the luma measures brightness level of the
+pixel, and we cannot found a subband in the visible spectrum that can
+represent such information.} information of the pixel, and the chroma
+(logically) the high frequency information.
 
-For example, in JPEG and H.264/AVC the color information of each pixel
-is transformed from the $\text{RGB}$ color space to the $\text{YCrCb}$
-color space, and in JPEG XR and in H.264/AVC, the $\text{YCoCg}$ color
+For example, in JPEG and in H.264/AVC the color information of each
+pixel is transformed from the $\text{RGB}$ color space to the
+$\text{YCrCb}$ color space, and in JPEG XR, the $\text{YCoCg}$ color
 space is used. In these luma-based color spaces, $\text{Y}$ represents
-the luma coefficient. The other two, are is the chroma.
+the luma coefficient. The other two form the chroma.
 
 \subsection*{Channels and subbands (a word about notation)}
 
 Apart from using the terms of component and coefficient, we will use
-the term \emph{channel} to refeer to the same index component of all
+the word \emph{channel} to refeer to the same index component of all
 the pixels of an image (or video), and \emph{subband} to denote the
 same index coefficient of all the pixels of an image (or video). For
 example, the $\text{R}$ channel of a color image corresponds to the
@@ -61,7 +61,7 @@ image), and for example, the $\text{Y}$ subband of a transformed
 ($\text{RGB}$) image corresponds to the $\text{Y}$ coefficients of
 all the pixels (again a ``\emph{scalar}'' image).
 
-Most color transforms map 3 channels ($\text{RGB}$) into 2 subbands.
+Most color transforms map 3 channels ($\text{RGB}$) into 3 subbands.
 
 \section{Benefits of the color transforms}
 
@@ -79,14 +79,15 @@ provide two main profits:
   first means that will compress more, and the second that we will be
   able to use a higher range of quantization step sizes, increasing
   also the number of feasible points in the RD curve.
-\item \textbf{Luma/croma analysis:} Our visual system
-  is more sensitive in terms of spatial resolution to the luma
-  (``black-and-white'') information than to the chroma
-  (``color'') information.\footnote{Notice again, that we will study
-  this effect in a posterior session.}
+\item \textbf{Luma/croma analysis:} Our visual system is more
+  sensitive in terms of spatial resolution to the luma
+  (``black-and-white'') information than to the chroma (``color'')
+  information, which basically means that we can quantize more the
+  chroma.\footnote{Notice again, that we will study this effect in a
+  posterior session.}
 \end{enumerate}
 
-\section{Scalar quantization and ate/distortion optimization}
+\section{Scalar quantization and rate/distortion optimization}
 
 \subsection{In the $\text{RGB}$ domain}
 
@@ -112,7 +113,7 @@ In general, the RD optimization considering the color domain implies
 to know the RD curves of the subbands. If the transform is orthogonal,
 this is equivalent to know the RD curves in the $\text{RGB}$ domain
 beecause the subbands are additive. If the transform is not
-orthogonal, the this last property is false.
+orthogonal, the this last fact is false.
 
 Even if the curves are known, in general a good approximation to the
 optimal solution (using scalar quantization) is to use the same
@@ -145,10 +146,10 @@ distributed within
 anything but uniform, with some regions of the color space being
 densely populated and many potentially used colors entirely
 missing. In this case, depending on the quantization step
-size~\cite{vruiz__signal_quantization}, SQ is not optimal because the
-used colors may not be sampled with suﬃcient density while at the same
-time the encoding system is considering colors that do not appear in
-the image at all~\cite{burger2016digital}.
+size~\cite{vruiz__signal_quantization}, SQ could be suboptimal because
+the used colors may not be sampled with suﬃcient density while at the
+same time the encoding system is considering colors that do not appear
+in the image at all~\cite{burger2016digital}.
 
 On the other hand, VQ (Vector
 Quantization)~\cite{vruiz__vector_quantization,sayood2017introduction}
@@ -171,4 +172,4 @@ treated as a minimum structure. VQ determines a code-book of $K$ code-vectors (c
 \section{References}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{maths,data_compression,signal_processing,DWT,image_compression,image_processing,information_theory}
+\bibliography{maths,data_compression,signal_processing,DWT,image_compression,image_processing,information_theory,quantization}

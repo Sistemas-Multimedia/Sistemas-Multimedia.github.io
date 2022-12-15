@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - Entropy Coding</h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 14, 2022</span></div>
+<div class='date'><span class='ecrm-1200'>December 15, 2022</span></div>
    </div>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -74,13 +74,14 @@ amount of information represented by \(s\), measured bits of information <span 
 </p><!-- l. 68 --><p class='indent'>   Notice that the minimum number of bits that can be used for representing a symbol
 (using Huffman) is 1, which can be a problem when the length of the alphabet is
 small.<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-4001f1'></a>
-Notice also that, if the probabilistic model remains constant, the code-words assigned
-to the symbols will be also remain unchanged.
-</p><!-- l. 75 --><p class='noindent'>
-</p>
+Another drawback of Huffman coding is that the Huffman tree must be updated each
+time the probabilistic model is updated, action very frequent in adaptive
+models.
                                                                   
 
                                                                   
+</p><!-- l. 75 --><p class='noindent'>
+</p>
    <h4 class='likesubsectionHead' id='resources'><a id='x1-50003'></a>Resources</h4>
 <!-- l. 76 --><p class='noindent'>
      </p><ol class='enumerate1'>
@@ -100,14 +101,14 @@ to the symbols will be also remain unchanged.
    <h3 class='sectionHead' id='-httpsenwikipediaorgwikiarithmeticcodingarithmetic-coding'><span class='titlemark'>4   </span> <a id='x1-60004'></a><a href='https://en.wikipedia.org/wiki/Arithmetic_coding'>Arithmetic coding</a></h3>
 <!-- l. 88 --><p class='noindent'>In an arithmetic codec <span class='cite'>[<a href='#Xvruiz__arithmetic_coding'>2</a>, <a href='#Xruiz2000compresion'>1</a>]</span>, the number of bits of data that can be used for
 representing a symbol can match exactly the number of bits of information, i.e, \begin {equation}  l(c(s)) = I(s).  \end {equation}
+                                                                  
+
+                                                                  
 </p><!-- l. 95 --><p class='indent'>   This also means that even if the size of the alphabet is small, the coding
 performance of an arithmetic code is optimal, although this optimality is only fully
 satisfied if the number of symbols to encode is infinite. Notice also that, if the
 alphabet is large, the encoding performance difference between a Huffman code (or
 any other prefix code) and an arithmetic code, vanishes.
-                                                                  
-
-                                                                  
 </p><!-- l. 102 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead' id='resources1'><a id='x1-70004'></a>Resources</h4>
@@ -124,6 +125,9 @@ any other prefix code) and an arithmetic code, vanishes.
 <li class='enumerate' id='x1-7010x5'><a href='https://en.wikipedia.org/wiki/Lossless_JPEG'>Lossless JPEG</a>.
      </li>
 <li class='enumerate' id='x1-7012x6'><a href='https://en.wikipedia.org/wiki/Context-adaptive_binary_arithmetic_coding'>Context-adaptive binary arithmetic coding</a>.</li></ol>
+                                                                  
+
+                                                                  
 <!-- l. 112 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='-httpszlibnet-zlib'><span class='titlemark'>5   </span> <a id='x1-80005'></a><a href='https://zlib.net/'><span class='ectt-1000'>zlib</span></a></h3>
@@ -131,9 +135,6 @@ any other prefix code) and an arithmetic code, vanishes.
 Therefore, <span class='ectt-1000'>zlib </span>exploits the repetition of symbols and also, the the 0-order statistical
 redundancy<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-8001f2'></a>.
 One of the main advantages of <span class='ectt-1000'>zlib </span>is that is quite fast.
-                                                                  
-
-                                                                  
 </p><!-- l. 122 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead' id='resources2'><a id='x1-90005'></a>Resources</h4>
@@ -157,19 +158,25 @@ images.
 </p>
    <h3 class='sectionHead' id='todo'><span class='titlemark'>7   </span> <a id='x1-110007'></a>To-Do</h3>
 <!-- l. 153 --><p class='noindent'>Please, select one of the following tasks to develop:
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-11002x1'>Modify <a href='https://github.com/Sistemas-Multimedia/VCF'>VCF</a> to allow the use of Huffman coding as a entropy codec in the
-     compression pipeline. Complexity 3.
-     </li>
-<li class='enumerate' id='x1-11004x2'>Modify VCF to allow the use of arithmetic coding as a entropy codec in
-     the compression pipeline. Complexity 3.
                                                                   
 
                                                                   
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-11002x1'>Modify <a href='https://github.com/Sistemas-Multimedia/VCF'>VCF</a> to allow the use of Huffman coding as a entropy codec in the
+     compression pipeline. A context-based probabilistic model should be used
+     to minimize the probabilities of the symbols. Complexity 3.
+     </li>
+<li class='enumerate' id='x1-11004x2'>Modify VCF to allow the use of arithmetic coding as a entropy codec
+     in the compression pipeline. Again, a context-based probabilistic model
+     should be used and in this case, to speed up the decoding of the symbols
+     and to increase the compression ratio, it is convenient that they follow a
+     Laplace statistical distribution that can be easily obtained using a spatial
+     predictor. Complexity 3.
      </li>
 <li class='enumerate' id='x1-11006x3'>Modify VCF to allow the use of <span class='ectt-1000'>zlib </span>as a entropy codec in the compression
-     pipeline. Complexity 2.</li></ol>
-<!-- l. 164 --><p class='noindent'>
+     pipeline. Again, use spatial predictor to increase the compression ratio.
+     Complexity 2.</li></ol>
+<!-- l. 170 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='references'><span class='titlemark'>8   </span> <a id='x1-120008'></a>References</h3>
     <div class='thebibliography'>
@@ -182,6 +189,9 @@ images.
     </p>
     <p class='bibitem'><span class='biblabel'>
   [3]<span class='bibsp'>   </span></span><a id='Xvruiz__entropy_coding'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/entropy_coding'>Entropy Coding</a>.
+                                                                  
+
+                                                                  
     </p>
     <p class='bibitem'><span class='biblabel'>
   [4]<span class='bibsp'>   </span></span><a id='Xvruiz__huffman_coding'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/Huffman_coding'>Huffman Coding</a>.
@@ -197,9 +207,6 @@ images.
     </p>
     <p class='bibitem'><span class='biblabel'>
   [8]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/information_theory/'>Information Theory</a>.
-                                                                  
-
-                                                                  
     </p>
     <p class='bibitem'><span class='biblabel'>
   [9]<span class='bibsp'>   </span></span><a id='Xvruiz__PNG'></a>V. González-Ruiz. <a href='https://vicente-gonzalez-ruiz.github.io/PNG/'>PNG (Portable Network Graphics)</a>.
