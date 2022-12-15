@@ -12,40 +12,37 @@
 
 In information theory~\cite{vruiz__information_theory}, quantization
 is any mapping process between two sets of elements $A$ and $B$, where
-all the elements of $A$ are associated to one element of $B$, and
-happens that $|A|>|B|$, where $|\cdot|$ represents the order (the
-number of elements) of a group.
+all the elements of $A$ are associated to one (not necessarily the
+same) element of $B$, and happens that $|A|>|B|$, $|\cdot|$
+representing the order (the number of elements) of a set.
 
-Notice that because $|A|>|B|$, quantization is an irreversible process
+Notice that if $|A|>|B|$, quantization is an irreversible process
 because two o more elements of $A$ will be mapped to the same element
-of $B$, and there is not way to find the inverse mapping.
+of $B$, and there is not way to find the reverse mapping.
 
-\section{What is digital quantization?}
+\section{What is digital (re-)quantization?}
 
 In digital
 quantization~\cite{vruiz__scalar_quantization,vruiz__vector_quantization},
 the elements of $A$ and $B$ are digital samples of a
 signal~\cite{vruiz__signal_quantization}. Since, by definition, a
 digital sample has been quantized to be converted from the analog
-world to the digital one, we are actually appliying a re-Quantization
-to the signal. Again, such Digital Quantization implies a loss of
+world to the digital one, we are actually appliying a re-quantization
+to the signal. Again, such digital quantization implies a loss of
 information in the re-quantized signal.
 
 \section{Basic terminology}
 
 Several types of quantizers divide the range of possible values that
 the samples can take into a collection of non-overlapped
-intervals. The values that define such intervals are called \emph{decision
-levels} and the value that in the quantized domain represents to all
-the input posible values that fall in a interval is called the
-\emph{representation level} of the interval.
-
-The size of each interval is called the quantization step size,
-usually represented by $\Delta$.
+intervals. The values that define such intervals are called
+\emph{decision levels} and the value that in the quantized domain
+represents to all the input posible values that fall in a interval is
+called the \emph{representation level} of the interval.
 
 \section{A classification of quantizers}
 
-\subsection{Scalar VS vector quantizers}
+\subsection{Scalar quantizers (SQ) VS Vector Quantizers (VQ)}
 
 When quantization maps single elments of $A$ to single elements of
 $B$, the quantizer is said
@@ -55,43 +52,45 @@ used~\cite{vruiz__vector_quantization}.
 
 \subsection{Uniform VS non-uniform quantizers}
 
-In an uniform quantizer~\cite{vruiz__scalar_quantization}, all the
-intervals have the same size. In a non-uniform
+In an uniform quantizer~\cite{vruiz__scalar_quantization}, the size of
+all the intervals is equal to the quantization step size, which is
+usually represented by $\Delta$. In a non-uniform
 quantizer~\cite{vruiz__scalar_quantization}, at least one of the
 intervals is different to the rest. For example, a deadzone
 quantizer~\cite{vruiz__scalar_quantization} has a interval size for
 the representation level 0 that doubles the size of the rest of
 intervals. For this reason, a deadzone quantizer is a non-uniform
-quantizer.
+quantizer. Another example of a non-uniform quantizer is the Lloyd-Max
+quantizer because it divides the range of input values in a set of
+intervals whose size is inversely proportional to the probability of
+using such interval.
 
 \subsection{Static VS adaptive quantizers}
 
-Static quantizers are defined without considering the specific
-characteristics of the sequence of samples to quantize. Adaptive
-quantizers adapt to the sequence of samples that are quantized. For
-example, a Lloyd-Max quantizer divides the range of input values in a
-set of intervals whose size is inversely proportional to the
-probability of using such interval. On the contrary, a static
-quantizer keeps fixed the size of the intervals.
+Static quantizers do not modify the partitioning of the input signal's
+dynamic range, nor the representation level assigned to each
+interval. On the contrary, adaptive quantizers adapt to the sequence
+of samples that are quantized. A Jayant quantizer is a example of
+adaptative quantization.
 
 \section{Deazone quantization}
 
 Deadzone quantizers~\cite{vruiz__scalar_quantization} are static
 quasi-uniform scalar quantizers. These are used frequently in lossy
 compression systems because: (1) when the quantization step size is a
-power of two, and (2) the input sample values are integers (and
-negative integers are represented using two's complement), then the
-representation levels can be found by simply discarding
-low-significant bits of the input samples (in other words, we only
-need to perform a bit-shift operation to find the corresponding
-quantization index).
+power of two, and (2) the input sample values are
+integers\footnote{And negative integers are represented using two's
+complement.}, then the representation levels can be found by simply
+discarding low-significant bits of the input samples (in other words,
+we only need to perform a bit-shift operation to find the
+corresponding quantization index).
 
 Another reason that makes deadzone quantization popular in lossy
 encoding systems is that tends to remove electronic noise more than
-other quantizers where the signal is weaker. If we supose that the
-signal has 0 average (the electronic noise has 0 average and a flat
-spectrum) and that the deadzone is placed where the SNR is smaller, we
-are basically replacing electronic noise by quantization
+other scalar quantizers where the signal is weaker. If we supose that
+the signal has 0 average (the electronic noise has 0 average and a
+flat spectrum) and that the deadzone is placed where the SNR is
+smaller, we are basically replacing electronic noise by quantization
 noise. Obviously, this does not improve the RD performance of the
 encoder, but the perceived (subjective) quality is increased for the
 same bit-rate (if the electronic noise is perceived as a source of
@@ -110,7 +109,7 @@ A Lloyd-Max quantizer~\cite{vruiz__scalar_quantization} minimizes the
 quantization noise given a signal with a known probabilistic
 distribution (histogram) of the input samples and a number of
 quantization intervals. As a result, the density of quantization
-intervals is higher where the probability of the samples is higher and
+intervals is higher where the probability of the samples is higher, and
 viceversa.
 
 Notice that the histogram must be also known by the decoder to
@@ -152,24 +151,31 @@ of the centroids) is smaller.
 \item \href{https://github.com/vicente-gonzalez-ruiz/image_vector_quantization_LBG}{Image compression using LBG}.
 \end{enumerate}
 
-\section{The rate/distortion curve}
+\section{The Rate/Distortion (RD) curve}
 
 The gray-scale values or the $\text{RGB}$ components of an image (and
 therefore, of a sequence of images) can be quantized and compressed
-using some entropy encoder, generating a set of points in the
-Rate/Distortion (RD) space. Such set usually form the so called RD
-curve in terms of RMSE (between the original image and its
-reconstruction) and the bit-rate achieved by the entropy codec.
+using some entropy encoder, generating a set of points in the RD
+space. Such set usually form the so called RD curve in terms of RMSE
+(between the original image and its reconstruction) and the bit-rate
+achieved by the entropy codec.
 
 \section{To-Do}
 \begin{enumerate}
-\item Modify VCF to allow the use of Lloyd-Max Quantization in the
-  compression pipeline. Complexity 2.
-\item Modify VCF to allow the use of Vector Quantization (applied to
-  the spatial domain) in the compression pipeline. Complexity 3.
+\item Modify VCF to allow the use of Lloyd-Max quantization in the
+  compression pipeline. Notice that VCF already implements this
+  quantizer, but compression pipeline has not been continued. You must
+  implement a complete pipeline (at least for compressing
+  images). Complexity 2.
+\item Modify VCF to allow the use of VQ (applied to the spatial
+  domain) in the compression pipeline. Notice that VQ used in the
+  spatial domain can significantly minimize the advantage of using a
+  spatial transform. For this reason, it can be useful to implement
+  also ``fake'' spatial transform where no transformation is performed
+  at all. Complexity 3.
 \end{enumerate}
 
 \section{References}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{quantization,perception}
+\bibliography{quantization,perception,information_theory}
