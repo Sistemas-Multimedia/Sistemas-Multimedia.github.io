@@ -28,7 +28,7 @@ quantization~\cite{vruiz__scalar_quantization,vruiz__vector_quantization},
 the elements of $A$ and $B$ are digital samples of a
 signal~\cite{vruiz__signal_quantization}. Since, by definition, a
 digital sample has been quantized to be converted from the analog
-world to the digital one, we are actually appliying a re-quantization
+world to the digital one, we are actually applying a re-quantization
 to the signal. Again, such digital quantization implies a loss of
 information in the re-quantized signal.
 
@@ -38,14 +38,14 @@ Several types of quantizers divide the range of possible values that
 the samples can take into a collection of non-overlapped
 intervals. The values that define such intervals are called
 \emph{decision levels} and the value that in the quantized domain
-represents to all the input posible values that fall in a interval is
+represents to all the input possible values that fall in a interval is
 called the \emph{representation level} of the interval.
 
 \section{A classification of quantizers}
 
 \subsection{Scalar quantizers (SQ) VS Vector Quantizers (VQ)}
 
-When quantization maps single elments of $A$ to single elements of
+When quantization maps single elements of $A$ to single elements of
 $B$, the quantizer is said
 \emph{scalar}~\cite{vruiz__scalar_quantization}. When tuples of
 elements are mapped, VQ is being
@@ -56,7 +56,7 @@ used~\cite{vruiz__vector_quantization}.
 In an uniform quantizer~\cite{vruiz__scalar_quantization}, the size of
 all the intervals is equal to the quantization step size, which is
 usually represented by $\Delta$.\footnote{In an uniform quantizer, the
-distante between all the decision levels is $\Delta$.} In a
+distance between all the decision levels is $\Delta$.} In a
 non-uniform quantizer~\cite{vruiz__scalar_quantization}, at least one
 of the intervals is different to the rest. For example, a deadzone
 quantizer~\cite{vruiz__scalar_quantization} has a interval size for
@@ -73,10 +73,10 @@ Static quantizers do not modify the partitioning of the input signal's
 dynamic range (the decision levels), nor the representation level
 assigned to each interval. On the contrary, adaptive quantizers adapt
 to the sequence of samples that are quantized. A Jayant
-quantizer~\cite{vruiz__scalar_quantization} is a example of adaptative
+quantizer~\cite{vruiz__scalar_quantization} is a example of adaptive
 quantization.
 
-\section{Deazone quantization}
+\section{Deadzone quantization}
 
 Deadzone quantizers~\cite{vruiz__scalar_quantization} are static
 quasi-uniform scalar quantizers. These are used frequently in lossy
@@ -86,12 +86,12 @@ integers are represented using two's complement.}, then the
 representation levels can be found by simply discarding
 low-significant bits of the input samples (in other words, we only
 need to perform a bit-shift operation to find the corresponding
-quantization index). This also means that it is possible to build an
+quantization index). This also means that it is possible to build a
 progressive encoding system using a deadzone quantizer.
 
 Another reason that makes deadzone quantization popular in lossy
 encoding systems is that tends to remove electronic noise more than
-other scalar quantizers where the signal is weaker. If we supose that
+other scalar quantizers where the signal is weaker. If we suppose that
 the signal has 0 average\footnote{The electronic noise has 0 average
 and a flat spectrum.} and that the deadzone is placed where the SNR is
 smaller, we are basically replacing electronic noise by quantization
@@ -114,7 +114,7 @@ quantization noise given a signal with a known probabilistic
 distribution (histogram) of the input samples and a number of
 quantization intervals. As a result, the density of quantization
 intervals is higher where the probability of the samples is higher, and
-viceversa.
+vice-versa.
 
 Notice that the histogram must be also known by the decoder to
 ``restore''\footnote{Remember that quantization is a irreversible
@@ -145,30 +145,25 @@ encoding performance of a vector quantizer is superior compared to a
 scalar quantizer because the number of quantization indexes (indexes
 of the centroids) is smaller.
 
-\subsection*{Resources}
-
 \begin{enumerate}
-\item \href{https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py}{Vector Quantization Example}.
 \item
-  \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/gray_VQ/gray_VQ.ipynb}{Vector
+  \href{https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py}{Vector
+    Quantization Example}.
+\item
+  \href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/gray_VQ.ipynb}{Vector
     Quantization (in the 2D domain) of a gray-scale image}.
-\item \href{https://github.com/vicente-gonzalez-ruiz/image_vector_quantization_LBG}{Image compression using LBG}.
+\item
+  \href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb}{Vector
+    Quantization (in the 2D domain) of a color (RGB) image}.
+  
+\item \href{https://github.com/droidadroit/LBG}{Image compression using LBG}.
 \end{enumerate}
-
-\section{The Rate/Distortion (RD) curve}
-
-The gray-scale values or the $\text{RGB}$ components of an image (and
-therefore, of a sequence of images) can be quantized and compressed
-using some entropy encoder, generating a set of points in the RD
-space. Such set usually form the so called RD curve in terms of RMSE
-(between the original image and its reconstruction) and the bit-rate
-achieved by the entropy codec.
 
 \section{To-Do}
 \begin{enumerate}
 \item Modify VCF to allow the use of Lloyd-Max quantization in the
   compression pipeline. Notice that VCF already implements this
-  quantizer, but compression pipeline has not been continued. You must
+  quantizer, but the compression pipeline is unfinished. You must
   implement a complete pipeline (at least for compressing
   images). Complexity 2.
 \item Modify VCF to allow the use of VQ (applied to the spatial
