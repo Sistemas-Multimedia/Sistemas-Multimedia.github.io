@@ -10,7 +10,8 @@
 
 \section{What is quantization?}
 
-In information theory~\cite{vruiz__information_theory}, quantization
+In information theory~\cite{vruiz__information_theory},
+quantization~\cite{vruiz__signal_quantization,vruiz__scalar_quantization,vruiz__vector_quantization,vruiz__trellis_quantization}
 is any mapping process between two sets of elements $A$ and $B$, where
 all the elements of $A$ are associated to one (not necessarily the
 same) element of $B$, and happens that $|A|>|B|$, $|\cdot|$
@@ -46,21 +47,22 @@ called the \emph{representation level} of the interval.
 
 When quantization maps single elments of $A$ to single elements of
 $B$, the quantizer is said
-scalar~\cite{vruiz__scalar_quantization}. When tuples of elements are
-mapped, vector quantization is being
+\emph{scalar}~\cite{vruiz__scalar_quantization}. When tuples of
+elements are mapped, VQ is being
 used~\cite{vruiz__vector_quantization}.
 
 \subsection{Uniform VS non-uniform quantizers}
 
 In an uniform quantizer~\cite{vruiz__scalar_quantization}, the size of
 all the intervals is equal to the quantization step size, which is
-usually represented by $\Delta$. In a non-uniform
-quantizer~\cite{vruiz__scalar_quantization}, at least one of the
-intervals is different to the rest. For example, a deadzone
+usually represented by $\Delta$.\footnote{In an uniform quantizer, the
+distante between all the decision levels is $\Delta$.} In a
+non-uniform quantizer~\cite{vruiz__scalar_quantization}, at least one
+of the intervals is different to the rest. For example, a deadzone
 quantizer~\cite{vruiz__scalar_quantization} has a interval size for
 the representation level 0 that doubles the size of the rest of
 intervals. For this reason, a deadzone quantizer is a non-uniform
-quantizer. Another example of a non-uniform quantizer is the Lloyd-Max
+quantizer. Another example of a non-uniform quantizer is a Lloyd-Max
 quantizer because it divides the range of input values in a set of
 intervals whose size is inversely proportional to the probability of
 using such interval.
@@ -68,28 +70,30 @@ using such interval.
 \subsection{Static VS adaptive quantizers}
 
 Static quantizers do not modify the partitioning of the input signal's
-dynamic range, nor the representation level assigned to each
-interval. On the contrary, adaptive quantizers adapt to the sequence
-of samples that are quantized. A Jayant quantizer is a example of
-adaptative quantization.
+dynamic range (the decision levels), nor the representation level
+assigned to each interval. On the contrary, adaptive quantizers adapt
+to the sequence of samples that are quantized. A Jayant
+quantizer~\cite{vruiz__scalar_quantization} is a example of adaptative
+quantization.
 
 \section{Deazone quantization}
 
 Deadzone quantizers~\cite{vruiz__scalar_quantization} are static
 quasi-uniform scalar quantizers. These are used frequently in lossy
-compression systems because: (1) when the quantization step size is a
-power of two, and (2) the input sample values are
-integers\footnote{And negative integers are represented using two's
-complement.}, then the representation levels can be found by simply
-discarding low-significant bits of the input samples (in other words,
-we only need to perform a bit-shift operation to find the
-corresponding quantization index).
+compression systems because when the quantization step size is a power
+of two, and the input sample values are integers\footnote{And negative
+integers are represented using two's complement.}, then the
+representation levels can be found by simply discarding
+low-significant bits of the input samples (in other words, we only
+need to perform a bit-shift operation to find the corresponding
+quantization index). This also means that it is possible to build an
+progressive encoding system using a deadzone quantizer.
 
 Another reason that makes deadzone quantization popular in lossy
 encoding systems is that tends to remove electronic noise more than
 other scalar quantizers where the signal is weaker. If we supose that
-the signal has 0 average (the electronic noise has 0 average and a
-flat spectrum) and that the deadzone is placed where the SNR is
+the signal has 0 average\footnote{The electronic noise has 0 average
+and a flat spectrum.} and that the deadzone is placed where the SNR is
 smaller, we are basically replacing electronic noise by quantization
 noise. Obviously, this does not improve the RD performance of the
 encoder, but the perceived (subjective) quality is increased for the
@@ -114,8 +118,8 @@ viceversa.
 
 Notice that the histogram must be also known by the decoder to
 ``restore''\footnote{Remember that quantization is a irreversible
-process and therefore, never is restores the original signal (except
-if the signal is digital and $\Delta=1$).} the information.
+process and therefore, never is restored the original signal (except
+if $\Delta=1$).} the information.
 
 \subsection*{Resources}
 
@@ -132,8 +136,8 @@ squared, in the case of images) blocks of samples and output a
 quantization index per block. In most of natural images, the spatial
 correlation~\cite{vruiz__visual_redundancy} generates that some blocks
 of the image are similar to other blocks. If this is true, we can
-compute a set of (block) centroids and use them to represent the
-original blocks. As a result, we will obtain an matrix of quantization
+compute a set of centroids (blocks) and use them to represent the
+original blocks. As a result, we will obtain a matrix of quantization
 indexes that can be entropy coded.
 
 Notice that VQ exploits the spatial correlation. For this reason, the
