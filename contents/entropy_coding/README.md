@@ -1,1 +1,1 @@
-# [Entropy Coding](https://sistemas-multimedia.github.io/contents/entropy_coding)
+# [Sistemas Multimedia](https://sistemas-multimedia.github.io) / [Contents](https://sistemas-multimedia.github.io/contents) / [Entropy Coding](https://sistemas-multimedia.github.io/contents/entropy_coding).
