@@ -114,7 +114,7 @@ any other prefix code) and an arithmetic code, vanishes.
    <h4 class='likesubsectionHead' id='resources1'><a id='x1-70004'></a>Resources</h4>
 <!-- l. 103 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-7002x1'><a href='https://github.com/vicente-gonzalez-ruiz/arithmetic_coding'>Arithmetic coding (notebook)</a>.
+<li class='enumerate' id='x1-7002x1'><a href='https://github.com/vicente-gonzalez-ruiz/arithmetic_coding/blob/master/src/arithmetic_coding/arithmetic_coding.ipynb'>Arithmetic coding (notebook)</a>.
      </li>
 <li class='enumerate' id='x1-7004x2'><a href='https://www.nayuki.io/page/reference-arithmetic-coding'>Reference arithmetic coding</a>/<a href='https://github.com/nayuki/Reference-arithmetic-coding'>Reference arithmetic coding</a>.
      </li>
@@ -128,36 +128,36 @@ any other prefix code) and an arithmetic code, vanishes.
                                                                   
 
                                                                   
-<!-- l. 112 --><p class='noindent'>
+<!-- l. 114 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='-httpszlibnet-zlib'><span class='titlemark'>5   </span> <a id='x1-80005'></a><a href='https://zlib.net/'><span class='ectt-1000'>zlib</span></a></h3>
-<!-- l. 114 --><p class='noindent'><span class='ectt-1000'>zlib </span>is based on <a href='https://en.wikipedia.org/wiki/Deflate'>DEFLATE</a>, which in turn is based on LZ77 <span class='cite'>[<a href='#Xvruiz__LZW'>7</a>, <a href='#Xruiz2000compresion'>1</a>]</span> and Huffman coding.
+<!-- l. 116 --><p class='noindent'><span class='ectt-1000'>zlib </span>is based on <a href='https://en.wikipedia.org/wiki/Deflate'>DEFLATE</a>, which in turn is based on LZ77 <span class='cite'>[<a href='#Xvruiz__LZW'>7</a>, <a href='#Xruiz2000compresion'>1</a>]</span> and Huffman coding.
 Therefore, <span class='ectt-1000'>zlib </span>exploits the repetition of symbols and also, the the 0-order statistical
 redundancy<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-8001f2'></a>.
 One of the main advantages of <span class='ectt-1000'>zlib </span>is that is quite fast.
-</p><!-- l. 122 --><p class='noindent'>
+</p><!-- l. 124 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead' id='resources2'><a id='x1-90005'></a>Resources</h4>
-<!-- l. 123 --><p class='noindent'>
+<!-- l. 125 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-9002x1'><a href='https://docs.python.org/3/library/zlib.html'><span class='ectt-1000'>zlib </span>— Compression compatible with gzip</a>.
      </li>
 <li class='enumerate' id='x1-9004x2'><a href='https://en.wikipedia.org/wiki/Lossless_JPEG'>Lossless JPEG</a>.</li></ol>
-<!-- l. 129 --><p class='noindent'>
+<!-- l. 131 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='portable-network-graphics-png'><span class='titlemark'>6   </span> <a id='x1-100006'></a>Portable Network Graphics (PNG)</h3>
-<!-- l. 131 --><p class='noindent'><a href='https://en.wikipedia.org/wiki/Portable_Network_Graphics'>PNG</a> <span class='cite'>[<a href='#Xvruiz__PNG'>8</a>]</span> (pronounced “ping”) a dictionary-based <a href='https://en.wikipedia.org/wiki/Lossless_compression'>lossless image compression format</a>
+<!-- l. 133 --><p class='noindent'><a href='https://en.wikipedia.org/wiki/Portable_Network_Graphics'>PNG</a> <span class='cite'>[<a href='#Xvruiz__PNG'>8</a>]</span> (pronounced “ping”) a dictionary-based <a href='https://en.wikipedia.org/wiki/Lossless_compression'>lossless image compression format</a>
 used for representing <a href='https://en.wikipedia.org/wiki/Digital_data'>digital</a> <a href='https://en.wikipedia.org/wiki/Digital_image'>images</a> and <a href='https://en.wikipedia.org/wiki/Video'>videos</a> <span class='cite'>[<a href='#Xvruiz__image_video'>3</a>]</span> in III... format <span class='cite'>[<a href='#Xvruiz__video_compression'>10</a>]</span>. The entropy
 encoder of PNG is based on Huffman coding and LZSS, and a pixel predictor that
 removes the spatial redundancy.
-</p><!-- l. 142 --><p class='indent'>   We must bear in mind that as such an image compressor, we can only
+</p><!-- l. 144 --><p class='indent'>   We must bear in mind that as such an image compressor, we can only
 interact with PNG at the image level, that is, it only accepts images (in shades
 of gray or in color, with the possibility of an <a href='https://en.wikipedia.org/wiki/Alpha_compositing'>alpha channel</a>) and returns
 images.
-</p><!-- l. 152 --><p class='noindent'>
+</p><!-- l. 154 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='todo'><span class='titlemark'>7   </span> <a id='x1-110007'></a>To-Do</h3>
-<!-- l. 153 --><p class='noindent'>Please, select one of the following tasks to develop:
+<!-- l. 155 --><p class='noindent'>Please, select one of the following tasks to develop:
                                                                   
 
                                                                   
@@ -176,7 +176,7 @@ images.
 <li class='enumerate' id='x1-11006x3'>Modify VCF to allow the use of <span class='ectt-1000'>zlib </span>as a entropy codec in the compression
      pipeline. Again, use spatial predictor to increase the compression ratio.
      Complexity 2.</li></ol>
-<!-- l. 170 --><p class='noindent'>
+<!-- l. 172 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='references'><span class='titlemark'>8   </span> <a id='x1-120008'></a>References</h3>
     <div class='thebibliography'>
@@ -216,7 +216,7 @@ images.
 </p>
     </div>
    <div class='footnotes'><!-- l. 71 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>In this case, Huffman is ineffective.</span></p>
-<!-- l. 119 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>In other words, that some symbols are more frequently than others.</span></p>                      </div>
+<!-- l. 121 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>In other words, that some symbols are more frequently than others.</span></p>                      </div>
  
 </body> 
 </html>
