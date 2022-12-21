@@ -38,7 +38,7 @@ Several types of quantizers divide the range of possible values that
 the samples can take into a collection of non-overlapped
 intervals. The values that define such intervals are called
 \emph{decision levels} and the value that in the quantized domain
-represents to all the input possible values that fall in a interval is
+represents to all the input possible values that fall in an interval is
 called the \emph{representation level} of the interval.
 
 \section{A classification of quantizers}
@@ -72,7 +72,10 @@ using such interval.
 Static quantizers do not modify the partitioning of the input signal's
 dynamic range (the decision levels), nor the representation level
 assigned to each interval. On the contrary, adaptive quantizers adapt
-to the sequence of samples that are quantized. A Jayant
+to the sequence of samples that are quantized during the quantization
+process.\footnote{If the quantizer depends on the characteristics of
+the signal but there are known \emph{a priori}, it should be
+considered static.} A Jayant
 quantizer~\cite{vruiz__scalar_quantization} is a example of adaptive
 quantization.
 
@@ -97,8 +100,8 @@ and a flat spectrum.} and that the deadzone is placed where the SNR is
 smaller, we are basically replacing electronic noise by quantization
 noise. Obviously, this does not improve the RD performance of the
 encoder, but the perceived (subjective) quality is increased for the
-same bit-rate (if the electronic noise is perceived as a source of
-distortion).
+same bit-rate.\footnote{Obviously, if the electronic noise is
+perceived as a source of distortion}
 
 \subsection*{Resources}
 \begin{enumerate}
@@ -116,7 +119,8 @@ quantization intervals. As a result, the density of quantization
 intervals is higher where the probability of the samples is higher, and
 vice-versa.
 
-Notice that the histogram must be also known by the decoder to
+Lloyd-Max quantizers are considered non-uniform quantizers. Notice
+that the histogram must be also known by the decoder to
 ``restore''\footnote{Remember that quantization is a irreversible
 process and therefore, never is restored the original signal (except
 if $\Delta=1$).} the information.
@@ -131,19 +135,23 @@ if $\Delta=1$).} the information.
 
 \section{Vector quantization}
 
-Vector quantizers~\cite{vruiz__vector_quantization} input (usually
-squared, in the case of images) blocks of samples and output a
-quantization index per block. In most of natural images, the spatial
-correlation~\cite{vruiz__visual_redundancy} generates that some blocks
-of the image are similar to other blocks. If this is true, we can
-compute a set of centroids (blocks) and use them to represent the
-original blocks. As a result, we will obtain a matrix of quantization
-indexes that can be entropy coded.
+Vector quantizers~\cite{vruiz__vector_quantization} input
+blocks\footnote{If we are removing spatial redundancy, the blocks are
+usually squared tiles of pixels. If we are removing color redundancy,
+the blocks are multicomponent pixels.} of samples and output a
+quantization index per block. For example, in most of natural images,
+the spatial correlation~\cite{vruiz__visual_redundancy} generates that
+some blocks of the image are similar to other blocks. If this is true,
+we can compute a set of centroids (blocks) and use them to represent
+the original blocks. As a result, we will obtain a matrix of
+quantization indexes that can be entropy coded.
 
 Notice that VQ exploits the spatial correlation. For this reason, the
 encoding performance of a vector quantizer is superior compared to a
 scalar quantizer because the number of quantization indexes (indexes
 of the centroids) is smaller.
+
+\section*{Resources}
 
 \begin{enumerate}
 \item
