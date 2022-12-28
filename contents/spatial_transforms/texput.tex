@@ -1,3 +1,5 @@
+% Emacs, this is -*-latex-*-
+
 \input{../../definitions}
 \title{\SM{} - Spatial Transforms}
 
@@ -8,26 +10,39 @@
 \section{Spatial decorrelation}
 
 Spatial transforms used in image and video compression exploit the
-statistical (and also perceptual\footnote{We will see this later in
-this course.}) correlation that the pixels show as a consequence of
-the spatial correlation. For example, some areas of an image can occur
+statistical correlation (and perceptual redundancy\footnote{We will see this later in
+this course.}) that the pixels show as a consequence of
+the spatial (2D) correlation. For example, some areas of an image can occur
 more than once, and usually, neighbor pixels tend to have similar
 values.
 
 Spatial transforms are image-wise operators. This means that the
 transform inputs an image of pixels and output a matrix of
 coefficients, which generally express the resemblance between the
-image and a set of basis function. For example, after using the DCT,
-each (index) coefficient represents a different frequency and its
-value, the amount of the corresponding basis found in the image.
+image and a set of basis function. For example, after using the
+DCT~\cite{vruiz__DCT}, each (index) coefficient represents a different
+frequency and its value, the amount of the corresponding basis found
+in the image. In the case of the DWT~\cite{vruiz__DWT}, the index of
+the coefficients ``speaks'' also about a spatial resolution and
+position.
 
 \section{Benefits of spatial transforms}
 
 Spatial transforms provide:
 \begin{enumerate}
-\item \textbf{Energy concentration:} A small set of (usually low-frequency) coefficients (usually) represents most of the information (energy) of the image. This decreases the entropy and increases the range of the quantization step sizes, because the dynamic range of the coefficients is higher than the dynamic range of the pixels.
-\item \textbf{Low/High frequency analysis:} Our visual system is more sensitive to the low frequencies (for this reason, the \href{https://en.wikipedia.org/wiki/Contrast_(vision)#Contrast_sensitivity}{contrast sensitiviy function} is not flat.
-\item \textbf{Multiresolution:} Depending on the transform, it is possible to reconstruct the original image by resolution levels.
+\item \textbf{Energy concentration:} A small set of (usually
+  low-frequency) coefficients (in general) represents most of the
+  information (energy) of the image. This decreases the entropy and
+  increases the range of the quantization step sizes, because the
+  dynamic range of the coefficients is higher than the dynamic range
+  of the pixels.
+\item \textbf{Low/High frequency analysis:} Our visual system is more
+  sensitive to the low frequencies (for this reason, the
+  \href{https://en.wikipedia.org/wiki/Contrast_(vision)#Contrast_sensitivity}{contrast
+    sensitiviy function} is not flat.
+\item \textbf{Multiresolution:} Depending on the transform, it is
+  possible to reconstruct the original image by resolution
+  levels~\cite{vruiz__DWT}.
 \end{enumerate}
 
 \section{Scalar quantization and rate/distortion optimization}
@@ -82,7 +97,11 @@ images in the sequence $V$.
 \section{Autoencoder Latent Representation}
 % Johannes Ballé, Valero Laparra, and Eero P. Simoncelli. 2017. End-to-end Optimized Image Compression. In 5th International Conference on Learning Representations, ICLR 2017, Toulon, France, April 24-26, 2017
 
-In ANN-based image compression, an autoencoder can be used to find the latent representation of an (input) image. The compressor is the first part of the autoencoder and the decompressor is the second part. During the compression, the latent representation is quantized and entropy compressed.
+In ANN-based image compression, an autoencoder can be used to find the
+latent representation of an (input) image. The compressor is the first
+part of the autoencoder and the decompressor is the second
+part. During the compression, the latent representation is quantized
+and entropy compressed.
 
 \end{comment}
 
