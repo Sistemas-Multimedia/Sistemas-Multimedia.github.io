@@ -45,7 +45,7 @@ Spatial transforms provide:
   levels~\cite{vruiz__DWT}.
 \end{enumerate}
 
-\section{Scalar quantization and rate/distortion optimization}
+\section{Scalar quantization and rate/distortion optimization in the transform domain}
 
 Scalar quantization is efficient in the transform domain because the
 coefficients are decorrelated. The next logical step (after
@@ -56,9 +56,35 @@ distortion). For example, if we compress each subband independently,
 we must find the quantization step sizes that select the same slope in
 the RD curve of each subband.
 
+\section{Learned transforms}
+
+Using machine learning techniques (for example, with an artificial
+neural network), it is possible to build a machine-krafted transform,
+specifically tuned for some type of images, or at least, capable of
+determining specific features in the images.
+
+\section{Resources}
+\begin{enumerate}
+\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/DWT2D.py}{2D-DWT in VCF}.
+\item
+  \href{https://github.com/vicente-gonzalez-ruiz/DCT/blob/master/docs/YCoCg_2D_DCT_SQ.ipynb}{Image
+    Compression with YCoCg + 2D-DCT}.
+\item
+  \href{https://www.tensorflow.org/tutorials/generative/data_compression}{Learned
+    data compression}.
+\item
+  \href{https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/LIC.ipynb}{Learned
+    Image Compression (LIC) using autoencoders}.
+\item
+  \href{https://github.com/fchollet/deep-learning-with-python-notebooks}{Companion
+    Jupyter notebooks for the book ``Deep Learning with
+    Python''}~\cite{chollet2021deep}.
+\end{enumerate}
+
 \section{To-Do}
 \begin{enumerate}
-\item Modify VCF to use the block-based DCT in the compression pipeline. Complexity 3.
+\item Modify VCF to use the block-based 2D-DCT in the compression pipeline. Complexity 3.
+\item Modify VCF to use an autoencoder (at the image level) in the compression pipeline. Complexity 5. 
 %\item Modify CVF to use SPIHT.
 \end{enumerate}
 
@@ -108,4 +134,4 @@ and entropy compressed.
 \section{References}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{projects}
+\bibliography{projects,signal_processing,neural_nets}

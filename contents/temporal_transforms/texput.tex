@@ -1,20 +1,63 @@
+% Emacs, this is -*-latex-*-
+
 \input{../../definitions}
-\title{\SM{} - Temporal Transform}
+\title{\SM{} - Temporal Transforms}
 
 \maketitle
 
-\section{Motion Estimation in the Spatial Domain}
+\section{Temporal redundancy}
 
-\href{https://en.wikipedia.org/wiki/Motion_estimation}{ME (Motion
-  Estimation)} is the process of determining the MVs (Motion Vectors)
-that describe the mapping of the pixels from one frame (2D image) to
-another.
+In general, neighbour \emph{frames} (images) in (video)
+\emph{sequences} exhibit a high temporal correlation that can be
+exploited to increase the compression ratios. The removal of such
+redundancy can be performed by transforms applied to the temporal
+domain.
 
-\subsection{Motion Estimation (ME) for what?}
-Temporal correlation between video frames\footnote{Remember that,
-although this discussion will deal with frames, in our particular
-case, we will decorrelate subbands.} can be removed by MC (Motion
-Compensation). MC implies to decrease (usually by substracting a
+\section{Temporal transforms}
+
+A temporal transform inputs two o more frames of pixels or
+coefficients, and outputs at least one \emph{residual} (frame) in
+which the residual-pixels have a higher dynamic range but also a
+smaller entropy. This potentially increases the compression ratios.
+
+\section{Motion compensation}
+\href{https://en.wikipedia.org/wiki/Motion_compensation}{Motion
+  Compensation (MC)} is name of the technique used to generate the
+residuals. MC exploits the temporal correlation to minimize the
+entropy of the residuals. MC requires to estimate the motion between
+the frames that are compensated. Basically, MC consists in
+substracting to the video data a prediction performed with the
+information that is avaliable to the decoder. The better the
+prediction, the lower the entropy of the residuals. Notice that the
+number of residual-pixels is equal to the number of pixels in the
+compensated frame.
+
+\section{Motion estimation}
+\href{https://en.wikipedia.org/wiki/Motion_estimation}{Motion
+  Estimation (ME)} is the process of determining the motion pattern
+(usually, represented by a set of motion vectors) that describe the
+mapping of the pixels from one frame (2D image) to another.
+
+\subsection{Removing the temporal redundancy through Motion Compensation (MC)}
+The next natural step in the process of decorrelating the sequence of
+frames is to remove the temporal redundancy by means of Motion
+Compensation (MC).  If this prediction is accurate, the result of this
+operation is a residual video with a lower temporal redundancy, that
+can be compressed with a higher compression ratio (there is
+less information to encode in the residue sequence than in the
+original one).
+
+
+
+\section{Motion Estimation ME () in the spatial domain}
+
+Temporal correlation between video frames can be removed by
+\href{https://en.wikipedia.org/wiki/Motion_compensation}{Motion
+  Compensation
+  (MC)}. 
+
+\subsection{ME for what?}
+ MC implies to decrease (usually by substracting a
 prediction frame) the amount of information in the frames. The removed
 information must be available at both, the encoder and the decoder
 side, in order to make this a reversible process.
@@ -290,17 +333,6 @@ interpolation because the MVs are real numbers (see the
 Figures~\ref{fig:hat_P_farneback}, \ref{fig:error_farneback} and
 \ref{fig:MVs_farneback}). Notice that the prediction is the best of
 the all tested algorithms, probably by the subpixel accuracy.
-
-\subsection{Removing the temporal redundancy through Motion Compensation (MC)}
-The next natural step in the process of decorrelating the sequence of
-frames is to remove the temporal redundancy by means of Motion
-Compensation (MC). Basically, MC consists in substracting to the video
-data a prediction performed with the information that is avaliable to
-the decoder. If this prediction is accurate, the result of this
-operation is a residual video with a lower temporal redundancy, that
-can be compressed with a higher compression ratio (there is
-less information to encode in the residue sequence than in the
-original one).
 
 \subsection{Integer pixel accuracy In-Band Motion estimation and Compensation (IBMC)}
 At this stage of the encoding process, the video data is represented
@@ -848,7 +880,7 @@ reference for finding ${\mathbf E}$.
 \section{References}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{image-pyramids,DWT,motion-estimation,HEVC}
+\bibliography{image_pyramids,DWT,motion_estimation,HEVC}
 
 \begin{comment}
 
