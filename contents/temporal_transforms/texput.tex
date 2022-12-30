@@ -21,47 +21,37 @@ which the residual-pixels have a higher dynamic range but also a
 smaller entropy. This potentially increases the compression ratios.
 
 \section{Motion compensation}
+In most video coding standards,
 \href{https://en.wikipedia.org/wiki/Motion_compensation}{Motion
   Compensation (MC)} is name of the technique used to generate the
 residuals. MC exploits the temporal correlation to minimize the
 entropy of the residuals. MC requires to estimate the motion between
 the frames that are compensated. Basically, MC consists in
 substracting to the video data a prediction performed with the
-information that is avaliable to the decoder. The better the
-prediction, the lower the entropy of the residuals. Notice that the
-number of residual-pixels is equal to the number of pixels in the
-compensated frame.
+information that must be also avaliable\footnote{In order to make a
+reversible process.} at the decoder. The better the prediction, the
+lower the entropy of the residuals. Notice that the number of
+residual-pixels is equal to the number of pixels in the compensated
+frame.
+
+Temporal transforms based on MC are called motion compensated
+transforms~\cite{vruiz__MCT}, which generally increase the dynamic
+range of the signal.
 
 \section{Motion estimation}
 \href{https://en.wikipedia.org/wiki/Motion_estimation}{Motion
   Estimation (ME)} is the process of determining the motion pattern
 (usually, represented by a set of motion vectors) that describe the
-mapping of the pixels from one frame (2D image) to another.
+mapping of the pixels from one frame (2D image) to
+another~\cite{vruiz__ME}. Notice that the mapping pattern must be
+available at both, the encoder and the decoder side, in order to make
+this a reversible process.
 
-\subsection{Removing the temporal redundancy through Motion Compensation (MC)}
-The next natural step in the process of decorrelating the sequence of
-frames is to remove the temporal redundancy by means of Motion
-Compensation (MC).  If this prediction is accurate, the result of this
-operation is a residual video with a lower temporal redundancy, that
-can be compressed with a higher compression ratio (there is
-less information to encode in the residue sequence than in the
-original one).
-
-
+% Up to here, sistemas multimedia's contents
 
 \section{Motion Estimation ME () in the spatial domain}
 
-Temporal correlation between video frames can be removed by
-\href{https://en.wikipedia.org/wiki/Motion_compensation}{Motion
-  Compensation
-  (MC)}. 
-
 \subsection{ME for what?}
- MC implies to decrease (usually by substracting a
-prediction frame) the amount of information in the frames. The removed
-information must be available at both, the encoder and the decoder
-side, in order to make this a reversible process.
-
 Specifically, a MCP (MC Predictor) inputs one (or more) reference
 frame(s) ${\mathbf R}=\{{\mathbf R}_i\}$, and a motion vectors field
 $\overset{{\mathbf R}\rightarrow{\mathbf P}}{\mathbf M}$ that
