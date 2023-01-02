@@ -8,13 +8,14 @@
 \tableofcontents
 
 \section{Spatial decorrelation}
+%{{{
 
 Spatial transforms used in image and video compression exploit the
-statistical correlation (and perceptual redundancy\footnote{We will see this later in
-this course.}) that the pixels show as a consequence of
-the spatial (2D) correlation. For example, some areas of an image can occur
-more than once, and usually, neighbor pixels tend to have similar
-values.
+statistical correlation (and perceptual redundancy\footnote{We will
+see this later in this course.}) that the pixels show as a consequence
+of the spatial (2D) correlation. For example, some areas of an image
+can occur more than once, and usually, neighbor pixels tend to have
+similar values.
 
 Spatial transforms are image-wise operators. This means that the
 transform inputs an image of pixels and output a matrix of
@@ -26,7 +27,10 @@ in the image. In the case of the DWT~\cite{vruiz__DWT}, the index of
 the coefficients ``speaks'' also about a spatial resolution and
 position.
 
+%}}}
+
 \section{Benefits of spatial transforms}
+%{{{
 
 Spatial transforms provide:
 \begin{enumerate}
@@ -45,7 +49,10 @@ Spatial transforms provide:
   levels~\cite{vruiz__DWT}.
 \end{enumerate}
 
+%}}}
+
 \section{Scalar quantization and rate/distortion optimization in the transform domain}
+%{{{
 
 Scalar quantization is efficient in the transform domain because the
 coefficients are decorrelated. The next logical step (after
@@ -56,14 +63,21 @@ distortion). For example, if we compress each subband independently,
 we must find the quantization step sizes that select the same slope in
 the RD curve of each subband.
 
+%}}}
+
 \section{Learned transforms}
+%{{{
 
 Using machine learning techniques (for example, with an artificial
 neural network), it is possible to build a machine-krafted transform,
 specifically tuned for some type of images, or at least, capable of
 determining specific features in the images.
 
+%}}}
+
 \section{Resources}
+%{{{
+
 \begin{enumerate}
 \item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/DWT2D.py}{2D-DWT in VCF}.
 \item
@@ -81,16 +95,31 @@ determining specific features in the images.
     Python''}~\cite{chollet2021deep}.
 \end{enumerate}
 
+%}}}
+
 \section{To-Do}
+%{{{
+
 \begin{enumerate}
 \item Modify VCF to use the block-based 2D-DCT in the compression pipeline. Complexity 3.
 \item Modify VCF to use an autoencoder (at the image level) in the compression pipeline. Complexity 5. 
 %\item Modify CVF to use SPIHT.
 \end{enumerate}
 
+%}}}
+
+\section{References}
+%{{{
+
+\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
+\bibliography{projects,signal_processing,neural_nets}
+
+%}}}
+
 \begin{comment}
 
 \section{ Tight Laplacian Pyramid Transform (TLPT)}
+%{{{
 
 Pyramid frames were introduced in 1983 by Burt and Adelson. In some
 way, they can be considered one of the precursors of the wavelet
@@ -104,7 +133,10 @@ Because the shift invariance, MC can be incorporated in the enhancememt layer.
 
 The LP with orthogonal filter is a tight frame.
 
+%}}}
+
 \section{Critially Sampled LPT (CS-LPT)}
+%{{{
 
 Technically, the LPT is a frame expansion, that generates an expanded
 octave-band decomposition. The ratio of redundancy in the
@@ -120,7 +152,11 @@ images in the sequence $V$.
   V_i = \text{2D-DWT}(V_i)
 \end{pseudocode}
 
+%}}}
+
 \section{Autoencoder Latent Representation}
+%{{{
+
 % Johannes Ballé, Valero Laparra, and Eero P. Simoncelli. 2017. End-to-end Optimized Image Compression. In 5th International Conference on Learning Representations, ICLR 2017, Toulon, France, April 24-26, 2017
 
 In ANN-based image compression, an autoencoder can be used to find the
@@ -129,9 +165,7 @@ part of the autoencoder and the decompressor is the second
 part. During the compression, the latent representation is quantized
 and entropy compressed.
 
+%}}}
+
 \end{comment}
 
-\section{References}
-
-\renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{projects,signal_processing,neural_nets}
