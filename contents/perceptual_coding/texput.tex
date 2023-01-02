@@ -8,7 +8,7 @@
 
 \section{What is perceptual coding?}
 
-So far, we have been focused on minimizing the lagrangian
+So far, we have been focused on minimizing the lagrangian~\cite{sullivan1998rate}
 \begin{equation}
   J = R + \lambda D,
 \end{equation}
@@ -20,9 +20,19 @@ perceive distortion is generally different from how these metrics
 express it. This chapter presents some of the most common ways of
 expressing the distortion perceived by humans.
 
+Notice that if, by requirements of the encoding process, $D$ is below
+a threshold of noticeable distortion, the RDO process boilds down to
+select the option with smaller $R$.
+
 \section{Perception of the details (high frequencies)}
 The HVS can be modeled as a low-pass filter whose cut-off frequency
 depends on the distance between the observer and the image.
+
+Some image and video coding standards, such as JPEG and H.264 specify
+quantization matrices designed to perceptual coding. In the case of
+video, such matrices can change between images. Usually, luma and
+chroma have different quantization
+matrices~\cite{naccari2014perceptually}.
 
 \section{Visual masking phenomena and the quantization noise}
 Deadzone quantization: change signal and electronic noise by
@@ -40,6 +50,13 @@ to diagonal ones~\cite{naccari2014perceptually}.
 
 Weber-Fechner law which states
 that the minimum perceivable visual stimulus difference increases with the background luminance.
+
+The rationale behind the temporal masking is that the HVS sensitivity
+to coding artifacts is lower in areas with very high motion
+activity. Modeling temporal masking is more challenging because the
+spatio-temporal sensitivity function of the HVS is not separable
+([12,31]), i.e., it depends on both the spatial and temporal
+frequencies~\cite{naccari2014perceptually}.
 
 \section{Loop filters}
 Use for example in H.264 In-loop filters aim to improve the perceived
@@ -127,4 +144,4 @@ Please, select one of the following tasks to develop:
 \section{References}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{quantization,video_compression}
+\bibliography{quantization,video_compression,rate_control}
