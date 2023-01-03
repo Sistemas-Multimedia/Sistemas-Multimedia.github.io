@@ -11,6 +11,8 @@ $T$ = Tiling scheme name
 $P$ = Configurable Perceptual Quantization
 $D$ = Deblocking filtering
 $A$ = Adaptive deblocking filtering
+QP = Relation between Quantization Parameter and $\Delta$ (quantization step size)
+MBD = Maximum Bit Depth
 
 In chronologial order:
 
@@ -36,6 +38,7 @@ $T$=slice
 $P$=yes
 $D$=yes
 $A$=yes
+Modes = All intra, random access, low delay
 
 \section{HEVC}
 
@@ -44,6 +47,61 @@ $S=\{8x8, 64x64\}$
 $P$=yes
 $D$=yes
 $A$=yes
+$\text{QP}=2^{\frac{\text{QP}-4}{6}}$
+MBD = 10
+Modes = All intra, random access, low delay
+
+\begin{tabular}{rlllllll}
+
+Year & Standard & Encoding & Main use in & Max resolution & Max picture-rate & Color system & Bit-rates (video)\\
+\hline
+
+1951 & % Year
+\href{https://en.wikipedia.org/wiki/Video#Analog_video}{Analog Video} & % Standard
+- & % Encoding
+\href{https://en.wikipedia.org/wiki/Television}{TV} & % Main use
+576 \href{https://en.wikipedia.org/wiki/Interlaced_video}{interlaced lines} (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max resolution
+25 & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/YUV}{YUV} & % Color system
+NA \\ % Bit-rates
+
+1984 & % Year
+\href{https://en.wikipedia.org/wiki/H.120}{H.120} & % Standard
+\href{https://en.wikipedia.org/wiki/Differential_pulse-code_modulation}{DPCM} + \href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ} + \href{https://en.wikipedia.org/wiki/Variable-length_code}{VLC} & % Encoding
+\href{https://en.wikipedia.org/wiki/Digital_television}{Videtelefony} over \href{https://en.wikipedia.org/wiki/Digital_television}{ISDN} & % Main use
+720 × 576 (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
+25 (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:2}{$\text{E}'_\text{Y}$, $\text{E}'_\text{R} – \text{E}'_\text{Y}$, $\text{E}'_\text{B} – \text{E}'_\text{Y}$} & % Color
+2048 kbps (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) \\ % Bit-rates
+
+1986 & % Year
+\href{https://en.wikipedia.org/wiki/Digital_video}{Digital Video} & % Standard
+\href{https://en.wikipedia.org/wiki/Pulse-code_modulation}{PCM} & % Encoding
+\href{https://en.wikipedia.org/wiki/Digital_television}{Digital TV} & % Main use
+720 × 576 (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
+25 (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Nax pic-rate
+\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:2}{Y'CbCr 4:2:2} & % Color
+Up to 140 Mbps\\
+
+1992 & % Year
+\href{https://en.wikipedia.org/wiki/JPEG}{JPEG} & % Standard
+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT} + \href{https://en.wikipedia.org/wiki/Quantization_(signal_processing}{SQ} + \href{https://en.wikipedia.org/wiki/Quantization_(signal_processing}{Huffman} & % Encoding
+\href{}{} & % Main use
+65535 × 65535 & % Max res
+NA & % Nax pic-rate
+\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:2}{Y'CbCr 4:2:2} & % Color
+Up to 140 Mbps\\
+
+1992 & % Year
+\href{https://en.wikipedia.org/wiki/Motion_JPEG}{Motion JPEG (MJPEG)} & % Standard
+\href{}{} & % Encoding
+\href{}{} & % Main use
+720 × 576 (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
+25 (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Nax pic-rate
+\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:2}{Y'CbCr 4:2:2} & % Color
+Up to 140 Mbps\\
+
+\end{tabular}
 
 \section{References}
 
