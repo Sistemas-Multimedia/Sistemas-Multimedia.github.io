@@ -51,11 +51,11 @@ $\text{QP}=2^{\frac{\text{QP}-4}{6}}$
 MBD = 10
 Modes = All intra, random access, low delay
 
-\begin{tabular}{lrrrrrr}
-     &              &                          &          &       Maximum &         & Maximum \\
-     &              &                          &          &       spatial & Maximum & bit \\
-     &     Name of  &                          &          &    resolution & picture & rate \\
-Year & the standard & Common encoding pipeline & Main use & (rows x cols) &    rate & (only video)\\
+\begin{tabular}{lrrrrrrrr}
+     &              &                          &          &       Maximum &         & Maximum & & \\
+     &              &                          &          &       spatial & Maximum & bit & & \\
+     &     Name of  &                          &          &    resolution & picture & rate & Code-stream & \\
+Year & the standard & Common encoding pipeline & Main use & (rows x cols) &    rate & (only video) & scalability & Stereo\\
 \hline
 
 % Analog Video
@@ -65,7 +65,9 @@ Year & the standard & Common encoding pipeline & Main use & (rows x cols) &    r
 \href{https://en.wikipedia.org/wiki/Television}{TV} & % Main use
 \href{https://en.wikipedia.org/wiki/Interlaced_video}{576}$\times$\href{https://en.wikipedia.org/wiki/N/A}{NA} (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max resolution
 30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
-\href{https://en.wikipedia.org/wiki/N/A}{NA} \\ % Max BR
+\href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max BR
+No & % Scalability
+No \\ % Stereo
 
 % H.120
 1984 & % Year
@@ -74,7 +76,9 @@ Year & the standard & Common encoding pipeline & Main use & (rows x cols) &    r
 \href{https://en.wikipedia.org/wiki/Videotelephony}{Videotelephony} & % Main use
 $720\times 576$ (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
 30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
-2048 \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} \\ % Max BR
+2048 \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} & % Max BR
+No & % Scalability
+No \\ % Stereo
 
 % Digital Video
 1986 & % Year
@@ -83,7 +87,9 @@ $720\times 576$ (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
 \href{https://en.wikipedia.org/wiki/Digital_television}{Digital TV} & % Main use
 $720\times 576$ (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
 30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
-140 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps}\\ % Max BR
+140 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
+No & % Scalability
+No \\ % Stereo
 
 % JPEG
 1992 & % Year
@@ -92,7 +98,9 @@ $720\times 576$ (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
 \href{https://en.wikipedia.org/wiki/Image_compression}{Web} & % Main use
 $(2^{16}-1)\times (2^{16}-1$) & % Max res
 \href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max pic-rate
-\href{https://en.wikipedia.org/wiki/N/A}{NA} \\ % Max BR
+\href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max BR
+No & % Scalability
+No \\ % Stereo
 
 % Motion JPEG
 1992 & % Year
@@ -101,7 +109,9 @@ $(2^{16}-1)\times (2^{16}-1$) & % Max res
 \href{https://en.wikipedia.org/wiki/Image_compression}{Video edition} & % Main use
 $(2^{16}-1)\times (2^{16}-1)$ & % Max res
 \href{https://en.wikipedia.org/wiki/Electronic_hardware}{HW}-limited & % Max pic-rate
-\href{https://en.wikipedia.org/wiki/Electronic_hardware}{HW}-limited \\ % Max BR
+\href{https://en.wikipedia.org/wiki/Electronic_hardware}{HW}-limited & % Max BR
+No & % Scalability
+No \\ % Stereo
 
 % MPEG-1 Part 2
 1993 & % Year
@@ -110,7 +120,9 @@ $(2^{16}-1)\times (2^{16}-1)$ & % Max res
 \href{https://en.wikipedia.org/wiki/Video_CD}{Video CD} & % Main use
 $352\times 288$ & % Max res
 30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
-1150 \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} \\ % Max BR
+1150 \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} & % Max BR
+No & % Scalability
+No \\ % Stereo
 
 %H.262 / MPEG-2 Part 2
 1995 & % Year
@@ -119,7 +131,9 @@ $352\times 288$ & % Max res
 \href{https://en.wikipedia.org/wiki/DVD}{DVD} \& \href{https://en.wikipedia.org/wiki/DVB}{DVB} & % Main use
 $1920\times 1080$ & % Max res
 60 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
-300 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} \\ % Max BR
+300 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} % Max BR
+\href{https://mpeg.chiariglione.org/standards/mpeg-2/video}{Spatial} & \href{https://mpeg.chiariglione.org/standards/mpeg-2/video}{quailty} & % Scalability
+No \\ % Stereo
 
 % DV
 1995 & % Year
@@ -128,7 +142,9 @@ $1920\times 1080$ & % Max res
 \href{https://en.wikipedia.org/wiki/Digital_television}{Digital TV} & % Main use
 $720\times 576$ (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
 60 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
-50 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps}\\ % Max BR
+50 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
+No & % Scalability
+No \\ % Stereo
 
 %H.263
 1996 & % Year
@@ -137,7 +153,9 @@ $720\times 576$ (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
 \href{https://en.wikipedia.org/wiki/Integrated_Services_Digital_Network}{ISDN} \href{https://en.wikipedia.org/wiki/Videotelephony}{videotelephony} & % Main use
 $1408\times 1152$ & % Max res
 30 & % Max pic-rate
-$n\times 64$ \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} \\ % Max BR
+$n\times 64$ \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} & % Max BR
+\href{https://en.wikipedia.org/wiki/H.263#H.263v2_(H.263+)}{TRS} & % Scalability
+No \\ % Stereo
 
 % JPEG 2000
 2000 & % Year
@@ -147,6 +165,8 @@ $n\times 64$ \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} \\ % Max
 $(2^{32}-1)\times (2^{32}-1)$ & % Max res
 \href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max pic-rate
 \href{https://en.wikipedia.org/wiki/N/A}{NA} \\ % Max BR
+Spatial, quality, \& \href{https://en.wikipedia.org/wiki/Region_of_interest}{ROI}  & % Scalability
+No \\ % Stereo
 
 % Motion JPEG 2000
 2001 & % Year
@@ -154,6 +174,15 @@ $(2^{32}-1)\times (2^{32}-1)$ & % Max res
 (\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})|\href{https://en.wikipedia.org/wiki/YCoCg}{YCoCg}+\href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform}{DWT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://ijcsi.org/papers/IJCSI-8-4-1-531-536.pdf}{EBCOT} & % Encoding
 \href{https://en.wikipedia.org/wiki/Digital_cinema}{Digital cinema} & % Main use
 \href{https://en.wikipedia.org/wiki/Digital_cinema}{$7680\times 4320$} (\href{https://en.wikipedia.org/wiki/8K_resolution}{8K UHD}) & % Max res
+\href{https://en.wikipedia.org/wiki/Digital_cinema}{48} & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/Digital_Cinema_Package}{250} \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} \\ % Max BR
+
+% H.264 / MPEG-4 AVC
+2003 & % Year
+\href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{H.264 / MPEG-4 AVC} & % Standard
+(\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})|\href{https://en.wikipedia.org/wiki/YCoCg}{YCoCg}+\href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform}{DWT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://ijcsi.org/papers/IJCSI-8-4-1-531-536.pdf}{EBCOT} & % Encoding
+\href{https://en.wikipedia.org/wiki/Blu-ray}{Blue-ray} \and \href{https://en.wikipedia.org/wiki/DVB}{DVB} & % Main use
+\href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{$7680\times 4320$} (\href{https://en.wikipedia.org/wiki/8K_resolution}{8K UHD}) & % Max res
 \href{https://en.wikipedia.org/wiki/Digital_cinema}{48} & % Max pic-rate
 \href{https://en.wikipedia.org/wiki/Digital_Cinema_Package}{250} \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} \\ % Max BR
 
