@@ -51,55 +51,111 @@ $\text{QP}=2^{\frac{\text{QP}-4}{6}}$
 MBD = 10
 Modes = All intra, random access, low delay
 
-\begin{tabular}{rlllllll}
-
-Year & Standard & Encoding & Main use in & Max resolution & Max picture-rate & Color system & Bit-rates (video)\\
+\begin{tabular}{lrrrrrr}
+     &              &                          &          &       Maximum &         & Maximum \\
+     &              &                          &          &       spatial & Maximum & bit \\
+     &     Name of  &                          &          &    resolution & picture & rate \\
+Year & the standard & Common encoding pipeline & Main use & (rows x cols) &    rate & (only video)\\
 \hline
 
+% Analog Video
 1951 & % Year
 \href{https://en.wikipedia.org/wiki/Video#Analog_video}{Analog Video} & % Standard
-- & % Encoding
+\href{https://en.wikipedia.org/wiki/Analog_signal}{Analog} \href{https://en.wikipedia.org/wiki/YUV}{YUV} & % Encoding
 \href{https://en.wikipedia.org/wiki/Television}{TV} & % Main use
-576 \href{https://en.wikipedia.org/wiki/Interlaced_video}{interlaced lines} (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max resolution
-25 & % Max pic-rate
-\href{https://en.wikipedia.org/wiki/YUV}{YUV} & % Color system
-NA \\ % Bit-rates
+\href{https://en.wikipedia.org/wiki/Interlaced_video}{576}$\times$\href{https://en.wikipedia.org/wiki/N/A}{NA} (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max resolution
+30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/N/A}{NA} \\ % Max BR
 
+% H.120
 1984 & % Year
 \href{https://en.wikipedia.org/wiki/H.120}{H.120} & % Standard
-\href{https://en.wikipedia.org/wiki/Differential_pulse-code_modulation}{DPCM} + \href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ} + \href{https://en.wikipedia.org/wiki/Variable-length_code}{VLC} & % Encoding
-\href{https://en.wikipedia.org/wiki/Digital_television}{Videtelefony} over \href{https://en.wikipedia.org/wiki/Digital_television}{ISDN} & % Main use
-720 × 576 (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
-25 (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max pic-rate
-\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:2}{$\text{E}'_\text{Y}$, $\text{E}'_\text{R} – \text{E}'_\text{Y}$, $\text{E}'_\text{B} – \text{E}'_\text{Y}$} & % Color
-2048 kbps (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) \\ % Bit-rates
+(\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:2}{$\text{E}'_\text{Y}$, $\text{E}'_\text{R} – \text{E}'_\text{Y}$, $\text{E}'_\text{B} – \text{E}'_\text{Y}$})+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
+\href{https://en.wikipedia.org/wiki/Videotelephony}{Videotelephony} & % Main use
+$720\times 576$ (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
+30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
+2048 \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} \\ % Max BR
 
+% Digital Video
 1986 & % Year
 \href{https://en.wikipedia.org/wiki/Digital_video}{Digital Video} & % Standard
-\href{https://en.wikipedia.org/wiki/Pulse-code_modulation}{PCM} & % Encoding
+\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:2}{4:2:2}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Pulse-code_modulation}{PCM} & % Encoding
 \href{https://en.wikipedia.org/wiki/Digital_television}{Digital TV} & % Main use
-720 × 576 (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
-25 (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Nax pic-rate
-\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:2}{Y'CbCr 4:2:2} & % Color
-Up to 140 Mbps\\
+$720\times 576$ (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
+30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
+140 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps}\\ % Max BR
 
+% JPEG
 1992 & % Year
 \href{https://en.wikipedia.org/wiki/JPEG}{JPEG} & % Standard
-\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT} + \href{https://en.wikipedia.org/wiki/Quantization_(signal_processing}{SQ} + \href{https://en.wikipedia.org/wiki/Quantization_(signal_processing}{Huffman} & % Encoding
-\href{}{} & % Main use
-65535 × 65535 & % Max res
-NA & % Nax pic-rate
-\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:2}{Y'CbCr 4:2:2} & % Color
-Up to 140 Mbps\\
+\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
+\href{https://en.wikipedia.org/wiki/Image_compression}{Web} & % Main use
+$(2^{16}-1)\times (2^{16}-1$) & % Max res
+\href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/N/A}{NA} \\ % Max BR
 
+% Motion JPEG
 1992 & % Year
-\href{https://en.wikipedia.org/wiki/Motion_JPEG}{Motion JPEG (MJPEG)} & % Standard
-\href{}{} & % Encoding
-\href{}{} & % Main use
-720 × 576 (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
-25 (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Nax pic-rate
-\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:2}{Y'CbCr 4:2:2} & % Color
-Up to 140 Mbps\\
+\href{https://en.wikipedia.org/wiki/Motion_JPEG}{Motion JPEG} & % Standard
+\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
+\href{https://en.wikipedia.org/wiki/Image_compression}{Video edition} & % Main use
+$(2^{16}-1)\times (2^{16}-1)$ & % Max res
+\href{https://en.wikipedia.org/wiki/Electronic_hardware}{HW}-limited & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/Electronic_hardware}{HW}-limited \\ % Max BR
+
+% MPEG-1 Part 2
+1993 & % Year
+\href{https://en.wikipedia.org/wiki/MPEG-1#Part_2:_Video}{MPEG-1 Part 2} & % Standard
+\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
+\href{https://en.wikipedia.org/wiki/Video_CD}{Video CD} & % Main use
+$352\times 288$ & % Max res
+30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
+1150 \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} \\ % Max BR
+
+%H.262 / MPEG-2 Part 2
+1995 & % Year
+\href{https://en.wikipedia.org/wiki/H.262/MPEG-2_Part_2}{H.262 / MPEG-2 Part 2} & % Standard
+\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
+\href{https://en.wikipedia.org/wiki/DVD}{DVD} \& \href{https://en.wikipedia.org/wiki/DVB}{DVB} & % Main use
+$1920\times 1080$ & % Max res
+60 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
+300 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} \\ % Max BR
+
+% DV
+1995 & % Year
+\href{https://en.wikipedia.org/wiki/DV}{DV} & % Standard
+\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
+\href{https://en.wikipedia.org/wiki/Digital_television}{Digital TV} & % Main use
+$720\times 576$ (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
+60 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
+50 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps}\\ % Max BR
+
+%H.263
+1996 & % Year
+\href{https://en.wikipedia.org/wiki/H.263}{H.263} & % Standard
+\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman}+\href{https://en.wikipedia.org/wiki/Deblocking_filter}{DF} & % Encoding
+\href{https://en.wikipedia.org/wiki/Integrated_Services_Digital_Network}{ISDN} \href{https://en.wikipedia.org/wiki/Videotelephony}{videotelephony} & % Main use
+$1408\times 1152$ & % Max res
+30 & % Max pic-rate
+$n\times 64$ \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} \\ % Max BR
+
+% JPEG 2000
+2000 & % Year
+\href{https://en.wikipedia.org/wiki/JPEG_2000}{JPEG 2000} & % Standard
+(\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})|\href{https://en.wikipedia.org/wiki/YCoCg}{YCoCg}+\href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform}{DWT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://ijcsi.org/papers/IJCSI-8-4-1-531-536.pdf}{EBCOT} & % Encoding
+\href{https://en.wikipedia.org/wiki/Medical_imaging}{Medical imaging} & % Main use
+$(2^{32}-1)\times (2^{32}-1)$ & % Max res
+\href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/N/A}{NA} \\ % Max BR
+
+% Motion JPEG 2000
+2001 & % Year
+\href{https://en.wikipedia.org/wiki/Motion_JPEG_2000}{Motion JPEG 2000} & % Standard
+(\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})|\href{https://en.wikipedia.org/wiki/YCoCg}{YCoCg}+\href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform}{DWT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://ijcsi.org/papers/IJCSI-8-4-1-531-536.pdf}{EBCOT} & % Encoding
+\href{https://en.wikipedia.org/wiki/Digital_cinema}{Digital cinema} & % Main use
+\href{https://en.wikipedia.org/wiki/Digital_cinema}{$7680\times 4320$} (\href{https://en.wikipedia.org/wiki/8K_resolution}{8K UHD}) & % Max res
+\href{https://en.wikipedia.org/wiki/Digital_cinema}{48} & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/Digital_Cinema_Package}{250} \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} \\ % Max BR
 
 \end{tabular}
 
