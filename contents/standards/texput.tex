@@ -51,11 +51,16 @@ $\text{QP}=2^{\frac{\text{QP}-4}{6}}$
 MBD = 10
 Modes = All intra, random access, low delay
 
-\begin{tabular}{lrrrrrrrr}
-     &              &                          &          &       Maximum &         & Maximum & & \\
-     &              &                          &          &       spatial & Maximum & bit & & \\
-     &     Name of  &                          &          &    resolution & picture & rate & Code-stream & \\
-Year & the standard & Common encoding pipeline & Main use & (rows x cols) &    rate & (only video) & scalability & Stereo\\
+RS 
+TSQ = Temporal, Spatial and Quality scalability
+
+\begin{tabular}{lrrrrrrrrr}
+     &              &                          &          &               &         &              & Code-stream & & \\
+     &              &                          &          &               &         &              & scalability & & \\
+     &              &                          &          &       Maximum &         &      Maximum &  T=temporal & & \\
+     &              &                          &          &       spatial & Maximum &          bit &   S=Spatial & & \\
+     &     Name of  &                          &          &    resolution & picture &         rate &   Q=Quality & & Lossless \\
+Year & the standard & Common encoding pipeline & Main use & (rows x cols) &    rate & (only video) &       R=\href{https://en.wikipedia.org/wiki/Region_of_interest}{ROI} & \href{https://en.wikipedia.org/wiki/Stereoscopy}{Stereo} & option\\
 \hline
 
 % Analog Video
@@ -67,7 +72,8 @@ Year & the standard & Common encoding pipeline & Main use & (rows x cols) &    r
 30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
 \href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max BR
 No & % Scalability
-No \\ % Stereo
+No & % Stereo
+NA \\ % Lossless
 
 % H.120
 1984 & % Year
@@ -78,7 +84,8 @@ $720\times 576$ (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
 30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
 2048 \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} & % Max BR
 No & % Scalability
-No \\ % Stereo
+No & % Stereo
+No \\ % Lossless
 
 % Digital Video
 1986 & % Year
@@ -89,7 +96,8 @@ $720\times 576$ (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
 30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
 140 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
 No & % Scalability
-No \\ % Stereo
+No & % Stereo
+NA \\ % Lossless
 
 % JPEG
 1992 & % Year
@@ -99,8 +107,9 @@ No \\ % Stereo
 $(2^{16}-1)\times (2^{16}-1$) & % Max res
 \href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max pic-rate
 \href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max BR
-No & % Scalability
-No \\ % Stereo
+S & % Scalability
+No & % Stereo
+No \\ % Lossless
 
 % Motion JPEG
 1992 & % Year
@@ -110,8 +119,9 @@ No \\ % Stereo
 $(2^{16}-1)\times (2^{16}-1)$ & % Max res
 \href{https://en.wikipedia.org/wiki/Electronic_hardware}{HW}-limited & % Max pic-rate
 \href{https://en.wikipedia.org/wiki/Electronic_hardware}{HW}-limited & % Max BR
-No & % Scalability
-No \\ % Stereo
+S & % Scalability
+No & % Stereo
+No \\ % Lossless
 
 % MPEG-1 Part 2
 1993 & % Year
@@ -122,7 +132,8 @@ $352\times 288$ & % Max res
 30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
 1150 \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} & % Max BR
 No & % Scalability
-No \\ % Stereo
+No & % Stereo
+No \\ % Lossless
 
 %H.262 / MPEG-2 Part 2
 1995 & % Year
@@ -131,9 +142,10 @@ No \\ % Stereo
 \href{https://en.wikipedia.org/wiki/DVD}{DVD} \& \href{https://en.wikipedia.org/wiki/DVB}{DVB} & % Main use
 $1920\times 1080$ & % Max res
 60 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
-300 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} % Max BR
-\href{https://mpeg.chiariglione.org/standards/mpeg-2/video}{Spatial} & \href{https://mpeg.chiariglione.org/standards/mpeg-2/video}{quailty} & % Scalability
-No \\ % Stereo
+300 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
+\href{https://mpeg.chiariglione.org/standards/mpeg-2/video}{SQ} & % Scalability
+No & % Stereo
+No \\ % Lossless
 
 % DV
 1995 & % Year
@@ -144,7 +156,8 @@ $720\times 576$ (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
 60 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
 50 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
 No & % Scalability
-No \\ % Stereo
+No & % Stereo
+No \\ % Lossless
 
 %H.263
 1996 & % Year
@@ -155,7 +168,8 @@ $1408\times 1152$ & % Max res
 30 & % Max pic-rate
 $n\times 64$ \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} & % Max BR
 \href{https://en.wikipedia.org/wiki/H.263#H.263v2_(H.263+)}{TRS} & % Scalability
-No \\ % Stereo
+No & % Stereo
+No \\ % Lossless
 
 % JPEG 2000
 2000 & % Year
@@ -165,8 +179,9 @@ No \\ % Stereo
 $(2^{32}-1)\times (2^{32}-1)$ & % Max res
 \href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max pic-rate
 \href{https://en.wikipedia.org/wiki/N/A}{NA} \\ % Max BR
-Spatial, quality, \& \href{https://en.wikipedia.org/wiki/Region_of_interest}{ROI}  & % Scalability
-No \\ % Stereo
+SQR & % Scalability
+No & % Stereo
+Yes \\ % Lossless
 
 % Motion JPEG 2000
 2001 & % Year
@@ -176,6 +191,9 @@ No \\ % Stereo
 \href{https://en.wikipedia.org/wiki/Digital_cinema}{$7680\times 4320$} (\href{https://en.wikipedia.org/wiki/8K_resolution}{8K UHD}) & % Max res
 \href{https://en.wikipedia.org/wiki/Digital_cinema}{48} & % Max pic-rate
 \href{https://en.wikipedia.org/wiki/Digital_Cinema_Package}{250} \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} \\ % Max BR
+TSQR & % Scalability
+No & % Stereo
+Yes \\ % Lossless
 
 % H.264 / MPEG-4 AVC
 2003 & % Year
@@ -185,6 +203,9 @@ No \\ % Stereo
 \href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{$7680\times 4320$} (\href{https://en.wikipedia.org/wiki/8K_resolution}{8K UHD}) & % Max res
 \href{https://en.wikipedia.org/wiki/Digital_cinema}{48} & % Max pic-rate
 \href{https://en.wikipedia.org/wiki/Digital_Cinema_Package}{250} \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} \\ % Max BR
+TSQ & % Scalability
+Yes & % Stereo
+Yes \\ % Lossless
 
 \end{tabular}
 
