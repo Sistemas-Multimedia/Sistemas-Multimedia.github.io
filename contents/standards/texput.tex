@@ -1,5 +1,5 @@
 \input{../../definitions}
-\title{\SM{} - Image and Video Coding Standards}
+\title{\SM{} - Image and Video Coding ``Standards''}
 
 \maketitle
 
@@ -54,158 +54,280 @@ Modes = All intra, random access, low delay
 RS 
 TSQ = Temporal, Spatial and Quality scalability
 
-\begin{tabular}{lrrrrrrrrr}
-     &              &                          &          &               &         &              & Code-stream & & \\
-     &              &                          &          &               &         &              & scalability & & \\
-     &              &                          &          &       Maximum &         &      Maximum &  T=temporal & & \\
-     &              &                          &          &       spatial & Maximum &          bit &   S=Spatial & & \\
-     &     Name of  &                          &          &    resolution & picture &         rate &   Q=Quality & & Lossless \\
-Year & the standard & Common encoding pipeline & Main use & (rows x cols) &    rate & (only video) &       R=\href{https://en.wikipedia.org/wiki/Region_of_interest}{ROI} & \href{https://en.wikipedia.org/wiki/Stereoscopy}{Stereo} & option\\
+\begin{tabular}{lrrrrrrrrrrr}
+     &           &                          &          &           &              &         &              & Code-stream & & & \\
+     &           &                          &          &   Maximum &              &         &              & scalability & & & \\
+     &           &                          &          &     number&      Maximum &         &      Maximum &  T=temporal & & & \\
+     &           &                          &          &   of bits &      spatial & Maximum &          bit &   S=Spatial & & & \\
+     &   Name of &                          &          &       per &   resolution & picture &         rate &   Q=Quality & & Lossless & Patents \\
+Year & the codec & Common encoding pipeline & Main use & component &(rows x cols) &    rate & (only video) &       R=\href{https://en.wikipedia.org/wiki/Region_of_interest}{ROI} & \href{https://en.wikipedia.org/wiki/Stereoscopy}{Stereo} & option & free\\
 \hline
 
 % Analog Video
 1951 & % Year
-\href{https://en.wikipedia.org/wiki/Video#Analog_video}{Analog Video} & % Standard
+\href{https://en.wikipedia.org/wiki/Video#Analog_video}{Analog Video} & % Codec
 \href{https://en.wikipedia.org/wiki/Analog_signal}{Analog} \href{https://en.wikipedia.org/wiki/YUV}{YUV} & % Encoding
 \href{https://en.wikipedia.org/wiki/Television}{TV} & % Main use
+\href{https://en.wikipedia.org/wiki/N/A}{NA} & % bits
 \href{https://en.wikipedia.org/wiki/Interlaced_video}{576}$\times$\href{https://en.wikipedia.org/wiki/N/A}{NA} (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max resolution
 30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
 \href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max BR
 No & % Scalability
 No & % Stereo
-NA \\ % Lossless
+NA & % Lossless
+\href{https://en.wikipedia.org/wiki/N/A}{NA} \\ % free
 
 % H.120
 1984 & % Year
-\href{https://en.wikipedia.org/wiki/H.120}{H.120} & % Standard
+\href{https://en.wikipedia.org/wiki/H.120}{H.120} & % Codec
 (\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:2}{$\text{E}'_\text{Y}$, $\text{E}'_\text{R} – \text{E}'_\text{Y}$, $\text{E}'_\text{B} – \text{E}'_\text{Y}$})+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
 \href{https://en.wikipedia.org/wiki/Videotelephony}{Videotelephony} & % Main use
+8 & % bits
 $720\times 576$ (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
 30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
 2048 \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} & % Max BR
 No & % Scalability
 No & % Stereo
-No \\ % Lossless
+No & % Lossless
+\href{https://en.wikipedia.org/wiki/Term_of_patent}{Expired} \\ % free
 
 % Digital Video
 1986 & % Year
-\href{https://en.wikipedia.org/wiki/Digital_video}{Digital Video} & % Standard
+\href{https://en.wikipedia.org/wiki/Digital_video}{Digital Video} & % Codec
 \href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:2}{4:2:2}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Pulse-code_modulation}{PCM} & % Encoding
 \href{https://en.wikipedia.org/wiki/Digital_television}{Digital TV} & % Main use
+8 & % bits
 $720\times 576$ (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
 30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
 140 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
 No & % Scalability
 No & % Stereo
-NA \\ % Lossless
+NA & % Lossless
+\href{https://en.wikipedia.org/wiki/Term_of_patent}{Expired} \\ % free
 
 % JPEG
 1992 & % Year
-\href{https://en.wikipedia.org/wiki/JPEG}{JPEG} & % Standard
+\href{https://en.wikipedia.org/wiki/JPEG}{JPEG} & % Codec
 \href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
 \href{https://en.wikipedia.org/wiki/Image_compression}{Web} & % Main use
+8 & % bits
 $(2^{16}-1)\times (2^{16}-1$) & % Max res
 \href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max pic-rate
 \href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max BR
-S & % Scalability
+\href{https://www.liquidweb.com/kb/what-is-a-progressive-jpeg/}{S} & % Scalability
 No & % Stereo
-No \\ % Lossless
+No & % Lossless
+\href{https://en.wikipedia.org/wiki/Term_of_patent}{Expired} \\ % free
 
 % Motion JPEG
 1992 & % Year
-\href{https://en.wikipedia.org/wiki/Motion_JPEG}{Motion JPEG} & % Standard
+\href{https://en.wikipedia.org/wiki/Motion_JPEG}{Motion JPEG} & % Codec
 \href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
 \href{https://en.wikipedia.org/wiki/Image_compression}{Video edition} & % Main use
+8 & % bits
 $(2^{16}-1)\times (2^{16}-1)$ & % Max res
-\href{https://en.wikipedia.org/wiki/Electronic_hardware}{HW}-limited & % Max pic-rate
-\href{https://en.wikipedia.org/wiki/Electronic_hardware}{HW}-limited & % Max BR
-S & % Scalability
+undefined & % Max pic-rate
+undefined & % Max BR
+TS & % Scalability
 No & % Stereo
-No \\ % Lossless
+No & % Lossless
+\href{https://en.wikipedia.org/wiki/Term_of_patent}{Expired} \\ % free
 
 % MPEG-1 Part 2
 1993 & % Year
-\href{https://en.wikipedia.org/wiki/MPEG-1#Part_2:_Video}{MPEG-1 Part 2} & % Standard
+\href{https://en.wikipedia.org/wiki/MPEG-1#Part_2:_Video}{MPEG-1 Part 2} & % Codec
 \href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
 \href{https://en.wikipedia.org/wiki/Video_CD}{Video CD} & % Main use
+8 & % bits
 $352\times 288$ & % Max res
 30 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
 1150 \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} & % Max BR
-No & % Scalability
+\href{https://www.etsist.upm.es/uploaded/392/02_Video_Compression_Basics_MPEG1_MPEG2_MPEG4.pdf}{T} & % Scalability
 No & % Stereo
-No \\ % Lossless
+No & % Lossless
+\href{https://en.wikipedia.org/wiki/Term_of_patent}{Expired} \\ % free
 
-%H.262 / MPEG-2 Part 2
+% MPEG-2 Video (H.262)
 1995 & % Year
-\href{https://en.wikipedia.org/wiki/H.262/MPEG-2_Part_2}{H.262 / MPEG-2 Part 2} & % Standard
+\href{https://en.wikipedia.org/wiki/H.262/MPEG-2_Part_2}{MPEG-2 Video (H.262)} & % Codec
 \href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
 \href{https://en.wikipedia.org/wiki/DVD}{DVD} \& \href{https://en.wikipedia.org/wiki/DVB}{DVB} & % Main use
+8 & % bits
 $1920\times 1080$ & % Max res
 60 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
 300 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
-\href{https://mpeg.chiariglione.org/standards/mpeg-2/video}{SQ} & % Scalability
+\href{https://www.etsist.upm.es/uploaded/392/02_Video_Compression_Basics_MPEG1_MPEG2_MPEG4.pdf}{T}\href{https://mpeg.chiariglione.org/standards/mpeg-2/video}{SQ} & % Scalability
 No & % Stereo
-No \\ % Lossless
+No & % Lossless
+\href{https://en.wikipedia.org/wiki/Term_of_patent}{Expired} \\ % free
 
 % DV
 1995 & % Year
-\href{https://en.wikipedia.org/wiki/DV}{DV} & % Standard
+\href{https://en.wikipedia.org/wiki/DV}{DV} & % Codec
 \href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
 \href{https://en.wikipedia.org/wiki/Digital_television}{Digital TV} & % Main use
+8 & % bits
 $720\times 576$ (\href{https://en.wikipedia.org/wiki/PAL}{PAL}) & % Max res
 60 (\href{https://en.wikipedia.org/wiki/NTSC}{NTSC}) & % Max pic-rate
 50 \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
 No & % Scalability
 No & % Stereo
-No \\ % Lossless
+No & % Lossless
+\href{https://en.wikipedia.org/wiki/Term_of_patent}{Expired} \\ % free
 
-%H.263
+% H.263
 1996 & % Year
-\href{https://en.wikipedia.org/wiki/H.263}{H.263} & % Standard
+\href{https://en.wikipedia.org/wiki/H.263}{H.263} & % Codec
 \href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman}+\href{https://en.wikipedia.org/wiki/Deblocking_filter}{DF} & % Encoding
 \href{https://en.wikipedia.org/wiki/Integrated_Services_Digital_Network}{ISDN} \href{https://en.wikipedia.org/wiki/Videotelephony}{videotelephony} & % Main use
+8 & % bits
 $1408\times 1152$ & % Max res
 30 & % Max pic-rate
 $n\times 64$ \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} & % Max BR
 \href{https://en.wikipedia.org/wiki/H.263#H.263v2_(H.263+)}{TRS} & % Scalability
 No & % Stereo
-No \\ % Lossless
+No & % Lossless
+\href{https://en.wikipedia.org/wiki/Term_of_patent}{Expired} \\ % free
+
+% MPEG-4 Visual
+1999 & % Year
+\href{https://en.wikipedia.org/wiki/MPEG-4_Part_2}{MPEG-4 Visual} & % Codec
+\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
+\href{https://en.wikipedia.org/wiki/DivX}{``Internet movies''} & % Main use
+8 & % bits
+$1408\times 1152$ & % Max res
+30 & % Max pic-rate
+$n\times 64$ \href{https://en.wikipedia.org/wiki/Data-rate_units}{kbps} & % Max BR
+No & % Scalability
+No & % Stereo
+No & % Lossless
+\href{https://en.wikipedia.org/wiki/Term_of_patent}{Expired} \\ % free
 
 % JPEG 2000
 2000 & % Year
-\href{https://en.wikipedia.org/wiki/JPEG_2000}{JPEG 2000} & % Standard
-(\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})|\href{https://en.wikipedia.org/wiki/YCoCg}{YCoCg}+\href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform}{DWT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://ijcsi.org/papers/IJCSI-8-4-1-531-536.pdf}{EBCOT} & % Encoding
+\href{https://en.wikipedia.org/wiki/JPEG_2000}{JPEG 2000} & % Codec
+(\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})|\href{https://en.wikipedia.org/wiki/JPEG_2000#Color_components_transformation}{RCT}+\href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform}{DWT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://ijcsi.org/papers/IJCSI-8-4-1-531-536.pdf}{EBCOT} & % Encoding
 \href{https://en.wikipedia.org/wiki/Medical_imaging}{Medical imaging} & % Main use
+32 & % bits
 $(2^{32}-1)\times (2^{32}-1)$ & % Max res
 \href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max pic-rate
-\href{https://en.wikipedia.org/wiki/N/A}{NA} \\ % Max BR
+\href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max BR
 SQR & % Scalability
 No & % Stereo
-Yes \\ % Lossless
+Yes & % Lossless
+No \\ % free
 
 % Motion JPEG 2000
 2001 & % Year
-\href{https://en.wikipedia.org/wiki/Motion_JPEG_2000}{Motion JPEG 2000} & % Standard
+\href{https://en.wikipedia.org/wiki/Motion_JPEG_2000}{Motion JPEG 2000} & % Codec
 (\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})|\href{https://en.wikipedia.org/wiki/YCoCg}{YCoCg}+\href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform}{DWT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://ijcsi.org/papers/IJCSI-8-4-1-531-536.pdf}{EBCOT} & % Encoding
 \href{https://en.wikipedia.org/wiki/Digital_cinema}{Digital cinema} & % Main use
+32 & % bits
 \href{https://en.wikipedia.org/wiki/Digital_cinema}{$7680\times 4320$} (\href{https://en.wikipedia.org/wiki/8K_resolution}{8K UHD}) & % Max res
 \href{https://en.wikipedia.org/wiki/Digital_cinema}{48} & % Max pic-rate
-\href{https://en.wikipedia.org/wiki/Digital_Cinema_Package}{250} \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} \\ % Max BR
+\href{https://en.wikipedia.org/wiki/Digital_Cinema_Package}{250} \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
 TSQR & % Scalability
 No & % Stereo
-Yes \\ % Lossless
+Yes & % Lossless
+No \\ % free
 
-% H.264 / MPEG-4 AVC
+% MPEG-4 AVC (H.264)
 2003 & % Year
-\href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{H.264 / MPEG-4 AVC} & % Standard
-(\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})|\href{https://en.wikipedia.org/wiki/YCoCg}{YCoCg}+\href{https://en.wikipedia.org/wiki/Discrete_wavelet_transform}{DWT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://ijcsi.org/papers/IJCSI-8-4-1-531-536.pdf}{EBCOT} & % Encoding
+\href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{MPEG-4 AVC (H.264)} & % Codec
+(\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Context-adaptive_variable-length_coding}{CABAC} & % Encoding
 \href{https://en.wikipedia.org/wiki/Blu-ray}{Blue-ray} \and \href{https://en.wikipedia.org/wiki/DVB}{DVB} & % Main use
+10 & % bits
 \href{https://en.wikipedia.org/wiki/Advanced_Video_Coding}{$7680\times 4320$} (\href{https://en.wikipedia.org/wiki/8K_resolution}{8K UHD}) & % Max res
-\href{https://en.wikipedia.org/wiki/Digital_cinema}{48} & % Max pic-rate
-\href{https://en.wikipedia.org/wiki/Digital_Cinema_Package}{250} \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} \\ % Max BR
+\href{https://en.wikipedia.org/wiki/Advanced_Video_Coding#Levels}{130} & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/Advanced_Video_Coding#Levels}{800} \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
 TSQ & % Scalability
 Yes & % Stereo
-Yes \\ % Lossless
+Yes & % Lossless
+No \\ % free
+
+% Theora
+2004 & % Year
+\href{https://en.wikipedia.org/wiki/Theora}{Theora} & % Codec
+(\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
+\href{https://en.wikipedia.org/wiki/Use_of_Ogg_formats_in_HTML5}{Web} & % Main use
+8 & % bits
+\href{https://theora.org/doc/Theora.pdf}{$1048560 × 1048560$} (\href{https://en.wikipedia.org/wiki/8K_resolution}{8K UHD}) & % Max res
+Undefined & % Max pic-rate
+Undefined & % Max BR
+T & % Scalability
+No & % Stereo
+No & % Lossless
+Yes \\ % free
+
+% VC-1
+2006 & % Year
+\href{https://en.wikipedia.org/wiki/VC-1}{VC-1} & % Codec
+(\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
+\href{https://en.wikipedia.org/wiki/Microsoft_Silverlight}{Microsoft Silverlight} & % Main use
+8 & % bits
+\href{https://en.wikipedia.org/wiki/VC-1}{$2048\times 1536$} & % Max res
+\href{https://en.wikipedia.org/wiki/VC-1}{60} & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/VC-1}{135} \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
+T & % Scalability
+No & % Stereo
+No & % Lossless
+No \\ % free
+
+% Apple ProRes
+2007 & % Year
+\href{https://en.wikipedia.org/wiki/Apple_ProRes}{Apple ProRes} & % Codec
+(\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:2}{4:2:2}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
+\href{https://en.wikipedia.org/wiki/Image_compression}{Video edition} & % Main use
+12 & % bits
+\href{https://en.wikipedia.org/wiki/Apple_ProRes}{$7680\times 4320$} (\href{https://en.wikipedia.org/wiki/8K_resolution}{8K UHD}) & % Max res
+\href{https://en.wikipedia.org/wiki/Apple_ProRes#Data_rates}{50} & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/Apple_ProRes#Data_rates}{4424} \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
+T & % Scalability
+No & % Stereo
+No & % Lossless
+No \\ % free
+
+% HEVC (H.265)
+2013 & % Year
+\href{https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding}{HEVC (H.265)} & % Codec
+(\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Context-adaptive_variable-length_coding}{CABAC} & % Encoding
+\href{https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding}{Video compression} & % Main use
+16 & % bits
+\href{https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding}{$8192\times 4320$} & % Max res
+\href{https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Tiers_and_levels}{128} & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Tiers_and_levels}{800} \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
+TSQ & % Scalability
+Yes & % Stereo
+Yes & % Lossless
+No \\ % free
+
+% AV1
+2018 & % Year
+\href{https://en.wikipedia.org/wiki/AV1}{AV1} & % Codec
+(\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Range_coding}{Range coding} & % Encoding
+\href{https://en.wikipedia.org/wiki/AV1}{Web} & % Main use
+\href{https://en.wikipedia.org/wiki/AV1}{12} & % bits
+\href{}{$8192\times 4320$} & % Max res
+\href{https://en.wikipedia.org/wiki/AV1#Levels}{300} & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/AV1#Levels}{800} \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
+\href{https://en.wikipedia.org/wiki/AV1#Scalable_video_coding}{TS} & % Scalability
+No & % Stereo
+Yes & % Lossless
+Yes \\ % free
+
+% VVC (H.266)
+2020 & % Year
+\href{https://en.wikipedia.org/wiki/Versatile_Video_Coding}{VVC (H.266)} & % Codec
+(\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Context-adaptive_variable-length_coding}{CABAC} & % Encoding
+\href{}{Video compression} & % Main use
+16 & % bits
+\href{}{$8192\times 4320$} & % Max res
+\href{https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Tiers_and_levels}{128} & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Tiers_and_levels}{800} \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
+TSQ & % Scalability
+Yes & % Stereo
+Yes & % Lossless
+No \\ % free
 
 \end{tabular}
 
