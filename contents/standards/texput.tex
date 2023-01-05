@@ -5,54 +5,13 @@
 
 \tableofcontents
 
-$B$ = Block structure name
-$S$ = Possible block sizes
-$T$ = Tiling scheme name
-$P$ = Configurable Perceptual Quantization
-$D$ = Deblocking filtering
-$A$ = Adaptive deblocking filtering
-QP = Relation between Quantization Parameter and $\Delta$ (quantization step size)
-MBD = Maximum Bit Depth
+\section{What the standards define?}
+Most of the encoding standards indicate the format of the code-stream
+and how it should be decoded. About coding, they just provide
+suggestions, and in general, it is an undefined process.
 
-In chronologial order:
 
-\section{JPEG}
-
-\section{BPG}
-
-\section{JPEG2000}
-
-\section{ \href{https://en.wikipedia.org/wiki/JPEG_XL}{JPEG XL}}
-
-\section{MPEG-1}
-
-\section{MPEG-2}
-
-\section{MPEG-4}
-
-\section{H.264/AVC}
-
-$B$=Macroblock
-$S=\{16x16\}$
-$T$=slice
-$P$=yes
-$D$=yes
-$A$=yes
-Modes = All intra, random access, low delay
-
-\section{HEVC}
-
-$B$=Tree Coding Unit
-$S=\{8x8, 64x64\}$
-$P$=yes
-$D$=yes
-$A$=yes
-$\text{QP}=2^{\frac{\text{QP}-4}{6}}$
-MBD = 10
-Modes = All intra, random access, low delay
-
-RS 
-TSQ = Temporal, Spatial and Quality scalability
+\section{A comparison}
 
 \begin{tabular}{lrrrrrrrrrrr}
      &           &                          &          &           &              &         &              & Code-stream & & & \\
@@ -105,12 +64,26 @@ No & % Stereo
 NA & % Lossless
 \href{https://en.wikipedia.org/wiki/Term_of_patent}{Expired} \\ % free
 
+% GIF
+1987 & % Year
+\href{https://en.wikipedia.org/wiki/GIF}{GIF} & % Codec
+\href{https://en.wikipedia.org/wiki/Color_quantization}{Color VQ}+\href{https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch}{LZW} & % Encoding
+\href{https://en.wikipedia.org/wiki/GIF#Usage}{Web} & % Main use
+8 & % bits
+\href{https://www.w3.org/Graphics/GIF/spec-gif89a.txt}{$2^{16}-1\times 2^{16}-1$} & % Max res
+\href{https://www.w3.org/Graphics/GIF/spec-gif89a.txt}{100} & % Max pic-rate
+Undefined & % Max BR
+\href{https://www.pcmag.com/encyclopedia/term/interlaced-gif}{S} & % Scalability
+No & % Stereo
+No & % Lossless
+\href{https://en.wikipedia.org/wiki/Term_of_patent}{Expired} \\ % free
+
 % JPEG
 1992 & % Year
 \href{https://en.wikipedia.org/wiki/JPEG}{JPEG} & % Codec
 \href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
 \href{https://en.wikipedia.org/wiki/Image_compression}{Web} & % Main use
-8 & % bits
+12 & % bits
 $(2^{16}-1)\times (2^{16}-1$) & % Max res
 \href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max pic-rate
 \href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max BR
@@ -189,6 +162,20 @@ No & % Stereo
 No & % Lossless
 \href{https://en.wikipedia.org/wiki/Term_of_patent}{Expired} \\ % free
 
+% PNG
+1987 & % Year
+\href{https://en.wikipedia.org/wiki/Portable_Network_Graphics}{PNG} & % Codec
+\href{https://en.wikipedia.org/wiki/Portable_Network_Graphics#Compression}{DPCM}+\href{https://en.wikipedia.org/wiki/Deflate}{DEFLATE} & % Encoding
+\href{https://www.w3.org/TR/png/}{Web} & % Main use
+\href{https://en.wikipedia.org/wiki/Portable_Network_Graphics#Critical_chunks}{16} & % bits
+\href{https://en.wikipedia.org/wiki/Portable_Network_Graphics#Critical_chunks}{$2^{32}-1\times 2^{32}-1$} & % Max res
+\href{https://www.w3.org/Graphics/GIF/spec-gif89a.txt}{100} & % Max pic-rate
+Undefined & % Max BR
+\href{https://www.pcmag.com/encyclopedia/term/interlaced-gif}{S} & % Scalability
+No & % Stereo
+Yes & % Lossless
+No \\ % free
+
 % MPEG-4 Visual
 1999 & % Year
 \href{https://en.wikipedia.org/wiki/MPEG-4_Part_2}{MPEG-4 Visual} & % Codec
@@ -251,7 +238,7 @@ No \\ % free
 (\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Run-length_encoding}{RLE}+\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman} & % Encoding
 \href{https://en.wikipedia.org/wiki/Use_of_Ogg_formats_in_HTML5}{Web} & % Main use
 8 & % bits
-\href{https://theora.org/doc/Theora.pdf}{$1048560 × 1048560$} (\href{https://en.wikipedia.org/wiki/8K_resolution}{8K UHD}) & % Max res
+\href{https://theora.org/doc/Theora.pdf}{$1048560 × 1048560$} & % Max res
 Undefined & % Max pic-rate
 Undefined & % Max BR
 T & % Scalability
@@ -287,6 +274,34 @@ No & % Stereo
 No & % Lossless
 No \\ % free
 
+% JPEG XR (AVC intra)
+2014 & % Year
+\href{https://en.wikipedia.org/wiki/JPEG_XR}{JPEG XR} & % Codec
+\href{https://en.wikipedia.org/wiki/Quadtree}{Quandtree}+\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Context-adaptive_variable-length_coding}{CABAC} & % Encoding
+\href{https://en.wikipedia.org/wiki/JPEG_XR}{Web} & % Main use
+\href{https://en.wikipedia.org/wiki/JPEG_XR#Compression_algorithm}{32} & % bits
+\href{bellard.org/bpg/}{$2^{32}-1\times 2^{32}-1$} & % Max res
+\href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max BR
+None & % Scalability
+No & % Stereo
+\href{https://en.wikipedia.org/wiki/JPEG_XR#Capabilities}{Yes} & % Lossless
+No \\ % free
+
+% WebP
+2010 & % Year
+\href{https://en.wikipedia.org/wiki/WebP}{WebP} & % Codec
+\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr} & % Encoding
+\href{https://en.wikipedia.org/wiki/Image_file_format#WebP}{Web} & % Main use
+\href{https://en.wikipedia.org/wiki/WebP#Restrictions}{8} & % bits
+\href{https://en.wikipedia.org/wiki/WebP#Technology}{$2^{14}-1\times 2^{14}-1$} & % Max res
+\href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max pic-rate
+Undefined & % Max BR
+None & % Scalability
+No & % Stereo
+Yes & % Lossless
+Yes \\ % free
+
 % HEVC (H.265)
 2013 & % Year
 \href{https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding}{HEVC (H.265)} & % Codec
@@ -300,6 +315,20 @@ TSQ & % Scalability
 Yes & % Stereo
 Yes & % Lossless
 No \\ % free
+
+% BPG
+2014 & % Year
+\href{https://en.wikipedia.org/wiki/Better_Portable_Graphics}{BPG} & % Codec
+\href{https://en.wikipedia.org/wiki/Quadtree}{Quandtree}+\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Context-adaptive_variable-length_coding}{CABAC} & % Encoding
+\href{https://en.wikipedia.org/wiki/Better_Portable_Graphics}{Web} & % Main use
+\href{https://en.wikipedia.org/wiki/Better_Portable_Graphics}{14} & % bits
+\href{bellard.org/bpg/}{$2^{32}-1\times 2^{32}-1$} & % Max res
+\href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max pic-rate
+\href{https://en.wikipedia.org/wiki/N/A}{NA} & % Max BR
+None & % Scalability
+No & % Stereo
+Yes & % Lossless
+Yes \\ % free
 
 % AV1
 2018 & % Year
@@ -319,14 +348,14 @@ Yes \\ % free
 2020 & % Year
 \href{https://en.wikipedia.org/wiki/Versatile_Video_Coding}{VVC (H.266)} & % Codec
 (\href{https://en.wikipedia.org/wiki/Chroma_subsampling#4:2:0}{4:2:0}/\href{https://en.wikipedia.org/wiki/JPEG#Color_space_transformation}{YCbCr})+\href{https://en.wikipedia.org/wiki/Motion_compensation}{MC}+\href{https://en.wikipedia.org/wiki/Discrete_cosine_transform}{DCT}+\href{https://en.wikipedia.org/wiki/Quantization_(signal_processing)}{SQ}+\href{https://en.wikipedia.org/wiki/Context-adaptive_variable-length_coding}{CABAC} & % Encoding
-\href{}{Video compression} & % Main use
-16 & % bits
-\href{}{$8192\times 4320$} & % Max res
-\href{https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Tiers_and_levels}{128} & % Max pic-rate
-\href{https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Tiers_and_levels}{800} \href{https://en.wikipedia.org/wiki/Data-rate_units}{Mbps} & % Max BR
-TSQ & % Scalability
-Yes & % Stereo
-Yes & % Lossless
+\href{https://en.wikipedia.org/wiki/Versatile_Video_Coding#Broadcast}{Broadcast} & % Main use
+\href{https://en.wikipedia.org/wiki/Versatile_Video_Coding#Concept}{16} & % bits
+\href{https://en.wikipedia.org/wiki/16K_resolution}{16K} & % Max res
+\href{https://en.wikipedia.org/wiki/Versatile_Video_Coding#Concept}{120} & % Max pic-rate
+Undefined & % Max BR
+\href{https://en.wikipedia.org/wiki/Versatile_Video_Coding#Concept}{TSQ} & % Scalability
+\href{https://en.wikipedia.org/wiki/Versatile_Video_Coding#Concept}{Yes} & % Stereo
+\href{https://en.wikipedia.org/wiki/Versatile_Video_Coding#Concept}{Yes} & % Lossless
 No \\ % free
 
 \end{tabular}
@@ -335,3 +364,56 @@ No \\ % free
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
 \bibliography{projects}
+
+\begin{comment}
+
+$B$ = Block structure name
+$S$ = Possible block sizes
+$T$ = Tiling scheme name
+$P$ = Configurable Perceptual Quantization
+$D$ = Deblocking filtering
+$A$ = Adaptive deblocking filtering
+QP = Relation between Quantization Parameter and $\Delta$ (quantization step size)
+MBD = Maximum Bit Depth
+
+In chronologial order:
+
+\section{JPEG}
+
+\section{BPG}
+
+\section{JPEG2000}
+
+\section{ \href{https://en.wikipedia.org/wiki/JPEG_XL}{JPEG XL}}
+
+\section{MPEG-1}
+
+\section{MPEG-2}
+
+\section{MPEG-4}
+
+\section{H.264/AVC}
+
+$B$=Macroblock
+$S=\{16x16\}$
+$T$=slice
+$P$=yes
+$D$=yes
+$A$=yes
+Modes = All intra, random access, low delay
+
+\section{HEVC}
+
+$B$=Tree Coding Unit
+$S=\{8x8, 64x64\}$
+$P$=yes
+$D$=yes
+$A$=yes
+$\text{QP}=2^{\frac{\text{QP}-4}{6}}$
+MBD = 10
+Modes = All intra, random access, low delay
+
+RS 
+TSQ = Temporal, Spatial and Quality scalability
+
+\end{comment}
