@@ -25,7 +25,7 @@ smaller entropy. This potentially increases the compression ratios.
 
 %}}}
 
-\section{Motion Estimation and Compensation (MEC)}
+\section{Motion Compensation (MC)}
 %{{{
 
 In most video coding standards,
@@ -40,12 +40,13 @@ compensated. Basically, MC consists in substracting to the video data
 a prediction performed with the information that must be also
 avaliable\footnote{In order to make a reversible process.} at the
 decoder~\cite{vruiz__MCT}. The better the prediction, the lower the
-entropy of the residuals. Notice that the number of residual-pixels is
-equal to the number of pixels in the compensated frame.
+entropy of the residuals. Notice that, after using MC, the number of
+residual-pixels is equal to the number of pixels in the compensated
+frame.
 
 %}}}
 
-\section{MEC and RDO}
+\section{Motion Estimation (ME) and RDO}
 %{{{
 
 ME can be designed to minimize the distortion $D$ of the residues or
