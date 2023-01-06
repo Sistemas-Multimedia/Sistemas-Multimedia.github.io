@@ -141,6 +141,23 @@ we can apply a coarser compression to image areas where the human
 visual system is less sensitive to artifacts and a finer compression
 otherwise.
 
+\section{Motion estimation}
+\begin{figure}
+  \centering
+  \png{stockholm_MVs_block}{800}
+  \caption{Motion vectors to map ${\mathbf P}$ (which is divided into
+    disjoint blocks) onto ${\mathbf R}$. See
+    \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_block_ME.ipynb}{this}.}
+  \label{fig:MVs_block}
+\end{figure}
+
+As it can be seen in the Figure~\ref{fig:MVs_block}, the motion
+information computed by a ME algorithm not always represents the true
+motion in the scene in the case of using block-based matching. In
+non-reliable transmission environments this issue also dificults the
+prediction of the missing motion information. Notice also that the
+entropy of the motion data increases.
+
 \section{To-Do}
 Please, select one of the following tasks to develop:
 \begin{enumerate}
