@@ -4,12 +4,12 @@
 % https://www.etsist.upm.es/uploaded/392/02_Video_Compression_Basics_MPEG1_MPEG2_MPEG4.pdf
 
 \input{../../definitions}
-\title{\SM{} - Temporal Transforms}
+\title{\SM{} - \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/tree/master/contents/temporal_transforms}{Temporal Transforms}}
 
 \maketitle
 \tableofcontents
 
-\section{Temporal redundancy}
+\section{Temporal transforms exploit temporal redundancy}
 %{{{
 
 In general, neighbour \emph{frames} (images) in (video)
@@ -18,10 +18,11 @@ exploited to increase the compression ratios. The removal of such
 redundancy can be performed by transforms applied to the temporal
 domain.
 
-A temporal transform inputs two o more frames of pixels or
-coefficients, and outputs at least one \emph{residual} (frame) in
-which the residual-pixels have a higher dynamic range but also a
-smaller entropy. This potentially increases the compression ratios.
+A temporal transform inputs two o more frames\footnote{With pixels or
+coefficients, depending on the current domain of the frame.}, and
+outputs at least one \emph{residual} (frame) in which the
+residual-coefficients have a higher dynamic range but also a smaller
+entropy. This potentially increases the compression ratios.
 
 %}}}
 
