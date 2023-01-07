@@ -10,6 +10,105 @@
 \tableofcontents
 
 \section{Temporal transforms exploit temporal redundancy}
+
+\section{Block-ing}
+
+
+
+\subsection{Fixed}
+
+Usually depending on the available computational resources (for example, the available memory).
+
+\subsection{Adaptive}
+
+Usually controlled RDO. Better RD curves.
+
+\section{GOF-ing}
+
+\subsection{Fixed}
+
+Usually determined by the random-access mode.
+
+\subsection{Adaptive}
+
+Usually controlled by RDO.
+
+\section{Intra coding (III...)}
+
+All frames are encoded as independent images.  All blocks in the
+frames are I-type, by definition. Intra-coded frames are also named
+keyframes.
+
+Advantages:
+\begin{itemize}
+\item [+] Minimal pipeline delay.
+\item [+] No error propagation.
+\item [+] Maximum temporal scalability.
+\end{itemize}
+
+Disadvantages:
+\begin{enumerate}
+\item [-] Low compression ratios.
+\end{enumerate}
+
+Mainly used in video edition.
+
+\section{Low-delay coding (IPPP...)}
+
+In a GOP, only the first frame is intra-coded and the rest,
+predictive-codec using motion compensation. In a P-frame, blocks can
+be of (depending on RDO):
+\begin{enumerate}
+\item I-type: the block is intra-coded.
+\item P-type: the block is predicted using a block that belong to a previous frame.
+\item S-type: the residue of the prediction is so small that it is considered as zero.
+\end{enumerate}
+
+Advantages:
+\begin{itemize}
+\item [+] Low pipeline delay (one frame-time).
+\item [+] Medium-high compression ratios.
+\end{itemize}
+
+Disadvantages:
+\begin{enumerate}
+\item [-] Error propagation sequentially, until the next GOF.
+\item [-] Low temporal scalability.
+\end{enumerate}
+
+Mainly used in surveillance.
+
+\section{``Random''-access mode (IBPB...)}
+
+In a GOP, some or all the residue frames can be P or B-type. In a
+B-type frame, blocks can be (depending on RDO) of B-type, which means
+that at leas two blocks, one of them in a past frame and other in a
+future frame, are used as reference blocks during the motion
+compensation.
+
+Notice that. by definition, the low-delay coding mode is also a
+random-access mode.
+
+Advantages:
+\begin{itemize}
+\item [+] High compression ratios.
+\end{itemize}
+
+Disadvantages:
+\begin{enumerate}
+\item [-] High pipeline delay (until a GOF-time).
+\item [-] Error propagation (depending on the block-type decissions),
+  until the next GOF.
+\item [-] Low temporal scalability.
+\end{enumerate}
+
+\section{To-Do}
+\begin{enumerate}
+\item Using RDO, determine the optimal block sizes in a DCT-based
+  image compressor. Implement such codec in VCF. Complexity 4.
+\end{enumerate}
+
+\section{Temporal redundancy}
 %{{{
 
 In general, neighbour \emph{frames} (images) in (video)
