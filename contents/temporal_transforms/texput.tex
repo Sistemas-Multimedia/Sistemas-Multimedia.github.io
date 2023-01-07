@@ -11,18 +11,6 @@
 
 \section{Temporal transforms exploit temporal redundancy}
 
-\section{Block-ing}
-
-
-
-\subsection{Fixed}
-
-Usually depending on the available computational resources (for example, the available memory).
-
-\subsection{Adaptive}
-
-Usually controlled RDO. Better RD curves.
-
 \section{GOF-ing}
 
 \subsection{Fixed}
@@ -104,8 +92,7 @@ Disadvantages:
 
 \section{To-Do}
 \begin{enumerate}
-\item Using RDO, determine the optimal block sizes in a DCT-based
-  image compressor. Implement such codec in VCF. Complexity 4.
+\item 
 \end{enumerate}
 
 \section{Temporal redundancy}
@@ -182,6 +169,8 @@ encoding system is lossy.}
   IPP... scheme, without motion compensation. Complexity 2.
 \item Modify VCF to encode/decode a sequence of images using a
   IPP... scheme, with motion compensation. Complexity 4.
+\item Modify VCF to encode/decode a sequence of images using a
+  IBB... scheme, with motion compensation. Complexity 5.
 \end{enumerate}
 
 %}}}

@@ -110,7 +110,19 @@ determining specific features in the images.
 
 \section{Image partitioning}
 
-Depending on the content of the image, it can be necessary to divide the image into tiles or blocks, and apply the encoding to each block, independently
+Depending on the content of the image, it can be necessary to divide
+the image into tiles or blocks, and apply the encoding to each block,
+independently. Usually:
+\begin{enumerate}
+\item Tiles are used when the image is made up of very different areas
+  (for example, text and natural images). Tiles are usually
+  rectangular but can have any size, and are usually defined attending
+  to perceptual issues (for example, text is not well compressed by
+  lossy configurations).
+\item In general, blocks are smaller than tiles and usually
+  squared. The block partition can be adaptive and should be found
+  using RDO.
+\end{enumerate}
 
 \section{Resources}
 %{{{
@@ -139,6 +151,8 @@ Depending on the content of the image, it can be necessary to divide the image i
 
 \begin{enumerate}
 \item Modify VCF to use the block-based 2D-DCT in the compression pipeline. Complexity 3.
+\item Using RDO, determine the optimal block sizes in the DCT-based
+  image compressor. Implement such codec in VCF. Complexity 4.
 \item Modify VCF to use an autoencoder (at the image level) in the compression pipeline. Complexity 5. 
 %\item Modify CVF to use SPIHT.
 \end{enumerate}
@@ -155,7 +169,7 @@ Depending on the content of the image, it can be necessary to divide the image i
 
 \begin{comment}
 
-\section{ Tight Laplacian Pyramid Transform (TLPT)}
+\section{Tight Laplacian Pyramid Transform (TLPT)}
 %{{{
 
 Pyramid frames were introduced in 1983 by Burt and Adelson. In some
