@@ -24,6 +24,12 @@ using a dyadic pattern.
 
 \section{Spatial scalability in video coding}
 
+On the other hand, when the motion information is infered at the
+decoder, this information will be less accurate that if we use all the
+visual information available at the encoder.\footnote{The decoder, in
+general, has a limited access to the original information because the
+encoding system is lossy.}
+
 \subsection{Using the LPT}
 
 \subsection{Using the DWT}
@@ -40,12 +46,24 @@ of bit-rate. This is done, for example, in JPEG2000.
 
 \section{To-Do}
 \begin{enumerate}
+\item The $L$-levels DWT provides $L+1$ spatial resolution levels of
+  an image. Modify the VCF pipeline to include this
+  functionality. Complexity 2.
 \item The $2^n\times 2^n$-DCT domain can be decoded by resolution
   levels using a inverse $2^m\times 2^m$-DCT where $m=0,1,\cdots,n$,
   to the lower frequency subbands (notice that the inverse
   $0\times 0$-DCT does not perform any computation). Implement in VCF
   such image decoder. Complexity 4.
-  
+\item In video coding, we can obtain spatial scalability if we build a
+  laplacian pyramid of the frames and compress each level of the
+  sequence using a normal video encoder. Notice that we can use the
+  reconstructed sequence at the spatial level $l$ to improve the
+  predictions for the level $l-1$. Incorporate this functionality to
+  VCF. Complexity 6.
+\item The spatial resolution level $l$ of the reconstructed video can
+  be used (after interpolation) to estimate the motion at the $l-1$
+  level, making the transmission of motion fields unnecessary for
+  resolution level $l-1$. Explore this in VCF. Complexity 7.
 \end{enumerate}
 
 \section{References}
