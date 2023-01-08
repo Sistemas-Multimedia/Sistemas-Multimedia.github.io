@@ -19,52 +19,112 @@
 
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - Perceptual Coding</h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 13, 2022</span></div>
+<div class='date'><span class='ecrm-1200'>January 8, 2023</span></div>
    </div>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
     <span class='sectionToc'>1 <a href='#what-is-perceptual-coding' id='QQ2-1-2'>What is perceptual coding?</a></span>
-<br />    <span class='sectionToc'>2 <a href='#quantization-in-the-rgb-domain' id='QQ2-1-3'>Quantization in the \(\texttt {RGB}\) domain</a></span>
-<br />    <span class='sectionToc'>3 <a href='#chroma-redundancy' id='QQ2-1-4'>Chroma redundancy</a></span>
-<br />    <span class='sectionToc'>4 <a href='#redundancy-in-the-rgb-domain' id='QQ2-1-5'>Redundancy in the RGB domain</a></span>
-<br />    <span class='sectionToc'>5 <a href='#todo' id='QQ2-1-7'>To-Do</a></span>
-<br />    <span class='sectionToc'>6 <a href='#references' id='QQ2-1-8'>References</a></span>
+<br />    <span class='sectionToc'>2 <a href='#tond-varies-with-the-luma-intensity' id='QQ2-1-3'>ToND varies with the luma intensity</a></span>
+<br />    <span class='sectionToc'>3 <a href='#perception-of-the-details-high-frequencies' id='QQ2-1-4'>Perception of the details (high frequencies)</a></span>
+<br />    <span class='sectionToc'>4 <a href='#visual-masking-phenomena-and-the-quantization-noise' id='QQ2-1-5'>Visual masking phenomena and the quantization noise</a></span>
+<br />    <span class='sectionToc'>5 <a href='#loop-filters' id='QQ2-1-6'>Loop filters</a></span>
+<br />    <span class='sectionToc'>6 <a href='#quantization-in-the-rgb-domain' id='QQ2-1-7'>Quantization in the \(\texttt {RGB}\) domain</a></span>
+<br />    <span class='sectionToc'>7 <a href='#chroma-redundancy' id='QQ2-1-8'>Chroma redundancy</a></span>
+<br />    <span class='sectionToc'>8 <a href='#redundancy-in-the-rgb-domain' id='QQ2-1-9'>Redundancy in the RGB domain</a></span>
+<br />    <span class='sectionToc'>9 <a href='#perceptual-video-coding' id='QQ2-1-11'>Perceptual video coding</a></span>
+<br />    <span class='sectionToc'>10 <a href='#motion-estimation' id='QQ2-1-12'>Motion estimation</a></span>
+<br />    <span class='sectionToc'>11 <a href='#todo' id='QQ2-1-14'>To-Do</a></span>
+<br />    <span class='sectionToc'>12 <a href='#references' id='QQ2-1-15'>References</a></span>
    </div>
-<!-- l. 11 --><p class='noindent'>
+<!-- l. 9 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='what-is-perceptual-coding'><span class='titlemark'>1   </span> <a id='x1-20001'></a>What is perceptual coding?</h3>
-<!-- l. 13 --><p class='noindent'>Deadzone quantization (example)
-</p><!-- l. 15 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='quantization-in-the-rgb-domain'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Quantization in the \(\texttt {RGB}\) domain</h3>
-<!-- l. 17 --><p class='noindent'>The color-recognition accuracy of the HVS is finite <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>. For this reason, quantization
-in the \(\texttt {RGB}\) color space can be imperceptible.
-</p><!-- l. 21 --><p class='indent'>   any alternative different from \begin {equation}  \mathbf {\Delta }^{\text {R}}_i = \mathbf {\Delta }^{\text {G}}_i = \mathbf {\Delta }^{\text {B}}_i, \label {eq:simple_Q}  \end {equation}
-where \(i\) represents the \(i\)-th quantization step size, will produce some alteration in the
-color<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-3001f1'></a>
+<!-- l. 11 --><p class='noindent'>So far, we have been focused on minimizing the lagrangian <span class='cite'>[<a href='#Xsullivan1998rate'>2</a>]</span> \begin {equation}  J = R + \lambda D,  \end {equation}
+where \(D\) is a additive<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-2001f1'></a>
+distance metric, such as the RMSE, the PSNR or SSIM index <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>. However, the way
+in which human beings perceive distortion is generally different from how these
+metrics express it. This chapter presents some of the most common ways of
                                                                   
 
                                                                   
-</p><!-- l. 31 --><p class='noindent'>
+expressing the distortion perceived by humans.
+</p><!-- l. 23 --><p class='indent'>   Notice that if, by requirements of the encoding process, \(D\) is below a threshold of
+noticeable distortion (ToND), the RDO process boilds down to select the option with
+smaller \(R\).
+</p><!-- l. 27 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='chroma-redundancy'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Chroma redundancy</h3>
-<!-- l. 33 --><p class='noindent'>Humans do not perceive detail in the chrominance as well as in they does
+   <h3 class='sectionHead' id='tond-varies-with-the-luma-intensity'><span class='titlemark'>2   </span> <a id='x1-30002'></a>ToND varies with the luma intensity</h3>
+<!-- l. 29 --><p class='noindent'>The perception of the distortion generated by the lossy coding of an image is smaller
+in those areas with higher and lower intensity values <span class='cite'>[<a href='#Xnaccari2014perceptually'>1</a>]</span>. This is not true for the
+chroma.
+</p><!-- l. 33 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='perception-of-the-details-high-frequencies'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Perception of the details (high frequencies)</h3>
+<!-- l. 34 --><p class='noindent'>The HVS can be modeled as a low-pass filter whose cut-off frequency depends on the
+distance between the observer and the image.
+</p><!-- l. 37 --><p class='indent'>   Some image and video coding standards, such as JPEG and H.264 specify
+quantization matrices designed to perceptual coding. In the case of video, such
+matrices can change between images. Usually, luma and chroma have different
+quantization matrices <span class='cite'>[<a href='#Xnaccari2014perceptually'>1</a>]</span>.
+</p><!-- l. 43 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='visual-masking-phenomena-and-the-quantization-noise'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Visual masking phenomena and the quantization noise</h3>
+<!-- l. 44 --><p class='noindent'>Deadzone quantization: change signal and electronic noise by quantization noise,
+where the SNR is very small.
+</p><!-- l. 47 --><p class='indent'>   HVS is less sensitive to coding artifacts introduced in textured and very busy
+image areas <span class='cite'>[<a href='#Xwu2017digital'>3</a>]</span>. In general, the perceived quantization error decreases with the
+increase of the frequency of the signal, up to a point in which the image contents
+mask the noise, which can become imperceptible.
+</p><!-- l. 53 --><p class='indent'>   directionality: which leads the HVS to be more sensitive to distortions added to
+horizontal and vertical frequencies rather than to diagonal ones <span class='cite'>[<a href='#Xnaccari2014perceptually'>1</a>]</span>.
+</p><!-- l. 57 --><p class='indent'>   Weber-Fechner law which states that the minimum perceivable visual stimulus
+difference increases with the background luminance.
+</p><!-- l. 60 --><p class='indent'>   The rationale behind the temporal masking is that the HVS sensitivity to coding
+artifacts is lower in areas with very high motion activity. Modeling temporal masking
+is more challenging because the spatio-temporal sensitivity function of the HVS is
+not separable ([12,31]), i.e., it depends on both the spatial and temporal
+frequencies <span class='cite'>[<a href='#Xnaccari2014perceptually'>1</a>]</span>.
+                                                                  
+
+                                                                  
+</p><!-- l. 67 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='loop-filters'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Loop filters</h3>
+<!-- l. 68 --><p class='noindent'>Use for example in H.264 In-loop filters aim to improve the perceived video quality
+by reducing coding artifacts. The filter acts to reduce the blocking artifacts while
+preserving original image edges.
+</p><!-- l. 73 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='quantization-in-the-rgb-domain'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Quantization in the \(\texttt {RGB}\) domain</h3>
+<!-- l. 75 --><p class='noindent'>The color-recognition accuracy of the HVS is finite <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>. For this reason, quantization
+in the \(\texttt {RGB}\) color space can be imperceptible.
+</p><!-- l. 79 --><p class='indent'>   any alternative different from \begin {equation}  \mathbf {\Delta }^{\text {R}}_i = \mathbf {\Delta }^{\text {G}}_i = \mathbf {\Delta }^{\text {B}}_i, \label {eq:simple_Q}  \end {equation}
+where \(i\) represents the \(i\)-th quantization step size, will produce some alteration in the
+color<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-7001f2'></a>
+</p><!-- l. 89 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='chroma-redundancy'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Chroma redundancy</h3>
+<!-- l. 91 --><p class='noindent'>Humans do not perceive detail in the chrominance as well as in they does
 in the luminance. <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>. As in \(\text {YCrCb}\), the <a href='https://en.wikipedia.org/wiki/Sampling_(signal_processing)'>sampling rate</a> of the chroma is usually
 reduces to 1/4 without any noticeable distortion. This feature is used in some
 of the last image and video compression systems such as <a href='https://en.wikipedia.org/wiki/JPEG_XR#Description'>JPEG XR</a> and
 <a href='https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Video_coding_layer'>HEVC</a>.
-</p><!-- l. 44 --><p class='noindent'>
+</p><!-- l. 102 --><p class='indent'>   See the notebook <a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/color_redundancy.ipynb'>Spectral (color) redundancy</a>.
+</p><!-- l. 106 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='redundancy-in-the-rgb-domain'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Redundancy in the RGB domain</h3>
-<!-- l. 46 --><p class='noindent'>The Human Visual System (HVS) is more sensitive to luminance than to
+   <h3 class='sectionHead' id='redundancy-in-the-rgb-domain'><span class='titlemark'>8   </span> <a id='x1-90008'></a>Redundancy in the RGB domain</h3>
+<!-- l. 108 --><p class='noindent'>The Human Visual System (HVS) is more sensitive to luminance than to
 chrominance <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>. This basically means that we can an encoding process we
 modify the color information of an image or a video without noticing a high
 distortion.
-</p><!-- l. 51 --><p class='indent'>   Since the <a href='https://en.wikipedia.org/wiki/Visual_system'>HVS (Human Visual System)</a> is not able to perceive detail in the
+</p><!-- l. 113 --><p class='indent'>   Since the <a href='https://en.wikipedia.org/wiki/Visual_system'>HVS (Human Visual System)</a> is not able to perceive detail in the
 chrominance as well as it does in the luminance, the amount of information, and
 consequently <a href='https://en.wikipedia.org/wiki/Sampling_(signal_processing)'>sampling rate</a>, used in the chrominance can be generally reduced
 to 1/4 of the used for the luminance without a noticeable distortion (see
-Fig. <a href='#x1-5001r1'>1<!-- tex4ht:ref: fig:san-diego_chroma_subsampled  --></a>) <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>. This <a href='https://en.wikipedia.org/wiki/Bandwidth_(computing)'>fact is used when compressing</a> digital still images and is one of
+Fig. <a href='#x1-9001r1'>1<!-- tex4ht:ref: fig:san-diego_chroma_subsampled  --></a>) <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>. This <a href='https://en.wikipedia.org/wiki/Bandwidth_(computing)'>fact is used when compressing</a> digital still images and is one of
+                                                                  
+
+                                                                  
 the reason why, for example, the \(\text {YCrCb}\) transform is used in the <a href='https://en.wikipedia.org/wiki/JPEG'>JPEG</a> image
 compressor.
 </p>
@@ -76,23 +136,71 @@ compressor.
                                                                   
 
                                                                   
-<!-- l. 68 --><p class='noindent' id='-visual-effect-of-chroma-subsamplig-in-the-ycrcb-domain-see-this-httpsgithubcomsistemasmultimediasistemasmultimediagithubioblobmastermilestonesyuvcompressionchromasubsamplingipynbnotebook-'><div style='text-align:center;'> <img src='san-diego_chroma_subsampled.png' /> </div>  <a id='x1-5001r1'></a>
-<a id='x1-5002'></a>
+<!-- l. 130 --><p class='noindent' id='-visual-effect-of-chroma-subsamplig-in-the-ycrcb-domain-see-this-httpsgithubcomsistemasmultimediasistemasmultimediagithubioblobmastermilestonesyuvcompressionchromasubsamplingipynbnotebook-'><div style='text-align:center;'> <img src='san-diego_chroma_subsampled.png' /> </div>  <a id='x1-9001r1'></a>
+<a id='x1-9002'></a>
 </p>
 <figcaption class='caption'><span class='id'>Figure 1: </span><span class='content'>Visual effect of chroma subsamplig in the YCrCb domain. See this
-<a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/chroma_subsampling.ipynb'>notebook</a>.                                                          </span></figcaption><!-- tex4ht:label?: x1-5001r4  -->
+<a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/06-YUV_compression/chroma_subsampling.ipynb'>notebook</a>.                                                          </span></figcaption><!-- tex4ht:label?: x1-9001r8  -->
                                                                   
 
                                                                   
    </figure>
-   <h3 class='sectionHead' id='todo'><span class='titlemark'>5   </span> <a id='x1-60005'></a>To-Do</h3>
-<!-- l. 77 --><p class='noindent'>Please, select one of the following tasks to develop:
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-6002x1'></li></ol>
-<!-- l. 82 --><p class='noindent'>
+   <h3 class='sectionHead' id='perceptual-video-coding'><span class='titlemark'>9   </span> <a id='x1-100009'></a>Perceptual video coding</h3>
+<!-- l. 138 --><p class='noindent'>Hummans perceive distortion generated by the (lossy) compression artifacts
+depending on the characteristics of the sequence. Therefore, we can apply a coarser
+compression to image areas where the human visual system is less sensitive to
+artifacts and a finer compression otherwise.
+</p><!-- l. 144 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='references'><span class='titlemark'>6   </span> <a id='x1-70006'></a>References</h3>
-   <div class='footnotes'><!-- l. 29 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>We consider here color as a whole, not only the chroma.</span></p>                                     </div>
+   <h3 class='sectionHead' id='motion-estimation'><span class='titlemark'>10   </span> <a id='x1-1100010'></a>Motion estimation</h3>
+   <figure class='figure'> 
+
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+<!-- l. 147 --><p class='noindent' id='-motion-vectors-to-map-p-which-is-divided-into-disjoint-blocks-onto-r-see-httpsgithubcomsistemasmultimediasistemasmultimediagithubioblobmastermilestonesmefullsearchblockmeipynbthis-'><div style='text-align:center;'> <img src='stockholm_MVs_block.png' /> </div>  <a id='x1-11001r2'></a>
+<a id='x1-11002'></a>
+</p>
+<figcaption class='caption'><span class='id'>Figure 2: </span><span class='content'>Motion vectors to map \(\mathbf P\) (which is divided into disjoint blocks) onto \(\mathbf R\).
+See <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/milestones/09-ME/full_search_block_ME.ipynb'>this</a>.                                                           </span></figcaption><!-- tex4ht:label?: x1-11001r10  -->
+                                                                  
+
+                                                                  
+   </figure>
+<!-- l. 154 --><p class='indent'>   As it can be seen in the Figure <a href='#x1-11001r2'>2<!-- tex4ht:ref: fig:MVs_block  --></a>, the motion information computed by a ME
+algorithm not always represents the true motion in the scene in the case of using
+block-based matching. In non-reliable transmission environments this issue also
+dificults the prediction of the missing motion information. Notice also that the
+entropy of the motion data increases.
+</p>
+   <h3 class='sectionHead' id='todo'><span class='titlemark'>11   </span> <a id='x1-1200011'></a>To-Do</h3>
+<!-- l. 162 --><p class='noindent'>Please, select one of the following tasks to develop:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-12002x1'></li></ol>
+<!-- l. 167 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='references'><span class='titlemark'>12   </span> <a id='x1-1300012'></a>References</h3>
+   <div class='thebibliography'>
+   <p class='bibitem'><span class='biblabel'>
+ [1]<span class='bibsp'>   </span></span><a id='Xnaccari2014perceptually'></a>M. Naccari and M. Mrak.  Perceptually optimized video compression.
+   In <span class='ecti-1000'>Academic Press Library in Signal Processing</span>, volume 5, pages 155–196.
+   Elsevier, 2014.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [2]<span class='bibsp'>   </span></span><a id='Xsullivan1998rate'></a>G.J. Sullivan and T. Wiegand.  Rate-distortion optimization for video
+   compression. <span class='ecti-1000'>IEEE signal processing magazine</span>, 15(6):74–90, 1998.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [3]<span class='bibsp'>   </span></span><a id='Xwu2017digital'></a>H.R. Wu and K.R. Rao. <span class='ecti-1000'>Digital video image quality and perceptual coding</span>.
+   CRC press, 2017.
+</p>
+   </div>
+   <div class='footnotes'><!-- l. 17 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>The total distortion of two (or more) sources of distortion is the sum of the distortions of
+</span><span class='ecrm-0800'>these two (or more) sources.</span></p>
+<!-- l. 87 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>We consider here color as a whole, not only the chroma.</span></p>                                     </div>
  
 </body> 
 </html>

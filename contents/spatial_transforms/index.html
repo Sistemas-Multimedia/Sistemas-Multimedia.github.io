@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - Spatial Transforms</h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 28, 2022</span></div>
+<div class='date'><span class='ecrm-1200'>January 8, 2023</span></div>
    </div>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -27,32 +27,33 @@
 <br />    <span class='sectionToc'>2 <a href='#benefits-of-spatial-transforms' id='QQ2-1-3'>Benefits of spatial transforms</a></span>
 <br />    <span class='sectionToc'>3 <a href='#scalar-quantization-and-ratedistortion-optimization-in-the-transform-domain' id='QQ2-1-4'>Scalar quantization and rate/distortion optimization in the transform domain</a></span>
 <br />    <span class='sectionToc'>4 <a href='#learned-transforms' id='QQ2-1-5'>Learned transforms</a></span>
-<br />    <span class='sectionToc'>5 <a href='#resources' id='QQ2-1-6'>Resources</a></span>
-<br />    <span class='sectionToc'>6 <a href='#todo' id='QQ2-1-7'>To-Do</a></span>
-<br />    <span class='sectionToc'>7 <a href='#references' id='QQ2-1-8'>References</a></span>
+<br />    <span class='sectionToc'>5 <a href='#dpartitioning' id='QQ2-1-6'>2D-partitioning</a></span>
+<br />    <span class='sectionToc'>6 <a href='#resources' id='QQ2-1-7'>Resources</a></span>
+<br />    <span class='sectionToc'>7 <a href='#todo' id='QQ2-1-8'>To-Do</a></span>
+<br />    <span class='sectionToc'>8 <a href='#references' id='QQ2-1-9'>References</a></span>
    </div>
-<!-- l. 10 --><p class='noindent'>
+<!-- l. 43 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='spatial-decorrelation'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Spatial decorrelation</h3>
-<!-- l. 12 --><p class='noindent'>Spatial transforms used in image and video compression exploit the statistical correlation (and
+<!-- l. 46 --><p class='noindent'>Spatial transforms used in image and video compression exploit the statistical correlation (and
 perceptual redundancy<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-2001f1'></a>)
 that the pixels show as a consequence of the spatial (2D) correlation. For example,
 some areas of an image can occur more than once, and usually, neighbor pixels tend
 to have similar values.
-</p><!-- l. 19 --><p class='indent'>   Spatial transforms are image-wise operators. This means that the transform
+</p><!-- l. 53 --><p class='indent'>   Spatial transforms are image-wise operators. This means that the transform
 inputs an image of pixels and output a matrix of coefficients, which generally express
 the resemblance between the image and a set of basis function. For example, after
 using the DCT <span class='cite'>[<a href='#Xvruiz__DCT'>2</a>]</span>, each (index) coefficient represents a different frequency and its
-value, the amount of the corresponding basis found in the image. In the case of the
                                                                   
 
                                                                   
+value, the amount of the corresponding basis found in the image. In the case of the
 DWT <span class='cite'>[<a href='#Xvruiz__DWT'>3</a>]</span>, the index of the coefficients “speaks” also about a spatial resolution and
 position.
-</p><!-- l. 29 --><p class='noindent'>
+</p><!-- l. 65 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='benefits-of-spatial-transforms'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Benefits of spatial transforms</h3>
-<!-- l. 31 --><p class='noindent'>Spatial transforms provide:
+<!-- l. 68 --><p class='noindent'>Spatial transforms provide:
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-3002x1'><span class='ecbx-1000'>Energy   concentration:  </span>A   small   set   of   (usually   low-frequency)
      coefficients (in general) represents most of the information (energy) of
@@ -66,11 +67,11 @@ position.
      </li>
 <li class='enumerate' id='x1-3006x3'><span class='ecbx-1000'>Multiresolution:  </span>Depending  on  the  transform,  it  is  possible  to
      reconstruct the original image by resolution levels <span class='cite'>[<a href='#Xvruiz__DWT'>3</a>]</span>.</li></ol>
-<!-- l. 48 --><p class='noindent'>
+<!-- l. 87 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='scalar-quantization-and-ratedistortion-optimization-in-the-transform-domain'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Scalar quantization and rate/distortion optimization in the transform
 domain</h3>
-<!-- l. 50 --><p class='noindent'>Scalar quantization is efficient in the transform domain because the coefficients are
+<!-- l. 90 --><p class='noindent'>Scalar quantization is efficient in the transform domain because the coefficients are
 decorrelated. The next logical step (after quantization) is the entropy coding of the
 quantization indexes. Here, depending on how the coefficients are quantized we can
 trace different RD curves (all of them starting (and finising) in the same distortion).
@@ -80,44 +81,64 @@ subband.
                                                                   
 
                                                                   
-</p><!-- l. 59 --><p class='noindent'>
+</p><!-- l. 101 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='learned-transforms'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Learned transforms</h3>
-<!-- l. 61 --><p class='noindent'>Using machine learning techniques (for example, with an artificial neural network), it
+<!-- l. 104 --><p class='noindent'>Using machine learning techniques (for example, with an artificial neural network), it
 is possible to build a machine-krafted transform, specifically tuned for some
 type of images, or at least, capable of determining specific features in the
 images.
-</p><!-- l. 66 --><p class='noindent'>
+</p><!-- l. 111 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='resources'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Resources</h3>
-<!-- l. 67 --><p class='noindent'>
+   <h3 class='sectionHead' id='dpartitioning'><span class='titlemark'>5   </span> <a id='x1-60005'></a>2D-partitioning</h3>
+<!-- l. 113 --><p class='noindent'>Depending on the content of the image, it can be necessary to divide the image
+into tiles or blocks, and apply the encoding to each block, independently.
+Usually:
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-6002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/DWT2D.py'>2D-DWT in VCF</a>.
+<li class='enumerate' id='x1-6002x1'>Tiles are used when the image is made up of very different areas (for
+     example, text and natural images). Tiles are usually rectangular but can
+     have any size, and are usually defined attending to perceptual issues (for
+     example, text is not well compressed by lossy configurations).
      </li>
-<li class='enumerate' id='x1-6004x2'><a href='https://github.com/vicente-gonzalez-ruiz/DCT/blob/master/docs/YCoCg_2D_DCT_SQ.ipynb'>Image Compression with YCoCg + 2D-DCT</a>.
+<li class='enumerate' id='x1-6004x2'>In general, blocks are smaller than tiles and usually squared. The block
+     partition can be adaptive and should be found using RDO.</li></ol>
+<!-- l. 127 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='resources'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Resources</h3>
+<!-- l. 130 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-7002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/DWT2D.py'>2D-DWT in VCF</a>.
      </li>
-<li class='enumerate' id='x1-6006x3'><a href='https://www.tensorflow.org/tutorials/generative/data_compression'>Learned data compression</a>.
-     </li>
-<li class='enumerate' id='x1-6008x4'><a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/LIC.ipynb'>Learned Image Compression (LIC) using autoencoders</a>.
-     </li>
-<li class='enumerate' id='x1-6010x5'><a href='https://github.com/fchollet/deep-learning-with-python-notebooks'>Companion  Jupyter  notebooks  for  the  book  “Deep  Learning  with
-     Python”</a> <span class='cite'>[<a href='#Xchollet2021deep'>1</a>]</span>.</li></ol>
+<li class='enumerate' id='x1-7004x2'><a href='https://github.com/vicente-gonzalez-ruiz/DCT/blob/master/docs/YCoCg_2D_DCT_SQ.ipynb'>Image Compression with YCoCg + 2D-DCT</a>.
                                                                   
 
                                                                   
-<!-- l. 84 --><p class='noindent'>
+     </li>
+<li class='enumerate' id='x1-7006x3'><a href='https://www.tensorflow.org/tutorials/generative/data_compression'>Learned data compression</a>.
+     </li>
+<li class='enumerate' id='x1-7008x4'><a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/LIC.ipynb'>Learned Image Compression (LIC) using autoencoders</a>.
+     </li>
+<li class='enumerate' id='x1-7010x5'><a href='https://github.com/fchollet/deep-learning-with-python-notebooks'>Companion  Jupyter  notebooks  for  the  book  “Deep  Learning  with
+     Python”</a> <span class='cite'>[<a href='#Xchollet2021deep'>1</a>]</span>.</li></ol>
+<!-- l. 149 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='todo'><span class='titlemark'>6   </span> <a id='x1-70006'></a>To-Do</h3>
-<!-- l. 85 --><p class='noindent'>
+   <h3 class='sectionHead' id='todo'><span class='titlemark'>7   </span> <a id='x1-80007'></a>To-Do</h3>
+<!-- l. 152 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-7002x1'>Modify VCF to use the block-based 2D-DCT in the compression pipeline.
+<li class='enumerate' id='x1-8002x1'>Modify VCF to use the block-based 2D-DCT in the compression pipeline.
      Complexity 3.
      </li>
-<li class='enumerate' id='x1-7004x2'>Modify VCF to use an autoencoder (at the image level) in the compression
+<li class='enumerate' id='x1-8004x2'>Using RDO, determine the optimal block sizes in the DCT-based image
+     compressor. Implement such codec in VCF. Complexity 4.
+     </li>
+<li class='enumerate' id='x1-8006x3'>Modify VCF to use an autoencoder (at the image level) in the compression
      pipeline. Complexity 5.</li></ol>
-<!-- l. 134 --><p class='noindent'>
+                                                                  
+
+                                                                  
+<!-- l. 162 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='references'><span class='titlemark'>7   </span> <a id='x1-80007'></a>References</h3>
+   <h3 class='sectionHead' id='references'><span class='titlemark'>8   </span> <a id='x1-90008'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xchollet2021deep'></a>Francois  Chollet.   <a href='http://silverio.net.br/heitor/disciplinas/eeica/papers/Livros/[Chollet#-' id='D'><span class='ecti-1000'>eep_Learning_with_Python.pdf]Deep learning with
@@ -130,7 +151,7 @@ images.
  [3]<span class='bibsp'>   </span></span><a id='Xvruiz__DWT'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/DWT'>The DWT (Discrete Wavelet Transform)</a>.
 </p>
    </div>
-   <div class='footnotes'><!-- l. 14 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>We will see this later in this course.</span></p>                                                                </div>
+   <div class='footnotes'><!-- l. 48 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>We will see this later in this course.</span></p>                                                                </div>
  
 </body> 
 </html>
