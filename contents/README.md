@@ -1,1 +1,1 @@
-# [Sistemas Multimedia](https://sistemas-multimedia.github.io) / [Contents](https://sistemas-multimedia.github.io/contents).
+# [Contents](https://sistemas-multimedia.github.io/contents).

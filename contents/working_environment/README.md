@@ -1,1 +1,1 @@
-# [Sistemas Multimedia](https://sistemas-multimedia.github.io) / [Contents](https://sistemas-multimedia.github.io/contents) / [Working Environment](https://sistemas-multimedia.github.io/contents/working_environment).
+# [Working Environment](https://sistemas-multimedia.github.io/contents/working_environment).

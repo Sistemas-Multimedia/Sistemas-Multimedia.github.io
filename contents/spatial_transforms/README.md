@@ -1,1 +1,1 @@
-# [Sistemas Multimedia](https://sistemas-multimedia.github.io) / [Contents](https://sistemas-multimedia.github.io/contents) / [Spatial Transforms](https://sistemas-multimedia.github.io/contents/spatial_transforms).
+# [Spatial Transforms](https://sistemas-multimedia.github.io/contents/spatial_transforms).
