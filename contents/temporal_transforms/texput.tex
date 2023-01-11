@@ -87,43 +87,49 @@ partition (see the Section~\ref{sec:random}).
 \section{Block-based MC}
 
 The MC schemes used in most video coding standards compensate blocks
-of pixels~\cite{vruiz__BBMC}. In this context, depending of the RDO
-procedure\footnote{Obviously, the part of the RDO procedure that
-  controls the block-type.}, blocks can be:
+of pixels~\cite{vruiz__BBMC}. In this context, depending of the block
+decision mode implemented in the RDO procedure\footnote{Obviously, the
+  part of the RDO procedure that controls the block-type.}, blocks can
+be:
 \begin{enumerate}
 \item \textbf{I-type}, when the block is encoded without considering
   any other external reference information. In this case, no resudue
   is generated), and a I-type block represents only texture.
 \item \textbf{P-type}, if there is one reference (block) for the
-  (predicted) block. Now we encode a block with residual texture and a
-  motion vector per block. P-type blocks require less data than I-type
-  blocks (this is guaranteed by the RDO).
+  (predicted) block, which belongs to a previous frame. Now we encode
+  a block with residual texture and a motion vector per block. P-type
+  blocks require less data than I-type blocks (this is guaranteed by
+  the RDO).
 \item \textbf{B-type}, if there are two or more references for the
-  block. By definition (RDO), it is more RD-advantageous to use B-type
-  blocks compared to P-type blocks, because the entropy of the residual
-  texture decreases (even considering that now we need one motion
-  vector per reference).
-\item \textb{S-type}, if the residue is so small that it is more
+  block, anterior (past) and posterior (future). By definition (RDO),
+  it is more RD-advantageous to use B-type blocks compared to P-type
+  blocks, because the entropy of the residual texture decreases (even
+  considering that now we need one motion vector per reference).
+\item \textbf{S-type}, if the residue is so small that it is more
   beneficial to consider that it is zero.
 \end{enumerate}
 
 \section{I-type frames, P-type frames and B-type frames}
 
+Frames can be:
+
 \begin{enumerate}
-\item A I-type frame (or simly a I-frame) only uses I-type blocks.
-\item A P-type frame (P-frame), can use I, P, and S-type blocks.
-\item A B-type frame (B-frame), can use I, P, S and B-type blocks.
+\item I-type (or simly a I-frame), if only uses I-type blocks.
+\item P-type frame (P-frame), that can use I, P, and S-type blocks.
+\item B-type frame (B-frame), if I, P, S and B-type blocks can be
+  used.
 \end{enumerate}
 
 \section{Intra coding (III...)}
 
-In a III...-``MC'' scheme, all frames are encoded as independent
+In the intra coding mode, all frames are encoded as independent
 images (no MC has been used at all, and therefore, all blocks in the
-frames are I-type). Intra-coded frames are also called, keyframes.
+frames are I-type). Intra-coded frames are also called keyframes.
 
 Advantages:
 \begin{itemize}
 \item [+] Minimal pipeline delay.
+\item [+] Minimal buffering.
 \item [+] No error propagation.
 \item [+] Maximum temporal scalability.
 \end{itemize}
@@ -137,18 +143,20 @@ Mainly used in video edition.
 
 \section{Low-delay coding (IPP...)}
 
-In a IPP...-GOP, only the first frame is intra-coded and the rest,
-predictive-codec using motion compensation. In a P-frame, blocks can
-be (depending on RDO) of:
-\begin{enumerate}
-\item I-type, if the block is intra-coded.
-\item P-type, if the block is predicted using a block that belong to a previous frame.
-\item S-type, if the residue of the prediction is so small that it is considered as zero.
-\end{enumerate}
+In the low-delay coding mode, only the first frame is intra-coded and
+the rest, prediction-coded using unidirectional motion
+compensation.
+% In a P-frame, blocks can be (depending on RDO) of:
+% \begin{enumerate}
+% \item I-type, if the block is intra-coded.
+% \item P-type, if the block is predicted using a block that belong to a previous frame.
+% \item S-type, if the residue of the prediction is so small that it is considered as zero.
+%\end{enumerate}
 
 Advantages:
 \begin{itemize}
 \item [+] Low pipeline delay (one frame-time).
+\item [+] Usually, only one frame buffering.
 \item [+] Medium-high compression ratios.
 \end{itemize}
 
@@ -163,24 +171,24 @@ Mainly used in video surveillance.
 \section{``Random''-access mode (IBPB...)}
 \label{sec:random}
 
-In a IBPB...-GOP, some or all the residue frames can be P or
-B-type. In a B-type frame, blocks can be (depending on RDO) of B-type,
-which means that at leas two blocks, one of them in a past frame and
-other in a future frame, are used as reference blocks during the
-motion compensation.
-
+In the random-access mode it is allowed to use B-type frames.
+%, some or all the residue frames can be P or
+%B-type. In a B-type frame, blocks can be (depending on RDO) of B-type,
+%which means that at leas two blocks, one of them in a past frame and
+%other in a future frame, are used as reference blocks during the
+%motion compensation.
 Notice that. by definition, the low-delay coding mode is also a
 random-access mode.
 
 Advantages:
 \begin{itemize}
-\item [+] High compression ratios.
+\item [+] The highest compression ratio.
 \end{itemize}
 
 Disadvantages:
 \begin{enumerate}
-\item [-] High pipeline delay (until a GOF-time).
-\item [-] Error propagation (depending on the block-type decissions),
+\item [-] High pipeline delay (up to GOF-time).
+\item [-] Error propagation (depending on the block-type decisions),
   until the next GOF.
 \item [-] Low temporal scalability.
 \end{enumerate}
