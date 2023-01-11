@@ -28,9 +28,8 @@
 <br />    <span class='sectionToc'>3 <a href='#scalar-quantization-and-ratedistortion-optimization-in-the-transform-domain' id='QQ2-1-4'>Scalar quantization and rate/distortion optimization in the transform domain</a></span>
 <br />    <span class='sectionToc'>4 <a href='#learned-transforms' id='QQ2-1-5'>Learned transforms</a></span>
 <br />    <span class='sectionToc'>5 <a href='#dpartitioning' id='QQ2-1-6'>2D-partitioning</a></span>
-<br />    <span class='sectionToc'>6 <a href='#resources' id='QQ2-1-7'>Resources</a></span>
-<br />    <span class='sectionToc'>7 <a href='#todo' id='QQ2-1-8'>To-Do</a></span>
-<br />    <span class='sectionToc'>8 <a href='#references' id='QQ2-1-9'>References</a></span>
+<br />    <span class='sectionToc'>6 <a href='#todo' id='QQ2-1-8'>To-Do</a></span>
+<br />    <span class='sectionToc'>7 <a href='#references' id='QQ2-1-9'>References</a></span>
    </div>
 <!-- l. 43 --><p class='noindent'>
 </p>
@@ -41,16 +40,16 @@ that the pixels show as a consequence of the spatial (2D) correlation. For examp
 some areas of an image can occur more than once, and usually, neighbor pixels tend
 to have similar values.
 </p><!-- l. 53 --><p class='indent'>   Spatial transforms are image-wise operators. This means that the transform
-inputs an image of pixels and output a matrix of coefficients, which generally
-express the resemblance between the image and a set of basis function. For
-example, after using the DCT <span class='cite'>[<a href='#Xvruiz__DCT'>2</a>]</span>, each coefficient represents a different
+inputs an image of pixels and output a matrix of coefficients, which generally express
+the resemblance between the image and a set of basis function. For example,
+after using the 2D-DCT <span class='cite'>[<a href='#Xvruiz__DCT'>2</a>]</span>, each coefficient represents a different spatial
+frequency<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-2002f2'></a>
                                                                   
 
                                                                   
-frequency<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-2002f2'></a>
 and its value, the amount of the corresponding basis found in the image. In the case
-of the DWT <span class='cite'>[<a href='#Xvruiz__DWT'>3</a>]</span>, the coefficients “speak” additionally about a spatial resolution and
-position.
+of the 2D-DWT <span class='cite'>[<a href='#Xvruiz__DWT'>3</a>]</span>, the coefficients “speak” additionally about a spatial resolution
+and position.
 </p><!-- l. 66 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='benefits-of-spatial-transforms'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Benefits of spatial transforms</h3>
@@ -78,10 +77,10 @@ quantization indexes. Here, depending on how the coefficients are quantized we c
 trace different RD curves (all of them starting (and finising) in the same distortion).
 For example, if we compress each subband independently, we must find the
 quantization step sizes that select the same slope in the RD curve of each
+subband <span class='cite'>[<a href='#Xvruiz__information_theory'>4</a>]</span>.
                                                                   
 
                                                                   
-subband <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>.
 </p><!-- l. 101 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='learned-transforms'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Learned transforms</h3>
@@ -89,33 +88,32 @@ subband <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>.
 is possible to build a machine-krafted transform, specifically tuned for some
 type of images, or at least, capable of determining specific features in the
 images.
-</p><!-- l. 109 --><p class='indent'>   Potentially, Learned-based image (and video) compressors are adaptive
+</p><!-- l. 109 --><p class='indent'>   Potentially, learned-based image (and video) compressors are adaptive
 algorithms that can be more efficient that those in which the transforms are
 pre-defined.
 </p><!-- l. 115 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='dpartitioning'><span class='titlemark'>5   </span> <a id='x1-60005'></a>2D-partitioning</h3>
 <!-- l. 117 --><p class='noindent'>Depending on the content of the image, it can be necessary to divide the image into
-2D-chunks (usually called <span class='ecti-1000'>tiles </span>or <span class='ecti-1000'>blocks</span>), and apply the encoding to each chunk,
-independently. Usually:
+2D-chunks (usually called <span class='ecti-1000'>tiles </span>or <span class='ecti-1000'>blocks</span>), and encode each chunk independently. In
+general:
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-6002x1'>Tiles are used when the image is made up of very different areas (for
      example, text and natural images). Tiles are usually rectangular but can
      have any size, and are usually defined attending to perceptual issues (for
      example, text is not well compressed by lossy configurations).
      </li>
-<li class='enumerate' id='x1-6004x2'>In general, blocks are smaller than tiles and, in most of cases, squared.
-     The block partition can be adaptive and, in this case, should be found
-     using RDO.</li></ol>
-<!-- l. 132 --><p class='noindent'>
+<li class='enumerate' id='x1-6004x2'>Blocks are smaller than tiles and, in most of cases, squared. The block
+     partition can be adaptive and, in this case, should be found using RDO.</li></ol>
+<!-- l. 131 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='resources'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Resources</h3>
-<!-- l. 135 --><p class='noindent'>
+   <h3 class='likesectionHead' id='resources'><a id='x1-70005'></a>Resources</h3>
+<!-- l. 134 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-7002x1'>Use of <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/DWT2D.py'>2D-DWT in VCF</a>.
                                                                   
 
                                                                   
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-7002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/DWT2D.py'>2D-DWT in VCF</a>.
      </li>
 <li class='enumerate' id='x1-7004x2'><a href='https://github.com/vicente-gonzalez-ruiz/DCT/blob/master/docs/YCoCg_2D_DCT_SQ.ipynb'>Image Compression with YCoCg + 2D-DCT</a>.
      </li>
@@ -125,40 +123,42 @@ independently. Usually:
      </li>
 <li class='enumerate' id='x1-7010x5'><a href='https://github.com/fchollet/deep-learning-with-python-notebooks'>Companion  Jupyter  notebooks  for  the  book  “Deep  Learning  with
      Python”</a> <span class='cite'>[<a href='#Xchollet2021deep'>1</a>]</span>.</li></ol>
-<!-- l. 154 --><p class='noindent'>
+<!-- l. 153 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='todo'><span class='titlemark'>7   </span> <a id='x1-80007'></a>To-Do</h3>
-<!-- l. 157 --><p class='noindent'>
+   <h3 class='sectionHead' id='todo'><span class='titlemark'>6   </span> <a id='x1-80006'></a>To-Do</h3>
+<!-- l. 156 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-8002x1'>Modify VCF to use the block-based 2D-DCT in the compression pipeline.
      Complexity 3.
      </li>
-<li class='enumerate' id='x1-8004x2'>Using RDO, determine the optimal block sizes in the DCT-based image
+<li class='enumerate' id='x1-8004x2'>Using RDO, determine the optimal block sizes in the 2D-DCT-based image
      compressor. Implement such codec in VCF. Complexity 4.
+     </li>
+<li class='enumerate' id='x1-8006x3'>Modify VCF to use an autoencoder (at the image level) in the compression
+     pipeline. Complexity 5.
                                                                   
 
                                                                   
      </li>
-<li class='enumerate' id='x1-8006x3'>Modify VCF to use an autoencoder (at the image level) in the compression
-     pipeline. Complexity 5.
-     </li>
 <li class='enumerate' id='x1-8008x4'>Autoencoders can be used in the transform domain. Modify VCF to use
-     an autoencoder with a small squared input to compress the 2D-DWT
-     transform of an image. Notice that, in this case, the parameters of the
-     neural network could be sent with the code-stream. Complexity 6.</li></ol>
-<!-- l. 173 --><p class='noindent'>
+     an autoencoder with a small input to compress the 2D-DWT transform of
+     an image. Notice that, in this case, the parameters of the neural network
+     could be sent with the code-stream. Complexity 6.</li></ol>
+<!-- l. 172 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='references'><span class='titlemark'>8   </span> <a id='x1-90008'></a>References</h3>
+   <h3 class='sectionHead' id='references'><span class='titlemark'>7   </span> <a id='x1-90007'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
- [1]<span class='bibsp'>   </span></span><a id='Xchollet2021deep'></a>Francois  Chollet.   <a href='http://silverio.net.br/heitor/disciplinas/eeica/papers/Livros/[Chollet#-' id='D'><span class='ecti-1000'>eep_Learning_with_Python.pdf]Deep learning with
-   </span><span class='ecti-1000'>Python</span></a>. Simon and Schuster, 2021.
+ [1]<span class='bibsp'>   </span></span><a id='Xchollet2021deep'></a>Francois Chollet. <a href='https://docs.google.com/viewer?a=v&amp;pid=sites&amp;srcid=dW10LmVkdS5wa3xzbmxwfGd4Ojc1ODc1ODY2OTZiOTUzOGQ'><span class='ecti-1000'>Deep learning with Python</span></a>. Simon and Schuster, 2021.
    </p>
    <p class='bibitem'><span class='biblabel'>
  [2]<span class='bibsp'>   </span></span><a id='Xvruiz__DCT'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/DCT'>The DCT (Discrete Cosine Transform)</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
  [3]<span class='bibsp'>   </span></span><a id='Xvruiz__DWT'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/DWT'>The DWT (Discrete Wavelet Transform)</a>.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [4]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/information_theory'>Information Theory</a>.
 </p>
    </div>
    <div class='footnotes'><!-- l. 48 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>We will see this later in this course.</span></p><!-- l. 59 --><p class='indent'> <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>That depends on the position of the coefficient in the transformed domain.</span></p>             </div>

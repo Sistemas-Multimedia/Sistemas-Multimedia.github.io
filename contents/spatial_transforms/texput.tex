@@ -54,12 +54,12 @@ Spatial transforms are image-wise operators. This means that the
 transform inputs an image of pixels and output a matrix of
 coefficients, which generally express the resemblance between the
 image and a set of basis function. For example, after using the
-DCT~\cite{vruiz__DCT}, each coefficient represents a different
+2D-DCT~\cite{vruiz__DCT}, each coefficient represents a different spatial
 frequency\footnote{That depends on the position of the coefficient in
-the transformed domain.} and its value, the amount of the
+  the transformed domain.} and its value, the amount of the
 corresponding basis found in the image. In the case of the
-DWT~\cite{vruiz__DWT}, the coefficients ``speak'' additionally
-about a spatial resolution and position.
+2D-DWT~\cite{vruiz__DWT}, the coefficients ``speak'' additionally about a
+spatial resolution and position.
 
 %}}}
 
@@ -106,7 +106,7 @@ neural network), it is possible to build a machine-krafted transform,
 specifically tuned for some type of images, or at least, capable of
 determining specific features in the images.
 
-Potentially, Learned-based image (and video) compressors are adaptive
+Potentially, learned-based image (and video) compressors are adaptive
 algorithms that can be more efficient that those in which the
 transforms are pre-defined.
 
@@ -116,24 +116,23 @@ transforms are pre-defined.
 
 Depending on the content of the image, it can be necessary to divide
 the image into 2D-chunks (usually called \emph{tiles} or
-\emph{blocks}), and apply the encoding to each chunk,
-independently. Usually:
+\emph{blocks}), and encode each chunk independently. In general:
 \begin{enumerate}
 \item Tiles are used when the image is made up of very different areas
   (for example, text and natural images). Tiles are usually
   rectangular but can have any size, and are usually defined attending
   to perceptual issues (for example, text is not well compressed by
   lossy configurations).
-\item In general, blocks are smaller than tiles and, in most of cases,
+\item Blocks are smaller than tiles and, in most of cases,
   squared. The block partition can be adaptive and, in this case,
   should be found using RDO.
 \end{enumerate}
 
-\section{Resources}
+\section*{Resources}
 %{{{
 
 \begin{enumerate}
-\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/DWT2D.py}{2D-DWT in VCF}.
+\item Use of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/DWT2D.py}{2D-DWT in VCF}.
 \item
   \href{https://github.com/vicente-gonzalez-ruiz/DCT/blob/master/docs/YCoCg_2D_DCT_SQ.ipynb}{Image
     Compression with YCoCg + 2D-DCT}.
@@ -156,12 +155,12 @@ independently. Usually:
 
 \begin{enumerate}
 \item Modify VCF to use the block-based 2D-DCT in the compression pipeline. Complexity 3.
-\item Using RDO, determine the optimal block sizes in the DCT-based
+\item Using RDO, determine the optimal block sizes in the 2D-DCT-based
   image compressor. Implement such codec in VCF. Complexity 4.
-\item Modify VCF to use an autoencoder (at the image level) in the compression pipeline. Complexity 5. 
-\item
-  Autoencoders can be used in the transform domain. Modify VCF to use
-  an autoencoder with a small squared input to compress the 2D-DWT
+\item Modify VCF to use an autoencoder (at the image level) in the
+  compression pipeline. Complexity 5.
+\item Autoencoders can be used in the transform domain. Modify VCF to
+  use an autoencoder with a small input to compress the 2D-DWT
   transform of an image. Notice that, in this case, the parameters of
   the neural network could be sent with the code-stream. Complexity 6.
 % \item Modify CVF to use SPIHT.
@@ -174,7 +173,7 @@ independently. Usually:
 %{{{
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{projects,signal_processing,neural_nets}
+\bibliography{projects,signal_processing,neural_nets,information_theory}
 
 %}}}
 

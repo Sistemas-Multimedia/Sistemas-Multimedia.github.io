@@ -107,19 +107,19 @@ subband should be selected using the same RD-slope in all the subbands (see the
 notebook <a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/RGB/RGB_SQ.ipynb'>Scalar Quantization of RGB images</a>. Notice that this implies to compute
 the RD curves.
 </p><!-- l. 132 --><p class='indent'>   Considering a generic luma/croma transform \(\text {YUV}\), if we expect that \begin {equation}  \lambda ^{\text {Y}} \approx \lambda ^{\text {U}} \approx \lambda ^{\text {V}} \label {eq:optimal_lambda}  \end {equation}
-for a given quantization step size \(\Delta \), the RDO <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span> can be ignored.
-</p><!-- l. 140 --><p class='indent'>   In the notebook <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb'>Scalar Quantization of RGB images</a> we can explore (at least,
-visually) the grade of compilance of Eq. \eqref{eq:optimal_lambda}.
-</p><!-- l. 145 --><p class='noindent'>
+for a given quantization step size \(\Delta \), the RDO <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span> can be ignored. In the notebook
+<a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb'>Scalar Quantization of RGB images</a> we can explore (at least, visually) the grade of
+compilance of Eq. \eqref{eq:optimal_lambda}.
+</p><!-- l. 143 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead' id='resources'><a id='x1-70004'></a>Resources</h4>
-<!-- l. 146 --><p class='noindent'>See the notebooks <a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/3DCT/3DCT_over_RGB.ipynb'>Removing RGB redundancy with the DCT</a>, <a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/YCoCg/YCoCg_over_RGB.ipynb'>Removing RGB
+<!-- l. 144 --><p class='noindent'>See the notebooks <a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/3DCT/3DCT_over_RGB.ipynb'>Removing RGB redundancy with the DCT</a>, <a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/YCoCg/YCoCg_over_RGB.ipynb'>Removing RGB
 redundancy with the \(\text {YCoCg}\) transform</a> and <a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/YCrCb/YCrCb_over_RGB.ipynb'>Removing RGB redundancy with the \(\text {YCrCb}\)
 transform</a>.
-</p><!-- l. 154 --><p class='noindent'>
+</p><!-- l. 152 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='vector-quantization-of-rgb-images'><span class='titlemark'>5   </span> <a id='x1-80005'></a>Vector quantization of \(\text {RGB}\) images</h3>
-<!-- l. 156 --><p class='noindent'>SQ (Scalar Quantization) <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>, <a href='#Xsayood2017introduction'>7</a>]</span> would be an optimal solution only if the image
+<!-- l. 154 --><p class='noindent'>SQ (Scalar Quantization) <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>, <a href='#Xsayood2017introduction'>7</a>]</span> would be an optimal solution only if the image
 colors are uniformly distributed within <a href='https://en.wikipedia.org/wiki/RGB_color_model'>the RGB cube</a>. However, the typical color
                                                                   
 
@@ -130,21 +130,21 @@ this case, depending on the quantization step size <span class='cite'>[<a href=
 because the used colors may not be sampled with sufficient density while at the same
 time the encoding system is considering colors that do not appear in the image at
 all <span class='cite'>[<a href='#Xburger2016digital'>1</a>]</span>.
-</p><!-- l. 170 --><p class='indent'>   On the other hand, VQ (Vector Quantization) <span class='cite'>[<a href='#Xvruiz__vector_quantization'>6</a>, <a href='#Xsayood2017introduction'>7</a>]</span> applied to the color domain
+</p><!-- l. 168 --><p class='indent'>   On the other hand, VQ (Vector Quantization) <span class='cite'>[<a href='#Xvruiz__vector_quantization'>6</a>, <a href='#Xsayood2017introduction'>7</a>]</span> applied to the color domain
 does not treat the individual \(\text {RGB}\) components separately as does scalar quantization, but
 each used color vector \({\mathbf C}_i = (\text {R}_i, \text {G}_i, \text {B}_i )\) in the image is treated as a minimum structure. VQ
 determines a code-book of \(K\) code-vectors (centroids) that minimizes the distortion
 between the original image and the reconstructed one. Notice that the code-book
 must be known by the decoder to find a reconstruction.
-</p><!-- l. 180 --><p class='noindent'>
+</p><!-- l. 178 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead' id='resources1'><a id='x1-90005'></a>Resources</h4>
-<!-- l. 181 --><p class='noindent'>See the notebooks <a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/RGB_VQ.ipynb'>Vector Quantization (in the color domain) of a RGB image</a> and
+<!-- l. 179 --><p class='noindent'>See the notebooks <a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/RGB_VQ.ipynb'>Vector Quantization (in the color domain) of a RGB image</a> and
 <a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb'>Vector Quantization (in the 2D domain) of a color (RGB) image</a>.
-</p><!-- l. 187 --><p class='noindent'>
+</p><!-- l. 185 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='todo'><span class='titlemark'>6   </span> <a id='x1-100006'></a>To-Do</h3>
-<!-- l. 188 --><p class='noindent'>
+<!-- l. 186 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-10002x1'>Modify VCF to allow the use of the (color) \(\text {DCT}\) in the compression pipeline.
      Complexity 1.
@@ -157,7 +157,7 @@ must be known by the decoder to find a reconstruction.
                                                                   
 
                                                                   
-<!-- l. 197 --><p class='noindent'>
+<!-- l. 195 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='references'><span class='titlemark'>7   </span> <a id='x1-110007'></a>References</h3>
    <div class='thebibliography'>
