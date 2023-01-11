@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/tree/master/contents/spatial_transforms'>Spatial Transforms</a></h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>January 9, 2023</span></div>
+<div class='date'><span class='ecrm-1200'>January 11, 2023</span></div>
    </div>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -41,29 +41,30 @@ that the pixels show as a consequence of the spatial (2D) correlation. For examp
 some areas of an image can occur more than once, and usually, neighbor pixels tend
 to have similar values.
 </p><!-- l. 53 --><p class='indent'>   Spatial transforms are image-wise operators. This means that the transform
-inputs an image of pixels and output a matrix of coefficients, which generally express
-the resemblance between the image and a set of basis function. For example, after
-using the DCT <span class='cite'>[<a href='#Xvruiz__DCT'>2</a>]</span>, each (index) coefficient represents a different frequency and its
+inputs an image of pixels and output a matrix of coefficients, which generally
+express the resemblance between the image and a set of basis function. For
+example, after using the DCT <span class='cite'>[<a href='#Xvruiz__DCT'>2</a>]</span>, each coefficient represents a different
                                                                   
 
                                                                   
-value, the amount of the corresponding basis found in the image. In the case of the
-DWT <span class='cite'>[<a href='#Xvruiz__DWT'>3</a>]</span>, the index of the coefficients “speaks” also about a spatial resolution and
+frequency<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-2002f2'></a>
+and its value, the amount of the corresponding basis found in the image. In the case
+of the DWT <span class='cite'>[<a href='#Xvruiz__DWT'>3</a>]</span>, the coefficients “speak” additionally about a spatial resolution and
 position.
-</p><!-- l. 65 --><p class='noindent'>
+</p><!-- l. 66 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='benefits-of-spatial-transforms'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Benefits of spatial transforms</h3>
-<!-- l. 68 --><p class='noindent'>Spatial transforms provide:
+<!-- l. 69 --><p class='noindent'>Spatial transforms provide:
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-3002x1'><span class='ecbx-1000'>Energy   concentration:  </span>A   small   set   of   (usually   low-frequency)
-     coefficients (in general) represents most of the information (energy) of
-     the  image.  This  decreases  the  entropy  and  increases  the  range  of  the
-     quantization step sizes, because the dynamic range of the coefficients is
-     higher than the dynamic range of the pixels.
+<li class='enumerate' id='x1-3002x1'><span class='ecbx-1000'>Energy   concentration:  </span>Usually,   a   small   set   of   (low-frequency)
+     coefficients represents most of the information (energy) of the image. This
+     decreases the entropy and increases the range of the quantization step
+     sizes, because the dynamic range of the coefficients is higher than the
+     dynamic range of the pixels.
      </li>
 <li class='enumerate' id='x1-3004x2'><span class='ecbx-1000'>Low/High frequency analysis: </span>Our visual system is more sensitive to
      the low frequencies (for this reason, the <a href='https://en.wikipedia.org/wiki/Contrast_(vision)#Contrast_sensitivity'>contrast sensitiviy function</a> is not
-     flat.
+     flat).
      </li>
 <li class='enumerate' id='x1-3006x3'><span class='ecbx-1000'>Multiresolution:  </span>Depending  on  the  transform,  it  is  possible  to
      reconstruct the original image by resolution levels <span class='cite'>[<a href='#Xvruiz__DWT'>3</a>]</span>.</li></ol>
@@ -77,10 +78,10 @@ quantization indexes. Here, depending on how the coefficients are quantized we c
 trace different RD curves (all of them starting (and finising) in the same distortion).
 For example, if we compress each subband independently, we must find the
 quantization step sizes that select the same slope in the RD curve of each
-subband.
                                                                   
 
                                                                   
+subband <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>.
 </p><!-- l. 101 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='learned-transforms'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Learned transforms</h3>
@@ -88,31 +89,35 @@ subband.
 is possible to build a machine-krafted transform, specifically tuned for some
 type of images, or at least, capable of determining specific features in the
 images.
-</p><!-- l. 111 --><p class='noindent'>
+</p><!-- l. 109 --><p class='indent'>   Potentially, Learned-based image (and video) compressors are adaptive
+algorithms that can be more efficient that those in which the transforms are
+pre-defined.
+</p><!-- l. 115 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='dpartitioning'><span class='titlemark'>5   </span> <a id='x1-60005'></a>2D-partitioning</h3>
-<!-- l. 113 --><p class='noindent'>Depending on the content of the image, it can be necessary to divide the image
-into tiles or blocks, and apply the encoding to each block, independently.
-Usually:
+<!-- l. 117 --><p class='noindent'>Depending on the content of the image, it can be necessary to divide the image into
+2D-chunks (usually called <span class='ecti-1000'>tiles </span>or <span class='ecti-1000'>blocks</span>), and apply the encoding to each chunk,
+independently. Usually:
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-6002x1'>Tiles are used when the image is made up of very different areas (for
      example, text and natural images). Tiles are usually rectangular but can
      have any size, and are usually defined attending to perceptual issues (for
      example, text is not well compressed by lossy configurations).
      </li>
-<li class='enumerate' id='x1-6004x2'>In general, blocks are smaller than tiles and usually squared. The block
-     partition can be adaptive and should be found using RDO.</li></ol>
-<!-- l. 127 --><p class='noindent'>
+<li class='enumerate' id='x1-6004x2'>In general, blocks are smaller than tiles and, in most of cases, squared.
+     The block partition can be adaptive and, in this case, should be found
+     using RDO.</li></ol>
+<!-- l. 132 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='resources'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Resources</h3>
-<!-- l. 130 --><p class='noindent'>
+<!-- l. 135 --><p class='noindent'>
+                                                                  
+
+                                                                  
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-7002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/DWT2D.py'>2D-DWT in VCF</a>.
      </li>
 <li class='enumerate' id='x1-7004x2'><a href='https://github.com/vicente-gonzalez-ruiz/DCT/blob/master/docs/YCoCg_2D_DCT_SQ.ipynb'>Image Compression with YCoCg + 2D-DCT</a>.
-                                                                  
-
-                                                                  
      </li>
 <li class='enumerate' id='x1-7006x3'><a href='https://www.tensorflow.org/tutorials/generative/data_compression'>Learned data compression</a>.
      </li>
@@ -120,23 +125,28 @@ Usually:
      </li>
 <li class='enumerate' id='x1-7010x5'><a href='https://github.com/fchollet/deep-learning-with-python-notebooks'>Companion  Jupyter  notebooks  for  the  book  “Deep  Learning  with
      Python”</a> <span class='cite'>[<a href='#Xchollet2021deep'>1</a>]</span>.</li></ol>
-<!-- l. 149 --><p class='noindent'>
+<!-- l. 154 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='todo'><span class='titlemark'>7   </span> <a id='x1-80007'></a>To-Do</h3>
-<!-- l. 152 --><p class='noindent'>
+<!-- l. 157 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-8002x1'>Modify VCF to use the block-based 2D-DCT in the compression pipeline.
      Complexity 3.
      </li>
 <li class='enumerate' id='x1-8004x2'>Using RDO, determine the optimal block sizes in the DCT-based image
      compressor. Implement such codec in VCF. Complexity 4.
-     </li>
-<li class='enumerate' id='x1-8006x3'>Modify VCF to use an autoencoder (at the image level) in the compression
-     pipeline. Complexity 5.</li></ol>
                                                                   
 
                                                                   
-<!-- l. 162 --><p class='noindent'>
+     </li>
+<li class='enumerate' id='x1-8006x3'>Modify VCF to use an autoencoder (at the image level) in the compression
+     pipeline. Complexity 5.
+     </li>
+<li class='enumerate' id='x1-8008x4'>Autoencoders can be used in the transform domain. Modify VCF to use
+     an autoencoder with a small squared input to compress the 2D-DWT
+     transform of an image. Notice that, in this case, the parameters of the
+     neural network could be sent with the code-stream. Complexity 6.</li></ol>
+<!-- l. 173 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='references'><span class='titlemark'>8   </span> <a id='x1-90008'></a>References</h3>
    <div class='thebibliography'>
@@ -151,7 +161,7 @@ Usually:
  [3]<span class='bibsp'>   </span></span><a id='Xvruiz__DWT'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/DWT'>The DWT (Discrete Wavelet Transform)</a>.
 </p>
    </div>
-   <div class='footnotes'><!-- l. 48 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>We will see this later in this course.</span></p>                                                                </div>
+   <div class='footnotes'><!-- l. 48 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>We will see this later in this course.</span></p><!-- l. 59 --><p class='indent'> <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>That depends on the position of the coefficient in the transformed domain.</span></p>             </div>
  
 </body> 
 </html>

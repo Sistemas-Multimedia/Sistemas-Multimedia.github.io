@@ -54,11 +54,12 @@ Spatial transforms are image-wise operators. This means that the
 transform inputs an image of pixels and output a matrix of
 coefficients, which generally express the resemblance between the
 image and a set of basis function. For example, after using the
-DCT~\cite{vruiz__DCT}, each (index) coefficient represents a different
-frequency and its value, the amount of the corresponding basis found
-in the image. In the case of the DWT~\cite{vruiz__DWT}, the index of
-the coefficients ``speaks'' also about a spatial resolution and
-position.
+DCT~\cite{vruiz__DCT}, each coefficient represents a different
+frequency\footnote{That depends on the position of the coefficient in
+the transformed domain.} and its value, the amount of the
+corresponding basis found in the image. In the case of the
+DWT~\cite{vruiz__DWT}, the coefficients ``speak'' additionally
+about a spatial resolution and position.
 
 %}}}
 
@@ -67,16 +68,15 @@ position.
 
 Spatial transforms provide:
 \begin{enumerate}
-\item \textbf{Energy concentration:} A small set of (usually
-  low-frequency) coefficients (in general) represents most of the
-  information (energy) of the image. This decreases the entropy and
-  increases the range of the quantization step sizes, because the
-  dynamic range of the coefficients is higher than the dynamic range
-  of the pixels.
+\item \textbf{Energy concentration:} Usually, a small set of
+  (low-frequency) coefficients represents most of the information
+  (energy) of the image. This decreases the entropy and increases the
+  range of the quantization step sizes, because the dynamic range of
+  the coefficients is higher than the dynamic range of the pixels.
 \item \textbf{Low/High frequency analysis:} Our visual system is more
   sensitive to the low frequencies (for this reason, the
   \href{https://en.wikipedia.org/wiki/Contrast_(vision)#Contrast_sensitivity}{contrast
-    sensitiviy function} is not flat.
+    sensitiviy function} is not flat).
 \item \textbf{Multiresolution:} Depending on the transform, it is
   possible to reconstruct the original image by resolution
   levels~\cite{vruiz__DWT}.
@@ -94,7 +94,7 @@ depending on how the coefficients are quantized we can trace different
 RD curves (all of them starting (and finising) in the same
 distortion). For example, if we compress each subband independently,
 we must find the quantization step sizes that select the same slope in
-the RD curve of each subband.
+the RD curve of each subband~\cite{vruiz__information_theory}.
 
 %}}}
 
@@ -106,12 +106,17 @@ neural network), it is possible to build a machine-krafted transform,
 specifically tuned for some type of images, or at least, capable of
 determining specific features in the images.
 
+Potentially, Learned-based image (and video) compressors are adaptive
+algorithms that can be more efficient that those in which the
+transforms are pre-defined.
+
 %}}}
 
 \section{2D-partitioning}
 
 Depending on the content of the image, it can be necessary to divide
-the image into tiles or blocks, and apply the encoding to each block,
+the image into 2D-chunks (usually called \emph{tiles} or
+\emph{blocks}), and apply the encoding to each chunk,
 independently. Usually:
 \begin{enumerate}
 \item Tiles are used when the image is made up of very different areas
@@ -119,9 +124,9 @@ independently. Usually:
   rectangular but can have any size, and are usually defined attending
   to perceptual issues (for example, text is not well compressed by
   lossy configurations).
-\item In general, blocks are smaller than tiles and usually
-  squared. The block partition can be adaptive and should be found
-  using RDO.
+\item In general, blocks are smaller than tiles and, in most of cases,
+  squared. The block partition can be adaptive and, in this case,
+  should be found using RDO.
 \end{enumerate}
 
 \section{Resources}
@@ -154,7 +159,13 @@ independently. Usually:
 \item Using RDO, determine the optimal block sizes in the DCT-based
   image compressor. Implement such codec in VCF. Complexity 4.
 \item Modify VCF to use an autoencoder (at the image level) in the compression pipeline. Complexity 5. 
-%\item Modify CVF to use SPIHT.
+\item
+  Autoencoders can be used in the transform domain. Modify VCF to use
+  an autoencoder with a small squared input to compress the 2D-DWT
+  transform of an image. Notice that, in this case, the parameters of
+  the neural network could be sent with the code-stream. Complexity 6.
+% \item Modify CVF to use SPIHT.
+% \item LPT can replace the DWT. Can we travel from LPT to DWT using any filter?
 \end{enumerate}
 
 %}}}
@@ -169,6 +180,7 @@ independently. Usually:
 
 \begin{comment}
 
+  
 \section{Tight Laplacian Pyramid Transform (TLPT)}
 %{{{
 
