@@ -34,14 +34,15 @@ potentially increases the compression ratios.
 Most video coding standards use
 \href{https://en.wikipedia.org/wiki/Motion_compensation}{Motion
   Compensation (MC)} to generate the residual
-frames. Therefore, MC exploits the temporal correlation and reduce the
-entropy of the residuals\footnote{The better the prediction, the lower
-  the entropy of the residuals.}. Basically, MC consists in
-substracting to each original frame a prediction (frame) build with the
-information that must be also avaliable\footnote{In order to make a
-  reversible process.} at the decoder~\cite{vruiz__MEC}. Notice that,
-after using MC, the number of residual-pixels is equal to the number
-of pixels in the compensated frame.
+frames~\cite{vruiz__MEC}. Therefore, MC exploits the temporal
+correlation and reduce the entropy of the residuals\footnote{The
+  better the prediction, the lower the entropy of the
+  residuals.}. Basically, MC consists in substracting to each original
+frame a prediction (frame) build with the information that must be
+also avaliable\footnote{In order to make a reversible process.} at the
+decoder. Notice that, after using MC, the number of residual-pixels is
+equal to the number of pixels in the compensated frame.\footnote{At
+  least, when we compensate in the image domain.}
 
 %}}}
 
