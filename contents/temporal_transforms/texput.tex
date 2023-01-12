@@ -87,27 +87,11 @@ partition (see the Section~\ref{sec:random}).
 \section{Block-based MC}
 
 The MC schemes used in most video coding standards compensate blocks
-of pixels~\cite{vruiz__BBMC}. In this context, depending of the block
-decision mode implemented in the RDO procedure\footnote{Obviously, the
-  part of the RDO procedure that controls the block-type.}, blocks can
-be:
-\begin{enumerate}
-\item \textbf{I-type}, when the block is encoded without considering
-  any other external reference information. In this case, no resudue
-  is generated), and a I-type block represents only texture.
-\item \textbf{P-type}, if there is one reference (block) for the
-  (predicted) block, which belongs to a previous frame. Now we encode
-  a block with residual texture and a motion vector per block. P-type
-  blocks require less data than I-type blocks (this is guaranteed by
-  the RDO).
-\item \textbf{B-type}, if there are two or more references for the
-  block, anterior (past) and posterior (future). By definition (RDO),
-  it is more RD-advantageous to use B-type blocks compared to P-type
-  blocks, because the entropy of the residual texture decreases (even
-  considering that now we need one motion vector per reference).
-\item \textbf{S-type}, if the residue is so small that it is more
-  beneficial to consider that it is zero.
-\end{enumerate}
+of pixels. In this context, depending of the block decision mode
+implemented in the RDO procedure\footnote{Obviously, the part of the
+  RDO procedure that controls the block-type.}, blocks can be of
+different type (I (intra), P (predicted), B
+(bidirectionally-predicted) and S (skipped))~\cite{vruiz__MEC}.
 
 \section{I-type frames, P-type frames and B-type frames}
 
