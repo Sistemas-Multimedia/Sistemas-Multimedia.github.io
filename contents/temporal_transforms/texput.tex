@@ -14,21 +14,17 @@
 
 In general, neighbour \emph{frames} (images) in (video)
 \emph{sequences} exhibit a high temporal correlation that can be
-exploited to increase the compression ratios. The removal of such
-redundancy can be performed by transforms applied to the temporal
-domain.
+exploited to increase the compression ratios. This correlation
+generates a temporal redundancy that can be removed using a temporal
+transformation.
 
 A temporal transform inputs two o more frames\footnote{With pixels or
   coefficients, depending on the current domain of the frame. Notice,
   for example, that if the frame is in the DWT domain, we should refer
-  to it as a decomposition.}, and outputs at least one \emph{residual}
-(frame) in which the residual pixels have a higher dynamic range but
-also a smaller entropy. This potentially increases the compression
-ratios.
-
-Notice that, since we already handle the concept of FPS (Frames Per
-Second), we can also have a bit-rate (usually expressed in kilo bits
-per second (kbps) or mega bits per second (Mbps)).
+  to it as a ``decomposition'' instead of as a ``frame''.}, and
+outputs at least one \emph{residual} (frame) in which the residual
+pixels have a higher dynamic range but also a smaller entropy. This
+potentially increases the compression ratios.
 
 %}}}
 
@@ -38,12 +34,12 @@ per second (kbps) or mega bits per second (Mbps)).
 Most video coding standards use
 \href{https://en.wikipedia.org/wiki/Motion_compensation}{Motion
   Compensation (MC)} to generate the residual
-frames. Therefore, MC exploits the temporal correlation to reduce the
+frames. Therefore, MC exploits the temporal correlation and reduce the
 entropy of the residuals\footnote{The better the prediction, the lower
   the entropy of the residuals.}. Basically, MC consists in
 substracting to each original frame a prediction (frame) build with the
 information that must be also avaliable\footnote{In order to make a
-  reversible process.} at the decoder~\cite{vruiz__MC}. Notice that,
+  reversible process.} at the decoder~\cite{vruiz__MEC}. Notice that,
 after using MC, the number of residual-pixels is equal to the number
 of pixels in the compensated frame.
 
@@ -52,11 +48,15 @@ of pixels in the compensated frame.
 \section{Motion Estimation (ME) and RDO}
 %{{{
 
-In general, MC requires to estimate the motion~\cite{vruiz__ME}
-between the frames that are compensated. ME is a key process because
-it will affect to the quality of the predictions and to the
-bit-rate.\footnote{In general, the distortion $D$ will decrease if the
-  ``motion part'' of the bit-rate $R$ increases.}
+In general, MC requires to estimate the
+motion~\cite{vruiz__MEC,vruiz__OFME} between the frames that are
+compensated. ME is a key process because it will affect to the quality
+of the predictions and therefore, to the distortion and the
+bit-rate\footnote{Notice that, since we are handling the concept of
+  FPS (Frames Per Second), we can also have a bit-rate (usually
+  expressed in kilo bits per second (kbps) or mega bits per second
+  (Mbps))}. In general, the distortion $D$ will decrease if the
+``motion part'' of the bit-rate $R$ increases.
 
 ME can be computed to minimize the distortion\footnote{Including, the
   visual distortion.} $D$ of the residues, or can be computed to
