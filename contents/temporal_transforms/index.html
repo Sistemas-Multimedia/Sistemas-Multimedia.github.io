@@ -19,22 +19,19 @@
 
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/tree/master/contents/temporal_transforms'>Temporal Transforms</a></h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>January 14, 2023</span></div>
+<div class='date'><span class='ecrm-1200'>January 15, 2023</span></div>
    </div>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
     <span class='sectionToc'>1 <a href='#temporal-correlation' id='QQ2-1-2'>Temporal correlation</a></span>
-<br />    <span class='sectionToc'>2 <a href='#motion-compensation-mc' id='QQ2-1-3'>Motion Compensation (MC)</a></span>
-<br />    <span class='sectionToc'>3 <a href='#motion-estimation-me-and-rdo' id='QQ2-1-4'>Motion Estimation (ME) and RDO</a></span>
+<br />    <span class='sectionToc'>2 <a href='#motion-compensation' id='QQ2-1-3'>Motion compensation</a></span>
+<br />    <span class='sectionToc'>3 <a href='#motion-estimation' id='QQ2-1-4'>Motion estimation</a></span>
 <br />    <span class='sectionToc'>4 <a href='#gofing' id='QQ2-1-5'>GOF-ing</a></span>
-<br />    <span class='sectionToc'>5 <a href='#blockbased-mc' id='QQ2-1-6'>Block-based MC</a></span>
-<br />    <span class='sectionToc'>6 <a href='#itype-frames-ptype-frames-and-btype-frames' id='QQ2-1-7'>I-type frames, P-type frames and B-type frames</a></span>
-<br />    <span class='sectionToc'>7 <a href='#intra-coding-iii' id='QQ2-1-8'>Intra coding (III...)</a></span>
-<br />    <span class='sectionToc'>8 <a href='#lowdelay-coding-ipp' id='QQ2-1-9'>Low-delay coding (IPP...)</a></span>
-<br />    <span class='sectionToc'>9 <a href='#randomaccess-mode-ibpb' id='QQ2-1-10'>“Random”-access mode (IBPB...)</a></span>
-<br />    <span class='sectionToc'>10 <a href='#resources' id='QQ2-1-11'>Resources</a></span>
-<br />    <span class='sectionToc'>11 <a href='#todo' id='QQ2-1-12'>To-Do</a></span>
-<br />    <span class='sectionToc'>12 <a href='#references' id='QQ2-1-13'>References</a></span>
+<br />    <span class='sectionToc'>5 <a href='#blockbased-mc-and-rdo' id='QQ2-1-6'>Block-based MC and RDO</a></span>
+<br />    <span class='sectionToc'>6 <a href='#frame-types' id='QQ2-1-7'>Frame types</a></span>
+<br />    <span class='sectionToc'>7 <a href='#resources' id='QQ2-1-8'>Resources</a></span>
+<br />    <span class='sectionToc'>8 <a href='#todo' id='QQ2-1-9'>To-Do</a></span>
+<br />    <span class='sectionToc'>9 <a href='#references' id='QQ2-1-10'>References</a></span>
    </div>
 <!-- l. 12 --><p class='noindent'>
 </p>
@@ -43,19 +40,19 @@
 correlation that can be exploited to increase the compression ratios. This correlation
 generates a temporal redundancy that can be removed using a temporal
 transformation.
-                                                                  
-
-                                                                  
 </p><!-- l. 21 --><p class='indent'>   A temporal transform inputs two o more
 frames<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-2001f1'></a>,
 and outputs at least one <span class='ecti-1000'>residual </span>(frame) in which the residual pixels have a higher
 dynamic range but also a smaller entropy. This potentially increases the compression
-ratios.
-</p><!-- l. 31 --><p class='noindent'>
+                                                                  
+
+                                                                  
+ratios (in the case of video, usually measures in kbps)..
+</p><!-- l. 32 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='motion-compensation-mc'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Motion Compensation (MC)</h3>
-<!-- l. 34 --><p class='noindent'>Most video coding standards use <a href='https://en.wikipedia.org/wiki/Motion_compensation'>Motion Compensation (MC)</a> to generate the residual
-frames <span class='cite'>[<a href='#Xvruiz__MEC'>1</a>]</span>. Therefore, MC exploits the temporal correlation and reduce the entropy of the
+   <h3 class='sectionHead' id='motion-compensation'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Motion compensation</h3>
+<!-- l. 35 --><p class='noindent'>Most video coding standards use <a href='https://en.wikipedia.org/wiki/Motion_compensation'>Motion Compensation (MC)</a> to generate the residual
+frames <span class='cite'>[<a href='#Xvruiz__MC'>1</a>]</span>. Therefore, MC exploits the temporal correlation and reduce the entropy of the
 residuals<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-3001f2'></a>.
 Basically, MC consists in substracting to each original frame a
 prediction (frame) build with the information that must be also
@@ -63,160 +60,96 @@ avaliable<span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='
 at the decoder. Notice that, after using MC, the number of
 residual-pixels is equal to the number of pixels in the compensated
 frame.<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-3003f4'></a>
-</p><!-- l. 49 --><p class='noindent'>
+</p><!-- l. 50 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='motion-estimation-me-and-rdo'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Motion Estimation (ME) and RDO</h3>
-<!-- l. 52 --><p class='noindent'>In general, MC requires to estimate the motion <span class='cite'>[<a href='#Xvruiz__MEC'>1</a>, <a href='#Xvruiz__OFME'>2</a>]</span> between the
-frames that are compensated. ME is a key process because it will affect
-to the quality of the predictions and therefore, to the distortion and the
-bit-rate<span class='footnote-mark'><a href='#fn5x0' id='fn5x0-bk'><sup class='textsuperscript'>5</sup></a></span><a id='x1-4001f5'></a>.
-In general, the distortion \(D\) will decrease if the “motion part” of the bit-rate \(R\)
-increases.
-</p><!-- l. 62 --><p class='indent'>   ME can be computed to minimize the
-distortion<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-4002f6'></a> \(D\)
-of the residues, or can be computed to minimize the lagrangian \begin {equation}  J = R + \lambda D,  \end {equation}
-which also takes into consideration the bit-rate \(R\) generated by the entropy encoding of
-the motion data and the residues.
-</p><!-- l. 71 --><p class='indent'>   In general, most video codecs only minimize \(D\).
-</p><!-- l. 75 --><p class='noindent'>
+   <h3 class='sectionHead' id='motion-estimation'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Motion estimation</h3>
+<!-- l. 53 --><p class='noindent'>To compensate the motion we need first to estimate it using Motion Estimation (ME)
+techniques <span class='cite'>[<a href='#Xvruiz__ME'>2</a>]</span>. Using the motion fiels generated by the motion estimator, both the
+encoder and the decoder generate the predictions that will de substracted (added in
+the case of the decoder) from the predicted images <span class='cite'>[<a href='#Xvruiz__MC'>1</a>]</span>.
+</p><!-- l. 61 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='gofing'><span class='titlemark'>4   </span> <a id='x1-50004'></a>GOF-ing</h3>
-<!-- l. 77 --><p class='noindent'>The RD performance of ME/MC depends on the amount of temporal redundancy in
+<!-- l. 63 --><p class='noindent'>The RD performance of ME/MC depends on the amount of temporal redundancy in
 the sequence. If such amount is low, it can be more RD-efficient to interrupt the MC
-                                                                  
-
-                                                                  
 process. The set of consecutive frames in which MC is active is usually known as a
-GOF<span class='footnote-mark'><a href='#fn7x0' id='fn7x0-bk'><sup class='textsuperscript'>7</sup></a></span><a id='x1-5001f7'></a>
-(Group of Frames). Notice that (under the RD prism) the length of the GOFs is
-variable and therefore, the GOF partition can be an adaptive process.
-</p><!-- l. 85 --><p class='indent'>   However, in some contexts it can be necessary to use a fixed GOP partition (see
-the Section <a href='#randomaccess-mode-ibpb'>9<!-- tex4ht:ref: sec:random  --></a>).
-</p><!-- l. 88 --><p class='noindent'>
+GOF<span class='footnote-mark'><a href='#fn5x0' id='fn5x0-bk'><sup class='textsuperscript'>5</sup></a></span><a id='x1-5001f5'></a>
+(Group of Frames). Notice that (under the RD prism) the length of the
+GOFs is variable and therefore, the GOF partition should be an adaptive
+process.
+</p><!-- l. 72 --><p class='indent'>   However, in some contexts<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-5002f6'></a>
+it can be necessary to use a fixed GOP partition (see the Section <span class='ecbx-1000'>??</span>).
+</p><!-- l. 76 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='blockbased-mc'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Block-based MC</h3>
-<!-- l. 90 --><p class='noindent'>The MC schemes used in most video coding standards compensate blocks of pixels.
+   <h3 class='sectionHead' id='blockbased-mc-and-rdo'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Block-based MC and RDO</h3>
+                                                                  
+
+                                                                  
+<!-- l. 78 --><p class='noindent'>The MC schemes used in most video coding standards compensate blocks of pixels <span class='cite'>[<a href='#Xvruiz__ME'>2</a>]</span>.
 In this context, depending of the block decision mode implemented in the RDO
-procedure<span class='footnote-mark'><a href='#fn8x0' id='fn8x0-bk'><sup class='textsuperscript'>8</sup></a></span><a id='x1-6001f8'></a>,
+procedure<span class='footnote-mark'><a href='#fn7x0' id='fn7x0-bk'><sup class='textsuperscript'>7</sup></a></span><a id='x1-6001f7'></a>,
 blocks can be of different type (I (intra), P (predicted), B (bidirectionally-predicted)
-and S (skipped)) <span class='cite'>[<a href='#Xvruiz__MEC'>1</a>]</span>.
-</p><!-- l. 97 --><p class='noindent'>
+and S (skipped)) <span class='cite'>[<a href='#Xvruiz__MC'>1</a>]</span>.
+</p><!-- l. 85 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='itype-frames-ptype-frames-and-btype-frames'><span class='titlemark'>6   </span> <a id='x1-70006'></a>I-type frames, P-type frames and B-type frames</h3>
-<!-- l. 99 --><p class='noindent'>Frames can be:
-</p><!-- l. 101 --><p class='indent'>
+   <h3 class='sectionHead' id='frame-types'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Frame types</h3>
+<!-- l. 87 --><p class='noindent'>Depending on the type of blocks used in the frames, we have different types of
+frames: I, P and B <span class='cite'>[<a href='#Xvruiz__MC'>1</a>]</span>. For example, in the intra coding mode, all the frames are
+I-type. In Motion Compensated Temporal Filtering <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>, the frames are I or
+B.
+</p><!-- l. 92 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='resources'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Resources</h3>
+<!-- l. 93 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-7002x1'>I-type (or simly a I-frame), if only uses I-type blocks.
+<li class='enumerate' id='x1-8002x1'><a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/full_search_block_ME.ipynb'>Full search block-based ME (Motion Estimation)</a>.
      </li>
-<li class='enumerate' id='x1-7004x2'>P-type frame (P-frame), that can use I, P, and S-type blocks.
+<li class='enumerate' id='x1-8004x2'><a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/full_search_dense_ME.ipynb'>Full search dense (1x1) ME</a>.
      </li>
-<li class='enumerate' id='x1-7006x3'>B-type frame (B-frame), if I, P, S and B-type blocks can be used.</li></ol>
-<!-- l. 108 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='intra-coding-iii'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Intra coding (III...)</h3>
+<li class='enumerate' id='x1-8006x3'><a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/farneback_ME.ipynb'>Farnebäck’s motion estimation</a>.
+     </li>
+<li class='enumerate' id='x1-8008x4'><a href='https://github.com/Sistemas-Multimedia/MRVC'>Multi-Resolution Video Coding (MRVC)</a>.</li></ol>
                                                                   
 
                                                                   
-<!-- l. 110 --><p class='noindent'>In the intra coding mode, all frames are encoded as independent images (no MC has
-been used at all, and therefore, all blocks in the frames are I-type). Intra-coded
-frames are also called keyframes.
-</p><!-- l. 114 --><p class='indent'>   Advantages: </p>
-     <ul class='itemize1'>
-     <li class='itemize'>Minimal pipeline delay.
-     </li>
-     <li class='itemize'>Minimal buffering.
-     </li>
-     <li class='itemize'>No error propagation.
-     </li>
-     <li class='itemize'>Maximum temporal scalability.</li></ul>
-<!-- l. 122 --><p class='indent'>   Disadvantages:
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-8001x7'>Low compression ratios.</li></ol>
-<!-- l. 127 --><p class='indent'>   Mainly used in video edition.
-</p><!-- l. 129 --><p class='noindent'>
+<!-- l. 100 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='lowdelay-coding-ipp'><span class='titlemark'>8   </span> <a id='x1-90008'></a>Low-delay coding (IPP...)</h3>
-<!-- l. 131 --><p class='noindent'>In the low-delay coding mode, only the first frame is intra-coded and the rest,
-prediction-coded using unidirectional motion compensation.
-</p><!-- l. 141 --><p class='indent'>   Advantages: </p>
-     <ul class='itemize1'>
-     <li class='itemize'>Low pipeline delay (one frame-time).
-     </li>
-     <li class='itemize'>Usually, only one frame buffering.
-                                                                  
-
-                                                                  
-     </li>
-     <li class='itemize'>Medium-high compression ratios.</li></ul>
-<!-- l. 148 --><p class='indent'>   Disadvantages:
+   <h3 class='sectionHead' id='todo'><span class='titlemark'>8   </span> <a id='x1-90008'></a>To-Do</h3>
+<!-- l. 103 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-9001x8'>Error propagation sequentially, until the next GOF.
-     </li>
-<li class='enumerate' id='x1-9002x8'>Low temporal scalability.</li></ol>
-<!-- l. 154 --><p class='indent'>   Mainly used in video surveillance.
-</p><!-- l. 156 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='randomaccess-mode-ibpb'><span class='titlemark'>9   </span> <a id='x1-100009'></a>“Random”-access mode (IBPB...)</h3>
-<!-- l. 159 --><p class='noindent'>In the random-access mode it is allowed to use B-type frames. Notice that. by
-definition, the low-delay coding mode is also a random-access mode.
-</p><!-- l. 168 --><p class='indent'>   Advantages: </p>
-     <ul class='itemize1'>
-     <li class='itemize'>The highest compression ratio.</li></ul>
-<!-- l. 173 --><p class='indent'>   Disadvantages:
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-10001x9'>High pipeline delay (up to GOF-time).
-     </li>
-<li class='enumerate' id='x1-10002x9'>Error propagation (depending on the block-type decisions), until the next
-     GOF.
-     </li>
-<li class='enumerate' id='x1-10003x9'>Low temporal scalability.</li></ol>
-                                                                  
-
-                                                                  
-<!-- l. 181 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='resources'><span class='titlemark'>10   </span> <a id='x1-1100010'></a>Resources</h3>
-<!-- l. 183 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='todo'><span class='titlemark'>11   </span> <a id='x1-1200011'></a>To-Do</h3>
-<!-- l. 186 --><p class='noindent'>
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-12002x1'>Modify VCF to encode/decode a sequence of images using a III... scheme.
+<li class='enumerate' id='x1-9002x1'>Modify VCF to encode/decode a sequence of images using a III... scheme.
      Complexity 1.
      </li>
-<li class='enumerate' id='x1-12004x2'>Modify VCF to encode/decode a sequence of images using a IPP... scheme,
+<li class='enumerate' id='x1-9004x2'>Modify VCF to encode/decode a sequence of images using a IPP... scheme,
      without motion compensation. Complexity 2.
      </li>
-<li class='enumerate' id='x1-12006x3'>Modify VCF to encode/decode a sequence of images using a IPP... scheme,
+<li class='enumerate' id='x1-9006x3'>Modify VCF to encode/decode a sequence of images using a IPP... scheme,
      with motion compensation. Complexity 4.
      </li>
-<li class='enumerate' id='x1-12008x4'>Modify VCF to encode/decode a sequence of images using a IBB... scheme,
+<li class='enumerate' id='x1-9008x4'>Modify VCF to encode/decode a sequence of images using a IBB... scheme,
      with motion compensation. Complexity 5.</li></ol>
-<!-- l. 199 --><p class='noindent'>
+<!-- l. 116 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='references'><span class='titlemark'>12   </span> <a id='x1-1300012'></a>References</h3>
+   <h3 class='sectionHead' id='references'><span class='titlemark'>9   </span> <a id='x1-100009'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
- [1]<span class='bibsp'>   </span></span><a id='Xvruiz__MEC'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation_and_compensation'>Video Compression</a>.
+ [1]<span class='bibsp'>   </span></span><a id='Xvruiz__MC'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation'>Motion Compensation</a>.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [2]<span class='bibsp'>   </span></span><a id='Xvruiz__ME'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation'>Motion Estimation</a>.
+</p>
+   </div>
                                                                   
 
                                                                   
-   </p>
-   <p class='bibitem'><span class='biblabel'>
- [2]<span class='bibsp'>   </span></span><a id='Xvruiz__OFME'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/optical_flow_motion_estimation'>Optical Flow Motion Estimation</a>.
-</p>
-   </div>
    <div class='footnotes'><!-- l. 24 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>With pixels or coefficients, depending on the current domain of the frame. Notice, for
 </span><span class='ecrm-0800'>example, that if the frame is in the DWT domain, we should refer to it as a “decomposition” instead
-</span><span class='ecrm-0800'>of as a “frame”.</span></p><!-- l. 40 --><p class='indent'> <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>The better the prediction, the lower the entropy of the residuals.</span></p>
-<!-- l. 42 --><p class='indent'>     <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>In order to make a reversible process.</span></p>
-<!-- l. 45 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>At least, when we compensate in the image domain.</span></p>
-<!-- l. 59 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>Notice that, since we are handling the concept of FPS (Frames Per Second), we can also
-</span><span class='ecrm-0800'>have a bit-rate (usually expressed in kilo bits per second (kbps) or mega bits per second
-</span><span class='ecrm-0800'>(Mbps))</span></p>
-<!-- l. 63 --><p class='indent'>     <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>Including, the visual distortion.</span></p>
-<!-- l. 81 --><p class='indent'>     <span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>Some standards also use GOP (Group Of Pictures).</span></p>
-<!-- l. 93 --><p class='indent'>     <span class='footnote-mark'><a href='#fn8x0-bk' id='fn8x0'><sup class='textsuperscript'>8</sup></a></span><span class='ecrm-0800'>Obviously, the part of the RDO procedure that controls the block-type.</span></p>                 </div>
+</span><span class='ecrm-0800'>of as a “frame”.</span></p><!-- l. 41 --><p class='indent'> <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>The better the prediction, the lower the entropy of the residuals.</span></p>
+<!-- l. 43 --><p class='indent'>     <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>In order to make a reversible process.</span></p>
+<!-- l. 46 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>At least, when we compensate in the image domain.</span></p>
+<!-- l. 67 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>Some standards also use GOP (Group Of Pictures).</span></p>
+<!-- l. 73 --><p class='indent'>     <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>Specifically, constant bit-rate encodings.</span></p>
+<!-- l. 81 --><p class='indent'>     <span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>Obviously, the part of the RDO procedure that controls the block-type.</span></p>                 </div>
  
 </body> 
 </html>
