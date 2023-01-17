@@ -15,7 +15,7 @@
 In general, neighbour \emph{frames} (images) in (video)
 \emph{sequences} exhibit a high temporal correlation that can be
 exploited to increase the compression ratios. This correlation
-generates a temporal redundancy that can be removed using a temporal
+generates a temporal redundancy that can be removed using a (temporal)
 transformation.
 
 A temporal transform inputs two o more frames\footnote{With pixels or
@@ -25,7 +25,7 @@ A temporal transform inputs two o more frames\footnote{With pixels or
 outputs at least one \emph{residual} (frame) in which the residual
 pixels have a higher dynamic range but also a smaller entropy. This
 potentially increases the compression ratios (in the case of video,
-usually measures in kbps)..
+usually measures in kbps).
 
 %}}}
 
@@ -44,6 +44,9 @@ also avaliable\footnote{In order to make a reversible process.} at the
 decoder. Notice that, after using MC, the number of residual-pixels is
 equal to the number of pixels in the compensated frame.\footnote{At
   least, when we compensate in the image domain.}
+
+Usually, MC is only performed by the encoder (compress one. decompress
+many).
 
 %}}}
 
