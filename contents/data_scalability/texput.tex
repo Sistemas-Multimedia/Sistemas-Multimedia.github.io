@@ -19,14 +19,22 @@ developed my most of the image and video encoding standards.
 
 \section{Temporal scalability}
 
-The king of the MC schemes is III..., which provides total temporal
-scalability. Notice that the concept of temporal scalability does not
-make sense in the context of image coding.
+Temporal scalability~\cite{vruiz__video_scalability} provides
+flexibity with the number of decoded frames in the case of video
+coding.\footnote{Notice that the concept of temporal scalability
+  cannot be applied to image coding.}
 
-Temporal scalabilty is used in video streaming and the in fast-forward
-and fast-backward modes of the video players.
+\subsection{GOF-level scalabilty}
+GOF-splitting provides basic temporal scalability (GOFs can be decoded
+independently), and this is used in video streaming services (such as
+YouTube) and video players to move along time using fast-forward and
+fast-backward modes,
+  
+Notice that in this context, the maximum temporal scalabilty is
+achieved when we use the intra-coding mode (III...), which provides
+total temporal scalability.
 
-\section{Using MCTF}
+\subsection{Frame-level scalabilty using MCTF}
 
 Random-access modes can provide dyadic temporal scalability in each
 GOF if only B-type frames are used and they are generated using
