@@ -163,6 +163,10 @@ the image into 2D-chunks (usually called \emph{tiles} or
   use an autoencoder with a small input to compress the 2D-DWT
   transform of an image. Notice that, in this case, the parameters of
   the neural network could be sent with the code-stream. Complexity 6.
+\item If the right coefficients in the DWT domain are multiplied by a
+  power of 2 before quantization, we can define a ROI of arbitrary
+  shape at compression time~\cite{vruiz__JPEG2000}. Include this
+  possibility in the DWT-based compression pipeline of VCF.
 % \item Modify CVF to use SPIHT.
 % \item LPT can replace the DWT. Can we travel from LPT to DWT using any filter?
 \end{enumerate}
