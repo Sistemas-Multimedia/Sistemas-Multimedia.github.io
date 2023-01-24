@@ -24,17 +24,17 @@
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
     <span class='sectionToc'>1 <a href='#what-means-codestream-scalability' id='QQ2-1-2'>What means code-stream scalability?</a></span>
-<br />    <span class='sectionToc'>2 <a href='#temporal-scalability-vruizvideoscalability' id='QQ2-1-3'>Temporal scalability [4]</a></span>
+<br />    <span class='sectionToc'>2 <a href='#temporal-scalability-vruizvideoscalability' id='QQ2-1-3'>Temporal scalability [5]</a></span>
 <br />     <span class='subsectionToc'>2.1 <a href='#goflevel-scalabilty' id='QQ2-1-4'>GOF-level scalabilty</a></span>
 <br />     <span class='subsectionToc'>2.2 <a href='#framelevel-scalabilty-using-mctf' id='QQ2-1-5'>Frame-level scalabilty using MCTF</a></span>
 <br />    <span class='sectionToc'>3 <a href='#spatial-scalability-in-image-coding-vruizjpeg' id='QQ2-1-6'>Spatial scalability in image coding [1]</a></span>
 <br />     <span class='subsectionToc'>3.1 <a href='#using-the-lpt-laplacian-pyramid-transform' id='QQ2-1-7'>Using the LPT (Laplacian Pyramid Transform)</a></span>
 <br />     <span class='subsectionToc'>3.2 <a href='#using-the-dwt-discrete-wavelet-transform-vruizjpeg' id='QQ2-1-8'>Using the DWT (Discrete Wavelet Transform) [1]</a></span>
-<br />    <span class='sectionToc'>4 <a href='#spatial-scalability-in-video-coding-vruizvideoscalability' id='QQ2-1-9'>Spatial scalability in video coding [4]</a></span>
+<br />    <span class='sectionToc'>4 <a href='#spatial-scalability-in-video-coding-vruizvideoscalability' id='QQ2-1-9'>Spatial scalability in video coding [5]</a></span>
 <br />    <span class='sectionToc'>5 <a href='#quality-scalability-in-image-coding-vruizjpeg' id='QQ2-1-10'>Quality scalability in image coding [1]</a></span>
 <br />     <span class='subsectionToc'>5.1 <a href='#using-the-dct' id='QQ2-1-11'>Using the DCT</a></span>
-<br />     <span class='subsectionToc'>5.2 <a href='#using-the-dwt-vruiztransformcoding' id='QQ2-1-12'>Using the DWT [<span class='ecbx-1000'>?</span>]</a></span>
-<br />    <span class='sectionToc'>6 <a href='#quality-scalability-in-video-coding-vruizvideoscalability' id='QQ2-1-13'>Quality scalability in video coding [4]</a></span>
+<br />     <span class='subsectionToc'>5.2 <a href='#using-the-dwt-vruiztransformcoding' id='QQ2-1-12'>Using the DWT [4]</a></span>
+<br />    <span class='sectionToc'>6 <a href='#quality-scalability-in-video-coding-vruizvideoscalability' id='QQ2-1-13'>Quality scalability in video coding [5]</a></span>
 <br />    <span class='sectionToc'>7 <a href='#simulcast-vs-adaptive-bitrate-streaming-vs-datascalability' id='QQ2-1-14'>Simulcast VS Adaptive bit-rate streaming VS data-scalability</a></span>
 <br />    <span class='sectionToc'>8 <a href='#todo' id='QQ2-1-15'>To-Do</a></span>
 <br />    <span class='sectionToc'>9 <a href='#references' id='QQ2-1-16'>References</a></span>
@@ -54,7 +54,7 @@ the image and video encoding standards.
 efficiency.
 </p><!-- l. 26 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='temporal-scalability-vruizvideoscalability'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Temporal scalability <span class='cite'>[<a href='#Xvruiz__video_scalability'>4</a>]</span></h3>
+   <h3 class='sectionHead' id='temporal-scalability-vruizvideoscalability'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Temporal scalability <span class='cite'>[<a href='#Xvruiz__video_scalability'>5</a>]</span></h3>
 <!-- l. 30 --><p class='noindent'>In video coding, temporal scalability provides flexibity with the number of decoded
 frames.<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-3001f1'></a>
 </p><!-- l. 34 --><p class='noindent'>
@@ -99,7 +99,7 @@ and in this case, compared to LPT, the data redundancy overhead is avoided.
 JPEG2000 <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span> is based on the DWT.
 </p><!-- l. 82 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='spatial-scalability-in-video-coding-vruizvideoscalability'><span class='titlemark'>4   </span> <a id='x1-90004'></a>Spatial scalability in video coding <span class='cite'>[<a href='#Xvruiz__video_scalability'>4</a>]</span></h3>
+   <h3 class='sectionHead' id='spatial-scalability-in-video-coding-vruizvideoscalability'><span class='titlemark'>4   </span> <a id='x1-90004'></a>Spatial scalability in video coding <span class='cite'>[<a href='#Xvruiz__video_scalability'>5</a>]</span></h3>
 <!-- l. 86 --><p class='noindent'>In the case of video, spatial scalabilty provides 2D multiresolution rendering using
 only one (partially decoded) code-stream. This possibility is usually generated using
 the LPT because the DWT domain is not shift invariant (invariant to the
@@ -127,7 +127,7 @@ are rendered. Notice that, if 11 is the number of bit-planes required to represe
 coefficients, a total of \(11\times 64\times 64\) quality levels is possible.
 </p><!-- l. 120 --><p class='noindent'>
 </p>
-   <h4 class='subsectionHead' id='using-the-dwt-vruiztransformcoding'><span class='titlemark'>5.2   </span> <a id='x1-120005.2'></a>Using the DWT <span class='cite'>[<span class='ecbx-1000'>?</span>]</span></h4>
+   <h4 class='subsectionHead' id='using-the-dwt-vruiztransformcoding'><span class='titlemark'>5.2   </span> <a id='x1-120005.2'></a>Using the DWT <span class='cite'>[<a href='#Xvruiz__transform_coding'>4</a>]</span></h4>
 <!-- l. 122 --><p class='noindent'>The idea of bit-plane encoding in the DWT domain is used in JPEG2000 <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span>.
 Compared to JPEG, the number of quality levels is much higher, because in this
 case, we can have up to \(R\times C\times B\), where \(R\) is the number of rows, \(C\) the number of columns, and \(B\)
@@ -139,7 +139,7 @@ words, the quality layers are sorted by their contribution to the quality of the
 reconstruction.
 </p><!-- l. 134 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='quality-scalability-in-video-coding-vruizvideoscalability'><span class='titlemark'>6   </span> <a id='x1-130006'></a>Quality scalability in video coding <span class='cite'>[<a href='#Xvruiz__video_scalability'>4</a>]</span></h3>
+   <h3 class='sectionHead' id='quality-scalability-in-video-coding-vruizvideoscalability'><span class='titlemark'>6   </span> <a id='x1-130006'></a>Quality scalability in video coding <span class='cite'>[<a href='#Xvruiz__video_scalability'>5</a>]</span></h3>
 <!-- l. 136 --><p class='noindent'>In the case of video, most video standards provide quality scalability through
 applying MC to succesive refinements of the reconstructed sequence, at the maximum
 spatial resolution. This idea can be easely understood if we imagine a spatially
@@ -204,7 +204,10 @@ standard</a>, which is used, for example, in YouTube.
  [3]<span class='bibsp'>   </span></span><a id='Xvruiz__MC'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation'>Motion Compensation</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [4]<span class='bibsp'>   </span></span><a id='Xvruiz__video_scalability'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/video_scalability'>Video Scalability</a>.
+ [4]<span class='bibsp'>   </span></span><a id='Xvruiz__transform_coding'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/transform_coding'>Transform Coding</a>.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [5]<span class='bibsp'>   </span></span><a id='Xvruiz__video_scalability'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/video_scalability'>Video Scalability</a>.
 </p>
    </div>
    <div class='footnotes'><!-- l. 32 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>Notice that the concept of temporal scalability cannot be applied to image coding.</span></p>
