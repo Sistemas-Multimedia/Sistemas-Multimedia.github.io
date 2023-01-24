@@ -177,9 +177,11 @@ technique is used, for example, in the
   functionality. Complexity 2.
 \item The $2^n\times 2^n$-DCT domain can be decoded by resolution
   levels using a inverse $2^m\times 2^m$-DCT where $m=0,1,\cdots,n$,
-  to the lower frequency subbands (notice that the inverse
-  $0\times 0$-DCT does not perform any computation). Implement in VCF
-  such image decoder. Complexity 4.
+  to the lower frequency subbands (notice that the inverse $0\times
+  0$-DCT does not perform any computation). Implement in VCF such
+  image decoder. See the notebook
+  \href{https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/docs/YCoCg_2D_DCT_SQ.ipynb}{Image
+    Compression with YCoCg + 2D-DCT}. Complexity 4.
 \item In video coding, we can obtain spatial scalability if we build a
   laplacian pyramid of the frames and compress each level of the
   sequence using a normal video encoder. Notice that we can use the
