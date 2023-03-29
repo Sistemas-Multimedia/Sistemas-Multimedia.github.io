@@ -15,13 +15,13 @@
 In information theory~\cite{vruiz__information_theory},
 quantization~\cite{vruiz__signal_quantization,vruiz__scalar_quantization,vruiz__vector_quantization,vruiz__trellis_quantization}
 is any mapping process between two sets of elements $A$ and $B$, where
-all the elements of $A$ are associated with one (not necessarily the
-same) element of $B$, and happens that $|A|>|B|$, $|\cdot|$
-representing the order (the number of elements) of a set.
+all elements of $A$ are associated with one (not necessarily the
+same) element of $B$, and it happens that $|A|>|B|$, $|\cdot|$
+represents the order (the number of elements) of a set.
 
 Notice that if $|A|>|B|$, quantization is an irreversible process
-because two o more elements of $A$ will be mapped to the same element
-of $B$, and there is no a way to find the reverse mapping.
+because two or more elements of $A$ will be mapped to the same element
+of $B$, and there is no way to find the reverse mapping.
 
 \section{What is digital (re-)quantization?}
 
@@ -32,7 +32,7 @@ signal~\cite{vruiz__signal_quantization}. Since, by definition, a
 digital sample has been quantized to be converted from the analog
 world to the digital one, we are actually applying a re-quantization
 to the signal. Again, such digital quantization implies a loss of
-information in the re-quantized signal.
+information in the requantized signal.
 
 \section{Basic terminology}
 
@@ -40,7 +40,7 @@ Several types of quantizers divide the range of possible values that
 the samples can take into a collection of non-overlapped
 intervals. The values that define such intervals are called
 \emph{decision levels} and the value that in the quantized domain
-represents to all the input possible values that fall in an interval is
+represents all the input possible values that fall into an interval is
 called the \emph{representation level} of the interval.
 
 \section{A classification of quantizers}
@@ -48,9 +48,9 @@ called the \emph{representation level} of the interval.
 \subsection{Scalar quantizers (SQ) VS Vector Quantizers (VQ)}
 
 When quantization maps single elements of $A$ to single elements of
-$B$, the quantizer is said
+$B$, the quantizer is said to be
 \emph{scalar}~\cite{vruiz__scalar_quantization}. When tuples of
-elements are mapped, VQ is being
+elements are mapped, VQ is
 used~\cite{vruiz__vector_quantization}.
 
 \subsection{Uniform VS non-uniform quantizers}
@@ -61,8 +61,8 @@ usually represented by $\Delta$.\footnote{In an uniform quantizer, the
 distance between all the decision levels is $\Delta$.} In a
 non-uniform quantizer~\cite{vruiz__scalar_quantization}, at least one
 of the intervals is different to the rest. For example, a deadzone
-quantizer~\cite{vruiz__scalar_quantization} has a interval size for
-the representation level 0 that doubles the size of the rest of
+quantizer~\cite{vruiz__scalar_quantization} has an interval size for
+the representation level 0 that doubles the size of the the rest of
 intervals. For this reason, a deadzone quantizer is a non-uniform
 quantizer. Another example of a non-uniform quantizer is a Lloyd-Max
 quantizer because it divides the range of input values in a set of
@@ -86,23 +86,23 @@ quantization.
 Deadzone quantizers~\cite{vruiz__scalar_quantization} are static
 quasi-uniform scalar quantizers. These are used frequently in lossy
 compression systems because when the quantization step size is a power
-of two, and the input sample values are integers\footnote{And negative
+of two and the input sample values are integers\footnote{And negative
 integers are represented using two's complement.}, then the
-representation levels can be found by simply discarding
+representation levels can be found simply by discarding
 low-significant bits of the input samples (in other words, we only
 need to perform a bit-shift operation to find the corresponding
 quantization index). This also means that it is possible to build a
 progressive encoding system using a deadzone quantizer.
 
-Another reason that makes deadzone quantization popular in lossy
-encoding systems is that tends to remove electronic noise more than
+Another reason why dead-zone quantization is popular in lossy
+encoding systems is that it tends to remove electronic noise more than
 other scalar quantizers where the signal is weaker. If we suppose that
 the signal has 0 average\footnote{The electronic noise has 0 average
-and a flat spectrum.} and that the deadzone is placed where the SNR is
-smaller, we are basically replacing electronic noise by quantization
+and a flat spectrum.} and that the dead-zone is placed where the SNR is
+smaller, we basically replace electronic noise by quantization
 noise. Obviously, this does not improve the RD performance of the
 encoder, but the perceived (subjective) quality is increased for the
-same bit-rate.\footnote{Obviously, if the electronic noise is
+same bit rate.\footnote{Obviously, if the electronic noise is
 perceived as a source of distortion}
 
 \subsection*{Resources}
@@ -114,12 +114,12 @@ perceived as a source of distortion}
 
 \section{Lloyd-Max quantization}
 
-A Lloyd-Max quantizer~\cite{vruiz__scalar_quantization} minimizes the
+A Lloyd-Max quantizer~\cite{vruiz__scalar_quantization} minimizes
 quantization noise given a signal with a known probabilistic
 distribution (histogram) of the input samples and a number of
 quantization intervals. As a result, the density of quantization
 intervals is higher where the probability of the samples is higher, and
-vice-versa.
+vice versa.
 
 Lloyd-Max quantizers are considered non-uniform quantizers. Notice
 that the histogram must be also known by the decoder to
@@ -139,17 +139,17 @@ if $\Delta=1$).} the information.
 
 Vector quantizers~\cite{vruiz__vector_quantization} input
 blocks\footnote{If we are removing spatial redundancy, the blocks are
-usually squared tiles of pixels. If we are removing color redundancy,
+usually squared tiles of pixels. If we remove color redundancy,
 the blocks are multicomponent pixels.} of samples and output a
-quantization index per block. For example, in most of natural images,
+quantization index per block. For example, in most natural images,
 the spatial correlation~\cite{vruiz__visual_redundancy} generates that
 some blocks of the image are similar to other blocks. If this is true,
 we can compute a set of centroids (blocks) and use them to represent
 the original blocks. As a result, we will obtain a matrix of
 quantization indexes that can be entropy coded.
 
-Notice that VQ exploits the spatial correlation. For this reason, the
-encoding performance of a vector quantizer is superior compared to a
+Note that VQ exploits the spatial correlation. For this reason, the
+encoding performance of a vector quantizer is superior compared to that of a
 scalar quantizer because the number of quantization indexes (indexes
 of the centroids) is smaller.
 
@@ -161,7 +161,7 @@ of the centroids) is smaller.
     Quantization Example}.
 \item
   \href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/gray_VQ.ipynb}{Vector
-    Quantization (in the 2D domain) of a gray-scale image}.
+    Quantization (in the 2D domain) of a grayscale image}.
 \item
   \href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb}{Vector
     Quantization (in the 2D domain) of a color (RGB) image}.
@@ -173,13 +173,13 @@ of the centroids) is smaller.
 \begin{enumerate}
 \item Modify VCF to allow the use of Lloyd-Max quantization in the
   compression pipeline. Notice that VCF already implements this
-  quantizer, but the compression pipeline is unfinished. You must
+  quantizer, but the compression pipeline is not finished. You must
   implement a complete pipeline (at least for compressing
   images). Complexity 2.
 \item Modify VCF to allow the use of VQ (applied to the spatial
   domain) in the compression pipeline. Notice that VQ used in the
   spatial domain can significantly minimize the advantage of using a
-  spatial transform. For this reason, it can be useful to implement
+  spatial transform. For this reason, it can also be useful to implement
   also ``fake'' spatial transform where no transformation is performed
   at all. The same happens when VQ is used in the color
   domain. Complexity 4.
