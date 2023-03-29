@@ -19,135 +19,135 @@
 
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/tree/master/contents/perceptual_coding'>Perceptual Coding</a></h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>January 19, 2023</span></div>
+<div class='date'><span class='ecrm-1200'>March 29, 2023</span></div>
    </div>
-   <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
+   <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
-    <span class='sectionToc'>1 <a href='#what-is-perceptual-coding' id='QQ2-1-2'>What is perceptual coding?</a></span>
-<br />    <span class='sectionToc'>2 <a href='#tond-varies-with-the-luma-intensity' id='QQ2-1-3'>ToND varies with the luma intensity</a></span>
-<br />    <span class='sectionToc'>3 <a href='#tond-varies-with-the-spatial-frequency' id='QQ2-1-4'>ToND varies with the spatial frequency</a></span>
-<br />    <span class='sectionToc'>4 <a href='#visual-masking-of-the-quantization-noise' id='QQ2-1-5'>Visual masking of the quantization noise</a></span>
-<br />    <span class='sectionToc'>5 <a href='#loop-filters' id='QQ2-1-6'>Loop filters</a></span>
-<br />    <span class='sectionToc'>6 <a href='#luma-redundancy' id='QQ2-1-7'>Luma redundancy</a></span>
-<br />    <span class='sectionToc'>7 <a href='#chroma-redundancy' id='QQ2-1-8'>Chroma redundancy</a></span>
-<br />    <span class='sectionToc'>8 <a href='#resources' id='QQ2-1-9'>Resources</a></span>
-<br />    <span class='sectionToc'>9 <a href='#todo' id='QQ2-1-10'>To-Do</a></span>
-<br />    <span class='sectionToc'>10 <a href='#references' id='QQ2-1-11'>References</a></span>
+    <span class='sectionToc'>1 <a href='#x1-20001' id='QQ2-1-2'>What is perceptual coding?</a></span>
+<br />    <span class='sectionToc'>2 <a href='#x1-30002' id='QQ2-1-3'>ToND varies with the luma intensity</a></span>
+<br />    <span class='sectionToc'>3 <a href='#x1-40003' id='QQ2-1-4'>ToND varies with the spatial frequency</a></span>
+<br />    <span class='sectionToc'>4 <a href='#x1-50004' id='QQ2-1-5'>Visual masking of the quantization noise</a></span>
+<br />    <span class='sectionToc'>5 <a href='#x1-60005' id='QQ2-1-6'>Loop filters</a></span>
+<br />    <span class='sectionToc'>6 <a href='#x1-70006' id='QQ2-1-7'>Luma redundancy</a></span>
+<br />    <span class='sectionToc'>7 <a href='#x1-80007' id='QQ2-1-8'>Chroma redundancy</a></span>
+<br />    <span class='sectionToc'>8 <a href='#x1-90008' id='QQ2-1-9'>Resources</a></span>
+<br />    <span class='sectionToc'>9 <a href='#x1-100009' id='QQ2-1-10'>To-Do</a></span>
+<br />    <span class='sectionToc'>10 <a href='#x1-1100010' id='QQ2-1-11'>References</a></span>
    </div>
 <!-- l. 9 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='what-is-perceptual-coding'><span class='titlemark'>1   </span> <a id='x1-20001'></a>What is perceptual coding?</h3>
-<!-- l. 11 --><p class='noindent'>So far, we have been focused on minimizing the lagrangian <span class='cite'>[<a href='#Xsullivan1998rate'>6</a>]</span> \begin {equation}  J = R + \lambda D, \label {eq:RD}  \end {equation}
+   <h3 class='sectionHead'><span class='titlemark'>1   </span> <a id='x1-20001'></a>What is perceptual coding?</h3>
+<!-- l. 11 --><p class='noindent'>So far, we have focused on minimizing the Lagrangian <span class='cite'>[<a href='#Xsullivan1998rate'>6</a>]</span> \begin {equation}  J = R + \lambda D, \label {eq:RD}  \end {equation}
 where  \(R\)  is  the  data  rate,  and  \(D\)  is  an
 additive<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-2001f1'></a>
-distance metric, such as the RMSE, the PSNR or SSIM index <span class='cite'>[<a href='#Xwang2004image'>7</a>]</span>. However, the way
-in which human beings perceive distortion is generally different from how these
+distance metric, such as the RMSE, the PSNR or the SSIM index <span class='cite'>[<a href='#Xwang2004image'>7</a>]</span>. However, the
+way in which human beings perceive distortion is generally different from how these
 metrics express it. This chapter introduces some of the most common ways of
 exploiting the visual distortion perceived by humans.
                                                                   
 
                                                                   
-</p><!-- l. 26 --><p class='indent'>   Notice that if, by requirements of the encoding process, \(D\) is below a Threshold of
-Noticeable Distortion (ToND), the RDO process described by Eq. \eqref{eq:RD}
-boilds down to select the option with smaller \(R\).
+</p><!-- l. 26 --><p class='indent'>   Notice that if, according to the requirements of the encoding process, \(D\)
+is below a Threshold of Noticeable Distortion (ToND), the RDO process
+described by Eq. \eqref{eq:RD} boilds down to select the option with smaller
+\(R\).
 </p><!-- l. 30 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='tond-varies-with-the-luma-intensity'><span class='titlemark'>2   </span> <a id='x1-30002'></a>ToND varies with the luma intensity</h3>
+   <h3 class='sectionHead'><span class='titlemark'>2   </span> <a id='x1-30002'></a>ToND varies with the luma intensity</h3>
 <!-- l. 32 --><p class='noindent'>The Weber-Fechner law states that the minimum perceivable
-visual stimulus difference increases with the background
+visual stimulus difference increases with background
 luminance<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-3001f2'></a> <span class='cite'>[<a href='#Xnaccari2014perceptually'>5</a>]</span>,
-up to a point in which decreases. Therefore, the perception of the distortion
-generated by the lossy coding of an image is smaller in those areas with higher and
+up to a point in which it decreases. Therefore, the perception of the distortion
+generated by the lossy coding of an image is smaller in areas with higher and
 lower intensity values. For this reason, one of the most used quantizers is the
-deadzone, which also in general change signal noise (for example, electronic
+deadzone, which also in general changes signal noise (for example, electronic
 noise) by quantization noise, where the SNR of the signal is smaller (arroung
 0).
 </p><!-- l. 43 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='tond-varies-with-the-spatial-frequency'><span class='titlemark'>3   </span> <a id='x1-40003'></a>ToND varies with the spatial frequency</h3>
-<!-- l. 44 --><p class='noindent'>The HVS can be modeled as a low-pass filter whose cut-off frequency depends on the
+   <h3 class='sectionHead'><span class='titlemark'>3   </span> <a id='x1-40003'></a>ToND varies with the spatial frequency</h3>
+<!-- l. 44 --><p class='noindent'>The HVS can be modeled as a low-pass filter whose cutoff frequency depends on the
 distance between the observer and the content (in terms of frequency) of the
 image.
 </p><!-- l. 48 --><p class='indent'>   Some DCT-based image and video coding standards, such as JPEG and H.264,
-define quantization matrices designed to perceptual coding <span class='cite'>[<a href='#Xernawan2014optimal'>2</a>]</span>. These matrices
+define quantization matrices designed for perceptual coding <span class='cite'>[<a href='#Xernawan2014optimal'>2</a>]</span>. These matrices
 indicate a different quantization step size for each 8x8-DCT coefficient, whose values
 were found through a study of the subjective impact of the quantization of each
 coefficient in the ToND. In the case of H.264, such matrices can change between
 images <span class='cite'>[<a href='#Xnaccari2014perceptually'>5</a>]</span>.
-</p><!-- l. 56 --><p class='indent'>   In the case of JPEG2000, each subband uses a different quantization step
-size <span class='cite'>[<a href='#Xliu2020visibility'>4</a>]</span>. However, notice that these values depend on the selected DWT
+</p><!-- l. 56 --><p class='indent'>   In the case of JPEG2000, each subband uses a different quantization
+step size <span class='cite'>[<a href='#Xliu2020visibility'>4</a>]</span>. However, note that these values depend on the selected DWT
 filter.
 </p><!-- l. 60 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='visual-masking-of-the-quantization-noise'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Visual masking of the quantization noise</h3>
-<!-- l. 62 --><p class='noindent'>The quantization noise is generated by the quantizer, generating different coding
+   <h3 class='sectionHead'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Visual masking of the quantization noise</h3>
+<!-- l. 62 --><p class='noindent'>Quantization noise is generated by the quantizer, generating different coding
 artifacts<span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a id='x1-5001f3'></a>,
-which are perceived hardly when the (area of the) encoded image is textured <span class='cite'>[<a href='#Xwu2017digital'>8</a>]</span>.
-This effect can happens up to the ToND.
+which are hardly perceived when the (area of the) encoded image is textured <span class='cite'>[<a href='#Xwu2017digital'>8</a>]</span>.
                                                                   
 
                                                                   
+This effect can occur up to the ToND.
 </p><!-- l. 68 --><p class='indent'>   Another important aspect of our perception is its directionality, which leads the
 HVS to be more sensitive to distortions added to horizontal and vertical frequencies
-rather than to diagonal ones <span class='cite'>[<a href='#Xnaccari2014perceptually'>5</a>]</span>.
-</p><!-- l. 73 --><p class='indent'>   Finally, the rationale behind the temporal masking is that the HVS sensitivity to
+than to diagonal frequencies <span class='cite'>[<a href='#Xnaccari2014perceptually'>5</a>]</span>.
+</p><!-- l. 73 --><p class='indent'>   Finally, the rationale behind temporal masking is that the HVS sensitivity to
 coding artifacts is lower in areas with very high motion activity.
 </p><!-- l. 77 --><p class='indent'>   In video, modeling temporal masking is more challenging because the
 spatio-temporal sensitivity function of the HVS is not separable, i.e., it depends on
 both the spatial and temporal frequencies <span class='cite'>[<a href='#Xnaccari2014perceptually'>5</a>]</span>.
 </p><!-- l. 82 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='loop-filters'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Loop filters</h3>
-<!-- l. 84 --><p class='noindent'>Loop filters are used in motion compensated video codecs to improve the visual quality
+   <h3 class='sectionHead'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Loop filters</h3>
+<!-- l. 84 --><p class='noindent'>Loop filters are used in motion-compensated video codecs to improve visual quality
 (and also the encoding RD performance). For example, H.264/AVC uses (usually
 directional<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-6001f4'></a>)
-deblocking filters in the encoding loop for smooth the transitions between the blocks,
+deblocking filters in the encoding loop to smooth the transitions between the blocks,
 when the boundaries between them become perceptible.
-</p><!-- l. 91 --><p class='noindent'>
+</p><!-- l. 90 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='luma-redundancy'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Luma redundancy</h3>
-<!-- l. 93 --><p class='noindent'>The HVS can perceive only a finite number of different intensities (luma). This
-number depends on the dynamic range of the pixels, but in general, we are not able
-to distinguish more than 64 intensity values <span class='cite'>[<a href='#Xvruiz__visual_redundancy'>3</a>]</span>.
-</p><!-- l. 98 --><p class='noindent'>
+   <h3 class='sectionHead'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Luma redundancy</h3>
+<!-- l. 92 --><p class='noindent'>The HVS can perceive only a finite number of different intensities (luma). This
+number depends on the dynamic range of the pixels, but, in general, we are unable to
+distinguish more than 64 intensity values <span class='cite'>[<a href='#Xvruiz__visual_redundancy'>3</a>]</span>.
+</p><!-- l. 97 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='chroma-redundancy'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Chroma redundancy</h3>
-<!-- l. 100 --><p class='noindent'>Humans do not perceive detail in the chrominance as well as in they does in the
-luminance <span class='cite'>[<a href='#Xburger2016digital'>1</a>]</span>. For this reason, the croma can be downsampled to 1/4 of the original
-<a href='https://en.wikipedia.org/wiki/Sampling_(signal_processing)'>sampling rate</a> without noticeable distortion. This feature is used in some
-of the last image and video compression systems such as <a href='https://en.wikipedia.org/wiki/JPEG_XR#Description'>JPEG XR</a> and
-<a href='https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Video_coding_layer'>HEVC</a>.
-</p><!-- l. 109 --><p class='noindent'>
+   <h3 class='sectionHead'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Chroma redundancy</h3>
+<!-- l. 99 --><p class='noindent'>Humans do not perceive detail in chrominance as well as in luminance <span class='cite'>[<a href='#Xburger2016digital'>1</a>]</span>. For this
+reason, the croma can be downsampled to 1/4 of the original <a href='https://en.wikipedia.org/wiki/Sampling_(signal_processing)'>sampling rate</a> without
+noticeable distortion. This feature is used in some of the last image and video
+compression systems such as <a href='https://en.wikipedia.org/wiki/JPEG_XR#Description'>JPEG XR</a> and <a href='https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Video_coding_layer'>HEVC</a>.
+</p><!-- l. 107 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='resources'><span class='titlemark'>8   </span> <a id='x1-90008'></a>Resources</h3>
-<!-- l. 110 --><p class='noindent'>
+   <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-90008'></a>Resources</h3>
+<!-- l. 108 --><p class='noindent'>
                                                                   
 
                                                                   
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-9002x1'><a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/color_redundancy.ipynb'>Spectral (color) redundancy</a>.</li></ol>
-<!-- l. 115 --><p class='noindent'>
+<!-- l. 113 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='todo'><span class='titlemark'>9   </span> <a id='x1-100009'></a>To-Do</h3>
-<!-- l. 116 --><p class='noindent'>
+   <h3 class='sectionHead'><span class='titlemark'>9   </span> <a id='x1-100009'></a>To-Do</h3>
+<!-- l. 114 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-10002x1'>Modify  the  compression  pipeline  of  VCF  to  exploit  the  chroma
+<li class='enumerate' id='x1-10002x1'>Modify the VCF compression pipeline to take advantage of the chroma
      redundancy. Use different quantization step sizes for each color subband.
      Complexity 2.
      </li>
-<li class='enumerate' id='x1-10004x2'>Use the <a href='https://www.academia.edu/10152058/The_Optimal_Quantization_Matrices_for_JPEG_Image_Compression_From_Psychovisual_Threshold?email_work_card=view-paper'>default quantization matrices of JPEG</a> in the DCT pipeline of
+<li class='enumerate' id='x1-10004x2'>Use the <a href='http://www.jatit.org/volumes/Vol70No3/24Vol70No3.pdf'>default quantization matrices of JPEG</a> in the DCT pipeline of
      VCF. Complexity 4.
      </li>
-<li class='enumerate' id='x1-10006x3'>Do the same, but using the DWT. Complexity 4.
+<li class='enumerate' id='x1-10006x3'>Do the same thing, but using the DWT. Complexity 4.
      </li>
 <li class='enumerate' id='x1-10008x4'>The <a href='https://scikit-image.org/docs/stable/auto_examples/filters/plot_entropy.html'>local entropy</a> of the motion vectors can be a good estimation of the
      motion complexity in a video sequence. In a motion compensated video
      coding  pipeline  in  VCF,  adapt  the  quantization  step  size  to  the  local
      entropy, trying to increase the compression ratios without increasing the
-     perceived distortoin. Compexity 5.</li></ol>
-<!-- l. 134 --><p class='noindent'>
+     perceived distortion. Compexity 5.</li></ol>
+<!-- l. 132 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='references'><span class='titlemark'>10   </span> <a id='x1-1100010'></a>References</h3>
+   <h3 class='sectionHead'><span class='titlemark'>10   </span> <a id='x1-1100010'></a>References</h3>
                                                                   
 
                                                                   
@@ -157,7 +157,7 @@ of the last image and video compression systems such as <a href='https://en.wiki
    </span><span class='ecti-1000'>Introduction Using Java</span></a>. Springer, 2016.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [2]<span class='bibsp'>   </span></span><a id='Xernawan2014optimal'></a>FERDA   Ernawan   and   SITI HADIATI   Nugraini.      <a href='https://d1wqtxts1xzle7.cloudfront.net/36259711/THE_OPTIMAL_QUANTIZATION_MATRICES_FOR_JPEG_IMAGE_COMPRESSION_FROM_PSYCHOVISUAL_THRESHOLD-libre.pdf?1421206936=&amp;response-content-disposition=inline%3B+filename%3DThe_Optimal_Quantization_Matrices_for_JP.pdf&amp;Expires=1674070770&amp;Signature=O-UWbgdB5bGZEIEnjoSCahxeagmZ9yG1HeymbSRfQJcAE~b7fOHGqlv5FwYWs~tRcFCKZzsV5GnLrMEFD1mYZH5XtIBoTLdV~GB4K6tmfe~ZaJXH27bGaobwk50i~eQ~ugW4fCpjE-1k2r234q0xRpA2FnjjlfG4Le~M52p5q5e5ycyWpNXaTReoy1vTOlKvCZsRDxWFzrwwevrX7v5zFYd1PVJ6np9oMBVjEEE8bfVl-OqIiablU6mWKjZmR4Ow7JxZMj1MPn6xnnuS-~jm38Qi5NecbIxmvRY5DzzPWDlwMdRQToyLZaDWWn3XxQdrbbCyeVoxkgGIEmo9EOHrZg__&amp;Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA'>The   optimal
+ [2]<span class='bibsp'>   </span></span><a id='Xernawan2014optimal'></a>FERDA   Ernawan   and   SITI HADIATI   Nugraini.      <a href='http://www.jatit.org/volumes/Vol70No3/24Vol70No3.pdf'>The   optimal
    quantization  matrices  for  JPEG  image  compression  from  psychovisual
    threshold</a>.   <span class='ecti-1000'>Journal  of  Theoretical  and  Applied  Information  Technology</span>,
    70(3):566–572, 2014.
@@ -196,7 +196,7 @@ of the last image and video compression systems such as <a href='https://en.wiki
 </span><span class='ecrm-0800'>these two (or more) sources.</span></p>
 <!-- l. 35 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>In general, this is not true for the chroma.</span></p>
 <!-- l. 64 --><p class='indent'>     <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>“Random” noise, blocking, ringing, etc.</span></p>
-<!-- l. 86 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>Anisotropic.</span></p>                                                                                               </div>
+<!-- l. 85 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>Anisotropic.</span></p>                                                                                               </div>
  
 </body> 
 </html>
