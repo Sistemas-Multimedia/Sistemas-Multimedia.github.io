@@ -18,8 +18,8 @@
                                                                   
 
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/tree/master/contents/color_transforms'>Color Transforms</a></h2>
- <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>March 30, 2023</span></div>
+ <div class='author'><a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
+<div class='date'><span class='ecrm-1200'>February 3, 2024</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -36,12 +36,12 @@
    <h3 class='sectionHead'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Spectral decorrelation</h3>
 <!-- l. 26 --><p class='noindent'>Most image and video compressors exploit the statistical (and also
 perceptual<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-2001f1'></a>) correlation
-between the \(\text {RGB}\) color <span class='ecti-1000'>components</span><span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-2002f2'></a>
+between the \(\text {RGB}\) color <span class='ecti-1000'>components</span><span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-2003f2'></a>
 of the pixels, using a color transform.
 </p><!-- l. 34 --><p class='indent'>   Color transforms are pixel-wise operators. As a result, each
 pixel is represented in a different domain where three new
-<span class='ecti-1000'>coefficients</span><span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a id='x1-2003f3'></a>
-express the same<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-2004f4'></a>
+<span class='ecti-1000'>coefficients</span><span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a id='x1-2005f3'></a>
+express the same<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-2007f4'></a>
 information but in a different color domain.
                                                                   
 
@@ -60,7 +60,7 @@ pixel. The other two form the chroma.
 </p><!-- l. 71 --><p class='indent'>   Note that the chrominance of a pixel is determined by two chromas.
 </p><!-- l. 73 --><p class='noindent'>
 </p>
-   <h4 class='likesubsectionHead'><a id='x1-40002'></a>Channels and subbands (a word about notation)</h4>
+   <h4 class='likesubsectionHead'><a id='x1-4000'></a>Channels and subbands (a word about notation)</h4>
 <!-- l. 75 --><p class='noindent'>Apart from using the terms of component and coefficient, we will use the
 word <span class='ecti-1000'>channel </span>to refer to the same index component of all the pixels
 of an image (or video), and <span class='ecti-1000'>subband </span>to denote the same index coefficient
@@ -88,15 +88,15 @@ advantages:
 
                                                                   
      </span><span class='ecbx-1000'>dynamic range of the signal is increased</span>. The first means that will
-     compress more<span class='footnote-mark'><a href='#fn8x0' id='fn8x0-bk'><sup class='textsuperscript'>8</sup></a></span><a id='x1-5004f8'></a>,
+     compress more<span class='footnote-mark'><a href='#fn8x0' id='fn8x0-bk'><sup class='textsuperscript'>8</sup></a></span><a id='x1-5005f8'></a>,
      and the second that we will be able to use a higher range of quantization
      step sizes <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>, <a href='#Xsayood2017introduction'>7</a>]</span>, increasing also the number of feasible points in the RD
      curve <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span>.
      </li>
-<li class='enumerate' id='x1-5006x2'><span class='ecbx-1000'>Luma/croma analysis: </span>Our visual system is more sensitive in terms of
+<li class='enumerate' id='x1-5008x2'><span class='ecbx-1000'>Luma/croma analysis: </span>Our visual system is more sensitive in terms of
      spatial resolution to the luma (“black-and-white”) information than to the
      chroma (“color”) information, which basically means that we can quantize
-     more the chroma.<span class='footnote-mark'><a href='#fn9x0' id='fn9x0-bk'><sup class='textsuperscript'>9</sup></a></span><a id='x1-5007f9'></a></li></ol>
+     more the chroma.<span class='footnote-mark'><a href='#fn9x0' id='fn9x0-bk'><sup class='textsuperscript'>9</sup></a></span><a id='x1-5009f9'></a></li></ol>
 <!-- l. 119 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>4   </span> <a id='x1-60004'></a>Scalar quantization</h3>
@@ -106,13 +106,13 @@ Therefore, from a pure RD point of view, the quantization step sizes for each
 subband should be selected using the same RD slope in all subbands (see the
 notebook <a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/RGB/RGB_SQ.ipynb'>Scalar Quantization of RGB images</a>. Notice that this implies to compute
 the RD curves.
-</p><!-- l. 131 --><p class='indent'>   Taking a generic luma / croma transform \(\text {YUV}\), we would expect that \begin {equation}  \lambda ^{\text {Y}} \approx \lambda ^{\text {U}} \approx \lambda ^{\text {V}} \label {eq:optimal_lambda}  \end {equation}
-for a given quantization step size \(\Delta \), the RDO <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span> can be ignored. In the notebook
-<a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb'>Scalar Quantization of RGB images</a> we can explore (at least visually) the grade of
+</p><!-- l. 131 --><p class='indent'>   Taking a generic luma / croma transform \(\text {YUV}\), we would expect that \begin {equation}  \lambda ^{\text {Y}} \approx \lambda ^{\text {U}} \approx \lambda ^{\text {V}} \label {eq:optimal_lambda}  \end {equation}<a id='x1-6001r1'></a> for a given
+quantization step size \(\Delta \), the RDO <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span> can be ignored. In the notebook <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb'>Scalar
+Quantization of RGB images</a> we can explore (at least visually) the grade of
 compilance of Eq. \eqref{eq:optimal_lambda}.
 </p><!-- l. 142 --><p class='noindent'>
 </p>
-   <h4 class='likesubsectionHead'><a id='x1-70004'></a>Resources</h4>
+   <h4 class='likesubsectionHead'><a id='x1-7000'></a>Resources</h4>
 <!-- l. 143 --><p class='noindent'>See the notebooks <a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/3DCT/3DCT_over_RGB.ipynb'>Removing RGB redundancy with the DCT</a>, <a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/YCoCg/YCoCg_over_RGB.ipynb'>Removing RGB
 redundancy with the \(\text {YCoCg}\) transform</a> and <a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/YCrCb/YCrCb_over_RGB.ipynb'>Removing RGB redundancy with the \(\text {YCrCb}\)
 transform</a>.
@@ -138,7 +138,7 @@ between the original image and the reconstructed one. Notice that the code-book
 must be known by the decoder to find a reconstruction.
 </p><!-- l. 176 --><p class='noindent'>
 </p>
-   <h4 class='likesubsectionHead'><a id='x1-90005'></a>Resources</h4>
+   <h4 class='likesubsectionHead'><a id='x1-9000'></a>Resources</h4>
 <!-- l. 177 --><p class='noindent'>See the notebooks <a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/RGB_VQ.ipynb'>Vector Quantization (in the color domain) of a RGB image</a> and
 <a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb'>Vector Quantization (in the 2D domain) of a color (RGB) image</a>.
 </p><!-- l. 183 --><p class='noindent'>
@@ -188,24 +188,25 @@ must be known by the decoder to find a reconstruction.
                                                                   
 
                                                                   
-   <div class='footnotes'><!-- l. 27 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>This will be addresed latter in this course.</span></p>
+   <div class='footnotes'><a id='x1-2002x1'></a>
+<!-- l. 27 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>This will be addresed latter in this course.</span></p><a id='x1-2004x1'></a>
 <!-- l. 31 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>A component of a pixel in the</span> \(\text {RGB}\) <span class='ecrm-0800'>domain refer to one of the values</span> \(\text {R}\) <span class='ecrm-0800'>(red),</span> \(\text {G}\) <span class='ecrm-0800'>(green) and</span> \(\text {B}\) <span class='ecrm-0800'>(blue)
-</span><span class='ecrm-0800'>coordinates in the</span> \(\text {RGB}\) <span class='ecrm-0800'>color 3D space.</span></p>
+</span><span class='ecrm-0800'>coordinates in the</span> \(\text {RGB}\) <span class='ecrm-0800'>color 3D space.</span></p><a id='x1-2006x1'></a>
 <!-- l. 39 --><p class='indent'>     <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>Most part of the transforms, including the color ones, analyze the signal information from a
 </span><span class='ecrm-0800'>frequency perspective, generating the so called coefficients whose index in the transform domain is
-</span><span class='ecrm-0800'>related to a different frequency of the signal.</span></p>
+</span><span class='ecrm-0800'>related to a different frequency of the signal.</span></p><a id='x1-2008x1'></a>
 <!-- l. 42 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>In general, the color transforms can be considered lossless, although this is only true when
-</span><span class='ecrm-0800'>fixed-point arithmetic is used.</span></p>
+</span><span class='ecrm-0800'>fixed-point arithmetic is used.</span></p><a id='x1-3002x2'></a>
 <!-- l. 57 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>It is worth to understand that the frequency concept in the color transform domain is not
 </span><span class='ecrm-0800'>related to the frequency concept in the original pixel domain. For example, the</span> \(\text {R}\) <span class='ecrm-0800'>component or a
 </span><span class='ecrm-0800'>pixel represents the amount of red in the pixel, and in the visible spectrum we are refering to
 </span><span class='ecrm-0800'>frequencies that are lower than the frequency that the</span> \(\text {G}\) <span class='ecrm-0800'>and</span> \(\text {B}\) <span class='ecrm-0800'>components represent. However, in a
 </span><span class='ecrm-0800'>color transformed domain, the luma measures the brightness level of the pixel, and we
 </span><span class='ecrm-0800'>cannot found a subband of frequencies in the visible spectrum that can represent such
-</span><span class='ecrm-0800'>information.</span></p>
-<!-- l. 82 --><p class='indent'>     <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>That can be considered as a </span><span class='ecti-0800'>single-channel</span><span class='ecrm-0800'>/</span><span class='ecti-0800'>mono-component</span><span class='ecrm-0800'>/</span><span class='ecti-0800'>scalar </span><span class='ecrm-0800'>image.</span></p>
-<!-- l. 97 --><p class='noindent'><span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>In general, the information provided by the signals.</span></p>
-<!-- l. 105 --><p class='noindent'><span class='footnote-mark'><a href='#fn8x0-bk' id='fn8x0'><sup class='textsuperscript'>8</sup></a></span><span class='ecrm-0800'>For the same bit-rate.</span></p>
+</span><span class='ecrm-0800'>information.</span></p><a id='x1-4002x'></a>
+<!-- l. 82 --><p class='indent'>     <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>That can be considered as a </span><span class='ecti-0800'>single-channel</span><span class='ecrm-0800'>/</span><span class='ecti-0800'>mono-component</span><span class='ecrm-0800'>/</span><span class='ecti-0800'>scalar </span><span class='ecrm-0800'>image.</span></p><a id='x1-5004x7'></a>
+<!-- l. 97 --><p class='noindent'><span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>In general, the information provided by the signals.</span></p><a id='x1-5006x8'></a>
+<!-- l. 105 --><p class='noindent'><span class='footnote-mark'><a href='#fn8x0-bk' id='fn8x0'><sup class='textsuperscript'>8</sup></a></span><span class='ecrm-0800'>For the same bit-rate.</span></p><a id='x1-5010x9'></a>
 <!-- l. 116 --><p class='noindent'><span class='footnote-mark'><a href='#fn9x0-bk' id='fn9x0'><sup class='textsuperscript'>9</sup></a></span><span class='ecrm-0800'>Notice again, that we will study this effect in a posterior session.</span></p>                               </div>
  
 </body> 

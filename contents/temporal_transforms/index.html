@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/tree/master/contents/temporal_transforms'>Temporal Transforms</a></h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>March 29, 2023</span></div>
+<div class='date'><span class='ecrm-1200'>February 3, 2024</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -44,10 +44,10 @@ transformation.
 frames<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-2001f1'></a>,
 and outputs at least one <span class='ecti-1000'>residual </span>(frame) in which the residual pixels have a higher
 dynamic range but also a lower entropy. This potentially increases the compression
+ratios (in the case of video, usually measures in kbps).
                                                                   
 
                                                                   
-ratios (in the case of video, usually measures in kbps).
 </p><!-- l. 32 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Motion compensation</h3>
@@ -56,10 +56,10 @@ frames <span class='cite'>[<a href='#Xvruiz__MC'>2</a>]</span>. Therefore, MC e
 residuals<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-3001f2'></a>.
 Basically, MC consists in subtracting from each original frame a
 prediction (frame) built with the information that must be also
-avaliable<span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a id='x1-3002f3'></a>
+avaliable<span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a id='x1-3003f3'></a>
 at the decoder. Notice that, after using MC, the number of
 residual pixels is equal to the number of pixels in the compensated
-frame.<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-3003f4'></a>
+frame.<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-3005f4'></a>
 </p><!-- l. 48 --><p class='indent'>   Usually, MC is performed only by the encoder (compress one. decompress
 many).
 </p><!-- l. 53 --><p class='noindent'>
@@ -79,14 +79,14 @@ GOF<span class='footnote-mark'><a href='#fn5x0' id='fn5x0-bk'><sup class='textsu
 (Group of Frames). Notice that (under the RD prism) the length of the
 GOFs is variable, and therefore, the GOF partition should be an adaptive
 process.
-</p><!-- l. 75 --><p class='indent'>   However, in some contexts<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-5002f6'></a>
+</p><!-- l. 75 --><p class='indent'>   However, in some contexts<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-5003f6'></a>
 it may be necessary to use a fixed GOP partition <span class='cite'>[<a href='#Xvruiz__MC'>2</a>]</span>.
-                                                                  
-
-                                                                  
 </p><!-- l. 79 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Block-based MC and RDO</h3>
+                                                                  
+
+                                                                  
 <!-- l. 81 --><p class='noindent'>The MC schemes used in most video coding standards compensate blocks on pixels <span class='cite'>[<a href='#Xvruiz__ME'>3</a>]</span>.
 In this context, depending of the block decision mode implemented in the RDO
 procedure<span class='footnote-mark'><a href='#fn7x0' id='fn7x0-bk'><sup class='textsuperscript'>7</sup></a></span><a id='x1-6001f7'></a>,
@@ -111,11 +111,11 @@ B.
 <li class='enumerate' id='x1-8006x3'><a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/farneback_ME.ipynb'>Farnebäck’s motion estimation</a>.
      </li>
 <li class='enumerate' id='x1-8008x4'><a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation/blob/master/introducing_IPPP.ipynb'>Introducing the Low-delay (IPP...) Mode</a>.
+     </li>
+<li class='enumerate' id='x1-8010x5'><a href='https://github.com/Sistemas-Multimedia/MRVC'>Multi-Resolution Video Coding (MRVC)</a>.</li></ol>
                                                                   
 
                                                                   
-     </li>
-<li class='enumerate' id='x1-8010x5'><a href='https://github.com/Sistemas-Multimedia/MRVC'>Multi-Resolution Video Coding (MRVC)</a>.</li></ol>
 <!-- l. 104 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-90008'></a>To-Do</h3>
@@ -138,24 +138,26 @@ B.
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xvruiz__MCTF'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensated_temporal_filtering'>Motion Compensated Temporal Filtering (MCTF)</a>.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [2]<span class='bibsp'>   </span></span><a id='Xvruiz__MC'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation'>Motion Compensation</a>.
                                                                   
 
                                                                   
    </p>
    <p class='bibitem'><span class='biblabel'>
- [2]<span class='bibsp'>   </span></span><a id='Xvruiz__MC'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation'>Motion Compensation</a>.
-   </p>
-   <p class='bibitem'><span class='biblabel'>
  [3]<span class='bibsp'>   </span></span><a id='Xvruiz__ME'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation'>Motion Estimation</a>.
 </p>
    </div>
-   <div class='footnotes'><!-- l. 24 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>With pixels or coefficients, depending on the current domain of the frame. Notice, for
+   <div class='footnotes'><a id='x1-2002x1'></a>
+<!-- l. 24 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>With pixels or coefficients, depending on the current domain of the frame. Notice, for
 </span><span class='ecrm-0800'>example, that if the frame is in the DWT domain, we should refer to it as a “decomposition” instead
-</span><span class='ecrm-0800'>of a “frame”.</span></p><!-- l. 41 --><p class='indent'> <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>The better the prediction, the lower the entropy of the residuals.</span></p>
-<!-- l. 43 --><p class='indent'>     <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>In order to make a reversible process.</span></p>
-<!-- l. 46 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>At least, when we compensate in the image domain.</span></p>
-<!-- l. 70 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>Some standards also use GOP (Group Of Pictures).</span></p>
-<!-- l. 76 --><p class='indent'>     <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>Specifically, constant bit-rate encodings.</span></p>
+</span><span class='ecrm-0800'>of a “frame”.</span></p><a id='x1-3002x2'></a>
+<!-- l. 41 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>The better the prediction, the lower the entropy of the residuals.</span></p><a id='x1-3004x2'></a>
+<!-- l. 43 --><p class='indent'>     <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>In order to make a reversible process.</span></p><a id='x1-3006x2'></a>
+<!-- l. 46 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>At least, when we compensate in the image domain.</span></p><a id='x1-5002x4'></a>
+<!-- l. 70 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>Some standards also use GOP (Group Of Pictures).</span></p><a id='x1-5004x4'></a>
+<!-- l. 76 --><p class='indent'>     <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>Specifically, constant bit-rate encodings.</span></p><a id='x1-6002x5'></a>
 <!-- l. 84 --><p class='indent'>     <span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>Obviously, the part of the RDO procedure that controls the block-type.</span></p>                 </div>
  
 </body> 
