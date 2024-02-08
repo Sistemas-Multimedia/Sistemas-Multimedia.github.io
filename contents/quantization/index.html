@@ -19,8 +19,8 @@
 
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/tree/master/contents/quantization'>Digital
 (Re-)Quantization</a></h2>
- <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>March 30, 2023</span></div>
+ <div class='author'><a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
+<div class='date'><span class='ecrm-1200'>February 3, 2024</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -43,10 +43,10 @@
 <!-- l. 15 --><p class='noindent'>In information theory <span class='cite'>[<a href='#Xvruiz__information_theory'>1</a>]</span>, quantization <span class='cite'>[<a href='#Xvruiz__signal_quantization'>3</a>, <a href='#Xvruiz__scalar_quantization'>2</a>, <a href='#Xvruiz__vector_quantization'>5</a>, <a href='#Xvruiz__trellis_quantization'>4</a>]</span> is any mapping process between
 two sets of elements \(A\) and \(B\), where all elements of \(A\) are associated with one (not
 necessarily the same) element of \(B\), and it happens that \(|A|&gt;|B|\), \(|\cdot |\) represents the order (the
+number of elements) of a set.
                                                                   
 
                                                                   
-number of elements) of a set.
 </p><!-- l. 22 --><p class='indent'>   Notice that if \(|A|&gt;|B|\), quantization is an irreversible process because two or more
 elements of \(A\) will be mapped to the same element of \(B\), and there is no way to find the
 reverse mapping.
@@ -77,12 +77,12 @@ said to be <span class='ecti-1000'>scalar</span> <span class='cite'>[<a href='#
 </p><!-- l. 56 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead'><span class='titlemark'>4.2   </span> <a id='x1-70004.2'></a>Uniform VS non-uniform quantizers</h4>
-                                                                  
-
-                                                                  
 <!-- l. 58 --><p class='noindent'>In an uniform quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span>, the size of all the intervals is equal
 to the quantization step size, which is usually represented by
 \(\Delta \).<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-7001f1'></a> In a
+                                                                  
+
+                                                                  
 non-uniform quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span>, at least one of the intervals is different to the rest. For
 example, a deadzone quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span> has an interval size for the representation level 0
 that doubles the size of the the rest of intervals. For this reason, a deadzone quantizer
@@ -114,17 +114,17 @@ quantizer.
 </p><!-- l. 97 --><p class='indent'>   Another reason why dead-zone quantization is popular in lossy encoding
 systems is that it tends to remove electronic noise more than other scalar
 quantizers where the signal is weaker. If we suppose that the signal has 0
-average<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-9002f4'></a>
+average<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-9003f4'></a>
 and that the dead-zone is placed where the SNR is smaller, we basically replace electronic
 noise by quantization noise. Obviously, this does not improve the RD performance of
 the encoder, but the perceived (subjective) quality is increased for the same bit
-rate.<span class='footnote-mark'><a href='#fn5x0' id='fn5x0-bk'><sup class='textsuperscript'>5</sup></a></span><a id='x1-9003f5'></a>
+rate.<span class='footnote-mark'><a href='#fn5x0' id='fn5x0-bk'><sup class='textsuperscript'>5</sup></a></span><a id='x1-9005f5'></a>
+</p><!-- l. 108 --><p class='noindent'>
+</p>
                                                                   
 
                                                                   
-</p><!-- l. 108 --><p class='noindent'>
-</p>
-   <h4 class='likesubsectionHead'><a id='x1-100005'></a>Resources</h4>
+   <h4 class='likesubsectionHead'><a id='x1-10000'></a>Resources</h4>
 <!-- l. 109 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-10002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/deadzone.py'>Deadzone Quantization in VCF</a>.</li></ol>
@@ -142,7 +142,7 @@ Notice that the histogram must be also known by the decoder to
 the information.
 </p><!-- l. 130 --><p class='noindent'>
 </p>
-   <h4 class='likesubsectionHead'><a id='x1-120006'></a>Resources</h4>
+   <h4 class='likesubsectionHead'><a id='x1-12000'></a>Resources</h4>
 <!-- l. 132 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-12002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/LloydMax.py'>A partial implementation in VCF</a>.</li></ol>
@@ -153,19 +153,19 @@ the information.
 of samples and output a quantization index per block. For example, in most
 natural images, the spatial correlation <span class='cite'>[<a href='#Xvruiz__visual_redundancy'>6</a>]</span> generates that some blocks of
 the image are similar to other blocks. If this is true, we can compute a set
-                                                                  
-
-                                                                  
 of centroids (blocks) and use them to represent the original blocks. As a
 result, we will obtain a matrix of quantization indexes that can be entropy
 coded.
+                                                                  
+
+                                                                  
 </p><!-- l. 151 --><p class='indent'>   Note that VQ exploits the spatial correlation. For this reason, the encoding
 performance of a vector quantizer is superior compared to that of a scalar quantizer
 because the number of quantization indexes (indexes of the centroids) is
 smaller.
 </p><!-- l. 156 --><p class='noindent'>
 </p>
-   <h3 class='likesectionHead'><a id='x1-140007'></a>Resources</h3>
+   <h3 class='likesectionHead'><a id='x1-14000'></a>Resources</h3>
 <!-- l. 158 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-14002x1'><a href='https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py'>Vector Quantization Example</a>.
@@ -184,6 +184,9 @@ smaller.
      compression pipeline. Notice that VCF already implements this quantizer,
      but  the  compression  pipeline  is  not  finished.  You  must  implement  a
      complete pipeline (at least for compressing images). Complexity 2.
+                                                                  
+
+                                                                  
      </li>
 <li class='enumerate' id='x1-15004x2'>Modify VCF to allow the use of VQ (applied to the spatial domain) in
      the compression pipeline. Notice that VQ used in the spatial domain can
@@ -217,13 +220,15 @@ smaller.
                                                                   
 
                                                                   
-   <div class='footnotes'><!-- l. 61 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>In an uniform quantizer, the distance between all the decision levels is</span> \(\Delta \)<span class='ecrm-0800'>.</span></p>
+   <div class='footnotes'><a id='x1-7002x4.2'></a>
+<!-- l. 61 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>In an uniform quantizer, the distance between all the decision levels is</span> \(\Delta \)<span class='ecrm-0800'>.</span></p><a id='x1-8002x4.3'></a>
 <!-- l. 80 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>If the quantizer depends on the characteristics of the signal but there are known </span><span class='ecti-0800'>a priori</span><span class='ecrm-0800'>, it
-</span><span class='ecrm-0800'>should be considered static.</span></p><!-- l. 90 --><p class='indent'> <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>And negative integers are represented using two’s complement.</span></p>
-<!-- l. 101 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>The electronic noise has 0 average and a flat spectrum.</span></p>
-<!-- l. 106 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>Obviously, if the electronic noise is perceived as a source of distortion</span></p>
+</span><span class='ecrm-0800'>should be considered static.</span></p><a id='x1-9002x5'></a>
+<!-- l. 90 --><p class='indent'>     <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>And negative integers are represented using two’s complement.</span></p><a id='x1-9004x5'></a>
+<!-- l. 101 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>The electronic noise has 0 average and a flat spectrum.</span></p><a id='x1-9006x5'></a>
+<!-- l. 106 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>Obviously, if the electronic noise is perceived as a source of distortion</span></p><a id='x1-11002x6'></a>
 <!-- l. 128 --><p class='indent'>     <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>Remember that quantization is a irreversible process and therefore, never is restored the
-</span><span class='ecrm-0800'>original signal (except if</span> \(\Delta =1\)<span class='ecrm-0800'>).</span></p>
+</span><span class='ecrm-0800'>original signal (except if</span> \(\Delta =1\)<span class='ecrm-0800'>).</span></p><a id='x1-13002x7'></a>
 <!-- l. 143 --><p class='indent'>     <span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>If we are removing spatial redundancy, the blocks are usually squared tiles of pixels. If we
 </span><span class='ecrm-0800'>remove color redundancy, the blocks are multicomponent pixels.</span></p>                                      </div>
  
