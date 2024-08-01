@@ -19,86 +19,85 @@
 
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/tree/master/contents/working_environment'>Working Environment</a></h2>
  <div class='author'><a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>February 3, 2024</span></div>
+<div class='date'><span class='ecrm-1200'>August 1, 2024</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
-    <span class='sectionToc'>1 <a href='#x1-20001' id='QQ2-1-2'>About the Operating System</a></span>
+    <span class='sectionToc'>1 <a href='#x1-20001' id='QQ2-1-2'>Recommended Operating System</a></span>
 <br />     <span class='subsectionToc'>1.1 <a href='#x1-30001.1' id='QQ2-1-3'>Running/Developing VCF “Natively”</a></span>
 <br />     <span class='subsectionToc'>1.2 <a href='#x1-40001.2' id='QQ2-1-4'>Running/Developing CVF in a Linux Container</a></span>
 <br />     <span class='subsectionToc'>1.3 <a href='#x1-50001.3' id='QQ2-1-5'>Running/Developing CVF in a Linux Virtual Machine</a></span>
 <br />     <span class='subsectionToc'>1.4 <a href='#x1-60001.4' id='QQ2-1-6'>Running CVF in a “Notebook”</a></span>
 <br />    <span class='sectionToc'>2 <a href='#x1-70002' id='QQ2-1-7'>About the Programming Language(s)</a></span>
-<br />    <span class='sectionToc'>3 <a href='#x1-80003' id='QQ2-1-8'>About the Project Hosting Platform</a></span>
+<br />    <span class='sectionToc'>3 <a href='#x1-80003' id='QQ2-1-8'>About the Software Versions System</a></span>
 <br />    <span class='sectionToc'>4 <a href='#x1-90004' id='QQ2-1-9'>References</a></span>
    </div>
 <!-- l. 10 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>1   </span> <a id='x1-20001'></a>About the Operating System</h3>
+   <h3 class='sectionHead'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Recommended Operating System</h3>
 <!-- l. 12 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead'><span class='titlemark'>1.1   </span> <a id='x1-30001.1'></a>Running/Developing VCF “Natively”</h4>
-<!-- l. 13 --><p class='noindent'>The VCF project <span class='cite'>[<a href='#Xvruiz__VCF'>1</a>]</span> has been designed to work in <a href='https://en.wikipedia.org/wiki/Linux'>Linux</a>. With this in mind, it is
-also possible to run VCF on other operating systems such as OSX and Windows
-because Python <span class='cite'>[<a href='#Xvruiz__YAPT'>3</a>]</span> and Git <span class='cite'>[<a href='#Xvruiz__GitHub'>2</a>]</span>, the two main tools that we will use, are also
-available. In the case of Linux, you can use your favorite distribution.
-</p><!-- l. 21 --><p class='indent'>   The development of VCF in a native environment is the preferred option because
-it is the most efficient from a pure computational point of view.
+<!-- l. 13 --><p class='noindent'>The VCF project <span class='cite'>[<a href='#Xvruiz__VCF'>2</a>]</span> is written in Python <span class='cite'>[<a href='#Xpython'>1</a>]</span>. Therefore, you should be able to run
+the VCF modules on any machine with a Python interpreter installed. Said that, it is
+highly recommended to use Linux or a UNIX-based OS such as OSX. However, with
+some configuration effort (for example, after installing Python), VCF should be able
                                                                   
 
                                                                   
-</p><!-- l. 25 --><p class='noindent'>
+to run also in Windows.
+</p><!-- l. 20 --><p class='indent'>   Running VCF natively is the preferred solution.
+</p><!-- l. 22 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead'><span class='titlemark'>1.2   </span> <a id='x1-40001.2'></a>Running/Developing CVF in a Linux Container</h4>
-<!-- l. 26 --><p class='noindent'>The second most efficient option in terms of computational requirements and
+<!-- l. 23 --><p class='noindent'>The second most convinient option in terms of computational requirements and
 speed is to run Linux in a Linux container, such as the provided by <a href='https://hub.docker.com/'>Docker</a>
 (<a href='https://hub.docker.com/_/ubuntu'>example for Ubuntu</a>) or <a href='https://linuxcontainers.org/'>LXD</a>. Notice, however, that you should be able
 to run graphical applications (such as <a href='https://linuxcontainers.org/'>ImageMagick</a> and <a href='https://www.mozilla.org/firefox'>Firefox</a>) in your
 container.
-</p><!-- l. 36 --><p class='indent'>   Recall that in Windows there exists the possibility of using the <a href='https://learn.microsoft.com/en-us/windows/wsl/install'>Windows
+</p><!-- l. 33 --><p class='indent'>   Recall that in Windows there exists the possibility of using the <a href='https://learn.microsoft.com/en-us/windows/wsl/install'>Windows
 Subsystem for Linux (WSL)</a>.
-</p><!-- l. 40 --><p class='noindent'>
+</p><!-- l. 37 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead'><span class='titlemark'>1.3   </span> <a id='x1-50001.3'></a>Running/Developing CVF in a Linux Virtual Machine</h4>
-<!-- l. 41 --><p class='noindent'>VCF works also in any Linux installed in a virtual machine (VM) environment such
-as <a href='https://www.virtualbox.org/'>Virtual Box</a>, <a href='https://www.vmware.com/'>VMware</a> and <a href='https://www.vmware.com/'>Parallels</a>. The only drawback of this way of running
-CVF is that you will require some extra memory and CPU power, compared to the
-containers.
-</p><!-- l. 47 --><p class='indent'>   Obviously, any remote host (virtualized or not) running Linux is completely
-adequate.
-</p><!-- l. 50 --><p class='noindent'>
+<!-- l. 38 --><p class='noindent'>VCF works also in any Linux installed in a virtual machine (VM) environment such
+as <a href='https://www.virtualbox.org/'>Virtual Box</a>, <a href='https://www.vmware.com/'>VMware</a> and <a href='https://www.vmware.com/'>Parallels</a>. The only drawback of this option is that you
+will require some extra memory and CPU power, compared to the previous
+solutions.
+</p><!-- l. 45 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead'><span class='titlemark'>1.4   </span> <a id='x1-60001.4'></a>Running CVF in a “Notebook”</h4>
-<!-- l. 51 --><p class='noindent'>Finally, it is possible to run CVF services capable of running “notebooks”, such as
-<a href='https://colab.research.google.com/'>Google Colaboratory</a> or <a href='https://mybinder.org/'>Binder</a>. Notice, however, that in this case, you will probably
-need to configure your notebooks to install all the necessary stuff from scratch if you
-use these cloud services. On the contrary, if you opt for using <a href='https://jupyter.org/'>Jupyter</a>, this last action
-is not necessary.
-</p><!-- l. 60 --><p class='noindent'>
+<!-- l. 46 --><p class='noindent'>VCF modules can be invoked from <a href='https://jupyter.org/'>Jupyter</a> notebooks and similar environments, such
+as <a href='https://colab.research.google.com/'>Google Colaboratory</a> and <a href='https://mybinder.org/'>Binder</a>. Notice, however, that in these cases, you will
+probably need to configure your notebooks to install all the necessary stuff from
+scratch.
+</p><!-- l. 53 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>2   </span> <a id='x1-70002'></a>About the Programming Language(s)</h3>
-<!-- l. 62 --><p class='noindent'>VCF is written in <a href='https://www.python.org/'>Python</a>. You will also need to interact with a <a href='https://en.wikipedia.org/wiki/Command-line_interface'>commands line
-terminal</a>.
-</p><!-- l. 66 --><p class='indent'>   In any case, it is very convenient tu use a <a href='https://docs.python.org/3/library/venv.html'>virtual environment</a>.
+<!-- l. 55 --><p class='noindent'>VCF is fully written in <a href='https://www.python.org/'>Python</a> <span class='cite'>[<a href='#Xvruiz__YAPT'>4</a>]</span>. You will also need to interact with a <a href='https://en.wikipedia.org/wiki/Command-line_interface'>commands
+line terminal</a>. It is recommended to use <a href='https://docs.python.org/3/library/venv.html'>virtual environments</a>.
                                                                   
 
                                                                   
-</p><!-- l. 70 --><p class='noindent'>
+</p><!-- l. 63 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>3   </span> <a id='x1-80003'></a>About the Project Hosting Platform</h3>
-<!-- l. 72 --><p class='noindent'>VCF is hosted at <a href='https://github.com'>GitHub</a>.
-</p><!-- l. 74 --><p class='noindent'>
+   <h3 class='sectionHead'><span class='titlemark'>3   </span> <a id='x1-80003'></a>About the Software Versions System</h3>
+<!-- l. 65 --><p class='noindent'>VCF is hosted at <a href='https://github.com'>GitHub</a> and Git <span class='cite'>[<a href='#Xvruiz__GitHub'>3</a>]</span>.
+</p><!-- l. 67 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>4   </span> <a id='x1-90004'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
- [1]<span class='bibsp'>   </span></span><a id='Xvruiz__VCF'></a>V. González-Ruiz. <a href='https://github.com/Sistemas-Multimedia/VCF'>Visual Coding Framework</a>.
+ [1]<span class='bibsp'>   </span></span><a id='Xpython'></a>The Python Foundation. <a href='https://www.python.org/'>The Python Website</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [2]<span class='bibsp'>   </span></span><a id='Xvruiz__GitHub'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/using_GitHub'>Using GitHub</a>.
+ [2]<span class='bibsp'>   </span></span><a id='Xvruiz__VCF'></a>V. González-Ruiz. <a href='https://github.com/Sistemas-Multimedia/VCF'>Visual Coding Framework</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [3]<span class='bibsp'>   </span></span><a id='Xvruiz__YAPT'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/YAPT'>Yet Another Python Tutorial</a>.
+ [3]<span class='bibsp'>   </span></span><a id='Xvruiz__GitHub'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/using_GitHub'>Using GitHub</a>.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [4]<span class='bibsp'>   </span></span><a id='Xvruiz__YAPT'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/YAPT'>Yet Another Python Tutorial</a>.
 </p>
    </div>
     

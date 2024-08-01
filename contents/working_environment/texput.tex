@@ -7,23 +7,20 @@
 
 \tableofcontents
 
-\section{About the Operating System}
+\section{Recommended Operating System}
 
 \subsection{Running/Developing VCF ``Natively''}
-The VCF project~\cite{vruiz__VCF} has been designed to work in
-\href{https://en.wikipedia.org/wiki/Linux}{Linux}. With this in mind, it is
-also possible to run VCF on other operating systems such as OSX and
-Windows because Python~\cite{vruiz__YAPT} and
-Git~\cite{vruiz__GitHub}, the two main tools that we will use, are
-also available. In the case of Linux, you can use your favorite
-distribution.
+The VCF project~\cite{vruiz__VCF} is written in
+Python~\cite{python}. Therefore, you should be able to run the VCF
+modules on any machine with a Python interpreter installed. Said that,
+it is highly recommended to use Linux or a UNIX-based OS such as
+OSX. However, with some configuration effort (for example, after
+installing Python), VCF should be able to run also in Windows.
 
-The development of VCF in a native environment is the preferred option
-because it is the most efficient from a pure computational point of
-view.
+Running VCF natively is the preferred solution.
 
 \subsection{Running/Developing CVF in a Linux Container}
-The second most efficient option in terms of computational
+The second most convinient option in terms of computational
 requirements and speed is to run Linux in a Linux container, such
 as the provided by \href{https://hub.docker.com/}{Docker}
 (\href{https://hub.docker.com/_/ubuntu}{example for Ubuntu})
@@ -41,37 +38,33 @@ Recall that in Windows there exists the possibility of using the
 VCF works also in any Linux installed in a virtual machine (VM)
 environment such as \href{https://www.virtualbox.org/}{Virtual Box},
 \href{https://www.vmware.com/}{VMware} and \href{https://www.vmware.com/}{Parallels}.
-The only drawback of this way of running CVF is that you will require
-some extra memory and CPU power, compared to the containers.
+The only drawback of this option is that you will require
+some extra memory and CPU power, compared to the previous solutions.
 
-Obviously, any remote host (virtualized or not) running Linux is
-completely adequate.
 
 \subsection{Running CVF in a ``Notebook''}
-Finally, it is possible to run CVF services capable of running
-``notebooks'', such as
-\href{https://colab.research.google.com/}{Google Colaboratory} or
-\href{https://mybinder.org/}{Binder}. Notice, however, that in this
-case, you will probably need to configure your notebooks to install all the necessary stuff from scratch if you use these
-cloud services. On the contrary, if you opt for using
-\href{https://jupyter.org/}{Jupyter}, this last action is not
-necessary.
+VCF modules can be invoked from \href{https://jupyter.org/}{Jupyter}
+notebooks and similar environments, such as
+\href{https://colab.research.google.com/}{Google Colaboratory} and
+\href{https://mybinder.org/}{Binder}. Notice, however, that in these
+cases, you will probably need to configure your notebooks to install
+all the necessary stuff from scratch.
 
 \section{About the Programming Language(s)}
 
-VCF is written in \href{https://www.python.org/}{Python}. You will also need to interact with
-a \href{https://en.wikipedia.org/wiki/Command-line_interface}{commands
-  line terminal}.
-
-In any case, it is very convenient tu use a
+VCF is fully written in
+\href{https://www.python.org/}{Python}~\cite{vruiz__YAPT}. You will
+also need to interact with a
+\href{https://en.wikipedia.org/wiki/Command-line_interface}{commands
+  line terminal}. It is recommended to use
 \href{https://docs.python.org/3/library/venv.html}{virtual
-  environment}.
+  environments}.
 
-\section{About the Project Hosting Platform}
+\section{About the Software Versions System}
 
-VCF is hosted at \href{https://github.com}{GitHub}.
+VCF is hosted at \href{https://github.com}{GitHub} and Git~\cite{vruiz__GitHub}.
 
 \section{References}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{projects}
+\bibliography{projects,python}
