@@ -4,7 +4,7 @@
 
 \input{../../definitions}
 
-\title{\SM{} - \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/tree/master/contents/quantization}{Digital (Re-)Quantization}}
+\title{\SM{} - \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/tree/master/contents/quantization}{(Digital Re-)Quantization}}
 
 \maketitle
 
@@ -12,18 +12,19 @@
 
 \section{What is quantization?}
 
-In information theory~\cite{vruiz__information_theory},
+In Information Theory~\cite{vruiz__information_theory},
 quantization~\cite{vruiz__signal_quantization,vruiz__scalar_quantization,vruiz__vector_quantization,vruiz__trellis_quantization}
 is any mapping process between two sets of elements $A$ and $B$, where
 all elements of $A$ are associated with one (not necessarily the
-same) element of $B$, and it happens that $|A|>|B|$, $|\cdot|$
+same) element of $B$, being $|A|>|B|$, where $|\cdot|$
 represents the order (the number of elements) of a set.
 
-Notice that if $|A|>|B|$, quantization is an irreversible process
-because two or more elements of $A$ will be mapped to the same element
-of $B$, and there is no way to find the reverse mapping.
+Notice that, when $|A|>|B|$, quantization is an irreversible process
+because at least two elements of $A$ will be mapped to the same
+element of $B$, and therefore, there is no way to find the reverse
+mapping\footnote{Dequantization does not exist.}.
 
-\section{What is digital (re-)quantization?}
+\section{What is (digital re-)quantization?}
 
 In digital
 quantization~\cite{vruiz__scalar_quantization,vruiz__vector_quantization},
@@ -31,19 +32,19 @@ the elements of $A$ and $B$ are digital samples of a
 signal~\cite{vruiz__signal_quantization}. Since, by definition, a
 digital sample has been quantized to be converted from the analog
 world to the digital one, we are actually applying a re-quantization
-to the signal. Again, such digital quantization implies a loss of
-information in the requantized signal.
+to the digital signal. Again, if $|A|>|B|$, such (digital)
+quantization implies a loss of information in the (re-)quantized signal.
 
 \section{Basic terminology}
 
 Several types of quantizers divide the range of possible values that
 the samples can take into a collection of non-overlapped
 intervals. The values that define such intervals are called
-\emph{decision levels} and the value that in the quantized domain
+\emph{decision levels}, and the value that in the quantized domain
 represents all the input possible values that fall into an interval is
 called the \emph{representation level} of the interval.
 
-\section{A classification of quantizers}
+\section{Types of quantizers}
 
 \subsection{Scalar quantizers (SQ) VS Vector Quantizers (VQ)}
 
