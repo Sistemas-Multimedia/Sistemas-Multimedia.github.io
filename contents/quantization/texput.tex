@@ -12,12 +12,12 @@
 
 \section{What is quantization?}
 
-In Information Theory~\cite{vruiz__information_theory},
-quantization~\cite{vruiz__signal_quantization,vruiz__scalar_quantization,vruiz__vector_quantization,vruiz__trellis_quantization}
+In Information Theory~\cite{vruiz__information_theory}, quantization
+\cite{vruiz__signal_quantization,vruiz__scalar_quantization,vruiz__vector_quantization,vruiz__trellis_quantization}
 is any mapping process between two sets of elements $A$ and $B$, where
-all elements of $A$ are associated with one (not necessarily the
-same) element of $B$, being $|A|>|B|$, where $|\cdot|$
-represents the order (the number of elements) of a set.
+all elements of $A$ are associated with one (not necessarily the same)
+element of $B$, being $|A|>|B|$, where $|\cdot|$ represents the order
+(the number of elements) of a set.
 
 Notice that, when $|A|>|B|$, quantization is an irreversible process
 because at least two elements of $A$ will be mapped to the same
@@ -26,23 +26,26 @@ mapping\footnote{Dequantization does not exist.}.
 
 \section{What is (digital re-)quantization?}
 
-In digital
-quantization~\cite{vruiz__scalar_quantization,vruiz__vector_quantization},
-the elements of $A$ and $B$ are digital samples of a
-signal~\cite{vruiz__signal_quantization}. Since, by definition, a
-digital sample has been quantized to be converted from the analog
-world to the digital one, we are actually applying a re-quantization
-to the digital signal. Again, if $|A|>|B|$, such (digital)
-quantization implies a loss of information in the (re-)quantized signal.
+In the quantization of digital signals
+\cite{vruiz__scalar_quantization,vruiz__vector_quantization}, the
+elements of $A$ and $B$ are digital samples
+\cite{vruiz__signal_quantization}. Since, by definition, digital
+samples have been quantized to be converted from the analog world to
+the digital one, we are actually applying a re-quantization. Again, if
+$|A|>|B|$, such quantization implies a loss of information in the
+quantized signal.
 
 \section{Basic terminology}
 
-Several types of quantizers divide the range of possible values that
-the samples can take into a collection of non-overlapped
-intervals. The values that define such intervals are called
-\emph{decision levels}, and the value that in the quantized domain
-represents all the input possible values that fall into an interval is
-called the \emph{representation level} of the interval.
+When working with 1D signals, quantizers divide the range of possible
+input values that the samples can take into a collection of
+non-overlapped intervals\footnote{If the signal has more than 1
+  dimension, the process is exactly the same, but we don't speak of
+  intervals, but regions, for example, in the 2D case.}. The values
+that define such intervals are called \emph{decision levels}, and the
+value that in the quantized domain represents all the input possible
+values that fall into an interval is called the \emph{representation
+  level} of the interval.
 
 \section{Types of quantizers}
 
@@ -52,33 +55,38 @@ When quantization maps single elements of $A$ to single elements of
 $B$, the quantizer is said to be
 \emph{scalar}~\cite{vruiz__scalar_quantization}. When tuples of
 elements are mapped, VQ is
-used~\cite{vruiz__vector_quantization}.
+used~\cite{vruiz__vector_quantization}. Notice that this
+classification if not related to the dimensionality of the signal, but
+whether the samples are processed independently or whether they are
+quantized by tuples. In this last case, we can exploit the correlation
+between samples.
 
 \subsection{Uniform VS non-uniform quantizers}
 
-In an uniform quantizer~\cite{vruiz__scalar_quantization}, the size of
-all the intervals is equal to the quantization step size, which is
-usually represented by $\Delta$.\footnote{In an uniform quantizer, the
-distance between all the decision levels is $\Delta$.} In a
+In an uniform quantizer~\cite{vruiz__scalar_quantization}, all the
+intervals have the same the size, which is equal to the quantization
+step size, $\Delta$.\footnote{Notice that, in an uniform quantizer,
+  the distance between all the decision levels is also $\Delta$.} In a
 non-uniform quantizer~\cite{vruiz__scalar_quantization}, at least one
 of the intervals is different to the rest. For example, a deadzone
-quantizer~\cite{vruiz__scalar_quantization} has an interval size for
+quantizer \cite{vruiz__scalar_quantization} has an interval size for
 the representation level 0 that doubles the size of the the rest of
-intervals. For this reason, a deadzone quantizer is a non-uniform
-quantizer. Another example of a non-uniform quantizer is a Lloyd-Max
-quantizer because it divides the range of input values in a set of
-intervals whose size is inversely proportional to the probability of
-using such interval.
+intervals, and for this reason, a deadzone quantizer is a non-uniform
+quantizer. Another example of a non-uniform quantizer is a
+\href{https://en.wikipedia.org/wiki/Lloyd%27s_algorithm}{Lloyd-Max
+  quantizer} \cite{vruiz__scalar_quantization} because it divides the
+range of input values in a set of intervals whose size is inversely
+proportional to the probability of using such interval.
 
 \subsection{Static VS adaptive quantizers}
 
 Static quantizers do not modify the partitioning of the input signal's
 dynamic range (the decision levels), nor the representation level
 assigned to each interval. On the contrary, adaptive quantizers adapt
-to the sequence of samples that are quantized during the quantization
-process.\footnote{If the quantizer depends on the characteristics of
-the signal but there are known \emph{a priori}, it should be
-considered static.} A Jayant
+such parameters to the sequence of samples that are
+quantizing.\footnote{Notice that, in the case of the quantizer depends
+  on the characteristics of the signal but they are known \emph{a
+    priori}, it should be considered static.} A Jayant
 quantizer~\cite{vruiz__scalar_quantization} is a example of adaptive
 quantization.
 
@@ -87,24 +95,27 @@ quantization.
 Deadzone quantizers~\cite{vruiz__scalar_quantization} are static
 quasi-uniform scalar quantizers. These are used frequently in lossy
 compression systems because when the quantization step size is a power
-of two and the input sample values are integers\footnote{And negative
-integers are represented using two's complement.}, then the
+of two and the input sample values are integers\footnote{... and negative
+integers are represented using two's complement ...}, then the
 representation levels can be found simply by discarding
 low-significant bits of the input samples (in other words, we only
 need to perform a bit-shift operation to find the corresponding
 quantization index). This also means that it is possible to build a
 progressive encoding system using a deadzone quantizer.
 
-Another reason why dead-zone quantization is popular in lossy
-encoding systems is that it tends to remove electronic noise more than
-other scalar quantizers where the signal is weaker. If we suppose that
-the signal has 0 average\footnote{The electronic noise has 0 average
-and a flat spectrum.} and that the dead-zone is placed where the SNR is
+Another reason why dead-zone quantization is popular in lossy encoding
+systems is that it tends to remove electronic noise more than other
+scalar quantizers where the signal is weaker. If we suppose that the
+signal has 0 average\footnote{The electronic noise has 0 average and a
+  flat spectrum.} and that the dead-zone is placed where the
+\href{https://en.wikipedia.org/wiki/Signal-to-noise_ratio}{SNR} is
 smaller, we basically replace electronic noise by quantization
-noise. Obviously, this does not improve the RD performance of the
-encoder, but the perceived (subjective) quality is increased for the
-same bit rate.\footnote{Obviously, if the electronic noise is
-perceived as a source of distortion}
+noise\footnote{Which also has 0 average and a flat
+  spectrum}. Obviously, this does not improve the RD performance of
+the encoder, but the perceived (subjective) quality is increased for
+the same bit rate.\footnote{Obviously, if the electronic noise is
+  perceived as a source of distortion comparable to the quantization
+  noise.}
 
 \subsection*{Resources}
 \begin{enumerate}
@@ -117,16 +128,16 @@ perceived as a source of distortion}
 
 A Lloyd-Max quantizer~\cite{vruiz__scalar_quantization} minimizes
 quantization noise given a signal with a known probabilistic
-distribution (histogram) of the input samples and a number of
-quantization intervals. As a result, the density of quantization
-intervals is higher where the probability of the samples is higher, and
-vice versa.
+distribution (histogram) of the input samples. As a result, the
+density of quantization intervals is higher where the probability of
+the samples is higher, and \textit{vice versa}.
 
 Lloyd-Max quantizers are considered non-uniform quantizers. Notice
 that the histogram must be also known by the decoder to
 ``restore''\footnote{Remember that quantization is a irreversible
-process and therefore, never is restored the original signal (except
-if $\Delta=1$).} the information.
+  process and therefore, the original signal is never restored (except
+  if $\Delta=1$ and we are using digital quantization).} the
+information.
 
 \subsection*{Resources}
 
@@ -140,19 +151,20 @@ if $\Delta=1$).} the information.
 
 Vector quantizers~\cite{vruiz__vector_quantization} input
 blocks\footnote{If we are removing spatial redundancy, the blocks are
-usually squared tiles of pixels. If we remove color redundancy,
-the blocks are multicomponent pixels.} of samples and output a
-quantization index per block. For example, in most natural images,
-the spatial correlation~\cite{vruiz__visual_redundancy} generates that
-some blocks of the image are similar to other blocks. If this is true,
-we can compute a set of centroids (blocks) and use them to represent
-the original blocks. As a result, we will obtain a matrix of
-quantization indexes that can be entropy coded.
+  usually squared tiles of pixels. If we remove color redundancy, the
+  blocks are multicomponent pixels, for example, RGB values.} of
+samples and output a quantization index per block. For example, in
+most natural images, the spatial
+correlation~\cite{vruiz__visual_redundancy} generates that some blocks
+of the image are similar to other blocks. If this is true, we can
+compute a set of centroids (blocks) and use them to represent the
+original blocks. As a result, we will obtain a matrix of quantization
+indexes that can be entropy coded.
 
 Note that VQ exploits the spatial correlation. For this reason, the
-encoding performance of a vector quantizer is superior compared to that of a
-scalar quantizer because the number of quantization indexes (indexes
-of the centroids) is smaller.
+encoding performance of a vector quantizer is usually superior
+compared to that of a scalar quantizer because the number of output
+quantization indexes\footnote{Indexes of the centroids.} is smaller.
 
 \section*{Resources}
 
@@ -180,8 +192,9 @@ of the centroids) is smaller.
 \item Modify VCF to allow the use of VQ (applied to the spatial
   domain) in the compression pipeline. Notice that VQ used in the
   spatial domain can significantly minimize the advantage of using a
-  spatial transform. For this reason, it can also be useful to implement
-  also ``fake'' spatial transform where no transformation is performed
+  spatial transform.\footnote{Spatial transforms are studied later in
+    this course.} For this reason, it can also be useful to implement
+  also a ``fake'' spatial transform where no transformation is performed
   at all. The same happens when VQ is used in the color
   domain. Complexity 4.
 \end{enumerate}
