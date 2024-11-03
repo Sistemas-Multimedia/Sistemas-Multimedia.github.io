@@ -31,7 +31,7 @@ the efficiency of such representation
 
 \section{Why EC?}
 All data (text, audio, image, video, etc.) compression techniques rely
-on EC to achieve an effective reduction of bits. For example,
+on EC to achieve an effective reduction of bits (of data). For example,
 \href{https://en.wikipedia.org/wiki/JPEG}{JPEG} uses a combination of
 \href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman Coding}
 (see below) and
@@ -40,7 +40,7 @@ on EC to achieve an effective reduction of bits. For example,
 
 \section{A classification of entropy encoders}
 
-In general, data are sequences of
+General speaking, data are sequences of
 \href{https://en.wikipedia.org/wiki/Symbol}{symbols}. There are
 basically two types of entropy encoders depending on how the symbols
 are processed:
@@ -58,11 +58,13 @@ are processed:
   (RLE)~\cite{vruiz__rle} and all the dictionary-based text
   compressors, such as LZW~\cite{vruiz__LZW}.
 \end{enumerate}
-  
-Those of the first type generally achieve more compact
-representations, but are computationally more expensive. The
+
+\begin{comment}
+The encoders of the first type generally achieve more compact
+representations (from a pure Entropy perspective, i.e., without reducing the number of symbols), but are computationally more expensive. The
 algorithms of the second class are usually faster, but slightly worse
 in compression ratio.
+\end{comment}
 
 \section{\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman Coding (HC)}}
 
@@ -75,29 +77,40 @@ uncertainty. The Huffman tree satisfies that
   l(c(s)) = \lceil I(s)\rceil,
   \label{eq:huffman_performance}
 \end{equation}
-where $l(c(s))$ is the length of the (Huffman) code-word assigned to the
-symbol $s$ and $I(s)$ is the amount of information represented by $s$,
-measured bits of information~\cite{vruiz__information_theory}.
+where $l(c(s))$ is the length of the (Huffman) code-word, usually in
+bits of data, assigned to the symbol $s$, and $I(s)$ is the amount of
+information represented by $s$, measured bits of
+information~\cite{vruiz__information_theory}.
 
 Notice that the minimum number of bits that can be used for
-representing a symbol (using Huffman) is 1, which can be a problem
+representing a symbol (using Huffman) is 1, which can be a inefficient
 when the length of the alphabet is small.\footnote{In this case,
   Huffman can be ineffective. In an extreme case, the alphabet could
   have only two symbols, and therefore the Huffman encoder does not
-  compress or expand.} Another drawback of Huffman Coding is that the
-Huffman tree must be updated each time the probabilistic model is
-updated, action very frequent when using
+  compress or expand.} Another drawback of HC is that the Huffman tree
+must be updated each time the probabilistic model is updated, action
+very frequent when using
 \href{https://en.wikipedia.org/wiki/Adaptive_Huffman_coding}{adaptive
   models}.
 
 \subsection*{Resources}
 \begin{enumerate}
+\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/Huffman.py}{Huffman.py}: Implementation in VCF.
+\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/Huffman.ipynb}: Notebook showing the use of Huffman.py.
 \item \href{https://www.inference.org.uk/mackay/python/compress/#Huff}{Compression algorithms in Python}.
 \item \href{https://favtutor.com/blogs/huffman-coding}{Huffman Coding Implementation in Python with Examples}.
 \item \href{https://www.programiz.com/dsa/huffman-coding}{Huffman Coding}.
 \item \href{https://en.wikipedia.org/wiki/Prediction_by_partial_matching}{Prediction by Partial Matching}.
 \item \href{https://en.wikipedia.org/wiki/Lossless_JPEG}{Lossless JPEG}.
 \item \href{https://en.wikipedia.org/wiki/Context-adaptive_variable-length_coding}{Context-Adaptive Variable-Length Coding}.
+\end{enumerate}
+
+\subsection*{To do}
+\begin{enumerate}
+\item Create a new module named \texttt{adaptive\_Huffman.py} that use
+  a context-based adaptive probabilistic model
+  \cite{nelson96datacompression}, where the user can select the order
+  of the model.
 \end{enumerate}
 
 \section{\href{https://en.wikipedia.org/wiki/Arithmetic_coding}{Arithmetic
@@ -129,13 +142,21 @@ code) and an arithmetic code, vanishes.
 \item \href{https://en.wikipedia.org/wiki/Context-adaptive_binary_arithmetic_coding}{Context-Adaptive Binary Arithmetic Coding}.
 \end{enumerate}
 
+\subsection*{To do}
+\begin{enumerate}
+\item Create a new module named \texttt{arith.py} that use
+  a context-based adaptive probabilistic model and Arithmetic Coding
+  \cite{nelson96datacompression}, where the user can select the order
+  of the model.
+\end{enumerate}
+
 \section{\href{https://zlib.net/}{\texttt{zlib}}}
 
 \texttt{zlib} is based on
 \href{https://en.wikipedia.org/wiki/Deflate}{DEFLATE}, which in turn
 is based on LZ77~\cite{vruiz__LZW,ruiz2000compresion} and Huffman
 coding. Therefore, \texttt{zlib} exploits the repetition of symbols
-and also, the the 0-order statistical redundancy\footnote{In other
+and also, the 0-order statistical redundancy\footnote{In other
   words, that some symbols are more frequently than others.}. One of
 the main advantages of \texttt{zlib} is that is quite fast compared to
 symbol encoders such as HC and AC.
@@ -173,23 +194,6 @@ and only returns images.
 % PNG is the default EC in the \href{https://github.com/Sistemas-Multimedia/VCF}{VCF project} because: (1) is lossless, (2) is fast, and (3) the compression performance is reasonable.
 
 % \section{Entropy Image Coding with \href{https://en.wikipedia.org/wiki/Better_Portable_Graphics}{BPG (Better Portable Graphics)}}
-
-\section{To-Do}
-Please, select one of the following tasks to develop:
-\begin{enumerate}
-\item Modify \href{https://github.com/Sistemas-Multimedia/VCF}{VCF} to
-  allow the use of Huffman coding as an entropy codec in the
-  compression pipeline. A context-based probabilistic model should be
-  used to minimize the probabilities of the symbols. See
-  \cite{nelson96datacompression}. Complexity 3.
-\item Modify VCF to allow the use of arithmetic coding as a entropy
-  codec in the compression pipeline. Again, a context-based
-  probabilistic model should be used, and in this case, to speed up
-  the decoding of the symbols and to increase the compression ratio,
-  it is convenient that they follow a Laplace statistical distribution
-  that can be easily obtained using a spatial predictor. See
-  \cite{nelson96datacompression}. Complexity 3.
-\end{enumerate}
 
 \section{References}
 
