@@ -1,6 +1,6 @@
 <!DOCTYPE html> 
 <html lang='en-US' xml:lang='en-US'> 
-<head> <title>Sistemas Multimedia - (Digital Re-)Quantization</title> 
+<head> <title>(Digital Re-)Quantization</title> 
 <meta charset='utf-8' /> 
 <meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
 <meta content='width=device-width,initial-scale=1' name='viewport' /> 
@@ -17,10 +17,9 @@
 
                                                                   
 
-<h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/'>Sistemas Multimedia</a> - <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/tree/master/contents/quantization'>(Digital
-Re-)Quantization</a></h2>
+<h2 class='titleHead'>(Digital Re-)Quantization</h2>
  <div class='author'><a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>August 4, 2024</span></div>
+<div class='date'><span class='ecrm-1200'>November 3, 2024</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -44,12 +43,12 @@ Re-)Quantization</a></h2>
 two sets of elements \(A\) and \(B\), where all elements of \(A\) are associated with one (not
 necessarily the same) element of \(B\), being \(|A|&gt;|B|\), where \(|\cdot |\) represents the order (the number of
 elements) of a set.
-                                                                  
-
-                                                                  
 </p><!-- l. 22 --><p class='indent'>   Notice that, when \(|A|&gt;|B|\), quantization is an irreversible process because at least two elements
 of \(A\) will be mapped to the same element of \(B\), and therefore, there is no way to find the reverse
 mapping<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-2001f1'></a>.
+                                                                  
+
+                                                                  
 </p><!-- l. 27 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>2   </span> <a id='x1-30002'></a>What is (digital re-)quantization?</h3>
@@ -79,15 +78,15 @@ that this classification if not related to the dimensionality of the signal,
 but whether the samples are processed independently or whether they are
 quantized by tuples. In this last case, we can exploit the correlation between
 samples.
-                                                                  
-
-                                                                  
 </p><!-- l. 64 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead'><span class='titlemark'>4.2   </span> <a id='x1-70004.2'></a>Uniform VS non-uniform quantizers</h4>
 <!-- l. 66 --><p class='noindent'>In an uniform quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span>, all the intervals have the same the size, which is equal to the quantization
 step size, \(\Delta \).<span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a id='x1-7001f3'></a>
 In a non-uniform quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span>, at least one of the intervals is different to the rest.
+                                                                  
+
+                                                                  
 For example, a deadzone quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span> has an interval size for the representation level
 0 that doubles the size of the the rest of intervals, and for this reason, a deadzone
 quantizer is a non-uniform quantizer. Another example of a non-uniform quantizer is
@@ -123,12 +122,12 @@ quantization noise<span class='footnote-mark'><a href='#fn7x0' id='fn7x0-bk'><su
 Obviously, this does not improve the RD performance of the encoder,
 but the perceived (subjective) quality is increased for the same bit
 rate.<span class='footnote-mark'><a href='#fn8x0' id='fn8x0-bk'><sup class='textsuperscript'>8</sup></a></span><a id='x1-9007f8'></a>
-                                                                  
-
-                                                                  
 </p><!-- l. 120 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead'><a id='x1-10000'></a>Resources</h4>
+                                                                  
+
+                                                                  
 <!-- l. 121 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-10002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/deadzone.py'>Deadzone Quantization in VCF</a>.</li></ol>
@@ -152,9 +151,6 @@ the information.
 <!-- l. 150 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>7   </span> <a id='x1-130007'></a>Vector quantization applied to the spatial domain</h3>
-                                                                  
-
-                                                                  
 <!-- l. 152 --><p class='noindent'>Vector quantizers <span class='cite'>[<a href='#Xvruiz__vector_quantization'>5</a>]</span> input blocks<span class='footnote-mark'><a href='#fn10x0' id='fn10x0-bk'><sup class='textsuperscript'>10</sup></a></span><a id='x1-13001f10'></a>
 of samples and output a quantization index per block. For example, in most
 natural images, the spatial correlation <span class='cite'>[<a href='#Xvruiz__visual_redundancy'>6</a>]</span> generates that some blocks of
@@ -162,6 +158,9 @@ the image are similar to other blocks. If this is true, we can compute a set
 of centroids (blocks) and use them to represent the original blocks. As a
 result, we will obtain a matrix of quantization indexes that can be entropy
 coded.
+                                                                  
+
+                                                                  
 </p><!-- l. 164 --><p class='indent'>   Note that VQ exploits the spatial correlation. For this reason, the
 encoding performance of a vector quantizer is usually superior compared
 to that of a scalar quantizer because the number of output quantization
@@ -183,14 +182,14 @@ is smaller.
 </p>
    <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-150008'></a>To-Do</h3>
 <!-- l. 186 --><p class='noindent'>
-                                                                  
-
-                                                                  
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-15002x1'>Modify  VCF  to  allow  the  use  of  Lloyd-Max  quantization  in  the
      compression pipeline. Notice that VCF already implements this quantizer,
      but  the  compression  pipeline  is  not  finished.  You  must  implement  a
      complete pipeline (at least for compressing images). Complexity 2.
+                                                                  
+
+                                                                  
      </li>
 <li class='enumerate' id='x1-15004x2'>Modify VCF to allow the use of VQ (applied to the spatial domain) in
      the compression pipeline. Notice that VQ used in the spatial domain can
@@ -216,14 +215,14 @@ is smaller.
    </p>
    <p class='bibitem'><span class='biblabel'>
  [5]<span class='bibsp'>   </span></span><a id='Xvruiz__vector_quantization'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization'>Vector Quantization</a>.
-                                                                  
-
-                                                                  
    </p>
    <p class='bibitem'><span class='biblabel'>
  [6]<span class='bibsp'>   </span></span><a id='Xvruiz__visual_redundancy'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/visual_redundancy'>Visual Redundancy</a>.
 </p>
    </div>
+                                                                  
+
+                                                                  
    <div class='footnotes'><a id='x1-2002x1'></a>
 <!-- l. 25 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>Dequantization does not exist.</span></p><a id='x1-4002x3'></a>
 <!-- l. 44 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>If the signal has more than 1 dimension, the process is exactly the same, but we don’t speak
