@@ -56,7 +56,7 @@ $B$, the quantizer is said to be
 \emph{scalar}~\cite{vruiz__scalar_quantization}. When tuples of
 elements are mapped, VQ is
 used~\cite{vruiz__vector_quantization}. Notice that this
-classification if not related to the dimensionality of the signal, but
+classification is not related to the dimensionality of the signal, but
 whether the samples are processed independently or whether they are
 quantized by tuples. In this last case, we can exploit the correlation
 between samples.
@@ -71,8 +71,7 @@ non-uniform quantizer~\cite{vruiz__scalar_quantization}, at least one
 of the intervals is different to the rest. For example, a deadzone
 quantizer \cite{vruiz__scalar_quantization} has an interval size for
 the representation level 0 that doubles the size of the the rest of
-intervals, and for this reason, a deadzone quantizer is a non-uniform
-quantizer. Another example of a non-uniform quantizer is a
+intervals. Another example of a non-uniform quantizer is a
 \href{https://en.wikipedia.org/wiki/Lloyd%27s_algorithm}{Lloyd-Max
   quantizer} \cite{vruiz__scalar_quantization} because it divides the
 range of input values in a set of intervals whose size is inversely
@@ -120,8 +119,8 @@ the same bit rate.\footnote{Obviously, if the electronic noise is
 \subsection*{Resources}
 \begin{enumerate}
 \item
-  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/deadzone.py}{Deadzone
-    Quantization in VCF}.
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/deadzone.py}{deadzone.py}: Implementation in VCF.
+\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/deadzone.ipynb}{deadzone.ipynb}: Notebook showing the use of deadzone.py
 \end{enumerate}
 
 \section{Lloyd-Max quantization}
@@ -143,8 +142,8 @@ information.
 
 \begin{enumerate}
 \item
-  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/LloydMax.py}{A
-    partial implementation in VCF}.
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/LloydMax.py}{LloydMax.py}: Implementation in VCF.
+\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/LloydMax.ipynb}{LloydMax.ipynb}:  Notebook showing the use of LloydMax.py.
 \end{enumerate}
 
 \section{Vector quantization applied to the spatial domain}
@@ -161,7 +160,7 @@ compute a set of centroids (blocks) and use them to represent the
 original blocks. As a result, we will obtain a matrix of quantization
 indexes that can be entropy coded.
 
-Note that VQ exploits the spatial correlation. For this reason, the
+Notice that VQ exploits the spatial correlation. For this reason, the
 encoding performance of a vector quantizer is usually superior
 compared to that of a scalar quantizer because the number of output
 quantization indexes\footnote{Indexes of the centroids.} is smaller.
@@ -169,6 +168,8 @@ quantization indexes\footnote{Indexes of the centroids.} is smaller.
 \section*{Resources}
 
 \begin{enumerate}
+  \item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/VQ.py}{VQ.py}: Implementation in VCF.
+  \item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/VQ.ipynb}{VQ.ipynb}: Notebook showing the use of VQ.py
 \item
   \href{https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py}{Vector
     Quantization Example}.
