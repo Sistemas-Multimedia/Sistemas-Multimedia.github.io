@@ -183,23 +183,6 @@ quantization indexes\footnote{Indexes of the centroids.} is smaller.
 \item \href{https://github.com/droidadroit/LBG}{Image compression using LBG}.
 \end{enumerate}
 
-\section{To-Do}
-\begin{enumerate}
-\item Modify VCF to allow the use of Lloyd-Max quantization in the
-  compression pipeline. Notice that VCF already implements this
-  quantizer, but the compression pipeline is not finished. You must
-  implement a complete pipeline (at least for compressing
-  images). Complexity 2.
-\item Modify VCF to allow the use of VQ (applied to the spatial
-  domain) in the compression pipeline. Notice that VQ used in the
-  spatial domain can significantly minimize the advantage of using a
-  spatial transform.\footnote{Spatial transforms are studied later in
-    this course.} For this reason, it can also be useful to implement
-  also a ``fake'' spatial transform where no transformation is performed
-  at all. The same happens when VQ is used in the color
-  domain. Complexity 4.
-\end{enumerate}
-
 \section{References}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
