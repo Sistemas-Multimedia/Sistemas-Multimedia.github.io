@@ -105,8 +105,8 @@ progressive encoding system using a deadzone quantizer.
 Another reason why dead-zone quantization is popular in lossy encoding
 systems is that it tends to remove electronic noise more than other
 scalar quantizers where the signal is weaker. If we suppose that the
-signal has 0 average\footnote{The electronic noise has 0 average and a
-  flat spectrum.} and that the dead-zone is placed where the
+signal has 0 mean\footnote{The electronic noise has 0 arithmetic mean
+  and a flat spectrum.} and that the dead-zone is placed where the
 \href{https://en.wikipedia.org/wiki/Signal-to-noise_ratio}{SNR} is
 smaller, we basically replace electronic noise by quantization
 noise\footnote{Which also has 0 average and a flat
@@ -162,14 +162,14 @@ indexes that can be entropy coded.
 
 Notice that VQ exploits the spatial correlation. For this reason, the
 encoding performance of a vector quantizer is usually superior
-compared to that of a scalar quantizer because the number of output
+compared to that of a scalar quantizer, because the number of output
 quantization indexes\footnote{Indexes of the centroids.} is smaller.
 
 \section*{Resources}
 
 \begin{enumerate}
   \item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/VQ.py}{VQ.py}: Implementation in VCF.
-  \item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/VQ.ipynb}{VQ.ipynb}: Notebook showing the use of VQ.py
+  \item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/VQ.ipynb}{VQ.ipynb}: Notebook showing the use of VQ.
 \item
   \href{https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py}{Vector
     Quantization Example}.
