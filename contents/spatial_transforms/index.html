@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'>Spatial Transforms</h2>
  <div class='author'><a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>November 3, 2024</span></div>
+<div class='date'><span class='ecrm-1200'>November 8, 2024</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -29,8 +29,7 @@
 <br />    <span class='sectionToc'>4 <a href='#x1-50004' id='QQ2-1-5'>Learned transforms</a></span>
 <br />    <span class='sectionToc'>5 <a href='#x1-60005' id='QQ2-1-6'>2D-partitioning</a></span>
 <br />    <span class='sectionToc'>6 <a href='#x1-70006' id='QQ2-1-7'>Resources</a></span>
-<br />    <span class='sectionToc'>7 <a href='#x1-80007' id='QQ2-1-8'>To-Do</a></span>
-<br />    <span class='sectionToc'>8 <a href='#x1-90008' id='QQ2-1-9'>References</a></span>
+<br />    <span class='sectionToc'>7 <a href='#x1-90007' id='QQ2-1-9'>References</a></span>
    </div>
 <!-- l. 43 --><p class='noindent'>
 </p>
@@ -38,18 +37,18 @@
 <!-- l. 46 --><p class='noindent'>Spatial transforms used in image and video compression exploit the statistical correlation (and
 perceptual redundancy<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-2001f1'></a>)
 that the pixels show as a consequence of the spatial (2D) correlation that is present
-in most of the images (and video frames). For example, some areas of an image can
-occur more than once (in the same image). Also, usually happens that neighbor
+in most of the images (and video frames). For example, some textures of an image
+can occur more than once (in the same image). Also, usually happens that neighbor
 pixels have similar values.
 </p><!-- l. 54 --><p class='indent'>   While color transforms are pixel-wise computations, spatial transforms are
 image-wise. This means that the transform inputs an image (of pixels) and
 outputs a matrix of coefficients, which generally express the resemblance
 between the image and a set of basis functions, usually orthogonal.
 For example, after using the 2D-DCT (two-dimensional Discrete Cosine
+Transform) <span class='cite'>[<a href='#Xvruiz__DCT'>2</a>]</span>, (the index of) each coefficient represents a different spatial
                                                                   
 
                                                                   
-Transform) <span class='cite'>[<a href='#Xvruiz__DCT'>2</a>]</span>, (the index of) each coefficient represents a different spatial
 frequency<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-2003f2'></a>
 and its value, the amount of the corresponding basis found in the image. In
 the case of the 2D-DWT <span class='cite'>[<a href='#Xvruiz__DWT'>3</a>]</span>, the coefficients “speak” additionally about a
@@ -93,25 +92,23 @@ are quantized, we can trace different RD curves (all of them starting
 subband<span class='footnote-mark'><a href='#fn5x0' id='fn5x0-bk'><sup class='textsuperscript'>5</sup></a></span><a id='x1-4001f5'></a>
 independently, we must find the quantization step sizes that select the same slope in
 the RD curve of each subband <span class='cite'>[<a href='#Xvruiz__information_theory'>4</a>]</span>. A RD curve is a discrete convex function where
-each line that connects adjacent RD points has a slope. Futhermore, each
-RD point generate a line (with a corresponding slope) between it and the
-lowest-quality RD point. In this last context, given a target distortion or rate,
-the quantization step size used in each subband should generate the same
-slope.
-</p><!-- l. 129 --><p class='noindent'>
+each line that connects adjacent RD points has a slope. In this context, given a target
+distortion or rate, the quantization step size used in each subband should generate
+the same slope.
+</p><!-- l. 128 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Learned transforms</h3>
-<!-- l. 132 --><p class='noindent'>Using machine learning techniques (for example, with an artificial neural network), it
+<!-- l. 131 --><p class='noindent'>Using machine learning techniques (for example, with an artificial neural network), it
 is possible to build a machine-krafted transform, specifically tuned for some
 type of images, or at least, capable of determining specific features in the
 images.
-</p><!-- l. 137 --><p class='indent'>   Potentially, learned-based image (and video) compressors are adaptive
+</p><!-- l. 136 --><p class='indent'>   Potentially, learned-based image (and video) compressors are adaptive
 algorithms that can be more efficient than those in which the transforms are
 pre-defined.
-</p><!-- l. 143 --><p class='noindent'>
+</p><!-- l. 142 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>5   </span> <a id='x1-60005'></a>2D-partitioning</h3>
-<!-- l. 145 --><p class='noindent'>Depending on the content of the image, it can be necessary to divide the image into
+<!-- l. 144 --><p class='noindent'>Depending on the content of the image, it can be necessary to divide the image into
 2D chunks (usually called <span class='ecti-1000'>tiles </span>or <span class='ecti-1000'>blocks</span>), and encode each chunk independently. In
 general:
      </p><ol class='enumerate1'>
@@ -119,17 +116,14 @@ general:
      example, with text and natural content). Tiles are usually rectangular but
      can have any size, and are usually defined attending to RD or perceptual
      issues (for example, text is not well compressed by lossy configurations).
-                                                                  
-
-                                                                  
      </li>
 <li class='enumerate' id='x1-6004x2'>Blocks are smaller than tiles and, in most of cases, squared. The block
      partition can be adaptive and, in this case, should be found using RDO
-     (Rate Distortion Optimization).</li></ol>
-<!-- l. 159 --><p class='noindent'>
+     (Rate Distortion Optimization)<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-6005f6'></a>.</li></ol>
+<!-- l. 160 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Resources</h3>
-<!-- l. 162 --><p class='noindent'>
+<!-- l. 163 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-7002x1'>Use of <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/DWT.py'>2D-DWT in VCF</a>.
      </li>
@@ -141,40 +135,40 @@ general:
      </li>
 <li class='enumerate' id='x1-7010x5'><a href='https://github.com/fchollet/deep-learning-with-python-notebooks'>Companion  Jupyter  notebooks  for  the  book  “Deep  Learning  with
      Python”</a> <span class='cite'>[<a href='#Xchollet2021deep'>1</a>]</span>.</li></ol>
+<!-- l. 182 --><p class='noindent'>
+</p>
+   <h3 class='likesectionHead'><a id='x1-8000'></a>To-Do</h3>
+<!-- l. 185 --><p class='noindent'>
                                                                   
 
                                                                   
-<!-- l. 181 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead'><span class='titlemark'>7   </span> <a id='x1-80007'></a>To-Do</h3>
-<!-- l. 184 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-8002x1'>Modify VCF to use the block-based 2D-DCT in the compression pipeline.
-     Complexity 3.
-     </li>
-<li class='enumerate' id='x1-8004x2'>Using  RDO,  determine  the  optimal  color  transform  in  the  codec
+<li class='enumerate' id='x1-8002x1'>Using  RDO,  determine  the  optimal  color  transform  in  the  codec
      <span class='ectt-1000'>2D-DCT.py</span>. Complexity 2.
      </li>
-<li class='enumerate' id='x1-8006x3'>Using  RDO,  determine  the  optimal  color  transform  in  the  codec
+<li class='enumerate' id='x1-8004x2'>Using  RDO,  determine  the  optimal  color  transform  in  the  codec
      <span class='ectt-1000'>2D-DWT.py</span>. Complexity 2.
      </li>
-<li class='enumerate' id='x1-8008x4'>Using RDO, determine the optimal number of levels of the 2D-DWT in
+<li class='enumerate' id='x1-8006x3'>Using RDO, determine the optimal number of levels of the 2D-DWT in
      the codec <span class='ectt-1000'>2D-DWT.py</span>. Complexity 2.
      </li>
-<li class='enumerate' id='x1-8010x5'>Using RDO, determine the optimal DWT basis (defined in <a href='https://pywavelets.readthedocs.io/en/latest/'>PyWavelets</a>)
+<li class='enumerate' id='x1-8008x4'>Using RDO, determine the optimal DWT basis (defined in <a href='https://pywavelets.readthedocs.io/en/latest/'>PyWavelets</a>)
      in the codec <span class='ectt-1000'>2D-DWT.py</span>. Complexity 3.
      </li>
-<li class='enumerate' id='x1-8012x6'>Create a new image codec (similar to <span class='ectt-1000'>2D-DWT.py </span>and <span class='ectt-1000'>2D-DCT.py</span>) where
+<li class='enumerate' id='x1-8010x5'>Create a new image codec (similar to <span class='ectt-1000'>2D-DWT.py </span>and <span class='ectt-1000'>2D-DCT.py</span>) where
      the  latent  space  generated  by  an  autoencoder  is  entropy  encoded  (in
      other words, replace the 2D-DCT or the 2D-DWT by an autoencoder).
      Complexity 15.
      </li>
-<li class='enumerate' id='x1-8014x7'>Autoencoders can learn to analyze signals represented in any domain.
+<li class='enumerate' id='x1-8012x6'>Autoencoders can learn to analyze signals represented in any domain.
      Create a new DCT- or DWT-based image codec where the autoencoder is
      applied to the transform domain. Complexity 20.</li></ol>
-<!-- l. 214 --><p class='noindent'>
+<!-- l. 213 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-90008'></a>References</h3>
+   <h3 class='sectionHead'><span class='titlemark'>7   </span> <a id='x1-90007'></a>References</h3>
+                                                                  
+
+                                                                  
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xchollet2021deep'></a>Francois Chollet. <a href='https://sourestdeeds.github.io/pdf/Deep%20Learning%20with%20Python.pdf'><span class='ecti-1000'>Deep learning with Python</span></a>. Simon and Schuster, 2021.
@@ -199,7 +193,8 @@ general:
 </span><span class='ecrm-0800'>use more quantization levels and therefore, a higher number of available RD points.</span></p><a id='x1-4002x3'></a>
 <!-- l. 117 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>In the case of a spatial transform, a subband is form by all the coefficients that describe
 </span><span class='ecrm-0800'>the same frequency components in different areas or resolutions (when available) of the
-</span><span class='ecrm-0800'>image.</span></p>                                                                                                                 </div>
+</span><span class='ecrm-0800'>image.</span></p><a id='x1-6006x6'></a>
+<!-- l. 157 --><p class='noindent'><span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>If no other more important requirement exists, such as multiresolution.</span></p>                       </div>
  
 </body> 
 </html>

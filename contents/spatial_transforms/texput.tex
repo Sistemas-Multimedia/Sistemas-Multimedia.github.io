@@ -47,7 +47,7 @@ Spatial transforms used in image and video compression exploit the
 statistical correlation (and perceptual redundancy\footnote{We will
   see this with more detail later in this course.}) that the pixels
 show as a consequence of the spatial (2D) correlation that is present
-in most of the images (and video frames). For example, some areas of
+in most of the images (and video frames). For example, some textures of
 an image can occur more than once (in the same image). Also, usually
 happens that neighbor pixels have similar values.
 
@@ -119,10 +119,9 @@ independently, we must find the quantization step sizes that select
 the same slope in the RD curve of each
 subband~\cite{vruiz__information_theory}. A RD curve is a discrete
 convex function where each line that connects adjacent RD points has a
-slope. Futhermore, each RD point generate a line (with a corresponding
-slope) between it and the lowest-quality RD point. In this last
-context, given a target distortion or rate, the quantization step size
-used in each subband should generate the same slope.
+slope.  In this context, given a target distortion or rate, the
+quantization step size used in each subband should generate the same
+slope.
 
 %}}}
 
@@ -153,7 +152,9 @@ the image into 2D chunks (usually called \emph{tiles} or
   lossy configurations).
 \item Blocks are smaller than tiles and, in most of cases,
   squared. The block partition can be adaptive and, in this case,
-  should be found using RDO (Rate Distortion Optimization).
+  should be found using RDO (Rate Distortion Optimization)\footnote{If
+    no other more important requirement exists, such as
+    multiresolution.}.
 \end{enumerate}
 
 \section{Resources}
@@ -178,12 +179,10 @@ the image into 2D chunks (usually called \emph{tiles} or
 
 %}}}
 
-\section{To-Do}
+\section*{To-Do}
 %{{{
 
 \begin{enumerate}
-\item Modify VCF to use the block-based 2D-DCT in the compression
-  pipeline. Complexity 3.
 \item Using RDO, determine the optimal color transform in the codec
   \texttt{2D-DCT.py}. Complexity 2.
 \item Using RDO, determine the optimal color transform in the codec

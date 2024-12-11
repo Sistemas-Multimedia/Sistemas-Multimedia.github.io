@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'>(Digital Re-)Quantization</h2>
  <div class='author'><a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>November 4, 2024</span></div>
+<div class='date'><span class='ecrm-1200'>December 11, 2024</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -33,8 +33,7 @@
 <br />    <span class='sectionToc'>5 <a href='#x1-90005' id='QQ2-1-9'>Deadzone quantization</a></span>
 <br />    <span class='sectionToc'>6 <a href='#x1-110006' id='QQ2-1-11'>Lloyd-Max quantization</a></span>
 <br />    <span class='sectionToc'>7 <a href='#x1-130007' id='QQ2-1-13'>Vector quantization applied to the spatial domain</a></span>
-<br />    <span class='sectionToc'>8 <a href='#x1-150008' id='QQ2-1-15'>To-Do</a></span>
-<br />    <span class='sectionToc'>9 <a href='#x1-160009' id='QQ2-1-16'>References</a></span>
+<br />    <span class='sectionToc'>8 <a href='#x1-160008' id='QQ2-1-16'>References</a></span>
    </div>
 <!-- l. 13 --><p class='noindent'>
 </p>
@@ -129,7 +128,9 @@ rate.<span class='footnote-mark'><a href='#fn8x0' id='fn8x0-bk'><sup class='text
 
                                                                   
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-10002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/deadzone.py'>Deadzone Quantization in VCF</a>.</li></ol>
+<li class='enumerate' id='x1-10002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/deadzone.py'>deadzone.py</a>: Implementation in VCF.
+     </li>
+<li class='enumerate' id='x1-10004x2'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/deadzone.ipynb'>deadzone.ipynb</a>: Notebook showing the use of deadzone.py.</li></ol>
 <!-- l. 126 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>6   </span> <a id='x1-110006'></a>Lloyd-Max quantization</h3>
@@ -146,7 +147,12 @@ the information.
    <h4 class='likesubsectionHead'><a id='x1-12000'></a>Resources</h4>
 <!-- l. 143 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-12002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/LloydMax.py'>A partial implementation in VCF</a>.</li></ol>
+<li class='enumerate' id='x1-12002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/LloydMax.py'>LloydMax.py</a>: Implementation in VCF.
+     </li>
+<li class='enumerate' id='x1-12004x2'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/LloydMax.ipynb'>LloydMax.ipynb</a>: Notebook showing the use of LloydMax.py.</li></ol>
+                                                                  
+
+                                                                  
 <!-- l. 149 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>7   </span> <a id='x1-130007'></a>Vector quantization applied to the spatial domain</h3>
@@ -157,11 +163,8 @@ the image are similar to other blocks. If this is true, we can compute a set
 of centroids (blocks) and use them to represent the original blocks. As a
 result, we will obtain a matrix of quantization indexes that can be entropy
 coded.
-</p><!-- l. 163 --><p class='indent'>   Note that VQ exploits the spatial correlation. For this reason, the
+</p><!-- l. 163 --><p class='indent'>   Notice that VQ exploits the spatial correlation. For this reason, the
 encoding performance of a vector quantizer is usually superior compared
-                                                                  
-
-                                                                  
 to that of a scalar quantizer because the number of output quantization
 indexes<span class='footnote-mark'><a href='#fn11x0' id='fn11x0-bk'><sup class='textsuperscript'>11</sup></a></span><a id='x1-13003f11'></a>
 is smaller.
@@ -170,35 +173,35 @@ is smaller.
    <h3 class='likesectionHead'><a id='x1-14000'></a>Resources</h3>
 <!-- l. 170 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-14002x1'><a href='https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py'>Vector Quantization Example</a>.
+<li class='enumerate' id='x1-14002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/VQ.py'>VQ.py</a>: Implementation in VCF.
      </li>
-<li class='enumerate' id='x1-14004x2'><a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/gray_VQ.ipynb'>Vector Quantization (in the 2D domain) of a grayscale image</a>.
+<li class='enumerate' id='x1-14004x2'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/VQ.ipynb'>VQ.ipynb</a>: Notebook showing the use of VQ.py
      </li>
-<li class='enumerate' id='x1-14006x3'><a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb'>Vector Quantization (in the 2D domain) of a color (RGB) image</a>.
+<li class='enumerate' id='x1-14006x3'><a href='https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py'>Vector Quantization Example</a>.
      </li>
-<li class='enumerate' id='x1-14008x4'><a href='https://github.com/droidadroit/LBG'>Image compression using LBG</a>.</li></ol>
-<!-- l. 184 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-150008'></a>To-Do</h3>
-<!-- l. 185 --><p class='noindent'>
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-15002x1'>Modify  VCF  to  allow  the  use  of  Lloyd-Max  quantization  in  the
-     compression pipeline. Notice that VCF already implements this quantizer,
-     but  the  compression  pipeline  is  not  finished.  You  must  implement  a
-     complete pipeline (at least for compressing images). Complexity 2.
+<li class='enumerate' id='x1-14008x4'><a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/gray_VQ.ipynb'>Vector Quantization (in the 2D domain) of a grayscale image</a>.
+     </li>
+<li class='enumerate' id='x1-14010x5'><a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb'>Vector Quantization (in the 2D domain) of a color (RGB) image</a>.
                                                                   
 
                                                                   
      </li>
-<li class='enumerate' id='x1-15004x2'>Modify VCF to allow the use of VQ (applied to the spatial domain) in
-     the compression pipeline. Notice that VQ used in the spatial domain can
-     significantly minimize the advantage of using a spatial transform.<span class='footnote-mark'><a href='#fn12x0' id='fn12x0-bk'><sup class='textsuperscript'>12</sup></a></span><a id='x1-15005f12'></a>
-     For this reason, it can also be useful to implement also a “fake”  spatial
-     transform where no transformation is performed at all. The same happens
-     when VQ is used in the color domain. Complexity 4.</li></ol>
-<!-- l. 201 --><p class='noindent'>
+<li class='enumerate' id='x1-14012x6'><a href='https://github.com/droidadroit/LBG'>Image compression using LBG</a>.</li></ol>
+<!-- l. 186 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>9   </span> <a id='x1-160009'></a>References</h3>
+   <h3 class='likesectionHead'><a id='x1-15000'></a>To do</h3>
+<!-- l. 187 --><p class='noindent'>Quantizers generate quantization noise, which can be modeled as flat-spectrum
+zero-mean uniform noise. On the contrary, most of the energy of natural images is
+concentrated in the low frequencies. Consequently, when an image is quantized, the
+<a href='https://en.wikipedia.org/wiki/Signal-to-noise_ratio'>SNR</a> is higher in the low frequencies than in the high frequencies, which means that
+if the quantized image is low-pass filtered, the overall SNR should increase (the filter
+will remove the high frequencies that basically are generated by the quantization
+noise). Modify the current quantization VCF modules to, optionally, apply a low-pass
+filter to the quantized image. Consider selecting between different filtering
+techniques.
+</p><!-- l. 200 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-160008'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/information_theory'>Information Theory</a>.
@@ -214,14 +217,14 @@ is smaller.
    </p>
    <p class='bibitem'><span class='biblabel'>
  [5]<span class='bibsp'>   </span></span><a id='Xvruiz__vector_quantization'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization'>Vector Quantization</a>.
+                                                                  
+
+                                                                  
    </p>
    <p class='bibitem'><span class='biblabel'>
  [6]<span class='bibsp'>   </span></span><a id='Xvruiz__visual_redundancy'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/visual_redundancy'>Visual Redundancy</a>.
 </p>
    </div>
-                                                                  
-
-                                                                  
    <div class='footnotes'><a id='x1-2002x1'></a>
 <!-- l. 25 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>Dequantization does not exist.</span></p><a id='x1-4002x3'></a>
 <!-- l. 44 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>If the signal has more than 1 dimension, the process is exactly the same, but we don’t speak
@@ -240,8 +243,7 @@ is smaller.
 <!-- l. 154 --><p class='indent'>     <span class='footnote-mark'><a href='#fn10x0-bk' id='fn10x0'><sup class='textsuperscript'>10</sup></a></span><span class='ecrm-0800'>If we are removing spatial redundancy, the blocks are usually squared tiles of pixels. If
 </span><span class='ecrm-0800'>we remove color redundancy, the blocks are multicomponent pixels, for example, RGB
 </span><span class='ecrm-0800'>values.</span></p><a id='x1-13004x7'></a>
-<!-- l. 166 --><p class='indent'>     <span class='footnote-mark'><a href='#fn11x0-bk' id='fn11x0'><sup class='textsuperscript'>11</sup></a></span><span class='ecrm-0800'>Indexes of the centroids.</span></p><a id='x1-15006x12'></a>
-<!-- l. 195 --><p class='noindent'><span class='footnote-mark'><a href='#fn12x0-bk' id='fn12x0'><sup class='textsuperscript'>12</sup></a></span><span class='ecrm-0800'>Spatial transforms are studied later in this course.</span></p>                                                  </div>
+<!-- l. 166 --><p class='indent'>     <span class='footnote-mark'><a href='#fn11x0-bk' id='fn11x0'><sup class='textsuperscript'>11</sup></a></span><span class='ecrm-0800'>Indexes of the centroids.</span></p>                                                                               </div>
  
 </body> 
 </html>
