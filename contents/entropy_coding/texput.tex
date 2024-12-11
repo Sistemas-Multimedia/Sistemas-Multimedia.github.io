@@ -50,7 +50,7 @@ are processed:
   Coding~\cite{vruiz__huffman_coding} and Arithmetic
   Coding~\cite{vruiz__arithmetic_coding}. These encoders are also
   called ``probabilistic encoders'' because the number of bits of code
-  assigned to a symbol $s$ depends on the probability of the symbol
+  assigned to a symbol $s$ depends on the probability of the symbol,
   $p(s)$.
 \item \textbf{String encoders:} Those that process the sequence by
   blocks of symbols (strings). Examples are Run-Length Encoding
@@ -83,7 +83,7 @@ information~\cite{vruiz__information_theory}.
 
 Notice that the minimum number of bits that can be used for
 representing a symbol (using Huffman) is 1, which can be a inefficient
-when the length of the alphabet is small.\footnote{In this case,
+when the size of the alphabet is small.\footnote{In this case,
   Huffman can be ineffective. In an extreme case, the alphabet could
   have only two symbols, and therefore the Huffman encoder does not
   compress or expand.} Another drawback of HC is that the Huffman tree
@@ -109,7 +109,7 @@ very frequent when using
 \item Create a new module named \texttt{adaptive\_Huffman.py} that use
   a context-based adaptive probabilistic model
   \cite{nelson96datacompression}, where the user can select the order
-  of the model.
+  of the model, and HC is used as a entropy encoder.
 \end{enumerate}
 
 \section{\href{https://en.wikipedia.org/wiki/Arithmetic_coding}{Arithmetic
@@ -143,6 +143,9 @@ code) and an arithmetic code, vanishes.
 
 \subsection*{To do}
 \begin{enumerate}
+\item Create a new module named \texttt{arith} that implement a static
+  probabilistic model and Arithmetic Coding
+  \cite{nelson96datacompression}.
 \item Create a new module named \texttt{arith.py} that use
   a context-based adaptive probabilistic model and Arithmetic Coding
   \cite{nelson96datacompression}, where the user can select the order
@@ -180,7 +183,7 @@ PNG~\cite{vruiz__PNG} (pronounced ``ping'') is a dictionary-based
 \href{https://en.wikipedia.org/wiki/Digital_data}{digital}
 \href{https://en.wikipedia.org/wiki/Digital_image}{images} and
 \href{https://en.wikipedia.org/wiki/Video}{videos}~\cite{vruiz__image_video}
-in III... format~\cite{vruiz__video_compression}. The entropy encoder
+in III... format. The entropy encoder
 of PNG is based on HC and LZSS, and a pixel predictor that removes the
 spatial redundancy.
 

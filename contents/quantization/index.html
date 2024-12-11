@@ -114,7 +114,7 @@ quantizer.
 </p><!-- l. 105 --><p class='indent'>   Another reason why dead-zone quantization is popular in lossy encoding
 systems is that it tends to remove electronic noise more than other scalar
 quantizers where the signal is weaker. If we suppose that the signal has 0
-average<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-9003f6'></a> and
+mean<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-9003f6'></a> and
 that the dead-zone is placed where the <a href='https://en.wikipedia.org/wiki/Signal-to-noise_ratio'>SNR</a> is smaller, we basically replace electronic noise by
 quantization noise<span class='footnote-mark'><a href='#fn7x0' id='fn7x0-bk'><sup class='textsuperscript'>7</sup></a></span><a id='x1-9005f7'></a>.
 Obviously, this does not improve the RD performance of the encoder,
@@ -165,7 +165,7 @@ result, we will obtain a matrix of quantization indexes that can be entropy
 coded.
 </p><!-- l. 163 --><p class='indent'>   Notice that VQ exploits the spatial correlation. For this reason, the
 encoding performance of a vector quantizer is usually superior compared
-to that of a scalar quantizer because the number of output quantization
+to that of a scalar quantizer, because the number of output quantization
 indexes<span class='footnote-mark'><a href='#fn11x0' id='fn11x0-bk'><sup class='textsuperscript'>11</sup></a></span><a id='x1-13003f11'></a>
 is smaller.
 </p><!-- l. 168 --><p class='noindent'>
@@ -175,7 +175,7 @@ is smaller.
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-14002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/VQ.py'>VQ.py</a>: Implementation in VCF.
      </li>
-<li class='enumerate' id='x1-14004x2'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/VQ.ipynb'>VQ.ipynb</a>: Notebook showing the use of VQ.py
+<li class='enumerate' id='x1-14004x2'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/VQ.ipynb'>VQ.ipynb</a>: Notebook showing the use of VQ.
      </li>
 <li class='enumerate' id='x1-14006x3'><a href='https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py'>Vector Quantization Example</a>.
      </li>
@@ -234,7 +234,7 @@ techniques.
 <!-- l. 88 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>Notice that, in the case of the quantizer depends on the characteristics of the signal but they
 </span><span class='ecrm-0800'>are known </span><span class='ecti-0800'>a priori</span><span class='ecrm-0800'>, it should be considered static.</span></p><a id='x1-9002x5'></a>
 <!-- l. 98 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>... and negative integers are represented using two’s complement ...</span></p><a id='x1-9004x5'></a>
-<!-- l. 109 --><p class='indent'>     <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>The electronic noise has 0 average and a flat spectrum.</span></p><a id='x1-9006x5'></a>
+<!-- l. 109 --><p class='indent'>     <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>The electronic noise has 0 arithmetic mean and a flat spectrum.</span></p><a id='x1-9006x5'></a>
 <!-- l. 113 --><p class='indent'>     <span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>Which also has 0 average and a flat spectrum</span></p><a id='x1-9008x5'></a>
 <!-- l. 117 --><p class='indent'>     <span class='footnote-mark'><a href='#fn8x0-bk' id='fn8x0'><sup class='textsuperscript'>8</sup></a></span><span class='ecrm-0800'>Obviously, if the electronic noise is perceived as a source of distortion comparable to the
 </span><span class='ecrm-0800'>quantization noise.</span></p><a id='x1-11002x6'></a>
