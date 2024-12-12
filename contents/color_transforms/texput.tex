@@ -156,51 +156,10 @@ See the notebooks
 \href{https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/YCrCb/YCrCb_over_RGB.ipynb}{Removing
   RGB redundancy with the $\text{YCrCb}$ transform}.
 
-\section{Vector quantization applied to the $\text{RGB}$ domain}
-
-SQ (Scalar
-Quantization)~\cite{vruiz__scalar_quantization,sayood2017introduction}
-would be an optimal solution only if the image colors are uniformly
-distributed within
-\href{https://en.wikipedia.org/wiki/RGB_color_model}{the RGB
-  cube}. However, the typical color distribution in natural images is
-anything but uniform, with some regions of the color space being
-densely populated and many potentially used colors completely
-missing. In this case, depending on the quantization step
-size~\cite{vruiz__signal_quantization}, SQ could be suboptimal because
-the colors used may not be sampled with sufficient density, while at the
-same time the encoding system considers colors that do not appear
-in the image at all~\cite{burger2016digital}.
-
-On the other hand, VQ (Vector
-Quantization)~\cite{vruiz__vector_quantization,sayood2017introduction}
-applied to the color domain does not treat the individual $\text{RGB}$
-components separately as does scalar quantization, but each color
-vector used ${\mathbf C}_i = (\text{R}_i, \text{G}_i, \text{B}_i )$ in
-the image is treated as a minimum structure. VQ determines a code-book
-of $K$ code-vectors (centroids) that minimizes the distortion between
-the original image and the reconstructed one. Notice that the
-code-book must be known by the decoder to find a reconstruction.
-
-\subsection*{Resources}
-\begin{enumerate}
-\item \href{}{YCrCb.py}: Implementation in VCF.
-\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/YCrCb.ipynb}{YCrCb.ipynb}: Notebook showing the use of YCrCb.py.
-\item \href{}{YCoCg.py}: Implementation in VCF. 
-\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/YCoCg.ipynb}{YCoCg.ipynb}: Notebook showing the use of YCoCg.py.
-\item See the notebooks
-\href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/RGB_VQ.ipynb}{Vector
-  Quantization (in the color domain) of a RGB image} and
-\href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb}{Vector
-  Quantization (in the 2D domain) of a color (RGB) image}.
-\end{enumerate}
-
 \section*{To-Do}
 \begin{enumerate}
 \item Create a new module named \texttt{color\_DCT.py} that use the
   $\text{DCT}$ to exploit the $\text{RGB}$ redundancy in images.
-\item Create a new module named \texttt{color\_VQ.py} that use the
-  Vector Quantization to exploit the $\text{RGB}$ redundancy in images.
 \end{enumerate}
 
 \section{References}
