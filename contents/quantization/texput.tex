@@ -116,13 +116,6 @@ the same bit rate.\footnote{Obviously, if the electronic noise is
   perceived as a source of distortion comparable to the quantization
   noise.}
 
-\subsection*{Resources}
-\begin{enumerate}
-\item
-  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/deadzone.py}{deadzone.py}: Implementation in VCF.
-\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/deadzone.ipynb}{deadzone.ipynb}: Notebook showing the use of deadzone.py.
-\end{enumerate}
-
 \section{Lloyd-Max quantization}
 
 A Lloyd-Max quantizer~\cite{vruiz__scalar_quantization} minimizes
@@ -137,14 +130,6 @@ that the histogram must be also known by the decoder to
   process and therefore, the original signal is never restored (except
   if $\Delta=1$ and we are using digital quantization).} the
 information.
-
-\subsection*{Resources}
-
-\begin{enumerate}
-\item
-  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/LloydMax.py}{LloydMax.py}: Implementation in VCF.
-\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/LloydMax.ipynb}{LloydMax.ipynb}:  Notebook showing the use of LloydMax.py.
-\end{enumerate}
 
 \section{Vector quantization applied to the spatial domain}
 
@@ -164,24 +149,6 @@ Notice that VQ exploits the spatial correlation. For this reason, the
 encoding performance of a vector quantizer is usually superior
 compared to that of a scalar quantizer, because the number of output
 quantization indexes\footnote{Indexes of the centroids.} is smaller.
-
-\section*{Resources}
-
-\begin{enumerate}
-  \item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/VQ.py}{VQ.py}: Implementation in VCF.
-  \item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/VQ.ipynb}{VQ.ipynb}: Notebook showing the use of VQ.
-\item
-  \href{https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py}{Vector
-    Quantization Example}.
-\item
-  \href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/gray_VQ.ipynb}{Vector
-    Quantization (in the 2D domain) of a grayscale image}.
-\item
-  \href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb}{Vector
-    Quantization (in the 2D domain) of a color (RGB) image}.
-  
-\item \href{https://github.com/droidadroit/LBG}{Image compression using LBG}.
-\end{enumerate}
 
 \section{Vector quantization applied to the $\text{RGB}$ domain}
 
@@ -209,17 +176,22 @@ of $K$ code-vectors (centroids) that minimizes the distortion between
 the original image and the reconstructed one. Notice that the
 code-book must be known by the decoder to find a reconstruction.
 
-\subsection*{Resources}
+\section*{Resources}
+
 \begin{enumerate}
-\item \href{}{YCrCb.py}: Implementation in VCF.
-\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/YCrCb.ipynb}{YCrCb.ipynb}: Notebook showing the use of YCrCb.py.
-\item \href{}{YCoCg.py}: Implementation in VCF. 
-\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/YCoCg.ipynb}{YCoCg.ipynb}: Notebook showing the use of YCoCg.py.
-\item See the notebooks
-\href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/RGB_VQ.ipynb}{Vector
-  Quantization (in the color domain) of a RGB image} and
-\href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb}{Vector
-  Quantization (in the 2D domain) of a color (RGB) image}.
+\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/deadzone.ipynb}{deadzone.ipynb}: Notebook showing the use of deadzone.py.
+\item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/LloydMax.ipynb}{LloydMax in VCF}.
+  \item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/VQ.ipynb}{VQ} in VQ.
+\item
+  \href{https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py}{Vector
+    Quantization Example}.
+\item
+  \href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/gray_VQ.ipynb}{Vector
+    Quantization (in the 2D domain) of a grayscale image}.
+\item
+  \href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb}{Vector
+    Quantization (in the 2D domain) of a color (RGB) image}.
+  \item \href{https://github.com/droidadroit/LBG}{Image compression using LBG}.
 \end{enumerate}
 
 \section*{To do}

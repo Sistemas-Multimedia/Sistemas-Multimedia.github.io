@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'>(Digital Re-)Quantization</h2>
  <div class='author'><a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 11, 2024</span></div>
+<div class='date'><span class='ecrm-1200'>December 19, 2024</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -31,9 +31,10 @@
 <br />     <span class='subsectionToc'>4.2 <a href='#x1-70004.2' id='QQ2-1-7'>Uniform VS non-uniform quantizers</a></span>
 <br />     <span class='subsectionToc'>4.3 <a href='#x1-80004.3' id='QQ2-1-8'>Static VS adaptive quantizers</a></span>
 <br />    <span class='sectionToc'>5 <a href='#x1-90005' id='QQ2-1-9'>Deadzone quantization</a></span>
-<br />    <span class='sectionToc'>6 <a href='#x1-110006' id='QQ2-1-11'>Lloyd-Max quantization</a></span>
-<br />    <span class='sectionToc'>7 <a href='#x1-130007' id='QQ2-1-13'>Vector quantization applied to the spatial domain</a></span>
-<br />    <span class='sectionToc'>8 <a href='#x1-160008' id='QQ2-1-16'>References</a></span>
+<br />    <span class='sectionToc'>6 <a href='#x1-100006' id='QQ2-1-10'>Lloyd-Max quantization</a></span>
+<br />    <span class='sectionToc'>7 <a href='#x1-110007' id='QQ2-1-11'>Vector quantization applied to the spatial domain</a></span>
+<br />    <span class='sectionToc'>8 <a href='#x1-120008' id='QQ2-1-12'>Vector quantization applied to the \(\text {RGB}\) domain</a></span>
+<br />    <span class='sectionToc'>9 <a href='#x1-150009' id='QQ2-1-15'>References</a></span>
    </div>
 <!-- l. 13 --><p class='noindent'>
 </p>
@@ -122,86 +123,95 @@ but the perceived (subjective) quality is increased for the same bit
 rate.<span class='footnote-mark'><a href='#fn8x0' id='fn8x0-bk'><sup class='textsuperscript'>8</sup></a></span><a id='x1-9007f8'></a>
 </p><!-- l. 119 --><p class='noindent'>
 </p>
-   <h4 class='likesubsectionHead'><a id='x1-10000'></a>Resources</h4>
-<!-- l. 120 --><p class='noindent'>
+   <h3 class='sectionHead'><span class='titlemark'>6   </span> <a id='x1-100006'></a>Lloyd-Max quantization</h3>
                                                                   
 
                                                                   
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-10002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/deadzone.py'>deadzone.py</a>: Implementation in VCF.
-     </li>
-<li class='enumerate' id='x1-10004x2'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/deadzone.ipynb'>deadzone.ipynb</a>: Notebook showing the use of deadzone.py.</li></ol>
-<!-- l. 126 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead'><span class='titlemark'>6   </span> <a id='x1-110006'></a>Lloyd-Max quantization</h3>
-<!-- l. 128 --><p class='noindent'>A Lloyd-Max quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span> minimizes quantization noise given a signal with a known
+<!-- l. 121 --><p class='noindent'>A Lloyd-Max quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span> minimizes quantization noise given a signal with a known
 probabilistic distribution (histogram) of the input samples. As a result, the density of
 quantization intervals is higher where the probability of the samples is higher, and
 <span class='ecti-1000'>vice versa</span>.
-</p><!-- l. 134 --><p class='indent'>   Lloyd-Max quantizers are considered non-uniform quantizers.
+</p><!-- l. 127 --><p class='indent'>   Lloyd-Max quantizers are considered non-uniform quantizers.
 Notice that the histogram must be also known by the decoder to
-“restore”<span class='footnote-mark'><a href='#fn9x0' id='fn9x0-bk'><sup class='textsuperscript'>9</sup></a></span><a id='x1-11001f9'></a>
+“restore”<span class='footnote-mark'><a href='#fn9x0' id='fn9x0-bk'><sup class='textsuperscript'>9</sup></a></span><a id='x1-10001f9'></a>
 the information.
-</p><!-- l. 141 --><p class='noindent'>
+</p><!-- l. 134 --><p class='noindent'>
 </p>
-   <h4 class='likesubsectionHead'><a id='x1-12000'></a>Resources</h4>
-<!-- l. 143 --><p class='noindent'>
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-12002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/LloydMax.py'>LloydMax.py</a>: Implementation in VCF.
-     </li>
-<li class='enumerate' id='x1-12004x2'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/LloydMax.ipynb'>LloydMax.ipynb</a>: Notebook showing the use of LloydMax.py.</li></ol>
-                                                                  
-
-                                                                  
-<!-- l. 149 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead'><span class='titlemark'>7   </span> <a id='x1-130007'></a>Vector quantization applied to the spatial domain</h3>
-<!-- l. 151 --><p class='noindent'>Vector quantizers <span class='cite'>[<a href='#Xvruiz__vector_quantization'>5</a>]</span> input blocks<span class='footnote-mark'><a href='#fn10x0' id='fn10x0-bk'><sup class='textsuperscript'>10</sup></a></span><a id='x1-13001f10'></a>
+   <h3 class='sectionHead'><span class='titlemark'>7   </span> <a id='x1-110007'></a>Vector quantization applied to the spatial domain</h3>
+<!-- l. 136 --><p class='noindent'>Vector quantizers <span class='cite'>[<a href='#Xvruiz__vector_quantization'>5</a>]</span> input blocks<span class='footnote-mark'><a href='#fn10x0' id='fn10x0-bk'><sup class='textsuperscript'>10</sup></a></span><a id='x1-11001f10'></a>
 of samples and output a quantization index per block. For example, in most
 natural images, the spatial correlation <span class='cite'>[<a href='#Xvruiz__visual_redundancy'>6</a>]</span> generates that some blocks of
 the image are similar to other blocks. If this is true, we can compute a set
 of centroids (blocks) and use them to represent the original blocks. As a
 result, we will obtain a matrix of quantization indexes that can be entropy
 coded.
-</p><!-- l. 163 --><p class='indent'>   Notice that VQ exploits the spatial correlation. For this reason, the
+</p><!-- l. 148 --><p class='indent'>   Notice that VQ exploits the spatial correlation. For this reason, the
 encoding performance of a vector quantizer is usually superior compared
 to that of a scalar quantizer, because the number of output quantization
-indexes<span class='footnote-mark'><a href='#fn11x0' id='fn11x0-bk'><sup class='textsuperscript'>11</sup></a></span><a id='x1-13003f11'></a>
+indexes<span class='footnote-mark'><a href='#fn11x0' id='fn11x0-bk'><sup class='textsuperscript'>11</sup></a></span><a id='x1-11003f11'></a>
 is smaller.
-</p><!-- l. 168 --><p class='noindent'>
+</p><!-- l. 153 --><p class='noindent'>
 </p>
-   <h3 class='likesectionHead'><a id='x1-14000'></a>Resources</h3>
-<!-- l. 170 --><p class='noindent'>
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-14002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/VQ.py'>VQ.py</a>: Implementation in VCF.
-     </li>
-<li class='enumerate' id='x1-14004x2'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/VQ.ipynb'>VQ.ipynb</a>: Notebook showing the use of VQ.
-     </li>
-<li class='enumerate' id='x1-14006x3'><a href='https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py'>Vector Quantization Example</a>.
-     </li>
-<li class='enumerate' id='x1-14008x4'><a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/gray_VQ.ipynb'>Vector Quantization (in the 2D domain) of a grayscale image</a>.
-     </li>
-<li class='enumerate' id='x1-14010x5'><a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb'>Vector Quantization (in the 2D domain) of a color (RGB) image</a>.
+   <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-120008'></a>Vector quantization applied to the \(\text {RGB}\) domain</h3>
+<!-- l. 155 --><p class='noindent'>SQ (Scalar Quantization) <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>, <span class='ecbx-1000'>?</span>]</span> would be an optimal solution only if the image
+colors are uniformly distributed within <a href='https://en.wikipedia.org/wiki/RGB_color_model'>the RGB cube</a>. However, the typical color
+distribution in natural images is anything but uniform, with some regions of the color
+space being densely populated and many potentially used colors completely missing.
+In this case, depending on the quantization step size <span class='cite'>[<a href='#Xvruiz__signal_quantization'>3</a>]</span>, SQ could be suboptimal
+because the colors used may not be sampled with sufficient density, while at the same
+time the encoding system considers colors that do not appear in the image at
+all <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>.
+</p><!-- l. 169 --><p class='indent'>   On the other hand, VQ (Vector Quantization) <span class='cite'>[<a href='#Xvruiz__vector_quantization'>5</a>, <span class='ecbx-1000'>?</span>]</span> applied to the color domain
+does not treat the individual \(\text {RGB}\) components separately as does scalar quantization, but
+each color vector used \({\mathbf C}_i = (\text {R}_i, \text {G}_i, \text {B}_i )\) in the image is treated as a minimum structure. VQ
+determines a code-book of \(K\) code-vectors (centroids) that minimizes the distortion
+between the original image and the reconstructed one. Notice that the code-book
+must be known by the decoder to find a reconstruction.
                                                                   
 
                                                                   
+</p><!-- l. 179 --><p class='noindent'>
+</p>
+   <h3 class='likesectionHead'><a id='x1-13000'></a>Resources</h3>
+<!-- l. 181 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-13002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/deadzone.ipynb'>deadzone.ipynb</a>: Notebook showing the use of deadzone.py.
      </li>
-<li class='enumerate' id='x1-14012x6'><a href='https://github.com/droidadroit/LBG'>Image compression using LBG</a>.</li></ol>
-<!-- l. 186 --><p class='noindent'>
+<li class='enumerate' id='x1-13004x2'>Usage of <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/LloydMax.ipynb'>LloydMax in VCF</a>.
+     </li>
+<li class='enumerate' id='x1-13006x3'>Usage of <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/VQ.ipynb'>VQ</a> in VQ.
+     </li>
+<li class='enumerate' id='x1-13008x4'><a href='https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py'>Vector Quantization Example</a>.
+     </li>
+<li class='enumerate' id='x1-13010x5'><a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/gray_VQ.ipynb'>Vector Quantization (in the 2D domain) of a grayscale image</a>.
+     </li>
+<li class='enumerate' id='x1-13012x6'><a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb'>Vector Quantization (in the 2D domain) of a color (RGB) image</a>.
+     </li>
+<li class='enumerate' id='x1-13014x7'><a href='https://github.com/droidadroit/LBG'>Image compression using LBG</a>.</li></ol>
+                                                                  
+
+                                                                  
+<!-- l. 197 --><p class='noindent'>
 </p>
-   <h3 class='likesectionHead'><a id='x1-15000'></a>To do</h3>
-<!-- l. 187 --><p class='noindent'>Quantizers generate quantization noise, which can be modeled as flat-spectrum
-zero-mean uniform noise. On the contrary, most of the energy of natural images is
-concentrated in the low frequencies. Consequently, when an image is quantized, the
-<a href='https://en.wikipedia.org/wiki/Signal-to-noise_ratio'>SNR</a> is higher in the low frequencies than in the high frequencies, which means that
-if the quantized image is low-pass filtered, the overall SNR should increase (the filter
-will remove the high frequencies that basically are generated by the quantization
-noise). Modify the current quantization VCF modules to, optionally, apply a low-pass
-filter to the quantized image. Consider selecting between different filtering
-techniques.
-</p><!-- l. 200 --><p class='noindent'>
+   <h3 class='likesectionHead'><a id='x1-14000'></a>To do</h3>
+<!-- l. 198 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-14002x1'>Quantizers  generate  quantization  noise,  which  can  be  modeled  as
+     flat-spectrum  zero-mean  uniform  noise.  On  the  contrary,  most  of
+     the  energy  of  natural  images  is  concentrated  in  the  low  frequencies.
+     Consequently,  when  an  image  is  quantized,  the  <a href='https://en.wikipedia.org/wiki/Signal-to-noise_ratio'>SNR</a>  is  higher  in  the
+     low  frequencies  than  in  the  high  frequencies,  which  means  that  if  the
+     quantized image is low-pass filtered, the overall SNR should increase (the
+     filter  will  remove  the  high  frequencies  that  basically  are  generated  by
+     the quantization noise). Modify the current quantization VCF modules
+     to, optionally, apply a low-pass filter to the quantized image. Consider
+     selecting between different filtering techniques.
+     </li>
+<li class='enumerate' id='x1-14004x2'>Create   a   new   module   named   <span class='ectt-1000'>color_VQ.py  </span>that   use   the   Vector
+     Quantization to exploit the \(\text {RGB}\) redundancy in images.</li></ol>
+<!-- l. 216 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-160008'></a>References</h3>
+   <h3 class='sectionHead'><span class='titlemark'>9   </span> <a id='x1-150009'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/information_theory'>Information Theory</a>.
@@ -214,12 +224,12 @@ techniques.
    </p>
    <p class='bibitem'><span class='biblabel'>
  [4]<span class='bibsp'>   </span></span><a id='Xvruiz__trellis_quantization'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/trellis_coding_quantization'>Trellis Coding Quantization</a>.
-   </p>
-   <p class='bibitem'><span class='biblabel'>
- [5]<span class='bibsp'>   </span></span><a id='Xvruiz__vector_quantization'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization'>Vector Quantization</a>.
                                                                   
 
                                                                   
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [5]<span class='bibsp'>   </span></span><a id='Xvruiz__vector_quantization'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization'>Vector Quantization</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
  [6]<span class='bibsp'>   </span></span><a id='Xvruiz__visual_redundancy'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/visual_redundancy'>Visual Redundancy</a>.
@@ -237,13 +247,13 @@ techniques.
 <!-- l. 109 --><p class='indent'>     <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>The electronic noise has 0 arithmetic mean and a flat spectrum.</span></p><a id='x1-9006x5'></a>
 <!-- l. 113 --><p class='indent'>     <span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>Which also has 0 average and a flat spectrum</span></p><a id='x1-9008x5'></a>
 <!-- l. 117 --><p class='indent'>     <span class='footnote-mark'><a href='#fn8x0-bk' id='fn8x0'><sup class='textsuperscript'>8</sup></a></span><span class='ecrm-0800'>Obviously, if the electronic noise is perceived as a source of distortion comparable to the
-</span><span class='ecrm-0800'>quantization noise.</span></p><a id='x1-11002x6'></a>
-<!-- l. 138 --><p class='indent'>     <span class='footnote-mark'><a href='#fn9x0-bk' id='fn9x0'><sup class='textsuperscript'>9</sup></a></span><span class='ecrm-0800'>Remember that quantization is a irreversible process and therefore, the original signal is
-</span><span class='ecrm-0800'>never restored (except if</span> \(\Delta =1\) <span class='ecrm-0800'>and we are using digital quantization).</span></p><a id='x1-13002x7'></a>
-<!-- l. 154 --><p class='indent'>     <span class='footnote-mark'><a href='#fn10x0-bk' id='fn10x0'><sup class='textsuperscript'>10</sup></a></span><span class='ecrm-0800'>If we are removing spatial redundancy, the blocks are usually squared tiles of pixels. If
+</span><span class='ecrm-0800'>quantization noise.</span></p><a id='x1-10002x6'></a>
+<!-- l. 131 --><p class='indent'>     <span class='footnote-mark'><a href='#fn9x0-bk' id='fn9x0'><sup class='textsuperscript'>9</sup></a></span><span class='ecrm-0800'>Remember that quantization is a irreversible process and therefore, the original signal is
+</span><span class='ecrm-0800'>never restored (except if</span> \(\Delta =1\) <span class='ecrm-0800'>and we are using digital quantization).</span></p><a id='x1-11002x7'></a>
+<!-- l. 139 --><p class='indent'>     <span class='footnote-mark'><a href='#fn10x0-bk' id='fn10x0'><sup class='textsuperscript'>10</sup></a></span><span class='ecrm-0800'>If we are removing spatial redundancy, the blocks are usually squared tiles of pixels. If
 </span><span class='ecrm-0800'>we remove color redundancy, the blocks are multicomponent pixels, for example, RGB
-</span><span class='ecrm-0800'>values.</span></p><a id='x1-13004x7'></a>
-<!-- l. 166 --><p class='indent'>     <span class='footnote-mark'><a href='#fn11x0-bk' id='fn11x0'><sup class='textsuperscript'>11</sup></a></span><span class='ecrm-0800'>Indexes of the centroids.</span></p>                                                                               </div>
+</span><span class='ecrm-0800'>values.</span></p><a id='x1-11004x7'></a>
+<!-- l. 151 --><p class='indent'>     <span class='footnote-mark'><a href='#fn11x0-bk' id='fn11x0'><sup class='textsuperscript'>11</sup></a></span><span class='ecrm-0800'>Indexes of the centroids.</span></p>                                                                               </div>
  
 </body> 
 </html>

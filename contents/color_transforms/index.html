@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'>Color Transforms</h2>
  <div class='author'><a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 17, 2024</span></div>
+<div class='date'><span class='ecrm-1200'>December 19, 2024</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -114,22 +114,37 @@ compilance of Eq. \eqref{eq:optimal_lambda}.
 </p><!-- l. 150 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead'><a id='x1-7000'></a>Resources</h4>
-<!-- l. 151 --><p class='noindent'>See the notebooks <a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/3DCT/3DCT_over_RGB.ipynb'>Removing RGB redundancy with the DCT</a>, <a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/YCoCg/YCoCg_over_RGB.ipynb'>Removing RGB
-redundancy with the \(\text {YCoCg}\) transform</a> and <a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/YCrCb/YCrCb_over_RGB.ipynb'>Removing RGB redundancy with the \(\text {YCrCb}\)
-transform</a>.
-</p><!-- l. 159 --><p class='noindent'>
-</p>
-   <h3 class='likesectionHead'><a id='x1-8000'></a>To-Do</h3>
-<!-- l. 160 --><p class='noindent'>
+<!-- l. 151 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-7002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/YCrCb.ipynb'>YCrCb.ipynb</a>: Notebook showing the use of YCrCb.py.
+     </li>
+<li class='enumerate' id='x1-7004x2'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/YCoCg.ipynb'>YCoCg.ipynb</a>: Notebook showing the use of YCoCg.py.
                                                                   
 
                                                                   
+     </li>
+<li class='enumerate' id='x1-7006x3'><a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/RGB_VQ.ipynb'>Vector Quantization (in the color domain) of a RGB image</a>.
+     </li>
+<li class='enumerate' id='x1-7008x4'><a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb'>Vector Quantization (in the 2D domain) of a color (RGB) image</a>.
+     </li>
+<li class='enumerate' id='x1-7010x5'><a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/3DCT/3DCT_over_RGB.ipynb'>Removing RGB redundancy with the DCT</a>.
+     </li>
+<li class='enumerate' id='x1-7012x6'><a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/YCoCg/YCoCg_over_RGB.ipynb'>Removing RGB redundancy with the \(\text {YCoCg}\) transform</a>.
+     </li>
+<li class='enumerate' id='x1-7014x7'><a href='https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/YCrCb/YCrCb_over_RGB.ipynb'>Removing RGB redundancy with the \(\text {YCrCb}\) transform</a>.</li></ol>
+<!-- l. 163 --><p class='noindent'>
+</p>
+   <h3 class='likesectionHead'><a id='x1-8000'></a>To-Do</h3>
+<!-- l. 164 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-8002x1'>Create a new module named <span class='ectt-1000'>color_DCT.py </span>that use the \(\text {DCT}\) to exploit the \(\text {RGB}\)
      redundancy in images.</li></ol>
-<!-- l. 165 --><p class='noindent'>
+<!-- l. 169 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>5   </span> <a id='x1-90005'></a>References</h3>
+                                                                  
+
+                                                                  
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xburger2016digital'></a>W. Burger and M.J. Burge.  <a href='https://educons.edu.rs/wp-content/uploads/2020/05/2016-Digital-Image-Processing.pdf'><span class='ecti-1000'>Digital Image Processing: An Algorithmic
@@ -149,9 +164,6 @@ transform</a>.
    Kaufmann, 2017.
 </p>
    </div>
-                                                                  
-
-                                                                  
    <div class='footnotes'><a id='x1-2002x1'></a>
 <!-- l. 27 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>This will be explained latter in this course.</span></p><a id='x1-2004x1'></a>
 <!-- l. 31 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>A component of a pixel in the</span> \(\text {RGB}\) <span class='ecrm-0800'>domain refer to one of the values</span> \(\text {R}\) <span class='ecrm-0800'>(red),</span> \(\text {G}\) <span class='ecrm-0800'>(green) and</span> \(\text {B}\) <span class='ecrm-0800'>(blue)

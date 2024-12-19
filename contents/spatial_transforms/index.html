@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'>Spatial Transforms</h2>
  <div class='author'><a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>November 8, 2024</span></div>
+<div class='date'><span class='ecrm-1200'>December 19, 2024</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -50,8 +50,8 @@ Transform) <span class='cite'>[<a href='#Xvruiz__DCT'>2</a>]</span>, (the index
 
                                                                   
 frequency<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-2003f2'></a>
-and its value, the amount of the corresponding basis found in the image. In
-the case of the 2D-DWT <span class='cite'>[<a href='#Xvruiz__DWT'>3</a>]</span>, the coefficients “speak” additionally about a
+and its value, the amount of the corresponding basis found in the image. In the case
+of the dyadic 2D-DWT <span class='cite'>[<a href='#Xvruiz__DWT'>3</a>]</span>, the coefficients “speak” additionally about a
 spatial resolution in the image pyramid and position inside of the pyramid
 level.
 </p><!-- l. 70 --><p class='noindent'>
@@ -125,50 +125,39 @@ general:
    <h3 class='sectionHead'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Resources</h3>
 <!-- l. 163 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-7002x1'>Use of <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/DWT.py'>2D-DWT in VCF</a>.
+<li class='enumerate' id='x1-7002x1'>Usage of <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DWT.ipynb'>2D-DWT in VCF</a>.
      </li>
-<li class='enumerate' id='x1-7004x2'><a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/src/DCT2D/YCoCg_2D_DCT_SQ.ipynb'>Image Compression with YCoCg + 2D-DCT</a>.
+<li class='enumerate' id='x1-7004x2'>Usage of <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DCT.ipynb'>2D-DCT in VCF</a>.
      </li>
-<li class='enumerate' id='x1-7006x3'><a href='https://www.tensorflow.org/tutorials/generative/data_compression'>Learned data compression</a>.
+<li class='enumerate' id='x1-7006x3'><a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/src/DCT2D/YCoCg_2D_DCT_SQ.ipynb'>Image Compression with YCoCg + 2D-DCT</a>.
      </li>
-<li class='enumerate' id='x1-7008x4'><a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/LIC.ipynb'>Learned Image Compression (LIC) using auto-encoders</a>.
+<li class='enumerate' id='x1-7008x4'><a href='https://www.tensorflow.org/tutorials/generative/data_compression'>Learned data compression</a>.
      </li>
-<li class='enumerate' id='x1-7010x5'><a href='https://github.com/fchollet/deep-learning-with-python-notebooks'>Companion  Jupyter  notebooks  for  the  book  “Deep  Learning  with
+<li class='enumerate' id='x1-7010x5'><a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/LIC.ipynb'>Learned Image Compression (LIC) using auto-encoders</a>.
+     </li>
+<li class='enumerate' id='x1-7012x6'><a href='https://github.com/fchollet/deep-learning-with-python-notebooks'>Companion  Jupyter  notebooks  for  the  book  “Deep  Learning  with
      Python”</a> <span class='cite'>[<a href='#Xchollet2021deep'>1</a>]</span>.</li></ol>
-<!-- l. 182 --><p class='noindent'>
+                                                                  
+
+                                                                  
+<!-- l. 183 --><p class='noindent'>
 </p>
    <h3 class='likesectionHead'><a id='x1-8000'></a>To-Do</h3>
-<!-- l. 185 --><p class='noindent'>
-                                                                  
-
-                                                                  
+<!-- l. 186 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-8002x1'>Using  RDO,  determine  the  optimal  color  transform  in  the  codec
-     <span class='ectt-1000'>2D-DCT.py</span>. Complexity 2.
+<li class='enumerate' id='x1-8002x1'>Using RDO, determine the optimal DWT basis (defined in <a href='https://pywavelets.readthedocs.io/en/latest/'>PyWavelets</a>)
+     in the codec <span class='ectt-1000'>2D-DWT.py</span>
      </li>
-<li class='enumerate' id='x1-8004x2'>Using  RDO,  determine  the  optimal  color  transform  in  the  codec
-     <span class='ectt-1000'>2D-DWT.py</span>. Complexity 2.
+<li class='enumerate' id='x1-8004x2'>Create a new image codec (similar to <span class='ectt-1000'>2D-DWT.py </span>and <span class='ectt-1000'>2D-DCT.py</span>) where
+     the latent space generated by an autoencoder is entropy encoded (in other
+     words, replace the 2D-DCT or the 2D-DWT by an autoencoder).
      </li>
-<li class='enumerate' id='x1-8006x3'>Using RDO, determine the optimal number of levels of the 2D-DWT in
-     the codec <span class='ectt-1000'>2D-DWT.py</span>. Complexity 2.
-     </li>
-<li class='enumerate' id='x1-8008x4'>Using RDO, determine the optimal DWT basis (defined in <a href='https://pywavelets.readthedocs.io/en/latest/'>PyWavelets</a>)
-     in the codec <span class='ectt-1000'>2D-DWT.py</span>. Complexity 3.
-     </li>
-<li class='enumerate' id='x1-8010x5'>Create a new image codec (similar to <span class='ectt-1000'>2D-DWT.py </span>and <span class='ectt-1000'>2D-DCT.py</span>) where
-     the  latent  space  generated  by  an  autoencoder  is  entropy  encoded  (in
-     other words, replace the 2D-DCT or the 2D-DWT by an autoencoder).
-     Complexity 15.
-     </li>
-<li class='enumerate' id='x1-8012x6'>Autoencoders can learn to analyze signals represented in any domain.
+<li class='enumerate' id='x1-8006x3'>Autoencoders can learn to analyze signals represented in any domain.
      Create a new DCT- or DWT-based image codec where the autoencoder is
-     applied to the transform domain. Complexity 20.</li></ol>
-<!-- l. 213 --><p class='noindent'>
+     applied to the transform domain.</li></ol>
+<!-- l. 208 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>7   </span> <a id='x1-90007'></a>References</h3>
-                                                                  
-
-                                                                  
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xchollet2021deep'></a>Francois Chollet. <a href='https://sourestdeeds.github.io/pdf/Deep%20Learning%20with%20Python.pdf'><span class='ecti-1000'>Deep learning with Python</span></a>. Simon and Schuster, 2021.
@@ -178,6 +167,9 @@ general:
    </p>
    <p class='bibitem'><span class='biblabel'>
  [3]<span class='bibsp'>   </span></span><a id='Xvruiz__DWT'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/DWT'>The DWT (Discrete Wavelet Transform)</a>.
+                                                                  
+
+                                                                  
    </p>
    <p class='bibitem'><span class='biblabel'>
  [4]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/information_theory'>Information Theory</a>.
