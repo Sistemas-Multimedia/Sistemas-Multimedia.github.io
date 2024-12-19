@@ -111,10 +111,10 @@ coefficients are decorrelated. The next logical step (after
 quantization) is the entropy coding of the quantization indexes. Here,
 depending on how the coefficients are quantized, we can trace
 different RD curves (all of them starting (and finising) in the same
-distortion). For example, if we compress each subband\footnote{In the
-  case of a spatial transform, a subband is form by all the
-  coefficients that describe the same frequency components in
-  different areas or resolutions (when available) of the image.}
+(rate, distortion) point). For example, if we compress each
+subband\footnote{In the case of a spatial transform, a subband is form
+  by all the coefficients that describe the same frequency components
+  in different areas or resolutions (when available) of the image.}
 independently, we must find the quantization step sizes that select
 the same slope in the RD curve of each
 subband~\cite{vruiz__information_theory}. A RD curve is a discrete
