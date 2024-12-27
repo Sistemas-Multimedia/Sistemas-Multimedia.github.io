@@ -121,18 +121,20 @@ a B-frame all types of blocks can be used.
 %{{{
 
 \begin{enumerate}
-\item Create a video codec for processing a sequence of images using an
-  III... scheme, using the 2D-DCT to remove the spatial
-  redundancy. Use \texttt{MPNG.py} and \texttt{2D-DCT.py} as
-  reference.
+\item Create a new module named \texttt{III.py} where the image
+  compression provided by \texttt{2D-DCT.py} or
+  \texttt{2D-DWT.pỳ}. Use a command line parameter to chose between
+  these image codecs. Complexity 5.
 \item Create a video codec similar to the previous one, but using an
-  IPP... scheme without ME (or ... supossing that all the motion vectors are
-  zero). RDO should be considered to determine the block
-  type.
+  ``IPP...''  scheme without ME (or ... assuming that all the motion
+  vectors are zero). RDO should be considered to determine the block
+  type. Complexity 10.
 \item Create a video codec similar to the previous one, but using ME
-  (and MC controlled by RDO).
+  (and MC controlled by RDO). Complexity 12.
 \item Create a video codec similar to the previous one, but using an
-  IBB... scheme.
+  ``IBB...'' scheme. Complexity 15.
+\item Create a video codec similar to the previous one, but using an
+  MCTF scheme. Complexity 14.
 \end{enumerate}
 
 %}}}

@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'>Code-stream Scalabilty</h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>November 3, 2024</span></div>
+<div class='date'><span class='ecrm-1200'>December 27, 2024</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -79,8 +79,8 @@ B-type frames are used and generated using Motion Compensated Temporal Filtering
 </p>
    <h3 class='sectionHead'><span class='titlemark'>3   </span> <a id='x1-60003'></a>Spatial scalability in image coding <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span></h3>
 <!-- l. 65 --><p class='noindent'>Compressed images can be partially decoded, resulting in a reconstruction with
-smaller resolution or a reconstruction of a WOI (Window Of Interest) <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span>. Such
-forms of scalability are used in interactive streaming to minimize latency and
+smaller resolution or a reconstruction of a WOI (Window Of Interest) <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span>. Such forms
+of scalability are used in interactive streaming to minimize latency and to
 avoid sending resolutions that some devices cannot display. An example of
 spatial scalability using JPEG2000 <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span> can be found in the <a href='https://www.jhelioviewer.org/'>JHelioviewer
 service</a>.
@@ -108,7 +108,7 @@ using only one (partially decoded) code-stream. This possibility is usually
 generated using the LPT because the DWT domain is not shift invariant
 (the DWT is not invariant to displacement of the pixels in the image
 domain).<span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a id='x1-9001f3'></a>
-The concept here is to apply MC <span class='cite'>[<a href='#Xvruiz__MC'>3</a>]</span> to each level of the Laplacian pyramid.
+The idea here is to apply MC <span class='cite'>[<a href='#Xvruiz__MC'>3</a>]</span> to each level of the Laplacian pyramid.
 </p><!-- l. 107 --><p class='indent'>   Spatial scalability can be used in video streaming to avoid interruptions during
 the playing of the videos by switching between resolutions, in video databases to
 save memory, and in the rendering of the videos in displays with different
@@ -153,8 +153,8 @@ resolution<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class=
 </p><!-- l. 156 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>7   </span> <a id='x1-140007'></a>Simulcast VS Adaptive bit-rate streaming VS data-scalability</h3>
-<!-- l. 160 --><p class='noindent'>Although both terms can be confused, <a href='https://en.wikipedia.org/wiki/Simulcast'>simulcast</a> is an streaming technique and data
-scalability is a coding technique.
+<!-- l. 160 --><p class='noindent'>Although both terms can be confused, <a href='https://en.wikipedia.org/wiki/Simulcast'>simulcast</a> is an streaming technique, while
+data scalability is a coding technique.
 </p><!-- l. 164 --><p class='indent'>   Simulcast (used, for example, in the <a href='https://en.wikipedia.org/wiki/DVB'>DVB</a>, <a href='https://en.wikipedia.org/wiki/ATSC_standards'>ATSC</a> and <a href='https://en.wikipedia.org/wiki/ISDB'>ISDB</a>) is the process of
 parallel transmission of media with different resolutions and/or qualities,
 and this is usually deployed using different code-streams on the sender side,
@@ -166,37 +166,56 @@ point-to-point communication (of digital media) to the available capacity of the
                                                                   
 
                                                                   
-standard</a>, which is used, for example, on YouTube.
+standard</a>, which is used, for example, by YouTube.
 </p><!-- l. 182 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-150008'></a>To-Do</h3>
 <!-- l. 183 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-15002x1'>The \(L\)-levels DWT provides \(L+1\) spatial resolution levels of an image. Modify
-     <span class='ectt-1000'>2D-DWT.py </span>to include this functionality. Complexity 3.
+     <span class='ectt-1000'>2D-DWT.py </span>to include this functionality, which basically consist of ignoring
+     the high-frequency subbands. Complexity 3.
      </li>
-<li class='enumerate' id='x1-15004x2'>The \(2^n\times 2^n\)-DCT domain can be decoded by resolution levels using a inverse
+<li class='enumerate' id='x1-15004x2'>The \(2^n\times 2^n\)-DCT domain can be decoded by resolution levels using an inverse
      \(2^m\times 2^m\)-DCT where \(m=0,1,\cdots ,n\), to the lower frequency subbands (notice that the inverse
-     \(0\times 0\)-DCT does not perform any computation). Implement in <span class='ectt-1000'>2D-DCT.py </span>such
-     image  decoder.  See  the  notebook  <a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/docs/YCoCg_2D_DCT_SQ.ipynb'>Image  Compression  with  YCoCg  +
-     2D-DCT</a>. Complexity 4.
+     \(2^0\times 2^0\)-DCT  does  not  require  any  computation  because  the  DC  coefficients
+     represent the values of the pixels of the image at the resolution level \(n\)).
+     Implement in <span class='ectt-1000'>2D-DCT.py </span>such image decoder. See the notebook <a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/docs/YCoCg_2D_DCT_SQ.ipynb'>Image
+     Compression with YCoCg + 2D-DCT</a>. Complexity 4.
      </li>
-<li class='enumerate' id='x1-15006x3'>In video coding, we can obtain spatial scalability if we build a Laplacian
-     pyramid of the frames and compress each level of the sequence using a
-     normal video encoder. Notice that we can use the reconstructed sequence
-     at the spatial level \(l\) to improve the predictions for the level \(l-1\). Incorporate
-     this functionality to <span class='ectt-1000'>MPNG.py</span>. Complexity 8.
+<li class='enumerate' id='x1-15006x3'>In  intra  (III...)  video  coding,  we  can  obtain  spatial  scalability  if  we
+     build a <a href='https://en.wikipedia.org/wiki/Pyramid_(image_processing)#Laplacian_pyramid'>Laplacian pyramid</a> of the frames and compress each level of the
+     sequence using a normal video encoder. Add this functionality to <span class='ectt-1000'>MPNG.py</span>.
+     Complexity 4.
      </li>
-<li class='enumerate' id='x1-15008x4'>The spatial resolution level \(l\) of the reconstructed video can be used (after
-     interpolation) to estimate the motion at the \(l-1\) level<span class='footnote-mark'><a href='#fn5x0' id='fn5x0-bk'><sup class='textsuperscript'>5</sup></a></span><a id='x1-15009f5'></a>,
-     making the transmission of motion fields unnecessary for resolution level
-     \(l-1\). Explore this in <span class='ectt-1000'>MPNG.py</span>. Complexity 7.</li></ol>
-<!-- l. 209 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead'><span class='titlemark'>9   </span> <a id='x1-160009'></a>References</h3>
+<li class='enumerate' id='x1-15008x4'>The Laplacian pyramid can be also used in motion compensated (IPP...,
+     IBP..., and MCTF) video coding to provide spatial scalability. The key
+     here is to encode each resolution level using a standard (non-scalable)
+     video codec, starting at the lowest level. Name the corresponding Python
+     module: <span class='ectt-1000'>LPIPP.py</span>, <span class='ectt-1000'>LPIBP.py </span>or <span class='ectt-1000'>LPMCTF.py</span>, depending on the motion
+     compensation scheme. Complexity 7.
+     </li>
                                                                   
 
                                                                   
+<li class='enumerate' id='x1-15010x5'>In the previous proposals there is redundancy between the motion vectors
+     of the different spatial resolution levels because the motion vector \((x, y)\rightarrow (x', y')\) at
+     resolution level \(l\) will be close to the motion vector \((2x, 2y)\rightarrow (2x',2y')\) at resolution level
+     \(l-1\). Exploit such redundancy by adding the suitable functionality to the
+     corresponding module <span class='ectt-1000'>LPIPP.py</span>, <span class='ectt-1000'>LPIBP.py </span>or <span class='ectt-1000'>LPMCTF.py</span>. Complexity 6.
+     </li>
+<li class='enumerate' id='x1-15012x6'>The number of coefficients in a (2D) Laplacian pyramid is bigger than
+     the number of coefficients in a 2D-DWT (the Laplacian pyramid domain
+     in  more  redundant  than  the  discrete  wavelet  domain).  However,  it  is
+     possible  to  avoid  such  redundancy  when  the  filters  used  to  build  the
+     Laplacian pyramid are the same than the filters used to compute the
+     2D-DWT because, in this case, when the 1-levels 2D-DWT is applied to
+     any high-frequency level of the Laplacian pyramid, then the corresponding
+     \(LL\) subband is \(\mathbf {0}\). Explore such improvement in the corresponding <span class='ectt-1000'>LPIPP.py</span>,
+     <span class='ectt-1000'>LPIBP.py </span>or <span class='ectt-1000'>LPMCTF.py </span>module. See <a href='https://vicente-gonzalez-ruiz.github.io/pyramids-and-wavelets/'>this</a>. Complexity 10.</li></ol>
+<!-- l. 233 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead'><span class='titlemark'>9   </span> <a id='x1-160009'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xvruiz__JPEG2000'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/JPEG2000'>The JPEG2000 Standard</a>.
@@ -212,6 +231,9 @@ standard</a>, which is used, for example, on YouTube.
    </p>
    <p class='bibitem'><span class='biblabel'>
  [5]<span class='bibsp'>   </span></span><a id='Xvruiz__video_scalability'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/video_scalability'>Video Scalability</a>.
+                                                                  
+
+                                                                  
 </p>
    </div>
    <div class='footnotes'><a id='x1-2002x1'></a>
@@ -224,9 +246,7 @@ standard</a>, which is used, for example, on YouTube.
 </span><span class='ecrm-0800'>this problem, the DWT subbands must be interpolated to restore the lost phases. In this
 </span><span class='ecrm-0800'>overcomplete domain, the ME/MC algorithms work, but the phase used of the predicted images
 </span><span class='ecrm-0800'>must be represented in the code-stream.</span></p><a id='x1-13002x6'></a>
-<!-- l. 152 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>Notice that in this case, we should use the term “cubic building” instead of “pyramid”.</span></p><a id='x1-15010x5'></a>
-<!-- l. 204 --><p class='noindent'><span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>Obviously, expecting worse motion fields that if we estimate them at the encoder because,
-</span><span class='ecrm-0800'>in the decoder, the available information has been reduced due to lossy coding.</span></p>                  </div>
+<!-- l. 152 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>Notice that in this case, we should use the term “cubic building” instead of “pyramid”.</span></p> </div>
  
 </body> 
 </html>

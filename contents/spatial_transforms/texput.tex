@@ -201,9 +201,9 @@ the image into 2D chunks (usually called \emph{tiles} or
 \item Create a new image codec (similar to \texttt{2D-DWT.py}) where
   the coefficients of the filters used in the 2D-DWT are determined by
   an ANN trained to maximize the transform gain. Initially use the
-  coefficients of the filters of a a well-known, and in subsequent
-  iterations (levels) of the transform used the previously analyzed
-  levels to fine-tune the coefficients.
+  coefficients of the filters of a a well-known DWT kernel, and in
+  subsequent iterations (levels) of the transform used the previously
+  analyzed spatial resolution levels to fine-tune the coefficients.
 %\item If the right coefficients in the DWT domain are multiplied by a
 %  power of 2 before quantization, we can define a ROI of arbitrary
 %  shape at compression time~\cite{vruiz__JPEG2000}. Include this
