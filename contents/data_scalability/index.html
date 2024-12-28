@@ -17,9 +17,9 @@
 
                                                                   
 
-<h2 class='titleHead'>Code-stream Scalabilty</h2>
+<h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/contents/data_scalability/'>Code-stream Scalabilty</a></h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 27, 2024</span></div>
+<div class='date'><span class='ecrm-1200'>December 28, 2024</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -173,47 +173,70 @@ standard</a>, which is used, for example, by YouTube.
 <!-- l. 183 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-15002x1'>The \(L\)-levels DWT provides \(L+1\) spatial resolution levels of an image. Modify
-     <span class='ectt-1000'>2D-DWT.py </span>to include this functionality, which basically consist of ignoring
-     the high-frequency subbands. Complexity 3.
+     <span class='ectt-1000'>2D-DWT.py </span>to  include  this  functionality  (the  possibility  of  decoding  a
+     reduced resolution version of the original image), which basically consist
+     of ignoring the high-frequency subbands. Complexity 3.
      </li>
-<li class='enumerate' id='x1-15004x2'>The \(2^n\times 2^n\)-DCT domain can be decoded by resolution levels using an inverse
-     \(2^m\times 2^m\)-DCT where \(m=0,1,\cdots ,n\), to the lower frequency subbands (notice that the inverse
+<li class='enumerate' id='x1-15004x2'> Modify <span class='ectt-1000'>2D-DWT.py </span>to allows the possibility of decoding by bit-planes
+     (given as a parameter the number of bit-planes to decode). In order to
+     achieve this, we must use a bit-plane entropy encoder (we can encode bits
+     using an arithmetic coding, or conform symbols (<span class='ecti-1000'>symbol-blocks</span>) of more
+     bits by taking small blocks of bits (of size 4x4, for example), in whose case
+     we could use PNG, for example). Notice that this is not incompatible to
+     decode by spatial resolution levels (see previous To-Do). Complexity 10.
+     </li>
+<li class='enumerate' id='x1-15006x3'>The \(2^n\times 2^n\)-DCT domain can be decoded by resolution levels using an inverse
+     \(2^m\times 2^m\)-DCT to the lower frequency subbands, where \(m=0,1,\cdots ,n\) (notice that the inverse
      \(2^0\times 2^0\)-DCT  does  not  require  any  computation  because  the  DC  coefficients
      represent the values of the pixels of the image at the resolution level \(n\)).
      Implement in <span class='ectt-1000'>2D-DCT.py </span>such image decoder. See the notebook <a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/docs/YCoCg_2D_DCT_SQ.ipynb'>Image
      Compression with YCoCg + 2D-DCT</a>. Complexity 4.
      </li>
-<li class='enumerate' id='x1-15006x3'>In  intra  (III...)  video  coding,  we  can  obtain  spatial  scalability  if  we
-     build a <a href='https://en.wikipedia.org/wiki/Pyramid_(image_processing)#Laplacian_pyramid'>Laplacian pyramid</a> of the frames and compress each level of the
-     sequence using a normal video encoder. Add this functionality to <span class='ectt-1000'>MPNG.py</span>.
-     Complexity 4.
-     </li>
-<li class='enumerate' id='x1-15008x4'>The Laplacian pyramid can be also used in motion compensated (IPP...,
-     IBP..., and MCTF) video coding to provide spatial scalability. The key
-     here is to encode each resolution level using a standard (non-scalable)
-     video codec, starting at the lowest level. Name the corresponding Python
-     module: <span class='ectt-1000'>LPIPP.py</span>, <span class='ectt-1000'>LPIBP.py </span>or <span class='ectt-1000'>LPMCTF.py</span>, depending on the motion
-     compensation scheme. Complexity 7.
+<li class='enumerate' id='x1-15008x4'>Modify <span class='ectt-1000'>2D-DCT.py </span>to allows the decoding by bit-planes (see To-Do <a href='#x1-15004x2'>2<!-- tex4ht:ref: TD:BP  --></a>).
+     Complexity 10.
      </li>
                                                                   
 
                                                                   
-<li class='enumerate' id='x1-15010x5'>In the previous proposals there is redundancy between the motion vectors
+<li class='enumerate' id='x1-15010x5'>It is possible to add WOI-decoding (Window Of Interest) to <span class='ectt-1000'>2D-DCT.py</span>
+     and  <span class='ectt-1000'>2D-DWT.py </span>if  the  bit-planes  are  encoded  by  (using  the  same
+     nomenclature than JPEG2000) <span class='ecti-1000'>code-blocks  </span>(notice that the size of the
+     code-blocks must be a multiple of the symbol-blocks used to create the
+     symbols used during the entropy encoding).
+     </li>
+<li class='enumerate' id='x1-15012x6'>In  intra  (III...)  video  coding,  we  can  obtain  spatial  scalability  if  we
+     build a <a href='https://en.wikipedia.org/wiki/Pyramid_(image_processing)#Laplacian_pyramid'>Laplacian pyramid</a> of the frames and compress each level of the
+     sequence using a standard image encoder (such for example <span class='ectt-1000'>2D-DCT.py</span>
+     or <span class='ectt-1000'>2D-DWT.py</span>). Create a new Python module named <span class='ectt-1000'>SS-III.py </span>(Spatial
+     Scalable III... video encoding) with such functionality. Complexity 4.
+     </li>
+<li class='enumerate' id='x1-15014x7'>The Laplacian pyramid can be also used in motion compensated (IPP...,
+     IBP..., and MCTF) video coding to provide spatial scalability. The key
+     here is to encode each resolution level using a standard (non-scalable)
+     video  codec  (see  the  <a href='https://sistemas-multimedia.github.io/contents/temporal_transforms/'>Temporal  Transforms</a>),  starting  at  the  lowest
+     level. Name the corresponding Python module <span class='ectt-1000'>LPIPP.py</span>, <span class='ectt-1000'>LPIBP.py </span>or
+     <span class='ectt-1000'>LPMCTF.py</span>, depending on the motion compensation scheme. Complexity
+     7.
+     </li>
+<li class='enumerate' id='x1-15016x8'>In the previous proposals there is redundancy between the motion vectors
      of the different spatial resolution levels because the motion vector \((x, y)\rightarrow (x', y')\) at
      resolution level \(l\) will be close to the motion vector \((2x, 2y)\rightarrow (2x',2y')\) at resolution level
      \(l-1\). Exploit such redundancy by adding the suitable functionality to the
      corresponding module <span class='ectt-1000'>LPIPP.py</span>, <span class='ectt-1000'>LPIBP.py </span>or <span class='ectt-1000'>LPMCTF.py</span>. Complexity 6.
      </li>
-<li class='enumerate' id='x1-15012x6'>The number of coefficients in a (2D) Laplacian pyramid is bigger than
+<li class='enumerate' id='x1-15018x9'>The number of coefficients in a (2D) Laplacian pyramid is bigger than
      the number of coefficients in a 2D-DWT (the Laplacian pyramid domain
      in  more  redundant  than  the  discrete  wavelet  domain).  However,  it  is
      possible  to  avoid  such  redundancy  when  the  filters  used  to  build  the
      Laplacian pyramid are the same than the filters used to compute the
      2D-DWT because, in this case, when the 1-levels 2D-DWT is applied to
      any high-frequency level of the Laplacian pyramid, then the corresponding
+                                                                  
+
+                                                                  
      \(LL\) subband is \(\mathbf {0}\). Explore such improvement in the corresponding <span class='ectt-1000'>LPIPP.py</span>,
      <span class='ectt-1000'>LPIBP.py </span>or <span class='ectt-1000'>LPMCTF.py </span>module. See <a href='https://vicente-gonzalez-ruiz.github.io/pyramids-and-wavelets/'>this</a>. Complexity 10.</li></ol>
-<!-- l. 233 --><p class='noindent'>
+<!-- l. 254 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>9   </span> <a id='x1-160009'></a>References</h3>
    <div class='thebibliography'>
@@ -231,9 +254,6 @@ standard</a>, which is used, for example, by YouTube.
    </p>
    <p class='bibitem'><span class='biblabel'>
  [5]<span class='bibsp'>   </span></span><a id='Xvruiz__video_scalability'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/video_scalability'>Video Scalability</a>.
-                                                                  
-
-                                                                  
 </p>
    </div>
    <div class='footnotes'><a id='x1-2002x1'></a>

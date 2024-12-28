@@ -34,7 +34,7 @@
 % 
 
 \input{../../definitions}
-\title{Spatial Transforms}
+\title{\href{https://sistemas-multimedia.github.io/contents/spatial_transforms/}{Spatial Transforms}}
 
 \maketitle
 
@@ -188,7 +188,7 @@ the image into 2D chunks (usually called \emph{tiles} or
 \begin{enumerate}
 \item Using RDO, determine the optimal DWT basis (defined in
   \href{https://pywavelets.readthedocs.io/en/latest/}{PyWavelets}) in
-  the codec \texttt{2D-DWT.py}
+  the codec \texttt{2D-DWT.py}. Complexity 4.
 \item Create a new image codec (similar to \texttt{2D-DCT.py}) where
   the 2D-DCT is replaced by an ANN (artificial neural network). The
   forward transform should maximize the concentration of energy, and
@@ -197,13 +197,15 @@ the image into 2D chunks (usually called \emph{tiles} or
   to compute the 2D-DCT, and retrain the model using the previously
   encoded blocks of the image. For example, when encoding the second
   block, use the first block to fine-tune the model. For the third
-  block, use the second block to retrain the model, and so on.
+  block, use the second block to retrain the model, and so
+  on. Complexity 16.
 \item Create a new image codec (similar to \texttt{2D-DWT.py}) where
   the coefficients of the filters used in the 2D-DWT are determined by
   an ANN trained to maximize the transform gain. Initially use the
   coefficients of the filters of a a well-known DWT kernel, and in
   subsequent iterations (levels) of the transform used the previously
-  analyzed spatial resolution levels to fine-tune the coefficients.
+  analyzed spatial resolution levels to fine-tune the
+  coefficients. Complexity 16.
 %\item If the right coefficients in the DWT domain are multiplied by a
 %  power of 2 before quantization, we can define a ROI of arbitrary
 %  shape at compression time~\cite{vruiz__JPEG2000}. Include this

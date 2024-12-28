@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'>Temporal Transforms</h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 27, 2024</span></div>
+<div class='date'><span class='ecrm-1200'>December 28, 2024</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -136,20 +136,29 @@ used.
    <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-90008'></a>To-Do</h3>
 <!-- l. 123 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-9002x1'>Create a video codec for processing a sequence of images using an III...
-     scheme, using the 2D-DCT to remove the spatial redundancy. Use <span class='ectt-1000'>MPNG.py</span>
-     and <span class='ectt-1000'>2D-DCT.py </span>as reference.
+<li class='enumerate' id='x1-9002x1'>Create  a  new  module  <span class='ectt-1000'>III.py </span>where  the  image  compression  provided
+     by <span class='ectt-1000'>2D-DCT.py </span>or <span class='ectt-1000'>2D-DWT.pỳ</span>. Use a command line parameter to chose
+     between these image codecs. Complexity 5.
      </li>
-<li class='enumerate' id='x1-9004x2'>Create a video codec similar to the previous one, but using an IPP...
-     scheme without ME (or ... supossing that all the motion vectors are zero).
-     RDO should be considered to determine the block type.
+<li class='enumerate' id='x1-9004x2'>Create a video codec similar to the previous one, but using an “IPP...”
+     scheme without ME (or assuming that all the motion vectors are zero).
+     RDO (Rate/Distortion Optimization) should be considered to determine
+     the block type. Complexity 10.
      </li>
-<li class='enumerate' id='x1-9006x3'>Create a video codec similar to the previous one, but using ME (and MC
-     controlled by RDO).
+<li class='enumerate' id='x1-9006x3'>Create a video codec similar to the previous one, but using ME and MC
+     controlled by RDO (the block-type should be decided using a RD criteria).
+     Complexity 12.
+                                                                  
+
+                                                                  
      </li>
-<li class='enumerate' id='x1-9008x4'>Create a video codec similar to the previous one, but using an IBB...
-     scheme.</li></ol>
-<!-- l. 140 --><p class='noindent'>
+<li class='enumerate' id='x1-9008x4'>Create a video codec similar to the previous one, but using an “IBB...”
+     scheme. Complexity 15.
+     </li>
+<li class='enumerate' id='x1-9010x5'>Create a video codec similar to the previous one, but using an MCTF
+     scheme. Notice that in this case, the reference frames are pre-defined (and
+     usually are always 2). Complexity 14.</li></ol>
+<!-- l. 144 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>9   </span> <a id='x1-100009'></a>References</h3>
    <div class='thebibliography'>

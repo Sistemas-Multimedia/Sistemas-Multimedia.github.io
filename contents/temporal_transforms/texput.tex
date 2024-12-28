@@ -121,20 +121,22 @@ a B-frame all types of blocks can be used.
 %{{{
 
 \begin{enumerate}
-\item Create a new module named \texttt{III.py} where the image
+\item Create a new module \texttt{III.py} where the image
   compression provided by \texttt{2D-DCT.py} or
   \texttt{2D-DWT.pỳ}. Use a command line parameter to chose between
   these image codecs. Complexity 5.
 \item Create a video codec similar to the previous one, but using an
-  ``IPP...''  scheme without ME (or ... assuming that all the motion
-  vectors are zero). RDO should be considered to determine the block
-  type. Complexity 10.
+  ``IPP...''  scheme without ME (or assuming that all the motion
+  vectors are zero). RDO (Rate/Distortion Optimization) should be
+  considered to determine the block type. Complexity 10.
 \item Create a video codec similar to the previous one, but using ME
-  (and MC controlled by RDO). Complexity 12.
+  and MC controlled by RDO (the block-type should be decided using a
+  RD criteria). Complexity 12.
 \item Create a video codec similar to the previous one, but using an
   ``IBB...'' scheme. Complexity 15.
 \item Create a video codec similar to the previous one, but using an
-  MCTF scheme. Complexity 14.
+  MCTF scheme. Notice that in this case, the reference frames are
+  pre-defined (and usually are always 2). Complexity 14.
 \end{enumerate}
 
 %}}}
