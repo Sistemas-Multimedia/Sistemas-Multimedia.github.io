@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'>Temporal Transforms</h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 28, 2024</span></div>
+<div class='date'><span class='ecrm-1200'>January 8, 2025</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -85,13 +85,13 @@ by a RDO algorithm.
 </p><!-- l. 77 --><p class='indent'>   However, in some contexts<span class='footnote-mark'><a href='#fn7x0' id='fn7x0-bk'><sup class='textsuperscript'>7</sup></a></span><a id='x1-5003f7'></a>
 it may be necessary to use a fixed GOP partition <span class='cite'>[<a href='#Xvruiz__MC'>2</a>]</span>. For example, if we want to give
 the option to the users to move fast forward or backward along the sequence, we need
-to set some maximum GOF size. Another reason to use a maximum GOF size is to
-limit the propagation of decoding errors (for example, because in a streaming session
-we have not received some data). When a new GOF starts, the propagation of such
+to set some given GOF size. Another reason to use a defined GOF size is to limit the
+propagation of decoding errors (for example, because in a streaming session we have
+not received some data). When a new GOF starts, the propagation of such errors is
                                                                   
 
                                                                   
-errors is stopped.
+stopped.
 </p><!-- l. 86 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Block-based MC and RDO</h3>
@@ -136,9 +136,9 @@ used.
    <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-90008'></a>To-Do</h3>
 <!-- l. 123 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-9002x1'>Create  a  new  module  <span class='ectt-1000'>III.py </span>where  the  image  compression  provided
-     by <span class='ectt-1000'>2D-DCT.py </span>or <span class='ectt-1000'>2D-DWT.pỳ</span>. Use a command line parameter to chose
-     between these image codecs. Complexity 5.
+<li class='enumerate' id='x1-9002x1'>Create a new module <span class='ectt-1000'>III.py </span>where the image compression provided by
+     <span class='ectt-1000'>2D-DCT.py </span>or <span class='ectt-1000'>2D-DWT.py</span>. Use a command line parameter to chose between
+     these image codecs. Complexity 5.
      </li>
 <li class='enumerate' id='x1-9004x2'>Create a video codec similar to the previous one, but using an “IPP...”
      scheme without ME (or assuming that all the motion vectors are zero).
