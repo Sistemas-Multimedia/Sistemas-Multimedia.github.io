@@ -4,7 +4,7 @@
 
 \input{../../definitions}
 
-\title{Code-stream Scalabilty}
+\title{\href{https://sistemas-multimedia.github.io/contents/data_scalability/}{Code-stream Scalabilty}}
 
 \maketitle
 \tableofcontents
@@ -65,7 +65,7 @@ Compensated Temporal Filtering (MCTF)~\cite{vruiz__MC,vruiz__MCTF}.
 Compressed images can be partially decoded, resulting in a
 reconstruction with smaller resolution or a reconstruction of a WOI
 (Window Of Interest)~\cite{vruiz__JPEG2000}. Such forms of scalability
-are used in interactive streaming to minimize latency and avoid
+are used in interactive streaming to minimize latency and to avoid
 sending resolutions that some devices cannot display. An example of
 spatial scalability using JPEG2000~\cite{vruiz__JPEG2000} can be found
 in the \href{https://www.jhelioviewer.org/}{JHelioviewer service}.
@@ -101,7 +101,7 @@ the pixels in the image domain).\footnote{The DWT domain is not
   solve this problem, the DWT subbands must be interpolated to restore
   the lost phases. In this overcomplete domain, the ME/MC algorithms
   work, but the phase used of the predicted images must be represented
-  in the code-stream.} The concept here is to apply
+  in the code-stream.} The idea here is to apply
 MC~\cite{vruiz__MC} to each level of the Laplacian pyramid.
 
 Spatial scalability can be used in video streaming to avoid
@@ -159,7 +159,7 @@ same spatial resolution\footnote{Notice that in this case, we should
 
 Although both terms can be confused,
 \href{https://en.wikipedia.org/wiki/Simulcast}{simulcast} is an
-streaming technique and data scalability is a coding technique.
+streaming technique, while data scalability is a coding technique.
 
 Simulcast (used, for example, in the
 \href{https://en.wikipedia.org/wiki/DVB}{DVB},
@@ -175,35 +175,80 @@ in a point-to-point communication (of digital media) to the available
 capacity of the link (which is typically time-varying). This
 technique is used, for example, in the
 \href{https://en.wikipedia.org/wiki/Dynamic_Adaptive_Streaming_over_HTTP}{DASH
-  standard}, which is used, for example, on YouTube.
+  standard}, which is used, for example, by YouTube.
 
 %}}}
 
 \section{To-Do}
 \begin{enumerate}
 \item The $L$-levels DWT provides $L+1$ spatial resolution levels of
-  an image. Modify \texttt{2D-DWT.py} to include this
-  functionality. Complexity 3.
+  an image. Modify \texttt{2D-DWT.py} to include this functionality
+  (the possibility of decoding a reduced resolution version of the
+  original image), which basically consist of ignoring the
+  high-frequency subbands. Complexity 3.
+\item \label{TD:BP} Modify \texttt{2D-DWT.py} to allows the
+  possibility of decoding by bit-planes (given as a parameter the
+  number of bit-planes to decode). In order to achieve this, we must
+  use a bit-plane entropy encoder (we can encode bits using an
+  arithmetic coding, or conform symbols (\emph{symbol-blocks}) of more
+  bits by taking small blocks of bits (of size 4x4, for example), in
+  whose case we could use PNG, for example). Notice that this is not
+  incompatible to decode by spatial resolution levels (see previous
+  To-Do). Complexity 10.
 \item The $2^n\times 2^n$-DCT domain can be decoded by resolution
-  levels using a inverse $2^m\times 2^m$-DCT where $m=0,1,\cdots,n$,
-  to the lower frequency subbands (notice that the inverse
-  $0\times 0$-DCT does not perform any computation). Implement in
-  \texttt{2D-DCT.py} such image decoder. See the notebook
+  levels using an inverse $2^m\times 2^m$-DCT to the lower frequency
+  subbands, where $m=0,1,\cdots,n$ (notice that the inverse
+  $2^0\times 2^0$-DCT does not require any computation because the DC
+  coefficients represent the values of the pixels of the image at the
+  resolution level $n$). Implement in \texttt{2D-DCT.py} such image
+  decoder. See the notebook
   \href{https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/docs/YCoCg_2D_DCT_SQ.ipynb}{Image
     Compression with YCoCg + 2D-DCT}. Complexity 4.
-\item In video coding, we can obtain spatial scalability if we build a
-  Laplacian pyramid of the frames and compress each level of the
-  sequence using a normal video encoder. Notice that we can use the
-  reconstructed sequence at the spatial level $l$ to improve the
-  predictions for the level $l-1$. Incorporate this functionality to
-  \texttt{MPNG.py}. Complexity 8.
-\item The spatial resolution level $l$ of the reconstructed video can
-  be used (after interpolation) to estimate the motion at the $l-1$
-  level\footnote{Obviously, expecting worse motion fields that if we
-    estimate them at the encoder because, in the decoder, the
-    available information has been reduced due to lossy coding.},
-  making the transmission of motion fields unnecessary for resolution
-  level $l-1$. Explore this in \texttt{MPNG.py}. Complexity 7.
+\item Modify \texttt{2D-DCT.py} to allows the decoding by bit-planes
+  (see To-Do~\ref{TD:BP}). Complexity 10.
+\item It is possible to add WOI-decoding (Window Of Interest) to
+  \texttt{2D-DCT.py} and \texttt{2D-DWT.py} if the bit-planes are
+  encoded by (using the same nomenclature than JPEG2000)
+  \emph{code-blocks} (notice that the size of the code-blocks must be
+  a multiple of the symbol-blocks used to create the symbols used
+  during the entropy encoding). 
+\item In intra (III...) video coding, we can obtain spatial
+  scalability if we build a
+  \href{https://en.wikipedia.org/wiki/Pyramid_(image_processing)#Laplacian_pyramid}{Laplacian
+    pyramid} of the frames and compress each level of the sequence
+  using a standard image encoder (such for example \texttt{2D-DCT.py}
+  or \texttt{2D-DWT.py}). Create a new Python module named
+  \texttt{SS-III.py} (Spatial Scalable III... video encoding) with
+  such functionality. Complexity 4.
+\item The Laplacian pyramid can be also used in motion compensated
+  (IPP..., IBP..., and MCTF) video coding to provide spatial
+  scalability. The key here is to encode each resolution level using a
+  standard (non-scalable) video codec (see the
+  \href{https://sistemas-multimedia.github.io/contents/temporal_transforms/}{Temporal
+    Transforms}), starting at the lowest level. Name the corresponding
+  Python module \texttt{LPIPP.py}, \texttt{LPIBP.py} or
+  \texttt{LPMCTF.py}, depending on the motion compensation
+  scheme. Complexity 7.
+\item In the previous proposals there is redundancy between the motion
+  vectors of the different spatial resolution levels because the
+  motion vector $(x, y)\rightarrow (x', y')$ at resolution level $l$
+  will be close to the motion vector $(2x, 2y)\rightarrow(2x',2y')$ at
+  resolution level $l-1$. Exploit such redundancy by adding the
+  suitable functionality to the corresponding module
+  \texttt{LPIPP.py}, \texttt{LPIBP.py} or
+  \texttt{LPMCTF.py}. Complexity 6.
+\item The number of coefficients in a (2D) Laplacian pyramid is bigger
+  than the number of coefficients in a 2D-DWT (the Laplacian pyramid
+  domain in more redundant than the discrete wavelet domain). However,
+  it is possible to avoid such redundancy when the filters used to
+  build the Laplacian pyramid are the same than the filters used to
+  compute the 2D-DWT because, in this case, when the 1-levels 2D-DWT
+  is applied to any high-frequency level of the Laplacian pyramid,
+  then the corresponding $LL$ subband is $\mathbf{0}$. Explore such
+  improvement in the corresponding \texttt{LPIPP.py},
+  \texttt{LPIBP.py} or \texttt{LPMCTF.py} module. See
+  \href{https://vicente-gonzalez-ruiz.github.io/pyramids-and-wavelets/}{this}.
+  Complexity 10.
 \end{enumerate}
 
 \section{References}

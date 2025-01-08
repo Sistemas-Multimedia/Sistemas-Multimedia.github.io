@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'>Temporal Transforms</h2>
  <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>November 3, 2024</span></div>
+<div class='date'><span class='ecrm-1200'>December 28, 2024</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -39,7 +39,7 @@
 <!-- l. 15 --><p class='noindent'>In general, neighbor <span class='ecti-1000'>frames </span>(or images) in (video) <span class='ecti-1000'>sequences </span>exhibit a high temporal
 correlation degree that can be exploited to improve significantly the RD curves. This
 correlation generates a temporal redundancy that can be removed using a (temporal)
-transfor.
+transform.
 </p><!-- l. 21 --><p class='indent'>   A temporal transform inputs two or more
 frames<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-2001f1'></a>,
 and outputs at least one <span class='ecti-1000'>residual </span>(frame) in which the residual pixels have a higher
@@ -66,12 +66,11 @@ frame.<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='tex
 <!-- l. 50 --><p class='noindent'>To compensate the motion we need first to
 estimate<span class='footnote-mark'><a href='#fn5x0' id='fn5x0-bk'><sup class='textsuperscript'>5</sup></a></span><a id='x1-4001f5'></a>
 it using Motion Estimation (ME) techniques <span class='cite'>[<a href='#Xvruiz__ME'>3</a>]</span>. Using the motion fields generated
-by the motion estimator, both the encoder and the decoder generate the
-predictions that will be desubtracted (added in the case of the decoder)
-from the predicted images <span class='cite'>[<a href='#Xvruiz__MC'>2</a>]</span>. However, notice that in most of the video
-coding standards, ME is only performed by the encoder because it is a costly
-operation, and for this reason, the motion vector fields must be transmitted
-to the decoder. This responds to the idea of “compress one, decompress
+by the motion estimator, both the encoder and the decoder generate the predictions
+that will be added (by the decoder) from the predicted images <span class='cite'>[<a href='#Xvruiz__MC'>2</a>]</span>. However, notice
+that in most of the video coding standards, ME is only performed by the encoder
+because it is a costly operation, and for this reason, the motion vector fields must be
+transmitted to the decoder. This responds to the idea of “compress one, decompress
 many”.
 </p><!-- l. 66 --><p class='noindent'>
 </p>
@@ -88,10 +87,10 @@ it may be necessary to use a fixed GOP partition <span class='cite'>[<a href='#
 the option to the users to move fast forward or backward along the sequence, we need
 to set some maximum GOF size. Another reason to use a maximum GOF size is to
 limit the propagation of decoding errors (for example, because in a streaming session
+we have not received some data). When a new GOF starts, the propagation of such
                                                                   
 
                                                                   
-we have not received some data). When a new GOF stars, the propagation of such
 errors is stopped.
 </p><!-- l. 86 --><p class='noindent'>
 </p>
@@ -102,21 +101,23 @@ procedure<span class='footnote-mark'><a href='#fn8x0' id='fn8x0-bk'><sup class='
 blocks can be of different type (I (intra), P (predicted), B (bidirectionally predicted)
 and S (skipped)) <span class='cite'>[<a href='#Xvruiz__MC'>2</a>]</span>. A I-block is used when we do not found enough temporal
 correlation between frames and from a RD perspective, it is more advantagous to use
-<span class='ecti-1000'>intra-coding</span>. When we found one or more reference blocks to perform a
-good prediction, we are using <span class='ecti-1000'>predictive-coding</span>. Notice that the number
-of reference blocks can be higher than two, a number also controlled by
-RDO.
-</p><!-- l. 101 --><p class='noindent'>
+<span class='ecti-1000'>intra-coding</span>. When we found one or more reference blocks to perform a good
+prediction, we are using <span class='ecti-1000'>predictive-coding</span>. Notice that the number of reference blocks
+can be higher than two, a number also controlled by RDO. In the intra-coding mode,
+all the frames are I-type because otherwise we could not reset the propagation
+errors. In Motion Compensated Temporal Filtering <span class='cite'>[<a href='#Xvruiz__MCTF'>1</a>]</span>, the frames are I or
+B.
+</p><!-- l. 104 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Frame types</h3>
-<!-- l. 103 --><p class='noindent'>Depending on the type of blocks used in the frames, we have different types of
-frames: I, P, and B <span class='cite'>[<a href='#Xvruiz__MC'>2</a>]</span>. For example, in the intra-coding mode, all the frames are
-I-type because otherwise we could not reset the propagation errors. In Motion
-Compensated Temporal Filtering <span class='cite'>[<a href='#Xvruiz__MCTF'>1</a>]</span>, the frames are I or B.
-</p><!-- l. 109 --><p class='noindent'>
+<!-- l. 106 --><p class='noindent'>Depending on the type of blocks used in the frames, we have different types of
+frames: I, P, and B <span class='cite'>[<a href='#Xvruiz__MC'>2</a>]</span>. In a I-frame, all blocks are I-type. In a P frame, I-
+and P-type blocks can be found. In a B-frame all types of blocks can be
+used.
+</p><!-- l. 111 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Resources</h3>
-<!-- l. 110 --><p class='noindent'>
+<!-- l. 112 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-8002x1'><a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/full_search_block_ME.ipynb'>Full search block-based ME (Motion Estimation)</a>.
      </li>
@@ -130,25 +131,34 @@ Compensated Temporal Filtering <span class='cite'>[<a href='#Xvruiz__MCTF'>1</a
 <li class='enumerate' id='x1-8008x4'><a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation/blob/master/introducing_IPPP.ipynb'>Introducing the Low-delay (IPP...) Mode</a>.
      </li>
 <li class='enumerate' id='x1-8010x5'><a href='https://github.com/Sistemas-Multimedia/MRVC'>Multi-Resolution Video Coding (MRVC)</a>.</li></ol>
-<!-- l. 118 --><p class='noindent'>
+<!-- l. 120 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-90008'></a>To-Do</h3>
-<!-- l. 121 --><p class='noindent'>
+<!-- l. 123 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-9002x1'>Create a video codec for processing a sequence of images using an III...
-     scheme, using the 2D-DCT to remove the spatial redundancy. Use <span class='ectt-1000'>MPNG.py</span>
-     and <span class='ectt-1000'>2D-DCT.py </span>as reference. Complexity 5.
+<li class='enumerate' id='x1-9002x1'>Create  a  new  module  <span class='ectt-1000'>III.py </span>where  the  image  compression  provided
+     by <span class='ectt-1000'>2D-DCT.py </span>or <span class='ectt-1000'>2D-DWT.pỳ</span>. Use a command line parameter to chose
+     between these image codecs. Complexity 5.
      </li>
-<li class='enumerate' id='x1-9004x2'>Create a video codec similar to the previous one, but using an IPP...
-     scheme without ME (supossing that all the motion vectors are zero). RDO
-     should be considered to determine the block type. Complexity 7.
+<li class='enumerate' id='x1-9004x2'>Create a video codec similar to the previous one, but using an “IPP...”
+     scheme without ME (or assuming that all the motion vectors are zero).
+     RDO (Rate/Distortion Optimization) should be considered to determine
+     the block type. Complexity 10.
      </li>
-<li class='enumerate' id='x1-9006x3'>Create a video codec similar to the previous one, but using ME (and MC
-     controlled by RDO). Complexity 10.
+<li class='enumerate' id='x1-9006x3'>Create a video codec similar to the previous one, but using ME and MC
+     controlled by RDO (the block-type should be decided using a RD criteria).
+     Complexity 12.
+                                                                  
+
+                                                                  
      </li>
-<li class='enumerate' id='x1-9008x4'>Create a video codec similar to the previous one, but using an IBB...
-     scheme. Complexity 15.</li></ol>
-<!-- l. 138 --><p class='noindent'>
+<li class='enumerate' id='x1-9008x4'>Create a video codec similar to the previous one, but using an “IBB...”
+     scheme. Complexity 15.
+     </li>
+<li class='enumerate' id='x1-9010x5'>Create a video codec similar to the previous one, but using an MCTF
+     scheme. Notice that in this case, the reference frames are pre-defined (and
+     usually are always 2). Complexity 14.</li></ol>
+<!-- l. 144 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>9   </span> <a id='x1-100009'></a>References</h3>
    <div class='thebibliography'>
