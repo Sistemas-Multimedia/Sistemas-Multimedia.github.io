@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/contents/entropy_coding/'>Entropy Coding</a></h2>
  <div class='author'><a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 28, 2024</span></div>
+<div class='date'><span class='ecrm-1200'>March 7, 2025</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -30,7 +30,7 @@
 <br />    <span class='sectionToc'>5 <a href='#x1-80005' id='QQ2-1-8'>Arithmetic Coding (AC)</a></span>
 <br />    <span class='sectionToc'>6 <a href='#x1-110006' id='QQ2-1-11'><span class='ectt-1000'>zlib</span></a></span>
 <br />    <span class='sectionToc'>7 <a href='#x1-130007' id='QQ2-1-13'>Portable Network Graphics (PNG)</a></span>
-<br />    <span class='sectionToc'>8 <a href='#x1-140008' id='QQ2-1-14'>References</a></span>
+<br />    <span class='sectionToc'>8 <a href='#x1-150008' id='QQ2-1-15'>References</a></span>
    </div>
 <!-- l. 14 --><p class='noindent'>
 </p>
@@ -91,54 +91,53 @@ models</a>.
    <h4 class='likesubsectionHead'><a id='x1-6000'></a>Resources</h4>
 <!-- l. 96 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-6002x1'>Usage of <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/Huffman.ipynb'>Huffman in VCF</a>.
+<li class='enumerate' id='x1-6002x1'>Usage of <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/Huffman.ipynb'>static Huffman in VCF</a>.
      </li>
-<li class='enumerate' id='x1-6004x2'>Usage of <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/PNG.ipynb'>PNG in VCF</a>.
+<li class='enumerate' id='x1-6004x2'><a href='https://www.inference.org.uk/mackay/python/compress/#Huff'>Compression algorithms in Python</a>.
      </li>
-<li class='enumerate' id='x1-6006x3'><a href='https://www.inference.org.uk/mackay/python/compress/#Huff'>Compression algorithms in Python</a>.
+<li class='enumerate' id='x1-6006x3'><a href='https://favtutor.com/blogs/huffman-coding'>Huffman Coding Implementation in Python with Examples</a>.
      </li>
-<li class='enumerate' id='x1-6008x4'><a href='https://favtutor.com/blogs/huffman-coding'>Huffman Coding Implementation in Python with Examples</a>.
+<li class='enumerate' id='x1-6008x4'><a href='https://www.programiz.com/dsa/huffman-coding'>Huffman Coding</a>.
      </li>
-<li class='enumerate' id='x1-6010x5'><a href='https://www.programiz.com/dsa/huffman-coding'>Huffman Coding</a>.
+<li class='enumerate' id='x1-6010x5'><a href='https://en.wikipedia.org/wiki/Prediction_by_partial_matching'>Prediction by Partial Matching</a>.
      </li>
-<li class='enumerate' id='x1-6012x6'><a href='https://en.wikipedia.org/wiki/Prediction_by_partial_matching'>Prediction by Partial Matching</a>.
+<li class='enumerate' id='x1-6012x6'><a href='https://en.wikipedia.org/wiki/Lossless_JPEG'>Lossless JPEG</a>.
      </li>
-<li class='enumerate' id='x1-6014x7'><a href='https://en.wikipedia.org/wiki/Lossless_JPEG'>Lossless JPEG</a>.
+<li class='enumerate' id='x1-6014x7'><a href='https://en.wikipedia.org/wiki/Context-adaptive_variable-length_coding'>Context-Adaptive Variable-Length Coding</a>.</li></ol>
                                                                   
 
                                                                   
-     </li>
-<li class='enumerate' id='x1-6016x8'><a href='https://en.wikipedia.org/wiki/Context-adaptive_variable-length_coding'>Context-Adaptive Variable-Length Coding</a>.</li></ol>
-<!-- l. 107 --><p class='noindent'>
+<!-- l. 106 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead'><a id='x1-7000'></a>To do</h4>
-<!-- l. 108 --><p class='noindent'>
+<!-- l. 107 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-7002x1'>Create   a   new   module   named   <span class='ectt-1000'>adaptive_Huffman.py  </span>that   use   a
-     context-based adaptive probabilistic model <span class='cite'>[<a href='#Xnelson96datacompression'>10</a>]</span>, where the user can select
-     the order of the model, and HC is used as a entropy encoder.</li></ol>
-<!-- l. 116 --><p class='noindent'>
+     context-based adaptive probabilistic model <span class='cite'>[<a href='#Xnelson96datacompression'>10</a>]</span> to be used in VCF, where
+     the user can select the order of the model, and HC is used as an entropy
+     encoder.</li></ol>
+<!-- l. 115 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>5   </span> <a id='x1-80005'></a><a href='https://en.wikipedia.org/wiki/Arithmetic_coding'>Arithmetic Coding (AC)</a></h3>
-<!-- l. 118 --><p class='noindent'>In an arithmetic codec <span class='cite'>[<a href='#Xvruiz__arithmetic_coding'>2</a>, <a href='#Xruiz2000compresion'>1</a>]</span>, the number of bits of data that are used for
+<!-- l. 117 --><p class='noindent'>In an arithmetic codec <span class='cite'>[<a href='#Xvruiz__arithmetic_coding'>2</a>, <a href='#Xruiz2000compresion'>1</a>]</span>, the number of bits of data that are used for
 representing symbols match exactly the number of bits of information provided by
 the symbols, i.e, \begin {equation}  l(c(s)) = I(s).  \end {equation}<a id='x1-8001r2'></a>
-</p><!-- l. 125 --><p class='indent'>   This also means that, even if the size of the alphabet is small, the coding
+</p><!-- l. 124 --><p class='indent'>   This also means that, even if the size of the alphabet is small, the coding
 performance of an arithmetic code is optimal, although this optimality is only fully
 satisfied if the number of symbols to encode is infinite. Notice also that, if the
 alphabet is large, the encoding performance difference between a Huffman code (or
 any other prefix code) and an arithmetic code, vanishes.
-</p><!-- l. 132 --><p class='noindent'>
+</p><!-- l. 131 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead'><a id='x1-9000'></a>Resources</h4>
-<!-- l. 133 --><p class='noindent'>
+<!-- l. 132 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-9002x1'><a href='https://github.com/vicente-gonzalez-ruiz/arithmetic_coding/blob/master/src/arithmetic_coding/arithmetic_coding.ipynb'>Arithmetic Coding (notebook)</a>.
+<li class='enumerate' id='x1-9002x1'><a href='https://github.com/vicente-gonzalez-ruiz/arithmetic_coding/blob/master/src/arithmetic_coding.ipynb'>Arithmetic Coding (notebook)</a>.
+     </li>
+<li class='enumerate' id='x1-9004x2'><a href='https://www.nayuki.io/page/reference-arithmetic-coding'>Reference Arithmetic Coding</a>/<a href='https://github.com/nayuki/Reference-arithmetic-coding'>Reference Arithmetic Coding</a>.
                                                                   
 
                                                                   
-     </li>
-<li class='enumerate' id='x1-9004x2'><a href='https://www.nayuki.io/page/reference-arithmetic-coding'>Reference Arithmetic Coding</a>/<a href='https://github.com/nayuki/Reference-arithmetic-coding'>Reference Arithmetic Coding</a>.
      </li>
 <li class='enumerate' id='x1-9006x3'><a href='https://www.inference.org.uk/mackay/python/compress/#AC'>Compression Algorithms in Python</a>.
      </li>
@@ -147,55 +146,63 @@ any other prefix code) and an arithmetic code, vanishes.
 <li class='enumerate' id='x1-9010x5'><a href='https://en.wikipedia.org/wiki/Lossless_JPEG'>Lossless JPEG</a>.
      </li>
 <li class='enumerate' id='x1-9012x6'><a href='https://en.wikipedia.org/wiki/Context-adaptive_binary_arithmetic_coding'>Context-Adaptive Binary Arithmetic Coding</a>.</li></ol>
-<!-- l. 144 --><p class='noindent'>
+<!-- l. 143 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead'><a id='x1-10000'></a>To do</h4>
-<!-- l. 145 --><p class='noindent'>
+<!-- l. 144 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-10002x1'>Create a new module named <span class='ectt-1000'>arith </span>that implement a static probabilistic
-     model and Arithmetic Coding <span class='cite'>[<a href='#Xnelson96datacompression'>10</a>]</span>. Complexity 8.
+     model and Arithmetic Coding <span class='cite'>[<a href='#Xnelson96datacompression'>10</a>]</span> to be used in VCF. Complexity 5.
      </li>
-<li class='enumerate' id='x1-10004x2'>Create a new module named <span class='ectt-1000'>arith.py </span>that use a context-based adaptive
-     probabilistic model and Arithmetic Coding <span class='cite'>[<a href='#Xnelson96datacompression'>10</a>]</span>, where the user can select
-     the order of the model. Complexity 10.</li></ol>
+<li class='enumerate' id='x1-10004x2'>Create  a  new  module  named  <span class='ectt-1000'>arith_a.py </span>that  use  a  context-based
+     adaptive probabilistic model and Arithmetic Coding <span class='cite'>[<a href='#Xnelson96datacompression'>10</a>]</span>, where the user
+     can select the order of the model. Complexity 10.</li></ol>
                                                                   
 
                                                                   
-<!-- l. 155 --><p class='noindent'>
+<!-- l. 154 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>6   </span> <a id='x1-110006'></a><a href='https://zlib.net/'><span class='ectt-1000'>zlib</span></a></h3>
-<!-- l. 157 --><p class='noindent'><span class='ectt-1000'>zlib </span>is based on <a href='https://en.wikipedia.org/wiki/Deflate'>DEFLATE</a>, which in turn is based on LZ77 <span class='cite'>[<a href='#Xvruiz__LZW'>7</a>, <a href='#Xruiz2000compresion'>1</a>]</span> and Huffman coding.
+<!-- l. 156 --><p class='noindent'><span class='ectt-1000'>zlib </span>is based on <a href='https://en.wikipedia.org/wiki/Deflate'>DEFLATE</a>, which in turn is based on LZ77 <span class='cite'>[<a href='#Xvruiz__LZW'>7</a>, <a href='#Xruiz2000compresion'>1</a>]</span> and Huffman coding.
 Therefore, <span class='ectt-1000'>zlib </span>exploits the repetition of symbols and also, the 0-order statistical
 redundancy<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-11001f2'></a>.
 One of the main advantages of <span class='ectt-1000'>zlib </span>is that is quite fast compared to symbol
 encoders such as HC and AC.
-</p><!-- l. 166 --><p class='indent'>   Nowadays, <span class='ectt-1000'>zlib </span>is a keystone in data manipulation because it is the basic library
+</p><!-- l. 165 --><p class='indent'>   Nowadays, <span class='ectt-1000'>zlib </span>is a keystone in data manipulation because it is the basic library
 used in such important applications as <a href='https://en.wikipedia.org/wiki/ZIP_(file_format)'>Zip</a> and <a href='https://en.wikipedia.org/wiki/Gzip'>Gzip</a>.
-</p><!-- l. 171 --><p class='noindent'>
+</p><!-- l. 170 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead'><a id='x1-12000'></a>Resources</h4>
-<!-- l. 172 --><p class='noindent'>
+<!-- l. 171 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-12002x1'><a href='https://docs.python.org/3/library/zlib.html'><span class='ectt-1000'>zlib </span>— Compression compatible with gzip</a>.
      </li>
-<li class='enumerate' id='x1-12004x2'><a href='https://en.wikipedia.org/wiki/Lossless_JPEG'>Lossless JPEG</a>.</li></ol>
-<!-- l. 178 --><p class='noindent'>
+<li class='enumerate' id='x1-12004x2'><a href='https://en.wikipedia.org/wiki/Lossless_JPEG'>Lossless JPEG</a>.
+     </li>
+<li class='enumerate' id='x1-12006x3'>Usage of <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/z_lib.ipynb'>z_lib in VCF</a>.</li></ol>
+<!-- l. 180 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>7   </span> <a id='x1-130007'></a><a href='https://en.wikipedia.org/wiki/Portable_Network_Graphics'>Portable Network Graphics (PNG)</a></h3>
-<!-- l. 179 --><p class='noindent'>PNG <span class='cite'>[<a href='#Xvruiz__PNG'>8</a>]</span> (pronounced “ping”) is a dictionary-based (string encoding) <a href='https://en.wikipedia.org/wiki/Lossless_compression'>lossless image
+<!-- l. 181 --><p class='noindent'>PNG <span class='cite'>[<a href='#Xvruiz__PNG'>8</a>]</span> (pronounced “ping”) is a dictionary-based (string encoding) <a href='https://en.wikipedia.org/wiki/Lossless_compression'>lossless image
 compression format</a> used for representing <a href='https://en.wikipedia.org/wiki/Digital_data'>digital</a> <a href='https://en.wikipedia.org/wiki/Digital_image'>images</a> and <a href='https://en.wikipedia.org/wiki/Video'>videos</a> <span class='cite'>[<a href='#Xvruiz__image_video'>3</a>]</span> in III...
 format. The entropy encoder of PNG is based on HC and LZSS, and a pixel predictor
 that removes the spatial redundancy.
-</p><!-- l. 190 --><p class='indent'>   We must bear in mind that as such an image compressor, we can only interact
+</p><!-- l. 192 --><p class='indent'>   We must bear in mind that as such an image compressor, we can only interact
 with PNG at the image level, that is, it only accepts images (in shades of
 gray or in color, with the possibility of an <a href='https://en.wikipedia.org/wiki/Alpha_compositing'>alpha channel</a>), and only returns
 images.
-</p><!-- l. 200 --><p class='noindent'>
-</p>
                                                                   
 
                                                                   
-   <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-140008'></a>References</h3>
+</p><!-- l. 198 --><p class='noindent'>
+</p>
+   <h4 class='likesubsectionHead'><a id='x1-14000'></a>Resources</h4>
+<!-- l. 199 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-14002x1'>Usage of <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/PNG.ipynb'>PNG in VCF</a>.</li></ol>
+<!-- l. 209 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-150008'></a>References</h3>
     <div class='thebibliography'>
     <p class='bibitem'><span class='biblabel'>
   [1]<span class='bibsp'>   </span></span><a id='Xruiz2000compresion'></a>Vicente González-Ruiz.   <a href='http://www.hpca.ual.es/~vruiz/papers/tesis.pdf'><span class='ecti-1000'>Compresión Reversible y Transmisión de
@@ -218,6 +225,9 @@ images.
     </p>
     <p class='bibitem'><span class='biblabel'>
   [7]<span class='bibsp'>   </span></span><a id='Xvruiz__LZW'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/LZW'>Lempel-Ziv-Welch</a>.
+                                                                  
+
+                                                                  
     </p>
     <p class='bibitem'><span class='biblabel'>
   [8]<span class='bibsp'>   </span></span><a id='Xvruiz__PNG'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/PNG'>PNG (Portable Network Graphics)</a>.
@@ -230,13 +240,10 @@ images.
     1996.
 </p>
     </div>
-                                                                  
-
-                                                                  
    <div class='footnotes'><a id='x1-5003x4'></a>
 <!-- l. 89 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>In this case, Huffman can be ineffective. In an extreme case, the alphabet could have only
 </span><span class='ecrm-0800'>two symbols, and therefore the Huffman encoder does not compress or expand.</span></p><a id='x1-11002x6'></a>
-<!-- l. 162 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>In other words, that some symbols are more frequently than others.</span></p>                      </div>
+<!-- l. 161 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>In other words, that some symbols are more frequently than others.</span></p>                      </div>
  
 </body> 
 </html>

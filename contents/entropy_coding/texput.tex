@@ -94,8 +94,7 @@ very frequent when using
 
 \subsection*{Resources}
 \begin{enumerate}
-\item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/Huffman.ipynb}{Huffman in VCF}.
-\item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/PNG.ipynb}{PNG in VCF}.
+\item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/Huffman.ipynb}{static Huffman in VCF}.
 \item \href{https://www.inference.org.uk/mackay/python/compress/#Huff}{Compression algorithms in Python}.
 \item \href{https://favtutor.com/blogs/huffman-coding}{Huffman Coding Implementation in Python with Examples}.
 \item \href{https://www.programiz.com/dsa/huffman-coding}{Huffman Coding}.
@@ -108,8 +107,8 @@ very frequent when using
 \begin{enumerate}
 \item Create a new module named \texttt{adaptive\_Huffman.py} that use
   a context-based adaptive probabilistic model
-  \cite{nelson96datacompression}, where the user can select the order
-  of the model, and HC is used as a entropy encoder.
+  \cite{nelson96datacompression} to be used in VCF, where the user can
+  select the order of the model, and HC is used as an entropy encoder.
 \end{enumerate}
 
 \section{\href{https://en.wikipedia.org/wiki/Arithmetic_coding}{Arithmetic
@@ -132,7 +131,7 @@ code) and an arithmetic code, vanishes.
 \subsection*{Resources}
 \begin{enumerate}
 \item
-  \href{https://github.com/vicente-gonzalez-ruiz/arithmetic_coding/blob/master/src/arithmetic_coding/arithmetic_coding.ipynb}{Arithmetic
+  \href{https://github.com/vicente-gonzalez-ruiz/arithmetic_coding/blob/master/src/arithmetic_coding.ipynb}{Arithmetic
     Coding (notebook)}.
 \item \href{https://www.nayuki.io/page/reference-arithmetic-coding}{Reference Arithmetic Coding}/\href{https://github.com/nayuki/Reference-arithmetic-coding}{Reference Arithmetic Coding}.
 \item \href{https://www.inference.org.uk/mackay/python/compress/#AC}{Compression Algorithms in Python}.
@@ -145,8 +144,8 @@ code) and an arithmetic code, vanishes.
 \begin{enumerate}
 \item Create a new module named \texttt{arith} that implement a static
   probabilistic model and Arithmetic Coding
-  \cite{nelson96datacompression}. Complexity 8.
-\item Create a new module named \texttt{arith.py} that use
+  \cite{nelson96datacompression} to be used in VCF. Complexity 5.
+\item Create a new module named \texttt{arith\_a.py} that use
   a context-based adaptive probabilistic model and Arithmetic Coding
   \cite{nelson96datacompression}, where the user can select the order
   of the model. Complexity 10.
@@ -173,6 +172,9 @@ is the basic library used in such important applications as
 \item \href{https://docs.python.org/3/library/zlib.html}{\texttt{zlib}
     — Compression compatible with gzip}.
 \item \href{https://en.wikipedia.org/wiki/Lossless_JPEG}{Lossless JPEG}.
+\item Usage of
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/z_lib.ipynb}{z\_lib
+    in VCF}.
 \end{enumerate}
 
 \section{\href{https://en.wikipedia.org/wiki/Portable_Network_Graphics}{Portable Network Graphics (PNG)}}
@@ -192,6 +194,13 @@ interact with PNG at the image level, that is, it only accepts images
 (in shades of gray or in color, with the possibility of an
 \href{https://en.wikipedia.org/wiki/Alpha_compositing}{alpha channel}),
 and only returns images.
+
+\subsection*{Resources}
+\begin{enumerate}
+\item Usage of
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/PNG.ipynb}{PNG
+    in VCF}.
+\end{enumerate}
 
 % PNG is the default EC in the \href{https://github.com/Sistemas-Multimedia/VCF}{VCF project} because: (1) is lossless, (2) is fast, and (3) the compression performance is reasonable.
 
