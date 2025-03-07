@@ -1,13 +1,13 @@
 <!DOCTYPE html> 
 <html lang='en-US' xml:lang='en-US'> 
-<head> <title>Code-stream Scalabilty</title> 
+<head> <title> Code-stream Scalabilty</title> 
 <meta charset='utf-8' /> 
 <meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
 <meta content='width=device-width,initial-scale=1' name='viewport' /> 
 <link href='index.css' rel='stylesheet' type='text/css' /> 
 <meta content='index.tex' name='src' /> 
 <script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
- <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+<script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 </head><body>
    <div class='maketitle'>
                                                                   
@@ -17,31 +17,31 @@
 
                                                                   
 
-<h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/contents/data_scalability/'>Code-stream Scalabilty</a></h2>
- <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 28, 2024</span></div>
+<h2 class='titleHead'> <a href='https://sistemas-multimedia.github.io/contents/data_scalability/'>Code-stream Scalabilty</a></h2>
+ <div class='author'> <a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>-  </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
+<div class='date'><span class='ecrm-1200'>February 4, 2025</span></div>
    </div>
-   <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
+   <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
-    <span class='sectionToc'>1 <a href='#x1-20001' id='QQ2-1-2'>What means code-stream scalability?</a></span>
-<br />    <span class='sectionToc'>2 <a href='#x1-30002' id='QQ2-1-3'>Temporal scalability in video coding [5]</a></span>
-<br />     <span class='subsectionToc'>2.1 <a href='#x1-40002.1' id='QQ2-1-4'>GOF-level scalabilty</a></span>
-<br />     <span class='subsectionToc'>2.2 <a href='#x1-50002.2' id='QQ2-1-5'>Frame-level scalabilty using MCTF</a></span>
-<br />    <span class='sectionToc'>3 <a href='#x1-60003' id='QQ2-1-6'>Spatial scalability in image coding [1]</a></span>
-<br />     <span class='subsectionToc'>3.1 <a href='#x1-70003.1' id='QQ2-1-7'>Using the LPT (Laplacian Pyramid Transform)</a></span>
-<br />     <span class='subsectionToc'>3.2 <a href='#x1-80003.2' id='QQ2-1-8'>Using the DWT (Discrete Wavelet Transform) [1]</a></span>
-<br />    <span class='sectionToc'>4 <a href='#x1-90004' id='QQ2-1-9'>Spatial scalability in video coding [5]</a></span>
-<br />    <span class='sectionToc'>5 <a href='#x1-100005' id='QQ2-1-10'>Quality scalability in image coding [1]</a></span>
-<br />     <span class='subsectionToc'>5.1 <a href='#x1-110005.1' id='QQ2-1-11'>Using the DCT</a></span>
-<br />     <span class='subsectionToc'>5.2 <a href='#x1-120005.2' id='QQ2-1-12'>Using the DWT [4]</a></span>
-<br />    <span class='sectionToc'>6 <a href='#x1-130006' id='QQ2-1-13'>Quality scalability in video coding [5]</a></span>
-<br />    <span class='sectionToc'>7 <a href='#x1-140007' id='QQ2-1-14'>Simulcast VS Adaptive bit-rate streaming VS data-scalability</a></span>
-<br />    <span class='sectionToc'>8 <a href='#x1-150008' id='QQ2-1-15'>To-Do</a></span>
-<br />    <span class='sectionToc'>9 <a href='#x1-160009' id='QQ2-1-16'>References</a></span>
+   <span class='sectionToc'>1 <a href='#what-means-codestream-scalability' id='QQ2-1-2'>What means code-stream scalability?</a></span>
+<br />   <span class='sectionToc'>2 <a href='#temporal-scalability-in-video-coding-vruizvideoscalability' id='QQ2-1-3'>Temporal scalability in video coding [5]</a></span>
+<br />   <span class='subsectionToc'>2.1 <a href='#goflevel-scalabilty' id='QQ2-1-4'>GOF-level scalabilty</a></span>
+<br />   <span class='subsectionToc'>2.2 <a href='#framelevel-scalabilty-using-mctf' id='QQ2-1-5'>Frame-level scalabilty using MCTF</a></span>
+<br />   <span class='sectionToc'>3 <a href='#spatial-scalability-in-image-coding-vruizjpeg' id='QQ2-1-6'>Spatial scalability in image coding [1]</a></span>
+<br />   <span class='subsectionToc'>3.1 <a href='#using-the-lpt-laplacian-pyramid-transform' id='QQ2-1-7'>Using the LPT (Laplacian Pyramid Transform)</a></span>
+<br />   <span class='subsectionToc'>3.2 <a href='#using-the-dwt-discrete-wavelet-transform-vruizjpeg' id='QQ2-1-8'>Using the DWT (Discrete Wavelet Transform) [1]</a></span>
+<br />   <span class='sectionToc'>4 <a href='#spatial-scalability-in-video-coding-vruizvideoscalability' id='QQ2-1-9'>Spatial scalability in video coding [5]</a></span>
+<br />   <span class='sectionToc'>5 <a href='#quality-scalability-in-image-coding-vruizjpeg' id='QQ2-1-10'>Quality scalability in image coding [1]</a></span>
+<br />   <span class='subsectionToc'>5.1 <a href='#using-the-dct' id='QQ2-1-11'>Using the DCT</a></span>
+<br />   <span class='subsectionToc'>5.2 <a href='#using-the-dwt-vruiztransformcoding' id='QQ2-1-12'>Using the DWT [4]</a></span>
+<br />   <span class='sectionToc'>6 <a href='#quality-scalability-in-video-coding-vruizvideoscalability' id='QQ2-1-13'>Quality scalability in video coding [5]</a></span>
+<br />   <span class='sectionToc'>7 <a href='#simulcast-vs-adaptive-bitrate-streaming-vs-datascalability' id='QQ2-1-14'>Simulcast VS Adaptive bit-rate streaming VS data-scalability</a></span>
+<br />   <span class='sectionToc'>8 <a href='#todo' id='QQ2-1-15'>To-Do</a></span>
+<br />   <span class='sectionToc'>9 <a href='#references' id='QQ2-1-16'>References</a></span>
    </div>
 <!-- l. 12 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>1   </span> <a id='x1-20001'></a>What means code-stream scalability?</h3>
+   <h3 class='sectionHead' id='what-means-codestream-scalability'><span class='titlemark'>1   </span> <a id='x1-20001'></a>What means code-stream scalability?</h3>
 <!-- l. 15 --><p class='noindent'>Image and video codecs represent multidimensional signals, and this makes it
 possible to decode such information in several ways. When the code-stream
 allows for this, we say that the code-stream generated by such scheme is
@@ -56,13 +56,13 @@ and has been developed on most of the image and video encoding standards.
 efficiency.
 </p><!-- l. 33 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Temporal scalability in video coding <span class='cite'>[<a href='#Xvruiz__video_scalability'>5</a>]</span></h3>
+   <h3 class='sectionHead' id='temporal-scalability-in-video-coding-vruizvideoscalability'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Temporal scalability in video coding <span class='cite'>[<a href='#Xvruiz__video_scalability'>5</a>]</span></h3>
 <!-- l. 37 --><p class='noindent'>In video coding, temporal scalability provides flexibility with the number of decoded
 frames.<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-3001f2'></a>
 </p><!-- l. 41 --><p class='noindent'>
 </p>
-   <h4 class='subsectionHead'><span class='titlemark'>2.1   </span> <a id='x1-40002.1'></a>GOF-level scalabilty</h4>
-<!-- l. 42 --><p class='noindent'>GOF-splitting (see <a href='https://sistemas-multimedia.github.io/contents/temporal_transforms/'>temporal transforms</a>) provides basic temporal scalability (GOFs
+   <h4 class='subsectionHead' id='goflevel-scalabilty'><span class='titlemark'>2.1   </span> <a id='x1-40002.1'></a>GOF-level scalabilty</h4>
+<!-- l. 42 --><p class='noindent'>GOF-splitting (see  <a href='https://sistemas-multimedia.github.io/contents/temporal_transforms/'>temporal transforms</a>) provides basic temporal scalability (GOFs
 can be decoded independently), and this is used in video streaming services (such as
 YouTube) and video players to move along time using fast forward and fast backward
 modes.
@@ -71,38 +71,38 @@ we use the intra-coding mode (III...), which provides the maximum degree of
 temporal scalability.
 </p><!-- l. 53 --><p class='noindent'>
 </p>
-   <h4 class='subsectionHead'><span class='titlemark'>2.2   </span> <a id='x1-50002.2'></a>Frame-level scalabilty using MCTF</h4>
+   <h4 class='subsectionHead' id='framelevel-scalabilty-using-mctf'><span class='titlemark'>2.2   </span> <a id='x1-50002.2'></a>Frame-level scalabilty using MCTF</h4>
 <!-- l. 55 --><p class='noindent'>Random access modes can provide dyadic temporal scalability in each GOF if only
 B-type frames are used and generated using Motion Compensated Temporal Filtering
 (MCTF) <span class='cite'>[<a href='#Xvruiz__MC'>3</a>, <a href='#Xvruiz__MCTF'>2</a>]</span>.
 </p><!-- l. 61 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>3   </span> <a id='x1-60003'></a>Spatial scalability in image coding <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span></h3>
+   <h3 class='sectionHead' id='spatial-scalability-in-image-coding-vruizjpeg'><span class='titlemark'>3   </span> <a id='x1-60003'></a>Spatial scalability in image coding <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span></h3>
 <!-- l. 65 --><p class='noindent'>Compressed images can be partially decoded, resulting in a reconstruction with
 smaller resolution or a reconstruction of a WOI (Window Of Interest) <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span>. Such forms
 of scalability are used in interactive streaming to minimize latency and to
 avoid sending resolutions that some devices cannot display. An example of
-spatial scalability using JPEG2000 <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span> can be found in the <a href='https://www.jhelioviewer.org/'>JHelioviewer
+spatial scalability using JPEG2000 <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span> can be found in the  <a href='https://www.jhelioviewer.org/'>JHelioviewer
 service</a>.
                                                                   
 
                                                                   
 </p><!-- l. 73 --><p class='noindent'>
 </p>
-   <h4 class='subsectionHead'><span class='titlemark'>3.1   </span> <a id='x1-70003.1'></a>Using the LPT (Laplacian Pyramid Transform)</h4>
-<!-- l. 76 --><p class='noindent'><a href='https://en.wikipedia.org/wiki/Pyramid_(image_processing)#Laplacian_pyramid'>Laplacian pyramids</a> are 2D multiresolution structures that can be used to provide
+   <h4 class='subsectionHead' id='using-the-lpt-laplacian-pyramid-transform'><span class='titlemark'>3.1   </span> <a id='x1-70003.1'></a>Using the LPT (Laplacian Pyramid Transform)</h4>
+<!-- l. 76 --><p class='noindent'> <a href='https://en.wikipedia.org/wiki/Pyramid_(image_processing)#Laplacian_pyramid'>Laplacian pyramids</a> are 2D multiresolution structures that can be used to provide
 spatial scalability in image coding. The main issue to solve here is the data
 redundancy overhead of the LPT domain (in the transform domain we have more
 coefficients than pixels in the image domain).
 </p><!-- l. 82 --><p class='noindent'>
 </p>
-   <h4 class='subsectionHead'><span class='titlemark'>3.2   </span> <a id='x1-80003.2'></a>Using the DWT (Discrete Wavelet Transform) <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span></h4>
+   <h4 class='subsectionHead' id='using-the-dwt-discrete-wavelet-transform-vruizjpeg'><span class='titlemark'>3.2   </span> <a id='x1-80003.2'></a>Using the DWT (Discrete Wavelet Transform) <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span></h4>
 <!-- l. 84 --><p class='noindent'>2D-DWT domains are 2D multiresolution data structures that enable spatial
 scalability, and in this case, compared to LPT, the data redundancy overhead is
 avoided. JPEG2000 <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span> is based on DWT.
 </p><!-- l. 91 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>4   </span> <a id='x1-90004'></a>Spatial scalability in video coding <span class='cite'>[<a href='#Xvruiz__video_scalability'>5</a>]</span></h3>
+   <h3 class='sectionHead' id='spatial-scalability-in-video-coding-vruizvideoscalability'><span class='titlemark'>4   </span> <a id='x1-90004'></a>Spatial scalability in video coding <span class='cite'>[<a href='#Xvruiz__video_scalability'>5</a>]</span></h3>
 <!-- l. 95 --><p class='noindent'>In the case of video, spatial scalability provides 2D multiresolution rendering
 using only one (partially decoded) code-stream. This possibility is usually
 generated using the LPT because the DWT domain is not shift invariant
@@ -115,89 +115,91 @@ save memory, and in the rendering of the videos in displays with different
 resolutions.
 </p><!-- l. 114 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>5   </span> <a id='x1-100005'></a>Quality scalability in image coding <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span></h3>
+   <h3 class='sectionHead' id='quality-scalability-in-image-coding-vruizjpeg'><span class='titlemark'>5   </span> <a id='x1-100005'></a>Quality scalability in image coding <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span></h3>
 <!-- l. 118 --><p class='noindent'>Quality scalability allows the possibility of adding or substracting more or less visual
 information, depending on the amount of rendered code-stream. The spatial and
 temporal resolutions remain constant.
 </p><!-- l. 122 --><p class='noindent'>
 </p>
-   <h4 class='subsectionHead'><span class='titlemark'>5.1   </span> <a id='x1-110005.1'></a>Using the DCT</h4>
+   <h4 class='subsectionHead' id='using-the-dct'><span class='titlemark'>5.1   </span> <a id='x1-110005.1'></a>Using the DCT</h4>
                                                                   
 
                                                                   
 <!-- l. 124 --><p class='noindent'>Some DCT-based image coding standards, such as JPEG, allow for progressive
-decoding, where a variable number of coefficients or bit planes of those coefficients
-are rendered. Note that if \(11\) is the number of bit planes required to represent the
-coefficients, a total of \(11\times 64\times 64\) quality levels is possible.
-</p><!-- l. 130 --><p class='noindent'>
+decoding, where a increasing number of coefficients or bit planes of those coefficients
+are rendered. Note that if for example, <span class='mathjax-inline'>\(11\)</span> is the number of bit planes required to
+represent the coefficients, a total of <span class='mathjax-inline'>\(11\times 64\times 64\)</span> quality levels is possible (considering a block size
+of <span class='mathjax-inline'>\(64\times 64\)</span>).
+</p><!-- l. 131 --><p class='noindent'>
 </p>
-   <h4 class='subsectionHead'><span class='titlemark'>5.2   </span> <a id='x1-120005.2'></a>Using the DWT <span class='cite'>[<a href='#Xvruiz__transform_coding'>4</a>]</span></h4>
-<!-- l. 132 --><p class='noindent'>The idea of bit-plane encoding in the DWT domain is used in JPEG 2000 <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span>.
+   <h4 class='subsectionHead' id='using-the-dwt-vruiztransformcoding'><span class='titlemark'>5.2   </span> <a id='x1-120005.2'></a>Using the DWT <span class='cite'>[<a href='#Xvruiz__transform_coding'>4</a>]</span></h4>
+<!-- l. 133 --><p class='noindent'>The idea of bit-plane encoding in the DWT domain is used in JPEG 2000 <span class='cite'>[<a href='#Xvruiz__JPEG2000'>1</a>]</span>.
 Compared to JPEG, the number of quality levels is much higher, because in this case
-we can have up to \(R\times C\times B\), where \(R\) is the number of rows, \(C\) the number of columns, and \(B\) the
+we can have up to <span class='mathjax-inline'>\(R\times C\times B\)</span>, where <span class='mathjax-inline'>\(R\)</span> is the number of rows, <span class='mathjax-inline'>\(C\)</span> the number of columns, and <span class='mathjax-inline'>\(B\)</span> the
 number of bit planes in the DWT domain. In JPEG 2000, the code-stream
 that represents a quality level is called quality layer. We find that all the
-code-streams that belong to the quality layer \(L\) generate points in the RD
-curve that are to the left of the RD points generated by the layer \(L+1\). In other
+code-streams that belong to the quality layer <span class='mathjax-inline'>\(L\)</span> generate points in the RD
+curve that are to the left of the RD points generated by the layer <span class='mathjax-inline'>\(L+1\)</span>. In other
 words, the quality layers are sorted by their contribution to the quality of the
 reconstruction.
-</p><!-- l. 144 --><p class='noindent'>
+</p><!-- l. 145 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>6   </span> <a id='x1-130006'></a>Quality scalability in video coding <span class='cite'>[<a href='#Xvruiz__video_scalability'>5</a>]</span></h3>
-<!-- l. 146 --><p class='noindent'>In the case of video, most video standards provide quality scalability by
+   <h3 class='sectionHead' id='quality-scalability-in-video-coding-vruizvideoscalability'><span class='titlemark'>6   </span> <a id='x1-130006'></a>Quality scalability in video coding <span class='cite'>[<a href='#Xvruiz__video_scalability'>5</a>]</span></h3>
+<!-- l. 147 --><p class='noindent'>In the case of video, most video standards provide quality scalability by
 applying MC to successive refinements of the reconstructed sequence, at
 the maximum spatial resolution. This idea can be easily understood if
 we imagine a spatially scalable code-stream generated with the LPT,
 but in this case all the levels of the pyramid have the same spatial
 resolution<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-13001f4'></a>.
-</p><!-- l. 156 --><p class='noindent'>
+</p><!-- l. 157 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>7   </span> <a id='x1-140007'></a>Simulcast VS Adaptive bit-rate streaming VS data-scalability</h3>
-<!-- l. 160 --><p class='noindent'>Although both terms can be confused, <a href='https://en.wikipedia.org/wiki/Simulcast'>simulcast</a> is an streaming technique, while
+   <h3 class='sectionHead' id='simulcast-vs-adaptive-bitrate-streaming-vs-datascalability'><span class='titlemark'>7   </span> <a id='x1-140007'></a>Simulcast VS Adaptive bit-rate streaming VS data-scalability</h3>
+<!-- l. 161 --><p class='noindent'>Although both terms can be confused,  <a href='https://en.wikipedia.org/wiki/Simulcast'>simulcast</a> is an streaming technique, while
 data scalability is a coding technique.
-</p><!-- l. 164 --><p class='indent'>   Simulcast (used, for example, in the <a href='https://en.wikipedia.org/wiki/DVB'>DVB</a>, <a href='https://en.wikipedia.org/wiki/ATSC_standards'>ATSC</a> and <a href='https://en.wikipedia.org/wiki/ISDB'>ISDB</a>) is the process of
+</p><!-- l. 165 --><p class='indent'>   Simulcast (used, for example, in the  <a href='https://en.wikipedia.org/wiki/DVB'>DVB</a>,  <a href='https://en.wikipedia.org/wiki/ATSC_standards'>ATSC</a> and  <a href='https://en.wikipedia.org/wiki/ISDB'>ISDB</a>) is the process of
 parallel transmission of media with different resolutions and/or qualities,
 and this is usually deployed using different code-streams on the sender side,
 although it could also be done using only one scalable code-stream in spatial
 resolution.
-</p><!-- l. 173 --><p class='indent'>   Adaptive bit-rate streaming allows us to adapt the transmission bit-rate in a
+</p><!-- l. 174 --><p class='indent'>   Adaptive bit-rate streaming allows us to adapt the transmission bit-rate in a
 point-to-point communication (of digital media) to the available capacity of the link
-(which is typically time-varying). This technique is used, for example, in the <a href='https://en.wikipedia.org/wiki/Dynamic_Adaptive_Streaming_over_HTTP'>DASH
                                                                   
 
                                                                   
+(which is typically time-varying). This technique is used, for example, in the  <a href='https://en.wikipedia.org/wiki/Dynamic_Adaptive_Streaming_over_HTTP'>DASH
 standard</a>, which is used, for example, by YouTube.
-</p><!-- l. 182 --><p class='noindent'>
+</p><!-- l. 183 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-150008'></a>To-Do</h3>
-<!-- l. 183 --><p class='noindent'>
+   <h3 class='sectionHead' id='todo'><span class='titlemark'>8   </span> <a id='x1-150008'></a>To-Do</h3>
+<!-- l. 184 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-15002x1'>The \(L\)-levels DWT provides \(L+1\) spatial resolution levels of an image. Modify
+<li class='enumerate' id='x1-15002x1'>The <span class='mathjax-inline'>\(L\)</span>-levels DWT provides <span class='mathjax-inline'>\(L+1\)</span> spatial resolution levels of an image. Modify
      <span class='ectt-1000'>2D-DWT.py </span>to  include  this  functionality  (the  possibility  of  decoding  a
      reduced resolution version of the original image), which basically consist
-     of ignoring the high-frequency subbands. Complexity 3.
+     of ignoring the high-frequency subbands. Complexity 5.
      </li>
 <li class='enumerate' id='x1-15004x2'> Modify <span class='ectt-1000'>2D-DWT.py </span>to allows the possibility of decoding by bit-planes
      (given as a parameter the number of bit-planes to decode). In order to
      achieve this, we must use a bit-plane entropy encoder (we can encode bits
      using an arithmetic coding, or conform symbols (<span class='ecti-1000'>symbol-blocks</span>) of more
-     bits by taking small blocks of bits (of size 4x4, for example), in whose case
-     we could use PNG, for example). Notice that this is not incompatible to
-     decode by spatial resolution levels (see previous To-Do). Complexity 10.
+     bits by taking small blocks of bits (of size 4x4, for example), in whose
+     case we could use PNG of TIFF, for example). Notice that this is not
+     incompatible to decode by spatial resolution levels (see previous To-Do).
+     Complexity 10.
      </li>
-<li class='enumerate' id='x1-15006x3'>The \(2^n\times 2^n\)-DCT domain can be decoded by resolution levels using an inverse
-     \(2^m\times 2^m\)-DCT to the lower frequency subbands, where \(m=0,1,\cdots ,n\) (notice that the inverse
-     \(2^0\times 2^0\)-DCT  does  not  require  any  computation  because  the  DC  coefficients
-     represent the values of the pixels of the image at the resolution level \(n\)).
-     Implement in <span class='ectt-1000'>2D-DCT.py </span>such image decoder. See the notebook <a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/docs/YCoCg_2D_DCT_SQ.ipynb'>Image
-     Compression with YCoCg + 2D-DCT</a>. Complexity 4.
+<li class='enumerate' id='x1-15006x3'>The <span class='mathjax-inline'>\(2^n\times 2^n\)</span>-DCT domain can be decoded by resolution levels using an inverse
+     <span class='mathjax-inline'>\(2^m\times 2^m\)</span>-DCT to the lower frequency subbands, where <span class='mathjax-inline'>\(m=0,1,\cdots ,n\)</span> (notice that the inverse
+     <span class='mathjax-inline'>\(2^0\times 2^0\)</span>-DCT  does  not  require  any  computation  because  the  DC  coefficients
+     represent the values of the pixels of the image at the resolution level <span class='mathjax-inline'>\(n\)</span>).
+     Implement in <span class='ectt-1000'>2D-DCT.py </span>such image decoder. See the notebook  <a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/src/DCT2D/YCoCg_2D_DCT_SQ.ipynb'>Image
+     Compression with YCoCg + 2D-DCT</a>. Complexity 5.
      </li>
 <li class='enumerate' id='x1-15008x4'>Modify <span class='ectt-1000'>2D-DCT.py </span>to allows the decoding by bit-planes (see To-Do <a href='#x1-15004x2'>2<!-- tex4ht:ref: TD:BP  --></a>).
      Complexity 10.
-     </li>
                                                                   
 
                                                                   
+     </li>
 <li class='enumerate' id='x1-15010x5'>It is possible to add WOI-decoding (Window Of Interest) to <span class='ectt-1000'>2D-DCT.py</span>
      and  <span class='ectt-1000'>2D-DWT.py </span>if  the  bit-planes  are  encoded  by  (using  the  same
      nomenclature than JPEG2000) <span class='ecti-1000'>code-blocks  </span>(notice that the size of the
@@ -205,7 +207,7 @@ standard</a>, which is used, for example, by YouTube.
      symbols used during the entropy encoding).
      </li>
 <li class='enumerate' id='x1-15012x6'>In  intra  (III...)  video  coding,  we  can  obtain  spatial  scalability  if  we
-     build a <a href='https://en.wikipedia.org/wiki/Pyramid_(image_processing)#Laplacian_pyramid'>Laplacian pyramid</a> of the frames and compress each level of the
+     build a  <a href='https://en.wikipedia.org/wiki/Pyramid_(image_processing)#Laplacian_pyramid'>Laplacian pyramid</a> of the frames and compress each level of the
      sequence using a standard image encoder (such for example <span class='ectt-1000'>2D-DCT.py</span>
      or <span class='ectt-1000'>2D-DWT.py</span>). Create a new Python module named <span class='ectt-1000'>SS-III.py </span>(Spatial
      Scalable III... video encoding) with such functionality. Complexity 4.
@@ -213,15 +215,15 @@ standard</a>, which is used, for example, by YouTube.
 <li class='enumerate' id='x1-15014x7'>The Laplacian pyramid can be also used in motion compensated (IPP...,
      IBP..., and MCTF) video coding to provide spatial scalability. The key
      here is to encode each resolution level using a standard (non-scalable)
-     video  codec  (see  the  <a href='https://sistemas-multimedia.github.io/contents/temporal_transforms/'>Temporal  Transforms</a>),  starting  at  the  lowest
+     video  codec  (see  the    <a href='https://sistemas-multimedia.github.io/contents/temporal_transforms/'>Temporal  Transforms</a>),  starting  at  the  lowest
      level. Name the corresponding Python module <span class='ectt-1000'>LPIPP.py</span>, <span class='ectt-1000'>LPIBP.py </span>or
      <span class='ectt-1000'>LPMCTF.py</span>, depending on the motion compensation scheme. Complexity
      7.
      </li>
 <li class='enumerate' id='x1-15016x8'>In the previous proposals there is redundancy between the motion vectors
-     of the different spatial resolution levels because the motion vector \((x, y)\rightarrow (x', y')\) at
-     resolution level \(l\) will be close to the motion vector \((2x, 2y)\rightarrow (2x',2y')\) at resolution level
-     \(l-1\). Exploit such redundancy by adding the suitable functionality to the
+     of the different spatial resolution levels because the motion vector <span class='mathjax-inline'>\((x, y)\rightarrow (x', y')\)</span> at
+     resolution level <span class='mathjax-inline'>\(l\)</span> will be close to the motion vector <span class='mathjax-inline'>\((2x, 2y)\rightarrow (2x',2y')\)</span> at resolution level
+     <span class='mathjax-inline'>\(l-1\)</span>. Exploit such redundancy by adding the suitable functionality to the
      corresponding module <span class='ectt-1000'>LPIPP.py</span>, <span class='ectt-1000'>LPIBP.py </span>or <span class='ectt-1000'>LPMCTF.py</span>. Complexity 6.
      </li>
 <li class='enumerate' id='x1-15018x9'>The number of coefficients in a (2D) Laplacian pyramid is bigger than
@@ -229,44 +231,44 @@ standard</a>, which is used, for example, by YouTube.
      in  more  redundant  than  the  discrete  wavelet  domain).  However,  it  is
      possible  to  avoid  such  redundancy  when  the  filters  used  to  build  the
      Laplacian pyramid are the same than the filters used to compute the
-     2D-DWT because, in this case, when the 1-levels 2D-DWT is applied to
-     any high-frequency level of the Laplacian pyramid, then the corresponding
                                                                   
 
                                                                   
-     \(LL\) subband is \(\mathbf {0}\). Explore such improvement in the corresponding <span class='ectt-1000'>LPIPP.py</span>,
-     <span class='ectt-1000'>LPIBP.py </span>or <span class='ectt-1000'>LPMCTF.py </span>module. See <a href='https://vicente-gonzalez-ruiz.github.io/pyramids-and-wavelets/'>this</a>. Complexity 10.</li></ol>
-<!-- l. 254 --><p class='noindent'>
+     2D-DWT because, in this case, when the 1-levels 2D-DWT is applied to
+     any high-frequency level of the Laplacian pyramid, then the corresponding
+     <span class='mathjax-inline'>\(LL\)</span> subband is <span class='mathjax-inline'>\(\mathbf {0}\)</span>. Explore such improvement in the corresponding <span class='ectt-1000'>LPIPP.py</span>,
+     <span class='ectt-1000'>LPIBP.py </span>or <span class='ectt-1000'>LPMCTF.py </span>module. See  <a href='https://vicente-gonzalez-ruiz.github.io/pyramids-and-wavelets/'>this</a>. Complexity 10.</li></ol>
+<!-- l. 255 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>9   </span> <a id='x1-160009'></a>References</h3>
+   <h3 class='sectionHead' id='references'><span class='titlemark'>9   </span> <a id='x1-160009'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
- [1]<span class='bibsp'>   </span></span><a id='Xvruiz__JPEG2000'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/JPEG2000'>The JPEG2000 Standard</a>.
+ [1]<span class='bibsp'>   </span></span><a id='Xvruiz__JPEG2000'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/JPEG2000'>The JPEG2000 Standard</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [2]<span class='bibsp'>   </span></span><a id='Xvruiz__MCTF'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensated_temporal_filtering'>Motion Compensated Temporal Filtering (MCTF)</a>.
+ [2]<span class='bibsp'>   </span></span><a id='Xvruiz__MCTF'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensated_temporal_filtering'>Motion Compensated Temporal Filtering (MCTF)</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [3]<span class='bibsp'>   </span></span><a id='Xvruiz__MC'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation'>Motion Compensation</a>.
+ [3]<span class='bibsp'>   </span></span><a id='Xvruiz__MC'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation'>Motion Compensation</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [4]<span class='bibsp'>   </span></span><a id='Xvruiz__transform_coding'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/transform_coding'>Transform Coding</a>.
+ [4]<span class='bibsp'>   </span></span><a id='Xvruiz__transform_coding'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/transform_coding'>Transform Coding</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [5]<span class='bibsp'>   </span></span><a id='Xvruiz__video_scalability'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/video_scalability'>Video Scalability</a>.
+ [5]<span class='bibsp'>   </span></span><a id='Xvruiz__video_scalability'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/video_scalability'>Video Scalability</a>.
 </p>
    </div>
    <div class='footnotes'><a id='x1-2002x1'></a>
 <!-- l. 25 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>Specifically, in real-time streaming scenarios we cannot prefetch much data before start the
-</span><span class='ecrm-0800'>rendering of the image or video (casically, because we cannot wait too much. In this case, we can
-</span><span class='ecrm-0800'>adapt the quality of the rendering to the available bandwidth, a factor that we cannot control in
-</span><span class='ecrm-0800'>most of the situations.</span></p><a id='x1-3002x2'></a>
+rendering of the image or video (casically, because we cannot wait too much. In this case, we can
+adapt the quality of the rendering to the available bandwidth, a factor that we cannot control in
+most of the situations.</span></p><a id='x1-3002x2'></a>
 <!-- l. 39 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>Notice that the concept of temporal scalability cannot be applied to image coding.</span></p><a id='x1-9002x4'></a>
 <!-- l. 104 --><p class='indent'>     <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>The DWT domain is not redundant, but the shift invariant feature is not satisfied. To solve
-</span><span class='ecrm-0800'>this problem, the DWT subbands must be interpolated to restore the lost phases. In this
-</span><span class='ecrm-0800'>overcomplete domain, the ME/MC algorithms work, but the phase used of the predicted images
-</span><span class='ecrm-0800'>must be represented in the code-stream.</span></p><a id='x1-13002x6'></a>
-<!-- l. 152 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>Notice that in this case, we should use the term “cubic building” instead of “pyramid”.</span></p> </div>
+this problem, the DWT subbands must be interpolated to restore the lost phases. In this
+overcomplete domain, the ME/MC algorithms work, but the phase used of the predicted images
+must be represented in the code-stream.</span></p><a id='x1-13002x6'></a>
+<!-- l. 153 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>Notice that in this case, we should use the term “cubic building” instead of “pyramid”.</span></p> </div>
  
 </body> 
 </html>

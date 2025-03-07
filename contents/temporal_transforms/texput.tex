@@ -78,7 +78,7 @@ However, in some contexts\footnote{Specifically, constant bit-rate
   encodings.} it may be necessary to use a fixed GOP
 partition~\cite{vruiz__MC}. For example, if we want to give the option
 to the users to move fast forward or backward along the sequence, we
-need to set some maximum GOF size. Another reason to use a maximum GOF
+need to set some given GOF size. Another reason to use a defined GOF
 size is to limit the propagation of decoding errors (for example,
 because in a streaming session we have not received some data). When a
 new GOF starts, the propagation of such errors is stopped.
@@ -123,7 +123,7 @@ a B-frame all types of blocks can be used.
 \begin{enumerate}
 \item Create a new module \texttt{III.py} where the image
   compression provided by \texttt{2D-DCT.py} or
-  \texttt{2D-DWT.pỳ}. Use a command line parameter to chose between
+  \texttt{2D-DWT.py}. Use a command line parameter to chose between
   these image codecs. Complexity 5.
 \item Create a video codec similar to the previous one, but using an
   ``IPP...''  scheme without ME (or assuming that all the motion

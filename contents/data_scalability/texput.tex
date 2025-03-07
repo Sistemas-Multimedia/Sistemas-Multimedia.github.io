@@ -122,10 +122,11 @@ code-stream. The spatial and temporal resolutions remain constant.
 \subsection{Using the DCT}
 
 Some DCT-based image coding standards, such as JPEG, allow for
-progressive decoding, where a variable number of coefficients or
-bit planes of those coefficients are rendered. Note that if $11$ is
-the number of bit planes required to represent the coefficients, a
-total of $11\times 64\times 64$ quality levels is possible.
+progressive decoding, where a increasing number of coefficients or bit
+planes of those coefficients are rendered. Note that if for example,
+$11$ is the number of bit planes required to represent the
+coefficients, a total of $11\times 64\times 64$ quality levels is
+possible (considering a block size of $64\times 64$).
 
 \subsection{Using the DWT~\cite{vruiz__transform_coding}}
 
@@ -185,14 +186,14 @@ technique is used, for example, in the
   an image. Modify \texttt{2D-DWT.py} to include this functionality
   (the possibility of decoding a reduced resolution version of the
   original image), which basically consist of ignoring the
-  high-frequency subbands. Complexity 3.
+  high-frequency subbands. Complexity 5.
 \item \label{TD:BP} Modify \texttt{2D-DWT.py} to allows the
   possibility of decoding by bit-planes (given as a parameter the
   number of bit-planes to decode). In order to achieve this, we must
   use a bit-plane entropy encoder (we can encode bits using an
   arithmetic coding, or conform symbols (\emph{symbol-blocks}) of more
   bits by taking small blocks of bits (of size 4x4, for example), in
-  whose case we could use PNG, for example). Notice that this is not
+  whose case we could use PNG of TIFF, for example). Notice that this is not
   incompatible to decode by spatial resolution levels (see previous
   To-Do). Complexity 10.
 \item The $2^n\times 2^n$-DCT domain can be decoded by resolution
@@ -202,8 +203,8 @@ technique is used, for example, in the
   coefficients represent the values of the pixels of the image at the
   resolution level $n$). Implement in \texttt{2D-DCT.py} such image
   decoder. See the notebook
-  \href{https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/docs/YCoCg_2D_DCT_SQ.ipynb}{Image
-    Compression with YCoCg + 2D-DCT}. Complexity 4.
+  \href{https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/src/DCT2D/YCoCg_2D_DCT_SQ.ipynb}{Image
+    Compression with YCoCg + 2D-DCT}. Complexity 5.
 \item Modify \texttt{2D-DCT.py} to allows the decoding by bit-planes
   (see To-Do~\ref{TD:BP}). Complexity 10.
 \item It is possible to add WOI-decoding (Window Of Interest) to
