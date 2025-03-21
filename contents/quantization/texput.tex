@@ -11,6 +11,7 @@
 \tableofcontents
 
 \section{What is quantization?}
+%{{{
 
 In Information Theory~\cite{vruiz__information_theory}, quantization
 \cite{vruiz__signal_quantization,vruiz__scalar_quantization,vruiz__vector_quantization,vruiz__trellis_quantization}
@@ -24,7 +25,10 @@ because at least two elements of $A$ will be mapped to the same
 element of $B$, and therefore, there is no way to find the reverse
 mapping\footnote{Dequantization does not exist.}.
 
+%}}}
+
 \section{What is (digital re-)quantization?}
+%{{{
 
 In the quantization of digital signals
 \cite{vruiz__scalar_quantization,vruiz__vector_quantization}, the
@@ -35,7 +39,10 @@ the digital one, we are actually applying a re-quantization. Again, if
 $|A|>|B|$, such quantization implies a loss of information in the
 quantized signal.
 
+%}}}
+
 \section{Basic terminology}
+%{{{
 
 When working with 1D signals, quantizers divide the range of possible
 input values that the samples can take into a collection of
@@ -47,9 +54,13 @@ value that in the quantized domain represents all the input possible
 values that fall into an interval is called the \emph{representation
   level} of the interval.
 
+%}}}
+
 \section{Types of quantizers}
+%{{{
 
 \subsection{Scalar quantizers (SQ) VS Vector Quantizers (VQ)}
+%{{{
 
 When quantization maps single elements of $A$ to single elements of
 $B$, the quantizer is said to be
@@ -61,7 +72,10 @@ whether the samples are processed independently or whether they are
 quantized by tuples. In this last case, we can exploit the correlation
 between samples.
 
+%}}}
+
 \subsection{Uniform VS non-uniform quantizers}
+%{{{
 
 In an uniform quantizer~\cite{vruiz__scalar_quantization}, all the
 intervals have the same the size, which is equal to the quantization
@@ -77,7 +91,10 @@ intervals. Another example of a non-uniform quantizer is a
 range of input values in a set of intervals whose size is inversely
 proportional to the probability of using such interval.
 
+%}}}
+
 \subsection{Static VS adaptive quantizers}
+%{{{
 
 Static quantizers do not modify the partitioning of the input signal's
 dynamic range (the decision levels), nor the representation level
@@ -89,7 +106,12 @@ quantizing.\footnote{Notice that, in the case of the quantizer depends
 quantizer~\cite{vruiz__scalar_quantization} is a example of adaptive
 quantization.
 
+%}}}
+
+%}}}
+
 \section{Deadzone quantization}
+%{{{
 
 Deadzone quantizers~\cite{vruiz__scalar_quantization} are static
 quasi-uniform scalar quantizers. These are used frequently in lossy
@@ -116,7 +138,18 @@ the same bit rate.\footnote{Obviously, if the electronic noise is
   perceived as a source of distortion comparable to the quantization
   noise.}
 
+\subsection*{Resources}
+
+\begin{enumerate}
+\item
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/deadzone.ipynb}{deadzone.ipynb}:
+  Notebook showing the use of \texttt{deadzone.py} in VCF.
+\end{enumerate}
+
+%}}}
+
 \section{Lloyd-Max quantization}
+%{{{
 
 A Lloyd-Max quantizer~\cite{vruiz__scalar_quantization} minimizes
 quantization noise given a signal with a known probabilistic
@@ -131,7 +164,16 @@ that the histogram must be also known by the decoder to
   if $\Delta=1$ and we are using digital quantization).} the
 information.
 
+\subsection*{Resources}
+
+\begin{enumerate}
+\item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/LloydMax.ipynb}{LloydMax in VCF}.
+\end{enumerate}
+
+%}}}
+
 \section{Vector quantization applied to the spatial domain}
+%{{{
 
 Vector quantizers~\cite{vruiz__vector_quantization} input
 blocks\footnote{If we are removing spatial redundancy, the blocks are
@@ -150,7 +192,23 @@ encoding performance of a vector quantizer is usually superior
 compared to that of a scalar quantizer, because the number of output
 quantization indexes\footnote{Indexes of the centroids.} is smaller.
 
+\subsection*{Resources}
+
+\begin{enumerate}
+\item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/VQ.ipynb}{VQ} in VCF.
+\item
+  \href{https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py}{Vector
+    Quantization Example}.
+\item
+  \href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/gray_VQ.ipynb}{Vector
+    Quantization (in the 2D domain) of a grayscale image}.
+\item \href{https://github.com/droidadroit/LBG}{Image compression using LBG}.
+\end{enumerate}
+
+%}}}
+
 \section{Vector quantization applied to the $\text{RGB}$ domain}
+%{{{
 
 SQ (Scalar
 Quantization)~\cite{vruiz__scalar_quantization,sayood2017introduction}
@@ -176,23 +234,15 @@ of $K$ code-vectors (centroids) that minimizes the distortion between
 the original image and the reconstructed one. Notice that the
 code-book must be known by the decoder to find a reconstruction.
 
-\section*{Resources}
+\subsection*{Resources}
 
 \begin{enumerate}
-\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/deadzone.ipynb}{deadzone.ipynb}: Notebook showing the use of deadzone.py.
-\item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/LloydMax.ipynb}{LloydMax in VCF}.
-  \item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/VQ.ipynb}{VQ} in VQ.
-\item
-  \href{https://scikit-learn.org/stable/auto_examples/cluster/plot_face_compress.html#sphx-glr-auto-examples-cluster-plot-face-compress-py}{Vector
-    Quantization Example}.
-\item
-  \href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/gray_VQ.ipynb}{Vector
-    Quantization (in the 2D domain) of a grayscale image}.
 \item
   \href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb}{Vector
     Quantization (in the 2D domain) of a color (RGB) image}.
-  \item \href{https://github.com/droidadroit/LBG}{Image compression using LBG}.
 \end{enumerate}
+
+%}}}
 
 \section*{To do}
 \begin{enumerate}
