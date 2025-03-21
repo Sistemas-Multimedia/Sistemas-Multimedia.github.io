@@ -27,7 +27,7 @@
 <br />    <span class='sectionToc'>2 <a href='#x1-30002' id='QQ2-1-3'>What is (digital re-)quantization?</a></span>
 <br />    <span class='sectionToc'>3 <a href='#x1-40003' id='QQ2-1-4'>Basic terminology</a></span>
 <br />    <span class='sectionToc'>4 <a href='#x1-50004' id='QQ2-1-5'>Types of quantizers</a></span>
-<br />     <span class='subsectionToc'>4.1 <a href='#x1-60004.1' id='QQ2-1-6'>Scalar quantizers (SQ) VS Vector Quantizers (VQ)</a></span>
+<br />     <span class='subsectionToc'>4.1 <a href='#x1-60004.1' id='QQ2-1-6'>Scalar quantizers VS Vector quantizers</a></span>
 <br />     <span class='subsectionToc'>4.2 <a href='#x1-70004.2' id='QQ2-1-7'>Uniform VS non-uniform quantizers</a></span>
 <br />     <span class='subsectionToc'>4.3 <a href='#x1-80004.3' id='QQ2-1-8'>Static VS adaptive quantizers</a></span>
 <br />    <span class='sectionToc'>5 <a href='#x1-90005' id='QQ2-1-9'>Deadzone quantization</a></span>
@@ -39,7 +39,7 @@
 <!-- l. 13 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>1   </span> <a id='x1-20001'></a>What is quantization?</h3>
-<!-- l. 16 --><p class='noindent'>In Information Theory <span class='cite'>[<a href='#Xvruiz__information_theory'>1</a>]</span>, quantization <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>, <a href='#Xvruiz__signal_quantization'>3</a>, <a href='#Xvruiz__vector_quantization'>5</a>, <a href='#Xvruiz__trellis_quantization'>4</a>]</span> is any mapping process between
+<!-- l. 16 --><p class='noindent'>In Information Theory <span class='cite'>[<a href='#Xvruiz__information_theory'>2</a>]</span>, quantization <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>, <a href='#Xvruiz__signal_quantization'>4</a>, <a href='#Xvruiz__trellis_quantization'>5</a>, <a href='#Xvruiz__vector_quantization'>6</a>]</span> is any mapping process between
 two sets of elements \(A\) and \(B\), where all elements of \(A\) are associated with one (not
 necessarily the same) element of \(B\), being \(|A|&gt;|B|\), where \(|\cdot |\) represents the order (the number of
 elements) of a set.
@@ -52,8 +52,8 @@ mapping<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='te
 </p><!-- l. 30 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>2   </span> <a id='x1-30002'></a>What is (digital re-)quantization?</h3>
-<!-- l. 33 --><p class='noindent'>In the quantization of digital signals <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>, <a href='#Xvruiz__vector_quantization'>5</a>]</span>, the elements of \(A\) and \(B\) are digital samples
-<span class='cite'>[<a href='#Xvruiz__signal_quantization'>3</a>]</span>. Since, by definition, digital samples have been quantized to be converted from the
+<!-- l. 33 --><p class='noindent'>In the quantization of digital signals <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>, <a href='#Xvruiz__vector_quantization'>6</a>]</span>, the elements of \(A\) and \(B\) are digital samples
+<span class='cite'>[<a href='#Xvruiz__signal_quantization'>4</a>]</span>. Since, by definition, digital samples have been quantized to be converted from the
 analog world to the digital one, we are actually applying a re-quantization.
 Again, if \(|A|&gt;|B|\), such quantization implies a loss of information in the quantized
 signal.
@@ -71,104 +71,105 @@ is called the <span class='ecti-1000'>representation level </span>of the interva
    <h3 class='sectionHead'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Types of quantizers</h3>
 <!-- l. 62 --><p class='noindent'>
 </p>
-   <h4 class='subsectionHead'><span class='titlemark'>4.1   </span> <a id='x1-60004.1'></a>Scalar quantizers (SQ) VS Vector Quantizers (VQ)</h4>
-<!-- l. 65 --><p class='noindent'>When quantization maps single elements of \(A\) to single elements of \(B\), the quantizer is
-said to be <span class='ecti-1000'>scalar</span> <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span>. When tuples of elements are mapped, VQ is used <span class='cite'>[<a href='#Xvruiz__vector_quantization'>5</a>]</span>. Notice
-that this classification is not related to the dimensionality of the signal,
-but whether the samples are processed independently or whether they are
-quantized by tuples. In this last case, we can exploit the correlation between
+   <h4 class='subsectionHead'><span class='titlemark'>4.1   </span> <a id='x1-60004.1'></a>Scalar quantizers VS Vector quantizers</h4>
+<!-- l. 65 --><p class='noindent'>When quantization maps single elements of \(A\) to single elements of \(B\), the quantizer is said to
+be <span class='ecti-1000'>scalar</span> <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>]</span> (Scalar Quantization, SQ). When tuples (<span class='ecti-1000'>vectors</span>) of elements are mapped,
+Vector Quantization (VQ) is used <span class='cite'>[<a href='#Xvruiz__vector_quantization'>6</a>]</span>. Notice that this classification is not related to the
+dimensionality<span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a id='x1-6001f3'></a>
+of the signal, but whether the samples are processed independently or whether they
+are quantized by tuples. In this last case, we can exploit the correlation between
 samples.
-</p><!-- l. 77 --><p class='noindent'>
+</p><!-- l. 79 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead'><span class='titlemark'>4.2   </span> <a id='x1-70004.2'></a>Uniform VS non-uniform quantizers</h4>
-<!-- l. 80 --><p class='noindent'>In an uniform quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span>, all the intervals have the same the size, which is equal to the quantization
-step size, \(\Delta \).<span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a id='x1-7001f3'></a>
-In a non-uniform quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span>, at least one of the intervals is different to the rest.
+<!-- l. 82 --><p class='noindent'>In an uniform quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>]</span>, all the intervals have the same the size, which is equal to the quantization
+step size, \(\Delta \).<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-7001f4'></a>
                                                                   
 
                                                                   
-For example, a deadzone quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span> has an interval size for the representation level
+In a non-uniform quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>]</span>, at least one of the intervals is different to the rest.
+For example, a deadzone quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>]</span> has an interval size for the representation level
 0 that doubles the size of the the rest of intervals. Another example of a non-uniform
-quantizer is a <a href='https://en.wikipedia.org/wiki/Lloyd%27s_algorithm'>Lloyd-Max quantizer</a> <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span> because it divides the range of input values in
+quantizer is a <a href='https://en.wikipedia.org/wiki/Lloyd%27s_algorithm'>Lloyd-Max quantizer</a> <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>]</span> because it divides the range of input values in
 a set of intervals whose size is inversely proportional to the probability of using such
 interval.
-</p><!-- l. 96 --><p class='noindent'>
+</p><!-- l. 98 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead'><span class='titlemark'>4.3   </span> <a id='x1-80004.3'></a>Static VS adaptive quantizers</h4>
-<!-- l. 99 --><p class='noindent'>Static quantizers do not modify the partitioning of the input signal’s dynamic range
+<!-- l. 101 --><p class='noindent'>Static quantizers do not modify the partitioning of the input signal’s dynamic range
 (the decision levels), nor the representation level assigned to each interval. On the
 contrary, adaptive quantizers adapt such parameters to the sequence of samples that are
-quantizing.<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-8001f4'></a>
-A Jayant quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span> is a example of adaptive quantization.
-</p><!-- l. 113 --><p class='noindent'>
+quantizing.<span class='footnote-mark'><a href='#fn5x0' id='fn5x0-bk'><sup class='textsuperscript'>5</sup></a></span><a id='x1-8001f5'></a>
+A Jayant quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>]</span> is a example of adaptive quantization.
+</p><!-- l. 115 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>5   </span> <a id='x1-90005'></a>Deadzone quantization</h3>
-<!-- l. 116 --><p class='noindent'>Deadzone quantizers <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span> are static quasi-uniform scalar quantizers. These
+<!-- l. 118 --><p class='noindent'>Deadzone quantizers <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>]</span> are static quasi-uniform scalar quantizers. These
 are used frequently in lossy compression systems because when the
 quantization step size is a power of two and the input sample values are
-integers<span class='footnote-mark'><a href='#fn5x0' id='fn5x0-bk'><sup class='textsuperscript'>5</sup></a></span><a id='x1-9001f5'></a>,
+integers<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-9001f6'></a>,
 then the representation levels can be found simply by discarding low-significant bits
 of the input samples (in other words, we only need to perform a bit-shift
 operation to find the corresponding quantization index). This also means
 that it is possible to build a progressive encoding system using a deadzone
 quantizer.
-</p><!-- l. 127 --><p class='indent'>   Another reason why dead-zone quantization is popular in lossy encoding
+</p><!-- l. 129 --><p class='indent'>   Another reason why dead-zone quantization is popular in lossy encoding
 systems is that it tends to remove electronic noise more than other scalar
 quantizers where the signal is weaker. If we suppose that the signal has 0
-mean<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-9003f6'></a> and
+mean<span class='footnote-mark'><a href='#fn7x0' id='fn7x0-bk'><sup class='textsuperscript'>7</sup></a></span><a id='x1-9003f7'></a> and
 that the dead-zone is placed where the <a href='https://en.wikipedia.org/wiki/Signal-to-noise_ratio'>SNR</a> is smaller, we basically replace electronic noise by
-quantization noise<span class='footnote-mark'><a href='#fn7x0' id='fn7x0-bk'><sup class='textsuperscript'>7</sup></a></span><a id='x1-9005f7'></a>.
+quantization noise<span class='footnote-mark'><a href='#fn8x0' id='fn8x0-bk'><sup class='textsuperscript'>8</sup></a></span><a id='x1-9005f8'></a>.
 Obviously, this does not improve the RD performance of the encoder,
 but the perceived (subjective) quality is increased for the same bit
-rate.<span class='footnote-mark'><a href='#fn8x0' id='fn8x0-bk'><sup class='textsuperscript'>8</sup></a></span><a id='x1-9007f8'></a>
-</p><!-- l. 141 --><p class='noindent'>
+rate.<span class='footnote-mark'><a href='#fn9x0' id='fn9x0-bk'><sup class='textsuperscript'>9</sup></a></span><a id='x1-9007f9'></a>
+</p><!-- l. 143 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead'><a id='x1-10000'></a>Resources</h4>
-<!-- l. 143 --><p class='noindent'>
                                                                   
 
                                                                   
+<!-- l. 145 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-10002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/deadzone.ipynb'>deadzone.ipynb</a>: Notebook showing the use of <span class='ectt-1000'>deadzone.py </span>in VCF.</li></ol>
-<!-- l. 151 --><p class='noindent'>
+<!-- l. 153 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>6   </span> <a id='x1-110006'></a>Lloyd-Max quantization</h3>
-<!-- l. 154 --><p class='noindent'>A Lloyd-Max quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>]</span> minimizes quantization noise given a signal with a known
+<!-- l. 156 --><p class='noindent'>A Lloyd-Max quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>]</span> minimizes quantization noise given a signal with a known
 probabilistic distribution (histogram) of the input samples. As a result, the density of
 quantization intervals is higher where the probability of the samples is higher, and
 <span class='ecti-1000'>vice versa</span>.
-</p><!-- l. 160 --><p class='indent'>   Lloyd-Max quantizers are considered non-uniform quantizers.
+</p><!-- l. 162 --><p class='indent'>   Lloyd-Max quantizers are considered non-uniform quantizers.
 Notice that the histogram must be also known by the decoder to
-“restore”<span class='footnote-mark'><a href='#fn9x0' id='fn9x0-bk'><sup class='textsuperscript'>9</sup></a></span><a id='x1-11001f9'></a>
+“restore”<span class='footnote-mark'><a href='#fn10x0' id='fn10x0-bk'><sup class='textsuperscript'>10</sup></a></span><a id='x1-11001f10'></a>
 the information.
-</p><!-- l. 167 --><p class='noindent'>
+</p><!-- l. 169 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead'><a id='x1-12000'></a>Resources</h4>
-<!-- l. 169 --><p class='noindent'>
+<!-- l. 171 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-12002x1'>Usage of <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/LloydMax.ipynb'>LloydMax in VCF</a>.</li></ol>
-<!-- l. 175 --><p class='noindent'>
+<!-- l. 177 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>7   </span> <a id='x1-130007'></a>Vector quantization applied to the spatial domain</h3>
-<!-- l. 178 --><p class='noindent'>Vector quantizers <span class='cite'>[<a href='#Xvruiz__vector_quantization'>5</a>]</span> input blocks<span class='footnote-mark'><a href='#fn10x0' id='fn10x0-bk'><sup class='textsuperscript'>10</sup></a></span><a id='x1-13001f10'></a>
+<!-- l. 180 --><p class='noindent'>Vector quantizers <span class='cite'>[<a href='#Xvruiz__vector_quantization'>6</a>]</span> input blocks<span class='footnote-mark'><a href='#fn11x0' id='fn11x0-bk'><sup class='textsuperscript'>11</sup></a></span><a id='x1-13001f11'></a>
 of samples and output a quantization index per block. For example, in most
-natural images, the spatial correlation <span class='cite'>[<a href='#Xvruiz__visual_redundancy'>6</a>]</span> generates that some blocks of
+natural images, the spatial correlation <span class='cite'>[<a href='#Xvruiz__visual_redundancy'>7</a>]</span> generates that some blocks of
 the image are similar to other blocks. If this is true, we can compute a set
 of centroids (blocks) and use them to represent the original blocks. As a
 result, we will obtain a matrix of quantization indexes that can be entropy
 coded.
-</p><!-- l. 190 --><p class='indent'>   Notice that VQ exploits the spatial correlation. For this reason, the
-encoding performance of a vector quantizer is usually superior compared
                                                                   
 
                                                                   
-to that of a scalar quantizer, because the number of output quantization
-indexes<span class='footnote-mark'><a href='#fn11x0' id='fn11x0-bk'><sup class='textsuperscript'>11</sup></a></span><a id='x1-13003f11'></a>
-is smaller.
-</p><!-- l. 195 --><p class='noindent'>
+</p><!-- l. 192 --><p class='indent'>   Notice that VQ exploits the spatial correlation. For this reason,
+the encoding performance of a vector quantizer is usually superior
+compared to that of a scalar quantizer (the number of output quantization
+indexes<span class='footnote-mark'><a href='#fn12x0' id='fn12x0-bk'><sup class='textsuperscript'>12</sup></a></span><a id='x1-13003f12'></a>
+is smaller).
+</p><!-- l. 197 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead'><a id='x1-14000'></a>Resources</h4>
-<!-- l. 197 --><p class='noindent'>
+<!-- l. 199 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-14002x1'>Usage of <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/VQ.ipynb'>VQ</a> in VCF.
      </li>
@@ -177,95 +178,108 @@ is smaller.
 <li class='enumerate' id='x1-14006x3'><a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/gray_VQ.ipynb'>Vector Quantization (in the 2D domain) of a grayscale image</a>.
      </li>
 <li class='enumerate' id='x1-14008x4'><a href='https://github.com/droidadroit/LBG'>Image compression using LBG</a>.</li></ol>
-<!-- l. 210 --><p class='noindent'>
+<!-- l. 212 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-150008'></a>Vector quantization applied to the \(\text {RGB}\) domain</h3>
-<!-- l. 213 --><p class='noindent'>SQ (Scalar Quantization) <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>2</a>, <span class='ecbx-1000'>?</span>]</span> would be an optimal solution only if the image
+<!-- l. 215 --><p class='noindent'>SQ (Scalar Quantization) <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>3</a>, <a href='#Xsayood2017introduction'>8</a>]</span> would be an optimal solution only if the image
 colors are uniformly distributed within <a href='https://en.wikipedia.org/wiki/RGB_color_model'>the RGB cube</a>. However, the typical color
 distribution in natural images is anything but uniform, with some regions of the color
 space being densely populated and many potentially used colors completely missing.
-In this case, depending on the quantization step size <span class='cite'>[<a href='#Xvruiz__signal_quantization'>3</a>]</span>, SQ could be suboptimal
+In this case, depending on the quantization step size <span class='cite'>[<a href='#Xvruiz__signal_quantization'>4</a>]</span>, SQ could be suboptimal
 because the colors used may not be sampled with sufficient density, while at the same
 time the encoding system considers colors that do not appear in the image at
-all <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>.
+all <span class='cite'>[<a href='#Xburger2016digital'>1</a>]</span>.
                                                                   
 
                                                                   
-</p><!-- l. 227 --><p class='indent'>   On the other hand, VQ (Vector Quantization) <span class='cite'>[<a href='#Xvruiz__vector_quantization'>5</a>, <span class='ecbx-1000'>?</span>]</span> applied to the color domain
-does not treat the individual \(\text {RGB}\) components separately as does scalar quantization, but
-each color vector used \({\mathbf C}_i = (\text {R}_i, \text {G}_i, \text {B}_i )\) in the image is treated as a minimum structure. VQ
-determines a code-book of \(K\) code-vectors (centroids) that minimizes the distortion
-between the original image and the reconstructed one. Notice that the code-book
-must be known by the decoder to find a reconstruction.
-</p><!-- l. 237 --><p class='noindent'>
+</p><!-- l. 229 --><p class='indent'>   On the other hand, VQ <span class='cite'>[<a href='#Xvruiz__vector_quantization'>6</a>, <a href='#Xsayood2017introduction'>8</a>]</span> applied to the color domain does not treat the
+individual \(\text {RGB}\) components separately as does scalar quantization, but each color vector
+used \({\mathbf C}_i = (\text {R}_i, \text {G}_i, \text {B}_i )\) in the image is treated as a minimum structure. VQ determines a code-book of \(K\)
+code-vectors (centroids) that minimizes the distortion between the original image and
+the reconstructed one. Notice that the code-book must be known by the decoder to
+find a reconstruction.
+</p><!-- l. 238 --><p class='noindent'>
 </p>
    <h4 class='likesubsectionHead'><a id='x1-16000'></a>Resources</h4>
-<!-- l. 239 --><p class='noindent'>
+<!-- l. 240 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-16002x1'><a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb'>Vector Quantization (in the 2D domain) of a color (RGB) image</a>.</li></ol>
-<!-- l. 247 --><p class='noindent'>
+<li class='enumerate' id='x1-16002x1'><a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb'>Vector Quantization (in the 2D domain) of a color (RGB) image</a>.
+     </li>
+<li class='enumerate' id='x1-16004x2'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/color-VQ.py'><span class='ectt-1000'>color_VQ.py</span></a> in VCF.</li></ol>
+<!-- l. 251 --><p class='noindent'>
 </p>
    <h3 class='likesectionHead'><a id='x1-17000'></a>To do</h3>
-<!-- l. 248 --><p class='noindent'>
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-17002x1'>Quantizers  generate  quantization  noise,  which  can  be  modeled  as
+     <ul class='itemize1'>
+     <li class='itemize'>
+     <!-- l. 253 --><p class='noindent'>Quantizers  generate  quantization  noise,  which  can  be  modeled  as
      flat-spectrum  zero-mean  uniform  noise.  On  the  contrary,  most  of
      the  energy  of  natural  images  is  concentrated  in  the  low  frequencies.
      Consequently,  when  an  image  is  quantized,  the  <a href='https://en.wikipedia.org/wiki/Signal-to-noise_ratio'>SNR</a>  is  higher  in  the
      low  frequencies  than  in  the  high  frequencies,  which  means  that  if  the
      quantized image is low-pass filtered, the overall SNR should increase (the
-     filter  will  remove  the  high  frequencies  that  basically  are  generated  by
-     the quantization noise). Modify the current quantization VCF modules
-     to, optionally, apply a low-pass filter to the quantized image. Consider
-     selecting between different filtering techniques. Complexity 4.
-     </li>
-<li class='enumerate' id='x1-17004x2'>Create   a   new   module   named   <span class='ectt-1000'>color_VQ.py  </span>that   use   the   Vector
-     Quantization to exploit the \(\text {RGB}\) redundancy in images. Complexity 5.</li></ol>
+     filter will remove the high frequencies that basically are generated by the
+     quantization noise).
+     </p><!-- l. 263 --><p class='noindent'>Currently, VCF implements in the module <span class='ectt-1000'>blur.py </span>a collection of low-pass
+     filters. However, most efficient denoising filters can be used, such as <a href='https://docs.opencv.org/3.4/d5/d69/tutorial_py_non_local_means.html'>NLM</a>,
+     can be used. Create a new Python module <span class='ectt-1000'>NLM.py </span>to provide the use of
+     this filter in VCF. <span class='ecbx-1000'>3 points</span>.</p></li></ul>
                                                                   
 
                                                                   
-<!-- l. 267 --><p class='noindent'>
+<!-- l. 271 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>9   </span> <a id='x1-180009'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
- [1]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/information_theory'>Information Theory</a>.
+ [1]<span class='bibsp'>   </span></span><a id='Xburger2016digital'></a>W. Burger and M.J. Burge.  <a href='https://educons.edu.rs/wp-content/uploads/2020/05/2016-Digital-Image-Processing.pdf'><span class='ecti-1000'>Digital Image Processing: An Algorithmic
+   </span><span class='ecti-1000'>Introduction Using Java</span></a>. Springer, 2016.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [2]<span class='bibsp'>   </span></span><a id='Xvruiz__scalar_quantization'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/scalar_quantization'>Scalar Quantization</a>.
+ [2]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/information_theory'>Information Theory</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [3]<span class='bibsp'>   </span></span><a id='Xvruiz__signal_quantization'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/signal_quantization'>Signal Quantization</a>.
+ [3]<span class='bibsp'>   </span></span><a id='Xvruiz__scalar_quantization'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/scalar_quantization'>Scalar Quantization</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [4]<span class='bibsp'>   </span></span><a id='Xvruiz__trellis_quantization'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/trellis_coding_quantization'>Trellis Coding Quantization</a>.
+ [4]<span class='bibsp'>   </span></span><a id='Xvruiz__signal_quantization'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/signal_quantization'>Signal Quantization</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [5]<span class='bibsp'>   </span></span><a id='Xvruiz__vector_quantization'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization'>Vector Quantization</a>.
+ [5]<span class='bibsp'>   </span></span><a id='Xvruiz__trellis_quantization'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/trellis_coding_quantization'>Trellis Coding Quantization</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [6]<span class='bibsp'>   </span></span><a id='Xvruiz__visual_redundancy'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/visual_redundancy'>Visual Redundancy</a>.
+ [6]<span class='bibsp'>   </span></span><a id='Xvruiz__vector_quantization'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization'>Vector Quantization</a>.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [7]<span class='bibsp'>   </span></span><a id='Xvruiz__visual_redundancy'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/visual_redundancy'>Visual Redundancy</a>.
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [8]<span class='bibsp'>   </span></span><a id='Xsayood2017introduction'></a>K. Sayood.    <a href='http://rahilshaikh.weebly.com/uploads/1/1/6/3/11635894/data_compression.pdf'><span class='ecti-1000'>Introduction  to  Data  Compression</span></a>  <a href='https://people.cs.nctu.edu.tw/~cmliu/Courses/Compression/'><span class='ecti-1000'>(Slides)</span></a>.    Morgan
+   Kaufmann, 2017.
 </p>
    </div>
+                                                                  
+
+                                                                  
    <div class='footnotes'><a id='x1-2002x1'></a>
 <!-- l. 26 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>Dequantization does not exist.</span></p><a id='x1-4002x3'></a>
 <!-- l. 51 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>If the signal has more than 1 dimension, the process is exactly the same, but we don’t speak
-</span><span class='ecrm-0800'>of intervals, but regions, for example, in the 2D case.</span></p><a id='x1-7002x4.2'></a>
-<!-- l. 83 --><p class='indent'>     <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>Notice that, in an uniform quantizer, the distance between all the decision levels is also</span>
+</span><span class='ecrm-0800'>of intervals, but regions, for example, in the 2D case.</span></p><a id='x1-6002x4.1'></a>
+<!-- l. 72 --><p class='indent'>     <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>For example, a color image has 3 dimensions: height, width, and depth.</span></p><a id='x1-7002x4.2'></a>
+<!-- l. 85 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>Notice that, in an uniform quantizer, the distance between all the decision levels is also</span>
 \(\Delta \)<span class='ecrm-0800'>.</span></p><a id='x1-8002x4.3'></a>
-<!-- l. 105 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>Notice that, in the case of the quantizer depends on the characteristics of the signal but they
+<!-- l. 107 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>Notice that, in the case of the quantizer depends on the characteristics of the signal but they
 </span><span class='ecrm-0800'>are known </span><span class='ecti-0800'>a priori</span><span class='ecrm-0800'>, it should be considered static.</span></p><a id='x1-9002x5'></a>
-<!-- l. 120 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>... and negative integers are represented using two’s complement ...</span></p><a id='x1-9004x5'></a>
-<!-- l. 131 --><p class='indent'>     <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>The electronic noise has 0 arithmetic mean and a flat spectrum.</span></p><a id='x1-9006x5'></a>
-<!-- l. 135 --><p class='indent'>     <span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>Which also has 0 average and a flat spectrum</span></p><a id='x1-9008x5'></a>
-<!-- l. 139 --><p class='indent'>     <span class='footnote-mark'><a href='#fn8x0-bk' id='fn8x0'><sup class='textsuperscript'>8</sup></a></span><span class='ecrm-0800'>Obviously, if the electronic noise is perceived as a source of distortion comparable to the
+<!-- l. 122 --><p class='indent'>     <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>... and negative integers are represented using two’s complement ...</span></p><a id='x1-9004x5'></a>
+<!-- l. 133 --><p class='indent'>     <span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>The electronic noise has 0 arithmetic mean and a flat spectrum.</span></p><a id='x1-9006x5'></a>
+<!-- l. 137 --><p class='indent'>     <span class='footnote-mark'><a href='#fn8x0-bk' id='fn8x0'><sup class='textsuperscript'>8</sup></a></span><span class='ecrm-0800'>Which also has 0 average and a flat spectrum</span></p><a id='x1-9008x5'></a>
+<!-- l. 141 --><p class='indent'>     <span class='footnote-mark'><a href='#fn9x0-bk' id='fn9x0'><sup class='textsuperscript'>9</sup></a></span><span class='ecrm-0800'>Obviously, if the electronic noise is perceived as a source of distortion comparable to the
 </span><span class='ecrm-0800'>quantization noise.</span></p><a id='x1-11002x6'></a>
-<!-- l. 164 --><p class='indent'>     <span class='footnote-mark'><a href='#fn9x0-bk' id='fn9x0'><sup class='textsuperscript'>9</sup></a></span><span class='ecrm-0800'>Remember that quantization is a irreversible process and therefore, the original signal is
+<!-- l. 166 --><p class='indent'>     <span class='footnote-mark'><a href='#fn10x0-bk' id='fn10x0'><sup class='textsuperscript'>10</sup></a></span><span class='ecrm-0800'>Remember that quantization is a irreversible process and therefore, the original signal is
 </span><span class='ecrm-0800'>never restored (except if</span> \(\Delta =1\) <span class='ecrm-0800'>and we are using digital quantization).</span></p><a id='x1-13002x7'></a>
-<!-- l. 181 --><p class='indent'>     <span class='footnote-mark'><a href='#fn10x0-bk' id='fn10x0'><sup class='textsuperscript'>10</sup></a></span><span class='ecrm-0800'>If we are removing spatial redundancy, the blocks are usually squared tiles of pixels. If
+<!-- l. 183 --><p class='indent'>     <span class='footnote-mark'><a href='#fn11x0-bk' id='fn11x0'><sup class='textsuperscript'>11</sup></a></span><span class='ecrm-0800'>If we are removing spatial redundancy, the blocks are usually squared tiles of pixels. If
 </span><span class='ecrm-0800'>we remove color redundancy, the blocks are multicomponent pixels, for example, RGB
 </span><span class='ecrm-0800'>values.</span></p><a id='x1-13004x7'></a>
-<!-- l. 193 --><p class='indent'>     <span class='footnote-mark'><a href='#fn11x0-bk' id='fn11x0'><sup class='textsuperscript'>11</sup></a></span><span class='ecrm-0800'>Indexes of the centroids.</span></p>                                                                               </div>
+<!-- l. 195 --><p class='indent'>     <span class='footnote-mark'><a href='#fn12x0-bk' id='fn12x0'><sup class='textsuperscript'>12</sup></a></span><span class='ecrm-0800'>Indexes of the centroids.</span></p>                                                                               </div>
  
 </body> 
 </html>
