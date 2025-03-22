@@ -125,22 +125,23 @@ lossy image and video encoding algoritms.
 \section{To-Do}
 \begin{enumerate}
 \item Modify the VCF compression pipeline to take advantage of the
-  chroma redundancy. Use different quantization step sizes for each
-  color subband, where applicable. Notice, however, that this
-  functionality should be optional. Complexity 5.
+  chroma redundancy (a good level to implement such functionality
+  could be above the low-pass filter denoising). Use different
+  quantization step sizes for each color subband. Notice, however,
+  that this functionality should be optional. \textbf{5 points}.
 \item A similar effect can be obtained if we perform a spatial
-  low-pass filtering of the chromas and subsampling. Implement this
-  optional functionality where possible. Complexity 8.
-\item \texttt{2D-DCT.py} already implements the optional use of
-  perceptual quantization matrices for the $8\times 8$-blocks
-  case. Using an image resizing technique, use such matrices for
-  applying perceptual coding for blocks of any size in
-  $\{2\times 2, 4\times 4, \cdots, 2^n\times 2^n\}$. Complexity 4.
+  low-pass filtering of the chromas and subsampling. \textbf{5
+    points}.
+%\item \texttt{2D-DCT.py} already implements the optional use of
+%  perceptual quantization matrices for the $8\times 8$-blocks
+%  case. Using an image resizing technique, use such matrices for
+%  applying perceptual coding for blocks of any size in
+%  $\{2\times 2, 4\times 4, \cdots, 2^n\times 2^n\}$. Complexity 4.
 \item In the case of the 2D-DWT, we can exploit the lower sensitivity
   of the HVS to diagonal frequencies. This means that we can increase
   the quantization step size of the HH subbands (compared to the
   others) without noticeably increasing the perceived
-  distortion. Complexity 4.
+  distortion. \textbf{3 points}.
 \item The
   \href{https://scikit-image.org/docs/stable/auto_examples/filters/plot_entropy.html}{local
     entropy} of the motion vectors can be a good estimation of the
@@ -148,7 +149,7 @@ lossy image and video encoding algoritms.
   video codec, adapt the quantization step size to the local entropy,
   trying to increase the compression ratios without increasing the
   perceived distortion (if the motion is complex, we can compress more
-  the texture). Complexity 10.
+  the texture, and viceverse). \textbf{10 points}.
 \end{enumerate}
 
 \section{References}
