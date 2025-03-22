@@ -15,7 +15,7 @@
 In general, neighbor \emph{frames} (or images) in (video)
 \emph{sequences} exhibit a high temporal correlation degree that can
 be exploited to improve significantly the RD curves. This correlation
-generates a temporal redundancy that can be removed using a (temporal)
+produces a temporal redundancy that can be removed using a (temporal)
 transform.
 
 A temporal transform inputs two or more frames\footnote{With pixels or
@@ -96,7 +96,7 @@ RD perspective, it is more advantagous to use
 \emph{intra-coding}. When we found one or more reference blocks to
 perform a good prediction, we are using
 \emph{predictive-coding}. Notice that the number of reference blocks
-can be higher than two, a number also controlled by RDO. In the
+can be higher than one, a number also controlled by RDO. In the
 intra-coding mode, all the frames are I-type because otherwise we
 could not reset the propagation errors. In Motion Compensated Temporal
 Filtering~\cite{vruiz__MCTF}, the frames are I or B.
@@ -110,6 +110,7 @@ a B-frame all types of blocks can be used.
 
 \section{Resources}
 \begin{enumerate}
+\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/III.ipynb}{III.py} in VCF.
 \item \href{https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/full_search_block_ME.ipynb}{Full search block-based ME (Motion Estimation)}.
 \item \href{https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/full_search_dense_ME.ipynb}{Full search dense (1x1) ME}.
 \item \href{https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/farneback_ME.ipynb}{Farnebäck's motion estimation}.
@@ -121,22 +122,21 @@ a B-frame all types of blocks can be used.
 %{{{
 
 \begin{enumerate}
-\item Create a new module \texttt{III.py} where the image
-  compression provided by \texttt{2D-DCT.py} or
-  \texttt{2D-DWT.py}. Use a command line parameter to chose between
-  these image codecs. Complexity 5.
-\item Create a video codec similar to the previous one, but using an
-  ``IPP...''  scheme without ME (or assuming that all the motion
+\item Create a VCF video codec similar to \texttt{III.py}, but using
+  an ``IPP...''  scheme without ME (or assuming that all the motion
   vectors are zero). RDO (Rate/Distortion Optimization) should be
-  considered to determine the block type. Complexity 10.
+  considered to determine the block type. A first approximation to RDO
+  can use the number of coefficients different to zero (or its
+  entropy) to decide is the block finally is I or P. \texttt{8
+    points}.
 \item Create a video codec similar to the previous one, but using ME
   and MC controlled by RDO (the block-type should be decided using a
-  RD criteria). Complexity 12.
+  RD criteria). \texttt{9 points}.
 \item Create a video codec similar to the previous one, but using an
-  ``IBB...'' scheme. Complexity 15.
+  ``IBB...'' scheme. \texttt{10 points}.
 \item Create a video codec similar to the previous one, but using an
   MCTF scheme. Notice that in this case, the reference frames are
-  pre-defined (and usually are always 2). Complexity 14.
+  pre-defined (and usually are always 2). \texttt{10 points}.
 \end{enumerate}
 
 %}}}

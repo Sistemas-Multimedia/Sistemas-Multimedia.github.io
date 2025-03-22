@@ -23,40 +23,41 @@
 
 \section{Spectral decorrelation}
 
-Most image and video compressors exploit the statistical (and also
-perceptual\footnote{This will be explained latter in this course.})
-correlation between the $\text{RGB}$ color
+Most image and video compressors exploit the statistical correlation
+(and also perceptual redundacy\footnote{This will be explained latter
+  in this course.})  between the $\text{RGB}$ color
 \emph{components}\footnote{A component of a pixel in the $\text{RGB}$
-domain refer to one of the values $\text{R}$ (red), $\text{G}$ (green)
-and $\text{B}$ (blue) coordinates in the $\text{RGB}$ color 3D space.}
-of the pixels, using a color transform.
+  domain refer to one of the values $\text{R}$ (red), $\text{G}$
+  (green) and $\text{B}$ (blue) coordinates in the $\text{RGB}$ color
+  3D space.}  of the pixels, using a color transform.
 
 Color transforms are pixel-wise operators. As a result, each pixel is
-represented in a different domain where (usually) three new
+represented in a different (color) domain where (usually) three new
 \emph{coefficients}\footnote{Most part of the transforms, including
 the color ones, analyze the signal information from a frequency
 perspective, generating the so called coefficients whose index in the
 transform domain is related to a different frequency of the signal.}
 express the same\footnote{In general, the color transforms can be
 considered lossless, although this is only true if fixed-point
-arithmetic is used.} information but in a different color domain.
+arithmetic is used.} information.
 
 \section{Luma and chromas}
 
 Most color transforms are designed to split the color information of a
-pixel into \emph{luminance} (luma) and \emph{chrominance}
-(chroma). The luma is basically the low frequency\footnote{It is worth
-  understanding that the frequency concept in the color transform
-  domain is not related to the frequency concept in the original pixel
-  domain. For example, the $\text{R}$ component or a pixel represents
-  the amount of red in the pixel, and in the visible spectrum we are
-  refering to frequencies that are lower than the frequency that the
-  $\text{G}$ and $\text{B}$ components represent. However, in a color
-  transformed domain, the luma measures the brightness level of the
-  pixel, and we cannot found a subband of frequencies in the visible
-  spectrum that can represent such information because we are using a
-  different representation domain.} information of the color of the
-pixel, and the chroma (logically) the high frequency information.
+pixel into \emph{luminance} (or simply \emph{luma}) and
+\emph{chrominance} (\emph{chroma}). The luma is basically the low
+frequency\footnote{It is worth understanding that the frequency
+  concept in the color transform domain is not related to the
+  frequency concept in the original pixel domain. For example, the
+  $\text{R}$ component or a pixel represents the amount of red in the
+  pixel, and in the visible spectrum we are refering to frequencies
+  that are lower than the frequency that the $\text{G}$ and $\text{B}$
+  components represent. However, in a color transformed domain, the
+  luma measures the brightness level of the pixel, and we cannot found
+  a subband of frequencies in the visible spectrum that can represent
+  such information because we are using a different representation
+  domain.} information of the color of the pixel, and the chroma
+(logically) the high frequency information.
 
 For example, in
 \href{https://en.wikipedia.org/wiki/JPEG#JPEG_codec_example}{JPEG} and
@@ -64,28 +65,21 @@ For example, in
 the color information of each pixel is transformed from the
 $\text{RGB}$ color space to the $\text{YCrCb}$ color space, and in
 \href{https://en.wikipedia.org/wiki/JPEG_XR#Description}{JPEG XR}, the
-destination color space is $\text{YCoCg}$. In these luma-based color
-spaces, $\text{Y}$ represents the luma (coefficient) of the pixel. The
-other two coefficients form the chroma. Note that the chrominance of a
-pixel is determined by two chromas.
+destination color space is $\text{YCoCg}$. In these luma/chroma-based
+color spaces, (the symbol) $\text{Y}$ represents the luma
+(coefficient) of the pixel. The other two coefficients form the
+chroma. Note that the chrominance of a pixel is determined by two
+chromas.
 
-\subsection*{Channels and subbands (a word about notation)}
+\subsection{Components, channels, coefficients and subbands}
 
-Apart from using the terms of \emph{component} and \emph{coefficient},
-we will use the word \emph{channel} to refer to the same index
-component of all the pixels of an image (or video), and \emph{subband}
-to denote the same index coefficient generated after the
-transformation of all pixels of an image (or video). For example, the
-$\mathbf{R}$ channel of a color image corresponds to the
-\emph{monochromatic} image\footnote{That can be considered as a
-  \emph{single-channel}/\emph{mono-component}/\emph{scalar} image.}
-generated by the $\text{R}$ component of all pixels of the image, and,
-for example, the $\mathbf{Y}$ subband of a transformed image
-corresponds to the $\text{Y}$ coefficients of all pixels (also a
-``monochromatic'' image).
-
-In image and video coding, most color transforms map 3 channels
-($\text{RGB}$) into 3 subbands.
+In image and video coding, most color transforms map 3 (color)
+\emph{components} ($\text{RGB}$) into 3 \emph{coefficients}. It is
+common to call to the same component(-index) of all the pixels of an
+image: \emph{channel} (for eample, the $\text{R}$-channel). In most
+bibliography, the same coefficient(-index) of all the coefficients of
+a transformed image is denoted by a \emph{subband} (for example, the
+$Y$-subband).
 
 \section{Benefits of color transforms}
 
@@ -98,29 +92,30 @@ two key advantages:
   reduced number of them (aspect related to the so-called coding gain
   of the transform~\cite{vruiz__transform_coding}). In our case, where
   the transformations are between color spaces, in the transform
-  domain most of the energy is concentrated in the $\mathbf{Y}$
+  domain, most of the energy is concentrated in the $\text{Y}$
   subband. As a consequence of this, usually, \textbf{the
     entropy~\cite{vruiz__information_theory} is decreased} and
   \textbf{the dynamic range of the signal is increased}. The first
-  fact means that we will encode the same information using less
-  bit-rate, and the second that we will be able to use a higher range
-  of quantization step
+  fact means that we can encode the same information using less
+  bit-rate, and the second, that we can use a higher range of
+  quantization step
   sizes~\cite{vruiz__scalar_quantization,sayood2017introduction},
   increasing also the number of feasible points in the RD
   curve~\cite{vruiz__information_theory}.
-\item \textbf{Luma/chroma analysis:} Our visual system is more
-  sensitive in terms of spatial resolution to the luma
-  (``black and white'') information than to the chroma (``color'')
-  information, which basically means that we can quantize more the
+\item \textbf{Luma/chroma perceptual analysis:} Our visual system is
+  more sensitive in terms of spatial resolution to the luma (``black
+  and white'') information than to the chroma (``color'') information,
+  which basically means that we can quantize more the
   chroma\footnote{Notice again, that we will study this effect in a
-  posterior session.} without generating perceptual distortion. 
+    posterior session.} without generating perceptual distortion.
 \end{enumerate}
 
 \section{Scalar quantization in the color transform domain}
 
-If the color transform is orthogonal or biorthogonal, that is, the
-luma and the cromas are independent features of the
-signal\footnote{The luna does not define the chroma and viceversa.},
+If the color transform is
+\href{https://en.wikipedia.org/wiki/Orthogonal_transformation}{orthogonal},
+(that is, the luma and the cromas are independent features of the
+signal\footnote{The luna does not define the chroma and viceversa.}),
 the quantization noise generated in the subbands is additive respect
 to the reconstructed signal~\cite{burger2016digital}. Therefore, from
 a pure RD point of view, the quantization step sizes for each subband
@@ -141,8 +136,8 @@ for the quantization step sizes
   \Delta_{\text{Y}} = \Delta_{\text{U}} = \Delta_{\text{V}},
   \label{eq:optimal_delta}
 \end{equation}
-and therefore the RDO~\cite{vruiz__information_theory} can be
-ignored. In the notebook
+and therefore the Rate-Distortion Optimization
+(RDO)~\cite{vruiz__information_theory} can be ignored. In the notebook
 \href{https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/RGB_SQ/RGB_SQ.ipynb}{Scalar
   Quantization of RGB images} we can explore (at least visually) the
 grade of compilance of Eq.~\eqref{eq:optimal_lambda}.
@@ -151,6 +146,7 @@ grade of compilance of Eq.~\eqref{eq:optimal_lambda}.
 \begin{enumerate}
 \item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/YCrCb.ipynb}{YCrCb.ipynb}: Notebook showing the use of YCrCb.py.
 \item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/YCoCg.ipynb}{YCoCg.ipynb}: Notebook showing the use of YCoCg.py.
+\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/YCoCg.ipynb}{color-DCT.ipynb}: Notebook showing the use of color-DCT.py.
 \item \href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/RGB_VQ.ipynb}{Vector
     Quantization (in the color domain) of a RGB image}.
 \item \href{https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/spatial_color_VQ.ipynb}{Vector
@@ -160,13 +156,6 @@ grade of compilance of Eq.~\eqref{eq:optimal_lambda}.
 \item \href{https://github.com/vicente-gonzalez-ruiz/color_transforms/blob/main/docs/YCrCb/YCrCb_over_RGB.ipynb}{Removing RGB redundancy with the $\text{YCrCb}$ transform}.
 \end{enumerate}
   
-\section*{To-Do}
-\begin{enumerate}
-\item Create a new module named \texttt{color\_DCT.py} that use the
-  $\text{DCT}$ to exploit the $\text{RGB}$ redundancy in
-  images. Complexity 4.
-\end{enumerate}
-
 \section{References}
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline

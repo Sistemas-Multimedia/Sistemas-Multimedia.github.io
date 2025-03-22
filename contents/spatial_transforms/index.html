@@ -19,13 +19,13 @@
 
 <h2 class='titleHead'><a href='https://sistemas-multimedia.github.io/contents/spatial_transforms/'>Spatial Transforms</a></h2>
  <div class='author'><a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 28, 2024</span></div>
+<div class='date'><span class='ecrm-1200'>March 22, 2025</span></div>
    </div>
    <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
     <span class='sectionToc'>1 <a href='#x1-20001' id='QQ2-1-2'>Spatial decorrelation</a></span>
 <br />    <span class='sectionToc'>2 <a href='#x1-30002' id='QQ2-1-3'>Benefits of spatial transforms</a></span>
-<br />    <span class='sectionToc'>3 <a href='#x1-40003' id='QQ2-1-4'>Scalar quantization and rate/distortion optimization in the transform domain</a></span>
+<br />    <span class='sectionToc'>3 <a href='#x1-40003' id='QQ2-1-4'>Scalar quantization and rate-distortion optimization in the transform domain</a></span>
 <br />    <span class='sectionToc'>4 <a href='#x1-50004' id='QQ2-1-5'>Learned transforms</a></span>
 <br />    <span class='sectionToc'>5 <a href='#x1-60005' id='QQ2-1-6'>2D-partitioning</a></span>
 <br />    <span class='sectionToc'>6 <a href='#x1-70006' id='QQ2-1-7'>Resources</a></span>
@@ -41,9 +41,9 @@ in most of the images (and video frames). For example, some textures of an image
 can occur more than once (in the same image). Also, usually happens that neighbor
 pixels have similar values.
 </p><!-- l. 54 --><p class='indent'>   While color transforms are pixel-wise computations, spatial transforms are
-image-wise. This means that the transform inputs an image (of pixels) and
-outputs a matrix of coefficients, which generally express the resemblance
-between the image and a set of basis functions, usually orthogonal.
+image-wise (or at least, block-wise). This means that the transform inputs an image
+(of pixels) and outputs a matrix of coefficients, which generally express the
+resemblance between the image and a set of basis functions, usually orthogonal.
 For example, after using the 2D-DCT (two-dimensional Discrete Cosine
 Transform) <span class='cite'>[<a href='#Xvruiz__DCT'>2</a>]</span>, (the index of) each coefficient represents a different spatial
                                                                   
@@ -82,7 +82,7 @@ level.
                                                                   
 
                                                                   
-   <h3 class='sectionHead'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Scalar quantization and rate/distortion optimization in the transform
+   <h3 class='sectionHead'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Scalar quantization and rate-distortion optimization in the transform
 domain</h3>
 <!-- l. 109 --><p class='noindent'>Scalar quantization is efficient in the transform domain because the coefficients
 are decorrelated. The next logical step (after quantization) is the entropy
@@ -108,14 +108,14 @@ pre-defined.
 </p><!-- l. 142 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>5   </span> <a id='x1-60005'></a>2D-partitioning</h3>
-<!-- l. 144 --><p class='noindent'>Depending on the content of the image, it can be necessary to divide the image into
+<!-- l. 144 --><p class='noindent'>Depending on the content of an image, it can be necessary to divide the image into
 2D chunks (usually called <span class='ecti-1000'>tiles </span>or <span class='ecti-1000'>blocks</span>), and encode each chunk independently. In
 general:
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-6002x1'>Tiles are used when the image is made up of very different areas (for
      example, with text and natural content). Tiles are usually rectangular but
      can have any size, and are usually defined attending to RD or perceptual
-     issues (for example, text is not well compressed by lossy configurations).
+     issues (for example, text is not well compressed by lossy codecs).
      </li>
 <li class='enumerate' id='x1-6004x2'>Blocks are smaller than tiles and, in most of cases, squared. The block
      partition can be adaptive and, in this case, should be found using RDO
@@ -147,26 +147,26 @@ general:
    <h3 class='likesectionHead'><a id='x1-8000'></a>To-Do</h3>
 <!-- l. 188 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-8002x1'>Using RDO, determine the optimal DWT basis (defined in <a href='https://pywavelets.readthedocs.io/en/latest/'>PyWavelets</a>)
-     in the codec <span class='ectt-1000'>2D-DWT.py</span>. Complexity 4.
+<li class='enumerate' id='x1-8002x1'>Add a new option to <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/2D-DWT.py'>the VCF codec <span class='ectt-1000'>2D-DWT.py</span></a>, that throught RDO,
+     determine the optimal DWT basis (defined in <a href='https://pywavelets.readthedocs.io/en/latest/'>PyWavelets</a>). <span class='ecbx-1000'>2 points</span>.
      </li>
-<li class='enumerate' id='x1-8004x2'>Create a new image codec (similar to <span class='ectt-1000'>2D-DCT.py</span>) where the 2D-DCT is
-     replaced by an ANN (artificial neural network). The forward transform
+<li class='enumerate' id='x1-8004x2'>Create a new VCF image codec (similar to <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/2D-DCT.py'><span class='ectt-1000'>2D-DCT.py</span></a>) where the 2D-DCT
+     is replaced by an ANN (artificial neural network). The forward transform
      should maximize the concentration of energy, and the inverse transform
-     should restore the original block. To avoid transmit the coefficients of the
-     ANN, use a model previously trained to compute the 2D-DCT, and retrain
-     the model using the previously encoded blocks of the image. For example,
-     when encoding the second block, use the first block to fine-tune the model.
-     For the third block, use the second block to retrain the model, and so on.
-     Complexity 16.
+     should restore the original block. To avoid transmit the coefficients of
+     the ANN, use a model previously trained to compute the 2D-DCT, and
+     retrain the model using only the previously encoded block of the image. For
+     example, when encoding the second block, use the first block to fine-tune
+     the model. For the third block, use the second block to retrain the model,
+     and so on. <span class='ecbx-1000'>10 points</span>.
      </li>
 <li class='enumerate' id='x1-8006x3'>Create a new image codec (similar to <span class='ectt-1000'>2D-DWT.py</span>) where the coefficients
      of the filters used in the 2D-DWT are determined by an ANN trained
-     to maximize the transform gain. Initially use the coefficients of the filters
-     of a a well-known DWT kernel, and in subsequent iterations (levels) of
-     the transform used the previously analyzed spatial resolution levels to
-     fine-tune the coefficients. Complexity 16.</li></ol>
-<!-- l. 220 --><p class='noindent'>
+     to maximize the transform gain (energy concentration). Initially use the
+     coefficients of the filters of a well-known DWT kernel, and in subsequent
+     iterations (levels) of the transform used the previously analyzed spatial
+     resolution levels to fine-tune the coefficients. <span class='ecbx-1000'>10 points</span>.</li></ol>
+<!-- l. 224 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>7   </span> <a id='x1-90007'></a>References</h3>
    <div class='thebibliography'>

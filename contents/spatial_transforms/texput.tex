@@ -52,18 +52,18 @@ an image can occur more than once (in the same image). Also, usually
 happens that neighbor pixels have similar values.
 
 While color transforms are pixel-wise computations, spatial transforms
-are image-wise. This means that the transform inputs an image (of
-pixels) and outputs a matrix of coefficients, which generally express
-the resemblance between the image and a set of basis functions,
-usually orthogonal. For example, after using the 2D-DCT
-(two-dimensional Discrete Cosine Transform)~\cite{vruiz__DCT}, (the
-index of) each coefficient represents a different spatial
-frequency\footnote{That depends on the position of the coefficient in
-  the transformed domain.} and its value, the amount of the
-corresponding basis found in the image. In the case of the dyadic
-2D-DWT~\cite{vruiz__DWT}, the coefficients ``speak'' additionally
-about a spatial resolution in the image pyramid and position inside of
-the pyramid level.
+are image-wise (or at least, block-wise). This means that the
+transform inputs an image (of pixels) and outputs a matrix of
+coefficients, which generally express the resemblance between the
+image and a set of basis functions, usually orthogonal. For example,
+after using the 2D-DCT (two-dimensional Discrete Cosine
+Transform)~\cite{vruiz__DCT}, (the index of) each coefficient
+represents a different spatial frequency\footnote{That depends on the
+  position of the coefficient in the transformed domain.} and its
+value, the amount of the corresponding basis found in the image. In
+the case of the dyadic 2D-DWT~\cite{vruiz__DWT}, the coefficients
+``speak'' additionally about a spatial resolution in the image pyramid
+and position inside of the pyramid level.
 
 %}}}
 
@@ -103,7 +103,7 @@ Most spatial transforms provide:
 
 %}}}
 
-\section{Scalar quantization and rate/distortion optimization in the transform domain}
+\section{Scalar quantization and rate-distortion optimization in the transform domain}
 %{{{
 
 Scalar quantization is efficient in the transform domain because the
@@ -141,7 +141,7 @@ transforms are pre-defined.
 
 \section{2D-partitioning}
 
-Depending on the content of the image, it can be necessary to divide
+Depending on the content of an image, it can be necessary to divide
 the image into 2D chunks (usually called \emph{tiles} or
 \emph{blocks}), and encode each chunk independently. In general:
 \begin{enumerate}
@@ -149,7 +149,7 @@ the image into 2D chunks (usually called \emph{tiles} or
   (for example, with text and natural content). Tiles are usually
   rectangular but can have any size, and are usually defined attending
   to RD or perceptual issues (for example, text is not well compressed by
-  lossy configurations).
+  lossy codecs).
 \item Blocks are smaller than tiles and, in most of cases,
   squared. The block partition can be adaptive and, in this case,
   should be found using RDO (Rate Distortion Optimization)\footnote{If
@@ -186,26 +186,30 @@ the image into 2D chunks (usually called \emph{tiles} or
 %{{{
 
 \begin{enumerate}
-\item Using RDO, determine the optimal DWT basis (defined in
-  \href{https://pywavelets.readthedocs.io/en/latest/}{PyWavelets}) in
-  the codec \texttt{2D-DWT.py}. Complexity 4.
-\item Create a new image codec (similar to \texttt{2D-DCT.py}) where
-  the 2D-DCT is replaced by an ANN (artificial neural network). The
-  forward transform should maximize the concentration of energy, and
-  the inverse transform should restore the original block. To avoid
-  transmit the coefficients of the ANN, use a model previously trained
-  to compute the 2D-DCT, and retrain the model using the previously
-  encoded blocks of the image. For example, when encoding the second
-  block, use the first block to fine-tune the model. For the third
-  block, use the second block to retrain the model, and so
-  on. Complexity 16.
+\item Add a new option to
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/2D-DWT.py}{the
+    VCF codec \texttt{2D-DWT.py}}, that throught RDO, determine the
+  optimal DWT basis (defined in
+  \href{https://pywavelets.readthedocs.io/en/latest/}{PyWavelets}). \textbf{2
+    points}.
+\item Create a new VCF image codec (similar to
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/2D-DCT.py}{\texttt{2D-DCT.py}})
+  where the 2D-DCT is replaced by an ANN (artificial neural
+  network). The forward transform should maximize the concentration of
+  energy, and the inverse transform should restore the original
+  block. To avoid transmit the coefficients of the ANN, use a model
+  previously trained to compute the 2D-DCT, and retrain the model
+  using only the previously encoded block of the image. For example, when
+  encoding the second block, use the first block to fine-tune the
+  model. For the third block, use the second block to retrain the
+  model, and so on. \textbf{10 points}.
 \item Create a new image codec (similar to \texttt{2D-DWT.py}) where
   the coefficients of the filters used in the 2D-DWT are determined by
-  an ANN trained to maximize the transform gain. Initially use the
-  coefficients of the filters of a a well-known DWT kernel, and in
-  subsequent iterations (levels) of the transform used the previously
-  analyzed spatial resolution levels to fine-tune the
-  coefficients. Complexity 16.
+  an ANN trained to maximize the transform gain (energy
+  concentration). Initially use the coefficients of the filters of a
+  well-known DWT kernel, and in subsequent iterations (levels) of the
+  transform used the previously analyzed spatial resolution levels to
+  fine-tune the coefficients. \textbf{10 points}.
 %\item If the right coefficients in the DWT domain are multiplied by a
 %  power of 2 before quantization, we can define a ROI of arbitrary
 %  shape at compression time~\cite{vruiz__JPEG2000}. Include this
