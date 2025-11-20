@@ -23,12 +23,12 @@ the definition of
 \href{https://en.wikipedia.org/wiki/Entropy_(information_theory)}{entropy}
 in the context of the
 \href{https://en.wikipedia.org/wiki/Information_theory}{Information
-  Theory}~\cite{vruiz__information_theory}. In this area, the entropy
+  Theory}~\cite{vruiz__information_theory}. In this field, the entropy
 quantifies the average amount of
 \href{https://en.wikipedia.org/wiki/Information}{information}
 represented by a data set, so that the higher the entropy, the better
-the efficiency of such representation
-(\href{https://en.wikipedia.org/wiki/Data}{data}).
+the efficiency of such
+\href{https://en.wikipedia.org/wiki/Data}{representation}.
 
 \section{Why EC?}
 All data (text, audio, image, video, etc.) compression techniques rely
@@ -41,7 +41,7 @@ on EC to achieve an effective reduction of bits (of data). For example,
 
 \section{A classification of entropy encoders}
 
-General speaking, data are sequences of
+Broadly speaking, data are sequences of
 \href{https://en.wikipedia.org/wiki/Symbol}{symbols}. There are
 basically two types of entropy encoders depending on how the symbols
 are processed:
@@ -81,7 +81,7 @@ leaves, without uncertainty. The Huffman tree satisfies that
 \end{equation}
 where $l(c(s))$ is the length of the (Huffman) code-word, usually in
 bits of data, assigned to the symbol $s$, and $I(s)$ is the amount of
-information represented by $s$, measured bits of
+information represented by $s$, measured in bits of
 information~\cite{vruiz__information_theory}.
 
 Notice that the minimum number of bits that can be used for
@@ -97,33 +97,33 @@ action very frequent when using
 
 \subsection*{Resources}
 \begin{enumerate}
-\item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/Huffman.ipynb}{static Huffman in VCF}.
 \item \href{https://www.inference.org.uk/mackay/python/compress/#Huff}{Compression algorithms in Python}.
 \item \href{https://favtutor.com/blogs/huffman-coding}{Huffman Coding Implementation in Python with Examples}.
 \item \href{https://www.programiz.com/dsa/huffman-coding}{Huffman Coding}.
 \item \href{https://en.wikipedia.org/wiki/Prediction_by_partial_matching}{Prediction by Partial Matching}.
 \item \href{https://en.wikipedia.org/wiki/Lossless_JPEG}{Lossless JPEG}.
 \item \href{https://en.wikipedia.org/wiki/Context-adaptive_variable-length_coding}{Context-Adaptive Variable-Length Coding}.
+\item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/Huffman.ipynb}{static Huffman in VCF}.
 \end{enumerate}
 
 \subsection*{To do}
-\begin{itemize}
-\item Create a new module named \texttt{adaptive\_Huffman.py} that use
-  a context-based adaptive probabilistic model
-  \cite{nelson96datacompression} to be used in VCF, where the user can
-  select \emph{the order of the model} (how many previously encoded
-  symbols use the model to generate the probability of the symbol that
-  is going to be encoded), and HC is used as an entropy encoder. The
-  run-time and the memory required should be as small as
-  possible. \textbf{5 points}.
-\end{itemize}
+\begin{enumerate}
+\item Create a new module (to be used in VCF,) named
+  \texttt{adaptive\_Huffman.py}, that use a \emph{context-based
+  adaptive probabilistic model} \cite{nelson96datacompression}, and
+  HC. The user should be able to select \emph{the order of the model}
+  (how many previously encoded symbols use the model to generate the
+  probability of the symbol that is going to be encoded).
+\end{enumerate}
 
 \section{\href{https://en.wikipedia.org/wiki/Arithmetic_coding}{Arithmetic
     Coding (AC)}}
 
-In an arithmetic codec~\cite{vruiz__arithmetic_coding,ruiz2000compresion}, the number of
-bits of data that are used for representing symbols match
-exactly the number of bits of information provided by the symbols, i.e,
+In an arithmetic
+codec~\cite{vruiz__arithmetic_coding,ruiz2000compresion}, the number
+of bits of data that are used for representing the symbols matchrd
+exactly with the number of bits of information provided by the
+symbols, i.e,
 \begin{equation}
   l(c(s)) = I(s).
 \end{equation}
@@ -140,7 +140,11 @@ code) and an arithmetic code, vanishes.
 \item
   \href{https://github.com/vicente-gonzalez-ruiz/arithmetic_coding/blob/master/src/arithmetic_coding.ipynb}{Arithmetic
     Coding (notebook)}.
-\item \href{https://www.nayuki.io/page/reference-arithmetic-coding}{Reference Arithmetic Coding}/\href{https://github.com/nayuki/Reference-arithmetic-coding}{Reference Arithmetic Coding}.
+\item
+  \href{https://www.nayuki.io/page/reference-arithmetic-coding}{Reference
+    Arithmetic Coding} --
+  \href{https://github.com/nayuki/Reference-arithmetic-coding}{Reference
+    Arithmetic Coding (GitHub)}.
 \item \href{https://www.inference.org.uk/mackay/python/compress/#AC}{Compression Algorithms in Python}.
 \item \href{https://en.wikipedia.org/wiki/Prediction_by_partial_matching}{Prediction by Partial Matching}.
 \item \href{https://en.wikipedia.org/wiki/Lossless_JPEG}{Lossless JPEG}.
@@ -148,15 +152,15 @@ code) and an arithmetic code, vanishes.
 \end{enumerate}
 
 \subsection*{To do}
-\begin{itemize}
+\begin{enumerate}
 \item Create a new module named \texttt{arith.py} that implement a
   static probabilistic model and Arithmetic Coding
-  \cite{nelson96datacompression} to be used in VCF. \textbf{5 points}.
+  \cite{nelson96datacompression} to be used in VCF.
 \item Create a new module named \texttt{adaptive\_arith.py} that use
   a context-based adaptive probabilistic model and Arithmetic Coding
   \cite{nelson96datacompression}, where the user can select the order
-  of the model. \textbf{5 points}.
-\end{itemize}
+  of the model.
+\end{enumerate}
 
 \section{\href{https://zlib.net/}{\texttt{zlib}}}
 
@@ -166,7 +170,7 @@ is based on LZ77~\cite{vruiz__LZW,ruiz2000compresion} and Huffman
 coding. Therefore, \texttt{zlib} exploits the repetition of symbols
 and also, the 0-order statistical redundancy\footnote{In other
   words, that some symbols are more frequently than others.}. One of
-the main advantages of \texttt{zlib} is that is quite fast compared to
+the main advantages of \texttt{zlib} is that it is quite fast compared to
 symbol encoders such as HC and AC.
 
 Nowadays, \texttt{zlib} is a keystone in data manipulation because it
@@ -178,7 +182,7 @@ is the basic library used in such important applications as
 \begin{enumerate}
 \item \href{https://docs.python.org/3/library/zlib.html}{\texttt{zlib}
     — Compression compatible with gzip}.
-\item \href{https://en.wikipedia.org/wiki/Lossless_JPEG}{Lossless JPEG}.
+%\item \href{https://en.wikipedia.org/wiki/Lossless_JPEG}{Lossless JPEG}.
 \item Usage of
   \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/z_lib.ipynb}{z\_lib
     in VCF}.
