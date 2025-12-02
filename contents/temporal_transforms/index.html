@@ -7,7 +7,7 @@
 <link href='index.css' rel='stylesheet' type='text/css' /> 
 <meta content='index.tex' name='src' /> 
 <script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
- <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+<script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 </head><body>
    <div class='maketitle'>
                                                                   
@@ -18,24 +18,22 @@
                                                                   
 
 <h2 class='titleHead'>Temporal Transforms</h2>
- <div class='author'><a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>- </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>- </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>March 22, 2025</span></div>
+ <div class='author'> <a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>-  </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
+<div class='date'><span class='ecrm-1200'>December 2, 2025</span></div>
    </div>
-   <h3 class='likesectionHead'><a id='x1-1000'></a>Contents</h3>
+   <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
-    <span class='sectionToc'>1 <a href='#x1-20001' id='QQ2-1-2'>Temporal correlation</a></span>
-<br />    <span class='sectionToc'>2 <a href='#x1-30002' id='QQ2-1-3'>Motion Compensation (MC)</a></span>
-<br />    <span class='sectionToc'>3 <a href='#x1-40003' id='QQ2-1-4'>Motion Estimation (ME)</a></span>
-<br />    <span class='sectionToc'>4 <a href='#x1-50004' id='QQ2-1-5'>GOF-ing</a></span>
-<br />    <span class='sectionToc'>5 <a href='#x1-60005' id='QQ2-1-6'>Block-based MC and RDO</a></span>
-<br />    <span class='sectionToc'>6 <a href='#x1-70006' id='QQ2-1-7'>Frame types</a></span>
-<br />    <span class='sectionToc'>7 <a href='#x1-80007' id='QQ2-1-8'>Resources</a></span>
-<br />    <span class='sectionToc'>8 <a href='#x1-90008' id='QQ2-1-9'>To-Do</a></span>
-<br />    <span class='sectionToc'>9 <a href='#x1-100009' id='QQ2-1-10'>References</a></span>
+   <span class='sectionToc'>1 <a href='#temporal-correlation' id='QQ2-1-2'>Temporal correlation</a></span>
+<br />   <span class='sectionToc'>2 <a href='#motion-compensation-mc' id='QQ2-1-3'>Motion Compensation (MC)</a></span>
+<br />   <span class='sectionToc'>3 <a href='#motion-estimation-me' id='QQ2-1-4'>Motion Estimation (ME)</a></span>
+<br />   <span class='sectionToc'>4 <a href='#gofing' id='QQ2-1-5'>GOF-ing</a></span>
+<br />   <span class='sectionToc'>5 <a href='#blockbased-mc-and-rdo' id='QQ2-1-6'>Block-based MC and RDO</a></span>
+<br />   <span class='sectionToc'>6 <a href='#frame-types' id='QQ2-1-7'>Frame types</a></span>
+<br />   <span class='sectionToc'>7 <a href='#resources' id='QQ2-1-8'>Resources</a></span>
+<br />   <span class='sectionToc'>8 <a href='#references' id='QQ2-1-9'>References</a></span>
    </div>
-<!-- l. 12 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Temporal correlation</h3>
+   
+   <h3 class='sectionHead' id='temporal-correlation'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Temporal correlation</h3>
 <!-- l. 15 --><p class='noindent'>In general, neighbor <span class='ecti-1000'>frames </span>(or images) in (video) <span class='ecti-1000'>sequences </span>exhibit a high temporal
 correlation degree that can be exploited to improve significantly the RD curves. This
 correlation produces a temporal redundancy that can be removed using a (temporal)
@@ -45,13 +43,13 @@ frames<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='tex
 and outputs at least one <span class='ecti-1000'>residual </span>(frame) in which the residual pixels have a higher
 dynamic range but, in general, also a lower entropy (see the spatial transform
 theory).
+   
                                                                   
 
                                                                   
-</p><!-- l. 29 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Motion Compensation (MC)</h3>
-<!-- l. 32 --><p class='noindent'>Most video coding standards use <a href='https://en.wikipedia.org/wiki/Motion_compensation'>Motion Compensation (MC)</a> to generate the residual
+   <h3 class='sectionHead' id='motion-compensation-mc'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Motion Compensation (MC)</h3>
+<!-- l. 32 --><p class='noindent'>Most video coding standards use  <a href='https://en.wikipedia.org/wiki/Motion_compensation'>Motion Compensation (MC)</a> to generate the residual
 frames <span class='cite'>[<a href='#Xvruiz__MC'>2</a>]</span>. MC exploits the temporal correlation and reduces the entropy of the
 residuals<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-3001f2'></a>.
 Basically, MC consists in subtracting from each original frame a
@@ -60,9 +58,9 @@ avaliable<span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='
 at the decoder. Notice that, after using MC, the number of
 residual pixels is equal to the number of pixels in the compensated
 frame.<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-3005f4'></a>
-</p><!-- l. 47 --><p class='noindent'>
+   
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Motion Estimation (ME)</h3>
+   <h3 class='sectionHead' id='motion-estimation-me'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Motion Estimation (ME)</h3>
 <!-- l. 50 --><p class='noindent'>To compensate the motion we need first to
 estimate<span class='footnote-mark'><a href='#fn5x0' id='fn5x0-bk'><sup class='textsuperscript'>5</sup></a></span><a id='x1-4001f5'></a>
 it using Motion Estimation (ME) techniques <span class='cite'>[<a href='#Xvruiz__ME'>3</a>]</span>. Using the motion fields generated
@@ -72,9 +70,9 @@ that in most of the video coding standards, ME is only performed by the encoder
 because it is a costly operation, and for this reason, the motion vector fields must be
 transmitted to the decoder. This responds to the idea of “compress one, decompress
 many”.
-</p><!-- l. 66 --><p class='noindent'>
+   
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>4   </span> <a id='x1-50004'></a>GOF-ing</h3>
+   <h3 class='sectionHead' id='gofing'><span class='titlemark'>4   </span> <a id='x1-50004'></a>GOF-ing</h3>
 <!-- l. 68 --><p class='noindent'>The RD performance of ME/MC depends on the amount of temporal redundancy in the
 sequence. If such an amount is low, it can be more RD-efficient to interrupt the (ME/)MC
 process. The set of consecutive frames in which MC is active is usually known as a
@@ -92,9 +90,9 @@ not received some data). When a new GOF starts, the propagation of such errors i
 
                                                                   
 stopped.
-</p><!-- l. 86 --><p class='noindent'>
+   
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Block-based MC and RDO</h3>
+   <h3 class='sectionHead' id='blockbased-mc-and-rdo'><span class='titlemark'>5   </span> <a id='x1-60005'></a>Block-based MC and RDO</h3>
 <!-- l. 88 --><p class='noindent'>The MC schemes used in most video coding standards compensate blocks of pixels <span class='cite'>[<a href='#Xvruiz__ME'>3</a>]</span>.
 In this context, depending of the block decision mode implemented in the RDO
 procedure<span class='footnote-mark'><a href='#fn8x0' id='fn8x0-bk'><sup class='textsuperscript'>8</sup></a></span><a id='x1-6001f8'></a>,
@@ -107,80 +105,57 @@ can be higher than one, a number also controlled by RDO. In the intra-coding mod
 all the frames are I-type because otherwise we could not reset the propagation
 errors. In Motion Compensated Temporal Filtering <span class='cite'>[<a href='#Xvruiz__MCTF'>1</a>]</span>, the frames are I or
 B.
-</p><!-- l. 104 --><p class='noindent'>
+   
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Frame types</h3>
+   <h3 class='sectionHead' id='frame-types'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Frame types</h3>
 <!-- l. 106 --><p class='noindent'>Depending on the type of blocks used in the frames, we have different types of
 frames: I, P, and B <span class='cite'>[<a href='#Xvruiz__MC'>2</a>]</span>. In a I-frame, all blocks are I-type. In a P frame, I-
 and P-type blocks can be found. In a B-frame all types of blocks can be
 used.
-</p><!-- l. 111 --><p class='noindent'>
+   
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Resources</h3>
+   <h3 class='sectionHead' id='resources'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Resources</h3>
 <!-- l. 112 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-8002x1'><a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/III.ipynb'>III.py</a> in VCF.
+<li class='enumerate' id='x1-8002x1'> <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/III.ipynb'>III.py</a> in VCF.
      </li>
-<li class='enumerate' id='x1-8004x2'><a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/full_search_block_ME.ipynb'>Full search block-based ME (Motion Estimation)</a>.
+<li class='enumerate' id='x1-8004x2'> <a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/full_search_block_ME.ipynb'>Full search block-based ME (Motion Estimation)</a>.
                                                                   
 
                                                                   
      </li>
-<li class='enumerate' id='x1-8006x3'><a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/full_search_dense_ME.ipynb'>Full search dense (1x1) ME</a>.
+<li class='enumerate' id='x1-8006x3'> <a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/full_search_dense_ME.ipynb'>Full search dense (1x1) ME</a>.
      </li>
-<li class='enumerate' id='x1-8008x4'><a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/farneback_ME.ipynb'>Farnebäck’s motion estimation</a>.
+<li class='enumerate' id='x1-8008x4'> <a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/farneback_ME.ipynb'>Farnebäck’s motion estimation</a>.
      </li>
-<li class='enumerate' id='x1-8010x5'><a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation/blob/master/introducing_IPPP.ipynb'>Introducing the Low-delay (IPP...) Mode</a>.
+<li class='enumerate' id='x1-8010x5'> <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation/blob/master/introducing_IPPP.ipynb'>Introducing the Low-delay (IPP...) Mode</a>.
      </li>
-<li class='enumerate' id='x1-8012x6'><a href='https://github.com/Sistemas-Multimedia/MRVC'>Multi-Resolution Video Coding (MRVC)</a>.</li></ol>
-<!-- l. 121 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead'><span class='titlemark'>8   </span> <a id='x1-90008'></a>To-Do</h3>
-<!-- l. 124 --><p class='noindent'>
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-9002x1'>Create  a  VCF  video  codec  similar  to  <span class='ectt-1000'>III.py</span>,  but  using  an  “IPP...”
-     scheme without ME (or assuming that all the motion vectors are zero).
-     RDO (Rate/Distortion Optimization) should be considered to determine
-     the block type. A first approximation to RDO can use the number of
-     coefficients different to zero (or its entropy) to decide is the block finally
-     is I or P. <span class='ectt-1000'>8 points</span>.
-     </li>
-<li class='enumerate' id='x1-9004x2'>Create a video codec similar to the previous one, but using ME and MC
-     controlled by RDO (the block-type should be decided using a RD criteria).
-     <span class='ectt-1000'>9 points</span>.
-                                                                  
-
-                                                                  
-     </li>
-<li class='enumerate' id='x1-9006x3'>Create a video codec similar to the previous one, but using an “IBB...”
-     scheme. <span class='ectt-1000'>10 points</span>.
-     </li>
-<li class='enumerate' id='x1-9008x4'>Create a video codec similar to the previous one, but using an MCTF
-     scheme. Notice that in this case, the reference frames are pre-defined (and
-     usually are always 2). <span class='ectt-1000'>10 points</span>.</li></ol>
-<!-- l. 144 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead'><span class='titlemark'>9   </span> <a id='x1-100009'></a>References</h3>
+<li class='enumerate' id='x1-8012x6'> <a href='https://github.com/Sistemas-Multimedia/MRVC'>Multi-Resolution Video Coding (MRVC)</a>.</li></ol>
+   
+   <h3 class='sectionHead' id='references'><span class='titlemark'>8   </span> <a id='x1-90008'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
- [1]<span class='bibsp'>   </span></span><a id='Xvruiz__MCTF'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensated_temporal_filtering'>Motion Compensated Temporal Filtering (MCTF)</a>.
+ [1]<span class='bibsp'>   </span></span><a id='Xvruiz__MCTF'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensated_temporal_filtering'>Motion Compensated Temporal Filtering (MCTF)</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [2]<span class='bibsp'>   </span></span><a id='Xvruiz__MC'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation'>Motion Compensation</a>.
+ [2]<span class='bibsp'>   </span></span><a id='Xvruiz__MC'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation'>Motion Compensation</a>.
    </p>
    <p class='bibitem'><span class='biblabel'>
- [3]<span class='bibsp'>   </span></span><a id='Xvruiz__ME'></a>V. González-Ruiz. <a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation'>Motion Estimation</a>.
+ [3]<span class='bibsp'>   </span></span><a id='Xvruiz__ME'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation'>Motion Estimation</a>.
 </p>
    </div>
+                                                                  
+
+                                                                  
    <div class='footnotes'><a id='x1-2002x1'></a>
 <!-- l. 23 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>With pixels or coefficients, depending on the current domain in which the frame has been
-</span><span class='ecrm-0800'>represented.</span></p><a id='x1-3002x2'></a>
+represented.</span></p><a id='x1-3002x2'></a>
 <!-- l. 37 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>The better the prediction, the lower the entropy of the residuals.</span></p><a id='x1-3004x2'></a>
 <!-- l. 40 --><p class='indent'>     <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><span class='ecrm-0800'>In order to make a reversible process.</span></p><a id='x1-3006x2'></a>
 <!-- l. 43 --><p class='indent'>     <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><span class='ecrm-0800'>At least, when we compensate in the image domain.</span></p><a id='x1-4002x3'></a>
 <!-- l. 54 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>In most of the situations, the determination of the true motion of the objects in a real scene
-</span><span class='ecrm-0800'>is a ill-posed problem because it is impossible to find it using only a sequence of 2D images. A
-</span><span class='ecrm-0800'>different situation is when we use al least 2 cameras.</span></p><a id='x1-5002x4'></a>
+is a ill-posed problem because it is impossible to find it using only a sequence of 2D images. A
+different situation is when we use al least 2 cameras.</span></p><a id='x1-5002x4'></a>
 <!-- l. 72 --><p class='indent'>     <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>Some standards also use GOP (Group Of Pictures).</span></p><a id='x1-5004x4'></a>
 <!-- l. 78 --><p class='indent'>     <span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>Specifically, constant bit-rate encodings.</span></p><a id='x1-6002x5'></a>
 <!-- l. 91 --><p class='indent'>     <span class='footnote-mark'><a href='#fn8x0-bk' id='fn8x0'><sup class='textsuperscript'>8</sup></a></span><span class='ecrm-0800'>Obviously, the part of the RDO procedure that controls the block-type.</span></p>                 </div>
