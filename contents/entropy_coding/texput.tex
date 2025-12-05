@@ -182,9 +182,10 @@ is the basic library used in such important applications as
 \begin{enumerate}
 \item \href{https://docs.python.org/3/library/zlib.html}{\texttt{zlib}
     — Compression compatible with gzip}.
-%\item \href{https://en.wikipedia.org/wiki/Lossless_JPEG}{Lossless JPEG}.
+  %\item \href{https://en.wikipedia.org/wiki/Lossless_JPEG}{Lossless JPEG}.
+\item \hef{https://numpy.org/doc/stable/reference/generated/numpy.savez.html}{Saving of NumPy arrays in a compressed form using zlib}.
 \item Usage of
-  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/z_lib.ipynb}{z\_lib
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/z_lib.ipynb}{zlib
     in VCF}.
 \end{enumerate}
 
@@ -213,20 +214,27 @@ and only returns images.
     in VCF}.
 \end{enumerate}
 
-\section{TIFF}
+\section{\href{https://en.wikipedia.org/wiki/TIFF}{Tagged Image File
+  Format (TIFF)}}
 
-\href{https://en.wikipedia.org/wiki/TIFF}{TIFF (Tagged Image File
-  Format)} is a raster image file format with the following features:
+TIFF is a raster image file format with the following features:
 \begin{enumerate}
 \item Lossless (LZW) or lossy compression (JPEG).
 \item Supports several color spaces, such as RGB, CMYK, and grayscale.
 \item Supports multi-page (multiple images) and layers (text).
-\item 8-bit, 16-bit, 32-bit per channel.
+\item 8-bit, 16-bit, 32-bit per pixel.
 \item Metadata-friendly
   (\href{https://en.wikipedia.org/wiki/Exif}{EXIF},
   \href{https://en.wikipedia.org/wiki/Extensible_Metadata_Platform}{XMP},
   and
   \href{https://en.wikipedia.org/wiki/IPTC_Information_Interchange_Model}{IPTC}).
+\end{enumerate}
+
+\subsection*{Resources}
+\begin{enumerate}
+\item Usage of
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/PNG.ipynb}{TIFF
+    in VCF}.
 \end{enumerate}
 
 % PNG is the default EC in the \href{https://github.com/Sistemas-Multimedia/VCF}{VCF project} because: (1) is lossless, (2) is fast, and (3) the compression performance is reasonable.
