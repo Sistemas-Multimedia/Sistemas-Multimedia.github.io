@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'>Temporal Transforms</h2>
  <div class='author'> <a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>-  </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 2, 2025</span></div>
+<div class='date'><span class='ecrm-1200'>December 6, 2025</span></div>
    </div>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -30,7 +30,8 @@
 <br />   <span class='sectionToc'>5 <a href='#blockbased-mc-and-rdo' id='QQ2-1-6'>Block-based MC and RDO</a></span>
 <br />   <span class='sectionToc'>6 <a href='#frame-types' id='QQ2-1-7'>Frame types</a></span>
 <br />   <span class='sectionToc'>7 <a href='#resources' id='QQ2-1-8'>Resources</a></span>
-<br />   <span class='sectionToc'>8 <a href='#references' id='QQ2-1-9'>References</a></span>
+<br />   <span class='sectionToc'>8 <a href='#todo' id='QQ2-1-9'>To-Do</a></span>
+<br />   <span class='sectionToc'>9 <a href='#references' id='QQ2-1-10'>References</a></span>
    </div>
    
    <h3 class='sectionHead' id='temporal-correlation'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Temporal correlation</h3>
@@ -132,7 +133,23 @@ used.
      </li>
 <li class='enumerate' id='x1-8012x6'> <a href='https://github.com/Sistemas-Multimedia/MRVC'>Multi-Resolution Video Coding (MRVC)</a>.</li></ol>
    
-   <h3 class='sectionHead' id='references'><span class='titlemark'>8   </span> <a id='x1-90008'></a>References</h3>
+   <h3 class='sectionHead' id='todo'><span class='titlemark'>8   </span> <a id='x1-90008'></a>To-Do</h3>
+<!-- l. 124 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-9002x1'>Create a VCF video codec similar to <span class='ectt-1000'>III.py</span>, but using an block-based
+     motion-compensated “IPP...” scheme (the first image of each GOP intra-coded,
+     and the rest coded using a prediction using the previously encoded image
+     as the reference image) <span class='cite'>[<span class='ecbx-1000'>?</span>, <span class='ecbx-1000'>?</span>]</span>. Use some kind of RDO (Rate/Distortion
+     Optimization) to determine the block type (I or P).<span class='footnote-mark'><a href='#fn9x0' id='fn9x0-bk'><sup class='textsuperscript'>9</sup></a></span><a id='x1-9003f9'></a>
+     </li>
+<li class='enumerate' id='x1-9006x2'>Create a video codec similar to the previous one, but using an “IBP...”
+     scheme. In this case, the predicted images B use more than one reference
+     image <span class='cite'>[<span class='ecbx-1000'>?</span>, <span class='ecbx-1000'>?</span>]</span>. More than one consecutive B-type images can be used.
+     </li>
+<li class='enumerate' id='x1-9008x3'>Create a video codec similar to the previous one, but using an MCTF
+     scheme (“IBB...”, i.e., there are not P-type images) <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>.</li></ol>
+   
+   <h3 class='sectionHead' id='references'><span class='titlemark'>9   </span> <a id='x1-100009'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xvruiz__MCTF'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensated_temporal_filtering'>Motion Compensated Temporal Filtering (MCTF)</a>.
@@ -144,9 +161,6 @@ used.
  [3]<span class='bibsp'>   </span></span><a id='Xvruiz__ME'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/motion_estimation'>Motion Estimation</a>.
 </p>
    </div>
-                                                                  
-
-                                                                  
    <div class='footnotes'><a id='x1-2002x1'></a>
 <!-- l. 23 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>With pixels or coefficients, depending on the current domain in which the frame has been
 represented.</span></p><a id='x1-3002x2'></a>
@@ -158,7 +172,9 @@ is a ill-posed problem because it is impossible to find it using only a sequence
 different situation is when we use al least 2 cameras.</span></p><a id='x1-5002x4'></a>
 <!-- l. 72 --><p class='indent'>     <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>Some standards also use GOP (Group Of Pictures).</span></p><a id='x1-5004x4'></a>
 <!-- l. 78 --><p class='indent'>     <span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>Specifically, constant bit-rate encodings.</span></p><a id='x1-6002x5'></a>
-<!-- l. 91 --><p class='indent'>     <span class='footnote-mark'><a href='#fn8x0-bk' id='fn8x0'><sup class='textsuperscript'>8</sup></a></span><span class='ecrm-0800'>Obviously, the part of the RDO procedure that controls the block-type.</span></p>                 </div>
+<!-- l. 91 --><p class='indent'>     <span class='footnote-mark'><a href='#fn8x0-bk' id='fn8x0'><sup class='textsuperscript'>8</sup></a></span><span class='ecrm-0800'>Obviously, the part of the RDO procedure that controls the block-type.</span></p><a id='x1-9004x9'></a>
+<!-- l. 132 --><p class='noindent'><span class='footnote-mark'><a href='#fn9x0-bk' id='fn9x0'><sup class='textsuperscript'>9</sup></a></span><span class='ecrm-0800'>The standard approach is to calculate which option requires less output bits for each
+decision.</span></p>                                                                                                               </div>
  
 </body> 
 </html>

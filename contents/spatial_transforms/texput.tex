@@ -146,15 +146,33 @@ the image into 2D chunks (usually called \emph{tiles} or
 \emph{blocks}), and encode each chunk independently. In general:
 \begin{enumerate}
 \item Tiles are used when the image is made up of very different areas
-  (for example, with text and natural content). Tiles are usually
-  rectangular but can have any size, and are usually defined attending
-  to RD or perceptual issues (for example, text is not well compressed by
-  lossy codecs).
+  (for example, with text and natural picture content). Tiles are
+  usually rectangular but can have any size, and are usually defined
+  attending to RD or perceptual issues (for example, text is not well
+  compressed by lossy codecs).
 \item Blocks are smaller than tiles and, in most of cases,
   squared. The block partition can be adaptive and, in this case,
   should be found using RDO (Rate Distortion Optimization)\footnote{If
     no other more important requirement exists, such as
     multiresolution.}.
+\end{enumerate}
+
+\section*{To-Do}
+\begin{enumerate}
+\item \textbf{Learned Block Transform (LBT)}: As other transforms do,
+  a neural network can learn to perform energy
+  concentration. Implement an non-compressive
+  \href{https://en.wikipedia.org/wiki/Autoencoder}{autoencoder}
+  trained (using supervised learning) to maximize the
+  \href{https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf}{transform
+    coding gain} \cite{sayood2017introduction}, for each different
+  image to compress. The size (and shape) of the layer (included the
+  input) should the same, but configurable (typically between 4x4, 8x8
+  and 16x16). Notice that, during inference, the output of the neurons
+  located in the central layer should represents the coefficients of
+  the learned transform, which are the values that are going to be
+  quantized and compressed. Remember that we will need also the
+  inverse transform.
 \end{enumerate}
 
 \section{Resources}
@@ -226,7 +244,7 @@ the image into 2D chunks (usually called \emph{tiles} or
 %{{{
 
 \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
-\bibliography{projects,signal_processing,neural_nets,information_theory,JPEG2000}
+\bibliography{projects,signal_processing,neural_nets,information_theory,JPEG2000,data_compression}
 
 %}}}
 

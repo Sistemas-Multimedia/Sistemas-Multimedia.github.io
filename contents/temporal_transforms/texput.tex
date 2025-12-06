@@ -118,30 +118,28 @@ a B-frame all types of blocks can be used.
 \item \href{https://github.com/Sistemas-Multimedia/MRVC}{Multi-Resolution Video Coding (MRVC)}.
 \end{enumerate}
 
-\begin{comment}
 \section{To-Do}
 %{{{
 
 \begin{enumerate}
 \item Create a VCF video codec similar to \texttt{III.py}, but using
-  an ``IPP...''  scheme without ME (or assuming that all the motion
-  vectors are zero). RDO (Rate/Distortion Optimization) should be
-  considered to determine the block type. A first approximation to RDO
-  can use the number of coefficients different to zero (or its
-  entropy) to decide is the block finally is I or P. \texttt{8
-    points}.
-\item Create a video codec similar to the previous one, but using ME
-  and MC controlled by RDO (the block-type should be decided using a
-  RD criteria). \texttt{9 points}.
+  an block-based motion-compensated ``IPP...'' scheme (the first image
+  of each GOP intra-coded, and the rest coded using a prediction using
+  the previously encoded image as the reference image)
+  \cite{vruiz_ME,vruiz_MC}. Use some kind of RDO (Rate/Distortion
+  Optimization) to determine the block type (I or P).\footnote{The
+  standard approach is to calculate which option requires less output
+  bits for each decision.}
 \item Create a video codec similar to the previous one, but using an
-  ``IBB...'' scheme. \texttt{10 points}.
+  ``IBP...'' scheme. In this case, the predicted images B use more
+  than one reference image \cite{vruiz_ME,vruiz_MC}. More than one
+  consecutive B-type images can be used.
 \item Create a video codec similar to the previous one, but using an
-  MCTF scheme. Notice that in this case, the reference frames are
-  pre-defined (and usually are always 2). \texttt{10 points}.
+  MCTF scheme (``IBB...'', i.e., there are not P-type images)
+  \cite{vruiz_MCTF}.
 \end{enumerate}
 
 %}}}
-\end{comment}
 
 \section{References}
 %{{{

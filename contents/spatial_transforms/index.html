@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'> <a href='https://sistemas-multimedia.github.io/contents/spatial_transforms/'>Spatial Transforms</a></h2>
  <div class='author'> <a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 2, 2025</span></div>
+<div class='date'><span class='ecrm-1200'>December 5, 2025</span></div>
    </div>
    
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
@@ -29,8 +29,8 @@
 <br />   <span class='sectionToc'>3 <a href='#scalar-quantization-and-ratedistortion-optimization-in-the-transform-domain' id='QQ2-1-4'>Scalar quantization and rate-distortion optimization in the transform domain</a></span>
 <br />   <span class='sectionToc'>4 <a href='#learned-transforms' id='QQ2-1-5'>Learned transforms</a></span>
 <br />   <span class='sectionToc'>5 <a href='#dpartitioning' id='QQ2-1-6'>2D-partitioning</a></span>
-<br />   <span class='sectionToc'>6 <a href='#resources' id='QQ2-1-7'>Resources</a></span>
-<br />   <span class='sectionToc'>7 <a href='#references' id='QQ2-1-8'>References</a></span>
+<br />   <span class='sectionToc'>6 <a href='#resources' id='QQ2-1-8'>Resources</a></span>
+<br />   <span class='sectionToc'>7 <a href='#references' id='QQ2-1-9'>References</a></span>
    </div>
    
    <h3 class='sectionHead' id='spatial-decorrelation'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Spatial decorrelation</h3>
@@ -111,40 +111,52 @@ pre-defined.
 2D chunks (usually called <span class='ecti-1000'>tiles </span>or <span class='ecti-1000'>blocks</span>), and encode each chunk independently. In
 general:
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-6002x1'>Tiles are used when the image is made up of very different areas (for
-     example, with text and natural content). Tiles are usually rectangular but
-     can have any size, and are usually defined attending to RD or perceptual
-     issues (for example, text is not well compressed by lossy codecs).
+<li class='enumerate' id='x1-6002x1'>Tiles  are  used  when  the  image  is  made  up  of  very  different  areas
+     (for example, with text and natural picture content). Tiles are usually
+     rectangular but can have any size, and are usually defined attending to
+     RD or perceptual issues (for example, text is not well compressed by lossy
+     codecs).
      </li>
 <li class='enumerate' id='x1-6004x2'>Blocks are smaller than tiles and, in most of cases, squared. The block
-                                                                  
-
-                                                                  
      partition can be adaptive and, in this case, should be found using RDO
      (Rate Distortion Optimization)<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-6005f6'></a>.</li></ol>
    
-   <h3 class='sectionHead' id='resources'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Resources</h3>
-<!-- l. 163 --><p class='noindent'>
+   <h3 class='likesectionHead' id='todo'><a id='x1-7000'></a>To-Do</h3>
+<!-- l. 161 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-7002x1'>Usage of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DWT.ipynb'>2D-DWT in VCF</a>.
-     </li>
-<li class='enumerate' id='x1-7004x2'>Usage of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DCT.ipynb'>2D-DCT in VCF</a>.
-     </li>
-<li class='enumerate' id='x1-7006x3'> <a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/src/DCT2D/YCoCg_2D_DCT_SQ.ipynb'>Image Compression with YCoCg + 2D-DCT</a>.
-     </li>
-<li class='enumerate' id='x1-7008x4'> <a href='https://www.tensorflow.org/tutorials/generative/data_compression'>Learned data compression</a>.
-     </li>
-<li class='enumerate' id='x1-7010x5'> <a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/LIC.ipynb'>Learned Image Compression (LIC) using auto-encoders</a>.
-     </li>
-<li class='enumerate' id='x1-7012x6'> <a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/AutoencoderBlockCompression.ipynb'>AutoencoderBlockCompression.ipynb</a>.
-     </li>
-<li class='enumerate' id='x1-7014x7'>  <a href='https://github.com/fchollet/deep-learning-with-python-notebooks'>Companion  Jupyter  notebooks  for  the  book  “Deep  Learning  with
-     Python”</a> <span class='cite'>[<a href='#Xchollet2021deep'>1</a>]</span>.</li></ol>
+<li class='enumerate' id='x1-7002x1'><span class='ecbx-1000'>Learned Block Transform (LBT)</span>: As other transforms do, a neural
+     network  can  learn  to  perform  energy  concentration.  Implement  an
+     non-compressive    <a href='https://en.wikipedia.org/wiki/Autoencoder'>autoencoder</a>  trained  (using  supervised  learning)  to
+     maximize  the   <a href='https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf'>transform  coding  gain</a>  <span class='cite'>[<a href='#Xsayood2017introduction'>5</a>]</span>,  for  each  different  image  to
+     compress. The size (and shape) of the layer (included the input) should
+     the same, but configurable (typically between 4x4, 8x8 and 16x16). Notice
+     that, during inference, the output of the neurons located in the central
+     layer should represents the coefficients of the learned transform, which are
+     the values that are going to be quantized and compressed. Remember that
+     we will need also the inverse transform.</li></ol>
    
+   <h3 class='sectionHead' id='resources'><span class='titlemark'>6   </span> <a id='x1-80006'></a>Resources</h3>
+<!-- l. 181 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-8002x1'>Usage of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DWT.ipynb'>2D-DWT in VCF</a>.
+     </li>
+<li class='enumerate' id='x1-8004x2'>Usage of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DCT.ipynb'>2D-DCT in VCF</a>.
+     </li>
+<li class='enumerate' id='x1-8006x3'> <a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/src/DCT2D/YCoCg_2D_DCT_SQ.ipynb'>Image Compression with YCoCg + 2D-DCT</a>.
                                                                   
 
                                                                   
-   <h3 class='sectionHead' id='references'><span class='titlemark'>7   </span> <a id='x1-80007'></a>References</h3>
+     </li>
+<li class='enumerate' id='x1-8008x4'> <a href='https://www.tensorflow.org/tutorials/generative/data_compression'>Learned data compression</a>.
+     </li>
+<li class='enumerate' id='x1-8010x5'> <a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/LIC.ipynb'>Learned Image Compression (LIC) using auto-encoders</a>.
+     </li>
+<li class='enumerate' id='x1-8012x6'> <a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/AutoencoderBlockCompression.ipynb'>AutoencoderBlockCompression.ipynb</a>.
+     </li>
+<li class='enumerate' id='x1-8014x7'>  <a href='https://github.com/fchollet/deep-learning-with-python-notebooks'>Companion  Jupyter  notebooks  for  the  book  “Deep  Learning  with
+     Python”</a> <span class='cite'>[<a href='#Xchollet2021deep'>1</a>]</span>.</li></ol>
+   
+   <h3 class='sectionHead' id='references'><span class='titlemark'>7   </span> <a id='x1-90007'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xchollet2021deep'></a>Francois Chollet.  <a href='https://sourestdeeds.github.io/pdf/Deep%20Learning%20with%20Python.pdf'><span class='ecti-1000'>Deep learning with Python</span></a>. Simon and Schuster, 2021.
@@ -157,6 +169,13 @@ general:
    </p>
    <p class='bibitem'><span class='biblabel'>
  [4]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/information_theory'>Information Theory</a>.
+                                                                  
+
+                                                                  
+   </p>
+   <p class='bibitem'><span class='biblabel'>
+ [5]<span class='bibsp'>   </span></span><a id='Xsayood2017introduction'></a>K. Sayood.     <a href='http://rahilshaikh.weebly.com/uploads/1/1/6/3/11635894/data_compression.pdf'><span class='ecti-1000'>Introduction  to  Data  Compression</span></a>   <a href='https://people.cs.nctu.edu.tw/~cmliu/Courses/Compression/'><span class='ecti-1000'>(Slides)</span></a>.   Morgan
+   Kaufmann, 2017.
 </p>
    </div>
    <div class='footnotes'><a id='x1-2002x1'></a>
