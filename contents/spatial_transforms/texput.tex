@@ -131,7 +131,9 @@ slope.
 Using machine learning techniques (for example, with an artificial
 neural network), it is possible to build a machine-krafted transform,
 specifically tuned for some type of images, or at least, capable of
-determining specific features in the images.
+determining specific features in the images. This technique receive
+the name of analysis–synthesis dictionary learning, linear
+autoencoders, or learned transform coding.
 
 Potentially, learned-based image (and video) compressors are adaptive
 algorithms that can be more efficient than those in which the
@@ -161,16 +163,24 @@ the image into 2D chunks (usually called \emph{tiles} or
 \begin{enumerate}
 \item \textbf{Learned Block Transform (LBT)}: As other transforms do,
   a neural network can learn to perform energy
-  concentration. Implement an
+  concentration. Implement a 3-layers
   \href{https://en.wikipedia.org/wiki/Autoencoder}{autoencoder}
-  trained (using supervised learning) to maximize the
+  trained (using
+  \href{https://en.wikipedia.org/wiki/Supervised_learning}{supervised
+    learning}) to maximize, for example\footnote{The function to
+  optimize during the training of the network can be any, as long as
+  such function increases the sparsity of the transform
+  coefficients.}, the
   \href{https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf}{transform
     coding gain} \cite{sayood2017introduction}, for each different
   image to compress. The size (and shape) of the input layer and the
   output layer should the same, but configurable (typically between
-  4x4, 8x8 and 16x16). Notice that, during inference, the weights of
-  the neurons should represents the coefficients of the learned
-  transform. Remember that we also need the inverse transform.
+  4x4, 8x8 and 16x16). Notice that, the output of the neurons of the
+  center layer should define the transform coefficients, that the
+  (learned) weights of the connections between the input layer and the
+  center layer should conform the forward transform matrix, and that
+  the weights of the connections between the center layer and the
+  output layer should define the inverse transform matrix.
 \end{enumerate}
 
 \section{Resources}

@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'> <a href='https://sistemas-multimedia.github.io/contents/spatial_transforms/'>Spatial Transforms</a></h2>
  <div class='author'> <a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 9, 2025</span></div>
+<div class='date'><span class='ecrm-1200'>December 11, 2025</span></div>
    </div>
    
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
@@ -98,16 +98,17 @@ the same slope.
 </p>
    <h3 class='sectionHead' id='learned-transforms'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Learned transforms</h3>
 <!-- l. 131 --><p class='noindent'>Using machine learning techniques (for example, with an artificial neural network), it
-is possible to build a machine-krafted transform, specifically tuned for some
-type of images, or at least, capable of determining specific features in the
-images.
-</p><!-- l. 136 --><p class='indent'>   Potentially, learned-based image (and video) compressors are adaptive
+is possible to build a machine-krafted transform, specifically tuned for some type of
+images, or at least, capable of determining specific features in the images. This
+technique receive the name of analysis–synthesis dictionary learning, linear
+autoencoders, or learned transform coding.
+</p><!-- l. 138 --><p class='indent'>   Potentially, learned-based image (and video) compressors are adaptive
 algorithms that can be more efficient than those in which the transforms are
 pre-defined.
    
 </p>
    <h3 class='sectionHead' id='dpartitioning'><span class='titlemark'>5   </span> <a id='x1-60005'></a>2D-partitioning</h3>
-<!-- l. 144 --><p class='noindent'>Depending on the content of an image, it can be necessary to divide the image into
+<!-- l. 146 --><p class='noindent'>Depending on the content of an image, it can be necessary to divide the image into
 2D chunks (usually called <span class='ecti-1000'>tiles </span>or <span class='ecti-1000'>blocks</span>), and encode each chunk independently. In
 general:
      </p><ol class='enumerate1'>
@@ -122,30 +123,33 @@ general:
      (Rate Distortion Optimization)<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-6005f6'></a>.</li></ol>
    
    <h3 class='likesectionHead' id='todo'><a id='x1-7000'></a>To-Do</h3>
-<!-- l. 161 --><p class='noindent'>
+<!-- l. 163 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-7002x1'><span class='ecbx-1000'>Learned  Block  Transform  (LBT)</span>:  As  other  transforms  do,  a
-     neural  network  can  learn  to  perform  energy  concentration.  Implement
-     an   <a href='https://en.wikipedia.org/wiki/Autoencoder'>autoencoder</a>  trained  (using  supervised  learning)  to  maximize  the
-     <a href='https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf'>transform coding gain</a> <span class='cite'>[<a href='#Xsayood2017introduction'>5</a>]</span>, for each different image to compress. The size
-     (and shape) of the input layer and the output layer should the same, but
-     configurable (typically between 4x4, 8x8 and 16x16). Notice that, during
-     inference, the weights of the neurons should represents the coefficients of
-     the learned transform. Remember that we also need the inverse transform.</li></ol>
+<li class='enumerate' id='x1-7002x1'><span class='ecbx-1000'>Learned Block Transform (LBT)</span>: As other transforms do, a neural
+     network can learn to perform energy concentration. Implement a 3-layers
+     <a href='https://en.wikipedia.org/wiki/Autoencoder'>autoencoder</a> trained (using <a href='https://en.wikipedia.org/wiki/Supervised_learning'>supervised learning</a>) to maximize, for example<span class='footnote-mark'><a href='#fn7x0' id='fn7x0-bk'><sup class='textsuperscript'>7</sup></a></span><a id='x1-7003f7'></a>,
+     the  <a href='https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf'>transform coding gain</a> <span class='cite'>[<a href='#Xsayood2017introduction'>5</a>]</span>, for each different image to compress. The
+     size (and shape) of the input layer and the output layer should the same,
+     but  configurable  (typically  between  4x4,  8x8  and  16x16).  Notice  that,
+     the output of the neurons of the center layer should define the transform
+     coefficients, that the (learned) weights of the connections between the
+     input layer and the center layer should conform the forward transform
+     matrix, and that the weights of the connections between the center layer
+     and the output layer should define the inverse transform matrix.</li></ol>
    
    <h3 class='sectionHead' id='resources'><span class='titlemark'>6   </span> <a id='x1-80006'></a>Resources</h3>
-<!-- l. 179 --><p class='noindent'>
+<!-- l. 189 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-8002x1'>Usage of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DWT.ipynb'>2D-DWT in VCF</a>.
      </li>
 <li class='enumerate' id='x1-8004x2'>Usage of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DCT.ipynb'>2D-DCT in VCF</a>.
      </li>
 <li class='enumerate' id='x1-8006x3'> <a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/src/DCT2D/YCoCg_2D_DCT_SQ.ipynb'>Image Compression with YCoCg + 2D-DCT</a>.
-     </li>
-<li class='enumerate' id='x1-8008x4'> <a href='https://www.tensorflow.org/tutorials/generative/data_compression'>Learned data compression</a>.
                                                                   
 
                                                                   
+     </li>
+<li class='enumerate' id='x1-8008x4'> <a href='https://www.tensorflow.org/tutorials/generative/data_compression'>Learned data compression</a>.
      </li>
 <li class='enumerate' id='x1-8010x5'> <a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/LIC.ipynb'>Learned Image Compression (LIC) using auto-encoders</a>.
      </li>
@@ -167,15 +171,15 @@ general:
    </p>
    <p class='bibitem'><span class='biblabel'>
  [4]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/information_theory'>Information Theory</a>.
+                                                                  
+
+                                                                  
    </p>
    <p class='bibitem'><span class='biblabel'>
  [5]<span class='bibsp'>   </span></span><a id='Xsayood2017introduction'></a>K. Sayood.     <a href='http://rahilshaikh.weebly.com/uploads/1/1/6/3/11635894/data_compression.pdf'><span class='ecti-1000'>Introduction  to  Data  Compression</span></a>   <a href='https://people.cs.nctu.edu.tw/~cmliu/Courses/Compression/'><span class='ecti-1000'>(Slides)</span></a>.   Morgan
    Kaufmann, 2017.
 </p>
    </div>
-                                                                  
-
-                                                                  
    <div class='footnotes'><a id='x1-2002x1'></a>
 <!-- l. 48 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>We will see this with more detail later in this course.</span></p><a id='x1-2004x1'></a>
 <!-- l. 62 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>That depends on the position of the coefficient in the transformed domain.</span></p><a id='x1-3004x3'></a>
@@ -187,7 +191,9 @@ use more quantization levels and therefore, a higher number of available RD poin
 <!-- l. 117 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>In the case of a spatial transform, a subband is form by all the coefficients that describe
 the same frequency components in different areas or resolutions (when available) of the
 image.</span></p><a id='x1-6006x6'></a>
-<!-- l. 157 --><p class='noindent'><span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>If no other more important requirement exists, such as multiresolution.</span></p>                       </div>
+<!-- l. 159 --><p class='noindent'><span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>If no other more important requirement exists, such as multiresolution.</span></p><a id='x1-7004x7'></a>
+<!-- l. 173 --><p class='noindent'><span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>The function to optimize during the training of the network can be any, as long as such
+function increases the sparsity of the transform coefficients.</span></p>                                            </div>
  
 </body> 
 </html>
