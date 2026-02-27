@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'> <a href='https://sistemas-multimedia.github.io/contents/quantization/'>(Digital Re-)Quantization</a></h2>
  <div class='author'> <a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 5, 2025</span></div>
+<div class='date'><span class='ecrm-1200'>February 27, 2026</span></div>
    </div>
    
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
@@ -35,7 +35,8 @@
 <br />   <span class='sectionToc'>6 <a href='#lloydmax-quantization' id='QQ2-1-11'>Lloyd-Max quantization</a></span>
 <br />   <span class='sectionToc'>7 <a href='#vector-quantization-applied-to-the-spatial-domain' id='QQ2-1-13'>Vector quantization applied to the spatial domain</a></span>
 <br />   <span class='sectionToc'>8 <a href='#vector-quantization-applied-to-the-rgb-domain' id='QQ2-1-15'>Vector quantization applied to the <span class='mathjax-inline'>\(\text {RGB}\)</span> domain</a></span>
-<br />   <span class='sectionToc'>9 <a href='#references' id='QQ2-1-18'>References</a></span>
+<br />   <span class='sectionToc'>9 <a href='#increasing-the-snr' id='QQ2-1-17'>Increasing the SNR</a></span>
+<br />   <span class='sectionToc'>10 <a href='#references' id='QQ2-1-18'>References</a></span>
    </div>
    
    <h3 class='sectionHead' id='what-is-quantization'><span class='titlemark'>1   </span> <a id='x1-20001'></a>What is quantization?</h3>
@@ -46,10 +47,10 @@ elements) of a set.
 </p><!-- l. 23 --><p class='indent'>   Notice that, when <span class='mathjax-inline'>\(|A|&gt;|B|\)</span>, quantization is an irreversible process because at least two elements
 of <span class='mathjax-inline'>\(A\)</span> will be mapped to the same element of <span class='mathjax-inline'>\(B\)</span>, and therefore, there is no way to find the reverse
 mapping<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-2001f1'></a>.
-   
                                                                   
 
                                                                   
+   
 </p>
    <h3 class='sectionHead' id='what-is-digital-requantization'><span class='titlemark'>2   </span> <a id='x1-30002'></a>What is (digital re-)quantization?</h3>
 <!-- l. 33 --><p class='noindent'>In the quantization of digital signals <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>, <a href='#Xvruiz__vector_quantization'>7</a>]</span>, the elements of <span class='mathjax-inline'>\(A\)</span> and <span class='mathjax-inline'>\(B\)</span> are digital samples
@@ -81,12 +82,12 @@ samples.
    
 </p>
    <h4 class='subsectionHead' id='uniform-vs-nonuniform-quantizers'><span class='titlemark'>4.2   </span> <a id='x1-70004.2'></a>Uniform VS non-uniform quantizers</h4>
-<!-- l. 82 --><p class='noindent'>In an uniform quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>]</span>, all the intervals have the same the size, which is equal to the quantization
-step size, <span class='mathjax-inline'>\(\Delta \)</span>.<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-7001f4'></a>
-In a non-uniform quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>]</span>, at least one of the intervals is different to the rest.
                                                                   
 
                                                                   
+<!-- l. 82 --><p class='noindent'>In an uniform quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>]</span>, all the intervals have the same the size, which is equal to the quantization
+step size, <span class='mathjax-inline'>\(\Delta \)</span>.<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-7001f4'></a>
+In a non-uniform quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>]</span>, at least one of the intervals is different to the rest.
 For example, a deadzone quantizer <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>]</span> has an interval size for the representation level
 0 that doubles the size of the the rest of intervals. Another example of a non-uniform
 quantizer is a  <a href='https://en.wikipedia.org/wiki/Lloyd%27s_algorithm'>Lloyd-Max quantizer</a> <span class='cite'>[<a href='#Xvruiz__scalar_quantization'>4</a>]</span> because it divides the range of input values in
@@ -122,12 +123,12 @@ Obviously, this does not improve the RD performance of the encoder,
 but the perceived (subjective) quality is increased for the same bit
 rate.<span class='footnote-mark'><a href='#fn9x0' id='fn9x0-bk'><sup class='textsuperscript'>9</sup></a></span><a id='x1-9007f9'></a>
    
-</p>
-   <h4 class='likesubsectionHead' id='resources'><a id='x1-10000'></a>Resources</h4>
-<!-- l. 145 --><p class='noindent'>
                                                                   
 
                                                                   
+</p>
+   <h4 class='likesubsectionHead' id='resources'><a id='x1-10000'></a>Resources</h4>
+<!-- l. 145 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-10002x1'> <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/deadzone.ipynb'>deadzone.ipynb</a>: Notebook showing the use of <span class='ectt-1000'>deadzone.py </span>in VCF.</li></ol>
    
@@ -155,14 +156,14 @@ the image are similar to other blocks. If this is true, we can compute a set
 of centroids (blocks) and use them to represent the original blocks. As a
 result, we will obtain a matrix of quantization indexes that can be entropy
 coded.
+                                                                  
+
+                                                                  
 </p><!-- l. 192 --><p class='indent'>   Notice that VQ exploits the spatial correlation. For this reason,
 the encoding performance of a vector quantizer is usually superior
 compared to that of a scalar quantizer (the number of output quantization
 indexes<span class='footnote-mark'><a href='#fn12x0' id='fn12x0-bk'><sup class='textsuperscript'>12</sup></a></span><a id='x1-13003f12'></a>
 is smaller).
-                                                                  
-
-                                                                  
    
 </p>
    <h4 class='likesubsectionHead' id='resources2'><a id='x1-14000'></a>Resources</h4>
@@ -185,6 +186,9 @@ In this case, depending on the quantization step size <span class='cite'>[<a hr
 because the colors used may not be sampled with sufficient density, while at the same
 time the encoding system considers colors that do not appear in the image at
 all <span class='cite'>[<a href='#Xburger2016digital'>1</a>]</span>.
+                                                                  
+
+                                                                  
 </p><!-- l. 229 --><p class='indent'>   On the other hand, VQ <span class='cite'>[<a href='#Xvruiz__vector_quantization'>7</a>, <a href='#Xsayood2017introduction'>9</a>]</span> applied to the color domain does not treat the
 individual <span class='mathjax-inline'>\(\text {RGB}\)</span> components separately as does scalar quantization, but each color vector
 used <span class='mathjax-inline'>\({\mathbf C}_i = (\text {R}_i, \text {G}_i, \text {B}_i )\)</span> in the image is treated as a minimum structure. VQ determines a code-book of <span class='mathjax-inline'>\(K\)</span>
@@ -192,9 +196,6 @@ code-vectors (centroids) that minimizes the distortion between the original imag
 the reconstructed one. Notice that the code-book must be known by the decoder to
 find a reconstruction.
    
-                                                                  
-
-                                                                  
 </p>
    <h4 class='likesubsectionHead' id='resources3'><a id='x1-16000'></a>Resources</h4>
 <!-- l. 240 --><p class='noindent'>
@@ -203,25 +204,19 @@ find a reconstruction.
      </li>
 <li class='enumerate' id='x1-16004x2'> <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/color-VQ.py'><span class='ectt-1000'>color_VQ.py</span></a> in VCF.</li></ol>
    
-   <h3 class='likesectionHead' id='to-do'><a id='x1-17000'></a>To do</h3>
-     <ul class='itemize1'>
-     <li class='itemize'>
-     <!-- l. 253 --><p class='noindent'>Quantizers  generate  quantization  noise,  which  can  be  modeled  as
-     flat-spectrum  zero-mean  uniform  noise.  On  the  contrary,  most  of
-     the  energy  of  natural  images  is  concentrated  in  the  low  frequencies.
-     Consequently, when an image is quantized, the   <a href='https://en.wikipedia.org/wiki/Signal-to-noise_ratio'>SNR</a> is higher in the
-     low  frequencies  than  in  the  high  frequencies,  which  means  that  if  the
-     quantized image is low-pass filtered, the overall SNR should increase (the
-     filter will remove the high frequencies that basically are generated by the
-     quantization noise).
-     </p><!-- l. 263 --><p class='noindent'>Currently, VCF implements in the module <span class='ectt-1000'>blur.py </span>a collection of low-pass
-     filters. However, most efficient denoising filters can be used, such as  <a href='https://docs.opencv.org/3.4/d5/d69/tutorial_py_non_local_means.html'>NLM</a>,
-     can be used. Create a new Python module <span class='ectt-1000'>NLM.py </span>to provide the use of
-     this filter in VCF.
-     </p></li>
-     <li class='itemize'>In the same direction, implement a  <a href='https://pypi.org/project/bm3d/'>BM3D</a> <span class='cite'>[<a href='#Xdabov2007image'>2</a>]</span> module for VCF.</li></ul>
+   <h3 class='sectionHead' id='increasing-the-snr'><span class='titlemark'>9   </span> <a id='x1-170009'></a>Increasing the SNR</h3>
+<!-- l. 252 --><p class='noindent'>Quantizers generate quantization noise, which can be modeled as flat-spectrum
+zero-mean uniform noise. On the contrary, most of the energy of natural images is
+concentrated in the low frequencies. Consequently, when an image is quantized, the
+<a href='https://en.wikipedia.org/wiki/Signal-to-noise_ratio'>SNR</a> is higher in the low frequencies than in the high frequencies, which means that
+if the quantized image is low-pass filtered, the overall SNR should increase (the filter
+will remove the high frequencies that basically are generated by the quantization
+noise).
+</p><!-- l. 262 --><p class='indent'>   Currently, VCF includes (when decoding) the modules  <a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/gaussian_blur.ipynb'>gaussian_blur.ipynb</a> <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>,
+<a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/NLM.ipynb'>NLM.ipynb</a> <span class='cite'>[<span class='ecbx-1000'>?</span>]</span>, and  <a href='https://github.com/vicente-gonzalez-ruiz/vector_quantization/blob/main/docs/BM3D.ipynb'>BM3D.py</a> <span class='cite'>[<a href='#Xdabov2007image'>2</a>]</span>.
    
-   <h3 class='sectionHead' id='references'><span class='titlemark'>9   </span> <a id='x1-180009'></a>References</h3>
+</p>
+   <h3 class='sectionHead' id='references'><span class='titlemark'>10   </span> <a id='x1-1800010'></a>References</h3>
                                                                   
 
                                                                   
