@@ -138,7 +138,8 @@ action very frequent when using
 |    encoded: a
 
 \end{verbatim}
-\item Consider higher prediction orders.
+\item Consider higher prediction orders, allways surrounding the pixel
+  '\verb|a|' and that are known by the decoder.
 \end{enumerate}
 
 \section{\href{https://en.wikipedia.org/wiki/Arithmetic_coding}{Arithmetic
@@ -176,18 +177,13 @@ prefix code) and an arithmetic code, vanishes.
 \item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/CBAHC.ipynb}{Context-Basaed Adaptive Arithmetic Coding in VCF}.
 \end{enumerate}
 
-\begin{comment}
 \subsection*{To do}
 \begin{enumerate}
-\item Create a new module named \texttt{arith.py} that implement a
-  static probabilistic model and Arithmetic Coding
-  \cite{nelson96datacompression} to be used in VCF.
-\item Create a new module named \texttt{adaptive\_arith.py} that use
-  a context-based adaptive probabilistic model and Arithmetic Coding
-  \cite{nelson96datacompression}, where the user can select the order
-  of the model.
+\item Improve
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/CBAAC.py}{CBAAC.py}
+  in the same way as explained for
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/CBAHC.py}{CBAHC.py}.
 \end{enumerate}
-\end{comment}
 
 \section{\href{https://zlib.net/}{\texttt{zlib}}}
 

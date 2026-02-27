@@ -29,10 +29,10 @@
 <br />   <span class='sectionToc'>3 <a href='#a-classification-of-entropy-encoders' id='QQ2-1-4'>A classification of entropy encoders</a></span>
 <br />   <span class='sectionToc'>4 <a href='#httpsenwikipediaorgwikihuffmancodinghuffman-coding-hc' id='QQ2-1-5'> Huffman Coding (HC)</a></span>
 <br />   <span class='sectionToc'>5 <a href='#httpsenwikipediaorgwikiarithmeticcodingarithmetic-coding-ac' id='QQ2-1-8'> Arithmetic Coding (AC)</a></span>
-<br />   <span class='sectionToc'>6 <a href='#httpszlibnet-zlib' id='QQ2-1-10'> <span class='ectt-1000'>zlib</span></a></span>
-<br />   <span class='sectionToc'>7 <a href='#httpsenwikipediaorgwikiportablenetworkgraphicsportable-network-graphics-png' id='QQ2-1-12'> Portable Network Graphics (PNG)</a></span>
-<br />   <span class='sectionToc'>8 <a href='#httpsenwikipediaorgwikitifftagged-image-file-format-tiff' id='QQ2-1-14'> Tagged Image File Format (TIFF)</a></span>
-<br />   <span class='sectionToc'>9 <a href='#references' id='QQ2-1-16'>References</a></span>
+<br />   <span class='sectionToc'>6 <a href='#httpszlibnet-zlib' id='QQ2-1-11'> <span class='ectt-1000'>zlib</span></a></span>
+<br />   <span class='sectionToc'>7 <a href='#httpsenwikipediaorgwikiportablenetworkgraphicsportable-network-graphics-png' id='QQ2-1-13'> Portable Network Graphics (PNG)</a></span>
+<br />   <span class='sectionToc'>8 <a href='#httpsenwikipediaorgwikitifftagged-image-file-format-tiff' id='QQ2-1-15'> Tagged Image File Format (TIFF)</a></span>
+<br />   <span class='sectionToc'>9 <a href='#references' id='QQ2-1-17'>References</a></span>
    </div>
    
    <h3 class='sectionHead' id='what-is-entropy-coding-ec'><span class='titlemark'>1   </span> <a id='x1-20001'></a>What is Entropy Coding (EC)?</h3>
@@ -152,13 +152,14 @@ models</a>.
 </pre>
      <!-- l. 140 --><p class='nopar'>
      </p></li>
-<li class='enumerate' id='x1-7006x3'>Consider higher prediction orders.</li></ol>
+<li class='enumerate' id='x1-7006x3'>Consider higher prediction orders, allways surrounding the pixel ’<span class='obeylines-h'><code class='verb'>a</code></span>’ and that
+     are known by the decoder.</li></ol>
    
    <h3 class='sectionHead' id='httpsenwikipediaorgwikiarithmeticcodingarithmetic-coding-ac'><span class='titlemark'>5   </span> <a id='x1-80005'></a> <a href='https://en.wikipedia.org/wiki/Arithmetic_coding'>Arithmetic Coding (AC)</a></h3>
-<!-- l. 147 --><p class='noindent'>In AC <span class='cite'>[<a href='#Xvruiz__arithmetic_coding'>2</a>, <a href='#Xruiz2000compresion'>1</a>, <a href='#Xnelson96datacompression'>10</a>]</span>, the number of bits of data that are used for representing the
+<!-- l. 148 --><p class='noindent'>In AC <span class='cite'>[<a href='#Xvruiz__arithmetic_coding'>2</a>, <a href='#Xruiz2000compresion'>1</a>, <a href='#Xnelson96datacompression'>10</a>]</span>, the number of bits of data that are used for representing the
 symbols matchrd exactly with the number of bits of information provided by the
 symbols, i.e, </p><div class='mathjax-env mathjax-equation'>\begin{equation} l(c(s)) = I(s). \end{equation}</div><p><a id='x1-8001r2'></a>
-<!-- l. 155 --></p><p class='indent'>   This also means that, even if the size of the alphabet is small, the coding
+<!-- l. 156 --></p><p class='indent'>   This also means that, even if the size of the alphabet is small, the coding
 performance of an arithmetic code is optimal, although this optimality is only fully
 satisfied if the number of symbols to encode is infinite. Notice also that, if the
 alphabet is large, the compression ratio difference between a Huffman code (or any
@@ -166,7 +167,7 @@ other prefix code) and an arithmetic code, vanishes.
    
 </p>
    <h4 class='likesubsectionHead' id='resources1'><a id='x1-9000'></a>Resources</h4>
-<!-- l. 163 --><p class='noindent'>
+<!-- l. 164 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-9002x1'> <a href='https://github.com/vicente-gonzalez-ruiz/arithmetic_coding/blob/master/src/arithmetic_coding.ipynb'>Arithmetic Coding (notebook)</a>.
                                                                   
@@ -185,69 +186,74 @@ other prefix code) and an arithmetic code, vanishes.
      </li>
 <li class='enumerate' id='x1-9014x7'>Usage of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/CBAHC.ipynb'>Context-Basaed Adaptive Arithmetic Coding in VCF</a>.</li></ol>
    
-   <h3 class='sectionHead' id='httpszlibnet-zlib'><span class='titlemark'>6   </span> <a id='x1-100006'></a> <a href='https://zlib.net/'><span class='ectt-1000'>zlib</span></a></h3>
-<!-- l. 194 --><p class='noindent'><span class='ectt-1000'>zlib </span>is based on  <a href='https://en.wikipedia.org/wiki/Deflate'>DEFLATE</a>, which in turn is based on LZ77 <span class='cite'>[<a href='#Xvruiz__LZW'>7</a>, <a href='#Xruiz2000compresion'>1</a>]</span> and Huffman coding.
-Therefore, <span class='ectt-1000'>zlib </span>exploits the repetition of symbols and also, the 0-order statistical
-redundancy<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-10001f2'></a>.
-One of the main advantages of <span class='ectt-1000'>zlib </span>is that it is quite fast compared to symbol
-encoders such as HC and AC.
-</p><!-- l. 203 --><p class='indent'>   Nowadays, <span class='ectt-1000'>zlib </span>is a keystone in data manipulation because it is the basic library
-used in such important applications as  <a href='https://en.wikipedia.org/wiki/ZIP_(file_format)'>Zip</a> and  <a href='https://en.wikipedia.org/wiki/Gzip'>Gzip</a>.
+   <h4 class='likesubsectionHead' id='to-do1'><a id='x1-10000'></a>To do</h4>
+<!-- l. 181 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-10002x1'>Improve  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/CBAAC.py'>CBAAC.py</a> in the same way as explained for  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/src/CBAHC.py'>CBAHC.py</a>.</li></ol>
    
                                                                   
 
                                                                   
-</p>
-   <h4 class='likesubsectionHead' id='resources2'><a id='x1-11000'></a>Resources</h4>
-<!-- l. 209 --><p class='noindent'>
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-11002x1'> <a href='https://docs.python.org/3/library/zlib.html'><span class='ectt-1000'>zlib </span>— Compression compatible with gzip</a>.
-     </li>
-<li class='enumerate' id='x1-11004x2'> <a href='https://numpy.org/doc/stable/reference/generated/numpy.savez.html'>Saving of NumPy arrays in a compressed form using zlib</a>.
-     </li>
-<li class='enumerate' id='x1-11006x3'>Usage of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/z_lib.ipynb'>zlib in VCF</a>.</li></ol>
+   <h3 class='sectionHead' id='httpszlibnet-zlib'><span class='titlemark'>6   </span> <a id='x1-110006'></a> <a href='https://zlib.net/'><span class='ectt-1000'>zlib</span></a></h3>
+<!-- l. 190 --><p class='noindent'><span class='ectt-1000'>zlib </span>is based on  <a href='https://en.wikipedia.org/wiki/Deflate'>DEFLATE</a>, which in turn is based on LZ77 <span class='cite'>[<a href='#Xvruiz__LZW'>7</a>, <a href='#Xruiz2000compresion'>1</a>]</span> and Huffman coding.
+Therefore, <span class='ectt-1000'>zlib </span>exploits the repetition of symbols and also, the 0-order statistical
+redundancy<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-11001f2'></a>.
+One of the main advantages of <span class='ectt-1000'>zlib </span>is that it is quite fast compared to symbol
+encoders such as HC and AC.
+</p><!-- l. 199 --><p class='indent'>   Nowadays, <span class='ectt-1000'>zlib </span>is a keystone in data manipulation because it is the basic library
+used in such important applications as  <a href='https://en.wikipedia.org/wiki/ZIP_(file_format)'>Zip</a> and  <a href='https://en.wikipedia.org/wiki/Gzip'>Gzip</a>.
    
-   <h3 class='sectionHead' id='httpsenwikipediaorgwikiportablenetworkgraphicsportable-network-graphics-png'><span class='titlemark'>7   </span> <a id='x1-120007'></a> <a href='https://en.wikipedia.org/wiki/Portable_Network_Graphics'>Portable Network Graphics (PNG)</a></h3>
-<!-- l. 220 --><p class='noindent'>PNG <span class='cite'>[<a href='#Xvruiz__PNG'>8</a>]</span> (pronounced “ping”) is a dictionary-based (string encoding)  <a href='https://en.wikipedia.org/wiki/Lossless_compression'>lossless image
+</p>
+   <h4 class='likesubsectionHead' id='resources2'><a id='x1-12000'></a>Resources</h4>
+<!-- l. 205 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-12002x1'> <a href='https://docs.python.org/3/library/zlib.html'><span class='ectt-1000'>zlib </span>— Compression compatible with gzip</a>.
+     </li>
+<li class='enumerate' id='x1-12004x2'> <a href='https://numpy.org/doc/stable/reference/generated/numpy.savez.html'>Saving of NumPy arrays in a compressed form using zlib</a>.
+     </li>
+<li class='enumerate' id='x1-12006x3'>Usage of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/z_lib.ipynb'>zlib in VCF</a>.</li></ol>
+   
+   <h3 class='sectionHead' id='httpsenwikipediaorgwikiportablenetworkgraphicsportable-network-graphics-png'><span class='titlemark'>7   </span> <a id='x1-130007'></a> <a href='https://en.wikipedia.org/wiki/Portable_Network_Graphics'>Portable Network Graphics (PNG)</a></h3>
+<!-- l. 216 --><p class='noindent'>PNG <span class='cite'>[<a href='#Xvruiz__PNG'>8</a>]</span> (pronounced “ping”) is a dictionary-based (string encoding)  <a href='https://en.wikipedia.org/wiki/Lossless_compression'>lossless image
 compression format</a> used for representing  <a href='https://en.wikipedia.org/wiki/Digital_data'>digital</a>  <a href='https://en.wikipedia.org/wiki/Digital_image'>images</a> and  <a href='https://en.wikipedia.org/wiki/Video'>videos</a> <span class='cite'>[<a href='#Xvruiz__image_video'>3</a>]</span> in III...
 format. The entropy encoder of PNG is based on HC and LZSS, and a pixel predictor
 that removes the spatial redundancy.
-</p><!-- l. 231 --><p class='indent'>   We must bear in mind that as such an image compressor, we can only interact
+</p><!-- l. 227 --><p class='indent'>   We must bear in mind that as such an image compressor, we can only interact
 with PNG at the image level, that is, it only accepts images (in shades of
 gray or in color, with the possibility of an  <a href='https://en.wikipedia.org/wiki/Alpha_compositing'>alpha channel</a>), and only returns
 images.
    
+                                                                  
+
+                                                                  
 </p>
-   <h4 class='likesubsectionHead' id='resources3'><a id='x1-13000'></a>Resources</h4>
-<!-- l. 238 --><p class='noindent'>
+   <h4 class='likesubsectionHead' id='resources3'><a id='x1-14000'></a>Resources</h4>
+<!-- l. 234 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-13002x1'>Usage of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/PNG.ipynb'>PNG in VCF</a>.</li></ol>
+<li class='enumerate' id='x1-14002x1'>Usage of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/PNG.ipynb'>PNG in VCF</a>.</li></ol>
+   
+   <h3 class='sectionHead' id='httpsenwikipediaorgwikitifftagged-image-file-format-tiff'><span class='titlemark'>8   </span> <a id='x1-150008'></a> <a href='https://en.wikipedia.org/wiki/TIFF'>Tagged Image File Format (TIFF)</a></h3>
+<!-- l. 243 --><p class='noindent'>TIFF is a raster image file format with the following features:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-15002x1'>Lossless (LZW) or lossy compression (JPEG).
+     </li>
+<li class='enumerate' id='x1-15004x2'>Supports several color spaces, such as RGB, CMYK, and grayscale.
+     </li>
+<li class='enumerate' id='x1-15006x3'>Supports multi-page (multiple images) and layers (text).
+     </li>
+<li class='enumerate' id='x1-15008x4'>8-bit, 16-bit, 32-bit per pixel.
+     </li>
+<li class='enumerate' id='x1-15010x5'>Metadata-friendly ( <a href='https://en.wikipedia.org/wiki/Exif'>EXIF</a>,  <a href='https://en.wikipedia.org/wiki/Extensible_Metadata_Platform'>XMP</a>, and  <a href='https://en.wikipedia.org/wiki/IPTC_Information_Interchange_Model'>IPTC</a>).</li></ol>
    
                                                                   
 
                                                                   
-   <h3 class='sectionHead' id='httpsenwikipediaorgwikitifftagged-image-file-format-tiff'><span class='titlemark'>8   </span> <a id='x1-140008'></a> <a href='https://en.wikipedia.org/wiki/TIFF'>Tagged Image File Format (TIFF)</a></h3>
-<!-- l. 247 --><p class='noindent'>TIFF is a raster image file format with the following features:
+   <h4 class='likesubsectionHead' id='resources4'><a id='x1-16000'></a>Resources</h4>
+<!-- l. 257 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-14002x1'>Lossless (LZW) or lossy compression (JPEG).
-     </li>
-<li class='enumerate' id='x1-14004x2'>Supports several color spaces, such as RGB, CMYK, and grayscale.
-     </li>
-<li class='enumerate' id='x1-14006x3'>Supports multi-page (multiple images) and layers (text).
-     </li>
-<li class='enumerate' id='x1-14008x4'>8-bit, 16-bit, 32-bit per pixel.
-     </li>
-<li class='enumerate' id='x1-14010x5'>Metadata-friendly ( <a href='https://en.wikipedia.org/wiki/Exif'>EXIF</a>,  <a href='https://en.wikipedia.org/wiki/Extensible_Metadata_Platform'>XMP</a>, and  <a href='https://en.wikipedia.org/wiki/IPTC_Information_Interchange_Model'>IPTC</a>).</li></ol>
+<li class='enumerate' id='x1-16002x1'>Usage of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/PNG.ipynb'>TIFF in VCF</a>.</li></ol>
    
-   <h4 class='likesubsectionHead' id='resources4'><a id='x1-15000'></a>Resources</h4>
-<!-- l. 261 --><p class='noindent'>
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-15002x1'>Usage of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/PNG.ipynb'>TIFF in VCF</a>.</li></ol>
-   
-                                                                  
-
-                                                                  
-   <h3 class='sectionHead' id='references'><span class='titlemark'>9   </span> <a id='x1-160009'></a>References</h3>
+   <h3 class='sectionHead' id='references'><span class='titlemark'>9   </span> <a id='x1-170009'></a>References</h3>
     <div class='thebibliography'>
     <p class='bibitem'><span class='biblabel'>
   [1]<span class='bibsp'>   </span></span><a id='Xruiz2000compresion'></a>Vicente  González-Ruiz.     <a href='http://www.hpca.ual.es/~vruiz/papers/tesis.pdf'><span class='ecti-1000'>Compresión  Reversible  y  Transmisión  de
@@ -273,6 +279,9 @@ images.
     </p>
     <p class='bibitem'><span class='biblabel'>
   [8]<span class='bibsp'>   </span></span><a id='Xvruiz__PNG'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/PNG'>PNG (Portable Network Graphics)</a>.
+                                                                  
+
+                                                                  
     </p>
     <p class='bibitem'><span class='biblabel'>
   [9]<span class='bibsp'>   </span></span><a id='Xvruiz__rle'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/run-length_encoding'>Run-Length Encoding</a>.
@@ -282,13 +291,10 @@ images.
     1996.
 </p>
     </div>
-                                                                  
-
-                                                                  
    <div class='footnotes'><a id='x1-5003x4'></a>
 <!-- l. 93 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>In this case, Huffman can be ineffective. In an extreme case, the alphabet could have only
-two symbols, and therefore the Huffman encoder does not compress or expand.</span></p><a id='x1-10002x6'></a>
-<!-- l. 199 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>In other words, that some symbols are more frequently than others.</span></p>                      </div>
+two symbols, and therefore the Huffman encoder does not compress or expand.</span></p><a id='x1-11002x6'></a>
+<!-- l. 195 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>In other words, that some symbols are more frequently than others.</span></p>                      </div>
  
 </body> 
 </html>
