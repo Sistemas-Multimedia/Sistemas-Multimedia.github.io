@@ -125,7 +125,26 @@ slope.
 
 %}}}
 
-\section{Learned transforms}
+\section{Block-based transforms}
+
+Depending on the content of an image and the spatial transform, it can
+be necessary to divide the image into 2D chunks (usually called
+\emph{tiles} or \emph{blocks}), and encode each chunk
+independently. In general:
+\begin{enumerate}
+\item Tiles are used when the image is made up of very different areas
+  (for example, with text and natural picture content). Tiles are
+  usually rectangular but can have any size, and are usually defined
+  attending to RD or perceptual issues (for example, text is not well
+  compressed by lossy codecs).
+\item Blocks are smaller than tiles and, in most of cases,
+  squared. The block partition can be adaptive and, in this case,
+  should be found using RDO (Rate Distortion Optimization)\footnote{If
+    no other more important requirement exists, such as
+    multiresolution.}.
+\end{enumerate}
+
+\section{``Hand-crafted'' VS learned transforms}
 %{{{
 
 Using machine learning techniques (for example, with an artificial
@@ -141,25 +160,49 @@ transforms are pre-defined.
 
 %}}}
 
-\section{2D-partitioning}
+\section{Linearity}
+Linear systems satisfy the Superposition Principle that basically sais
+that the transform of linear combination of signals is equal to the
+linear combination of the transform of the signals. This makes the
+systems predictable and easier to analyze. Thus for example, if we
+double the input of a linear system we now that the output will be
+also doubled.
 
-Depending on the content of an image, it can be necessary to divide
-the image into 2D chunks (usually called \emph{tiles} or
-\emph{blocks}), and encode each chunk independently. In general:
-\begin{enumerate}
-\item Tiles are used when the image is made up of very different areas
-  (for example, with text and natural picture content). Tiles are
-  usually rectangular but can have any size, and are usually defined
-  attending to RD or perceptual issues (for example, text is not well
-  compressed by lossy codecs).
-\item Blocks are smaller than tiles and, in most of cases,
-  squared. The block partition can be adaptive and, in this case,
-  should be found using RDO (Rate Distortion Optimization)\footnote{If
-    no other more important requirement exists, such as
-    multiresolution.}.
-\end{enumerate}
+\section{Orthogonality}
+In Transform Coding, (among other reasong) orthogonality is
+interesting because the resulting coefficients will not share
+information (in terms the similarity between the input signal and the
+basis functions). This maximizes energy accumulation in the transform
+domain.
+
+\section{Orthonormality}
+An orthonormal transform is a orthogonal transform that satisfy that
+after using the analysis and the synthesis transform, we obtain
+exactly the same input signal. In a orthogonal transfor, the output
+could be amplified (depending on the transform).
+
+\section{Separability}
+A separable transform is those in which the transform of a
+multidimensional signal is equal to the unidimensional transform
+applied to each dimension.
+
+\section{Gaussian sources and the Central Limit Theorem}
+In Gaussian signals, the samples follow a Gaussian distribution. In
+the real world, signals are rarely perfectly perfectly
+mathematical. However, the Central Limit Theorem states that when you
+add many independent random signals together, their sum naturally
+gravitates toward a Gaussian distribution.
+
+\section{Discrete Cosine Transform (DCT)}
+
+\section{Discrete Wavelet Transform (DWT)}
+
+\section{Karhunen–Loève Transform (KLT)}
+In terms of energy concentration, for a zero-mean Gaussian sources the KLT is optimal among all orthogonal linear transforms. The mutidimensional KLT is separable.
 
 \section*{To-Do}
+VCF includes a Learned Block Transform (LBT) (see \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/LBT.ipynb}{LBT}). This is basically the implemented algorithm:
+
 \begin{enumerate}
 \item \textbf{Learned Block Transform (LBT)}: As other transforms do,
   a neural network can learn to perform energy
