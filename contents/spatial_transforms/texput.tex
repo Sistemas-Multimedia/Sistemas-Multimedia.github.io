@@ -253,12 +253,22 @@ do not use any activation function and we train it to minimize
 where $D$ represents distortion and $R$ bit-rate, we will build a
 Rate/Distortion (RD) optimized transformation. Notice that, unlike the
 KLT, now we are considering the quantization and the entropy coding
-subsystems to minimize the $J$ tradeoff between $D$ and $R$ (in the
-KLT we only minimize $D$). $\lambda$ controls our preference:
+subsystems (and their parameters, such as the quantization step size
+and the order of the context modeling) to minimize the $J$ tradeoff
+between $D$ and $R$ (in the KLT we only minimize $D$). $\lambda$
+controls our preference:
 \begin{enumerate}
   \item If $\lambda$ is small, for a given quantization step size and
-    entropy encoding parameters, we are interested in finding a transformation matrix a high quality
-    reconstruction.
+    entropy encoding parameters, we are interested in finding a
+    transformation matrix that should be efficient for high quality
+    reconstruction, at the expense of increasing the bit-rate.
+  \item If $\lambda$ is big, you are telling to the optimizer:
+    ``Bit-rate is expensive''. The autoencoder will update its weights
+    to learn a transform that aggressively groups and compress
+    features (``transform coefficients'', in this case) even a the
+    cost of a high distortion. Therefore, the transform will be
+    optimized for low bit-rates.
+\end{enumerate}
 
 \section*{To-Do}
 VCF includes a Learned Block Transform (LBT) (see \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/LBT.ipynb}{LBT}). This is basically the implemented algorithm:
