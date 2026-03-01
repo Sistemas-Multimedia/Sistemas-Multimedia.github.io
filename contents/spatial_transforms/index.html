@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'> <a href='https://sistemas-multimedia.github.io/contents/spatial_transforms/'>Spatial Transforms</a></h2>
  <div class='author'> <a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>December 11, 2025</span></div>
+<div class='date'><span class='ecrm-1200'>March 1, 2026</span></div>
    </div>
    
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
@@ -27,12 +27,27 @@
    <span class='sectionToc'>1 <a href='#spatial-decorrelation' id='QQ2-1-2'>Spatial decorrelation</a></span>
 <br />   <span class='sectionToc'>2 <a href='#benefits-of-spatial-transforms' id='QQ2-1-3'>Benefits of spatial transforms</a></span>
 <br />   <span class='sectionToc'>3 <a href='#scalar-quantization-and-ratedistortion-optimization-in-the-transform-domain' id='QQ2-1-4'>Scalar quantization and rate-distortion optimization in the transform domain</a></span>
-<br />   <span class='sectionToc'>4 <a href='#learned-transforms' id='QQ2-1-5'>Learned transforms</a></span>
-<br />   <span class='sectionToc'>5 <a href='#dpartitioning' id='QQ2-1-6'>2D-partitioning</a></span>
-<br />   <span class='sectionToc'>6 <a href='#resources' id='QQ2-1-8'>Resources</a></span>
-<br />   <span class='sectionToc'>7 <a href='#references' id='QQ2-1-9'>References</a></span>
+<br />   <span class='sectionToc'>4 <a href='#blockbased-transforms' id='QQ2-1-5'>Block-based transforms</a></span>
+<br />   <span class='sectionToc'>5 <a href='#handcrafted-vs-learned-transforms' id='QQ2-1-6'>“Hand-crafted” VS learned transforms</a></span>
+<br />   <span class='sectionToc'>6 <a href='#linearity' id='QQ2-1-7'>Linearity</a></span>
+<br />   <span class='sectionToc'>7 <a href='#orthogonality' id='QQ2-1-8'>Orthogonality</a></span>
+<br />   <span class='sectionToc'>8 <a href='#filter-symmetry' id='QQ2-1-9'>Filter symmetry</a></span>
+<br />   <span class='sectionToc'>9 <a href='#biorthogonality' id='QQ2-1-10'>Bi-orthogonality</a></span>
+<br />   <span class='sectionToc'>10 <a href='#orthonormality' id='QQ2-1-11'>Orthonormality</a></span>
+<br />   <span class='sectionToc'>11 <a href='#separability' id='QQ2-1-12'>Separability</a></span>
+<br />   <span class='sectionToc'>12 <a href='#gaussian-sources-and-the-central-limit-theorem' id='QQ2-1-13'>Gaussian sources and the Central Limit Theorem</a></span>
+<br />   <span class='sectionToc'>13 <a href='#discrete-cosine-transform-dct' id='QQ2-1-14'>Discrete Cosine Transform (DCT)</a></span>
+<br />   <span class='sectionToc'>14 <a href='#karhunenloeve-transform-klt' id='QQ2-1-15'>Karhunen–Loève Transform (KLT)</a></span>
+<br />   <span class='sectionToc'>15 <a href='#discrete-wavelet-transform-dwt' id='QQ2-1-16'>Discrete Wavelet Transform (DWT)</a></span>
+<br />   <span class='sectionToc'>16 <a href='#rdoptimized-learned-block-transform-lbt' id='QQ2-1-17'>RD-optimized Learned Block Transform (LBT)</a></span>
+<br />   <span class='sectionToc'>17 <a href='#todo' id='QQ2-1-18'>To-Do</a></span>
+<br />   <span class='sectionToc'>18 <a href='#resources' id='QQ2-1-19'>Resources</a></span>
+<br />   <span class='sectionToc'>19 <a href='#references' id='QQ2-1-20'>References</a></span>
    </div>
    
+                                                                  
+
+                                                                  
    <h3 class='sectionHead' id='spatial-decorrelation'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Spatial decorrelation</h3>
 <!-- l. 46 --><p class='noindent'>Spatial transforms used in image and video compression exploit the statistical correlation (and
 perceptual redundancy<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-2001f1'></a>)
@@ -46,9 +61,6 @@ image-wise (or at least, block-wise). This means that the transform inputs an im
 resemblance between the image and a set of basis functions, usually orthogonal.
 For example, after using the 2D-DCT (two-dimensional Discrete Cosine
 Transform) <span class='cite'>[<a href='#Xvruiz__DCT'>2</a>]</span>, (the index of) each coefficient represents a different spatial
-                                                                  
-
-                                                                  
 frequency<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-2003f2'></a>
 and its value, the amount of the corresponding basis found in the image. In the case
 of the dyadic 2D-DWT <span class='cite'>[<a href='#Xvruiz__DWT'>3</a>]</span>, the coefficients “speak” additionally about a
@@ -70,6 +82,9 @@ level.
      function</a> is not flat). This means that we can quantize more severely the
      high frequencies without generating a perceptible distortion.
      </li>
+                                                                  
+
+                                                                  
 <li class='enumerate' id='x1-3010x3'><span class='ecbx-1000'>Multiresolution:  </span>Depending  on  the  transform,  it  is  possible  to
      reconstruct the original image by resolution levels <span class='cite'>[<a href='#Xvruiz__DWT'>3</a>]</span>. This option can be
      interesting when the resolution at which the image must be reconstructed
@@ -80,9 +95,6 @@ level.
    
    <h3 class='sectionHead' id='scalar-quantization-and-ratedistortion-optimization-in-the-transform-domain'><span class='titlemark'>3   </span> <a id='x1-40003'></a>Scalar quantization and rate-distortion optimization in the transform
 domain</h3>
-                                                                  
-
-                                                                  
 <!-- l. 109 --><p class='noindent'>Scalar quantization is efficient in the transform domain because the coefficients
 are decorrelated. The next logical step (after quantization) is the entropy
 coding of the quantization indexes. Here, depending on how the coefficients
@@ -96,69 +108,198 @@ distortion or rate, the quantization step size used in each subband should gener
 the same slope.
    
 </p>
-   <h3 class='sectionHead' id='learned-transforms'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Learned transforms</h3>
-<!-- l. 131 --><p class='noindent'>Using machine learning techniques (for example, with an artificial neural network), it
-is possible to build a machine-krafted transform, specifically tuned for some type of
-images, or at least, capable of determining specific features in the images. This
-technique receive the name of analysis–synthesis dictionary learning, linear
-autoencoders, or learned transform coding.
-</p><!-- l. 138 --><p class='indent'>   Potentially, learned-based image (and video) compressors are adaptive
-algorithms that can be more efficient than those in which the transforms are
-pre-defined.
-   
-</p>
-   <h3 class='sectionHead' id='dpartitioning'><span class='titlemark'>5   </span> <a id='x1-60005'></a>2D-partitioning</h3>
-<!-- l. 146 --><p class='noindent'>Depending on the content of an image, it can be necessary to divide the image into
-2D chunks (usually called <span class='ecti-1000'>tiles </span>or <span class='ecti-1000'>blocks</span>), and encode each chunk independently. In
-general:
+   <h3 class='sectionHead' id='blockbased-transforms'><span class='titlemark'>4   </span> <a id='x1-50004'></a>Block-based transforms</h3>
+<!-- l. 130 --><p class='noindent'>Depending on the content of an image and the spatial transform, it can be necessary
+to divide the image into 2D chunks (usually called <span class='ecti-1000'>tiles </span>or <span class='ecti-1000'>blocks</span>), and encode each
+chunk independently. In general:
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-6002x1'>Tiles  are  used  when  the  image  is  made  up  of  very  different  areas
+<li class='enumerate' id='x1-5002x1'>Tiles  are  used  when  the  image  is  made  up  of  very  different  areas
      (for example, with text and natural picture content). Tiles are usually
      rectangular but can have any size, and are usually defined attending to
      RD or perceptual issues (for example, text is not well compressed by lossy
      codecs).
      </li>
-<li class='enumerate' id='x1-6004x2'>Blocks are smaller than tiles and, in most of cases, squared. The block
+                                                                  
+
+                                                                  
+<li class='enumerate' id='x1-5004x2'>Blocks are smaller than tiles and, in most of cases, squared. The block
      partition can be adaptive and, in this case, should be found using RDO
-     (Rate Distortion Optimization)<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-6005f6'></a>.</li></ol>
+     (Rate Distortion Optimization)<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-5005f6'></a>.</li></ol>
    
-   <h3 class='likesectionHead' id='todo'><a id='x1-7000'></a>To-Do</h3>
-<!-- l. 163 --><p class='noindent'>
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-7002x1'><span class='ecbx-1000'>Learned Block Transform (LBT)</span>: As other transforms do, a neural
-     network can learn to perform energy concentration. Implement a 3-layers
-     <a href='https://en.wikipedia.org/wiki/Autoencoder'>autoencoder</a> trained (using <a href='https://en.wikipedia.org/wiki/Supervised_learning'>supervised learning</a>) to maximize, for example<span class='footnote-mark'><a href='#fn7x0' id='fn7x0-bk'><sup class='textsuperscript'>7</sup></a></span><a id='x1-7003f7'></a>,
-     the  <a href='https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf'>transform coding gain</a> <span class='cite'>[<a href='#Xsayood2017introduction'>5</a>]</span>, for each different image to compress. The
-     size (and shape) of the input layer and the output layer should the same,
-     but  configurable  (typically  between  4x4,  8x8  and  16x16).  Notice  that,
-     the output of the neurons of the center layer should define the transform
-     coefficients, that the (learned) weights of the connections between the
-     input layer and the center layer should conform the forward transform
-     matrix, and that the weights of the connections between the center layer
-     and the output layer should define the inverse transform matrix.</li></ol>
+   <h3 class='sectionHead' id='handcrafted-vs-learned-transforms'><span class='titlemark'>5   </span> <a id='x1-60005'></a>“Hand-crafted” VS learned transforms</h3>
+<!-- l. 150 --><p class='noindent'>Using machine learning techniques (for example, with an artificial neural network), it
+is possible to build a machine-krafted transform, specifically tuned for some type of
+images, or at least, capable of determining specific features in the images. This
+technique receive the name of analysis–synthesis dictionary learning, linear
+autoencoders, or learned transform coding.
+</p><!-- l. 157 --><p class='indent'>   Potentially, learned-based image (and video) compressors are adaptive
+algorithms that can be more efficient than those in which the transforms are
+pre-defined.
    
-   <h3 class='sectionHead' id='resources'><span class='titlemark'>6   </span> <a id='x1-80006'></a>Resources</h3>
-<!-- l. 189 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='linearity'><span class='titlemark'>6   </span> <a id='x1-70006'></a>Linearity</h3>
+<!-- l. 164 --><p class='noindent'>Linear systems satisfy the Superposition Principle that basically sais that the
+transform of linear combination of signals is equal to the linear combination of the
+transform of the signals. This makes the systems predictable and easier to analyze.
+Thus for example, if we double the input of a linear system we now that the output
+will be also doubled.
+   
+</p>
+   <h3 class='sectionHead' id='orthogonality'><span class='titlemark'>7   </span> <a id='x1-80007'></a>Orthogonality</h3>
+<!-- l. 172 --><p class='noindent'>In Transform Coding, (among other reasong) orthogonality is interesting because the
+resulting coefficients will not share information (in terms the similarity between the
+input signal and the basis functions). This maximizes energy accumulation in the
+transform domain. Orthogonality implies linearity.
+   
+</p>
+   <h3 class='sectionHead' id='filter-symmetry'><span class='titlemark'>8   </span> <a id='x1-90008'></a>Filter symmetry</h3>
+                                                                  
+
+                                                                  
+<!-- l. 179 --><p class='noindent'>From a signal processing point of view, the basis functions that conform the
+transform matrices can also be considered as filters. When the filters are symmetric
+(linear in phase) all the filters of the transform generate the same shift of the phase
+of the signal, but when the filter are asymmetric this does not happen and
+ringing artifacts are generated at the edges of the objects of the encoded
+image.
+   
+</p>
+   <h3 class='sectionHead' id='biorthogonality'><span class='titlemark'>9   </span> <a id='x1-100009'></a>Bi-orthogonality</h3>
+<!-- l. 187 --><p class='noindent'>It is mathematically proven that you cannot have a wavelet that is finite, orthogonal,
+and symmetric all at the same time (with the exception of the very blocky Haar
+wavelet). Bi-orthogonal transforms, on the other hand, can be created using
+finite-support symmetric filters at the cost of using filters with different gains
+that usually are nor orthogonal. A bi-orthogonal transform can be easely
+recognized because the synthesis matrix is not the transpose of the analysis
+matrix.
+   
+</p>
+   <h3 class='sectionHead' id='orthonormality'><span class='titlemark'>10   </span> <a id='x1-1100010'></a>Orthonormality</h3>
+<!-- l. 197 --><p class='noindent'>An orthonormal transform is a orthogonal transform that satisfy that after using the
+analysis and the synthesis transform, we obtain exactly the same input signal. In
+a orthogonal transform, the output could be amplified (depending on the
+transform)
+   
+</p>
+   <h3 class='sectionHead' id='separability'><span class='titlemark'>11   </span> <a id='x1-1200011'></a>Separability</h3>
+<!-- l. 203 --><p class='noindent'>A separable transform is those in which the transform of a multidimensional signal is
+equal to the unidimensional transform applied to each dimension.
+   
+</p>
+   <h3 class='sectionHead' id='gaussian-sources-and-the-central-limit-theorem'><span class='titlemark'>12   </span> <a id='x1-1300012'></a>Gaussian sources and the Central Limit Theorem</h3>
+<!-- l. 208 --><p class='noindent'>In Gaussian signals, the samples follow a Gaussian distribution. In the real world,
+signals are rarely perfectly perfectly mathematical. However, the Central Limit
+Theorem states that when you add many independent random signals together, their
+sum naturally gravitates toward a Gaussian distribution.
+                                                                  
+
+                                                                  
+   
+</p>
+   <h3 class='sectionHead' id='discrete-cosine-transform-dct'><span class='titlemark'>13   </span> <a id='x1-1400013'></a>Discrete Cosine Transform (DCT)</h3>
+<!-- l. 215 --><p class='noindent'>The DCT is orthonormal and separable. It is usually applied by blocks of 8x8 pixels
+because:
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-8002x1'>Usage of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DWT.ipynb'>2D-DWT in VCF</a>.
+<li class='enumerate' id='x1-14002x1'>In  most  natural  images  the  spatial  correlation  is  only  significative  in
+     small regions (we are not going to gain in compression ratio using the
+     full-resolution DCT).
      </li>
-<li class='enumerate' id='x1-8004x2'>Usage of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DCT.ipynb'>2D-DCT in VCF</a>.
+<li class='enumerate' id='x1-14004x2'>It is faster: the DCT requires <span class='mathjax-inline'>\(N\log _2(N)\)</span> operations while blocking only <span class='mathjax-inline'>\(N\)</span>.</li></ol>
+<!-- l. 225 --><p class='indent'>   In VCF has been implemented the  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DCT.ipynb'>2D-DCT</a>.
+   
+</p>
+   <h3 class='sectionHead' id='karhunenloeve-transform-klt'><span class='titlemark'>14   </span> <a id='x1-1500014'></a>Karhunen–Loève Transform (KLT)</h3>
+<!-- l. 229 --><p class='noindent'>In the KLT the basis funtions are the eigenvectors of the covariance matrix of the
+input data. In terms of energy concentration (also called  <a href='https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf'>transform coding gain</a> <span class='cite'>[<a href='#Xsayood2017introduction'>5</a>]</span>),
+for a zero-mean Gaussian sources the KLT is optimal among all orthogonal
+transforms.
+</p><!-- l. 236 --><p class='indent'>   Like the other transforms studied here, the KLT is orthonormal but in general not
+separable, and applied block-by-block for two main reasons:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-15002x1'>The basis (eigenvectors) are signal dependent and therefore, the decoder
+     needs the inverse transform matrix, whose size is <span class='mathjax-inline'>\(N^2\)</span> for an input of <span class='mathjax-inline'>\(N\)</span> pixels
+     (<span class='mathjax-inline'>\(N\)</span> eigenvectors of length <span class='mathjax-inline'>\(N\)</span>). Remember that the KLT is not separable.
      </li>
-<li class='enumerate' id='x1-8006x3'> <a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/src/DCT2D/YCoCg_2D_DCT_SQ.ipynb'>Image Compression with YCoCg + 2D-DCT</a>.
+<li class='enumerate' id='x1-15004x2'>Most natural images are non-stationary, meaning their statistics change
+     drastically from one area to another (the top half of a photo might be a
+     smooth, highly correlated blue sky, while the bottom half might be highly
+     detailed, uncorrelated grass). Therefore, if you apply a global KLT to the
+     whole image, it creates a set of basis functions that average out the sky
+     and the grass. This "average" basis isn’t optimal for either region.</li></ol>
+<!-- l. 253 --><p class='indent'>   In VCF has been implemented the  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-KLT.ipynb'>2D-KLT</a>. Notice that only a single analysis
+matrix has been used when encoding the whole image (and only a synthesis matrix
+can be used for decoding).
+   
+</p>
+   <h3 class='sectionHead' id='discrete-wavelet-transform-dwt'><span class='titlemark'>15   </span> <a id='x1-1600015'></a>Discrete Wavelet Transform (DWT)</h3>
+<!-- l. 259 --><p class='noindent'>The DWT is linear, separable and at least bi-orthogonal. Compared to the DCT, in
+the DWT the basis functions have a local support (are not infinite as the cosine
+functions), and the DWT coefficients express both frequency and locality (in the
+original image). This has two main advantages:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-16002x1'>The DWT can be applied without using blocks, avoiding the blocking
+     artifact usually visible at very low bit-rates.
+     </li>
+<li class='enumerate' id='x1-16004x2'>In general, the energy compactation generated by the DWT is superior to
+     the achieved by the DCT.</li></ol>
+<!-- l. 271 --><p class='indent'>   In VCF has been implemented the  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-KLT.ipynb'>2D-DWT</a>.
+   
+</p>
+   <h3 class='sectionHead' id='rdoptimized-learned-block-transform-lbt'><span class='titlemark'>16   </span> <a id='x1-1700016'></a>RD-optimized Learned Block Transform (LBT)</h3>
+<!-- l. 275 --><p class='noindent'>Neural networks are good learning things. Specifically, autoencoders are capable of
+matching correspondences between input and output tensors. If we design a 2-layers
+autoencoder where the neurons do not use any activation function and we train it to
+minimize </p><div class='mathjax-env mathjax-equation'>\begin{equation} J = D + \lambda R, \end{equation}</div><p><a id='x1-17001r1'></a> where <span class='mathjax-inline'>\(D\)</span> represents distortion and <span class='mathjax-inline'>\(R\)</span> bit-rate, we will build a Rate/Distortion
+(RD) optimized transformation. Notice that, unlike the KLT, now we are considering
+the quantization and the entropy coding subsystems (and their parameters, such as
+the quantization step size and the order of the context modeling) to minimize
+                                                                  
+
+                                                                  
+the <span class='mathjax-inline'>\(J\)</span> tradeoff between <span class='mathjax-inline'>\(D\)</span> and <span class='mathjax-inline'>\(R\)</span> (in the KLT we only minimize <span class='mathjax-inline'>\(D\)</span>). <span class='mathjax-inline'>\(\lambda \)</span> controls our
+preference:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-17003x1'>If  <span class='mathjax-inline'>\(\lambda \)</span>  is  small,  for  a  given  quantization  step  size  and  entropy  encoding
+     parameters,  we  are  interested  in  finding  a  transformation  matrix  that
+     should  be  efficient  for  high  quality  reconstruction,  at  the  expense  of
+     increasing the bit-rate.
+     </li>
+<li class='enumerate' id='x1-17005x2'>If <span class='mathjax-inline'>\(\lambda \)</span> is big, you are telling to the optimizer: “Bit-rate is expensive”. The
+     autoencoder will update its weights to learn a transform that aggressively
+     groups and compress features (“transform coefficients”, in this case) even
+     a the cost of a high distortion. Therefore, the transform will be optimized
+     for low bit-rates.</li></ol>
+<!-- l. 302 --><p class='indent'>   In VCF has been implemented a block-wise  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-LBT.ipynb'>2D-LBT</a>.
+   
+</p>
+   <h3 class='sectionHead' id='todo'><span class='titlemark'>17   </span> <a id='x1-1800017'></a>To-Do</h3>
+<!-- l. 306 --><p class='noindent'>The current implementation of LBT is not separable (the transform matrices has
+been found for the complete blocks). If <span class='mathjax-inline'>\(T(\mathbf {X})\)</span> represents the transform of the
+block <span class='mathjax-inline'>\(\mathbf {X}\)</span> modify  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-LBT.py'>2D-LBT</a> to train <span class='mathjax-inline'>\(\mathbf {A}\in \mathbb {R}^{B\times B}\)</span>, where <span class='mathjax-inline'>\(B\)</span> is the side of the square blocks,
+being<span class='footnote-mark'><a href='#fn7x0' id='fn7x0-bk'><sup class='textsuperscript'>7</sup></a></span><a id='x1-18001f7'></a>
+</p><div class='mathjax-env mathjax-equation'>\begin{equation} T(\mathbf {X}) = \mathbf {A}\mathbf {X}\mathbf {A}^T. \end{equation}</div><p><a id='x1-18004r3'></a>
+<!-- l. 320 --></p><p class='indent'>   Sumarizing, the only that should be modified is that the transform is applied first
+by rows and the by columns.
+   
+</p>
+   <h3 class='sectionHead' id='resources'><span class='titlemark'>18   </span> <a id='x1-1900018'></a>Resources</h3>
+<!-- l. 326 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-19002x1'> <a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/src/DCT2D/YCoCg_2D_DCT_SQ.ipynb'>Image Compression with YCoCg + 2D-DCT</a>.
                                                                   
 
                                                                   
      </li>
-<li class='enumerate' id='x1-8008x4'> <a href='https://www.tensorflow.org/tutorials/generative/data_compression'>Learned data compression</a>.
+<li class='enumerate' id='x1-19004x2'> <a href='https://www.tensorflow.org/tutorials/generative/data_compression'>Learned data compression</a>.
      </li>
-<li class='enumerate' id='x1-8010x5'> <a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/LIC.ipynb'>Learned Image Compression (LIC) using auto-encoders</a>.
+<li class='enumerate' id='x1-19006x3'> <a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/LIC.ipynb'>Learned Image Compression (LIC) using auto-encoders</a>.
      </li>
-<li class='enumerate' id='x1-8012x6'> <a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/AutoencoderBlockCompression.ipynb'>AutoencoderBlockCompression.ipynb</a>.
+<li class='enumerate' id='x1-19008x4'> <a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/AutoencoderBlockCompression.ipynb'>AutoencoderBlockCompression.ipynb</a>.
      </li>
-<li class='enumerate' id='x1-8014x7'>  <a href='https://github.com/fchollet/deep-learning-with-python-notebooks'>Companion  Jupyter  notebooks  for  the  book  “Deep  Learning  with
+<li class='enumerate' id='x1-19010x5'>  <a href='https://github.com/fchollet/deep-learning-with-python-notebooks'>Companion  Jupyter  notebooks  for  the  book  “Deep  Learning  with
      Python”</a> <span class='cite'>[<a href='#Xchollet2021deep'>1</a>]</span>.</li></ol>
    
-   <h3 class='sectionHead' id='references'><span class='titlemark'>7   </span> <a id='x1-90007'></a>References</h3>
+   <h3 class='sectionHead' id='references'><span class='titlemark'>19   </span> <a id='x1-2000019'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xchollet2021deep'></a>Francois Chollet.  <a href='https://sourestdeeds.github.io/pdf/Deep%20Learning%20with%20Python.pdf'><span class='ecti-1000'>Deep learning with Python</span></a>. Simon and Schuster, 2021.
@@ -190,10 +331,9 @@ the quantization indexes. When the dynamic range of a signal is high, this makes
 use more quantization levels and therefore, a higher number of available RD points.</span></p><a id='x1-4002x3'></a>
 <!-- l. 117 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>In the case of a spatial transform, a subband is form by all the coefficients that describe
 the same frequency components in different areas or resolutions (when available) of the
-image.</span></p><a id='x1-6006x6'></a>
-<!-- l. 159 --><p class='noindent'><span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>If no other more important requirement exists, such as multiresolution.</span></p><a id='x1-7004x7'></a>
-<!-- l. 173 --><p class='noindent'><span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>The function to optimize during the training of the network can be any, as long as such
-function increases the sparsity of the transform coefficients.</span></p>                                            </div>
+image.</span></p><a id='x1-5006x6'></a>
+<!-- l. 144 --><p class='noindent'><span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>If no other more important requirement exists, such as multiresolution.</span></p><a id='x1-18002x17'></a>
+<!-- l. 315 --><p class='indent'>     <span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>In the current implementation, </span></p><div class='mathjax-env mathjax-equation'>\begin{equation} T(\mathbf {X}) = \mathbf {B}\mathbf {X}, \end{equation}</div><a id='x1-18003r2'></a> <span class='ecrm-0800'>where </span><span class='mathjax-inline'>\(\mathbf {B}\in \mathbb {R}^{B^2\times B^2}\)</span><span class='ecrm-0800'>.</span>                                                           </div>
  
 </body> 
 </html>
