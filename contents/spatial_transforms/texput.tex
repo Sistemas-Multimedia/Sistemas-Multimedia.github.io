@@ -225,6 +225,11 @@ of 8x8 pixels because:
 In VCF has been implemented the
 \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DCT.ipynb}{2D-DCT}.
 
+\section{Modified DCT (MDCT)}
+To avoid blockiness we can overlap the blocks. The MDCT was
+speficically designed to avoid this artifact. See
+\href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-MDCT.ipynb}{2D-MDCT}.
+
 \section{Karhunen–Loève Transform (KLT)}
 In the KLT the basis funtions are the eigenvectors of the covariance
 matrix of the input data. In terms of energy concentration (also
@@ -250,7 +255,7 @@ reasons:
   basis isn't optimal for either region.
 \end{enumerate}
 
-In VCF has been implemented the
+A 2D-blocks version of the KLT can be found in
 \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-KLT.ipynb}{2D-KLT}. Notice
 that only a single analysis matrix has been used when encoding the
 whole image (and only a synthesis matrix can be used for decoding).
@@ -268,7 +273,7 @@ advantages:
   superior to the achieved by the DCT.
 \end{enumerate}
 
-In VCF has been implemented the
+VCF implements
 \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-KLT.ipynb}{2D-DWT}.
 
 \section{RD-optimized Learned Block Transform (LBT)}
