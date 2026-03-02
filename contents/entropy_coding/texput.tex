@@ -11,7 +11,7 @@
 
 \tableofcontents
 
-\section{What is entropy coding?}
+\section{What is Entropy Coding (EC)?}
 
 \href{https://en.wikipedia.org/wiki/Entropy_coding}{Entropy Coding}
 (EC)~\cite{vruiz__entropy_coding} encompasses a whole series of coding
@@ -70,11 +70,12 @@ in compression ratio.
 
 \section{\href{https://en.wikipedia.org/wiki/Huffman_coding}{Huffman Coding (HC)}}
 
-A Huffman code~\cite{vruiz__huffman_coding,ruiz2000compresion} is a
-\href{https://en.wikipedia.org/wiki/Prefix_code}{prefix code} that,
-for each \emph{code-word} (a binary sequence), allows to ``navigate''
-through the so called Huffman tree from the trunk to one of its
-leaves, without uncertainty. The Huffman tree satisfies that
+A Huffman
+code~\cite{vruiz__huffman_coding,ruiz2000compresion,nelson96datacompression}
+is a \href{https://en.wikipedia.org/wiki/Prefix_code}{prefix code}
+that, for each \emph{code-word} (a binary sequence), allows to
+``navigate'' through the so called Huffman tree from the trunk to one
+of its leaves, without uncertainty. The Huffman tree satisfies that
 \begin{equation}
   l(c(s)) = \lceil I(s)\rceil,
   \label{eq:huffman_performance}
@@ -100,29 +101,53 @@ action very frequent when using
 \item \href{https://www.inference.org.uk/mackay/python/compress/#Huff}{Compression algorithms in Python}.
 \item \href{https://favtutor.com/blogs/huffman-coding}{Huffman Coding Implementation in Python with Examples}.
 \item \href{https://www.programiz.com/dsa/huffman-coding}{Huffman Coding}.
-\item \href{https://en.wikipedia.org/wiki/Prediction_by_partial_matching}{Prediction by Partial Matching}.
 \item \href{https://en.wikipedia.org/wiki/Lossless_JPEG}{Lossless JPEG}.
 \item \href{https://en.wikipedia.org/wiki/Context-adaptive_variable-length_coding}{Context-Adaptive Variable-Length Coding}.
 \item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/Huffman.ipynb}{static Huffman in VCF}.
+\item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/CBAHC.ipynb}{Context-Basaed Adaptive Huffman Coding in VCF}.
 \end{enumerate}
 
 \subsection*{To do}
 \begin{enumerate}
-\item Create a new module (to be used in VCF,) named
-  \texttt{adaptive\_Huffman.py}, that use a \emph{context-based
-  adaptive probabilistic model} \cite{nelson96datacompression}, and
-  HC. The user should be able to select \emph{the order of the model}
-  (how many previously encoded symbols use the model to generate the
-  probability of the symbol that is going to be encoded).
+\item The module
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/CBAHC.py}{CBAHC.py}
+  is not aware of images, because the symbols (pixels) context is not
+  optimally selected. Example (order 3):
+\begin{verbatim}
+
+  CURRENT IMPLEMENTATION         IDEAL IMPLEMENTATION
++--------------------------   +--------------------------
+|                             |       dc
+|     dcba                    |       ba
+|                             |
+|    context: dcb             |    context: dcb
+|    encoded: a               |    encoded: a
+
+\end{verbatim}
+\item Improve
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/CBAHC.py}{CBAHC.py},
+  considering the ideal implementation. For order 4, we should have:
+\begin{verbatim}
+
+   IDEAL IMPLEMENTATION
++--------------------------
+|       edc
+|       ba
+|
+|    context: dcb
+|    encoded: a
+
+\end{verbatim}
+\item Consider higher prediction orders, allways surrounding the pixel
+  '\verb|a|' and that are known by the decoder.
 \end{enumerate}
 
 \section{\href{https://en.wikipedia.org/wiki/Arithmetic_coding}{Arithmetic
     Coding (AC)}}
 
-In an arithmetic
-codec~\cite{vruiz__arithmetic_coding,ruiz2000compresion}, the number
-of bits of data that are used for representing the symbols matchrd
-exactly with the number of bits of information provided by the
+In AC~\cite{vruiz__arithmetic_coding,ruiz2000compresion,nelson96datacompression},
+the number of bits of data that are used for representing the symbols
+matchrd exactly with the number of bits of information provided by the
 symbols, i.e,
 \begin{equation}
   l(c(s)) = I(s).
@@ -131,9 +156,9 @@ symbols, i.e,
 This also means that, even if the size of the alphabet is small, the
 coding performance of an arithmetic code is optimal, although this
 optimality is only fully satisfied if the number of symbols to encode
-is infinite. Notice also that, if the alphabet is large, the encoding
-performance difference between a Huffman code (or any other prefix
-code) and an arithmetic code, vanishes.
+is infinite. Notice also that, if the alphabet is large, the
+compression ratio difference between a Huffman code (or any other
+prefix code) and an arithmetic code, vanishes.
 
 \subsection*{Resources}
 \begin{enumerate}
@@ -149,17 +174,15 @@ code) and an arithmetic code, vanishes.
 \item \href{https://en.wikipedia.org/wiki/Prediction_by_partial_matching}{Prediction by Partial Matching}.
 \item \href{https://en.wikipedia.org/wiki/Lossless_JPEG}{Lossless JPEG}.
 \item \href{https://en.wikipedia.org/wiki/Context-adaptive_binary_arithmetic_coding}{Context-Adaptive Binary Arithmetic Coding}.
+\item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/CBAHC.ipynb}{Context-Basaed Adaptive Arithmetic Coding in VCF}.
 \end{enumerate}
 
 \subsection*{To do}
 \begin{enumerate}
-\item Create a new module named \texttt{arith.py} that implement a
-  static probabilistic model and Arithmetic Coding
-  \cite{nelson96datacompression} to be used in VCF.
-\item Create a new module named \texttt{adaptive\_arith.py} that use
-  a context-based adaptive probabilistic model and Arithmetic Coding
-  \cite{nelson96datacompression}, where the user can select the order
-  of the model.
+\item Improve
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/CBAAC.py}{CBAAC.py}
+  in the same way as explained for
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/src/CBAHC.py}{CBAHC.py}.
 \end{enumerate}
 
 \section{\href{https://zlib.net/}{\texttt{zlib}}}

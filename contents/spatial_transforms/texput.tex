@@ -125,7 +125,26 @@ slope.
 
 %}}}
 
-\section{Learned transforms}
+\section{Block-based transforms}
+
+Depending on the content of an image and the spatial transform, it can
+be necessary to divide the image into 2D chunks (usually called
+\emph{tiles} or \emph{blocks}), and encode each chunk
+independently. In general:
+\begin{enumerate}
+\item Tiles are used when the image is made up of very different areas
+  (for example, with text and natural picture content). Tiles are
+  usually rectangular but can have any size, and are usually defined
+  attending to RD or perceptual issues (for example, text is not well
+  compressed by lossy codecs).
+\item Blocks are smaller than tiles and, in most of cases,
+  squared. The block partition can be adaptive and, in this case,
+  should be found using RDO (Rate Distortion Optimization)\footnote{If
+    no other more important requirement exists, such as
+    multiresolution.}.
+\end{enumerate}
+
+\section{``Hand-crafted'' VS learned transforms}
 %{{{
 
 Using machine learning techniques (for example, with an artificial
@@ -141,54 +160,170 @@ transforms are pre-defined.
 
 %}}}
 
-\section{2D-partitioning}
+\section{Linearity}
+Linear systems satisfy the Superposition Principle that basically sais
+that the transform of linear combination of signals is equal to the
+linear combination of the transform of the signals. This makes the
+systems predictable and easier to analyze. Thus for example, if we
+double the input of a linear system we now that the output will be
+also doubled.
 
-Depending on the content of an image, it can be necessary to divide
-the image into 2D chunks (usually called \emph{tiles} or
-\emph{blocks}), and encode each chunk independently. In general:
+\section{Orthogonality}
+In Transform Coding, (among other reasong) orthogonality is
+interesting because the resulting coefficients will not share
+information (in terms the similarity between the input signal and the
+basis functions). This maximizes energy accumulation in the transform
+domain. Orthogonality implies linearity.
+
+\section{Filter symmetry}
+From a signal processing point of view, the basis functions that
+conform the transform matrices can also be considered as filters. When
+the filters are symmetric (linear in phase) all the filters of the
+transform generate the same shift of the phase of the signal, but when
+the filter are asymmetric this does not happen and ringing artifacts
+are generated at the edges of the objects of the encoded image.
+
+\section{Bi-orthogonality}
+It is mathematically proven that you cannot have a wavelet that is
+finite, orthogonal, and symmetric all at the same time (with the
+exception of the very blocky Haar wavelet). Bi-orthogonal transforms,
+on the other hand, can be created using finite-support symmetric
+filters at the cost of using filters with different gains that usually
+are nor orthogonal. A bi-orthogonal transform can be easely recognized
+because the synthesis matrix is not the transpose of the analysis
+matrix.
+
+\section{Orthonormality}
+An orthonormal transform is a orthogonal transform that satisfy that
+after using the analysis and the synthesis transform, we obtain
+exactly the same input signal. In a orthogonal transform, the output
+could be amplified (depending on the transform)
+
+\section{Separability}
+A separable transform is those in which the transform of a
+multidimensional signal is equal to the unidimensional transform
+applied to each dimension.
+
+\section{Gaussian sources and the Central Limit Theorem}
+In Gaussian signals, the samples follow a Gaussian distribution. In
+the real world, signals are rarely perfectly perfectly
+mathematical. However, the Central Limit Theorem states that when you
+add many independent random signals together, their sum naturally
+gravitates toward a Gaussian distribution.
+
+\section{Discrete Cosine Transform (DCT)}
+The DCT is orthonormal and separable. It is usually applied by blocks
+of 8x8 pixels because:
 \begin{enumerate}
-\item Tiles are used when the image is made up of very different areas
-  (for example, with text and natural picture content). Tiles are
-  usually rectangular but can have any size, and are usually defined
-  attending to RD or perceptual issues (for example, text is not well
-  compressed by lossy codecs).
-\item Blocks are smaller than tiles and, in most of cases,
-  squared. The block partition can be adaptive and, in this case,
-  should be found using RDO (Rate Distortion Optimization)\footnote{If
-    no other more important requirement exists, such as
-    multiresolution.}.
+\item In most natural images the spatial correlation is only
+  significative in small regions (we are not going to gain in
+  compression ratio using the full-resolution DCT).
+\item It is faster: the DCT requires $N\log_2(N)$ operations while
+  blocking only $N$.
 \end{enumerate}
 
-\section*{To-Do}
+In VCF has been implemented the
+\href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DCT.ipynb}{2D-DCT}.
+
+\section{Karhunen–Loève Transform (KLT)}
+In the KLT the basis funtions are the eigenvectors of the covariance
+matrix of the input data. In terms of energy concentration (also
+called
+\href{https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf}{transform
+  coding gain} \cite{sayood2017introduction}), for a zero-mean
+Gaussian sources the KLT is optimal among all orthogonal transforms.
+
+Like the other transforms studied here, the KLT is orthonormal but in
+general not separable, and applied block-by-block for two main
+reasons:
 \begin{enumerate}
-\item \textbf{Learned Block Transform (LBT)}: As other transforms do,
-  a neural network can learn to perform energy
-  concentration. Implement a 3-layers
-  \href{https://en.wikipedia.org/wiki/Autoencoder}{autoencoder}
-  trained (using
-  \href{https://en.wikipedia.org/wiki/Supervised_learning}{supervised
-    learning}) to maximize, for example\footnote{The function to
-  optimize during the training of the network can be any, as long as
-  such function increases the sparsity of the transform
-  coefficients.}, the
-  \href{https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf}{transform
-    coding gain} \cite{sayood2017introduction}, for each different
-  image to compress. The size (and shape) of the input layer and the
-  output layer should the same, but configurable (typically between
-  4x4, 8x8 and 16x16). Notice that, the output of the neurons of the
-  center layer should define the transform coefficients, that the
-  (learned) weights of the connections between the input layer and the
-  center layer should conform the forward transform matrix, and that
-  the weights of the connections between the center layer and the
-  output layer should define the inverse transform matrix.
+\item The basis (eigenvectors) are signal dependent and therefore, the
+  decoder needs the inverse transform matrix, whose size is $N^2$ for
+  an input of $N$ pixels ($N$ eigenvectors of length $N$). Remember
+  that the KLT is not separable.
+\item Most natural images are non-stationary, meaning their statistics
+  change drastically from one area to another (the top half of a photo
+  might be a smooth, highly correlated blue sky, while the bottom half
+  might be highly detailed, uncorrelated grass). Therefore, if you
+  apply a global KLT to the whole image, it creates a set of basis
+  functions that average out the sky and the grass. This "average"
+  basis isn't optimal for either region.
 \end{enumerate}
+
+In VCF has been implemented the
+\href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-KLT.ipynb}{2D-KLT}. Notice
+that only a single analysis matrix has been used when encoding the
+whole image (and only a synthesis matrix can be used for decoding).
+
+\section{Discrete Wavelet Transform (DWT)}
+The DWT is linear, separable and at least bi-orthogonal. Compared to
+the DCT, in the DWT the basis functions have a local support (are not
+infinite as the cosine functions), and the DWT coefficients express
+both frequency and locality (in the original image). This has two main
+advantages:
+\begin{enumerate}
+\item The DWT can be applied without using blocks, avoiding the
+  blocking artifact usually visible at very low bit-rates.
+\item In general, the energy compactation generated by the DWT is
+  superior to the achieved by the DCT.
+\end{enumerate}
+
+In VCF has been implemented the
+\href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-KLT.ipynb}{2D-DWT}.
+
+\section{RD-optimized Learned Block Transform (LBT)}
+Neural networks are good learning things. Specifically, autoencoders
+are capable of matching correspondences between input and
+output tensors. If we design a 2-layers autoencoder where the neurons
+do not use any activation function and we train it to minimize
+\begin{equation}
+  J = D + \lambda R,
+\end{equation}
+where $D$ represents distortion and $R$ bit-rate, we will build a
+Rate/Distortion (RD) optimized transformation. Notice that, unlike the
+KLT, now we are considering the quantization and the entropy coding
+subsystems (and their parameters, such as the quantization step size
+and the order of the context modeling) to minimize the $J$ tradeoff
+between $D$ and $R$ (in the KLT we only minimize $D$). $\lambda$
+controls our preference:
+\begin{enumerate}
+  \item If $\lambda$ is small, for a given quantization step size and
+    entropy encoding parameters, we are interested in finding a
+    transformation matrix that should be efficient for high quality
+    reconstruction, at the expense of increasing the bit-rate.
+  \item If $\lambda$ is big, you are telling to the optimizer:
+    ``Bit-rate is expensive''. The autoencoder will update its weights
+    to learn a transform that aggressively groups and compress
+    features (``transform coefficients'', in this case) even a the
+    cost of a high distortion. Therefore, the transform will be
+    optimized for low bit-rates.
+\end{enumerate}
+
+In VCF has been implemented a block-wise
+\href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-LBT.ipynb}{2D-LBT}.
+
+\section{To-Do}
+The current implementation of LBT is not separable (the transform
+matrices has been found for the complete blocks). If $T(\mathbf{X})$
+represents the transform of the block $\mathbf{X}$ modify
+\href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-LBT.py}{2D-LBT}
+to train $\mathbf{A}\in\mathbb{R}^{B\times B}$, where $B$ is the side
+of the square blocks, being\footnote{In the current implementation,
+\begin{equation}
+  T(\mathbf{X}) = \mathbf{B}\mathbf{X},
+\end{equation}
+where $\mathbf{B}\in\mathbb{R}^{B^2\times B^2}$.}
+\begin{equation}
+  T(\mathbf{X}) = \mathbf{A}\mathbf{X}\mathbf{A}^T.
+\end{equation}
+
+Sumarizing, the only that should be modified is that the transform is
+applied first by rows and the by columns.
 
 \section{Resources}
 %{{{
 
 \begin{enumerate}
-\item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DWT.ipynb}{2D-DWT in VCF}.
-\item Usage of \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DCT.ipynb}{2D-DCT in VCF}.
 \item
   \href{https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/src/DCT2D/YCoCg_2D_DCT_SQ.ipynb}{Image
     Compression with YCoCg + 2D-DCT}.
