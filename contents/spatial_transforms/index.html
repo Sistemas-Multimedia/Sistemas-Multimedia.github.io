@@ -301,10 +301,13 @@ preference:
      the entropy encoder parameter(s). Try to improve the accuracy of this term of
      the cost function. Modify any other training parameter (such as the number of
      epochs) to achive this goal.
-     </li></ol>
+     </li>
+<li class='enumerate' id='x1-19011x3'>Remove from the code all the part related with the perceptual quantization.
+     The QSS matrices are specific for the 2D-DCT.
+</li></ol>
    
    <h3 class='sectionHead' id='resources'><span class='titlemark'>19   </span> <a id='x1-2000019'></a>Resources</h3>
-<!-- l. 349 --><p class='noindent'>
+<!-- l. 352 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-20002x1'> <a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/src/DCT2D/YCoCg_2D_DCT_SQ.ipynb'>Image Compression with YCoCg + 2D-DCT</a>.
      </li>
@@ -313,13 +316,13 @@ preference:
 <li class='enumerate' id='x1-20006x3'> <a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/LIC.ipynb'>Learned Image Compression (LIC) using auto-encoders</a>.
      </li>
 <li class='enumerate' id='x1-20008x4'> <a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/AutoencoderBlockCompression.ipynb'>AutoencoderBlockCompression.ipynb</a>.
+                                                                  
+
+                                                                  
      </li>
 <li class='enumerate' id='x1-20010x5'>  <a href='https://github.com/fchollet/deep-learning-with-python-notebooks'>Companion  Jupyter  notebooks  for  the  book  “Deep  Learning  with
      Python”</a> <span class='cite'>[<a href='#Xchollet2021deep'>1</a>]</span>.</li></ol>
    
-                                                                  
-
-                                                                  
    <h3 class='sectionHead' id='references'><span class='titlemark'>20   </span> <a id='x1-2100020'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
@@ -352,6 +355,9 @@ the same frequency components in different areas or resolutions (when available)
 image.</span></p><a id='x1-5006x6'></a>
 <!-- l. 144 --><p class='noindent'><span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>If no other more important requirement exists, such as multiresolution.</span></p><a id='x1-19004x7'></a>
 <!-- l. 324 --><p class='noindent'><span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>In the current implementation, </span></p><div class='mathjax-env mathjax-equation'>\begin{equation} T(\mathbf {X}) = \mathbf {B}\mathbf {X}, \end{equation}</div><a id='x1-19005r2'></a> <span class='ecrm-0800'>where </span><span class='mathjax-inline'>\(\mathbf {B}\in \mathbb {R}^{B^2\times B^2}\)</span><span class='ecrm-0800'>.</span>                                                                </div>
+                                                                  
+
+                                                                  
  
 </body> 
 </html>
