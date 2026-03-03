@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'> <a href='https://sistemas-multimedia.github.io/contents/spatial_transforms/'>Spatial Transforms</a></h2>
  <div class='author'> <a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>March 2, 2026</span></div>
+<div class='date'><span class='ecrm-1200'>March 3, 2026</span></div>
    </div>
    
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
@@ -255,13 +255,14 @@ original image). This has two main advantages:
                                                                   
 
                                                                   
-<!-- l. 280 --><p class='noindent'>Neural networks are good learning things. Specifically, autoencoders are capable of
-matching correspondences between input and output tensors. If we design a 2-layers
-autoencoder where the neurons do not use any activation function and we train it to
-minimize </p><div class='mathjax-env mathjax-equation'>\begin{equation} J = D + \lambda R, \end{equation}</div><p><a id='x1-18001r1'></a> where <span class='mathjax-inline'>\(D\)</span> represents distortion and <span class='mathjax-inline'>\(R\)</span> bit-rate, we will build a Rate/Distortion
-(RD) optimized transformation. Notice that, unlike the KLT, now we are considering
-the quantization and the entropy coding subsystems (and their parameters, such as
-the quantization step size and the order of the context modeling) to minimize
+<!-- l. 280 --><p class='noindent'>Neural networks are good learning things. Specifically, autoencoders are
+capable of matching correspondences between input and output tensors. If we
+design a 2-layers autoencoder where the neurons do not use any activation
+function and we train it to minimize the cost function </p><div class='mathjax-env mathjax-equation'>\begin{equation} J = D + \lambda R, \end{equation}</div><p><a id='x1-18001r1'></a> where <span class='mathjax-inline'>\(D\)</span> represents
+distortion and <span class='mathjax-inline'>\(R\)</span> bit-rate, we will build a Rate/Distortion (RD) optimized
+transformation. Notice that, unlike the KLT, now we are considering the
+quantization and the entropy coding subsystems (and their parameters, such as the
+quantization step size and the order of the context modeling) to minimize
 the <span class='mathjax-inline'>\(J\)</span> tradeoff between <span class='mathjax-inline'>\(D\)</span> and <span class='mathjax-inline'>\(R\)</span> (in the KLT we only minimize <span class='mathjax-inline'>\(D\)</span>). <span class='mathjax-inline'>\(\lambda \)</span> controls our
 preference:
      </p><ol class='enumerate1'>
@@ -275,24 +276,35 @@ preference:
      groups and compress features (“transform coefficients”, in this case) even
      a the cost of a high distortion. Therefore, the transform will be optimized
      for low bit-rates.</li></ol>
-<!-- l. 307 --><p class='indent'>   In VCF has been implemented a block-wise  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-LBT.ipynb'>2D-LBT</a>.
+<!-- l. 308 --><p class='indent'>   In VCF has been implemented a block-wise  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-LBT.ipynb'>2D-LBT</a>.
    
 </p>
    <h3 class='sectionHead' id='todo'><span class='titlemark'>18   </span> <a id='x1-1900018'></a>To-Do</h3>
-<!-- l. 311 --><p class='noindent'>The current implementation of LBT is not separable (the transform matrices has
-been found for the complete blocks). If <span class='mathjax-inline'>\(T(\mathbf {X})\)</span> represents the transform of the
-block <span class='mathjax-inline'>\(\mathbf {X}\)</span> modify  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-LBT.py'>2D-LBT</a> to train <span class='mathjax-inline'>\(\mathbf {A}\in \mathbb {R}^{B\times B}\)</span>, where <span class='mathjax-inline'>\(B\)</span> is the side of the square blocks,
-being<span class='footnote-mark'><a href='#fn7x0' id='fn7x0-bk'><sup class='textsuperscript'>7</sup></a></span><a id='x1-19001f7'></a>
-</p><div class='mathjax-env mathjax-equation'>\begin{equation} T(\mathbf {X}) = \mathbf {A}\mathbf {X}\mathbf {A}^T. \end{equation}</div><p><a id='x1-19004r3'></a>
-<!-- l. 325 --></p><p class='indent'>   Sumarizing, the only that should be modified is that the transform is applied first
-by rows and the by columns.
-   
-</p>
-   <h3 class='sectionHead' id='resources'><span class='titlemark'>19   </span> <a id='x1-2000019'></a>Resources</h3>
+<!-- l. 312 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-19002x1'>
+     <!-- l. 313 --><p class='noindent'>The current implementation of LBT is not separable (the transform matrices
+     has been found for the complete blocks). If <span class='mathjax-inline'>\(T(\mathbf {X})\)</span> represents the transform of the
+     block <span class='mathjax-inline'>\(\mathbf {X}\)</span> modify  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-LBT.py'>2D-LBT</a> to train <span class='mathjax-inline'>\(\mathbf {A}\in \mathbb {R}^{B\times B}\)</span>, where <span class='mathjax-inline'>\(B\)</span> is the side of the square blocks,
+     being<span class='footnote-mark'><a href='#fn7x0' id='fn7x0-bk'><sup class='textsuperscript'>7</sup></a></span><a id='x1-19003f7'></a>
+     </p><div class='mathjax-env mathjax-equation'>\begin{equation} T(\mathbf {X}) = \mathbf {A}\mathbf {X}\mathbf {A}^T. \end{equation}</div><a id='x1-19006r3'></a>
+     <!-- l. 329 --><p class='noindent'>Sumarizing, the transform is applied first by rows and the by columns. The
+     transform matrix is smaller.
                                                                   
 
                                                                   
-<!-- l. 331 --><p class='noindent'>
+     </p></li>
+<li class='enumerate' id='x1-19008x2'>
+     <!-- l. 332 --><p class='noindent'>In the current implementation </p><div class='mathjax-env mathjax-equation'>\begin{equation} R = \frac {1}{N}\sum _{i=1}^{N} \log (\sigma _i^2), \end{equation}</div><a id='x1-19009r4'></a> where <span class='mathjax-inline'>\(N\)</span> is the number of pixels/block and <span class='mathjax-inline'>\(\sigma ^2_i\)</span> is the
+     variance of the <span class='mathjax-inline'>\(i\)</span>-the coefficient inside of each block. Obviously, <span class='mathjax-inline'>\(R\)</span> is only an
+     estimation of the (inverse of) real bit-rate, which depends also on the QSS and
+     the entropy encoder parameter(s). Try to improve the accuracy of this term of
+     the cost function. Modify any other training parameter (such as the number of
+     epochs) to achive this goal.
+     </li></ol>
+   
+   <h3 class='sectionHead' id='resources'><span class='titlemark'>19   </span> <a id='x1-2000019'></a>Resources</h3>
+<!-- l. 349 --><p class='noindent'>
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x1-20002x1'> <a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/src/DCT2D/YCoCg_2D_DCT_SQ.ipynb'>Image Compression with YCoCg + 2D-DCT</a>.
      </li>
@@ -305,6 +317,9 @@ by rows and the by columns.
 <li class='enumerate' id='x1-20010x5'>  <a href='https://github.com/fchollet/deep-learning-with-python-notebooks'>Companion  Jupyter  notebooks  for  the  book  “Deep  Learning  with
      Python”</a> <span class='cite'>[<a href='#Xchollet2021deep'>1</a>]</span>.</li></ol>
    
+                                                                  
+
+                                                                  
    <h3 class='sectionHead' id='references'><span class='titlemark'>20   </span> <a id='x1-2100020'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
@@ -315,9 +330,6 @@ by rows and the by columns.
    </p>
    <p class='bibitem'><span class='biblabel'>
  [3]<span class='bibsp'>   </span></span><a id='Xvruiz__DWT'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/DWT'>The DWT (Discrete Wavelet Transform)</a>.
-                                                                  
-
-                                                                  
    </p>
    <p class='bibitem'><span class='biblabel'>
  [4]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/information_theory'>Information Theory</a>.
@@ -338,8 +350,8 @@ use more quantization levels and therefore, a higher number of available RD poin
 <!-- l. 117 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>In the case of a spatial transform, a subband is form by all the coefficients that describe
 the same frequency components in different areas or resolutions (when available) of the
 image.</span></p><a id='x1-5006x6'></a>
-<!-- l. 144 --><p class='noindent'><span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>If no other more important requirement exists, such as multiresolution.</span></p><a id='x1-19002x18'></a>
-<!-- l. 320 --><p class='indent'>     <span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>In the current implementation, </span></p><div class='mathjax-env mathjax-equation'>\begin{equation} T(\mathbf {X}) = \mathbf {B}\mathbf {X}, \end{equation}</div><a id='x1-19003r2'></a> <span class='ecrm-0800'>where </span><span class='mathjax-inline'>\(\mathbf {B}\in \mathbb {R}^{B^2\times B^2}\)</span><span class='ecrm-0800'>.</span>                                                           </div>
+<!-- l. 144 --><p class='noindent'><span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>If no other more important requirement exists, such as multiresolution.</span></p><a id='x1-19004x7'></a>
+<!-- l. 324 --><p class='noindent'><span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>In the current implementation, </span></p><div class='mathjax-env mathjax-equation'>\begin{equation} T(\mathbf {X}) = \mathbf {B}\mathbf {X}, \end{equation}</div><a id='x1-19005r2'></a> <span class='ecrm-0800'>where </span><span class='mathjax-inline'>\(\mathbf {B}\in \mathbb {R}^{B^2\times B^2}\)</span><span class='ecrm-0800'>.</span>                                                                </div>
  
 </body> 
 </html>
