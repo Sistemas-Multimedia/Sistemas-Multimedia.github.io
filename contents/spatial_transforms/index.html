@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'> <a href='https://sistemas-multimedia.github.io/contents/spatial_transforms/'>Spatial Transforms</a></h2>
  <div class='author'> <a href='https://vicente-gonzalez-ruiz.github.io/'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es/universidad/departamentos/informatica'><span class='ecrm-1200'>Departamento de Informática</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>March 2, 2026</span></div>
+<div class='date'><span class='ecrm-1200'>March 4, 2026</span></div>
    </div>
    
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
@@ -37,12 +37,13 @@
 <br />   <span class='sectionToc'>11 <a href='#separability' id='QQ2-1-12'>Separability</a></span>
 <br />   <span class='sectionToc'>12 <a href='#gaussian-sources-and-the-central-limit-theorem' id='QQ2-1-13'>Gaussian sources and the Central Limit Theorem</a></span>
 <br />   <span class='sectionToc'>13 <a href='#discrete-cosine-transform-dct' id='QQ2-1-14'>Discrete Cosine Transform (DCT)</a></span>
-<br />   <span class='sectionToc'>14 <a href='#karhunenloeve-transform-klt' id='QQ2-1-15'>Karhunen–Loève Transform (KLT)</a></span>
-<br />   <span class='sectionToc'>15 <a href='#discrete-wavelet-transform-dwt' id='QQ2-1-16'>Discrete Wavelet Transform (DWT)</a></span>
-<br />   <span class='sectionToc'>16 <a href='#rdoptimized-learned-block-transform-lbt' id='QQ2-1-17'>RD-optimized Learned Block Transform (LBT)</a></span>
-<br />   <span class='sectionToc'>17 <a href='#todo' id='QQ2-1-18'>To-Do</a></span>
-<br />   <span class='sectionToc'>18 <a href='#resources' id='QQ2-1-19'>Resources</a></span>
-<br />   <span class='sectionToc'>19 <a href='#references' id='QQ2-1-20'>References</a></span>
+<br />   <span class='sectionToc'>14 <a href='#modified-dct-mdct' id='QQ2-1-15'>Modified DCT (MDCT)</a></span>
+<br />   <span class='sectionToc'>15 <a href='#karhunenloeve-transform-klt' id='QQ2-1-16'>Karhunen–Loève Transform (KLT)</a></span>
+<br />   <span class='sectionToc'>16 <a href='#discrete-wavelet-transform-dwt' id='QQ2-1-17'>Discrete Wavelet Transform (DWT)</a></span>
+<br />   <span class='sectionToc'>17 <a href='#rdoptimized-learned-block-transform-lbt' id='QQ2-1-18'>RD-optimized Learned Block Transform (LBT)</a></span>
+<br />   <span class='sectionToc'>18 <a href='#todo' id='QQ2-1-19'>To-Do</a></span>
+<br />   <span class='sectionToc'>19 <a href='#resources' id='QQ2-1-20'>Resources</a></span>
+<br />   <span class='sectionToc'>20 <a href='#references' id='QQ2-1-21'>References</a></span>
    </div>
    
                                                                   
@@ -208,100 +209,123 @@ because:
 <!-- l. 225 --><p class='indent'>   In VCF has been implemented the  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DCT.ipynb'>2D-DCT</a>.
    
 </p>
-   <h3 class='sectionHead' id='karhunenloeve-transform-klt'><span class='titlemark'>14   </span> <a id='x1-1500014'></a>Karhunen–Loève Transform (KLT)</h3>
-<!-- l. 229 --><p class='noindent'>In the KLT the basis funtions are the eigenvectors of the covariance matrix of the
+   <h3 class='sectionHead' id='modified-dct-mdct'><span class='titlemark'>14   </span> <a id='x1-1500014'></a>Modified DCT (MDCT)</h3>
+<!-- l. 229 --><p class='noindent'>To avoid blockiness we can overlap the blocks. The MDCT was speficically designed
+to avoid this artifact. See  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-MDCT.ipynb'>2D-MDCT</a>.
+   
+</p>
+   <h3 class='sectionHead' id='karhunenloeve-transform-klt'><span class='titlemark'>15   </span> <a id='x1-1600015'></a>Karhunen–Loève Transform (KLT)</h3>
+<!-- l. 234 --><p class='noindent'>In the KLT the basis funtions are the eigenvectors of the covariance matrix of the
 input data. In terms of energy concentration (also called  <a href='https://web.stanford.edu/class/ee398a/handouts/lectures/07-TransformCoding.pdf'>transform coding gain</a> <span class='cite'>[<a href='#Xsayood2017introduction'>5</a>]</span>),
 for a zero-mean Gaussian sources the KLT is optimal among all orthogonal
 transforms.
-</p><!-- l. 236 --><p class='indent'>   Like the other transforms studied here, the KLT is orthonormal but in general not
+</p><!-- l. 241 --><p class='indent'>   Like the other transforms studied here, the KLT is orthonormal but in general not
 separable, and applied block-by-block for two main reasons:
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-15002x1'>The basis (eigenvectors) are signal dependent and therefore, the decoder
+<li class='enumerate' id='x1-16002x1'>The basis (eigenvectors) are signal dependent and therefore, the decoder
      needs the inverse transform matrix, whose size is <span class='mathjax-inline'>\(N^2\)</span> for an input of <span class='mathjax-inline'>\(N\)</span> pixels
      (<span class='mathjax-inline'>\(N\)</span> eigenvectors of length <span class='mathjax-inline'>\(N\)</span>). Remember that the KLT is not separable.
      </li>
-<li class='enumerate' id='x1-15004x2'>Most natural images are non-stationary, meaning their statistics change
+<li class='enumerate' id='x1-16004x2'>Most natural images are non-stationary, meaning their statistics change
      drastically from one area to another (the top half of a photo might be a
      smooth, highly correlated blue sky, while the bottom half might be highly
      detailed, uncorrelated grass). Therefore, if you apply a global KLT to the
      whole image, it creates a set of basis functions that average out the sky
      and the grass. This "average" basis isn’t optimal for either region.</li></ol>
-<!-- l. 253 --><p class='indent'>   In VCF has been implemented the  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-KLT.ipynb'>2D-KLT</a>. Notice that only a single analysis
-matrix has been used when encoding the whole image (and only a synthesis matrix
-can be used for decoding).
+<!-- l. 258 --><p class='indent'>   A 2D-blocks version of the KLT can be found in  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-KLT.ipynb'>2D-KLT</a>. Notice that only a
+single analysis matrix has been used when encoding the whole image (and only a
+synthesis matrix can be used for decoding).
    
 </p>
-   <h3 class='sectionHead' id='discrete-wavelet-transform-dwt'><span class='titlemark'>15   </span> <a id='x1-1600015'></a>Discrete Wavelet Transform (DWT)</h3>
-<!-- l. 259 --><p class='noindent'>The DWT is linear, separable and at least bi-orthogonal. Compared to the DCT, in
+   <h3 class='sectionHead' id='discrete-wavelet-transform-dwt'><span class='titlemark'>16   </span> <a id='x1-1700016'></a>Discrete Wavelet Transform (DWT)</h3>
+<!-- l. 264 --><p class='noindent'>The DWT is linear, separable and at least bi-orthogonal. Compared to the DCT, in
 the DWT the basis functions have a local support (are not infinite as the cosine
 functions), and the DWT coefficients express both frequency and locality (in the
 original image). This has two main advantages:
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-16002x1'>The DWT can be applied without using blocks, avoiding the blocking
+<li class='enumerate' id='x1-17002x1'>The DWT can be applied without using blocks, avoiding the blocking
      artifact usually visible at very low bit-rates.
      </li>
-<li class='enumerate' id='x1-16004x2'>In general, the energy compactation generated by the DWT is superior to
+<li class='enumerate' id='x1-17004x2'>In general, the energy compactation generated by the DWT is superior to
      the achieved by the DCT.</li></ol>
-<!-- l. 271 --><p class='indent'>   In VCF has been implemented the  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-KLT.ipynb'>2D-DWT</a>.
+<!-- l. 276 --><p class='indent'>   VCF implements  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-KLT.ipynb'>2D-DWT</a>.
    
 </p>
-   <h3 class='sectionHead' id='rdoptimized-learned-block-transform-lbt'><span class='titlemark'>16   </span> <a id='x1-1700016'></a>RD-optimized Learned Block Transform (LBT)</h3>
-<!-- l. 275 --><p class='noindent'>Neural networks are good learning things. Specifically, autoencoders are capable of
-matching correspondences between input and output tensors. If we design a 2-layers
-autoencoder where the neurons do not use any activation function and we train it to
-minimize </p><div class='mathjax-env mathjax-equation'>\begin{equation} J = D + \lambda R, \end{equation}</div><p><a id='x1-17001r1'></a> where <span class='mathjax-inline'>\(D\)</span> represents distortion and <span class='mathjax-inline'>\(R\)</span> bit-rate, we will build a Rate/Distortion
-(RD) optimized transformation. Notice that, unlike the KLT, now we are considering
-the quantization and the entropy coding subsystems (and their parameters, such as
-the quantization step size and the order of the context modeling) to minimize
+   <h3 class='sectionHead' id='rdoptimized-learned-block-transform-lbt'><span class='titlemark'>17   </span> <a id='x1-1800017'></a>RD-optimized Learned Block Transform (LBT)</h3>
                                                                   
 
                                                                   
+<!-- l. 280 --><p class='noindent'>Neural networks are good learning things. Specifically, autoencoders are
+capable of matching correspondences between input and output tensors. If we
+design a 2-layers autoencoder where the neurons do not use any activation
+function and we train it to minimize the cost function </p><div class='mathjax-env mathjax-equation'>\begin{equation} J = D + \lambda R, \end{equation}</div><p><a id='x1-18001r1'></a> where <span class='mathjax-inline'>\(D\)</span> represents
+distortion and <span class='mathjax-inline'>\(R\)</span> bit-rate, we will build a Rate/Distortion (RD) optimized
+transformation. Notice that, unlike the KLT, now we are considering the
+quantization and the entropy coding subsystems (and their parameters, such as the
+quantization step size and the order of the context modeling) to minimize
 the <span class='mathjax-inline'>\(J\)</span> tradeoff between <span class='mathjax-inline'>\(D\)</span> and <span class='mathjax-inline'>\(R\)</span> (in the KLT we only minimize <span class='mathjax-inline'>\(D\)</span>). <span class='mathjax-inline'>\(\lambda \)</span> controls our
 preference:
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-17003x1'>If  <span class='mathjax-inline'>\(\lambda \)</span>  is  small,  for  a  given  quantization  step  size  and  entropy  encoding
+<li class='enumerate' id='x1-18003x1'>If  <span class='mathjax-inline'>\(\lambda \)</span>  is  small,  for  a  given  quantization  step  size  and  entropy  encoding
      parameters,  we  are  interested  in  finding  a  transformation  matrix  that
      should  be  efficient  for  high  quality  reconstruction,  at  the  expense  of
      increasing the bit-rate.
      </li>
-<li class='enumerate' id='x1-17005x2'>If <span class='mathjax-inline'>\(\lambda \)</span> is big, you are telling to the optimizer: “Bit-rate is expensive”. The
+<li class='enumerate' id='x1-18005x2'>If <span class='mathjax-inline'>\(\lambda \)</span> is big, you are telling to the optimizer: “Bit-rate is expensive”. The
      autoencoder will update its weights to learn a transform that aggressively
      groups and compress features (“transform coefficients”, in this case) even
      a the cost of a high distortion. Therefore, the transform will be optimized
      for low bit-rates.</li></ol>
-<!-- l. 302 --><p class='indent'>   In VCF has been implemented a block-wise  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-LBT.ipynb'>2D-LBT</a>.
+<!-- l. 308 --><p class='indent'>   In VCF has been implemented a block-wise  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-LBT.ipynb'>2D-LBT</a>.
    
 </p>
-   <h3 class='sectionHead' id='todo'><span class='titlemark'>17   </span> <a id='x1-1800017'></a>To-Do</h3>
-<!-- l. 306 --><p class='noindent'>The current implementation of LBT is not separable (the transform matrices has
-been found for the complete blocks). If <span class='mathjax-inline'>\(T(\mathbf {X})\)</span> represents the transform of the
-block <span class='mathjax-inline'>\(\mathbf {X}\)</span> modify  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-LBT.py'>2D-LBT</a> to train <span class='mathjax-inline'>\(\mathbf {A}\in \mathbb {R}^{B\times B}\)</span>, where <span class='mathjax-inline'>\(B\)</span> is the side of the square blocks,
-being<span class='footnote-mark'><a href='#fn7x0' id='fn7x0-bk'><sup class='textsuperscript'>7</sup></a></span><a id='x1-18001f7'></a>
-</p><div class='mathjax-env mathjax-equation'>\begin{equation} T(\mathbf {X}) = \mathbf {A}\mathbf {X}\mathbf {A}^T. \end{equation}</div><p><a id='x1-18004r3'></a>
-<!-- l. 320 --></p><p class='indent'>   Sumarizing, the only that should be modified is that the transform is applied first
-by rows and the by columns.
-   
-</p>
-   <h3 class='sectionHead' id='resources'><span class='titlemark'>18   </span> <a id='x1-1900018'></a>Resources</h3>
-<!-- l. 326 --><p class='noindent'>
+   <h3 class='sectionHead' id='todo'><span class='titlemark'>18   </span> <a id='x1-1900018'></a>To-Do</h3>
+<!-- l. 312 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-19002x1'> <a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/src/DCT2D/YCoCg_2D_DCT_SQ.ipynb'>Image Compression with YCoCg + 2D-DCT</a>.
+<li class='enumerate' id='x1-19002x1'>
+     <!-- l. 313 --><p class='noindent'>The current implementation of LBT is not separable (the transform matrices
+     has been found for the complete blocks). If <span class='mathjax-inline'>\(T(\mathbf {X})\)</span> represents the transform of the
+     block <span class='mathjax-inline'>\(\mathbf {X}\)</span> modify  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-LBT.py'>2D-LBT</a> to train <span class='mathjax-inline'>\(\mathbf {A}\in \mathbb {R}^{B\times B}\)</span>, where <span class='mathjax-inline'>\(B\)</span> is the side of the square blocks,
+     being<span class='footnote-mark'><a href='#fn7x0' id='fn7x0-bk'><sup class='textsuperscript'>7</sup></a></span><a id='x1-19003f7'></a>
+     </p><div class='mathjax-env mathjax-equation'>\begin{equation} T(\mathbf {X}) = \mathbf {A}\mathbf {X}\mathbf {A}^T. \end{equation}</div><a id='x1-19006r3'></a>
+     <!-- l. 329 --><p class='noindent'>Sumarizing, the transform is applied first by rows and the by columns. The
+     transform matrix is smaller.
+                                                                  
+
+                                                                  
+     </p></li>
+<li class='enumerate' id='x1-19008x2'>
+     <!-- l. 332 --><p class='noindent'>In the current implementation </p><div class='mathjax-env mathjax-equation'>\begin{equation} R = \frac {1}{N}\sum _{i=1}^{N} \log (\sigma _i^2), \end{equation}</div><a id='x1-19009r4'></a> where <span class='mathjax-inline'>\(N\)</span> is the number of pixels/block and <span class='mathjax-inline'>\(\sigma ^2_i\)</span> is the
+     variance of the <span class='mathjax-inline'>\(i\)</span>-the coefficient inside of each block. Obviously, <span class='mathjax-inline'>\(R\)</span> is only an
+     estimation of the (inverse of) real bit-rate, which depends also on the QSS and
+     the entropy encoder parameter(s). Try to improve the accuracy of this term of
+     the cost function. Modify any other training parameter (such as the number of
+     epochs) to achive this goal.
+     </li>
+<li class='enumerate' id='x1-19011x3'>Remove from the code all the part related with the perceptual quantization.
+     The QSS matrices are specific for the 2D-DCT.
+</li></ol>
+   
+   <h3 class='sectionHead' id='resources'><span class='titlemark'>19   </span> <a id='x1-2000019'></a>Resources</h3>
+<!-- l. 352 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x1-20002x1'> <a href='https://github.com/vicente-gonzalez-ruiz/DCT2D/blob/master/src/DCT2D/YCoCg_2D_DCT_SQ.ipynb'>Image Compression with YCoCg + 2D-DCT</a>.
+     </li>
+<li class='enumerate' id='x1-20004x2'> <a href='https://www.tensorflow.org/tutorials/generative/data_compression'>Learned data compression</a>.
+     </li>
+<li class='enumerate' id='x1-20006x3'> <a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/LIC.ipynb'>Learned Image Compression (LIC) using auto-encoders</a>.
+     </li>
+<li class='enumerate' id='x1-20008x4'> <a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/AutoencoderBlockCompression.ipynb'>AutoencoderBlockCompression.ipynb</a>.
                                                                   
 
                                                                   
      </li>
-<li class='enumerate' id='x1-19004x2'> <a href='https://www.tensorflow.org/tutorials/generative/data_compression'>Learned data compression</a>.
-     </li>
-<li class='enumerate' id='x1-19006x3'> <a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/LIC.ipynb'>Learned Image Compression (LIC) using auto-encoders</a>.
-     </li>
-<li class='enumerate' id='x1-19008x4'> <a href='https://github.com/vicente-gonzalez-ruiz/learned_image_compression/blob/main/notebooks/AutoencoderBlockCompression.ipynb'>AutoencoderBlockCompression.ipynb</a>.
-     </li>
-<li class='enumerate' id='x1-19010x5'>  <a href='https://github.com/fchollet/deep-learning-with-python-notebooks'>Companion  Jupyter  notebooks  for  the  book  “Deep  Learning  with
+<li class='enumerate' id='x1-20010x5'>  <a href='https://github.com/fchollet/deep-learning-with-python-notebooks'>Companion  Jupyter  notebooks  for  the  book  “Deep  Learning  with
      Python”</a> <span class='cite'>[<a href='#Xchollet2021deep'>1</a>]</span>.
      </li>
-<li class='enumerate' id='x1-19012x6'> <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/spatial_transforms/notebooks/learned_transform_autoencoder.ipynb'>Learned transform autoencoder</a>.</li></ol>
+<li class='enumerate' id='x1-20012x6'> <a href='https://github.com/Sistemas-Multimedia/Sistemas-Multimedia.github.io/blob/master/contents/spatial_transforms/notebooks/learned_transform_autoencoder.ipynb'>Learned transform autoencoder</a>.</li></ol>
    
-   <h3 class='sectionHead' id='references'><span class='titlemark'>19   </span> <a id='x1-2000019'></a>References</h3>
+   <h3 class='sectionHead' id='references'><span class='titlemark'>20   </span> <a id='x1-2100020'></a>References</h3>
    <div class='thebibliography'>
    <p class='bibitem'><span class='biblabel'>
  [1]<span class='bibsp'>   </span></span><a id='Xchollet2021deep'></a>Francois Chollet.  <a href='https://sourestdeeds.github.io/pdf/Deep%20Learning%20with%20Python.pdf'><span class='ecti-1000'>Deep learning with Python</span></a>. Simon and Schuster, 2021.
@@ -311,9 +335,6 @@ by rows and the by columns.
    </p>
    <p class='bibitem'><span class='biblabel'>
  [3]<span class='bibsp'>   </span></span><a id='Xvruiz__DWT'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/DWT'>The DWT (Discrete Wavelet Transform)</a>.
-                                                                  
-
-                                                                  
    </p>
    <p class='bibitem'><span class='biblabel'>
  [4]<span class='bibsp'>   </span></span><a id='Xvruiz__information_theory'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/information_theory'>Information Theory</a>.
@@ -323,6 +344,9 @@ by rows and the by columns.
    Kaufmann, 2017.
 </p>
    </div>
+                                                                  
+
+                                                                  
    <div class='footnotes'><a id='x1-2002x1'></a>
 <!-- l. 48 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>We will see this with more detail later in this course.</span></p><a id='x1-2004x1'></a>
 <!-- l. 62 --><p class='indent'>     <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><span class='ecrm-0800'>That depends on the position of the coefficient in the transformed domain.</span></p><a id='x1-3004x3'></a>
@@ -334,8 +358,8 @@ use more quantization levels and therefore, a higher number of available RD poin
 <!-- l. 117 --><p class='indent'>     <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><span class='ecrm-0800'>In the case of a spatial transform, a subband is form by all the coefficients that describe
 the same frequency components in different areas or resolutions (when available) of the
 image.</span></p><a id='x1-5006x6'></a>
-<!-- l. 144 --><p class='noindent'><span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>If no other more important requirement exists, such as multiresolution.</span></p><a id='x1-18002x17'></a>
-<!-- l. 315 --><p class='indent'>     <span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>In the current implementation, </span></p><div class='mathjax-env mathjax-equation'>\begin{equation} T(\mathbf {X}) = \mathbf {B}\mathbf {X}, \end{equation}</div><a id='x1-18003r2'></a> <span class='ecrm-0800'>where </span><span class='mathjax-inline'>\(\mathbf {B}\in \mathbb {R}^{B^2\times B^2}\)</span><span class='ecrm-0800'>.</span>                                                           </div>
+<!-- l. 144 --><p class='noindent'><span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>If no other more important requirement exists, such as multiresolution.</span></p><a id='x1-19004x7'></a>
+<!-- l. 324 --><p class='noindent'><span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>In the current implementation, </span></p><div class='mathjax-env mathjax-equation'>\begin{equation} T(\mathbf {X}) = \mathbf {B}\mathbf {X}, \end{equation}</div><a id='x1-19005r2'></a> <span class='ecrm-0800'>where </span><span class='mathjax-inline'>\(\mathbf {B}\in \mathbb {R}^{B^2\times B^2}\)</span><span class='ecrm-0800'>.</span>                                                                </div>
  
 </body> 
 </html>

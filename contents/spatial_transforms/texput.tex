@@ -225,6 +225,11 @@ of 8x8 pixels because:
 In VCF has been implemented the
 \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-DCT.ipynb}{2D-DCT}.
 
+\section{Modified DCT (MDCT)}
+To avoid blockiness we can overlap the blocks. The MDCT was
+speficically designed to avoid this artifact. See
+\href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-MDCT.ipynb}{2D-MDCT}.
+
 \section{Karhunen–Loève Transform (KLT)}
 In the KLT the basis funtions are the eigenvectors of the covariance
 matrix of the input data. In terms of energy concentration (also
@@ -250,7 +255,7 @@ reasons:
   basis isn't optimal for either region.
 \end{enumerate}
 
-In VCF has been implemented the
+A 2D-blocks version of the KLT can be found in
 \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-KLT.ipynb}{2D-KLT}. Notice
 that only a single analysis matrix has been used when encoding the
 whole image (and only a synthesis matrix can be used for decoding).
@@ -268,14 +273,15 @@ advantages:
   superior to the achieved by the DCT.
 \end{enumerate}
 
-In VCF has been implemented the
+VCF implements
 \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-KLT.ipynb}{2D-DWT}.
 
 \section{RD-optimized Learned Block Transform (LBT)}
 Neural networks are good learning things. Specifically, autoencoders
-are capable of matching correspondences between input and
-output tensors. If we design a 2-layers autoencoder where the neurons
-do not use any activation function and we train it to minimize
+are capable of matching correspondences between input and output
+tensors. If we design a 2-layers autoencoder where the neurons do not
+use any activation function and we train it to minimize the cost
+function
 \begin{equation}
   J = D + \lambda R,
 \end{equation}
@@ -303,22 +309,42 @@ In VCF has been implemented a block-wise
 \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-LBT.ipynb}{2D-LBT}.
 
 \section{To-Do}
-The current implementation of LBT is not separable (the transform
-matrices has been found for the complete blocks). If $T(\mathbf{X})$
-represents the transform of the block $\mathbf{X}$ modify
-\href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-LBT.py}{2D-LBT}
-to train $\mathbf{A}\in\mathbb{R}^{B\times B}$, where $B$ is the side
-of the square blocks, being\footnote{In the current implementation,
-\begin{equation}
-  T(\mathbf{X}) = \mathbf{B}\mathbf{X},
-\end{equation}
-where $\mathbf{B}\in\mathbb{R}^{B^2\times B^2}$.}
-\begin{equation}
-  T(\mathbf{X}) = \mathbf{A}\mathbf{X}\mathbf{A}^T.
-\end{equation}
+\begin{enumerate}
+  \item The current implementation of LBT is not separable (the
+    transform matrices has been found for the complete blocks). If
+    $T(\mathbf{X})$ represents the transform of the block $\mathbf{X}$
+    modify
+    \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/2D-LBT.py}{2D-LBT}
+    to train $\mathbf{A}\in\mathbb{R}^{B\times B}$, where $B$ is the
+    side of the square blocks, being\footnote{In the current
+    implementation,
+    \begin{equation}
+      T(\mathbf{X}) = \mathbf{B}\mathbf{X},
+    \end{equation}
+    where $\mathbf{B}\in\mathbb{R}^{B^2\times B^2}$.}
+    \begin{equation}
+      T(\mathbf{X}) = \mathbf{A}\mathbf{X}\mathbf{A}^T.
+    \end{equation}
+    
+    Sumarizing, the transform is applied first by rows and the by
+    columns. The transform matrix is smaller.
 
-Sumarizing, the only that should be modified is that the transform is
-applied first by rows and the by columns.
+  \item In the current implementation
+    \begin{equation}
+      R = \frac{1}{N}\sum_{i=1}^{N} \log(\sigma_i^2),
+    \end{equation}
+    where $N$ is the number of pixels/block and $\sigma^2_i$ is the
+    variance of the $i$-the coefficient inside of each block.
+    Obviously, $R$ is only an estimation of the (inverse of) real
+    bit-rate, which depends also on the QSS and the entropy encoder
+    parameter(s). Try to improve the accuracy of this term of the cost
+    function. Modify any other training parameter (such as the number
+    of epochs) to achive this goal.
+
+  \item Remove from the code all the part related with the perceptual
+    quantization. The QSS matrices are specific for the 2D-DCT.
+    
+\end{enumerate}
 
 \section{Resources}
 %{{{
