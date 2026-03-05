@@ -113,7 +113,8 @@ a B-frame all types of blocks can be used.
 
 \section{Resources}
 \begin{enumerate}
-\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/III.ipynb}{III.py} in VCF.
+\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb}{IPP\_DCT.ipynb} in VCF.
+\item \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/MCTF.ipynb}{MCTF.ipynb} in VCF.
 \item \href{https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/full_search_block_ME.ipynb}{Full search block-based ME (Motion Estimation)}.
 \item \href{https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/full_search_dense_ME.ipynb}{Full search dense (1x1) ME}.
 \item \href{https://github.com/vicente-gonzalez-ruiz/motion_estimation/blob/main/src/motion_estimation/farneback_ME.ipynb}{Farnebäck's motion estimation}.
@@ -125,21 +126,25 @@ a B-frame all types of blocks can be used.
 %{{{
 
 \begin{enumerate}
-\item Create a VCF video codec similar to \texttt{III.py}, but using
-  an block-based motion-compensated ``IPP...'' scheme (the first image
-  of each GOP intra-coded, and the rest coded using a prediction using
-  the previously encoded image as the reference image)
-  \cite{vruiz_ME,vruiz_MC}. Use some kind of RDO (Rate/Distortion
-  Optimization) to determine the block type (I or P).\footnote{The
-  standard approach is to calculate which option requires less output
-  bits for each decision.}
-\item Create a video codec similar to the previous one, but using an
+\item The module used in
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb}{IPP\_DCT.ipynb}
+  should determine the block type (I, P, or B) using the number of
+  bits that actually the block requires after cuantization (now an
+  heuristic using the variance of the quantized block is
+  implemented). Notice that this implies that the blocks must be
+  entropy encoded independently (the codec must operate at the block
+  level, not at the image one).
+
+\item Both,
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb}{IPP\_DCT.ipynb}
+  and
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/MCTF.ipynb}{MCTF.ipynb}
+  estimate the motion at the frames resolution. Better predictions can
+  be generated using sub-pixel motion estimation \cite{timoner2000subpixel,farneback02}
+\item Create a video codec similar to \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb}{IPP\_DCT.ipynb}, but using an
   ``IBP...'' scheme. In this case, the predicted images B use more
-  than one reference image \cite{vruiz_ME,vruiz_MC}. More than one
+  than one reference image \cite{vruiz__ME,vruiz__MC}. More than one
   consecutive B-type images can be used.
-\item Create a video codec similar to the previous one, but using an
-  MCTF scheme (``IBB...'', i.e., there are not P-type images)
-  \cite{vruiz_MCTF}.
 \end{enumerate}
 
 %}}}
