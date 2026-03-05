@@ -126,6 +126,13 @@ a B-frame all types of blocks can be used.
 %{{{
 
 \begin{enumerate}
+  
+\item Create a video codec similar to the used in
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb}{IPP\_DCT.ipynb},
+  but using an ``IBP...'' scheme. In this case, the predicted images B
+  use more than one reference image \cite{vruiz__ME,vruiz__MC}. For
+  now, use only the adjacent frames as reference.
+  
 \item The module used in
   \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb}{IPP\_DCT.ipynb}
   should determine the block type (I, P, or B) using the number of
@@ -133,18 +140,34 @@ a B-frame all types of blocks can be used.
   heuristic using the variance of the quantized block is
   implemented). Notice that this implies that the blocks must be
   entropy encoded independently (the codec must operate at the block
-  level, not at the image one).
+  level, not at the image one). For this, arithmetic coding is highly
+  recommended (notice that we can estimate the number of bits that a
+  block can require when we encode it with a a 0-order context-based
+  arithmetic using the entropy of the data of the codec).
 
 \item Both,
   \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb}{IPP\_DCT.ipynb}
   and
   \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/MCTF.ipynb}{MCTF.ipynb}
   estimate the motion at the frames resolution. Better predictions can
-  be generated using sub-pixel motion estimation \cite{timoner2000subpixel,farneback02}
-\item Create a video codec similar to \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb}{IPP\_DCT.ipynb}, but using an
-  ``IBP...'' scheme. In this case, the predicted images B use more
-  than one reference image \cite{vruiz__ME,vruiz__MC}. More than one
-  consecutive B-type images can be used.
+  be generated using sub-pixel motion estimation \cite{timoner2000subpixel,farneback02}.
+
+\item Both,
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb}{IPP\_DCT.ipynb}
+  and
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/MCTF.ipynb}{MCTF.ipynb}
+  load first the complete video in memory to process it. This is a
+  problem when the videos are long or have a high spatial
+  resolution. Work at the GOF level, or if possible, at the frame
+  level.
+
+\item In the current implementation of
+  \href{https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/MCTF.ipynb}{MCTF.ipynb}
+  the reference frames have the maximum quality when encoding, and
+  this is not the case with the video is decoded (obviously, if the
+  QSS is bigger than 1). To avoid the drift error, use at the encoder
+  the same references that the decoder will use. Notice that this 
+  
 \end{enumerate}
 
 %}}}
