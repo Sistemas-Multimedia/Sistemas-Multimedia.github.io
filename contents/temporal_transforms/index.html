@@ -19,7 +19,7 @@
 
 <h2 class='titleHead'>Temporal Transforms</h2>
  <div class='author'> <a href='https://cms.ual.es/UAL/personas/persona.htm?id=515256515553484875'><span class='ecrm-1200'>Vicente González Ruiz</span></a> <span class='ecrm-1200'>-  </span><a href='https://cms.ual.es/UAL/universidad/departamentos/informatica/index.htm'><span class='ecrm-1200'>Depto Informática</span></a> <span class='ecrm-1200'>-  </span><a href='https://www.ual.es'><span class='ecrm-1200'>UAL</span></a></div><br />
-<div class='date'><span class='ecrm-1200'>March 5, 2026</span></div>
+<div class='date'><span class='ecrm-1200'>March 9, 2026</span></div>
    </div>
    <h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
    <div class='tableofcontents'>
@@ -138,20 +138,32 @@ used.
    <h3 class='sectionHead' id='todo'><span class='titlemark'>8   </span> <a id='x1-90008'></a>To-Do</h3>
 <!-- l. 128 --><p class='noindent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x1-9002x1'>The module   <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb'>IPP_DCT.ipynb</a> should determine the block type (I, P,
-     or  B)  using  the  number  of  bits  that  actually  the  block  requires  after
+<li class='enumerate' id='x1-9002x1'>The module used in  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb'>IPP_DCT.ipynb</a> should determine the block type
+     (I, P, or B) using the number of bits that actually the block requires after
      cuantization (now an heuristic using the variance of the quantized block
      is implemented). Notice that this implies that the blocks must be entropy
      encoded independently (the codec must operate at the block level, not at
-     the image one).
+     the image one). For this, arithmetic coding is highly recommended<span class='footnote-mark'><a href='#fn9x0' id='fn9x0-bk'><sup class='textsuperscript'>9</sup></a></span><a id='x1-9003f9'></a>.
      </li>
-<li class='enumerate' id='x1-9004x2'>Both,   <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb'>IPP_DCT.ipynb</a> and   <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/MCTF.ipynb'>MCTF.ipynb</a> estimate the motion at the
+<li class='enumerate' id='x1-9006x2'>Both,   <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb'>IPP_DCT.ipynb</a> and   <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/MCTF.ipynb'>MCTF.ipynb</a> estimate the motion at the
      frames  resolution.  Better  predictions  can  be  generated  using  sub-pixel
-     motion estimation <span class='cite'>[<a href='#Xtimoner2000subpixel'>5</a>, <a href='#Xfarneback02'>1</a>]</span>
+     motion estimation <span class='cite'>[<a href='#Xtimoner2000subpixel'>5</a>, <a href='#Xfarneback02'>1</a>]</span>.
      </li>
-<li class='enumerate' id='x1-9006x3'>Create a video codec similar to  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb'>IPP_DCT.ipynb</a>, but using an “IBP...”
-     scheme. In this case, the predicted images B use more than one reference
-     image <span class='cite'>[<a href='#Xvruiz__ME'>4</a>, <a href='#Xvruiz__MC'>3</a>]</span>. More than one consecutive B-type images can be used.</li></ol>
+<li class='enumerate' id='x1-9008x3'>Both,  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb'>IPP_DCT.ipynb</a> and  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/MCTF.ipynb'>MCTF.ipynb</a> load first the complete video
+     in memory to process it. This is a problem when the videos are long or
+     have a high resolution. Work at the frame level. Disks are faster enought.
+     </li>
+<li class='enumerate' id='x1-9010x4'>In the current implementation of  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/MCTF.ipynb'>MCTF.ipynb</a> the reference frames have
+     the maximum quality when encoding, and this is not the case with the
+     video is decoded (obviously, if the QSS is bigger than 1). To avoid the
+     drift error along temporal resolution levels, use at the encoder the same
+     references that the decoder will use. Notice that this implies that the
+     quantization step size must known at compression time.
+     </li>
+<li class='enumerate' id='x1-9012x5'>Create a video codec similar to the used in  <a href='https://github.com/Sistemas-Multimedia/VCF/blob/main/notebooks/IPP_DCT.ipynb'>IPP_DCT.ipynb</a>, but using
+     an “IBP...” scheme. In this case, the predicted images B use more than one
+     reference image <span class='cite'>[<a href='#Xvruiz__ME'>4</a>, <a href='#Xvruiz__MC'>3</a>]</span>. For now, use only the adjacent frames as reference.
+</li></ol>
    
    <h3 class='sectionHead' id='references'><span class='titlemark'>9   </span> <a id='x1-100009'></a>References</h3>
    <div class='thebibliography'>
@@ -162,6 +174,9 @@ used.
    </p>
    <p class='bibitem'><span class='biblabel'>
  [2]<span class='bibsp'>   </span></span><a id='Xvruiz__MCTF'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensated_temporal_filtering'>Motion Compensated Temporal Filtering (MCTF)</a>.
+                                                                  
+
+                                                                  
    </p>
    <p class='bibitem'><span class='biblabel'>
  [3]<span class='bibsp'>   </span></span><a id='Xvruiz__MC'></a>V. González-Ruiz.  <a href='https://github.com/vicente-gonzalez-ruiz/motion_compensation'>Motion Compensation</a>.
@@ -174,9 +189,6 @@ used.
    of video images</span></a>. PhD thesis, Massachusetts Institute of Technology, 2000.
 </p>
    </div>
-                                                                  
-
-                                                                  
    <div class='footnotes'><a id='x1-2002x1'></a>
 <!-- l. 25 --><p class='indent'>     <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><span class='ecrm-0800'>With pixels or coefficients, depending on the current domain in which the frame has been
 represented.</span></p><a id='x1-3002x2'></a>
@@ -188,7 +200,10 @@ is a ill-posed problem because it is impossible to find it using only a sequence
 different situation is when we use al least 2 cameras.</span></p><a id='x1-5002x4'></a>
 <!-- l. 74 --><p class='indent'>     <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><span class='ecrm-0800'>Some standards also use GOP (Group Of Pictures).</span></p><a id='x1-5004x4'></a>
 <!-- l. 80 --><p class='indent'>     <span class='footnote-mark'><a href='#fn7x0-bk' id='fn7x0'><sup class='textsuperscript'>7</sup></a></span><span class='ecrm-0800'>Specifically, constant bit-rate encodings.</span></p><a id='x1-6002x5'></a>
-<!-- l. 93 --><p class='indent'>     <span class='footnote-mark'><a href='#fn8x0-bk' id='fn8x0'><sup class='textsuperscript'>8</sup></a></span><span class='ecrm-0800'>The part of the RDO procedure that controls the block-type.</span></p>                               </div>
+<!-- l. 93 --><p class='indent'>     <span class='footnote-mark'><a href='#fn8x0-bk' id='fn8x0'><sup class='textsuperscript'>8</sup></a></span><span class='ecrm-0800'>The part of the RDO procedure that controls the block-type.</span></p><a id='x1-9004x9'></a>
+<!-- l. 142 --><p class='noindent'><span class='footnote-mark'><a href='#fn9x0-bk' id='fn9x0'><sup class='textsuperscript'>9</sup></a></span><span class='ecrm-0800'>Notice that we can estimate the number of bits that a block can require when we encode
+it with a a 0-order context-based arithmetic using the entropy of the data of the codec. If we
+have several context, the entropy can be computed context-based also.</span></p>                             </div>
  
 </body> 
 </html>
